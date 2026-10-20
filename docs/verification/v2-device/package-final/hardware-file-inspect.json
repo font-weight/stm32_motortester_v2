@@ -1,0 +1,78 @@
+{
+  "status": "PASS",
+  "scope": "Final frozen CLI reads and exports previously acquired COM6 data; no COM opened",
+  "executable": "C:\\Users\\Alexandr\\Desktop\\New folder\\универ\\мотортестер 2\\build\\v3w3\\Проверка переноса\\MotortesterV2\\MotortesterV2Inspect.exe",
+  "executable_sha256": "8da6ab291937408a8babc6cff875820a238c4a78c57a07eefd6cb8933c1cd486",
+  "input_sha256": "dcf1a9e3ac5173380807f075ba81352f58ff745fd5db419d58995522b6ddee93",
+  "csv_sha256": "4429b357ba81ec914832bd59bba2438376cfcca74769f0dd235aef045ca3019c",
+  "raw_rows_equal_original_export": true,
+  "sample_count": 2048,
+  "isolated_path": "C:\\Windows\\System32",
+  "inspection": {
+    "file": "C:\\Users\\Alexandr\\Desktop\\New folder\\универ\\мотортестер 2\\docs\\verification\\v2-device\\hardware-01\\stm32-window.mtv2",
+    "session_id": "00000000-0000-0000-423e-89ba2bbf486f",
+    "source": "device",
+    "channel_id": "CH1",
+    "channel_name": "Канал 1",
+    "ui_profile": "oscilloscope",
+    "voltage_state": "unconfigured",
+    "input_profile": {
+      "a": null,
+      "b": null,
+      "state": "unconfigured",
+      "profile_id": "unknown",
+      "adc_bits": 12,
+      "channel_id": "CH1",
+      "device_id": null,
+      "frontend_id": null,
+      "frontend_revision": null,
+      "range_id": null,
+      "coupling": "unknown",
+      "coefficient_source": null,
+      "calibration_id": null,
+      "calibration_version": null,
+      "calibration_date": null,
+      "measurement_point": null,
+      "ground_reference": null,
+      "sensor": null,
+      "vref_v": null,
+      "bandwidth_hz": null,
+      "linear_min_v": null,
+      "linear_max_v": null,
+      "conditions": null
+    },
+    "sample_rate_hz": 50000.0,
+    "time_basis": "nominal_unverified",
+    "sample_count": 2048,
+    "requested_range": [
+      0,
+      2048
+    ],
+    "available_range": [
+      0,
+      2048
+    ],
+    "duration_s": 0.04096,
+    "gaps": [],
+    "measurements": {
+      "minimum_v": null,
+      "maximum_v": null,
+      "mean_v": null,
+      "peak_to_peak_v": null,
+      "period_s": null,
+      "frequency_hz": null,
+      "clipping": false,
+      "quality_flags": [
+        "draft_protocol",
+        "interwindow_timing_unknown",
+        "nominal_timing_unverified",
+        "unconfigured",
+        "window_local_time"
+      ]
+    },
+    "export": {
+      "csv": "C:\\Users\\Alexandr\\Desktop\\New folder\\универ\\мотортестер 2\\build\\v3w3\\hardware-window-export.csv",
+      "metadata": "C:\\Users\\Alexandr\\Desktop\\New folder\\универ\\мотортестер 2\\build\\v3w3\\hardware-window-export.csv.json"
+    }
+  }
+}

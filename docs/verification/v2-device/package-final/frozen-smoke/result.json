@@ -1,0 +1,71 @@
+{
+  "status": "PASS",
+  "platform": "win32",
+  "windows": "Windows-10-10.0.19045-SP0",
+  "python": "3.14.7 (tags/v3.14.7:823f032, Aug  5 2026, 10:51:32) [MSC v.1944 64 bit (AMD64)]",
+  "frozen": true,
+  "executable": "C:\\Users\\Alexandr\\Desktop\\New folder\\универ\\мотортестер 2\\build\\v3w3\\Проверка переноса\\MotortesterV2\\MotortesterV2.exe",
+  "cwd": "C:\\Users\\Alexandr\\Desktop\\New folder\\универ\\мотортестер 2\\build\\v3w3\\Другая рабочая папка",
+  "checks": [
+    "packaged Windows pyserial; device panel with mocked enumeration; no COM open",
+    "native GUI; both DEMO profiles; V/mV keeps raw and physical values",
+    "single capture saved through GUI; pause-independent recording with a real data gap",
+    "GUI save/open keeps raw and input snapshot; CSV/JSON keeps gap and checksum",
+    "synthetic wire 0.1 window -> V2 unknown scale -> exact save/reopen"
+  ],
+  "callback_errors": [],
+  "qt_platform": "windows",
+  "qt": "6.12.0",
+  "numpy": "2.5.3",
+  "sample_count": 7500,
+  "session_id": "809faf61-05c1-4bc2-be5c-fb0d74e989a6",
+  "device_verification": {
+    "status": "PASS",
+    "serial_version": "3.5",
+    "serial_backend": "serial.serialwin32",
+    "enumeration_mocked": true,
+    "panel_created": true,
+    "serial_open_calls": 0,
+    "worker_running": false,
+    "wire_source": "demo",
+    "sample_count": 2048,
+    "session_id": "00000000-0000-0000-5349-4d0000000001",
+    "voltage_state": "unconfigured",
+    "time_basis": "nominal_unverified",
+    "physical_device_verified": false
+  },
+  "files": {
+    "device-panel.png": {
+      "bytes": 27556,
+      "sha256": "4948d8b9c9a064a61bb9cc31e09615358caf29e5a360bdec82f04d110e52af12"
+    },
+    "device-window.mtv2": {
+      "bytes": 5678,
+      "sha256": "3a0635bbb0a30beb661f200d3cd244ad350bf1300ff545a7d1b0ce55cd933e3e"
+    },
+    "export.csv": {
+      "bytes": 351704,
+      "sha256": "15412527f9638f3fcb668f33502c00092c66d9e4606da1a460a980004c879674"
+    },
+    "export.csv.json": {
+      "bytes": 1996,
+      "sha256": "301d48f22fc164ac89056d815fc5f29b06a55b42027400fd1772d8fb2aaf95ea"
+    },
+    "ignition.png": {
+      "bytes": 105519,
+      "sha256": "7a6d1d409a73555c94f7e100e1611ab5fc2aefc523f6a8cf798ca993151e4c00"
+    },
+    "sample.mtv2": {
+      "bytes": 16757,
+      "sha256": "f527b2c340ecbcc051a8fc9c3e5f1a57374379994f1179343905a12c6b37f59a"
+    },
+    "scope.png": {
+      "bytes": 124370,
+      "sha256": "2984b49760ec73672f56351f4eccfc9453c97512f4d559b3a0c4c8a2610be10d"
+    },
+    "single.mtv2": {
+      "bytes": 2029,
+      "sha256": "fb678e95580faa9b83fae92582a053c5709bbd43b6a97418454ef1c8d4895e2a"
+    }
+  }
+}
