@@ -328,7 +328,7 @@ class MainWindow(DeviceControlsMixin, QtWidgets.QMainWindow):
         self.waveform_combo.addItem("STM32 · COM-порт", "device")
         self.waveform_combo.currentIndexChanged.connect(self.change_waveform)
         source_row.addWidget(self.waveform_combo, 1)
-        self.file_source_label = label("Источник: открытый файл", "muted")
+        self.file_source_label = label("Просмотр записи", "muted")
         self.file_source_label.hide()
         source_row.addWidget(self.file_source_label, 1)
         self.units_combo = QtWidgets.QComboBox()
@@ -536,7 +536,7 @@ class MainWindow(DeviceControlsMixin, QtWidgets.QMainWindow):
             self.name_label.setText(recording.channel_name)
             self.origin_badge.setText("ДЕМО" if recording.source == "demo" else
                 "ПРИБОР · ОКНО" if self.device_active and self.mode != 2 else "ФАЙЛ · ПРИБОР")
-            self.provenance_label.setText("CH1 · " + ("Файл · " if self.mode == 2 else "") +
+            self.provenance_label.setText("CH1 · " + ("Запись · " if self.mode == 2 else "") +
                 ("ДЕМО · синтетические данные" if recording.source == "demo" else
                  "Прибор · время номинальное"))
             self.scale_label.setText("Шкала напряжения не настроена" if not configured else
