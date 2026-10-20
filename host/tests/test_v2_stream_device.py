@@ -85,14 +85,28 @@ class V2StreamDeviceTests(unittest.TestCase):
         self.assertEqual((block.first_index, len(block.samples)), (0, 128))
         self.assertEqual(block.samples[0], 2048)
         now[0] = .1  # GUI scheduling delay is allowed, without skipping indices.
-        block = decode_payload(decode_frame(peer.read(544)))
-        self.assertEqual((block.first_index, len(block.samples)), (128, 128))
-        self.assertEqual(block.samples, tuple(peer._sample(i) for i in range(128, 256)))
+        # A byte read may span DATA boundaries and end in a partial frame.
+        # Reassemble all due frames and prove no raw code/index was skipped.
+        chunk = peer.read(544)
+        self.assertEqual(len(chunk), 544)
+        wire = bytearray(chunk)
+        while chunk := peer.read(544):
+            self.assertLessEqual(len(chunk), 544)
+            wire.extend(chunk)
+        self.assertEqual(wire[-1], 0)
+        next_index = 128
+        for framed in wire.split(b"\0")[:-1]:
+            block = decode_payload(decode_frame(bytes(framed) + b"\0"))
+            self.assertEqual(block.first_index, next_index)
+            self.assertEqual(block.samples,
+                             tuple(peer._sample(i) for i in range(next_index, next_index + 128)))
+            next_index += 128
+        self.assertEqual(next_index, 4992)
         self.assertEqual(peer.max_backlog_samples, 32768)
         self.assertEqual(len(peer._period_raw), 400)
         now[0] = 1.
         terminal = decode_payload(decode_frame(peer.read(544)))
-        self.assertEqual(terminal.prefix_end, 256)
+        self.assertEqual(terminal.prefix_end, 4992)
         self.assertEqual(terminal.produced_end, 50000)
         self.assertEqual((terminal.reason, terminal.flags), (1, 2))
         self.assertLessEqual(len(peer._incoming), 2048)

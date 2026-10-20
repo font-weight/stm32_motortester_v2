@@ -1,0 +1,191 @@
+{
+  "status": "FAIL",
+  "source": "paced synthetic wire 0.2",
+  "hold_seconds_minimum": 2.1,
+  "selected_path": "C:\\Users\\Alexandr\\Desktop\\New folder\\универ\\мотортестер 2\\build\\v4a-source-smoke2\\stream-scope.mtstream",
+  "save_picker_seconds_minimum": 70.0,
+  "record_seconds_minimum": 12.0,
+  "qt_widget_picker": true,
+  "physical_stream_verified": false,
+  "cancel_picker": {
+    "before": {
+      "revision": 1,
+      "phase": "preview",
+      "samples": 28288,
+      "viewer_sequence": 5,
+      "plot_updates": 1,
+      "record_start": null,
+      "writer_accepted_end": null,
+      "writer_checkpointed_end": null,
+      "failure_code": null
+    },
+    "checkpoints": [],
+    "finished_events": [
+      {
+        "result": 0,
+        "elapsed_seconds": 2.146074599819258,
+        "wall_time_unix_seconds": 1792500161.4987013,
+        "state": {
+          "revision": 1,
+          "phase": "preview",
+          "samples": 135296,
+          "viewer_sequence": 27,
+          "plot_updates": 22,
+          "record_start": null,
+          "writer_accepted_end": null,
+          "writer_checkpointed_end": null,
+          "failure_code": null
+        }
+      }
+    ],
+    "elapsed_seconds": 2.139867699937895,
+    "max_poll_gap_seconds": 0.09174719988368452,
+    "max_sample_update_gap_seconds": 0.09174719988368452,
+    "controller_max_service_gap_ms": 26,
+    "after": {
+      "revision": 1,
+      "phase": "preview",
+      "samples": 135296,
+      "viewer_sequence": 27,
+      "plot_updates": 22,
+      "record_start": null,
+      "writer_accepted_end": null,
+      "writer_checkpointed_end": null,
+      "failure_code": null
+    },
+    "samples_per_wall_second": 50006.82986294231
+  },
+  "save_picker": {
+    "before": {
+      "revision": 1,
+      "phase": "preview",
+      "samples": 147584,
+      "viewer_sequence": 29,
+      "plot_updates": 24,
+      "record_start": null,
+      "writer_accepted_end": null,
+      "writer_checkpointed_end": null,
+      "failure_code": null
+    },
+    "checkpoints": [
+      {
+        "revision": 1,
+        "phase": "preview",
+        "samples": 647808,
+        "viewer_sequence": 128,
+        "plot_updates": 123,
+        "record_start": null,
+        "writer_accepted_end": null,
+        "writer_checkpointed_end": null,
+        "failure_code": null,
+        "elapsed_seconds": 10.007074400084093
+      },
+      {
+        "revision": 1,
+        "phase": "preview",
+        "samples": 1147904,
+        "viewer_sequence": 226,
+        "plot_updates": 220,
+        "record_start": null,
+        "writer_accepted_end": null,
+        "writer_checkpointed_end": null,
+        "failure_code": null,
+        "elapsed_seconds": 20.007000300101936
+      },
+      {
+        "revision": 1,
+        "phase": "preview",
+        "samples": 1649536,
+        "viewer_sequence": 325,
+        "plot_updates": 318,
+        "record_start": null,
+        "writer_accepted_end": null,
+        "writer_checkpointed_end": null,
+        "failure_code": null,
+        "elapsed_seconds": 30.03979850001633
+      },
+      {
+        "revision": 1,
+        "phase": "preview",
+        "samples": 2149888,
+        "viewer_sequence": 423,
+        "plot_updates": 416,
+        "record_start": null,
+        "writer_accepted_end": null,
+        "writer_checkpointed_end": null,
+        "failure_code": null,
+        "elapsed_seconds": 40.05803059996106
+      },
+      {
+        "revision": 1,
+        "phase": "preview",
+        "samples": 2651520,
+        "viewer_sequence": 521,
+        "plot_updates": 512,
+        "record_start": null,
+        "writer_accepted_end": null,
+        "writer_checkpointed_end": null,
+        "failure_code": null,
+        "elapsed_seconds": 50.09000870003365
+      },
+      {
+        "revision": 1,
+        "phase": "preview",
+        "samples": 3151232,
+        "viewer_sequence": 620,
+        "plot_updates": 607,
+        "record_start": null,
+        "writer_accepted_end": null,
+        "writer_checkpointed_end": null,
+        "failure_code": null,
+        "elapsed_seconds": 60.07912160013802
+      }
+    ],
+    "finished_events": [
+      {
+        "result": 0,
+        "elapsed_seconds": 78.18227190012112,
+        "wall_time_unix_seconds": 1792500239.9206939,
+        "state": {
+          "revision": 1,
+          "phase": "preview",
+          "samples": 4056192,
+          "viewer_sequence": 798,
+          "plot_updates": 782,
+          "record_start": null,
+          "writer_accepted_end": null,
+          "writer_checkpointed_end": null,
+          "failure_code": null
+        }
+      }
+    ],
+    "elapsed_seconds": 70.00394570012577,
+    "max_poll_gap_seconds": 0.16106499987654388,
+    "max_sample_update_gap_seconds": 0.16106499987654388,
+    "controller_max_service_gap_ms": 26,
+    "after": {
+      "revision": 1,
+      "phase": "preview",
+      "samples": 3647744,
+      "viewer_sequence": 717,
+      "plot_updates": 702,
+      "record_start": null,
+      "writer_accepted_end": null,
+      "writer_checkpointed_end": null,
+      "failure_code": null
+    },
+    "samples_per_wall_second": 49999.467387074896
+  },
+  "error": "AssertionError: Picker wait timed out: phase=preview, revision=1, samples=4056192, error=",
+  "failure_state": {
+    "revision": 1,
+    "phase": "preview",
+    "samples": 4056192,
+    "viewer_sequence": 798,
+    "plot_updates": 782,
+    "record_start": null,
+    "writer_accepted_end": null,
+    "writer_checkpointed_end": null,
+    "failure_code": null
+  }
+}

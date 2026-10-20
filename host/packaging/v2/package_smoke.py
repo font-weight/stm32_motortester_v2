@@ -242,7 +242,6 @@ def run(output_name):
             # The preceding chain intentionally left an opened immutable
             # recording in the old window. Start a fresh workspace for profiles.
             window = MainWindow(settings_path=Path(temporary) / "stream-settings.ini")
-            window.timer.stop()
             window.show()
             report["stream_verification"] = exercise_stream(app, window, output, flush)
             assert port_open.call_count == 0

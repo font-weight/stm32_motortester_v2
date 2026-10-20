@@ -9,7 +9,7 @@ from dataclasses import asdict, dataclass
 import hashlib
 import json
 
-from .stream_model import (FailureEvidence, StreamBlock, StreamError,
+from .stream_model import (MAX_BLOCK_SAMPLES, FailureEvidence, StreamBlock, StreamError,
                            StreamIdentity, StreamStart, StreamTerminal, UnboundOutcome,
                            U64_MAX, require, text, uint)
 
@@ -480,6 +480,49 @@ class StreamSession:
             "no_established_recording_start", self._stop_action is not None,
             None if self._ack is None else self._ack.request_id)
 
+    def _append_block(self):
+        """Join an already admitted prefix, never wait for more source data.
+
+        A wire DATA block may contain only 128 samples. One disk round trip per
+        such block needlessly limits throughput; normalized storage blocks can
+        contain 8192 samples. The original queue/items remain charged in flight.
+        A disk quota may reject this whole bounded job (at most 16 KiB), leaving
+        the previous confirmed prefix; no quota or partial-success rule changes.
+        """
+        first = self._queue[0]
+        parts, end, size = [], first.first_sample_index, 0
+        for block in self._queue:
+            if size + len(block.raw_u16le) > 2 * MAX_BLOCK_SAMPLES:
+                break
+            self._check(block.identity == self._identity and block.first_sample_index == end,
+                        "host_io", "Непрерывность очереди append нарушена", writer=True)
+            parts.append(block.raw_u16le)
+            size += len(block.raw_u16le)
+            end = block.end_sample_index
+        return first if len(parts) == 1 else StreamBlock(
+            self._identity, first.first_sample_index, b"".join(parts))
+
+    def _completed_raw_items(self, selected):
+        """Validate the exact queued prefix before changing any accepted state."""
+        end, position, count = selected.first_sample_index, 0, 0
+        raw = memoryview(selected.raw_u16le)
+        for block in self._queue:
+            if end == selected.end_sample_index:
+                break
+            self._check(block.identity == selected.identity and
+                        block.first_sample_index == end and
+                        block.end_sample_index <= selected.end_sample_index,
+                        "host_io", "Завершённый job не соответствует очереди", writer=True)
+            length = len(block.raw_u16le)
+            self._check(raw[position:position + length] == block.raw_u16le,
+                        "host_io", "Raw завершённого job отличается от очереди", writer=True)
+            position += length
+            end = block.end_sample_index
+            count += 1
+        self._check(end == selected.end_sample_index and position == len(raw) and count > 0,
+                    "host_io", "Неполный префикс завершённого job", writer=True)
+        return count
+
     def next_storage_job(self):
         """Dispatch once. A pending job is never returned again or retried."""
         if (self._recording_id is None or self._pending is not None or
@@ -499,7 +542,7 @@ class StreamSession:
         elif self._checkpoint_requested and self._bound:
             kind = "checkpoint"
         elif self._queue:
-            kind, block = "append", self._queue[0]
+            kind, block = "append", self._append_block()
         elif self._can_finish():
             if self._bound:
                 kind, terminal = "finish", self._terminal()
@@ -552,6 +595,7 @@ class StreamSession:
                 self._check(checkpoint in allowed and type(checkpoint) is int and
                             first <= checkpoint <= end,
                             "host_io", "Неверная checkpointed-граница", writer=True)
+        raw_items = 0 if job.block is None else self._completed_raw_items(job.block)
         self._pending = None
         if self._writer_fenced:
             # This exact late callback settles ownership, not failed state.
@@ -567,9 +611,10 @@ class StreamSession:
             if job.kind in ("bind_start", "bind_first_block"):
                 self._bound = True
             if job.block is not None:
-                block = self._queue.popleft()
-                self._raw_bytes -= len(block.raw_u16le)
-                self._accepted_hash.update(block.raw_u16le)
+                for _ in range(raw_items):
+                    self._queue.popleft()
+                self._raw_bytes -= len(job.block.raw_u16le)
+                self._accepted_hash.update(job.block.raw_u16le)
             if job.kind == "checkpoint":
                 self._checkpoint_requested = False
             if job.kind in ("finish", "finish_unbound"):

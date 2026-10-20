@@ -1,0 +1,41 @@
+{
+  "source": "User-named Downloads/1.mtstream, read-only; original retained in Downloads",
+  "sha256": "674885602db28eb659e464312e34303af1a8f5ffc182a55a7cfd456096aed61d",
+  "bytes": 262576,
+  "R": 427136,
+  "end": 557440,
+  "saved_samples": 130304,
+  "nominal_duration_s": 2.60608,
+  "terminal": {
+    "identity": {
+      "session_id": "wire-0.2:26b2d5f11442ec1e",
+      "generation": 3,
+      "config_id": 1,
+      "nominal_fs_hz": 50000,
+      "origin": "synthetic",
+      "protocol_revision": "0.2-draft-081721",
+      "firmware_version": "build:5632444d",
+      "application_version": "isolated-stream-bridge"
+    },
+    "end_sample_index": 557440,
+    "reason": "capacity",
+    "terminal_observed": true,
+    "device_generated_end_sample_index": 558055,
+    "device_transmitted_end_sample_index": 558055,
+    "loss_samples": 0,
+    "boundary_evidence": "host_selected_prefix",
+    "failure": {
+      "code": "capacity_blocks",
+      "detail": "Исчерпана очередь raw items",
+      "operation": null,
+      "request_id": null,
+      "source_code": null
+    },
+    "stop_requested": true,
+    "stop_request_id": 4
+  },
+  "recovery_issue": null,
+  "companion_verified": true,
+  "unchanged": true,
+  "note": "This file reports capacity_blocks; not the later user-reported host_io/received234773 attempt. No raw user file published."
+}

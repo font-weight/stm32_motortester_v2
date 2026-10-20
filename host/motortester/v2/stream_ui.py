@@ -32,6 +32,7 @@ class StreamDialog(QtWidgets.QDialog):
         self._future = None
         self._operation = None
         self._context_prompting = False
+        self._record_picker = None
         self._executor = ThreadPoolExecutor(max_workers=1, thread_name_prefix="v2-stream-files")
         self.archive = self.verified_context = None
         self.saved_path = None
@@ -97,7 +98,9 @@ class StreamDialog(QtWidgets.QDialog):
         self.details.toggled.connect(self._details)
         footer.addWidget(self.details)
         layout.addLayout(footer)
-        self.file_label = QtWidgets.QLabel("Запись сохраняется сразу в файл. Пауза просмотра не останавливает запись.")
+        self.file_label = QtWidgets.QLabel(
+            "Выберите новое имя файла: существующие записи не заменяются. "
+            "Пауза просмотра не останавливает запись.")
         self.file_label.setTextFormat(QtCore.Qt.TextFormat.PlainText)
         self.file_label.setWordWrap(True)
         layout.addWidget(self.file_label)
@@ -161,10 +164,60 @@ class StreamDialog(QtWidgets.QDialog):
         return accepted
 
     def record_dialog(self):
-        path, _ = QtWidgets.QFileDialog.getSaveFileName(
-            self, "Новая потоковая запись", "", "Потоковая запись (*.mtstream)")
-        if path:
-            self.record_path(path)
+        if self._record_picker is not None or self.busy or self._closing:
+            return False
+        before = self.bridge.state
+        if not before.can_record or self.bridge.metadata_pending:
+            self.error_label.setText("Запись сейчас недоступна. Дождитесь завершения текущей операции.")
+            return False
+        picker = QtWidgets.QFileDialog(self)
+        # Windows' native modal picker suspends Qt timers. Keep the regular
+        # event loop (including the latest-only viewer) running while choosing.
+        picker.setOption(QtWidgets.QFileDialog.Option.DontUseNativeDialog, True)
+        picker.setOption(QtWidgets.QFileDialog.Option.DontConfirmOverwrite, True)
+        picker.setWindowTitle("Новая потоковая запись")
+        picker.setAcceptMode(QtWidgets.QFileDialog.AcceptMode.AcceptSave)
+        picker.setFileMode(QtWidgets.QFileDialog.FileMode.AnyFile)
+        picker.setNameFilter("Потоковая запись (*.mtstream)")
+        picker.setDefaultSuffix("mtstream")
+        picker.setLabelText(QtWidgets.QFileDialog.DialogLabel.FileName, "Новое имя файла:")
+        picker.setLabelText(QtWidgets.QFileDialog.DialogLabel.LookIn, "Папка:")
+        picker.setLabelText(QtWidgets.QFileDialog.DialogLabel.FileType, "Тип файла:")
+        picker.setLabelText(QtWidgets.QFileDialog.DialogLabel.Accept, "Начать запись")
+        picker.setLabelText(QtWidgets.QFileDialog.DialogLabel.Reject, "Отмена")
+        picker.setStyleSheet(
+            "QTreeView, QListView { background: #0b202b; color: #dbe9f4; "
+            "selection-background-color: #176479; } "
+            "QHeaderView::section { background: #16303e; color: #dbe9f4; }")
+        picker.setWindowModality(QtCore.Qt.WindowModality.WindowModal)
+        self._record_picker = picker
+        picker.finished.connect(
+            lambda result: self._record_selected(picker, before, result))
+        picker.open()
+        self._state(self.bridge.state)
+        return True
+
+    def _record_selected(self, picker, before, result):
+        if picker is not self._record_picker:
+            return
+        self._record_picker = None
+        paths = picker.selectedFiles()
+        picker.deleteLater()
+        if result == QtWidgets.QDialog.DialogCode.Accepted and paths and not self._closing:
+            current = self.bridge.state
+            # Never silently replace a preview that failed while the user was
+            # choosing a filename with an unrelated new generation.
+            same_source = current.revision == before.revision
+            if not before.can_preview:
+                same_source = same_source and current.phase == "preview"
+            if (not same_source or not current.can_record or self.bridge.metadata_pending):
+                self.error_label.setText(
+                    "Запись не началась: состояние потока изменилось во время выбора файла. "
+                    "Проверьте сообщение о приёме. После сбоя закройте окно непрерывного "
+                    "приёма и откройте его заново.")
+            else:
+                self.record_path(paths[0])
+        self._state(self.bridge.state)
 
     def record_path(self, path):
         if self.busy or self._closing:
@@ -184,6 +237,10 @@ class StreamDialog(QtWidgets.QDialog):
             self._heading(self.context)
             self.notice.setText(self._live_notice)
             self.file_label.setText("Запись в файл: " + str(path))
+        else:
+            self.error_label.setText(
+                "Запись не началась: поток пока не готов или уже завершился. "
+                "Проверьте состояние приёма и повторите запуск явно.")
         return accepted
 
     def stop(self):
@@ -236,7 +293,8 @@ class StreamDialog(QtWidgets.QDialog):
 
     def _state(self, status):
         self._publish_view()
-        idle = not self._closing and not self.busy and not self.bridge.metadata_pending
+        idle = (not self._closing and not self.busy and not self.bridge.metadata_pending
+                and self._record_picker is None)
         self.live_button.setEnabled(idle and status.can_preview)
         self.record_button.setEnabled(idle and status.can_record)
         self.open_button.setEnabled(idle and status.can_open)
@@ -257,7 +315,8 @@ class StreamDialog(QtWidgets.QDialog):
         elif self.busy:
             text = "Проверка файла…" if self._operation == "open" else "Экспорт…"
         elif self.bridge.metadata_pending and status.can_open:
-            text = "Сохранение контекста записи…"
+            text = ("Контекст записи не сохранён" if self.bridge.metadata_error is not None
+                    else "Сохранение контекста записи…")
         elif self._opening:
             text = "Просмотр открытой записи"
         if self._opening:
@@ -268,15 +327,58 @@ class StreamDialog(QtWidgets.QDialog):
             text += f" · Получено: {status.validated_samples:,} отсчётов".replace(",", " ")
         if self._paused:
             text += " · Просмотр на паузе"
-        if not self._opening and status.bridge and status.bridge.session and status.bridge.session.first_failure:
-            failure = status.bridge.session.first_failure
-            text += f" · НЕПОЛНЫЕ ДАННЫЕ: {failure.code}"
+        session = None if status.bridge is None else status.bridge.session
+        if not self._opening and session is not None:
+            failure = session.first_failure
+            first = session.selected_start_sample_index
+            if status.path:
+                if first is None:
+                    text += " · Запись не началась" if failure else " · Подготовка записи"
+                    if failure:
+                        self.file_label.setText("Запись не началась. Выбранный путь: " + status.path)
+                else:
+                    accepted = max(0, (session.accepted_end_sample_index or first) - first)
+                    confirmed = max(0, (session.checkpointed_end_sample_index or first) - first)
+                    text += (f" · Принято в запись: {accepted:,}"
+                             f" · Подтверждено в файле: {confirmed:,}").replace(",", " ")
+            if failure:
+                text += f" · НЕПОЛНЫЕ ДАННЫЕ: {failure.code}"
+                self.quality.setText(
+                    "Запись неполная. Остановка источника не означает, что все отсчёты сохранены.")
+                self.error_label.setText(self._failure_message(failure, status.path))
         self.state_label.setText(text)
         failure = self.bridge.metadata_error
         self.retry_context_button.setVisible(failure is not None and not self._closing)
         if self._closing and failure is not None and not self._context_prompting:
             self._context_prompting = True
             QtCore.QTimer.singleShot(0, lambda: self._resolve_context_error(failure))
+
+    @staticmethod
+    def _failure_message(failure, path):
+        if failure.code == "host_io":
+            if "FileExistsError" in failure.detail:
+                explanation = "Файл уже существует. Существующие записи не заменяются; выберите новое имя."
+            elif "PermissionError" in failure.detail:
+                explanation = "Нет доступа к файлу записи. Проверьте доступность выбранной папки."
+            elif "FileNotFoundError" in failure.detail:
+                explanation = "Папка записи не найдена. Выберите существующую папку."
+            else:
+                explanation = "Ошибка работы с файлом записи. Сохранение всех данных не подтверждено."
+        elif failure.code in ("capacity_blocks", "capacity_raw"):
+            explanation = "Запись остановлена: достигнут предел очереди или объёма данных."
+        else:
+            explanation = "Поток прерван. Полнота записи не подтверждена."
+        operation = {"prepare": "создание файла", "append": "добавление данных",
+                     "checkpoint": "подтверждение записи", "finish": "завершение файла",
+                     "bind_first_block": "запись первых отсчётов",
+                     "close": "закрытие файла"}.get(failure.operation, failure.operation)
+        details = f"\nПричина: {failure.detail}"
+        if operation:
+            details += f" · Операция: {operation}"
+        if path:
+            details += "\nФайл: " + str(path)
+        return (explanation + details +
+                "\nДля новой попытки закройте это окно непрерывного приёма и откройте его заново.")
 
     def _resolve_context_error(self, failure):
         dialog = QtWidgets.QMessageBox(self)
@@ -358,12 +460,16 @@ class StreamDialog(QtWidgets.QDialog):
                     state = ("Источник сообщил о полном завершении" if rec.clean_stop_reported else
                              "НЕПОЛНЫЕ ДАННЫЕ · полнота хвоста не подтверждена")
                     self.quality.setText(f"{state}. Потери по записи: {loss}.")
+                    if terminal is not None and terminal.failure is not None:
+                        self.error_label.setText(self._failure_message(terminal.failure, rec.path))
                 self._heading(self.verified_context.context)
                 self.notice.setText(
                     "ОТКРЫТАЯ ПОТОКОВАЯ ЗАПИСЬ · происхождение указано над графиком.\n"
                     "Шкала напряжения не настроена. Отображаются только исходные коды; время номинальное.")
                 if not self.verified_context.companion_present:
-                    self.error_label.setText("Файл контекста отсутствует: имя и профиль неизвестны; шкала не настроена.")
+                    self.error_label.setText(
+                        (self.error_label.text() + "\n" if self.error_label.text() else "") +
+                        "Файл контекста отсутствует: имя и профиль неизвестны; шкала не настроена.")
             else:
                 self.file_label.setText("Экспорт завершён: " + result)
         except Exception as exc:
@@ -388,6 +494,8 @@ class StreamDialog(QtWidgets.QDialog):
             event.accept()
             return
         self._closing = True
+        if self._record_picker is not None:
+            self._record_picker.reject()
         self._state(self.bridge.state)
         if not self.busy:
             self.bridge.shutdown()

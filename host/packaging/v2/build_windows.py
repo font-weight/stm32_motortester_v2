@@ -21,7 +21,8 @@ PACKAGING = Path(__file__).resolve().parent
 HOST = PACKAGING.parent.parent
 REPOSITORY = HOST.parent
 EXPECTED_PYTHON = (3, 14, 7)
-FROZEN_TIMEOUT = 45
+# Includes the save-picker regression beyond the observed ~61 s preview fault.
+FROZEN_TIMEOUT = 120
 APP_NAME = "MotortesterV2"
 
 # The existing runner records commands, exit codes and bounded-child cleanup.
@@ -297,9 +298,20 @@ def main(argv=None):
                 "pause_independent", "raw_roundtrip", "unknown_tail_preserved", "parent_close_drained"))
             or stream_check.get("physical_stream_verified") is not False):
         raise RuntimeError("Packaged synthetic streaming integration did not pass")
+    picker = stream_check.get("record_picker", {})
+    collision = stream_check.get("existing_path_picker", {})
+    if (picker.get("status") != "PASS"
+            or picker.get("save_picker", {}).get("elapsed_seconds", 0) < 70
+            or picker.get("sustained_record", {}).get("elapsed_seconds", 0) < 12
+            or picker.get("roundtrip", {}).get("raw_verified") is not True
+            or collision.get("status") != "PASS"
+            or collision.get("recording_reported_saved") is not False
+            or collision.get("before") != collision.get("after")):
+        raise RuntimeError("Packaged save-picker/continuous-writer/error checks did not pass")
     pngs = {name: png_info(smoke_output / name)
             for name in ("scope.png", "ignition.png", "device-panel.png", "incomplete-close.png",
-                         "stream-scope.png", "stream-ignition.png", "stream-unknown-tail.png")}
+                         "stream-scope.png", "stream-ignition.png", "stream-unknown-tail.png",
+                         "stream-record-picker.png", "stream-existing-path.png")}
     for name in ("sample.mtv2", "export.csv", "export.csv.json", "device-window.mtv2"):
         path = smoke_output / name
         if not path.is_file() or path.stat().st_size == 0:

@@ -146,8 +146,18 @@ class PacedStreamPeer:
     def read(self, maximum):
         if type(maximum) is not int or not 0 <= maximum <= 544:
             raise ValueError("Bounded read required")
-        if not self._incoming:
-            self._produce_one()
-        result = bytes(self._incoming[:maximum])
-        del self._incoming[:maximum]
-        return result
+        # A transport read is a byte chunk, not a single DATA frame. Drain
+        # already-due frames up to the caller's bound, including a partial next
+        # frame. One-frame reads impose unnecessary owner sleeps at 50 kS/s.
+        # Neither this bounded copy nor delayed reads change the source clock,
+        # sample indices or the explicit overrun allowance.
+        result = bytearray()
+        while len(result) < maximum:
+            if not self._incoming:
+                self._produce_one()
+            if not self._incoming:
+                break
+            count = min(maximum - len(result), len(self._incoming))
+            result.extend(self._incoming[:count])
+            del self._incoming[:count]
+        return bytes(result)

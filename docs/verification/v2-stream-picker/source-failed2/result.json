@@ -1,0 +1,11 @@
+{
+  "status": "FAIL",
+  "platform": "Windows-10-10.0.19045-SP0",
+  "qt_platform": "windows",
+  "error": "Traceback (most recent call last):\n  File \"C:\\Users\\Alexandr\\Desktop\\New folder\\универ\\мотортестер 2\\host\\motortester\\v2\\stream_smoke.py\", line 191, in run\n    report.update(exercise(app, window, output, flush))\n                  ~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\Alexandr\\Desktop\\New folder\\универ\\мотортестер 2\\host\\motortester\\v2\\stream_smoke.py\", line 55, in exercise\n    picker_receipt = exercise_record_picker(dialog, path, output, flush)\n  File \"C:\\Users\\Alexandr\\Desktop\\New folder\\универ\\мотортестер 2\\host\\motortester\\v2\\stream_picker_smoke.py\", line 161, in exercise_record_picker\n    _wait(dialog, flush, lambda: dialog._record_picker is None\n    ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n          and dialog.bridge.state.phase == \"recording\")\n          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\Alexandr\\Desktop\\New folder\\универ\\мотортестер 2\\host\\motortester\\v2\\stream_picker_smoke.py\", line 26, in _wait\n    raise AssertionError(\n        f\"Picker wait timed out: phase={state.phase}, revision={state.revision}, \"\n        f\"samples={state.validated_samples}, error={dialog.error_label.text()}\")\nAssertionError: Picker wait timed out: phase=preview, revision=1, samples=4056192, error=\n",
+  "callback_errors": [],
+  "files": {
+    "stream-picker-result.json": "70770b6f83f4e8dca2ad92b0d6d1ed63a8a9d58af1aa410117c979b58e2e69ce",
+    "stream-record-picker.png": "6c346b5e57c6031e636ec47bbf921dd5b392072d5302f87ebccea9ebeb3436bb"
+  }
+}

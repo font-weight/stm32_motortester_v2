@@ -1,0 +1,21 @@
+V2-04a, 20.10.2026, Windows 10, Python 3.14.7.
+Transcript below records tool output; it is not a rerun of a clean final commit.
+
+Root, repository cwd:
+PYTHONPATH=host
+.\.venv\Scripts\python.exe -B -m unittest discover -s host/tests -p test_v2_stream_device.py -k peer_pacing -v
+test_peer_pacing_and_overrun_are_explicit ... ok
+Ran 1 test in 0.012s
+OK
+
+v2_docs, cwd host:
+..\.venv\Scripts\python.exe -m unittest discover -s tests -p test_stream_storage_batch.py -v
+test_failure_or_inexact_receipt_never_advances_or_consumes_raw ... ok
+test_pending_prefix_is_bounded_and_new_data_stays_charged ... ok
+test_real_bridge_roundtrip_keeps_nonzero_r_and_complete_raw ... ok
+Ran 3 tests in 0.060s
+OK
+
+Before that, the batch command used cwd repository with -s host/tests but no
+PYTHONPATH. Import failed: ModuleNotFoundError: motortester; no test body ran.
+Only cwd was corrected. No escalation, physical COM or whole legacy suite.

@@ -16,8 +16,12 @@ def exercise(app, window, output, flush):
     from .stream_device import StreamContext, StreamDeviceBridge
     from .stream_demo import PacedStreamPeer
     from .stream_files import open_stream
+    from .stream_picker_smoke import (
+        exercise_record_picker, exercise_stopped_source_picker, exercise_existing_path_picker)
     from .stream_ui import StreamDialog
     from ..stream_recording import AttemptReport
+
+    assert window.timer.isActive(), "Streaming witness requires the normal main-window workload"
 
     def wait(predicate, timeout=10):
         deadline = time.monotonic() + timeout
@@ -47,7 +51,10 @@ def exercise(app, window, output, flush):
         assert dialog.start_live()
         wait(lambda: dialog.bridge.state.validated_samples >= 12000)
         path = output / "stream-scope.mtstream"
-        assert dialog.record_path(path)
+        assert window.timer.isActive(), "Main-window timer must run during the picker"
+        picker_receipt = exercise_record_picker(dialog, path, output, flush)
+        assert window.timer.isActive()
+        picker_receipt["main_window_timer_active"] = True
         wait(lambda: dialog.bridge.state.phase == "recording")
         wait(lambda: dialog.viewer.curve.getData()[0] is not None)
         dialog.toggle_pause()
@@ -71,23 +78,36 @@ def exercise(app, window, output, flush):
         assert dialog.verified_context.context.input_profile.state == "unconfigured"
         csv_path = output / "stream-export.csv"
         assert dialog.export_path(csv_path)
-        wait(lambda: not dialog.busy)
+        wait(lambda: not dialog.busy, timeout=30)
         assert not dialog.error_label.text(), dialog.error_label.text()
         receipt = json.loads((output / "stream-export.csv.json").read_text(encoding="utf-8"))
         assert receipt["complete"] is True
-        assert receipt["csv_sha256"] == hashlib.sha256(csv_path.read_bytes()).hexdigest()
+        digest = hashlib.sha256()
+        with csv_path.open("rb") as stream:
+            for chunk in iter(lambda: stream.read(256 * 1024), b""):
+                digest.update(chunk)
+        assert receipt["csv_sha256"] == digest.hexdigest()
+        rows_count = 0
         with csv_path.open(encoding="utf-8", newline="") as stream:
-            rows = list(csv.DictReader(stream))
-        expected = [code for block in archive.iter_raw()
-                    for code in np.frombuffer(block.raw_u16le, dtype="<u2")]
-        assert [int(row["adc_code"]) for row in rows] == expected
-        assert int(rows[0]["sample_index"]) == archive.first_sample_index
-        assert float(rows[0]["time_from_recording_start_s"]) == 0
-        # A new source must clear a previously opened file before any DATA.
-        assert dialog.start_live()
-        assert dialog.viewer.curve.getData()[0] is None
-        dialog.stop()
-        wait(lambda: dialog.bridge.state.can_open)
+            rows = csv.DictReader(stream)
+            for block in archive.iter_raw():
+                for offset, code in enumerate(np.frombuffer(block.raw_u16le, dtype="<u2")):
+                    row = next(rows, None)
+                    assert row is not None, "CSV ended before the verified raw prefix"
+                    assert int(row["adc_code"]) == code
+                    assert int(row["sample_index"]) == block.first_sample_index + offset
+                    if rows_count == 0:
+                        assert float(row["time_from_recording_start_s"]) == 0
+                    rows_count += 1
+                flush()
+            assert next(rows, None) is None, "CSV contains samples outside the verified raw prefix"
+        picker_receipt["roundtrip"] = {
+            "raw_verified": True, "clean_stop_reported": True,
+            "first_sample_index": archive.first_sample_index,
+            "end_sample_index": archive.end_sample_index,
+            "reopened_raw_samples": rows_count}
+        exercise_stopped_source_picker(dialog, output / "stream-stale-choice.mtstream",
+                                       output, flush, picker_receipt)
         app.sendEvent(dialog, QtGui.QKeyEvent(QtCore.QEvent.Type.KeyPress,
                       QtCore.Qt.Key.Key_Escape, QtCore.Qt.KeyboardModifier.NoModifier))
         wait(lambda: dialog.closed)
@@ -133,10 +153,13 @@ def exercise(app, window, output, flush):
         assert dialog.archive.terminal.clean_stop_reported
         dialog.close()
         wait(lambda: dialog.closed)
+        existing_path_receipt = exercise_existing_path_picker(path, output, flush)
         return {"status": "PASS", "source": "paced synthetic wire 0.2",
-                "record_start": archive.first_sample_index, "exported_samples": len(rows),
+                "record_start": archive.first_sample_index, "exported_samples": rows_count,
                 "pause_independent": True, "raw_roundtrip": True,
                 "unknown_tail_preserved": True, "parent_close_drained": True,
+                "record_picker": picker_receipt,
+                "existing_path_picker": existing_path_receipt,
                 "physical_stream_verified": False}
     finally:
         if not dialog.closed:
@@ -157,7 +180,6 @@ def run(output_name):
     report = {"status": "FAIL", "platform": platform.platform(), "qt_platform": app.platformName()}
     window = MainWindow(settings_path=output / "settings.ini")
     window.show()
-    window.timer.stop()
 
     def flush():
         app.processEvents()

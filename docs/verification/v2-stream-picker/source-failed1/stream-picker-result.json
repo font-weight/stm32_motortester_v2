@@ -1,0 +1,62 @@
+{
+  "status": "FAIL",
+  "source": "paced synthetic wire 0.2",
+  "hold_seconds_minimum": 2.1,
+  "selected_path": "C:\\Users\\Alexandr\\Desktop\\New folder\\универ\\мотортестер 2\\build\\v4a-source-smoke1\\stream-scope.mtstream",
+  "save_picker_seconds_minimum": 70.0,
+  "qt_widget_picker": true,
+  "physical_stream_verified": false,
+  "cancel_picker": {
+    "before": {
+      "revision": 1,
+      "phase": "preview",
+      "samples": 39424,
+      "viewer_sequence": 6,
+      "plot_updates": 3
+    },
+    "checkpoints": [],
+    "elapsed_seconds": 2.1589802999515086,
+    "max_poll_gap_seconds": 0.08943190006539226,
+    "max_sample_update_gap_seconds": 0.08943190006539226,
+    "controller_max_service_gap_ms": 45,
+    "after": {
+      "revision": 1,
+      "phase": "preview",
+      "samples": 147328,
+      "viewer_sequence": 28,
+      "plot_updates": 23
+    },
+    "samples_per_wall_second": 49979.149880350255
+  },
+  "save_picker": {
+    "before": {
+      "revision": 1,
+      "phase": "preview",
+      "samples": 162432,
+      "viewer_sequence": 32,
+      "plot_updates": 25
+    },
+    "checkpoints": [
+      {
+        "revision": 1,
+        "phase": "preview",
+        "samples": 662400,
+        "viewer_sequence": 130,
+        "plot_updates": 124,
+        "elapsed_seconds": 10.001923599978909
+      }
+    ],
+    "elapsed_seconds": 11.478230400010943,
+    "max_poll_gap_seconds": 0.0924732000567019,
+    "max_sample_update_gap_seconds": 0.0924732000567019,
+    "controller_max_service_gap_ms": 45
+  },
+  "error": "AssertionError: ",
+  "failure_state": {
+    "revision": 1,
+    "phase": "preview",
+    "samples": 740736,
+    "viewer_sequence": 146,
+    "plot_updates": 139
+  }
+}

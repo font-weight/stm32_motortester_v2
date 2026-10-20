@@ -1,0 +1,10 @@
+{
+  "status": "FAIL",
+  "platform": "Windows-10-10.0.19045-SP0",
+  "qt_platform": "windows",
+  "error": "Traceback (most recent call last):\n  File \"C:\\Users\\Alexandr\\Desktop\\New folder\\универ\\мотортестер 2\\host\\motortester\\v2\\stream_smoke.py\", line 188, in run\n    report.update(exercise(app, window, output, flush))\n                  ~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\Alexandr\\Desktop\\New folder\\универ\\мотортестер 2\\host\\motortester\\v2\\stream_smoke.py\", line 54, in exercise\n    picker_receipt = exercise_record_picker(dialog, path, output, flush)\n  File \"C:\\Users\\Alexandr\\Desktop\\New folder\\универ\\мотортестер 2\\host\\motortester\\v2\\stream_picker_smoke.py\", line 135, in exercise_record_picker\n    save_after = hold(selected, \"save_picker\", PREVIEW_SECONDS)\n  File \"C:\\Users\\Alexandr\\Desktop\\New folder\\универ\\мотортестер 2\\host\\motortester\\v2\\stream_picker_smoke.py\", line 90, in hold\n    assert picker.isVisible()\n           ~~~~~~~~~~~~~~~~^^\nAssertionError\n",
+  "callback_errors": [],
+  "files": {
+    "stream-picker-result.json": "4acbd6a834600409682dc5b93a05f4b30e8b2e8b7b8cf6df1147fb80636aa53f"
+  }
+}
