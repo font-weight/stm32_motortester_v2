@@ -87,6 +87,46 @@ def clean_environment():
     return env
 
 
+def restore_pinned_notice_bytes(staging):
+    """Recover line endings only when they reproduce the existing exact hash.
+
+    Some inherited Git blobs already contain CRLF although their pinned upstream
+    texts use LF. Never repin or accept merely similar text: any other mismatch
+    still fails before the unchanged legacy collector runs.
+    """
+    script = staging / "host" / "packaging" / "collect_licenses.py"
+    spec = importlib.util.spec_from_file_location("_v2_pinned_notices", script)
+    collector = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(collector)
+    pinned = [(collector.PYSERIAL_LICENSE, collector.PYSERIAL_LICENSE_SHA256),
+              (collector.DEPENDENCY_GUIDE, collector.DEPENDENCY_GUIDE_SHA256),
+              (collector.DEPENDENCY_LICENSES / "manifest.json",
+               collector.DEPENDENCY_MANIFEST_SHA256)]
+    pinned.extend((collector.QT_LICENSES / name, digest)
+                  for name, size, digest, blob in collector.QT_NOTICES)
+    # Each vendored notice is addressed by its upstream SHA-256.
+    pinned.extend((path, path.name) for path in
+                  sorted((collector.DEPENDENCY_LICENSES / "notices").iterdir()) if path.is_file())
+    restored = []
+    for path, expected in pinned:
+        original = path.read_bytes()
+        original_hash = hashlib.sha256(original).hexdigest()
+        if original_hash == expected:
+            continue
+        lf = original.replace(b"\r\n", b"\n")
+        candidates = (("LF", lf), ("CRLF", lf.replace(b"\n", b"\r\n")))
+        for ending, data in candidates:
+            if hashlib.sha256(data).hexdigest() == expected:
+                path.write_bytes(data)
+                restored.append({"path": path.relative_to(staging).as_posix(),
+                                 "original_sha256": original_hash, "sha256": expected,
+                                 "line_endings": ending, "bytes": len(data)})
+                break
+        else:
+            raise RuntimeError(f"Pinned notice differs beyond line endings: {path.name}")
+    return restored
+
+
 def main(argv=None):
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--output", type=Path, default=HOST / "build" / "windows-v2-candidate",
@@ -140,6 +180,8 @@ def main(argv=None):
     license_input = output / "license-input"
     with zipfile.ZipFile(license_archive) as archive:
         archive.extractall(license_input)
+    restored_notices = restore_pinned_notice_bytes(license_input)
+    write_json(output / "license-input-restoration.json", restored_notices)
     run(python, license_input / "host" / "packaging" / "collect_licenses.py", bundle / "licenses")
     shutil.copy2(HOST / "LICENSE", bundle / "LICENSE")
     shutil.copy2(PACKAGING.parent / "LICENSE-REVIEW.md", bundle / "LICENSE-REVIEW.md")
@@ -175,6 +217,7 @@ def main(argv=None):
         "scope": "V2 DEMO, .mtv2/.mtcap files and CSV/JSON; no physical device validation",
         "license_scope": "Existing notices/source guide included; third-party source archives "
                          "are not bundled; public distribution review remains open",
+        "license_input_restoration": restored_notices,
         "verification": "See external build-report.json for this immutable ZIP",
         "files": file_tree(bundle),
     }
@@ -207,7 +250,9 @@ def main(argv=None):
     smoke = read_json(smoke_output / "result.json")
     if (type(smoke) is not dict or smoke.get("status") != "PASS"
             or smoke.get("frozen") is not True or smoke.get("platform") != "win32"
-            or smoke.get("qt_platform") != "windows"):
+            or smoke.get("qt_platform") != "windows" or smoke.get("error")
+            or smoke.get("callback_errors") != []
+            or Path(smoke.get("executable", "")).resolve() != gui_exe.resolve()):
         raise RuntimeError("Native frozen Windows package verification did not pass")
     pngs = {name: png_info(smoke_output / name) for name in ("scope.png", "ignition.png")}
     for name in ("sample.mtv2", "export.csv", "export.csv.json"):
@@ -227,10 +272,18 @@ def main(argv=None):
     inspected = json.loads(run(inspect_exe, smoke_output / "sample.mtv2", cwd=foreign_cwd,
                                environment=frozen_env, timeout=FROZEN_TIMEOUT))
     if (type(inspected) is not dict or inspected.get("source") != "demo"
-            or type(inspected.get("sample_count")) is not int or inspected["sample_count"] < 1
+            or inspected.get("sample_count") != exported_count
+            or inspected.get("session_id") != smoke.get("session_id")
             or inspected.get("voltage_state") != "nominal"):
         raise RuntimeError("Frozen console inspector did not read the synthetic V2 recording")
     write_json(output / "inspect-report.json", inspected)
+    # Exercise the ordinary GUI entrypoint with its live acquisition timer,
+    # separately from --verify-package. The existing screenshot option exits
+    # automatically and uses a private INI instead of the user's settings.
+    startup_png = output / "normal-startup.png"
+    run(gui_exe, "--screenshot", startup_png, "--settings", output / "startup-settings.ini",
+        "--profile", "ignition", cwd=foreign_cwd, environment=frozen_env, timeout=FROZEN_TIMEOUT)
+    startup = png_info(startup_png)
     if file_tree(relocated) != expected_tree or sha256(portable) != portable_hash:
         raise RuntimeError("Verification modified the final ZIP or extracted program files")
 
@@ -250,6 +303,8 @@ def main(argv=None):
         "png_files": pngs,
         "console_inspector": {"status": "PASS", "report": "inspect-report.json",
                               "sample_count": inspected["sample_count"]},
+        "ordinary_gui_entrypoint": {"status": "PASS", "mode": "live DEMO ignition",
+                                   "automatic_screenshot_exit": True, "png": startup},
         "smoke_files": file_tree(smoke_output),
         "windows_host": platform.platform(),
         "public_release_approved": False,
@@ -257,7 +312,7 @@ def main(argv=None):
     }
     write_json(output / "build-report.json", report)
     artifacts = [portable, source_archive, output / "build-report.json",
-                 output / "inspect-report.json", log]
+                 output / "inspect-report.json", startup_png, log]
     artifacts.extend(path for path in sorted(smoke_output.rglob("*")) if path.is_file())
     (output / "SHA256SUMS.txt").write_text(
         "".join(f"{sha256(path)}  {path.relative_to(output).as_posix()}\n" for path in artifacts),

@@ -128,6 +128,7 @@ def run(output_name):
             flush()
             report["status"] = "PASS"
     except BaseException:
+        report["status"] = "FAIL"
         report["error"] = traceback.format_exc()
     finally:
         if window is not None:
