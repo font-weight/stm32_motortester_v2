@@ -1,0 +1,42 @@
+{
+  "status": "PASS",
+  "platform": "win32",
+  "windows": "Windows-10-10.0.19045-SP0",
+  "python": "3.14.7 (tags/v3.14.7:823f032, Aug  5 2026, 10:51:32) [MSC v.1944 64 bit (AMD64)]",
+  "frozen": true,
+  "executable": "C:\\Users\\Alexandr\\Desktop\\New folder\\универ\\мотортестер 2\\build\\v2w2\\Проверка переноса\\MotortesterV2\\MotortesterV2.exe",
+  "cwd": "C:\\Users\\Alexandr\\Desktop\\New folder\\универ\\мотортестер 2\\build\\v2w2\\Другая рабочая папка",
+  "checks": [
+    "native GUI; both DEMO profiles; V/mV keeps raw and physical values",
+    "single capture; pause-independent recording with a real data gap",
+    "GUI save/open keeps raw and input snapshot; CSV/JSON keeps gap and checksum"
+  ],
+  "callback_errors": [],
+  "qt_platform": "windows",
+  "qt": "6.12.0",
+  "numpy": "2.5.3",
+  "sample_count": 7500,
+  "session_id": "28d5f16e-35dc-48c8-a944-6f55d78f2d2c",
+  "files": {
+    "export.csv": {
+      "bytes": 351704,
+      "sha256": "15412527f9638f3fcb668f33502c00092c66d9e4606da1a460a980004c879674"
+    },
+    "export.csv.json": {
+      "bytes": 1996,
+      "sha256": "ca385d34d6e2d0c03e87dd456e1aeafe31e937055dbb1d6413f2ea97e0d71018"
+    },
+    "ignition.png": {
+      "bytes": 106167,
+      "sha256": "07b1f21f9cb093474b35aaf5d4927ef2ed46dab8b1fad13d12b0880eb1192a71"
+    },
+    "sample.mtv2": {
+      "bytes": 16757,
+      "sha256": "9804f30938212a18ccda2a98e73c0d14c14c731b35e152e9af7e0b3f45d0e373"
+    },
+    "scope.png": {
+      "bytes": 124341,
+      "sha256": "8557187eec5ac5af8b7597116d48d240e3441b42d1c54cc77b59b0c01cd56e5f"
+    }
+  }
+}

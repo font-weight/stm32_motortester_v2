@@ -1,0 +1,318 @@
+2026-10-20T09:19:07.180097+00:00 START "C:\Users\Alexandr\Desktop\New folder\универ\мотортестер 2\.venv\Scripts\python.exe" -m venv "C:\Users\Alexandr\Desktop\New folder\универ\мотортестер 2\build\v2w2\venv" [timeout=None; QT_QPA_PLATFORM=<default>]
+2026-10-20T09:19:12.756142+00:00 END exit_code=0; elapsed_seconds=5.576
+2026-10-20T09:19:12.762935+00:00 START "C:\Users\Alexandr\Desktop\New folder\универ\мотортестер 2\build\v2w2\venv\Scripts\python.exe" -m pip --isolated download --index-url https://pypi.org/simple --require-hashes --only-binary=:all: --dest "C:\Users\Alexandr\Desktop\New folder\универ\мотортестер 2\build\v2w2\wheelhouse" -r "C:\Users\Alexandr\Desktop\New folder\универ\мотортестер 2\host\packaging\v2\requirements-win-x64.lock" [timeout=None; QT_QPA_PLATFORM=<default>]
+Collecting pip==26.2.1 (from -r C:\Users\Alexandr\Desktop\New folder\универ\мотортестер 2\host\packaging\v2\requirements-win-x64.lock (line 6))
+  Using cached pip-26.2.1-py3-none-any.whl (1.8 MB)
+Collecting PySide6-Essentials==6.12.0 (from -r C:\Users\Alexandr\Desktop\New folder\универ\мотортестер 2\host\packaging\v2\requirements-win-x64.lock (line 9))
+  Using cached pyside6_essentials-6.12.0-cp310-abi3-win_amd64.whl (82.2 MB)
+Collecting shiboken6==6.12.0 (from -r C:\Users\Alexandr\Desktop\New folder\универ\мотортестер 2\host\packaging\v2\requirements-win-x64.lock (line 12))
+  Using cached shiboken6-6.12.0-cp310-abi3-win_amd64.whl (1.3 MB)
+Collecting pyqtgraph==0.14.0 (from -r C:\Users\Alexandr\Desktop\New folder\универ\мотортестер 2\host\packaging\v2\requirements-win-x64.lock (line 15))
+  Using cached pyqtgraph-0.14.0-py3-none-any.whl (1.9 MB)
+Collecting numpy==2.5.3 (from -r C:\Users\Alexandr\Desktop\New folder\универ\мотортестер 2\host\packaging\v2\requirements-win-x64.lock (line 18))
+  Using cached numpy-2.5.3-cp314-cp314-win_amd64.whl (12.7 MB)
+Collecting colorama==0.4.6 (from -r C:\Users\Alexandr\Desktop\New folder\универ\мотортестер 2\host\packaging\v2\requirements-win-x64.lock (line 21))
+  Using cached colorama-0.4.6-py2.py3-none-any.whl (25 kB)
+Collecting pyinstaller==6.22.3 (from -r C:\Users\Alexandr\Desktop\New folder\универ\мотортестер 2\host\packaging\v2\requirements-win-x64.lock (line 24))
+  Using cached pyinstaller-6.22.3-py3-none-win_amd64.whl (1.5 MB)
+Collecting altgraph==0.17.5 (from -r C:\Users\Alexandr\Desktop\New folder\универ\мотортестер 2\host\packaging\v2\requirements-win-x64.lock (line 27))
+  Using cached altgraph-0.17.5-py2.py3-none-any.whl (21 kB)
+Collecting packaging==26.3 (from -r C:\Users\Alexandr\Desktop\New folder\универ\мотортестер 2\host\packaging\v2\requirements-win-x64.lock (line 30))
+  Using cached packaging-26.3-py3-none-any.whl (129 kB)
+Collecting pyinstaller-hooks-contrib==2026.8 (from -r C:\Users\Alexandr\Desktop\New folder\универ\мотортестер 2\host\packaging\v2\requirements-win-x64.lock (line 33))
+  Using cached pyinstaller_hooks_contrib-2026.8-py3-none-any.whl (462 kB)
+Collecting setuptools==84.0.0 (from -r C:\Users\Alexandr\Desktop\New folder\универ\мотортестер 2\host\packaging\v2\requirements-win-x64.lock (line 36))
+  Using cached setuptools-84.0.0-py3-none-any.whl (818 kB)
+Collecting pefile==2024.8.26 (from -r C:\Users\Alexandr\Desktop\New folder\универ\мотортестер 2\host\packaging\v2\requirements-win-x64.lock (line 39))
+  Using cached pefile-2024.8.26-py3-none-any.whl (74 kB)
+Collecting pywin32-ctypes==0.2.3 (from -r C:\Users\Alexandr\Desktop\New folder\универ\мотортестер 2\host\packaging\v2\requirements-win-x64.lock (line 42))
+  Using cached pywin32_ctypes-0.2.3-py3-none-any.whl (30 kB)
+Collecting pyserial==3.5 (from -r C:\Users\Alexandr\Desktop\New folder\универ\мотортестер 2\host\packaging\v2\requirements-win-x64.lock (line 45))
+  Using cached pyserial-3.5-py2.py3-none-any.whl (90 kB)
+Saved c:\users\alexandr\desktop\new folder\универ\мотортестер 2\build\v2w2\wheelhouse\pip-26.2.1-py3-none-any.whl
+Saved c:\users\alexandr\desktop\new folder\универ\мотортестер 2\build\v2w2\wheelhouse\pyside6_essentials-6.12.0-cp310-abi3-win_amd64.whl
+Saved c:\users\alexandr\desktop\new folder\универ\мотортестер 2\build\v2w2\wheelhouse\shiboken6-6.12.0-cp310-abi3-win_amd64.whl
+Saved c:\users\alexandr\desktop\new folder\универ\мотортестер 2\build\v2w2\wheelhouse\pyqtgraph-0.14.0-py3-none-any.whl
+Saved c:\users\alexandr\desktop\new folder\универ\мотортестер 2\build\v2w2\wheelhouse\numpy-2.5.3-cp314-cp314-win_amd64.whl
+Saved c:\users\alexandr\desktop\new folder\универ\мотортестер 2\build\v2w2\wheelhouse\colorama-0.4.6-py2.py3-none-any.whl
+Saved c:\users\alexandr\desktop\new folder\универ\мотортестер 2\build\v2w2\wheelhouse\pyinstaller-6.22.3-py3-none-win_amd64.whl
+Saved c:\users\alexandr\desktop\new folder\универ\мотортестер 2\build\v2w2\wheelhouse\altgraph-0.17.5-py2.py3-none-any.whl
+Saved c:\users\alexandr\desktop\new folder\универ\мотортестер 2\build\v2w2\wheelhouse\packaging-26.3-py3-none-any.whl
+Saved c:\users\alexandr\desktop\new folder\универ\мотортестер 2\build\v2w2\wheelhouse\pyinstaller_hooks_contrib-2026.8-py3-none-any.whl
+Saved c:\users\alexandr\desktop\new folder\универ\мотортестер 2\build\v2w2\wheelhouse\setuptools-84.0.0-py3-none-any.whl
+Saved c:\users\alexandr\desktop\new folder\универ\мотортестер 2\build\v2w2\wheelhouse\pefile-2024.8.26-py3-none-any.whl
+Saved c:\users\alexandr\desktop\new folder\универ\мотортестер 2\build\v2w2\wheelhouse\pywin32_ctypes-0.2.3-py3-none-any.whl
+Saved c:\users\alexandr\desktop\new folder\универ\мотортестер 2\build\v2w2\wheelhouse\pyserial-3.5-py2.py3-none-any.whl
+Successfully downloaded pip PySide6-Essentials shiboken6 pyqtgraph numpy colorama pyinstaller altgraph packaging pyinstaller-hooks-contrib setuptools pefile pywin32-ctypes pyserial
+2026-10-20T09:19:14.087351+00:00 END exit_code=0; elapsed_seconds=1.325
+2026-10-20T09:19:14.095970+00:00 START "C:\Users\Alexandr\Desktop\New folder\универ\мотортестер 2\build\v2w2\venv\Scripts\python.exe" -m pip --isolated install --no-index --find-links "C:\Users\Alexandr\Desktop\New folder\универ\мотортестер 2\build\v2w2\wheelhouse" --require-hashes --only-binary=:all: -r "C:\Users\Alexandr\Desktop\New folder\универ\мотортестер 2\host\packaging\v2\requirements-win-x64.lock" [timeout=None; QT_QPA_PLATFORM=<default>]
+Looking in links: c:\Users\Alexandr\Desktop\New folder\универ\мотортестер 2\build\v2w2\wheelhouse
+Requirement already satisfied: pip==26.2.1 in C:\Users\Alexandr\Desktop\New folder\универ\мотортестер 2\build\v2w2\venv\Lib\site-packages (from -r C:\Users\Alexandr\Desktop\New folder\универ\мотортестер 2\host\packaging\v2\requirements-win-x64.lock (line 6)) (26.2.1)
+Processing C:\Users\Alexandr\Desktop\New folder\универ\мотортестер 2\build\v2w2\wheelhouse\pyside6_essentials-6.12.0-cp310-abi3-win_amd64.whl (from -r C:\Users\Alexandr\Desktop\New folder\универ\мотортестер 2\host\packaging\v2\requirements-win-x64.lock (line 9))
+Processing C:\Users\Alexandr\Desktop\New folder\универ\мотортестер 2\build\v2w2\wheelhouse\shiboken6-6.12.0-cp310-abi3-win_amd64.whl (from -r C:\Users\Alexandr\Desktop\New folder\универ\мотортестер 2\host\packaging\v2\requirements-win-x64.lock (line 12))
+Processing C:\Users\Alexandr\Desktop\New folder\универ\мотортестер 2\build\v2w2\wheelhouse\pyqtgraph-0.14.0-py3-none-any.whl (from -r C:\Users\Alexandr\Desktop\New folder\универ\мотортестер 2\host\packaging\v2\requirements-win-x64.lock (line 15))
+Processing C:\Users\Alexandr\Desktop\New folder\универ\мотортестер 2\build\v2w2\wheelhouse\numpy-2.5.3-cp314-cp314-win_amd64.whl (from -r C:\Users\Alexandr\Desktop\New folder\универ\мотортестер 2\host\packaging\v2\requirements-win-x64.lock (line 18))
+Processing C:\Users\Alexandr\Desktop\New folder\универ\мотортестер 2\build\v2w2\wheelhouse\colorama-0.4.6-py2.py3-none-any.whl (from -r C:\Users\Alexandr\Desktop\New folder\универ\мотортестер 2\host\packaging\v2\requirements-win-x64.lock (line 21))
+Processing C:\Users\Alexandr\Desktop\New folder\универ\мотортестер 2\build\v2w2\wheelhouse\pyinstaller-6.22.3-py3-none-win_amd64.whl (from -r C:\Users\Alexandr\Desktop\New folder\универ\мотортестер 2\host\packaging\v2\requirements-win-x64.lock (line 24))
+Processing C:\Users\Alexandr\Desktop\New folder\универ\мотортестер 2\build\v2w2\wheelhouse\altgraph-0.17.5-py2.py3-none-any.whl (from -r C:\Users\Alexandr\Desktop\New folder\универ\мотортестер 2\host\packaging\v2\requirements-win-x64.lock (line 27))
+Processing C:\Users\Alexandr\Desktop\New folder\универ\мотортестер 2\build\v2w2\wheelhouse\packaging-26.3-py3-none-any.whl (from -r C:\Users\Alexandr\Desktop\New folder\универ\мотортестер 2\host\packaging\v2\requirements-win-x64.lock (line 30))
+Processing C:\Users\Alexandr\Desktop\New folder\универ\мотортестер 2\build\v2w2\wheelhouse\pyinstaller_hooks_contrib-2026.8-py3-none-any.whl (from -r C:\Users\Alexandr\Desktop\New folder\универ\мотортестер 2\host\packaging\v2\requirements-win-x64.lock (line 33))
+Processing C:\Users\Alexandr\Desktop\New folder\универ\мотортестер 2\build\v2w2\wheelhouse\setuptools-84.0.0-py3-none-any.whl (from -r C:\Users\Alexandr\Desktop\New folder\универ\мотортестер 2\host\packaging\v2\requirements-win-x64.lock (line 36))
+Processing C:\Users\Alexandr\Desktop\New folder\универ\мотортестер 2\build\v2w2\wheelhouse\pefile-2024.8.26-py3-none-any.whl (from -r C:\Users\Alexandr\Desktop\New folder\универ\мотортестер 2\host\packaging\v2\requirements-win-x64.lock (line 39))
+Processing C:\Users\Alexandr\Desktop\New folder\универ\мотортестер 2\build\v2w2\wheelhouse\pywin32_ctypes-0.2.3-py3-none-any.whl (from -r C:\Users\Alexandr\Desktop\New folder\универ\мотортестер 2\host\packaging\v2\requirements-win-x64.lock (line 42))
+Processing C:\Users\Alexandr\Desktop\New folder\универ\мотортестер 2\build\v2w2\wheelhouse\pyserial-3.5-py2.py3-none-any.whl (from -r C:\Users\Alexandr\Desktop\New folder\универ\мотортестер 2\host\packaging\v2\requirements-win-x64.lock (line 45))
+Installing collected packages: pyserial, altgraph, shiboken6, setuptools, pywin32-ctypes, pefile, packaging, numpy, colorama, PySide6-Essentials, pyqtgraph, pyinstaller-hooks-contrib, pyinstaller
+
+Successfully installed PySide6-Essentials-6.12.0 altgraph-0.17.5 colorama-0.4.6 numpy-2.5.3 packaging-26.3 pefile-2024.8.26 pyinstaller-6.22.3 pyinstaller-hooks-contrib-2026.8 pyqtgraph-0.14.0 pyserial-3.5 pywin32-ctypes-0.2.3 setuptools-84.0.0 shiboken6-6.12.0
+2026-10-20T09:19:38.568331+00:00 END exit_code=0; elapsed_seconds=24.473
+2026-10-20T09:19:38.576656+00:00 START "C:\Users\Alexandr\Desktop\New folder\универ\мотортестер 2\build\v2w2\venv\Scripts\python.exe" -m pip check [timeout=None; QT_QPA_PLATFORM=<default>]
+No broken requirements found.
+2026-10-20T09:19:39.150288+00:00 END exit_code=0; elapsed_seconds=0.574
+2026-10-20T09:19:39.158210+00:00 START "C:\Users\Alexandr\Desktop\New folder\универ\мотортестер 2\build\v2w2\venv\Scripts\python.exe" -m pip list --format=json [timeout=None; QT_QPA_PLATFORM=<default>]
+[{"name": "altgraph", "version": "0.17.5"}, {"name": "colorama", "version": "0.4.6"}, {"name": "numpy", "version": "2.5.3"}, {"name": "packaging", "version": "26.3"}, {"name": "pefile", "version": "2024.8.26"}, {"name": "pip", "version": "26.2.1"}, {"name": "pyinstaller", "version": "6.22.3"}, {"name": "pyinstaller-hooks-contrib", "version": "2026.8"}, {"name": "pyqtgraph", "version": "0.14.0"}, {"name": "pyserial", "version": "3.5"}, {"name": "PySide6_Essentials", "version": "6.12.0"}, {"name": "pywin32-ctypes", "version": "0.2.3"}, {"name": "setuptools", "version": "84.0.0"}, {"name": "shiboken6", "version": "6.12.0"}]
+2026-10-20T09:19:39.501499+00:00 END exit_code=0; elapsed_seconds=0.344
+2026-10-20T09:19:39.509358+00:00 START "C:\Users\Alexandr\Desktop\New folder\универ\мотортестер 2\build\v2w2\venv\Scripts\python.exe" -m PyInstaller --clean --noconfirm --distpath "C:\Users\Alexandr\Desktop\New folder\универ\мотортестер 2\build\v2w2\dist" --workpath "C:\Users\Alexandr\Desktop\New folder\универ\мотортестер 2\build\v2w2\pyinstaller" "C:\Users\Alexandr\Desktop\New folder\универ\мотортестер 2\host\packaging\v2\motortester-v2.spec" [timeout=None; QT_QPA_PLATFORM=<default>]
+170 INFO: PyInstaller: 6.22.3, contrib hooks: 2026.8
+171 INFO: Python: 3.14.7
+216 INFO: Platform: Windows-10-10.0.19045-SP0
+216 INFO: Python environment: C:\Users\Alexandr\Desktop\New folder\универ\мотортестер 2\build\v2w2\venv
+217 INFO: Removing temporary files and cleaning cache in C:\Users\Alexandr\AppData\Local\pyinstaller
+220 INFO: Module search paths (PYTHONPATH):
+['C:\\Users\\Alexandr\\Desktop\\New folder\\универ\\мотортестер 2\\host',
+ 'C:\\Users\\Alexandr\\AppData\\Local\\Python\\pythoncore-3.14-64\\python314.zip',
+ 'C:\\Users\\Alexandr\\AppData\\Local\\Python\\pythoncore-3.14-64\\DLLs',
+ 'C:\\Users\\Alexandr\\AppData\\Local\\Python\\pythoncore-3.14-64\\Lib',
+ 'C:\\Users\\Alexandr\\AppData\\Local\\Python\\pythoncore-3.14-64',
+ 'C:\\Users\\Alexandr\\Desktop\\New folder\\универ\\мотортестер '
+ '2\\build\\v2w2\\venv',
+ 'C:\\Users\\Alexandr\\Desktop\\New folder\\универ\\мотортестер '
+ '2\\build\\v2w2\\venv\\Lib\\site-packages',
+ 'C:\\Users\\Alexandr\\Desktop\\New folder\\универ\\мотортестер '
+ '2\\host\\packaging\\v2',
+ 'C:\\Users\\Alexandr\\Desktop\\New folder\\универ\\мотортестер 2\\host']
+727 INFO: checking Analysis
+727 INFO: Building Analysis because Analysis-00.toc is non existent
+727 INFO: Looking for Python shared library...
+727 INFO: Using Python shared library: C:\Users\Alexandr\AppData\Local\Python\pythoncore-3.14-64\python314.dll
+727 INFO: Running Analysis Analysis-00.toc
+727 INFO: Target bytecode optimization level: 0
+727 INFO: Initializing module dependency graph...
+728 INFO: Initializing module graph hook caches...
+741 INFO: Analyzing modules for base_library.zip ...
+2360 INFO: Processing standard module hook 'hook-encodings.py' from 'C:\\Users\\Alexandr\\Desktop\\New folder\\универ\\мотортестер 2\\build\\v2w2\\venv\\Lib\\site-packages\\PyInstaller\\hooks'
+2887 INFO: Processing standard module hook 'hook-pickle.py' from 'C:\\Users\\Alexandr\\Desktop\\New folder\\универ\\мотортестер 2\\build\\v2w2\\venv\\Lib\\site-packages\\PyInstaller\\hooks'
+3089 INFO: Processing standard module hook 'hook-math.py' from 'C:\\Users\\Alexandr\\Desktop\\New folder\\универ\\мотортестер 2\\build\\v2w2\\venv\\Lib\\site-packages\\PyInstaller\\hooks'
+3201 INFO: Processing standard module hook 'hook-difflib.py' from 'C:\\Users\\Alexandr\\Desktop\\New folder\\универ\\мотортестер 2\\build\\v2w2\\venv\\Lib\\site-packages\\PyInstaller\\hooks'
+3212 INFO: Processing standard module hook 'hook-heapq.py' from 'C:\\Users\\Alexandr\\Desktop\\New folder\\универ\\мотортестер 2\\build\\v2w2\\venv\\Lib\\site-packages\\PyInstaller\\hooks'
+5308 INFO: Caching module dependency graph...
+5330 INFO: Analyzing C:\Users\Alexandr\Desktop\New folder\универ\мотортестер 2\host\packaging\v2\launcher.py
+5366 INFO: Processing standard module hook 'hook-platform.py' from 'C:\\Users\\Alexandr\\Desktop\\New folder\\универ\\мотортестер 2\\build\\v2w2\\venv\\Lib\\site-packages\\PyInstaller\\hooks'
+5401 INFO: Processing standard module hook 'hook-sysconfig.py' from 'C:\\Users\\Alexandr\\Desktop\\New folder\\универ\\мотортестер 2\\build\\v2w2\\venv\\Lib\\site-packages\\PyInstaller\\hooks'
+5407 INFO: Processing standard module hook 'hook-_ctypes.py' from 'C:\\Users\\Alexandr\\Desktop\\New folder\\универ\\мотортестер 2\\build\\v2w2\\venv\\Lib\\site-packages\\PyInstaller\\hooks'
+5674 INFO: Processing standard module hook 'hook-multiprocessing.util.py' from 'C:\\Users\\Alexandr\\Desktop\\New folder\\универ\\мотортестер 2\\build\\v2w2\\venv\\Lib\\site-packages\\PyInstaller\\hooks'
+5752 INFO: Processing standard module hook 'hook-xml.py' from 'C:\\Users\\Alexandr\\Desktop\\New folder\\универ\\мотортестер 2\\build\\v2w2\\venv\\Lib\\site-packages\\PyInstaller\\hooks'
+6417 INFO: Processing standard module hook 'hook-numpy.py' from 'C:\\Users\\Alexandr\\Desktop\\New folder\\универ\\мотортестер 2\\build\\v2w2\\venv\\Lib\\site-packages\\PyInstaller\\hooks'
+6688 INFO: Processing pre-safe-import-module hook 'hook-typing_extensions.py' from 'C:\\Users\\Alexandr\\Desktop\\New folder\\универ\\мотортестер 2\\build\\v2w2\\venv\\Lib\\site-packages\\PyInstaller\\hooks\\pre_safe_import_module'
+6690 INFO: SetuptoolsInfo: initializing cached setuptools info...
+7776 INFO: Processing standard module hook 'hook-webbrowser.py' from 'C:\\Users\\Alexandr\\Desktop\\New folder\\универ\\мотортестер 2\\build\\v2w2\\venv\\Lib\\site-packages\\PyInstaller\\hooks'
+10236 INFO: Processing standard module hook 'hook-PySide6.py' from 'C:\\Users\\Alexandr\\Desktop\\New folder\\универ\\мотортестер 2\\build\\v2w2\\venv\\Lib\\site-packages\\PyInstaller\\hooks'
+10484 INFO: Processing standard module hook 'hook-shiboken6.py' from 'C:\\Users\\Alexandr\\Desktop\\New folder\\универ\\мотортестер 2\\build\\v2w2\\venv\\Lib\\site-packages\\PyInstaller\\hooks'
+10945 INFO: Processing standard module hook 'hook-PySide6.QtNetwork.py' from 'C:\\Users\\Alexandr\\Desktop\\New folder\\универ\\мотортестер 2\\build\\v2w2\\venv\\Lib\\site-packages\\PyInstaller\\hooks'
+14297 INFO: Processing standard module hook 'hook-PySide6.QtCore.py' from 'C:\\Users\\Alexandr\\Desktop\\New folder\\универ\\мотортестер 2\\build\\v2w2\\venv\\Lib\\site-packages\\PyInstaller\\hooks'
+18581 INFO: Processing standard module hook 'hook-PySide6.QtGui.py' from 'C:\\Users\\Alexandr\\Desktop\\New folder\\универ\\мотортестер 2\\build\\v2w2\\venv\\Lib\\site-packages\\PyInstaller\\hooks'
+32418 INFO: Processing standard module hook 'hook-PySide6.QtWidgets.py' from 'C:\\Users\\Alexandr\\Desktop\\New folder\\универ\\мотортестер 2\\build\\v2w2\\venv\\Lib\\site-packages\\PyInstaller\\hooks'
+35364 INFO: Processing standard module hook 'hook-pyqtgraph.py' from 'C:\\Users\\Alexandr\\Desktop\\New folder\\универ\\мотортестер 2\\build\\v2w2\\venv\\Lib\\site-packages\\_pyinstaller_hooks_contrib\\stdhooks'
+611 WARNING: Failed to collect submodules for 'pyqtgraph.opengl' because importing 'pyqtgraph.opengl' raised: ModuleNotFoundError: No module named 'OpenGL'
+36457 INFO: hook-pyqtgraph: selected 'PySide6' as Qt bindings because hook for 'PySide6' has been run before.
+36547 INFO: Processing standard module hook 'hook-xml.etree.cElementTree.py' from 'C:\\Users\\Alexandr\\Desktop\\New folder\\универ\\мотортестер 2\\build\\v2w2\\venv\\Lib\\site-packages\\PyInstaller\\hooks'
+36570 INFO: Processing standard module hook 'hook-PySide6.QtSvg.py' from 'C:\\Users\\Alexandr\\Desktop\\New folder\\универ\\мотортестер 2\\build\\v2w2\\venv\\Lib\\site-packages\\PyInstaller\\hooks'
+37100 INFO: Processing standard module hook 'hook-PySide6.QtOpenGLWidgets.py' from 'C:\\Users\\Alexandr\\Desktop\\New folder\\универ\\мотортестер 2\\build\\v2w2\\venv\\Lib\\site-packages\\PyInstaller\\hooks'
+37784 INFO: Processing standard module hook 'hook-PySide6.QtTest.py' from 'C:\\Users\\Alexandr\\Desktop\\New folder\\универ\\мотортестер 2\\build\\v2w2\\venv\\Lib\\site-packages\\PyInstaller\\hooks'
+39010 INFO: Processing standard module hook 'hook-xml.dom.domreg.py' from 'C:\\Users\\Alexandr\\Desktop\\New folder\\универ\\мотортестер 2\\build\\v2w2\\venv\\Lib\\site-packages\\PyInstaller\\hooks'
+39998 INFO: Processing module hooks (post-graph stage)...
+42816 INFO: Processing standard module hook 'hook-PySide6.QtOpenGL.py' from 'C:\\Users\\Alexandr\\Desktop\\New folder\\универ\\мотортестер 2\\build\\v2w2\\venv\\Lib\\site-packages\\PyInstaller\\hooks'
+45717 INFO: Performing binary vs. data reclassification (216 entries)
+46377 INFO: Looking for ctypes DLLs
+46513 INFO: Analyzing run-time hooks ...
+46515 INFO: Including run-time hook 'pyi_rth_inspect.py' from 'C:\\Users\\Alexandr\\Desktop\\New folder\\универ\\мотортестер 2\\build\\v2w2\\venv\\Lib\\site-packages\\PyInstaller\\hooks\\rthooks'
+46517 INFO: Including run-time hook 'pyi_rth_pyqtgraph_multiprocess.py' from 'C:\\Users\\Alexandr\\Desktop\\New folder\\универ\\мотортестер 2\\build\\v2w2\\venv\\Lib\\site-packages\\_pyinstaller_hooks_contrib\\rthooks'
+46519 INFO: Including run-time hook 'pyi_rth_pkgutil.py' from 'C:\\Users\\Alexandr\\Desktop\\New folder\\универ\\мотортестер 2\\build\\v2w2\\venv\\Lib\\site-packages\\PyInstaller\\hooks\\rthooks'
+46521 INFO: Including run-time hook 'pyi_rth_multiprocessing.py' from 'C:\\Users\\Alexandr\\Desktop\\New folder\\универ\\мотортестер 2\\build\\v2w2\\venv\\Lib\\site-packages\\PyInstaller\\hooks\\rthooks'
+46523 INFO: Including run-time hook 'pyi_rth_pyside6.py' from 'C:\\Users\\Alexandr\\Desktop\\New folder\\универ\\мотортестер 2\\build\\v2w2\\venv\\Lib\\site-packages\\PyInstaller\\hooks\\rthooks'
+46525 INFO: Processing pre-find-module-path hook 'hook-_pyi_rth_utils.py' from 'C:\\Users\\Alexandr\\Desktop\\New folder\\универ\\мотортестер 2\\build\\v2w2\\venv\\Lib\\site-packages\\PyInstaller\\hooks\\pre_find_module_path'
+46527 INFO: Processing standard module hook 'hook-_pyi_rth_utils.py' from 'C:\\Users\\Alexandr\\Desktop\\New folder\\универ\\мотортестер 2\\build\\v2w2\\venv\\Lib\\site-packages\\PyInstaller\\hooks'
+46539 INFO: Creating base_library.zip...
+46553 INFO: Looking for dynamic libraries
+47623 INFO: Extra DLL search directories (AddDllDirectory): ['C:\\Users\\Alexandr\\Desktop\\New folder\\универ\\мотортестер 2\\build\\v2w2\\venv\\Lib\\site-packages\\shiboken6', 'C:\\Users\\Alexandr\\Desktop\\New folder\\универ\\мотортестер 2\\build\\v2w2\\venv\\Lib\\site-packages\\numpy.libs']
+47623 INFO: Extra DLL search directories (PATH): ['C:\\Users\\Alexandr\\Desktop\\New folder\\универ\\мотортестер 2\\build\\v2w2\\venv\\Lib\\site-packages\\PySide6']
+48243 INFO: Warnings written to C:\Users\Alexandr\Desktop\New folder\универ\мотортестер 2\build\v2w2\pyinstaller\motortester-v2\warn-motortester-v2.txt
+48290 INFO: Graph cross-reference written to C:\Users\Alexandr\Desktop\New folder\универ\мотортестер 2\build\v2w2\pyinstaller\motortester-v2\xref-motortester-v2.html
+48312 INFO: Module search paths (PYTHONPATH):
+['C:\\Users\\Alexandr\\Desktop\\New folder\\универ\\мотортестер 2\\host',
+ 'C:\\Users\\Alexandr\\AppData\\Local\\Python\\pythoncore-3.14-64\\python314.zip',
+ 'C:\\Users\\Alexandr\\AppData\\Local\\Python\\pythoncore-3.14-64\\DLLs',
+ 'C:\\Users\\Alexandr\\AppData\\Local\\Python\\pythoncore-3.14-64\\Lib',
+ 'C:\\Users\\Alexandr\\AppData\\Local\\Python\\pythoncore-3.14-64',
+ 'C:\\Users\\Alexandr\\Desktop\\New folder\\универ\\мотортестер '
+ '2\\build\\v2w2\\venv',
+ 'C:\\Users\\Alexandr\\Desktop\\New folder\\универ\\мотортестер '
+ '2\\build\\v2w2\\venv\\Lib\\site-packages',
+ 'C:\\Users\\Alexandr\\Desktop\\New folder\\универ\\мотортестер '
+ '2\\host\\packaging\\v2',
+ 'C:\\Users\\Alexandr\\Desktop\\New folder\\универ\\мотортестер 2\\host',
+ 'C:\\Users\\Alexandr\\Desktop\\New folder\\универ\\мотортестер '
+ '2\\host\\packaging\\v2',
+ 'C:\\Users\\Alexandr\\Desktop\\New folder\\универ\\мотортестер 2\\host']
+48761 INFO: checking Analysis
+48761 INFO: Building Analysis because Analysis-01.toc is non existent
+48761 INFO: Looking for Python shared library...
+48761 INFO: Using Python shared library: C:\Users\Alexandr\AppData\Local\Python\pythoncore-3.14-64\python314.dll
+48761 INFO: Running Analysis Analysis-01.toc
+48761 INFO: Target bytecode optimization level: 0
+48761 INFO: Initializing module dependency graph...
+48761 INFO: Initializing module graph hook caches...
+48772 INFO: Analyzing modules for base_library.zip ...
+50352 INFO: Processing standard module hook 'hook-encodings.py' from 'C:\\Users\\Alexandr\\Desktop\\New folder\\универ\\мотортестер 2\\build\\v2w2\\venv\\Lib\\site-packages\\PyInstaller\\hooks'
+50870 INFO: Processing standard module hook 'hook-pickle.py' from 'C:\\Users\\Alexandr\\Desktop\\New folder\\универ\\мотортестер 2\\build\\v2w2\\venv\\Lib\\site-packages\\PyInstaller\\hooks'
+51072 INFO: Processing standard module hook 'hook-math.py' from 'C:\\Users\\Alexandr\\Desktop\\New folder\\универ\\мотортестер 2\\build\\v2w2\\venv\\Lib\\site-packages\\PyInstaller\\hooks'
+51177 INFO: Processing standard module hook 'hook-difflib.py' from 'C:\\Users\\Alexandr\\Desktop\\New folder\\универ\\мотортестер 2\\build\\v2w2\\venv\\Lib\\site-packages\\PyInstaller\\hooks'
+51190 INFO: Processing standard module hook 'hook-heapq.py' from 'C:\\Users\\Alexandr\\Desktop\\New folder\\универ\\мотортестер 2\\build\\v2w2\\venv\\Lib\\site-packages\\PyInstaller\\hooks'
+53265 INFO: Analyzing C:\Users\Alexandr\Desktop\New folder\универ\мотортестер 2\host\packaging\v2\inspect_launcher.py
+53331 INFO: Processing standard module hook 'hook-platform.py' from 'C:\\Users\\Alexandr\\Desktop\\New folder\\универ\\мотортестер 2\\build\\v2w2\\venv\\Lib\\site-packages\\PyInstaller\\hooks'
+53368 INFO: Processing standard module hook 'hook-sysconfig.py' from 'C:\\Users\\Alexandr\\Desktop\\New folder\\универ\\мотортестер 2\\build\\v2w2\\venv\\Lib\\site-packages\\PyInstaller\\hooks'
+53374 INFO: Processing standard module hook 'hook-_ctypes.py' from 'C:\\Users\\Alexandr\\Desktop\\New folder\\универ\\мотортестер 2\\build\\v2w2\\venv\\Lib\\site-packages\\PyInstaller\\hooks'
+53422 INFO: Processing module hooks (post-graph stage)...
+53434 INFO: Performing binary vs. data reclassification (1 entries)
+53434 INFO: Looking for ctypes DLLs
+53442 INFO: Analyzing run-time hooks ...
+53443 INFO: Including run-time hook 'pyi_rth_inspect.py' from 'C:\\Users\\Alexandr\\Desktop\\New folder\\универ\\мотортестер 2\\build\\v2w2\\venv\\Lib\\site-packages\\PyInstaller\\hooks\\rthooks'
+53448 INFO: Creating base_library.zip...
+53466 INFO: Looking for dynamic libraries
+53619 INFO: Extra DLL search directories (AddDllDirectory): []
+53619 INFO: Extra DLL search directories (PATH): []
+53712 INFO: Warnings written to C:\Users\Alexandr\Desktop\New folder\универ\мотортестер 2\build\v2w2\pyinstaller\motortester-v2\warn-motortester-v2.txt
+53724 INFO: Graph cross-reference written to C:\Users\Alexandr\Desktop\New folder\универ\мотортестер 2\build\v2w2\pyinstaller\motortester-v2\xref-motortester-v2.html
+53755 INFO: checking PYZ
+53755 INFO: Building PYZ because PYZ-00.toc is non existent
+53755 INFO: Building PYZ (ZlibArchive) C:\Users\Alexandr\Desktop\New folder\универ\мотортестер 2\build\v2w2\pyinstaller\motortester-v2\PYZ-00.pyz
+54057 INFO: Building PYZ (ZlibArchive) C:\Users\Alexandr\Desktop\New folder\универ\мотортестер 2\build\v2w2\pyinstaller\motortester-v2\PYZ-00.pyz completed successfully.
+54070 INFO: checking PKG
+54070 INFO: Building PKG because PKG-00.toc is non existent
+54070 INFO: Building PKG (CArchive) MotortesterV2.pkg
+54088 INFO: Building PKG (CArchive) MotortesterV2.pkg completed successfully.
+54089 INFO: Bootloader C:\Users\Alexandr\Desktop\New folder\универ\мотортестер 2\build\v2w2\venv\Lib\site-packages\PyInstaller\bootloader\Windows-64bit-intel\runw.exe
+54089 INFO: checking EXE
+54089 INFO: Building EXE because EXE-00.toc is non existent
+54089 INFO: Building EXE from EXE-00.toc
+54090 INFO: Copying bootloader EXE to C:\Users\Alexandr\Desktop\New folder\универ\мотортестер 2\build\v2w2\pyinstaller\motortester-v2\MotortesterV2.exe
+54154 INFO: Copying icon to EXE
+54191 INFO: Copying 0 resources to EXE
+54191 INFO: Embedding manifest in EXE
+54224 INFO: Appending PKG archive to EXE
+54267 INFO: Fixing EXE headers
+54443 INFO: Building EXE from EXE-00.toc completed successfully.
+54454 INFO: checking PYZ
+54454 INFO: Building PYZ because PYZ-01.toc is non existent
+54454 INFO: Building PYZ (ZlibArchive) C:\Users\Alexandr\Desktop\New folder\универ\мотортестер 2\build\v2w2\pyinstaller\motortester-v2\PYZ-01.pyz
+54542 INFO: Building PYZ (ZlibArchive) C:\Users\Alexandr\Desktop\New folder\универ\мотортестер 2\build\v2w2\pyinstaller\motortester-v2\PYZ-01.pyz completed successfully.
+54546 INFO: checking PKG
+54546 INFO: Building PKG because PKG-01.toc is non existent
+54546 INFO: Building PKG (CArchive) MotortesterV2Inspect.pkg
+54561 INFO: Building PKG (CArchive) MotortesterV2Inspect.pkg completed successfully.
+54563 INFO: Bootloader C:\Users\Alexandr\Desktop\New folder\универ\мотортестер 2\build\v2w2\venv\Lib\site-packages\PyInstaller\bootloader\Windows-64bit-intel\run.exe
+54563 INFO: checking EXE
+54563 INFO: Building EXE because EXE-01.toc is non existent
+54563 INFO: Building EXE from EXE-01.toc
+54563 INFO: Copying bootloader EXE to C:\Users\Alexandr\Desktop\New folder\универ\мотортестер 2\build\v2w2\pyinstaller\motortester-v2\MotortesterV2Inspect.exe
+54627 INFO: Copying icon to EXE
+54665 INFO: Copying 0 resources to EXE
+54665 INFO: Embedding manifest in EXE
+54697 INFO: Appending PKG archive to EXE
+54729 INFO: Fixing EXE headers
+54877 INFO: Building EXE from EXE-01.toc completed successfully.
+54880 INFO: checking COLLECT
+54880 INFO: Building COLLECT because COLLECT-00.toc is non existent
+54880 INFO: Building COLLECT COLLECT-00.toc
+55351 INFO: Building COLLECT COLLECT-00.toc completed successfully.
+55357 INFO: Build complete! The results are available in: C:\Users\Alexandr\Desktop\New folder\универ\мотортестер 2\build\v2w2\dist
+2026-10-20T09:20:35.176260+00:00 END exit_code=0; elapsed_seconds=55.667
+2026-10-20T09:20:35.184833+00:00 START "C:\Program Files\Git\cmd\git.EXE" -C "C:\Users\Alexandr\Desktop\New folder\универ\мотортестер 2" archive --format=zip "--output=C:\Users\Alexandr\Desktop\New folder\универ\мотортестер 2\build\v2w2\license-input.zip" 1f74f8a2d4c591002b0fa4ea53ef489211922475 host/packaging/collect_licenses.py host/packaging/licenses host/docs/dependency-sources.md [timeout=None; QT_QPA_PLATFORM=<default>]
+2026-10-20T09:20:35.252818+00:00 END exit_code=0; elapsed_seconds=0.068
+2026-10-20T09:20:35.569719+00:00 START "C:\Users\Alexandr\Desktop\New folder\универ\мотортестер 2\build\v2w2\venv\Scripts\python.exe" "C:\Users\Alexandr\Desktop\New folder\универ\мотортестер 2\build\v2w2\license-input\host\packaging\collect_licenses.py" "C:\Users\Alexandr\Desktop\New folder\универ\мотортестер 2\build\v2w2\dist\MotortesterV2\licenses" [timeout=None; QT_QPA_PLATFORM=<default>]
+2026-10-20T09:20:36.606653+00:00 END exit_code=0; elapsed_seconds=1.037
+2026-10-20T09:20:36.619949+00:00 START "C:\Program Files\Git\cmd\git.EXE" -C "C:\Users\Alexandr\Desktop\New folder\универ\мотортестер 2" diff --exit-code 1f74f8a2d4c591002b0fa4ea53ef489211922475 -- host AGENTS.md README.md requirements.md task.md docs [timeout=None; QT_QPA_PLATFORM=<default>]
+2026-10-20T09:20:36.656138+00:00 END exit_code=0; elapsed_seconds=0.036
+2026-10-20T09:20:36.663283+00:00 START "C:\Program Files\Git\cmd\git.EXE" -C "C:\Users\Alexandr\Desktop\New folder\универ\мотортестер 2" archive --format=zip "--output=C:\Users\Alexandr\Desktop\New folder\универ\мотортестер 2\build\v2w2\source.zip" 1f74f8a2d4c591002b0fa4ea53ef489211922475 host AGENTS.md README.md requirements.md task.md docs [timeout=None; QT_QPA_PLATFORM=<default>]
+2026-10-20T09:20:37.289422+00:00 END exit_code=0; elapsed_seconds=0.626
+2026-10-20T09:20:45.195749+00:00 START "C:\Users\Alexandr\Desktop\New folder\универ\мотортестер 2\build\v2w2\Проверка переноса\MotortesterV2\MotortesterV2.exe" --verify-package "C:\Users\Alexandr\Desktop\New folder\универ\мотортестер 2\build\v2w2\frozen-smoke" [timeout=45; QT_QPA_PLATFORM=<default>]
+2026-10-20T09:20:47.859387+00:00 END exit_code=0; elapsed_seconds=2.664
+2026-10-20T09:20:47.879685+00:00 START "C:\Users\Alexandr\Desktop\New folder\универ\мотортестер 2\build\v2w2\Проверка переноса\MotortesterV2\MotortesterV2Inspect.exe" "C:\Users\Alexandr\Desktop\New folder\универ\мотортестер 2\build\v2w2\frozen-smoke\sample.mtv2" [timeout=45; QT_QPA_PLATFORM=<default>]
+{
+  "file": "C:\\Users\\Alexandr\\Desktop\\New folder\\универ\\мотортестер 2\\build\\v2w2\\frozen-smoke\\sample.mtv2",
+  "session_id": "28d5f16e-35dc-48c8-a944-6f55d78f2d2c",
+  "source": "demo",
+  "channel_id": "CH1",
+  "channel_name": "Канал 1",
+  "ui_profile": "ignition",
+  "voltage_state": "nominal",
+  "input_profile": {
+    "a": 0.0008056640625,
+    "b": 0.0,
+    "state": "nominal",
+    "profile_id": "demo-3v3-12bit-v1",
+    "adc_bits": 12,
+    "channel_id": "CH1",
+    "device_id": null,
+    "frontend_id": "synthetic-direct",
+    "frontend_revision": "1",
+    "range_id": "synthetic",
+    "coupling": "DC",
+    "coefficient_source": "synthetic_demo_definition",
+    "calibration_id": null,
+    "calibration_version": null,
+    "calibration_date": null,
+    "measurement_point": "Синтетический вход CH1",
+    "ground_reference": "synthetic-zero",
+    "sensor": "Синтетический сигнал",
+    "vref_v": 3.3,
+    "bandwidth_hz": null,
+    "linear_min_v": null,
+    "linear_max_v": null,
+    "conditions": "ДЕМО; коэффициенты заданы программно, не измерены на приборе"
+  },
+  "sample_rate_hz": 50000,
+  "time_basis": "synthetic_exact",
+  "sample_count": 7500,
+  "requested_range": [
+    55000,
+    67500
+  ],
+  "available_range": [
+    55000,
+    67500
+  ],
+  "duration_s": 0.25,
+  "gaps": [
+    {
+      "start_index": 60000,
+      "end_index": 65000,
+      "reason": "synthetic_missing_samples"
+    }
+  ],
+  "measurements": {
+    "minimum_v": 0.13857421875,
+    "maximum_v": 3.1001953125,
+    "mean_v": 0.420591123046875,
+    "peak_to_peak_v": 2.96162109375,
+    "period_s": null,
+    "frequency_hz": null,
+    "clipping": false,
+    "quality_flags": [
+      "insufficient_period_evidence",
+      "missing_samples"
+    ]
+  }
+}
+2026-10-20T09:20:48.056199+00:00 END exit_code=0; elapsed_seconds=0.177
+2026-10-20T09:20:48.065043+00:00 START "C:\Users\Alexandr\Desktop\New folder\универ\мотортестер 2\build\v2w2\Проверка переноса\MotortesterV2\MotortesterV2.exe" --screenshot "C:\Users\Alexandr\Desktop\New folder\универ\мотортестер 2\build\v2w2\normal-startup.png" --settings "C:\Users\Alexandr\Desktop\New folder\универ\мотортестер 2\build\v2w2\startup-settings.ini" --profile ignition [timeout=45; QT_QPA_PLATFORM=<default>]
+2026-10-20T09:20:50.260722+00:00 END exit_code=0; elapsed_seconds=2.196

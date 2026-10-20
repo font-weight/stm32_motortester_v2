@@ -8,7 +8,7 @@
 
 Результат: локальный неподписанный технический кандидат Windows x64 — папка `MotortesterV2` с GUI `MotortesterV2.exe`, консольным `MotortesterV2Inspect.exe` и `_internal`; архив `MotortesterV2-windows-x64.zip`, исходники, контрольные суммы, журнал и manifest. Пользовательская инструкция — [README_PORTABLE_RU.txt](host/packaging/v2/README_PORTABLE_RU.txt), команда сборки — в [host/README](host/README.md).
 
-Входы: чистый Git commit V2, Windows x64/CPython 3.14.7 x64, hash-lock зависимостей, PyInstaller 6.22.3 и унаследованные уведомления. Рецепт — `host/packaging/v2/build_windows.py`; результаты новой сборки/критика пока ожидаются.
+Входы: чистый Git commit V2, Windows x64/CPython 3.14.7 x64, hash-lock зависимостей, PyInstaller 6.22.3 и унаследованные уведомления. Рецепт — `host/packaging/v2/build_windows.py`; фактические результаты сборки и критика находятся только в [progress.md](docs/progress.md).
 
 Готовность ограниченного кандидата:
 

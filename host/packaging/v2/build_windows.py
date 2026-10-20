@@ -179,8 +179,8 @@ def main(argv=None):
         if not (bundle / name).is_file():
             raise RuntimeError(f"PyInstaller did not produce {name}")
 
-    # Git archives retain the exact committed notice bytes. A Windows checkout
-    # may have CRLF conversion, which must never be worked around by repinning.
+    # Archive the selected commit. Git's Windows EOL conversion can affect the
+    # exported bytes; restore existing upstream notice hashes without repinning.
     license_archive = output / "license-input.zip"
     run(git, "-C", REPOSITORY, "archive", "--format=zip", f"--output={license_archive}",
         revision, "host/packaging/collect_licenses.py", "host/packaging/licenses",

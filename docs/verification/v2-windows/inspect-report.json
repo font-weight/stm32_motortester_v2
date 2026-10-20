@@ -1,0 +1,66 @@
+{
+  "file": "C:\\Users\\Alexandr\\Desktop\\New folder\\универ\\мотортестер 2\\build\\v2w2\\frozen-smoke\\sample.mtv2",
+  "session_id": "28d5f16e-35dc-48c8-a944-6f55d78f2d2c",
+  "source": "demo",
+  "channel_id": "CH1",
+  "channel_name": "Канал 1",
+  "ui_profile": "ignition",
+  "voltage_state": "nominal",
+  "input_profile": {
+    "a": 0.0008056640625,
+    "b": 0.0,
+    "state": "nominal",
+    "profile_id": "demo-3v3-12bit-v1",
+    "adc_bits": 12,
+    "channel_id": "CH1",
+    "device_id": null,
+    "frontend_id": "synthetic-direct",
+    "frontend_revision": "1",
+    "range_id": "synthetic",
+    "coupling": "DC",
+    "coefficient_source": "synthetic_demo_definition",
+    "calibration_id": null,
+    "calibration_version": null,
+    "calibration_date": null,
+    "measurement_point": "Синтетический вход CH1",
+    "ground_reference": "synthetic-zero",
+    "sensor": "Синтетический сигнал",
+    "vref_v": 3.3,
+    "bandwidth_hz": null,
+    "linear_min_v": null,
+    "linear_max_v": null,
+    "conditions": "ДЕМО; коэффициенты заданы программно, не измерены на приборе"
+  },
+  "sample_rate_hz": 50000,
+  "time_basis": "synthetic_exact",
+  "sample_count": 7500,
+  "requested_range": [
+    55000,
+    67500
+  ],
+  "available_range": [
+    55000,
+    67500
+  ],
+  "duration_s": 0.25,
+  "gaps": [
+    {
+      "start_index": 60000,
+      "end_index": 65000,
+      "reason": "synthetic_missing_samples"
+    }
+  ],
+  "measurements": {
+    "minimum_v": 0.13857421875,
+    "maximum_v": 3.1001953125,
+    "mean_v": 0.420591123046875,
+    "peak_to_peak_v": 2.96162109375,
+    "period_s": null,
+    "frequency_hz": null,
+    "clipping": false,
+    "quality_flags": [
+      "insufficient_period_evidence",
+      "missing_samples"
+    ]
+  }
+}
