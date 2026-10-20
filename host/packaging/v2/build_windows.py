@@ -280,8 +280,17 @@ def main(argv=None):
             or device_check.get("time_basis") != "nominal_unverified"
             or device_check.get("physical_device_verified") is not False):
         raise RuntimeError("Packaged serial/device-panel/synthetic-window checks did not pass")
+    close_check = smoke.get("close_verification")
+    if (type(close_check) is not dict or close_check.get("status") != "PASS"
+            or close_check.get("fragment_samples") != 250
+            or close_check.get("default_and_escape") != "cancel"
+            or close_check.get("decisions") != ["cancel", "discard"]
+            or close_check.get("closed_without_json") is not True
+            or close_check.get("saved_record_unchanged") is not True
+            or close_check.get("serial_open_calls") != 0):
+        raise RuntimeError("Packaged incomplete-window exit decisions did not pass")
     pngs = {name: png_info(smoke_output / name)
-            for name in ("scope.png", "ignition.png", "device-panel.png")}
+            for name in ("scope.png", "ignition.png", "device-panel.png", "incomplete-close.png")}
     for name in ("sample.mtv2", "export.csv", "export.csv.json", "device-window.mtv2"):
         path = smoke_output / name
         if not path.is_file() or path.stat().st_size == 0:

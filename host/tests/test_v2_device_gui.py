@@ -194,13 +194,14 @@ class DeviceGuiTest(unittest.TestCase):
                 window.start_device(2)
                 wait(lambda: controls.get("partial_delivered"))
                 self.assertIsNone(window.device.pending_incomplete)
-                window.close()
-                wait(lambda: window._device_shutdown and window.device.pending_incomplete is not None)
+                with patch.object(window, "_choose_incomplete_exit", return_value="cancel"):
+                    window.close()
+                    wait(lambda: window._device_shutdown and window.device.pending_incomplete is not None)
                 self.assertFalse(window.device.bridge.running)
                 self.assertTrue(window.isVisible())
                 path = Path(tmp) / "late.json"
                 with patch.object(QtWidgets.QFileDialog, "getSaveFileName", return_value=(str(path), "")):
-                    window.save_device_fragments()
+                    window.device_panel.fragments.click()
                 wait(lambda: not window.busy)
                 self.assertIsNone(window.device.pending_incomplete)
                 data = json.loads(path.read_text(encoding="utf-8"))

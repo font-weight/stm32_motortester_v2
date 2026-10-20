@@ -147,6 +147,7 @@ class DeviceBridge(QtCore.QObject):
         self._channel_name, self._ui_profile = "Канал 1", "oscilloscope"
         self._recording = self._capture = None
         self._incomplete_item = self._pending_incomplete = self._saved_incomplete = None
+        self._incomplete_release_requested = None
         self._worker_finished = False
         self.bridge.state_changed.connect(self._state_changed)
         self.bridge.capture_ready.connect(self._capture_ready)
@@ -209,7 +210,28 @@ class DeviceBridge(QtCore.QObject):
             return True
         # A queued live ACK can still be cancelled by Shutdown. Retain the local
         # result until a worker state confirms that it actually consumed it.
-        return self.bridge.acknowledge_incomplete(result)
+        accepted = self.bridge.acknowledge_incomplete(result)
+        if accepted and result is self._saved_incomplete:
+            self._incomplete_release_requested = result
+        return accepted
+
+    def discard_incomplete(self, result):
+        """Release only this result after the GUI's explicit Discard choice.
+
+        With a live worker, True means its ACK was queued. Keep the exact
+        decision until ACK confirmation or finished: shutdown may cancel that
+        queued ACK, but it must not apply the decision to another late result.
+        This operation never removes or rewrites any saved file.
+        """
+        if result is None or result is not self._pending_incomplete:
+            return False
+        if self._worker_finished:
+            self._pending_incomplete = None
+            return True
+        accepted = self.bridge.acknowledge_incomplete(result)
+        if accepted:
+            self._incomplete_release_requested = result
+        return accepted
 
     def save_incomplete(self, path, result):
         item = self._incomplete_item
@@ -257,6 +279,7 @@ class DeviceBridge(QtCore.QObject):
         if self._incomplete_item is None or self._incomplete_item[0] is not result:
             self._incomplete_item = (result, self.snapshot, self._channel_name, self._ui_profile)
             self._saved_incomplete = None
+            self._incomplete_release_requested = None
         self._pending_incomplete = result
         self.incomplete_ready.emit(result)
 
@@ -265,4 +288,7 @@ class DeviceBridge(QtCore.QObject):
         # AcquisitionBridge emits finished only after its final drain and
         # nonblocking native join. Late incomplete_ready has already arrived.
         self._worker_finished = True
+        if (self._pending_incomplete is not None
+                and self._pending_incomplete is self._incomplete_release_requested):
+            self._pending_incomplete = None
         self.finished.emit()

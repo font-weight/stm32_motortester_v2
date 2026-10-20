@@ -278,6 +278,71 @@ class V2DeviceTests(unittest.TestCase):
             self.assertIsNone(device.pending_incomplete)
             self.assertFalse(device.acknowledge_incomplete(partial))
 
+    def test_live_incomplete_release_survives_shutdown(self):
+        for action in ("discard", "saved"):
+            with self.subTest(action=action):
+                self.controls, self.calls = {"trigger": True, "partial": True}, []
+                device = self.device()
+                self.assertTrue(device.start(mode=2))
+                self.wait(lambda: device.pending_incomplete is not None and not device.state.connected)
+                partial = device.pending_incomplete
+                raw = partial.fragments
+                self.assertFalse(device.discard_incomplete(None))
+                self.assertFalse(device.discard_incomplete(replace(partial)))
+                self.assertIs(device.pending_incomplete, partial)
+                finished = []
+                device.finished.connect(lambda: finished.append(True))
+                with tempfile.TemporaryDirectory() as folder:
+                    if action == "saved":
+                        path = Path(folder) / "partial.json"
+                        device.save_incomplete(path, partial)
+                        saved_bytes = path.read_bytes()
+                        self.assertTrue(device.acknowledge_incomplete(partial))
+                    else:
+                        self.assertTrue(device.discard_incomplete(partial))
+                    # No GUI event drain between ACK and shutdown: its queued
+                    # request may be cancelled, so keep the exact user decision.
+                    self.assertIs(device.pending_incomplete, partial)
+                    self.assertIs(device._incomplete_release_requested, partial)
+                    self.assertTrue(device.shutdown())
+                    self.wait(lambda: bool(finished) and not device.bridge.running)
+                    self.assertIsNone(device.pending_incomplete)
+                    self.assertFalse(device.discard_incomplete(partial))
+                    # A newly admitted immutable result, even equal in value,
+                    # cannot inherit the previous result's accepted receipt.
+                    self.assertIs(device._incomplete_release_requested, partial)
+                    next_partial = replace(partial)
+                    device._incomplete_ready(next_partial)
+                    device._finished()
+                    self.assertIs(device.pending_incomplete, next_partial)
+                    self.assertFalse(device.discard_incomplete(partial))
+                    self.assertFalse(device.acknowledge_incomplete(next_partial))
+                    self.assertTrue(device.discard_incomplete(next_partial))
+                    if action == "saved":
+                        self.assertEqual(path.read_bytes(), saved_bytes)
+                    else:
+                        self.assertEqual(list(Path(folder).iterdir()), [])
+                self.assertEqual(partial.fragments, raw)
+
+    def test_late_incomplete_discard_requires_exact_current_result(self):
+        self.controls["trigger"] = True
+        device = self.device(backend_class=HoldAfterPartialFakeSerial)
+        self.assertTrue(device.start(mode=2))
+        self.wait(lambda: self.controls.get("partial_delivered"))
+        finished = []
+        device.finished.connect(lambda: finished.append(True))
+        self.assertTrue(device.shutdown())
+        self.wait(lambda: bool(finished) and not device.bridge.running)
+        partial = device.pending_incomplete
+        self.assertEqual(sum(len(block.samples) for block in partial.fragments), 250)
+        self.assertFalse(device.acknowledge_incomplete(partial))  # No successful save.
+        self.assertFalse(device.discard_incomplete(replace(partial)))
+        self.assertIs(device.pending_incomplete, partial)
+        self.assertTrue(device.discard_incomplete(partial))
+        self.assertIsNone(device.pending_incomplete)
+        self.assertFalse(device.discard_incomplete(partial))
+        self.assertEqual(partial.missing_ranges, ((250, 2048),))
+
 
 if __name__ == "__main__":
     unittest.main()

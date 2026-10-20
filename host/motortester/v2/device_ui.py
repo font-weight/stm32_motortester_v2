@@ -178,6 +178,8 @@ class DeviceControlsMixin:
         self.device_panel = None
         self._device_shutdown = False
         self._device_closing = False
+        self._incomplete_exit_result = None
+        self._incomplete_close_prompting = False
         self._axis_kind = None
         self._demo_settings = None
         self.device.state_changed.connect(self._device_state)
@@ -316,9 +318,34 @@ class DeviceControlsMixin:
         if self.device_panel:
             self.device_panel.error.setText(message)
 
-    def save_device_fragments(self):
-        result = self.device.pending_incomplete
+    def _choose_incomplete_exit(self, result):
+        """Ask about this exact partial window, independently of full records."""
+        box = QtWidgets.QMessageBox(self)
+        box.setWindowTitle("Незавершённое окно")
+        box.setIcon(QtWidgets.QMessageBox.Icon.Question)
+        count = sum(len(fragment.samples) for fragment in result.fragments)
+        box.setText(f"Осталось незавершённое окно: получено {count} отсчётов.")
+        box.setInformativeText(
+            "Его можно сохранить отдельно в JSON или закрыть приложение без этих фрагментов.\n"
+            "Ранее сохранённые записи .mtv2 останутся без изменений.")
+        save = box.addButton("Сохранить JSON", QtWidgets.QMessageBox.ButtonRole.AcceptRole)
+        discard = box.addButton("Закрыть без JSON", QtWidgets.QMessageBox.ButtonRole.DestructiveRole)
+        cancel = box.addButton("Отмена", QtWidgets.QMessageBox.ButtonRole.RejectRole)
+        box.setDefaultButton(cancel)
+        box.setEscapeButton(cancel)
+        self._incomplete_close_prompting = True
+        try:
+            box.exec()
+        finally:
+            self._incomplete_close_prompting = False
+        return "save" if box.clickedButton() is save else "discard" if box.clickedButton() is discard else "cancel"
+
+    def save_device_fragments(self, *, close_after=False, result=None):
+        result = self.device.pending_incomplete if result is None else result
         if result is None:
+            return
+        if result is not self.device.pending_incomplete:
+            self._device_error("Незавершённое окно изменилось. Повторите сохранение.")
             return
         path, _ = QtWidgets.QFileDialog.getSaveFileName(
             self, "Новый файл неполных данных", "", "Диагностика (*.json)")
@@ -326,6 +353,11 @@ class DeviceControlsMixin:
             def done(_):
                 if self.device.acknowledge_incomplete(result):
                     self.statusBar().showMessage("Исходные фрагменты сохранены: " + path)
+                    if close_after:
+                        # Consent belongs only to this saved result. A different
+                        # late window still requires its own close decision.
+                        self._incomplete_exit_result = result
+                        self.close()
                 else:
                     self._device_error("Файл сохранён, но освобождение результата ещё не подтверждено: " + path)
             self._submit(lambda: self.device.save_incomplete(path, result), done)

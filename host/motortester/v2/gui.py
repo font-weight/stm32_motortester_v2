@@ -1283,6 +1283,9 @@ class MainWindow(DeviceControlsMixin, QtWidgets.QMainWindow):
         self.overview.setFixedHeight(48 if compact else 100)
 
     def closeEvent(self, event):
+        if self._incomplete_close_prompting:
+            event.ignore()
+            return
         if self.busy:
             self.statusBar().showMessage("Дождитесь завершения файловой операции.")
             event.ignore()
@@ -1292,11 +1295,22 @@ class MainWindow(DeviceControlsMixin, QtWidgets.QMainWindow):
         if self.dirty and not self._confirm_discard():
             event.ignore()
             return
-        if self.device.pending_incomplete is not None:
-            self.device_info()
-            self._device_error("Сначала сохраните неполные данные в JSON.")
-            event.ignore()
-            return
+        pending = self.device.pending_incomplete
+        if pending is not None and pending is not self._incomplete_exit_result:
+            choice = self._choose_incomplete_exit(pending)
+            if choice == "save":
+                self.save_device_fragments(close_after=True, result=pending)
+                event.ignore()
+                return
+            if choice != "discard":
+                self._device_closing = False
+                event.ignore()
+                return
+            if not self.device.discard_incomplete(pending):
+                self._device_error("Не удалось освободить фрагменты. Дождитесь завершения операции и повторите закрытие.")
+                event.ignore()
+                return
+            self._incomplete_exit_result = pending
         if self.device.bridge.running and not self._device_shutdown:
             self._device_closing = True
             self.device.shutdown()

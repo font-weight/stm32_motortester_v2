@@ -38,6 +38,7 @@ def run(output_name):
         from motortester.v2.device_ui import DevicePanel
         from motortester.v2.gui import MainWindow
         from motortester.wire_demo import synthetic_window, capture_from_synthetic_stream
+        from motortester.window import SampleBlock, WindowCode, WindowResult
         app = QtWidgets.QApplication([])
         app.setStyle("Fusion")
         report["qt_platform"] = app.platformName()
@@ -184,6 +185,59 @@ def run(output_name):
                 "time_basis": device_window.time_basis, "physical_device_verified": False,
             }
             report["checks"].append("synthetic wire 0.1 window -> V2 unknown scale -> exact save/reopen")
+            # Only the exit dialog is under test here. Inject an explicitly
+            # synthetic late result; native serial-worker cases run separately.
+            partial = WindowResult(False, WindowCode.DISCONNECT, None,
+                (SampleBlock(0, tuple(range(250))),), ((250, 2048),),
+                None, None, None, (), False, ())
+            window.device._incomplete_ready(partial)
+            window.device._finished()
+            full_before = sample.read_bytes()
+            json_before = {path.name for path in output.glob("*.json")}
+            decisions = []
+
+            def answer_close(action):
+                dialog = app.activeModalWidget()
+                try:
+                    assert isinstance(dialog, QtWidgets.QMessageBox)
+                    assert dialog.windowTitle() == "Незавершённое окно"
+                    assert dialog.defaultButton().text() == "Отмена"
+                    assert dialog.escapeButton().text() == "Отмена"
+                    assert "250" in dialog.text()
+                    if action == "cancel":
+                        image("incomplete-close.png", dialog, minimum_width=400)
+                        app.sendEvent(dialog, QtGui.QKeyEvent(
+                            QtCore.QEvent.Type.KeyPress, QtCore.Qt.Key.Key_Escape,
+                            QtCore.Qt.KeyboardModifier.NoModifier))
+                    else:
+                        button = next(b for b in dialog.buttons() if b.text() == "Закрыть без JSON")
+                        button.click()
+                    decisions.append(action)
+                except BaseException:
+                    report["callback_errors"].append(traceback.format_exc())
+                    if dialog is not None:
+                        dialog.reject()
+
+            QtCore.QTimer.singleShot(0, lambda: answer_close("cancel"))
+            window.close()
+            flush()
+            assert decisions == ["cancel"]
+            assert window.isVisible() and window.device.pending_incomplete is partial
+            QtCore.QTimer.singleShot(0, lambda: answer_close("discard"))
+            window.close()
+            flush()
+            assert decisions == ["cancel", "discard"]
+            assert not window.isVisible() and window.device.pending_incomplete is None
+            assert sample.read_bytes() == full_before
+            assert {path.name for path in output.glob("*.json")} == json_before
+            assert port_open.call_count == 0
+            report["close_verification"] = {
+                "status": "PASS", "source": "synthetic injected partial; no serial worker",
+                "fragment_samples": 250, "default_and_escape": "cancel",
+                "decisions": decisions, "closed_without_json": True,
+                "saved_record_unchanged": True, "serial_open_calls": port_open.call_count,
+            }
+            report["checks"].append("actual exit dialog: Esc retains partial; explicit discard closes without JSON")
             flush()
             report["status"] = "PASS"
     except BaseException:
@@ -194,7 +248,10 @@ def run(output_name):
             window.timer.stop()
             window.single_dirty = window.record_dirty = False
             window.recording = window.busy = False
-            window.close()
+            # Failure cleanup must not open an unhandled modal and hide evidence.
+            with patch.object(window, "_choose_incomplete_exit", return_value="cancel"):
+                window.close()
+            window.hide()
         sys.excepthook = original_hook
         report["files"] = {
             path.name: {"bytes": path.stat().st_size,
