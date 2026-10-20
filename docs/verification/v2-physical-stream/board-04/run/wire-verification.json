@@ -1,0 +1,146 @@
+{
+  "schema": "motortester-v2-wire-verification-1",
+  "status": "PASS",
+  "scope": "Offline equality of saved selected raw range and captured wire DATA",
+  "tool_sha256": "30631ddfdd4364a38361f21305e5166a7b4314a4e34aa8ac79b8fbb83fa9a40e",
+  "traffic_sha256": "557f512fddd16eb588b4b11132610dbd22cfe672b2ee690a6fa8ec7e1062be97",
+  "journal_sha256": "2a8ad5218c14a46d04c0a03eef714183b0d1890630c5927afceb9cf8b961b90a",
+  "identity": {
+    "session_id": "wire-0.2:1f7b4d49d0fa408b",
+    "generation": 3,
+    "config_id": 1,
+    "nominal_fs_hz": 50000,
+    "origin": "device",
+    "protocol_revision": "0.2-draft-081721",
+    "firmware_version": "build:56325334",
+    "application_version": "v2-serial-unknown-accounting:physical"
+  },
+  "nonce_hex": "0x1f7b4d49d0fa408b",
+  "generation": 3,
+  "R": 1408,
+  "end": 752179,
+  "recording_recovery_issue": null,
+  "discarded_journal_tail_bytes": 0,
+  "journal_terminal": {
+    "identity": {
+      "session_id": "wire-0.2:1f7b4d49d0fa408b",
+      "generation": 3,
+      "config_id": 1,
+      "nominal_fs_hz": 50000,
+      "origin": "device",
+      "protocol_revision": "0.2-draft-081721",
+      "firmware_version": "build:56325334",
+      "application_version": "v2-serial-unknown-accounting:physical"
+    },
+    "end_sample_index": 752179,
+    "reason": "source_failure",
+    "terminal_observed": true,
+    "device_generated_end_sample_index": null,
+    "device_transmitted_end_sample_index": 752179,
+    "loss_samples": null,
+    "boundary_evidence": "host_selected_prefix",
+    "failure": {
+      "code": "source_error",
+      "detail": "wire device_0; ordinary=None; stop=4",
+      "operation": null,
+      "request_id": null,
+      "source_code": 0
+    },
+    "stop_requested": true,
+    "stop_request_id": 4
+  },
+  "clean_stop_reported": false,
+  "physical_identity_verified": false,
+  "timing_qualified": false,
+  "adc_losslessness_verified": false,
+  "wire": {
+    "chunks": 5297,
+    "host_bytes": 136,
+    "device_bytes": 1804138,
+    "empty_delimiters": 1,
+    "decode_errors": [],
+    "trailing_partial_bytes": [
+      0,
+      0
+    ],
+    "trailing_oversized_frame": [
+      false,
+      false
+    ]
+  },
+  "observed_build_id": 1446138676,
+  "observed_caps": {
+    "config_id": 1,
+    "profile": 1,
+    "channel": 0,
+    "adc_bits": 12,
+    "fs_num": 50000,
+    "fs_den": 1,
+    "max_block": 128,
+    "flags": 1
+  },
+  "selected_samples": 750771,
+  "selected_bytes": 1501542,
+  "wire_selected_samples": 750771,
+  "wire_selected_sha256": "72e7bc7048508ffb9779b02aa23034319295c8179ff056d13b531ac4769f6e8d",
+  "journal_selected_sha256": "72e7bc7048508ffb9779b02aa23034319295c8179ff056d13b531ac4769f6e8d",
+  "selected_range_byte_equal": true,
+  "first_mismatch_sample": null,
+  "selected_gaps": [],
+  "selected_overlaps": [],
+  "decoded_data_samples": 752179,
+  "decoded_data_sha256": "f3376d4b0d271c7636516d1c29d9f2f1d6b5854600007200e7d01c237c2a8b3e",
+  "contiguous_prefix_crc32": "0x653b558c",
+  "decoded_prefix_end": 752179,
+  "raw_gaps": [],
+  "raw_overlaps": [],
+  "kinds": {
+    "host/HELLO": 1,
+    "device/HELLO_ACK": 1,
+    "host/GET_CAPS": 1,
+    "device/CAPS": 1,
+    "host/START": 1,
+    "device/START_ACK": 1,
+    "device/DATA": 5877,
+    "host/STOP": 1,
+    "device/END": 1,
+    "device/STOP_ACK": 1
+  },
+  "immediate_duplicates": 0,
+  "unrelated_frames": 0,
+  "protocol_issues": [],
+  "ends": [
+    {
+      "generation": 3,
+      "config_id": 1,
+      "prefix_end": 752179,
+      "produced_end": null,
+      "last_data_sequence": 5880,
+      "prefix_crc32": 1698387340,
+      "reason": 0,
+      "flags": 3,
+      "stop_request_id": 4,
+      "sequence": 5881,
+      "host_monotonic": 1071067.3841931,
+      "prefix_crc_verified": true
+    }
+  ],
+  "stop_acks": [
+    {
+      "generation": 3,
+      "prefix_end": 752179,
+      "terminal_sequence": 5881,
+      "flags": 3,
+      "sequence": 5882,
+      "host_monotonic": 1071067.3868533
+    }
+  ],
+  "unknown_produced_end": true,
+  "limits": [
+    "This is a narrow offline observation check, not a full endpoint deadline replay.",
+    "Matching bytes verify the selected retained range, not unobserved ADC conversions.",
+    "Missing END or produced_end=null retains an unknown tail; no zero-loss inference.",
+    "Host monotonic timestamps are I/O observations, not calibrated sample timing.",
+    "Source/image provenance and the physical board require separate evidence."
+  ]
+}

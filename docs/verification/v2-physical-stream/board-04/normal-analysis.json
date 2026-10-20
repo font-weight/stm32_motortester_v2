@@ -1,0 +1,67 @@
+{
+  "schema": "v2-stream-normal-analysis-1",
+  "scope": "Offline preserved RAM/diagnostics interpretation; no new hardware operation",
+  "firmware_build": "0x56325334",
+  "image_bin_sha256": "04ba2853b6a964cd812bf555a32da7fb019bcd60ba9fda0bd586d71112b3143d",
+  "evidence_sha256": {
+    "ram-after-stop.bin": "923b3cd63541f12fd7646a57b483fc2c994d31246df2744eca2f49e81fde5c87",
+    "diagnostics-first.bin": "a1bfb5ad6637ab4279be04e1cb2bc8e8f69bd65bd7324d13073d738642f479c8",
+    "diagnostics-second.bin": "a1bfb5ad6637ab4279be04e1cb2bc8e8f69bd65bd7324d13073d738642f479c8",
+    "run/wire-verification.json": "5bcd40967ed6893c2cabbf3b39d856aec729c5f4d721b66c33ff711c23cdcf12"
+  },
+  "ram_fields": {
+    "start_before_us": {"address": "0x200007c0", "value": 21922005},
+    "start_after_us": {"address": "0x200007c4", "value": 21922006},
+    "adc_state": {"address": "0x200007dc", "value": 0},
+    "adc_fault": {"address": "0x200007e0", "value": 0},
+    "adc_owned": {"address": "0x200007e6", "value": 0},
+    "adc_first_fault": {"address": "0x20000808", "value": 0},
+    "stop_count": {"address": "0x200007ec", "value": 179},
+    "stop_first_index": {"address": "0x200007f8", "value": 752000},
+    "stop_dma_end": {"address": "0x20000800", "value": 752179},
+    "queue_head_index": {"address": "0x20001850", "value": 752179},
+    "queue_next_index": {"address": "0x20001858", "value": 752179},
+    "queue_used": {"address": "0x20001864", "value": 0},
+    "queue_sealed": {"address": "0x20001868", "value": 1},
+    "queue_first_fault": {"address": "0x2000186c", "value": 0},
+    "current_core_state_after_cleanup": {"address": "0x20001870", "value": 8},
+    "timebase_state": {"address": "0x2000231c", "value": 1},
+    "timebase_fault": {"address": "0x20002320", "value": 0}
+  },
+  "ram_frozen_diag_equal": true,
+  "frozen_diagnostics": {
+    "flags": 0,
+    "queue_high_water": 3,
+    "first_acquisition_reason": 0,
+    "first_adc_fault": 0,
+    "driver_observed_poll_gap_us": 1213,
+    "copy_max_us": 70,
+    "step_count": 30540,
+    "step_body_max_cycles": 191509,
+    "step_gap_max_cycles": 191887,
+    "tx_max_cycles": 37968,
+    "final_core_state": 7,
+    "final_adc_state": 0,
+    "final_adc_owned": 0,
+    "final_hardware_off": 1
+  },
+  "observed": {
+    "record_wall_seconds": 15.002258300082758,
+    "retained_range": [1408, 752179],
+    "retained_samples": 750771,
+    "selected_range_byte_equal": true,
+    "selected_sha256": "72e7bc7048508ffb9779b02aa23034319295c8179ff056d13b531ac4769f6e8d",
+    "selected_gaps": [],
+    "end_reason": 0,
+    "end_flags": 3,
+    "produced_end": null,
+    "cen_bracket_us": 1
+  },
+  "conclusion": "15-second no-input received-prefix transport/storage observation passed. Queue drained without recorded queue/ADC/TIME fault; frozen normal stop has hardware_off=1 and owned=0.",
+  "limits": [
+    "Poll gap1213us and copy-validation70us are below their individual strict2560us checks; CEN1us meets20us. These are observations, not WCET or calibrated clock measurements.",
+    "Step/TX cycle brackets are not running ADC poll gap or exact IRQ-off duration.",
+    "DMA endpoint and normal END reason0 do not establish produced_end; unknown tail remains. Host currently records unknown-accounting normal Stop as source_failure, not clean_stop.",
+    "No voltage calibration, sample-fidelity, ignition or vehicle claim."
+  ]
+}
