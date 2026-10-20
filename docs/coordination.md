@@ -1,5 +1,11 @@
 # Координация самостоятельного V2
 
+HW-V2-02a, база `8ba6227890091b0c1e1e683891287b729ceda6df`:
+root — materials-ru.md, ссылки из README/netlist P1-LV и task/progress/coordination;
+input_critic — только независимый docs/reviews/hw-v2-02a-review.md
+и docs/verification/hw-v2-02a/*. Схема, модель, COM/ST-Link, firmware
+и приложение не входят в это пояснение перечня материалов.
+
 HW-V2-02, база `24cce1928e8a400010536bb38715e34948c17246`:
 root — соединения/BOM P1-LV и документация; input_research — чтение первичных
 паспортов/сравнение вариантов, затем только schematic.py/SVG/PNG по нетлисту root;

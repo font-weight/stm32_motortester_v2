@@ -1,0 +1,72 @@
+{
+  "schema": "hw-v2-02a-review-manifest-v1",
+  "base_commit": "8ba6227890091b0c1e1e683891287b729ceda6df",
+  "branch": "ui-v2/initial-design",
+  "reviewed_at": "2026-10-20",
+  "reviewer": "input_critic",
+  "scope": "documentation_only_materials_guide",
+  "verdict": "PASS",
+  "score": 9.76,
+  "criterion_scores": {
+    "C1": 9.9,
+    "C2": 9.7,
+    "C3": 9.7,
+    "C4": 9.7,
+    "C5": 9.7
+  },
+  "hash_semantics": "sha256: exact original working-tree bytes; sha256_lf_normalized: UTF-8 text with CRLF replaced by LF for checkout portability. Self excluded to avoid recursive digest.",
+  "unchanged_criteria_at_base": [
+    "AGENTS.md",
+    "docs/quality-gate.md"
+  ],
+  "files": [
+    {
+      "path": "docs/coordination.md",
+      "sha256": "e05cdc632a001e70fc489d13b96d1c8038ebd00456198ebe2c7d78fbac065c9c",
+      "sha256_lf_normalized": "75f7dfe002d1a01e1f90d40575a7e2e81855c9c0ed1e785666adabf208e3a1bc",
+      "bytes": 36332
+    },
+    {
+      "path": "docs/progress.md",
+      "sha256": "da222ddc34040efe766a8d0eabefd56c4201c2ebffb3d9ca5316a76bc5fedaba",
+      "sha256_lf_normalized": "caf3d109a13d9b3709f3a102bcf5edcf114ac525ed4d00dd20a932b3911e73c7",
+      "bytes": 202143
+    },
+    {
+      "path": "docs/reviews/hw-v2-02a-review.md",
+      "sha256": "7e6061ffee7ed36939e0a03c6b1daef715f07a4096c574681a6a38608f73cd11",
+      "sha256_lf_normalized": "7e6061ffee7ed36939e0a03c6b1daef715f07a4096c574681a6a38608f73cd11",
+      "bytes": 7402
+    },
+    {
+      "path": "docs/verification/hw-v2-02a/critic-check.json",
+      "sha256": "b87945972dc21278433b0f0d406522695efef3d0552913bc636280c2cb3c7494",
+      "sha256_lf_normalized": "4e72e09b9edd76dc206d7daf5c5a3ea0853f67a7f0b12f0ba3379b4fd69a0463",
+      "bytes": 1521
+    },
+    {
+      "path": "hardware/v2-input/p1-lv/README.md",
+      "sha256": "617472525fd755d40c6eccb1e8a90767e93440651d5c4baf8b32f2ea4708c2f1",
+      "sha256_lf_normalized": "617472525fd755d40c6eccb1e8a90767e93440651d5c4baf8b32f2ea4708c2f1",
+      "bytes": 6227
+    },
+    {
+      "path": "hardware/v2-input/p1-lv/materials-ru.md",
+      "sha256": "52e380e550fd59690d8b33b1b03c59463ef58b01763cc07c0512c69bf263e690",
+      "sha256_lf_normalized": "52e380e550fd59690d8b33b1b03c59463ef58b01763cc07c0512c69bf263e690",
+      "bytes": 17510
+    },
+    {
+      "path": "hardware/v2-input/p1-lv/netlist.md",
+      "sha256": "2571446c1cdc13ea40c2b1bdf4bad2fd13345bebf02eb9e433a2bc581bef7294",
+      "sha256_lf_normalized": "2571446c1cdc13ea40c2b1bdf4bad2fd13345bebf02eb9e433a2bc581bef7294",
+      "bytes": 9892
+    },
+    {
+      "path": "task.md",
+      "sha256": "f98ffe4340d04b66947b6c0690bf7822ef856b08feb92c88024fa6ee35781f96",
+      "sha256_lf_normalized": "71fbda865d295e390b35cb37b5205a1c03b91c7146694d18bf2a0fdd6061144e",
+      "bytes": 45963
+    }
+  ]
+}

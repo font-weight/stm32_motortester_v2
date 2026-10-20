@@ -1,0 +1,49 @@
+{
+  "base_commit": "8ba6227890091b0c1e1e683891287b729ceda6df",
+  "reviewer": "input_critic",
+  "evidence_level": "documentation_only",
+  "manual_bom_comparison": "PASS: every listed designator/value/tolerance/quantity compared against P1-LV r1 netlist",
+  "counts": {
+    "op_amp_packages": 1,
+    "fixed_resistors": 12,
+    "trim_pot": 1,
+    "signal_capacitors": 6,
+    "supply_capacitors": 2,
+    "capacitors_total": 8,
+    "two_pin_connectors": 3,
+    "three_pin_jumper_header": 1,
+    "two_pin_jumper_header": 1,
+    "removable_two_pin_shunts": 2,
+    "test_points": 8,
+    "example_header_contacts": 33
+  },
+  "independent_primary_source_check": {
+    "part": "TLV9064IDR",
+    "package": "SOIC-14 D",
+    "pin_pitch_mm": 1.27,
+    "body_width_min_max_mm": [
+      3.8,
+      4.0
+    ],
+    "sources": [
+      "https://www.ti.com/product/TLV9064/part-details/TLV9064IDR",
+      "https://www.ti.com/lit/ds/symlink/tlv9064.pdf"
+    ],
+    "datasheet": "SBOS839N; D0014A PDF page 53",
+    "does_not_confirm": "retailer stock, price, delivery or a specific adapter board"
+  },
+  "initial_local_file_links_checked": 211,
+  "initial_missing_local_files": [],
+  "git_diff_check": "PASS; only LF/CRLF conversion warnings",
+  "not_executed": [
+    "model",
+    "GUI",
+    "COM",
+    "ST-Link",
+    "firmware",
+    "physical measurements"
+  ],
+  "result": "PASS_DOCUMENTATION",
+  "final_added_local_file_link_occurrences_checked": 4,
+  "final_added_missing_local_files": []
+}
