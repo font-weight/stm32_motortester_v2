@@ -21,11 +21,22 @@ V2-04 — программный путь потока и расчёт вход�
 [PR 216, c10884fa39ad1a10ce0fcfc9d6e17f170e1e0bf0](https://github.com/font-weight/stm32_motortester/tree/c10884fa39ad1a10ce0fcfc9d6e17f170e1e0bf0).
 Сравниваемый опубликованный main — `96002ce62bb5c065ac665ca81059c4a62e90d1dd`.
 Это wire 0.2, stream-only boot и STR1 `0x53545231`, требующий отдельной подготовки.
-Его статус — **DIAGNOSTIC_UNQUALIFIED_NEVER_FLASH**.
+Статус сборки — **DIAGNOSTIC_LINK_ONLY_NOT_QUALIFIED**; имя ELF —
+`DIAGNOSTIC_UNQUALIFIED_NEVER_FLASH.elf`.
 `produced_known=0/produced_end=0`: даже обычный END не подтверждает полноту хвоста
 и нулевые потери. Условный анализ stack/ABI опубликованного ELF не разрешает
 прошивать другую плату или переносить результат на новый rebuild.
 В V2-04 физический COM для потока не предлагается.
+
+Основание статуса: `firmware/build/STREAM_DRAFT_README.md:65–77` в указанном
+PR 216; `build_stream_draft.py` задаёт имя/статус/флаги. В
+`protocol/vectors-v0.2-stream.json` используются десять `positive_frames`:
+hello, hello_ack, get_caps, caps, start, start_ack, stop, final_data, end,
+stop_ack. Для узкой проверки сопоставляются только `framed_hex` с `POSITIVES`
+из `host/tests/test_stream_wire.py` базы V2 и вызываются `decode_frame` →
+`decode_payload`. Весь JSON между редакциями не идентичен. Host codec основан
+на контракте PR 192 `08172114403273ecfac2fb1e8e49d92f9c68756f`.
+Такое сопоставление не подтверждает всю state machine или реальную прошивку.
 
 ## Программный контракт
 
