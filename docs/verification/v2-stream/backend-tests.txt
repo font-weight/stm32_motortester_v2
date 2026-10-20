@@ -1,0 +1,145 @@
+V2-04: квитанция фактически выполненных проверок backend
+Дата: 2026-10-20
+
+Это сохранённая запись ранее полученного вывода инструментов, а не новый прогон.
+Повторная проверка для создания этой квитанции не выполнялась.
+
+Рабочий каталог:
+C:\Users\Alexandr\Desktop\New folder\универ\мотортестер 2
+
+База Git: db0592a06a03ecbc6844ed931fa0e5cb31f136b4.
+Проверялись рабочие новые файлы stream_demo.py, stream_device.py,
+test_v2_stream_device.py; это не проверка чистого указанного коммита.
+
+Окружение (прочитано отдельно без запуска тестов):
+.\.venv\Scripts\python.exe -B -c 'import sys,platform; import PySide6; print(sys.version); print(platform.platform()); print("PySide6="+PySide6.__version__)'
+3.14.7 (tags/v3.14.7:823f032, Aug  5 2026, 10:51:32) [MSC v.1944 64 bit (AMD64)]
+Windows-10-10.0.19045-SP0
+PySide6=6.12.0
+
+Граница доказательства:
+Программный paced peer и протокольные байты; QCoreApplication.
+transport._serial_factory заменена AssertionError("Real COM forbidden").
+Реальные порты, STM32/USB, прошивка, электрические измерения, GUI и frozen EXE
+этими проверками не подтверждались.
+
+1. НЕУДАЧНЫЙ первый запуск в sandbox
+
+Точная команда PowerShell:
+$streamTestTemp = Join-Path (Get-Location) 'build\v2-stream-tests-temp'
+New-Item -ItemType Directory -Force -Path $streamTestTemp | Out-Null
+$env:TMP = $streamTestTemp
+$env:TEMP = $streamTestTemp
+$env:PYTHONPATH = Join-Path (Get-Location) 'host'
+.\.venv\Scripts\python.exe -B -m unittest discover -s host/tests -p test_v2_stream_device.py -v
+
+Режим инструмента: sandbox по умолчанию, без повышения прав. Код выхода 1.
+Ниже существенные дословные строки вывода; повторяющиеся стеки очистки
+временных папок сокращены, это не полный побайтовый terminal transcript.
+
+test_companion_failure_and_hash_mismatch_never_claim_success ... ERROR
+test_companion_failure_and_hash_mismatch_never_claim_success ... ERROR
+test_direct_record_unknown_tail_preserves_prefix_and_blocks_restart ... FAIL
+test_direct_record_unknown_tail_preserves_prefix_and_blocks_restart ... ERROR
+test_peer_pacing_and_overrun_are_explicit ... ERROR
+test_preview_record_nonzero_r_ring_eviction_and_verified_context ... FAIL
+test_preview_record_nonzero_r_ring_eviction_and_verified_context ... ERROR
+
+Первичная ошибка test_companion_failure_and_hash_mismatch_never_claim_success:
+  File "...host\tests\test_v2_stream_device.py", line 138, in test_companion_failure_and_hash_mismatch_never_claim_success
+    sidecar.write_bytes(b"existing user context")
+PermissionError: [Errno 13] Permission denied: 'C:\Users\Alexandr\Desktop\New folder\универ\мотортестер 2\build\v2-stream-tests-temp\v2-stream-yyfc4_vw\kept.mtstream.v2.json'
+
+При tearDown также получены PermissionError [WinError 5] Access is denied
+из tempfile/shutil для созданных временных папок. В двух сценариях ожидание
+приёма закончилось "Bounded stream wait timed out" после отказа файловой записи.
+Ошибка pacing-case возникла при очистке его временной папки.
+
+----------------------------------------------------------------------
+Ran 4 tests in 10.193s
+
+FAILED (failures=2, errors=5)
+
+Этот запуск не принят как успешная проверка.
+
+2. Последующий успешный запуск тех же четырёх тестов
+
+Точная команда PowerShell, в новом процессе инструмента:
+$env:PYTHONPATH = Join-Path (Get-Location) 'host'
+.\.venv\Scripts\python.exe -B -m unittest discover -s host/tests -p test_v2_stream_device.py -v
+
+Фактически использован tool sandbox_permissions="require_escalated", то есть
+запуск вне sandbox с запросом разрешения, доступным на тот момент.
+Текст запроса:
+«Разрешить выполнить четыре проверки нового потокового DEMO вне ограничения временных файлов? Проверки запрещают реальные COM-порты.»
+Это описание уже состоявшегося запуска, не запрос и не использование override
+при составлении данного файла. TMP/TEMP из первого процесса сюда не переносились.
+Изменений исходников между первым неудачным и этим запуском не было.
+Код выхода 0.
+
+test_companion_failure_and_hash_mismatch_never_claim_success (test_v2_stream_device.V2StreamDeviceTests.test_companion_failure_and_hash_mismatch_never_claim_success) ... ok
+test_direct_record_unknown_tail_preserves_prefix_and_blocks_restart (test_v2_stream_device.V2StreamDeviceTests.test_direct_record_unknown_tail_preserves_prefix_and_blocks_restart) ... ok
+test_peer_pacing_and_overrun_are_explicit (test_v2_stream_device.V2StreamDeviceTests.test_peer_pacing_and_overrun_are_explicit) ... ok
+test_preview_record_nonzero_r_ring_eviction_and_verified_context (test_v2_stream_device.V2StreamDeviceTests.test_preview_record_nonzero_r_ring_eviction_and_verified_context) ... ok
+
+----------------------------------------------------------------------
+Ran 4 tests in 1.806s
+
+OK
+
+3. Один изменённый тест после дополнительной защиты существующего файла
+
+После пункта 2 _write_context стал сверять identity журнала с identity именно
+текущей попытки. Это запрещает привязать новый контекст к существующему чужому
+файлу после отказа writer создавать занятое имя. В существующий companion-case
+добавлен сценарий занятого пути; остальные три теста не повторялись.
+
+Точная команда PowerShell:
+$env:PYTHONPATH = Join-Path (Get-Location) 'host'
+.\.venv\Scripts\python.exe -B -m unittest discover -s host/tests -p test_v2_stream_device.py -k companion_failure -v
+
+Фактически использован tool sandbox_permissions="require_escalated", доступный
+на тот момент, с текстом запроса:
+«Разрешить повторить только проверку отказа сохранения контекста после исправления защиты существующего файла? Реальные COM запрещены.»
+Код выхода 0.
+
+test_companion_failure_and_hash_mismatch_never_claim_success (test_v2_stream_device.V2StreamDeviceTests.test_companion_failure_and_hash_mismatch_never_claim_success) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 0.188s
+
+OK
+
+Последующее изменение после этих прогонов:
+По замечанию критика S-R2 добавлено удержание ошибки companion при shutdown,
+точные retry/abandon/cancel и отдельный
+test_shutdown_context_failure_requires_exact_retry_or_abandon.
+Выводы выше НЕ являются свидетельством выполнения этого нового сценария.
+При создании данной квитанции он ещё не запускался. Результат адресного прогона
+должен быть добавлен отдельно фактически выполняющим его агентом.
+
+Дальнейшие адресные проверки 20.10.2026:
+Root, обычный exec без sandbox override, Windows 10/корневая .venv:
+$env:PYTHONPATH='host'; .\.venv\Scripts\python.exe -B -m unittest discover -s host/tests -p test_v2_stream_device.py -k shutdown_context -v
+Ran 1 test in 0.275s; OK; exit 0. Удержание ошибки закрытия, точный retry/abandon.
+
+v2_core, default sandbox без override:
+$env:PYTHONPATH = Join-Path (Get-Location) 'host'; .\.venv\Scripts\python.exe -B -m unittest discover -s host/tests -p test_v2_stream_device.py -k peer_pacing -v
+Первый запуск: assertions прошли, ERROR в cleanup ненужного TemporaryDirectory, 0.013s, exit 1.
+После ленивого temp fixture: Ran 1 test in 0.009s; OK; exit 0.
+Проверены сохранение индексов после задержки 100 мс, wrap периодов, явный overrun при 1 с.
+
+v2_core, default sandbox без override:
+$env:PYTHONPATH = Join-Path (Get-Location) 'host'; .\.venv\Scripts\python.exe -B -m unittest discover -s host/tests -p test_v2_stream_device.py -k source_admission -v
+Ran 1 test in 0.012s; OK; exit 0. Нет файла/worker/COM: queued/late старый display,
+Stop до смены revision, допуск нового поколения и Preview→Record того же поколения.
+
+Native GUI: python -B -m motortester.v2.stream_smoke build/v4-source-smokeN, N=1,2,3.
+N=1 FAIL: ignition synthetic overrun при задержке receiver около112 мс >81.92 мс.
+Исправлены заранее вычисленный период и bounded catch-up655.36 мс; raw не выкидывается молча.
+N=2 FAIL: ожидание графика; ширина первого live envelope не передавалась controller.
+Исправлена публикация желаемого viewport после первого snapshot с дедупликацией.
+N=3 PASS: Windows native qt, Preview→Record R12672, экспорт19126raw, пауза,
+оба профиля, parent close, unknown tail, fresh healthy open, serial_open_calls0.
+Полные результаты/неудачные raw сохранены в соседних source-smoke1/2/3.
+Небольшая последующая правка компоновки графика проверяется уже в финальном пакете.

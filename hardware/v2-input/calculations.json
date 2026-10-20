@@ -1,0 +1,179 @@
+{
+  "status": "calculation_only_not_measured",
+  "model": "HW-V2-01 P0; ideal op amps, linear unclipped operation",
+  "vdda_assumed_v": 3.3,
+  "ranges": [
+    {
+      "id": "R10",
+      "proposed_ch1_half_range_v": 10.0,
+      "gain_v_per_v": 0.1245622811405703,
+      "adc_bias_v": 1.6508254127063533,
+      "adc_endpoint_v": [
+        0.4052026013006502,
+        2.8964482241120564
+      ],
+      "nominal_a_v_per_code": 0.006467961690512047,
+      "nominal_b_v": -13.25301204819277,
+      "resistor_only_endpoint_corner_v": [
+        0.40230635433034223,
+        2.8986211045866987
+      ]
+    },
+    {
+      "id": "R2",
+      "proposed_ch1_half_range_v": 2.0,
+      "gain_v_per_v": 0.6228114057028515,
+      "adc_bias_v": 1.6541270635317664,
+      "adc_endpoint_v": [
+        0.40850425212606334,
+        2.8997498749374695
+      ],
+      "nominal_a_v_per_code": 0.0012935923381024092,
+      "nominal_b_v": -2.6559036144578316,
+      "resistor_only_endpoint_corner_v": [
+        0.3903911995073659,
+        2.9155027011410493
+      ]
+    },
+    {
+      "id": "R0_5",
+      "proposed_ch1_half_range_v": 0.5,
+      "gain_v_per_v": 2.491245622811406,
+      "adc_bias_v": 1.666508254127066,
+      "adc_endpoint_v": [
+        0.42088544272136286,
+        2.912131065532769
+      ],
+      "nominal_a_v_per_code": 0.0003233980845256023,
+      "nominal_b_v": -0.668945783132531,
+      "resistor_only_endpoint_corner_v": [
+        0.35282363681948836,
+        2.9777584001714117
+      ]
+    }
+  ],
+  "illustrative_pickup": {
+    "cs_f": 1e-12,
+    "cg_including_cable_input_f": 2e-10,
+    "plateau_s": 0.002,
+    "high_frequency_gain": 0.004975124378109453,
+    "loads": [
+      {
+        "r_ohm": 10000000.0,
+        "tau_s": 0.00201,
+        "droop_fraction": 0.6302857524421608,
+        "offset_at_12pa_v": 0.00012
+      },
+      {
+        "r_ohm": 100000000.0,
+        "tau_s": 0.0201,
+        "droop_fraction": 0.09471230209374049,
+        "offset_at_12pa_v": 0.0012000000000000001
+      },
+      {
+        "r_ohm": 200000000.0,
+        "tau_s": 0.0402,
+        "droop_fraction": 0.04853392183102001,
+        "offset_at_12pa_v": 0.0024000000000000002
+      },
+      {
+        "r_ohm": 1000000000.0,
+        "tau_s": 0.201,
+        "droop_fraction": 0.009900908814898468,
+        "offset_at_12pa_v": 0.012
+      }
+    ],
+    "r_for_5_percent_droop_ohm": 193987320.857947,
+    "100m_parallel_10m_probe_ohm": 9090909.090909092
+  },
+  "input_series_pole": {
+    "rs_ohm": 102000.0,
+    "cap_budget_f_not_measured": 1.5e-11,
+    "fc_hz": 104022.83862215381
+  },
+  "anti_alias_filter": {
+    "topology": "two unity-gain Sallen-Key sections, low Q first",
+    "sections": [
+      {
+        "r1_r2_ohm": 4870.0,
+        "c_feedback_f": 1.18e-08,
+        "c_ground_f": 1e-08,
+        "f0_hz": 3008.501045656077,
+        "q": 0.5431390245600107
+      },
+      {
+        "r1_r2_ohm": 2030.0,
+        "c_feedback_f": 6.8e-08,
+        "c_ground_f": 1e-08,
+        "f0_hz": 3006.558353533975,
+        "q": 1.3038404810405297
+      }
+    ],
+    "response": [
+      {
+        "frequency_hz": 100,
+        "gain": 1.0000131021896916,
+        "db": 0.0001138034281431405
+      },
+      {
+        "frequency_hz": 1000,
+        "gain": 1.001021428846314,
+        "db": 0.008867490247625804
+      },
+      {
+        "frequency_hz": 1500,
+        "gain": 1.000021482444125,
+        "db": 0.0001865921346045821
+      },
+      {
+        "frequency_hz": 2000,
+        "gain": 0.9837009715740985,
+        "db": -0.14273799340351953
+      },
+      {
+        "frequency_hz": 3000,
+        "gain": 0.7117109871567605,
+        "db": -2.95392659256024
+      },
+      {
+        "frequency_hz": 10000,
+        "gain": 0.00818760878426263,
+        "db": -41.73685833458978
+      },
+      {
+        "frequency_hz": 25000,
+        "gain": 0.00020947929774629246,
+        "db": -73.57717781374417
+      },
+      {
+        "frequency_hz": 47000,
+        "gain": 1.6767408053284813e-05,
+        "db": -95.51068133005546
+      },
+      {
+        "frequency_hz": 50000,
+        "gain": 1.3091074519782273e-05,
+        "db": -97.66049409899269
+      }
+    ]
+  },
+  "adc": {
+    "sample_time_s": 5.958333333333334e-06,
+    "conversion_total_s": 7e-06,
+    "period_s": 2e-05,
+    "output_rc_pole_hz": 482287.70633907686,
+    "resistive_quarter_lsb_settle_s": 1.0325120401620945e-07,
+    "initial_charge_sharing_lsb": 32.507936507936506,
+    "approx_residual_lsb": 5.40498899567002e-07
+  },
+  "illustrative_powered_overload": {
+    "not_an_allowed_input_rating": true,
+    "source_v": 24.0,
+    "assumed_clamp_v": 11.5,
+    "series_current_a": 0.00012254901960784314,
+    "series_resistors_total_w": 0.001531862745098039,
+    "shunt_total_current_a": 0.0006225490196078431,
+    "shunt_power_w": 0.0062254901960784315,
+    "does_not_cover": "unpowered/sequence/ESD/ignition energy/diode transient"
+  }
+}

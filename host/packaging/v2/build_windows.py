@@ -289,8 +289,17 @@ def main(argv=None):
             or close_check.get("saved_record_unchanged") is not True
             or close_check.get("serial_open_calls") != 0):
         raise RuntimeError("Packaged incomplete-window exit decisions did not pass")
+    stream_check = smoke.get("stream_verification")
+    if (type(stream_check) is not dict or stream_check.get("status") != "PASS"
+            or stream_check.get("record_start", 0) <= 0
+            or stream_check.get("exported_samples", 0) < 1
+            or not all(stream_check.get(key) is True for key in (
+                "pause_independent", "raw_roundtrip", "unknown_tail_preserved", "parent_close_drained"))
+            or stream_check.get("physical_stream_verified") is not False):
+        raise RuntimeError("Packaged synthetic streaming integration did not pass")
     pngs = {name: png_info(smoke_output / name)
-            for name in ("scope.png", "ignition.png", "device-panel.png", "incomplete-close.png")}
+            for name in ("scope.png", "ignition.png", "device-panel.png", "incomplete-close.png",
+                         "stream-scope.png", "stream-ignition.png", "stream-unknown-tail.png")}
     for name in ("sample.mtv2", "export.csv", "export.csv.json", "device-window.mtv2"):
         path = smoke_output / name
         if not path.is_file() or path.stat().st_size == 0:

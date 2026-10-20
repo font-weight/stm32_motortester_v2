@@ -1,0 +1,11 @@
+{
+  "status": "FAIL",
+  "platform": "Windows-10-10.0.19045-SP0",
+  "qt_platform": "windows",
+  "error": "Traceback (most recent call last):\n  File \"C:\\Users\\Alexandr\\Desktop\\New folder\\универ\\мотортестер 2\\host\\motortester\\v2\\stream_smoke.py\", line 164, in run\n    report.update(exercise(app, window, output, flush))\n                  ~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\Alexandr\\Desktop\\New folder\\универ\\мотортестер 2\\host\\motortester\\v2\\stream_smoke.py\", line 47, in exercise\n    wait(lambda: dialog.viewer.curve.getData()[0] is not None)\n    ~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\Alexandr\\Desktop\\New folder\\универ\\мотортестер 2\\host\\motortester\\v2\\stream_smoke.py\", line 27, in wait\n    raise AssertionError(\"Stream GUI wait timed out\")\nAssertionError: Stream GUI wait timed out\n",
+  "callback_errors": [],
+  "files": {
+    "stream-scope.mtstream": "1617eb7596b2fda3b7ae4bb73f4bba1b1ca1694be4030ae18c5a14f5824c181a",
+    "stream-scope.mtstream.v2.json": "e5263928c38419964fb48172ffefc0e48aa08de2b8189f1bbe7f49540d842ecb"
+  }
+}

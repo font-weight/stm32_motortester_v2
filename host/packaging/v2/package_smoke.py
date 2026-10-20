@@ -238,6 +238,11 @@ def run(output_name):
                 "saved_record_unchanged": True, "serial_open_calls": port_open.call_count,
             }
             report["checks"].append("actual exit dialog: Esc retains partial; explicit discard closes without JSON")
+            from motortester.v2.stream_smoke import exercise as exercise_stream
+            window.show()
+            report["stream_verification"] = exercise_stream(app, window, output, flush)
+            assert port_open.call_count == 0
+            report["checks"].append("paced stream: Preview/Record/pause/Stop/open/CSV; unknown tail; child and parent close")
             flush()
             report["status"] = "PASS"
     except BaseException:

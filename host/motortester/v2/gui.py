@@ -109,6 +109,8 @@ class MainWindow(DeviceControlsMixin, QtWidgets.QMainWindow):
         self._rendering = False
         self._ticks = 0
         self.gap_items = []
+        self.stream_dialog = None
+        self._stream_close_pending = False
         self._init_device(device_bridge_factory)
         self.setWindowTitle("Мотортестер V2")
         self.resize(1440, 920)
@@ -391,6 +393,8 @@ class MainWindow(DeviceControlsMixin, QtWidgets.QMainWindow):
         fit_row.addWidget(self._button("Весь сигнал", self.full_signal))
         side.addLayout(fit_row)
         self.device_button = self._button("STM32 · подключение", self.device_info)
+        self.stream_button = self._button("Непрерывный приём · ДЕМО", self.open_stream_workspace)
+        side.addWidget(self.stream_button)
         side.addWidget(self.device_button)
         self.gap_button = self._button("ДЕМО · пропуск 100 мс", self.inject_gap)
         self.gap_button.setToolTip("Явно пропустить синтетические отсчёты для проверки записи и отображения разрывов.")
@@ -1282,6 +1286,28 @@ class MainWindow(DeviceControlsMixin, QtWidgets.QMainWindow):
             value.setStyleSheet("font-size: 16px;" if compact else "")
         self.overview.setFixedHeight(48 if compact else 100)
 
+    def open_stream_workspace(self):
+        from .stream_device import StreamContext
+        from .stream_ui import StreamDialog
+        if self.stream_dialog is None or self.stream_dialog.closed:
+            if self.stream_dialog is not None:
+                self.stream_dialog.deleteLater()
+            self.stream_dialog = StreamDialog(
+                self, context=StreamContext(self.channel_name, self.ui_profile))
+            self.stream_dialog.settled.connect(self._stream_settled)
+            self.stream_dialog.close_cancelled.connect(self._stream_close_cancelled)
+        self.stream_dialog.show()
+        self.stream_dialog.raise_()
+        self.stream_dialog.activateWindow()
+
+    def _stream_settled(self):
+        if self._stream_close_pending:
+            self._stream_close_pending = False
+            QtCore.QTimer.singleShot(0, self.close)
+
+    def _stream_close_cancelled(self):
+        self._stream_close_pending = False
+
     def closeEvent(self, event):
         if self._incomplete_close_prompting:
             event.ignore()
@@ -1314,6 +1340,11 @@ class MainWindow(DeviceControlsMixin, QtWidgets.QMainWindow):
         if self.device.bridge.running and not self._device_shutdown:
             self._device_closing = True
             self.device.shutdown()
+            event.ignore()
+            return
+        if self.stream_dialog is not None and not self.stream_dialog.closed:
+            self._stream_close_pending = True
+            self.stream_dialog.close()
             event.ignore()
             return
         self.timer.stop()

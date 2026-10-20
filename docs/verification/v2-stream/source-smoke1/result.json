@@ -1,0 +1,16 @@
+{
+  "status": "FAIL",
+  "platform": "Windows-10-10.0.19045-SP0",
+  "qt_platform": "windows",
+  "error": "Traceback (most recent call last):\n  File \"C:\\Users\\Alexandr\\Desktop\\New folder\\универ\\мотортестер 2\\host\\motortester\\v2\\stream_smoke.py\", line 164, in run\n    report.update(exercise(app, window, output, flush))\n                  ~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\Alexandr\\Desktop\\New folder\\универ\\мотортестер 2\\host\\motortester\\v2\\stream_smoke.py\", line 96, in exercise\n    wait(lambda: dialog.bridge.state.validated_samples >= 10000)\n    ~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\Alexandr\\Desktop\\New folder\\универ\\мотортестер 2\\host\\motortester\\v2\\stream_smoke.py\", line 27, in wait\n    raise AssertionError(\"Stream GUI wait timed out\")\nAssertionError: Stream GUI wait timed out\n",
+  "callback_errors": [],
+  "files": {
+    "stream-export.csv": "cf3d5e1d0380f10b7aa4b39a65fc50072e034a87c4b395ee3714e78b6e4a1624",
+    "stream-export.csv.json": "544a6dc88f43ece04fb1948fb78edabb78525c57b238797f4169c9094590d2f1",
+    "stream-ignition.mtstream": "975c76aa33593c021bc6886713537763bf88dc15209d5adf6b7e175f0ebdffce",
+    "stream-ignition.mtstream.v2.json": "5b5952b7af08fda14d0ff39c58332da864aa153eb68b0ba1af402dd19e913820",
+    "stream-scope.mtstream": "462a41b777d2830f1cba6290364df6d4c08ee9a9f6a4e14b3a0072751a210e5d",
+    "stream-scope.mtstream.v2.json": "04700b494eb2346e6dff87d08a7625d4a778996e39354dba9452973297d00211",
+    "stream-scope.png": "64b2f67b5695b3dbdd00f3e6e2552886fc6a20bfe1448e04debf12ed5ed3d952"
+  }
+}
