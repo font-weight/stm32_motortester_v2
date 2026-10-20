@@ -8,6 +8,7 @@ import sys
 import tempfile
 import time
 import traceback
+from types import SimpleNamespace
 from unittest.mock import patch
 
 
@@ -28,9 +29,15 @@ def run(output_name):
     try:
         # Import inside the receipt boundary so a missing Qt/DLL leaves evidence.
         import numpy as np
+        import serial
+        from serial import serialwin32
+        from serial.tools import list_ports, list_ports_windows
         from PySide6 import QtCore, QtGui, QtWidgets
-        from motortester.v2.core import load, cursor_measurement
+        from motortester.v2.core import load, save, cursor_measurement, UNKNOWN_PROFILE
+        from motortester.v2.device import recording_from_capture
+        from motortester.v2.device_ui import DevicePanel
         from motortester.v2.gui import MainWindow
+        from motortester.wire_demo import synthetic_window, capture_from_synthetic_stream
         app = QtWidgets.QApplication([])
         app.setStyle("Fusion")
         report["qt_platform"] = app.platformName()
@@ -38,6 +45,7 @@ def run(output_name):
         report["numpy"] = np.__version__
         assert report["frozen"] and sys.platform == "win32"
         assert report["qt_platform"] == "windows"
+        assert serial.Serial is serialwin32.Serial and callable(list_ports_windows.comports)
 
         def flush():
             app.processEvents()
@@ -52,22 +60,38 @@ def run(output_name):
             flush()
             assert not window.busy, "File worker timed out"
 
-        def image(name):
+        def image(name, widget=None, minimum_width=1024):
             flush()
             path = output / name
-            assert window.grab().save(str(path))
+            assert (window if widget is None else widget).grab().save(str(path))
             decoded = QtGui.QImage(str(path))
-            assert not decoded.isNull() and decoded.width() >= 1024
+            assert not decoded.isNull() and decoded.width() >= minimum_width
 
         def unexpected_message(*args, **kwargs):
             raise RuntimeError("Unexpected GUI error: " + str(args[1:3]))
 
         with tempfile.TemporaryDirectory(dir=output) as temporary, \
              patch.object(QtWidgets.QMessageBox, "critical", side_effect=unexpected_message), \
-             patch.object(QtWidgets.QMessageBox, "warning", side_effect=unexpected_message):
+             patch.object(QtWidgets.QMessageBox, "warning", side_effect=unexpected_message), \
+             patch.object(serialwin32.Serial, "open",
+                          side_effect=RuntimeError("Package verification must not open a COM port")) as port_open, \
+             patch.object(list_ports, "comports", return_value=(
+                 SimpleNamespace(device="MOCK_STM32", description="Synthetic package check"),)) as enumeration:
             window = MainWindow(settings_path=Path(temporary) / "settings.ini")
             window.timer.stop()
             window.show()
+            assert not window.device.bridge.running and not window.device.state.connected
+            window.device_info()
+            panel = window.device_panel
+            assert isinstance(panel, DevicePanel)
+            assert enumeration.called and panel.port.count() == 1
+            assert panel.port.itemText(0) == "MOCK_STM32" and panel.port.currentText() == ""
+            assert not panel.connect_button.isEnabled()
+            assert not panel.live.isEnabled() and not panel.single.isEnabled()
+            image("device-panel.png", panel, minimum_width=400)
+            panel.hide()
+            assert not window.device.bridge.running and port_open.call_count == 0
+            report["checks"].append("packaged Windows pyserial; device panel with mocked enumeration; no COM open")
             image("scope.png")
             original = window.display_recording
             physical = cursor_measurement(original, .984, .988)
@@ -125,6 +149,33 @@ def run(output_name):
             report["sample_count"] = captured.sample_count
             report["session_id"] = captured.session_id
             report["checks"].append("GUI save/open keeps raw and input snapshot; CSV/JSON keeps gap and checksum")
+
+            # Exercise the packaged byte decoder and V2 bridge without a port.
+            # This remains simulator data, even though it uses the device format.
+            expected_raw, wire = synthetic_window()
+            wire_capture = capture_from_synthetic_stream(wire)
+            device_window = recording_from_capture(wire_capture)
+            assert device_window.blocks[0].samples == expected_raw
+            assert device_window.sample_count == 2048 and device_window.start_index == 0
+            assert device_window.input_profile == UNKNOWN_PROFILE
+            assert device_window.source == "demo" and "wire_simulator" in device_window.quality_flags
+            assert device_window.time_basis == "nominal_unverified"
+            assert device_window.capture_settings.threshold_v is None
+            assert device_window.capture_settings.hardware_threshold_code == 2048
+            device_sample = output / "device-window.mtv2"
+            save(device_sample, device_window)
+            assert load(device_sample) == device_window
+            assert port_open.call_count == 0 and not window.device.bridge.running
+            report["device_verification"] = {
+                "status": "PASS", "serial_version": serial.__version__,
+                "serial_backend": serial.Serial.__module__,
+                "enumeration_mocked": True, "panel_created": True,
+                "serial_open_calls": port_open.call_count, "worker_running": False,
+                "wire_source": device_window.source, "sample_count": device_window.sample_count,
+                "session_id": device_window.session_id, "voltage_state": device_window.input_profile.state,
+                "time_basis": device_window.time_basis, "physical_device_verified": False,
+            }
+            report["checks"].append("synthetic wire 0.1 window -> V2 unknown scale -> exact save/reopen")
             flush()
             report["status"] = "PASS"
     except BaseException:

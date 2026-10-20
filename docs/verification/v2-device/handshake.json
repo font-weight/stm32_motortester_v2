@@ -1,0 +1,66 @@
+{
+  "operation": "HELLO and GET_CAPS only; no CONFIG/ARM/START",
+  "port": "COM6",
+  "utc": "2026-10-20T09:37:28.974476+00:00",
+  "traffic": [
+    {
+      "direction": "host",
+      "hex": "0103010102080101010101010101010102010101020101010d3390144d7f6ad537dcffaffd00"
+    },
+    {
+      "direction": "device",
+      "hex": "01030181021001010a3390144d7f6ad53701010102010101010401010c02020708992835013d010105a6754a9400"
+    },
+    {
+      "direction": "host",
+      "hex": "01030102010101010a3390144d7f6ad5370201010202010105eac389be00"
+    },
+    {
+      "direction": "device",
+      "hex": "01030182021e01010a3390144d7f6ad53702010102020101020102010105a24a0447021301031bb7028f01060803070103010102020604ee77e00600"
+    }
+  ],
+  "snapshot": {
+    "phase": "READY",
+    "session": 4023238937111990323,
+    "next_tx_sequence": 3,
+    "next_request_id": 3,
+    "next_rx_sequence": 3,
+    "pending_request_id": 0,
+    "pending_stop_id": 0,
+    "config": null,
+    "config_id": 0,
+    "generation": 0,
+    "stop_barrier": false,
+    "window_barrier": false,
+    "window_id": 0,
+    "terminal": null,
+    "capabilities": {
+      "firmware_build": 20261017,
+      "capability_bits": 61,
+      "profile": 1,
+      "timer_clock_hz": 72000000,
+      "timer_psc": 71,
+      "timer_arr": 19,
+      "adc_clock_hz": 12000000,
+      "adc_sample_cycles_x2": 143,
+      "window_samples": 2048,
+      "pretrigger_samples": [
+        0,
+        512,
+        1024
+      ],
+      "mode_bits": 7,
+      "source_bits": 1,
+      "edge_bits": 3
+    },
+    "now_ms": 1050862350,
+    "tx_offset": null,
+    "source_sha": "b6ae8025baf1a47e8173997029d2d8b858ada74c",
+    "validation_scope": "draft_analog_control",
+    "device_status": null,
+    "device_status_stale": false,
+    "recovery": null
+  },
+  "status": "COMPATIBLE_HANDSHAKE"
+}

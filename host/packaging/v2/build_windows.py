@@ -224,7 +224,8 @@ def main(argv=None):
         "lock_sha256": sha256(lock),
         "wheelhouse": file_tree(wheelhouse),
         "entrypoints": [gui_name, inspect_name],
-        "scope": "V2 DEMO, .mtv2/.mtcap files and CSV/JSON; no physical device validation",
+        "scope": "V2 DEMO/files and explicit wire 0.1 device windows; "
+                 "package checks use a synthetic wire window and mocked COM enumeration",
         "license_scope": "Existing notices/source guide included; third-party source archives "
                          "are not bundled; public distribution review remains open",
         "license_input_restoration": restored_notices,
@@ -264,8 +265,24 @@ def main(argv=None):
             or smoke.get("callback_errors") != []
             or Path(smoke.get("executable", "")).resolve() != gui_exe.resolve()):
         raise RuntimeError("Native frozen Windows package verification did not pass")
-    pngs = {name: png_info(smoke_output / name) for name in ("scope.png", "ignition.png")}
-    for name in ("sample.mtv2", "export.csv", "export.csv.json"):
+    device_check = smoke.get("device_verification")
+    if (type(device_check) is not dict or device_check.get("status") != "PASS"
+            or device_check.get("serial_version") != "3.5"
+            or device_check.get("serial_backend") != "serial.serialwin32"
+            or device_check.get("enumeration_mocked") is not True
+            or device_check.get("panel_created") is not True
+            or type(device_check.get("serial_open_calls")) is not int
+            or device_check["serial_open_calls"] != 0
+            or device_check.get("worker_running") is not False
+            or device_check.get("wire_source") != "demo"
+            or device_check.get("sample_count") != 2048
+            or device_check.get("voltage_state") != "unconfigured"
+            or device_check.get("time_basis") != "nominal_unverified"
+            or device_check.get("physical_device_verified") is not False):
+        raise RuntimeError("Packaged serial/device-panel/synthetic-window checks did not pass")
+    pngs = {name: png_info(smoke_output / name)
+            for name in ("scope.png", "ignition.png", "device-panel.png")}
+    for name in ("sample.mtv2", "export.csv", "export.csv.json", "device-window.mtv2"):
         path = smoke_output / name
         if not path.is_file() or path.stat().st_size == 0:
             raise RuntimeError(f"Package verification omitted {name}")
@@ -287,6 +304,16 @@ def main(argv=None):
             or inspected.get("voltage_state") != "nominal"):
         raise RuntimeError("Frozen console inspector did not read the synthetic V2 recording")
     write_json(output / "inspect-report.json", inspected)
+    device_inspected = json.loads(run(inspect_exe, smoke_output / "device-window.mtv2",
+        cwd=foreign_cwd, environment=frozen_env, timeout=FROZEN_TIMEOUT))
+    if (type(device_inspected) is not dict or device_inspected.get("source") != "demo"
+            or device_inspected.get("sample_count") != 2048
+            or device_inspected.get("session_id") != device_check.get("session_id")
+            or device_inspected.get("voltage_state") != "unconfigured"
+            or device_inspected.get("time_basis") != "nominal_unverified"
+            or device_inspected.get("available_range") != [0, 2048]):
+        raise RuntimeError("Frozen inspector did not preserve the unknown-scale synthetic wire window")
+    write_json(output / "device-inspect-report.json", device_inspected)
     # Exercise the ordinary GUI entrypoint with its live acquisition timer,
     # separately from --verify-package. The existing screenshot option exits
     # automatically and uses a private INI instead of the user's settings.
@@ -313,6 +340,9 @@ def main(argv=None):
         "png_files": pngs,
         "console_inspector": {"status": "PASS", "report": "inspect-report.json",
                               "sample_count": inspected["sample_count"]},
+        "device_window_inspector": {"status": "PASS", "report": "device-inspect-report.json",
+                                    "sample_count": device_inspected["sample_count"],
+                                    "source": "demo", "voltage_state": "unconfigured"},
         "ordinary_gui_entrypoint": {"status": "PASS", "mode": "live DEMO ignition",
                                    "automatic_screenshot_exit": True, "png": startup},
         "smoke_files": file_tree(smoke_output),
@@ -322,7 +352,8 @@ def main(argv=None):
     }
     write_json(output / "build-report.json", report)
     artifacts = [portable, source_archive, output / "build-report.json",
-                 output / "inspect-report.json", startup_png, log]
+                 output / "inspect-report.json", output / "device-inspect-report.json",
+                 startup_png, log]
     artifacts.extend(path for path in sorted(smoke_output.rglob("*")) if path.is_file())
     (output / "SHA256SUMS.txt").write_text(
         "".join(f"{sha256(path)}  {path.relative_to(output).as_posix()}\n" for path in artifacts),

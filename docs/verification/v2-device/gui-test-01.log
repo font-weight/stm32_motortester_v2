@@ -1,0 +1,18 @@
+test_source_pause_file_and_shutdown_boundaries (test_v2_device_gui.DeviceGuiTest.test_source_pause_file_and_shutdown_boundaries) ... FAIL
+
+======================================================================
+FAIL: test_source_pause_file_and_shutdown_boundaries (test_v2_device_gui.DeviceGuiTest.test_source_pause_file_and_shutdown_boundaries)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Alexandr\Desktop\New folder\универ\мотортестер 2\host\tests\test_v2_device_gui.py", line 47, in test_source_pause_file_and_shutdown_boundaries
+    wait(lambda: window.device.snapshot and window.device.snapshot.phase is Phase.READY)
+    ~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Alexandr\Desktop\New folder\универ\мотортестер 2\host\tests\test_v2_device_gui.py", line 38, in wait
+    self.assertTrue(predicate(), "Timed out waiting for GUI state")
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: None is not true : Timed out waiting for GUI state
+
+----------------------------------------------------------------------
+Ran 1 test in 7.895s
+
+FAILED (failures=1)

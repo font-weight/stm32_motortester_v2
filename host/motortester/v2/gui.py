@@ -18,6 +18,7 @@ from .core import (CaptureSettings, DEMO_PROFILE, DemoSource, Recording,
                    load, save, export_csv)
 from .data import MAX_SAMPLES
 from .widgets import Knob, STYLE
+from .device_ui import DeviceControlsMixin
 
 
 def label(text="", name="", wrap=False):
@@ -70,10 +71,10 @@ class Plot(pg.PlotWidget):
         return QtCore.QSize(800, 350)
 
 
-class MainWindow(QtWidgets.QMainWindow):
-    """No COM discovery or device arming occurs in this first V2 application."""
+class MainWindow(DeviceControlsMixin, QtWidgets.QMainWindow):
+    """DEMO and explicit STM32 windows have separate acquisition state."""
 
-    def __init__(self, *, settings_path=None):
+    def __init__(self, *, settings_path=None, device_bridge_factory=None):
         super().__init__()
         if settings_path:
             self.settings = QtCore.QSettings(str(settings_path), QtCore.QSettings.Format.IniFormat)
@@ -108,6 +109,7 @@ class MainWindow(QtWidgets.QMainWindow):
         self._rendering = False
         self._ticks = 0
         self.gap_items = []
+        self._init_device(device_bridge_factory)
         self.setWindowTitle("Мотортестер V2")
         self.resize(1440, 920)
         self.setMinimumSize(1024, 700)
@@ -323,8 +325,12 @@ class MainWindow(QtWidgets.QMainWindow):
         self.waveform_combo.addItem("ДЕМО · синусоида", "sine")
         self.waveform_combo.addItem("ДЕМО · прямоугольный", "square")
         self.waveform_combo.addItem("ДЕМО · зажигание", "ignition")
+        self.waveform_combo.addItem("STM32 · COM-порт", "device")
         self.waveform_combo.currentIndexChanged.connect(self.change_waveform)
         source_row.addWidget(self.waveform_combo, 1)
+        self.file_source_label = label("Источник: открытый файл", "muted")
+        self.file_source_label.hide()
+        source_row.addWidget(self.file_source_label, 1)
         self.units_combo = QtWidgets.QComboBox()
         self.units_combo.addItems(["В", "мВ"])
         self.units_combo.currentIndexChanged.connect(self._units_changed)
@@ -332,6 +338,11 @@ class MainWindow(QtWidgets.QMainWindow):
         side.addLayout(source_row)
         self.scale_label = label("Номинальная шкала · ДЕМО", "muted", wrap=True)
         side.addWidget(self.scale_label)
+        self.raw_view = QtWidgets.QCheckBox("Показать служебные коды АЦП")
+        self.raw_view.setToolTip("Коды 0…4095. Это не напряжение на входном разъёме.")
+        self.raw_view.toggled.connect(self._raw_view_changed)
+        self.raw_view.hide()
+        side.addWidget(self.raw_view)
         controls = QtWidgets.QGridLayout()
         controls.setHorizontalSpacing(4)
         controls.setVerticalSpacing(8)
@@ -379,7 +390,7 @@ class MainWindow(QtWidgets.QMainWindow):
         fit_row.addWidget(self._button("Автомасштаб", self.auto_scale))
         fit_row.addWidget(self._button("Весь сигнал", self.full_signal))
         side.addLayout(fit_row)
-        self.device_button = self._button("Устройство · не подключено", self.device_info)
+        self.device_button = self._button("STM32 · подключение", self.device_info)
         side.addWidget(self.device_button)
         self.gap_button = self._button("ДЕМО · пропуск 100 мс", self.inject_gap)
         self.gap_button.setToolTip("Явно пропустить синтетические отсчёты для проверки записи и отображения разрывов.")
@@ -388,7 +399,8 @@ class MainWindow(QtWidgets.QMainWindow):
         side.addWidget(self.raw_button)
         side.addStretch()
         body.addWidget(sidebar)
-        self.statusBar().showMessage("1 канал · CH1  |  ДЕМО · синтетическое время и напряжение")
+        self.provenance_label = label("1 канал · CH1", "muted")
+        self.statusBar().addPermanentWidget(self.provenance_label)
 
     def capture_settings(self):
         return CaptureSettings(threshold_v=self.threshold.value,
@@ -406,6 +418,8 @@ class MainWindow(QtWidgets.QMainWindow):
             capture_settings=self.capture_settings())
 
     def _tick(self):
+        if self.device_active:
+            return
         self._ticks += 1
         block = self.source.next_block(2500)
         self.recent.append(block)
@@ -457,6 +471,10 @@ class MainWindow(QtWidgets.QMainWindow):
             self.state_label.setText(f"●  Запись · {self.record_count / 50000:.1f} с")
 
     def _show_live(self, reset=False):
+        if self.device_active:
+            if self.device_last is not None:
+                self._display(self.device_last, reset=reset, live=True)
+            return
         snapshot = self._live_snapshot()
         history_s = max(.1 if self.ui_profile == "oscilloscope" else 1, self.sweep.value * 10)
         start = max(snapshot.start_index, snapshot.end_index - round(history_s * snapshot.sample_rate_hz))
@@ -468,6 +486,10 @@ class MainWindow(QtWidgets.QMainWindow):
         configured = profile.configured
         self._rendering = True
         try:
+            self.raw_view.setVisible(not configured)
+            raw_view = not configured and self.raw_view.isChecked()
+            self._set_axis_mode(raw_view)
+            self.units_combo.setEnabled(configured)
             times, values = [], []
             previous = None
             for block in recording.blocks:
@@ -477,7 +499,8 @@ class MainWindow(QtWidgets.QMainWindow):
                 x = (np.arange(len(block.samples)) + block.start_index) / block.sample_rate_hz * 1000
                 raw = np.asarray(block.samples, dtype=float)
                 times.append(x)
-                values.append(raw * profile.a + profile.b if configured else np.full(len(raw), np.nan))
+                values.append(raw * profile.a + profile.b if configured else
+                              raw if raw_view else np.full(len(raw), np.nan))
                 previous = block.end_index
             x, y = np.concatenate(times), np.concatenate(values)
             self.curve.setData(x, y, connect="finite", autoDownsample=True, downsampleMethod="peak")
@@ -494,7 +517,7 @@ class MainWindow(QtWidgets.QMainWindow):
             self.overview.setXRange(start * 1000, end * 1000, padding=0)
             self.overview.enableAutoRange(axis="y")
             self.region.setBounds((start * 1000, end * 1000))
-            self.unconfigured_text.setVisible(not configured)
+            self.unconfigured_text.setVisible(not configured and not raw_view)
             self.threshold_line.setVisible(configured and self.mode == 0)
             if recording.capture_settings.threshold_v is not None:
                 self.threshold_line.setValue(recording.capture_settings.threshold_v)
@@ -505,16 +528,29 @@ class MainWindow(QtWidgets.QMainWindow):
             self._draw_gaps(recording)
             title = "Зажигание" if recording.ui_profile == "ignition" else "Осциллограф"
             mode_title = ("живой сигнал", "один разряд" if recording.ui_profile == "ignition" else "одиночный захват", "запись")[self.mode]
+            if recording.source == "device":
+                mode_title = "одно окно" if "window_local_time" in recording.quality_flags else "захват"
             self.plot_title.setText(f"{title} · {mode_title}")
             self.plot_subtitle.setText(f"CH1 · {recording.channel_name}  |  {recording.sample_rate_hz:g} отсч./с · "
                                       + ("синтетический сигнал" if recording.source == "demo" else "данные устройства"))
             self.name_label.setText(recording.channel_name)
-            self.origin_badge.setText("ДЕМО" if recording.source == "demo" else "ФАЙЛ · ПРИБОР")
+            self.origin_badge.setText("ДЕМО" if recording.source == "demo" else
+                "ПРИБОР · ОКНО" if self.device_active and self.mode != 2 else "ФАЙЛ · ПРИБОР")
+            self.provenance_label.setText("CH1 · " + ("Файл · " if self.mode == 2 else "") +
+                ("ДЕМО · синтетические данные" if recording.source == "demo" else
+                 "Прибор · время номинальное"))
             self.scale_label.setText("Шкала напряжения не настроена" if not configured else
                 ("Калиброванная шкала" if profile.state == "calibrated" else "Номинальная шкала")
                 + (" · ДЕМО" if recording.source == "demo" else "") + f" · {profile.coupling}")
             self.overview_label.setText(("Недавний сигнал" if live else "Весь захват / сеанс")
                                        + f" · {time_text(end - start)}  ·  пропусков: {len(recording.gaps)}")
+            if recording.source == "device" and "window_local_time" in recording.quality_flags:
+                self.overview_label.setText(f"Одно окно · {time_text(end - start)} · промежутки между окнами неизвестны")
+                self.plot_subtitle.setText(f"CH1 · {recording.channel_name} | окно {recording.legacy_sequence} · "
+                                          f"{recording.sample_rate_hz:g} отсч./с, номинально")
+                trigger = {"signal": "фронт кода АЦП", "auto_timeout": "Auto · без фронта"}.get(
+                    recording.capture_settings.trigger_kind, "тип запуска не указан")
+                self.plot_subtitle.setText(self.plot_subtitle.text() + " | " + trigger)
             # Analyze a bounded visible range, not the full session every refresh.
             left, right = self.plot.viewRange()[0]
             try:
@@ -566,8 +602,21 @@ class MainWindow(QtWidgets.QMainWindow):
     def _measurements(self, recording):
         self._analysis_key += 1
         if recording is None or not recording.input_profile.configured:
+            self._analysis_pending = None
             for value in self.metric_values[:3]:
                 value.setText("—")
+            if recording and self.raw_view.isChecked():
+                codes = [code for block in recording.blocks for code in block.samples]
+                low, high = min(codes), max(codes)
+                self.metric_titles[0].setText("Размах · коды АЦП")
+                self.metric_titles[1].setText("Период / частота")
+                self.metric_titles[2].setText("Мин. / макс. · коды АЦП")
+                self.metric_values[0].setText(f"{high - low} код")
+                self.metric_values[2].setText(f"{low} / {high} код")
+                self.quality_label.setText(("Достигнута граница АЦП · " if low == 0 or high == 4095 else "")
+                                          + "Служебные коды · напряжение неизвестно · время номинальное")
+            else:
+                self.quality_label.setText("Шкала напряжения не настроена")
             return
         if recording.sample_count > 65536:
             self._analysis_pending = (recording, self._analysis_key)
@@ -601,6 +650,7 @@ class MainWindow(QtWidgets.QMainWindow):
         ignition = recording.ui_profile == "ignition"
         self.metric_titles[0].setText("Пик сигнала датчика" if ignition else "Размах")
         self.metric_titles[1].setText("Интервал / частота событий" if ignition else "Период / частота")
+        self.metric_titles[2].setText("Мин. / макс.")
         self.metric_values[0].setText(self.voltage_text(result.maximum_v if ignition else result.peak_to_peak_v))
         self.metric_values[1].setText("—" if result.period_s is None else
             f"{number(result.period_s * 1000, 2)} мс\n{number(result.frequency_hz, 1)} Гц")
@@ -659,12 +709,45 @@ class MainWindow(QtWidgets.QMainWindow):
         a, b = self.cursor_a.value() / 1000, self.cursor_b.value() / 1000
         result = cursor_measurement(self.display_recording, a, b)
         self.metric_values[3].setText(time_text(result.delta_t_s))
+        if not self.display_recording.input_profile.configured and self.raw_view.isChecked():
+            points = [self.display_recording.sample_at_time(t) for t in (a, b)]
+            codes = [f"{point[1]} код" if point else "—" for point in points]
+            self.cursor_label.setText(f"A: {time_text(a)} · {codes[0]}     B: {time_text(b)} · {codes[1]}"
+                                      "   |   ΔU неизвестно · время номинальное")
+            return
         self.cursor_label.setText(
             f"A: {time_text(a)} · {self.voltage_text(result.voltage_a_v)}     "
             f"B: {time_text(b)} · {self.voltage_text(result.voltage_b_v)}     "
             f"ΔU: {self.voltage_text(result.delta_v)}   |   — = нет отсчёта / шкалы")
 
+    def _raw_view_changed(self):
+        if self.display_recording is not None:
+            self._display(self.display_recording)
+
+    def _set_axis_mode(self, raw):
+        """Raw diagnostics is a separate, explicit axis, never a calibration."""
+        kind = "raw" if raw else "voltage"
+        if kind == self._axis_kind:
+            return
+        self._axis_kind = kind
+        factor, unit = (1, "код") if raw else (self.unit_factor, self.units_combo.currentText())
+        self.voltage_axis.factor = factor
+        self.voltage_axis.picture = None
+        self.voltage_axis.update()
+        self.plot.setLabel("left", "Служебные коды АЦП" if raw else "Напряжение на входе",
+                           units="" if raw else unit, color="#abc8d8")
+        self.plot.getAxis("left").showLabel(not getattr(self, "_compact", False))
+        self.axis_units.setText(f"X: мс · Y: {unit}" + (" · не напряжение" if raw else ""))
+        self.yscale.set_bounds(1 if raw else .001, 4096 if raw else 100)
+        self.yposition.set_bounds(0 if raw else -100, 4095 if raw else 100)
+        self.yscale.set_display(factor, unit + "/дел")
+        self.yposition.set_display(factor, unit)
+        self.yscale.set_value(512 if raw else .5)
+        self.yposition.set_value(2048 if raw else 1.65)
+
     def _units_changed(self):
+        if self.display_recording and not self.display_recording.input_profile.configured:
+            return
         factor, unit = self.unit_factor, self.units_combo.currentText()
         self.voltage_axis.factor = factor
         self.voltage_axis.picture = None
@@ -679,6 +762,8 @@ class MainWindow(QtWidgets.QMainWindow):
             self._display(self.display_recording)
 
     def _capture_settings_changed(self, *args):
+        if self.device_active:
+            return
         if self.mode == 0 and not self.paused:
             self._show_live()
 
@@ -708,6 +793,10 @@ class MainWindow(QtWidgets.QMainWindow):
         if self.recording or self.armed_after is not None or self.mode != 0:
             return
         self.ui_profile = profile
+        if self.device_active:
+            # Presentation choice applies to the next capture, not its saved metadata.
+            self._update_actions()
+            return
         self.sweep.set_value(.02 if profile == "ignition" else .002)
         self.holdoff.set_value(.005 if profile == "ignition" else .001)
         self.threshold.set_value(1.2 if profile == "ignition" else 1.65)
@@ -716,12 +805,41 @@ class MainWindow(QtWidgets.QMainWindow):
         self.auto_scale()
 
     def change_waveform(self, *args):
+        kind = self.waveform_combo.currentData()
+        if kind == "device":
+            if not self.device_active:
+                with QtCore.QSignalBlocker(self.waveform_combo):
+                    self.waveform_combo.setCurrentIndex(("sine", "square", "ignition").index(self.source.waveform))
+            self.device_info()
+            return
+        if self.device_active:
+            state = self.device.state
+            if state.connected or state.busy or state.has_capture or state.has_incomplete:
+                with QtCore.QSignalBlocker(self.waveform_combo):
+                    self.waveform_combo.setCurrentIndex(3)
+                return
+            if self.dirty and not self._confirm_discard():
+                with QtCore.QSignalBlocker(self.waveform_combo):
+                    self.waveform_combo.setCurrentIndex(3)
+                return
+            self.device_active = False
+            self.mode = 0
+            self.device_last = None
+            self.single = self.completed = None
+            self.single_dirty = self.record_dirty = False
+            self.live_settings = None
+            self.raw_view.setChecked(False)
+            self.holdoff.spin.setSpecialValueText("")
+            self.timer.start()
         if self.recording or self.armed_after is not None or self.mode != 0:
             return
         self.source = DemoSource(self.waveform_combo.currentData())
         self.recent.clear()
         for _ in range(20):
             self.recent.append(self.source.next_block(2500))
+        if self._demo_settings is not None:
+            self._load_saved_controls(replace(self._live_snapshot(), capture_settings=self._demo_settings))
+            self._demo_settings = None
         self.paused = False
         self.follow = True
         self._show_live(reset=True)
@@ -730,6 +848,18 @@ class MainWindow(QtWidgets.QMainWindow):
 
     def set_mode(self, mode):
         if self.busy:
+            return
+        if self.device_active:
+            if self.device_acquiring:
+                return
+            self.mode = mode
+            if mode == 0:
+                self._show_live(reset=True)
+            elif mode == 1 and self.single:
+                self._display(self.single, reset=True)
+            elif mode == 2 and self.completed:
+                self._display(self.completed, reset=True)
+            self._update_actions()
             return
         if self.armed_after is not None and mode != 1:
             self.armed_after = None
@@ -756,6 +886,8 @@ class MainWindow(QtWidgets.QMainWindow):
 
     def _load_saved_controls(self, recording):
         settings = recording.capture_settings
+        self.holdoff.spin.setSpecialValueText("Недоступна" if recording.source == "device"
+            and "window_local_time" in recording.quality_flags else "")
         if recording.input_profile.configured:
             self.threshold.set_bounds(*recording.input_profile.voltage_limits)
         self.holdoff.set_bounds(0, max(.1, settings.holdoff_s))
@@ -777,6 +909,9 @@ class MainWindow(QtWidgets.QMainWindow):
         self.falling.setChecked(settings.edge == "falling")
 
     def arm_single(self):
+        if self.device_active:
+            self.start_device(2)
+            return
         if self.recording or self.busy:
             return
         if self.armed_after is not None:
@@ -802,6 +937,12 @@ class MainWindow(QtWidgets.QMainWindow):
         self._update_actions()
 
     def toggle_record(self):
+        if self.device_active:
+            if self.device_acquiring:
+                self.device.stop()
+            else:
+                self.start_device(0)
+            return
         if self.recording:
             self.stop_recording()
             return
@@ -854,6 +995,13 @@ class MainWindow(QtWidgets.QMainWindow):
         self.cursor_b.setValue((event.trigger_index / self.completed.sample_rate_hz + .0015) * 1000)
 
     def _update_actions(self):
+        self.save_button.setText("Сохранить запись")
+        self.record_button.setToolTip("")
+        viewing_file = self.mode == 2 and not self.recording
+        self.waveform_combo.setVisible(not viewing_file)
+        self.file_source_label.setVisible(viewing_file)
+        self.units_combo.setEnabled(bool(self.display_recording and
+                                         self.display_recording.input_profile.configured))
         for index, tab in enumerate(self.tabs):
             tab.setChecked(self.mode == index)
             tab.setEnabled(not self.busy and (not self.recording or index != 1))
@@ -861,6 +1009,8 @@ class MainWindow(QtWidgets.QMainWindow):
         self.scope_button.setChecked(display_profile == "oscilloscope")
         self.ignition_button.setChecked(display_profile == "ignition")
         single_title = "Одна искра" if display_profile == "ignition" else "Одиночный захват"
+        if self.device_active or (self.display_recording and self.display_recording.source == "device"):
+            single_title = "Одиночный захват"
         self.tabs[1].setText(single_title)
         locked = self.recording or self.armed_after is not None or self.mode != 0 or self.busy
         for widget in (self.scope_button, self.ignition_button, self.waveform_combo,
@@ -897,14 +1047,23 @@ class MainWindow(QtWidgets.QMainWindow):
         else:
             state = "Ⅱ  Пауза просмотра" if self.paused else "●  Живой сигнал"
         self.state_label.setText(state)
+        if self.device_active:
+            self._device_actions()
+        elif self.device_panel:
+            self.device_panel.update_state()
 
     def auto_scale(self):
         rec = self.display_recording
-        if rec is None or not rec.input_profile.configured:
+        if rec is None:
             return
         profile = rec.input_profile
-        low, high = sorted((profile.voltage(min(min(b.samples) for b in rec.blocks)),
-                            profile.voltage(max(max(b.samples) for b in rec.blocks))))
+        if not profile.configured:
+            if not self.raw_view.isChecked():
+                return
+            low, high = min(min(b.samples) for b in rec.blocks), max(max(b.samples) for b in rec.blocks)
+        else:
+            low, high = sorted((profile.voltage(min(min(b.samples) for b in rec.blocks)),
+                                profile.voltage(max(max(b.samples) for b in rec.blocks))))
         wanted = max(.001, (high - low) * 1.15 / 8)
         decade = 10 ** math.floor(math.log10(wanted))
         scale = next(step * decade for step in (1, 2, 5, 10) if step * decade >= wanted)
@@ -953,16 +1112,10 @@ class MainWindow(QtWidgets.QMainWindow):
         return True
 
     def inject_gap(self):
+        if self.device_active:
+            return
         self.source.skip(5000)
         self.statusBar().showMessage("Добавлен синтетический пропуск 100 мс; он сохранится в записи.")
-
-    def device_info(self):
-        QtWidgets.QMessageBox.information(self, "Реальный вход CH1",
-            "Шкала напряжения не настроена.\n\n"
-            "В этом интерфейсе подключение прибора ещё не реализовано. "
-            "Устройство не опрашивается и не запускается.\n"
-            "Нужны проверенный адаптер источника и профиль конкретного входного тракта. "
-            "Коэффициенты ДЕМО не применяются к плате.")
 
     def raw_info(self):
         rec = self.display_recording
@@ -1004,7 +1157,9 @@ class MainWindow(QtWidgets.QMainWindow):
         self._update_actions()
 
     def open_dialog(self):
-        if self.record_dirty and not self._confirm_discard():
+        if self.device_active and self.device_acquiring:
+            return
+        if self.dirty and not self._confirm_discard():
             return
         path, _ = QtWidgets.QFileDialog.getOpenFileName(self, "Открыть запись", "",
                                                        "Записи (*.mtv2 *.mtcap);;Все файлы (*)")
@@ -1025,9 +1180,11 @@ class MainWindow(QtWidgets.QMainWindow):
             return (), "События не рассчитаны: " + str(exc)
 
     def open_recording(self, recording, events=None, warning=None):
+        if self.device_active and (self.device_acquiring or self.device.state.busy):
+            return
         if events is None:
             events, warning = self._safe_events(recording)
-        if self.mode == 0:
+        if self.mode == 0 and not self.device_active:
             self.live_settings = self.capture_settings()
         self.completed = recording
         self.events = events
@@ -1133,6 +1290,16 @@ class MainWindow(QtWidgets.QMainWindow):
         if self.recording:
             self.stop_recording()
         if self.dirty and not self._confirm_discard():
+            event.ignore()
+            return
+        if self.device.pending_incomplete is not None:
+            self.device_info()
+            self._device_error("Сначала сохраните неполные данные в JSON.")
+            event.ignore()
+            return
+        if self.device.bridge.running and not self._device_shutdown:
+            self._device_closing = True
+            self.device.shutdown()
             event.ignore()
             return
         self.timer.stop()

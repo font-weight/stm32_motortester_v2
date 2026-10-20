@@ -1,0 +1,136 @@
+test_caps_rejection_and_silent_link_timeout (test_v2_device.V2DeviceTests.test_caps_rejection_and_silent_link_timeout) ... ok
+test_conversion_preserves_raw_and_rejects_assumed_hardware_scale (test_v2_device.V2DeviceTests.test_conversion_preserves_raw_and_rejects_assumed_hardware_scale) ... ok
+test_disconnect_retains_fragments_and_requires_reset_before_reconnect (test_v2_device.V2DeviceTests.test_disconnect_retains_fragments_and_requires_reset_before_reconnect) ... ERROR
+test_incompatible_hello_never_sends_config_or_arm (test_v2_device.V2DeviceTests.test_incompatible_hello_never_sends_config_or_arm) ... ok
+test_repeated_auto_windows_have_separate_local_time_and_stop (test_v2_device.V2DeviceTests.test_repeated_auto_windows_have_separate_local_time_and_stop) ... ok
+test_single_handshake_retention_save_accept_and_stop (test_v2_device.V2DeviceTests.test_single_handshake_retention_save_accept_and_stop) ... ERROR
+
+======================================================================
+ERROR: test_disconnect_retains_fragments_and_requires_reset_before_reconnect (test_v2_device.V2DeviceTests.test_disconnect_retains_fragments_and_requires_reset_before_reconnect)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Alexandr\Desktop\New folder\универ\мотортестер 2\host\tests\test_v2_device.py", line 206, in test_disconnect_retains_fragments_and_requires_reset_before_reconnect
+    device.save_incomplete(path, partial)
+    ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+  File "C:\Users\Alexandr\Desktop\New folder\универ\мотортестер 2\host\motortester\v2\device.py", line 205, in save_incomplete
+    save_incomplete(path, result, snapshot=snapshot, channel_name=name, ui_profile=profile)
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Alexandr\Desktop\New folder\универ\мотортестер 2\host\motortester\v2\device.py", line 126, in save_incomplete
+    atomic_write(path, payload)
+    ~~~~~~~~~~~~^^^^^^^^^^^^^^^
+  File "C:\Users\Alexandr\Desktop\New folder\универ\мотортестер 2\host\motortester\recording.py", line 97, in atomic_write
+    fd, temporary = tempfile.mkstemp(prefix=".motortester-", dir=path.parent)
+                    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Alexandr\AppData\Local\Python\pythoncore-3.14-64\Lib\tempfile.py", line 354, in mkstemp
+    return _mkstemp_inner(dir, prefix, suffix, flags, output_type)
+  File "C:\Users\Alexandr\AppData\Local\Python\pythoncore-3.14-64\Lib\tempfile.py", line 255, in _mkstemp_inner
+    fd = _os.open(file, flags, 0o600)
+PermissionError: [Errno 13] Permission denied: 'C:\\Users\\Alexandr\\AppData\\Local\\Temp\\tmpivtc_pdo\\.motortester-fosh67fr'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "<frozen os>", line 377, in walk
+PermissionError: [WinError 5] Access is denied: 'C:\\Users\\Alexandr\\AppData\\Local\\Temp\\tmpivtc_pdo'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Alexandr\Desktop\New folder\универ\мотортестер 2\host\tests\test_v2_device.py", line 204, in test_disconnect_retains_fragments_and_requires_reset_before_reconnect
+    with tempfile.TemporaryDirectory() as folder:
+         ~~~~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\Alexandr\AppData\Local\Python\pythoncore-3.14-64\Lib\tempfile.py", line 972, in __exit__
+    self.cleanup()
+    ~~~~~~~~~~~~^^
+  File "C:\Users\Alexandr\AppData\Local\Python\pythoncore-3.14-64\Lib\tempfile.py", line 976, in cleanup
+    self._rmtree(self.name, ignore_errors=self._ignore_cleanup_errors)
+    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Alexandr\AppData\Local\Python\pythoncore-3.14-64\Lib\tempfile.py", line 956, in _rmtree
+    _shutil.rmtree(name, onexc=onexc)
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Alexandr\AppData\Local\Python\pythoncore-3.14-64\Lib\shutil.py", line 852, in rmtree
+    _rmtree_impl(path, dir_fd, onexc)
+    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Alexandr\AppData\Local\Python\pythoncore-3.14-64\Lib\shutil.py", line 689, in _rmtree_unsafe
+    for dirpath, dirnames, filenames in results:
+                                        ^^^^^^^
+  File "<frozen os>", line 413, in walk
+  File "C:\Users\Alexandr\AppData\Local\Python\pythoncore-3.14-64\Lib\shutil.py", line 687, in onerror
+    onexc(os.scandir, err.filename, err)
+    ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Alexandr\AppData\Local\Python\pythoncore-3.14-64\Lib\tempfile.py", line 928, in onexc
+    _resetperms(path)
+    ~~~~~~~~~~~^^^^^^
+  File "C:\Users\Alexandr\AppData\Local\Python\pythoncore-3.14-64\Lib\tempfile.py", line 283, in _resetperms
+    _dont_follow_symlinks(_os.chmod, path, 0o700)
+    ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Alexandr\AppData\Local\Python\pythoncore-3.14-64\Lib\tempfile.py", line 272, in _dont_follow_symlinks
+    func(path, *args, follow_symlinks=False)
+    ~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+PermissionError: [WinError 5] Access is denied: 'C:\\Users\\Alexandr\\AppData\\Local\\Temp\\tmpivtc_pdo'
+
+======================================================================
+ERROR: test_single_handshake_retention_save_accept_and_stop (test_v2_device.V2DeviceTests.test_single_handshake_retention_save_accept_and_stop)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Alexandr\Desktop\New folder\универ\мотортестер 2\host\tests\test_v2_device.py", line 164, in test_single_handshake_retention_save_accept_and_stop
+    save(path, result)
+    ~~~~^^^^^^^^^^^^^^
+  File "C:\Users\Alexandr\Desktop\New folder\универ\мотортестер 2\host\motortester\v2\storage.py", line 145, in save
+    legacy.atomic_write(path, encode(recording), overwrite=overwrite)
+    ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Alexandr\Desktop\New folder\универ\мотортестер 2\host\motortester\recording.py", line 97, in atomic_write
+    fd, temporary = tempfile.mkstemp(prefix=".motortester-", dir=path.parent)
+                    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Alexandr\AppData\Local\Python\pythoncore-3.14-64\Lib\tempfile.py", line 354, in mkstemp
+    return _mkstemp_inner(dir, prefix, suffix, flags, output_type)
+  File "C:\Users\Alexandr\AppData\Local\Python\pythoncore-3.14-64\Lib\tempfile.py", line 255, in _mkstemp_inner
+    fd = _os.open(file, flags, 0o600)
+PermissionError: [Errno 13] Permission denied: 'C:\\Users\\Alexandr\\AppData\\Local\\Temp\\tmp8p874ag9\\.motortester-uwp0t_6n'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "<frozen os>", line 377, in walk
+PermissionError: [WinError 5] Access is denied: 'C:\\Users\\Alexandr\\AppData\\Local\\Temp\\tmp8p874ag9'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Alexandr\Desktop\New folder\универ\мотортестер 2\host\tests\test_v2_device.py", line 162, in test_single_handshake_retention_save_accept_and_stop
+    with tempfile.TemporaryDirectory() as folder:
+         ~~~~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\Alexandr\AppData\Local\Python\pythoncore-3.14-64\Lib\tempfile.py", line 972, in __exit__
+    self.cleanup()
+    ~~~~~~~~~~~~^^
+  File "C:\Users\Alexandr\AppData\Local\Python\pythoncore-3.14-64\Lib\tempfile.py", line 976, in cleanup
+    self._rmtree(self.name, ignore_errors=self._ignore_cleanup_errors)
+    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Alexandr\AppData\Local\Python\pythoncore-3.14-64\Lib\tempfile.py", line 956, in _rmtree
+    _shutil.rmtree(name, onexc=onexc)
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Alexandr\AppData\Local\Python\pythoncore-3.14-64\Lib\shutil.py", line 852, in rmtree
+    _rmtree_impl(path, dir_fd, onexc)
+    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Alexandr\AppData\Local\Python\pythoncore-3.14-64\Lib\shutil.py", line 689, in _rmtree_unsafe
+    for dirpath, dirnames, filenames in results:
+                                        ^^^^^^^
+  File "<frozen os>", line 413, in walk
+  File "C:\Users\Alexandr\AppData\Local\Python\pythoncore-3.14-64\Lib\shutil.py", line 687, in onerror
+    onexc(os.scandir, err.filename, err)
+    ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Alexandr\AppData\Local\Python\pythoncore-3.14-64\Lib\tempfile.py", line 928, in onexc
+    _resetperms(path)
+    ~~~~~~~~~~~^^^^^^
+  File "C:\Users\Alexandr\AppData\Local\Python\pythoncore-3.14-64\Lib\tempfile.py", line 283, in _resetperms
+    _dont_follow_symlinks(_os.chmod, path, 0o700)
+    ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Alexandr\AppData\Local\Python\pythoncore-3.14-64\Lib\tempfile.py", line 272, in _dont_follow_symlinks
+    func(path, *args, follow_symlinks=False)
+    ~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+PermissionError: [WinError 5] Access is denied: 'C:\\Users\\Alexandr\\AppData\\Local\\Temp\\tmp8p874ag9'
+
+----------------------------------------------------------------------
+Ran 6 tests in 3.311s
+
+FAILED (errors=2)

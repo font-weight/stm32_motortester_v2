@@ -13,7 +13,7 @@ gui = Analysis(
     pathex=[str(host), str(packaging)],
     binaries=[], datas=[], hiddenimports=[],
     hookspath=[], hooksconfig={}, runtime_hooks=[],
-    excludes=["PyQt5", "PyQt6", "PySide2", "matplotlib", "scipy", "serial"],
+    excludes=["PyQt5", "PyQt6", "PySide2", "matplotlib", "scipy"],
     noarchive=False, optimize=0,
 )
 cli = Analysis(
