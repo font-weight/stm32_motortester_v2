@@ -1,0 +1,824 @@
+{
+  "schema": "v2-stream-wire-timing-analysis-1",
+  "status": "VERIFIED_PREFIX_WITH_DEVICE_QUEUE_FAULT",
+  "analysis_kind": "Offline retained wire observations and exact fw09 source inspection; no live I/O",
+  "traffic_sha256": "bc302399d0be20b5b13624b0451f8d98dd27cb0baad19d22e7253a63048f2ff8",
+  "journal_sha256": "e4a592edcafe18c1b8754adb2342048b17d39e73e3ed7ed75d0b8a59d9937746",
+  "companion_sha256": "df3966b69915c9c15a666866d9cf347a7a46d7ffb2e92c3376a27e529e5c1e41",
+  "offline_equality_receipt": {
+    "path": "run/wire-verification.json",
+    "sha256": "41ac78a315c89b333edfc690e8a86dc445a04000868d6985714ac1d9bd1cfe1e",
+    "status": "PASS",
+    "selected_range": [
+      1280,
+      10240
+    ],
+    "selected_samples": 8960,
+    "wire_journal_byte_equal": true,
+    "raw_selected_sha256": "690322e94cd5dc813a6ac18cbe316e4bd68794ca324c6ed3e52dd32401f1f991",
+    "rerun": false
+  },
+  "wire": {
+    "chunks": 90,
+    "host_bytes": 136,
+    "device_bytes": 24825,
+    "empty_delimiters": 1,
+    "decode_errors": [],
+    "trailing_partial_bytes": [
+      0,
+      0
+    ],
+    "trailing_oversized_frame": [
+      false,
+      false
+    ]
+  },
+  "control_frames": [
+    {
+      "direction": "host",
+      "host_monotonic_s": 1069907.8448746,
+      "kind": "HELLO",
+      "sequence": 1,
+      "request_id": 1,
+      "payload": {
+        "nonce": 3296458828039380062
+      }
+    },
+    {
+      "direction": "device",
+      "host_monotonic_s": 1069907.8483024,
+      "kind": "HELLO_ACK",
+      "sequence": 1,
+      "request_id": 1,
+      "payload": {
+        "firmware_build": 1446138675
+      }
+    },
+    {
+      "direction": "host",
+      "host_monotonic_s": 1069907.849115,
+      "kind": "GET_CAPS",
+      "sequence": 2,
+      "request_id": 2,
+      "payload": null
+    },
+    {
+      "direction": "device",
+      "host_monotonic_s": 1069907.8509216,
+      "kind": "CAPS",
+      "sequence": 2,
+      "request_id": 2,
+      "payload": {
+        "config_id": 1,
+        "profile": 1,
+        "channel": 0,
+        "adc_bits": 12,
+        "fs_num": 50000,
+        "fs_den": 1,
+        "max_block": 128,
+        "flags": 1
+      }
+    },
+    {
+      "direction": "host",
+      "host_monotonic_s": 1069907.8685384,
+      "kind": "START",
+      "sequence": 3,
+      "request_id": 3,
+      "payload": 1
+    },
+    {
+      "direction": "device",
+      "host_monotonic_s": 1069907.8718252,
+      "kind": "START_ACK",
+      "sequence": 3,
+      "request_id": 3,
+      "payload": {
+        "generation": 3,
+        "config_id": 1,
+        "first_index": 0
+      }
+    },
+    {
+      "direction": "device",
+      "host_monotonic_s": 1069908.1226385,
+      "kind": "END",
+      "sequence": 84,
+      "request_id": 0,
+      "payload": {
+        "generation": 3,
+        "config_id": 1,
+        "prefix_end": 10240,
+        "produced_end": null,
+        "last_data_sequence": 83,
+        "prefix_crc32": 2257910402,
+        "reason": 1,
+        "flags": 3,
+        "stop_request_id": 0
+      }
+    },
+    {
+      "direction": "host",
+      "host_monotonic_s": 1069908.1254599,
+      "kind": "STOP",
+      "sequence": 4,
+      "request_id": 4,
+      "payload": 3
+    },
+    {
+      "direction": "device",
+      "host_monotonic_s": 1069908.1272915,
+      "kind": "STOP_ACK",
+      "sequence": 85,
+      "request_id": 4,
+      "payload": {
+        "generation": 3,
+        "prefix_end": 10240,
+        "terminal_sequence": 84,
+        "flags": 3
+      }
+    }
+  ],
+  "data": {
+    "frames": 80,
+    "samples": 10240,
+    "first_index": 0,
+    "end_index": 10240,
+    "block_samples_histogram": {
+      "128": 80
+    },
+    "frame_bytes_histogram": {
+      "307": 78,
+      "306": 2
+    },
+    "raw_gaps": [],
+    "raw_overlaps": [],
+    "crc_verified": true
+  },
+  "host_arrival_timing": {
+    "scope": "Host read completion timestamps; not USB packet timestamps or calibrated ADC timing",
+    "start_to_ack_ms": 3.2868001144379377,
+    "start_to_first_data_ms": 9.228500071913004,
+    "first_to_last_data_ms": 243.53819992393255,
+    "start_to_last_data_ms": 252.76669999584556,
+    "start_to_end_ms": 254.10010013729334,
+    "end_before_host_stop_ms": 2.8213998302817345,
+    "nominal_128_sample_block_ms": 2.56,
+    "nominal_received_sample_duration_ms": 204.8,
+    "data_interarrival_ms": {
+      "mean": 3.0827620243535767,
+      "median": 3.0857000965625048,
+      "min": 0.9685000404715538,
+      "max": 5.246399901807308
+    },
+    "observed_samples_per_second_between_first_last_blocks": 41521.20695298894,
+    "device_read_chunk_bytes_histogram": {
+      "47": 1,
+      "54": 1,
+      "46": 1,
+      "64": 1,
+      "243": 1,
+      "307": 75,
+      "544": 1,
+      "70": 2,
+      "306": 2,
+      "50": 1
+    },
+    "largest_intervals": [
+      {
+        "gap_ms": 5.246399901807308,
+        "next_first_index": 8704
+      },
+      {
+        "gap_ms": 4.875200102105737,
+        "next_first_index": 3328
+      },
+      {
+        "gap_ms": 4.868499934673309,
+        "next_first_index": 7296
+      },
+      {
+        "gap_ms": 4.82369982637465,
+        "next_first_index": 1536
+      },
+      {
+        "gap_ms": 4.7969999723136425,
+        "next_first_index": 2688
+      },
+      {
+        "gap_ms": 4.744499921798706,
+        "next_first_index": 7552
+      },
+      {
+        "gap_ms": 4.569400101900101,
+        "next_first_index": 9472
+      },
+      {
+        "gap_ms": 4.150399938225746,
+        "next_first_index": 3072
+      }
+    ]
+  },
+  "data_arrivals": [
+    {
+      "sequence": 4,
+      "first_index": 0,
+      "count": 128,
+      "host_ms_after_start": 9.2285,
+      "frame_bytes": 307
+    },
+    {
+      "sequence": 5,
+      "first_index": 128,
+      "count": 128,
+      "host_ms_after_start": 11.463,
+      "frame_bytes": 307
+    },
+    {
+      "sequence": 6,
+      "first_index": 256,
+      "count": 128,
+      "host_ms_after_start": 14.1111,
+      "frame_bytes": 307
+    },
+    {
+      "sequence": 7,
+      "first_index": 384,
+      "count": 128,
+      "host_ms_after_start": 17.3496,
+      "frame_bytes": 307
+    },
+    {
+      "sequence": 8,
+      "first_index": 512,
+      "count": 128,
+      "host_ms_after_start": 20.5644,
+      "frame_bytes": 307
+    },
+    {
+      "sequence": 9,
+      "first_index": 640,
+      "count": 128,
+      "host_ms_after_start": 23.3974,
+      "frame_bytes": 307
+    },
+    {
+      "sequence": 10,
+      "first_index": 768,
+      "count": 128,
+      "host_ms_after_start": 27.4949,
+      "frame_bytes": 307
+    },
+    {
+      "sequence": 11,
+      "first_index": 896,
+      "count": 128,
+      "host_ms_after_start": 31.4104,
+      "frame_bytes": 307
+    },
+    {
+      "sequence": 12,
+      "first_index": 1024,
+      "count": 128,
+      "host_ms_after_start": 33.4141,
+      "frame_bytes": 307
+    },
+    {
+      "sequence": 13,
+      "first_index": 1152,
+      "count": 128,
+      "host_ms_after_start": 37.3402,
+      "frame_bytes": 307
+    },
+    {
+      "sequence": 14,
+      "first_index": 1280,
+      "count": 128,
+      "host_ms_after_start": 40.1452,
+      "frame_bytes": 307
+    },
+    {
+      "sequence": 15,
+      "first_index": 1408,
+      "count": 128,
+      "host_ms_after_start": 42.3992,
+      "frame_bytes": 307
+    },
+    {
+      "sequence": 16,
+      "first_index": 1536,
+      "count": 128,
+      "host_ms_after_start": 47.2229,
+      "frame_bytes": 307
+    },
+    {
+      "sequence": 17,
+      "first_index": 1664,
+      "count": 128,
+      "host_ms_after_start": 48.8965,
+      "frame_bytes": 307
+    },
+    {
+      "sequence": 18,
+      "first_index": 1792,
+      "count": 128,
+      "host_ms_after_start": 51.9806,
+      "frame_bytes": 307
+    },
+    {
+      "sequence": 19,
+      "first_index": 1920,
+      "count": 128,
+      "host_ms_after_start": 55.8877,
+      "frame_bytes": 307
+    },
+    {
+      "sequence": 20,
+      "first_index": 2048,
+      "count": 128,
+      "host_ms_after_start": 58.9835,
+      "frame_bytes": 307
+    },
+    {
+      "sequence": 21,
+      "first_index": 2176,
+      "count": 128,
+      "host_ms_after_start": 63.0349,
+      "frame_bytes": 307
+    },
+    {
+      "sequence": 22,
+      "first_index": 2304,
+      "count": 128,
+      "host_ms_after_start": 64.7399,
+      "frame_bytes": 307
+    },
+    {
+      "sequence": 23,
+      "first_index": 2432,
+      "count": 128,
+      "host_ms_after_start": 67.9949,
+      "frame_bytes": 307
+    },
+    {
+      "sequence": 24,
+      "first_index": 2560,
+      "count": 128,
+      "host_ms_after_start": 70.8894,
+      "frame_bytes": 307
+    },
+    {
+      "sequence": 25,
+      "first_index": 2688,
+      "count": 128,
+      "host_ms_after_start": 75.6864,
+      "frame_bytes": 307
+    },
+    {
+      "sequence": 26,
+      "first_index": 2816,
+      "count": 128,
+      "host_ms_after_start": 77.5645,
+      "frame_bytes": 307
+    },
+    {
+      "sequence": 27,
+      "first_index": 2944,
+      "count": 128,
+      "host_ms_after_start": 80.7511,
+      "frame_bytes": 307
+    },
+    {
+      "sequence": 28,
+      "first_index": 3072,
+      "count": 128,
+      "host_ms_after_start": 84.9015,
+      "frame_bytes": 307
+    },
+    {
+      "sequence": 29,
+      "first_index": 3200,
+      "count": 128,
+      "host_ms_after_start": 86.783,
+      "frame_bytes": 307
+    },
+    {
+      "sequence": 30,
+      "first_index": 3328,
+      "count": 128,
+      "host_ms_after_start": 91.6582,
+      "frame_bytes": 307
+    },
+    {
+      "sequence": 31,
+      "first_index": 3456,
+      "count": 128,
+      "host_ms_after_start": 94.7854,
+      "frame_bytes": 307
+    },
+    {
+      "sequence": 32,
+      "first_index": 3584,
+      "count": 128,
+      "host_ms_after_start": 96.8646,
+      "frame_bytes": 307
+    },
+    {
+      "sequence": 33,
+      "first_index": 3712,
+      "count": 128,
+      "host_ms_after_start": 100.8978,
+      "frame_bytes": 307
+    },
+    {
+      "sequence": 34,
+      "first_index": 3840,
+      "count": 128,
+      "host_ms_after_start": 103.0368,
+      "frame_bytes": 307
+    },
+    {
+      "sequence": 35,
+      "first_index": 3968,
+      "count": 128,
+      "host_ms_after_start": 106.9018,
+      "frame_bytes": 307
+    },
+    {
+      "sequence": 36,
+      "first_index": 4096,
+      "count": 128,
+      "host_ms_after_start": 109.8995,
+      "frame_bytes": 307
+    },
+    {
+      "sequence": 37,
+      "first_index": 4224,
+      "count": 128,
+      "host_ms_after_start": 112.3391,
+      "frame_bytes": 307
+    },
+    {
+      "sequence": 38,
+      "first_index": 4352,
+      "count": 128,
+      "host_ms_after_start": 115.3688,
+      "frame_bytes": 307
+    },
+    {
+      "sequence": 39,
+      "first_index": 4480,
+      "count": 128,
+      "host_ms_after_start": 119.2381,
+      "frame_bytes": 307
+    },
+    {
+      "sequence": 40,
+      "first_index": 4608,
+      "count": 128,
+      "host_ms_after_start": 123.0149,
+      "frame_bytes": 307
+    },
+    {
+      "sequence": 41,
+      "first_index": 4736,
+      "count": 128,
+      "host_ms_after_start": 125.2536,
+      "frame_bytes": 307
+    },
+    {
+      "sequence": 42,
+      "first_index": 4864,
+      "count": 128,
+      "host_ms_after_start": 128.3474,
+      "frame_bytes": 307
+    },
+    {
+      "sequence": 43,
+      "first_index": 4992,
+      "count": 128,
+      "host_ms_after_start": 131.0722,
+      "frame_bytes": 307
+    },
+    {
+      "sequence": 44,
+      "first_index": 5120,
+      "count": 128,
+      "host_ms_after_start": 135.1547,
+      "frame_bytes": 307
+    },
+    {
+      "sequence": 45,
+      "first_index": 5248,
+      "count": 128,
+      "host_ms_after_start": 138.3866,
+      "frame_bytes": 307
+    },
+    {
+      "sequence": 46,
+      "first_index": 5376,
+      "count": 128,
+      "host_ms_after_start": 142.2191,
+      "frame_bytes": 307
+    },
+    {
+      "sequence": 47,
+      "first_index": 5504,
+      "count": 128,
+      "host_ms_after_start": 144.1325,
+      "frame_bytes": 307
+    },
+    {
+      "sequence": 48,
+      "first_index": 5632,
+      "count": 128,
+      "host_ms_after_start": 148.1504,
+      "frame_bytes": 307
+    },
+    {
+      "sequence": 49,
+      "first_index": 5760,
+      "count": 128,
+      "host_ms_after_start": 151.1882,
+      "frame_bytes": 307
+    },
+    {
+      "sequence": 50,
+      "first_index": 5888,
+      "count": 128,
+      "host_ms_after_start": 154.5357,
+      "frame_bytes": 307
+    },
+    {
+      "sequence": 51,
+      "first_index": 6016,
+      "count": 128,
+      "host_ms_after_start": 156.4475,
+      "frame_bytes": 307
+    },
+    {
+      "sequence": 52,
+      "first_index": 6144,
+      "count": 128,
+      "host_ms_after_start": 159.9128,
+      "frame_bytes": 307
+    },
+    {
+      "sequence": 53,
+      "first_index": 6272,
+      "count": 128,
+      "host_ms_after_start": 163.0902,
+      "frame_bytes": 307
+    },
+    {
+      "sequence": 54,
+      "first_index": 6400,
+      "count": 128,
+      "host_ms_after_start": 166.9473,
+      "frame_bytes": 307
+    },
+    {
+      "sequence": 55,
+      "first_index": 6528,
+      "count": 128,
+      "host_ms_after_start": 170.177,
+      "frame_bytes": 307
+    },
+    {
+      "sequence": 56,
+      "first_index": 6656,
+      "count": 128,
+      "host_ms_after_start": 173.7241,
+      "frame_bytes": 307
+    },
+    {
+      "sequence": 57,
+      "first_index": 6784,
+      "count": 128,
+      "host_ms_after_start": 176.7247,
+      "frame_bytes": 307
+    },
+    {
+      "sequence": 58,
+      "first_index": 6912,
+      "count": 128,
+      "host_ms_after_start": 180.0375,
+      "frame_bytes": 307
+    },
+    {
+      "sequence": 59,
+      "first_index": 7040,
+      "count": 128,
+      "host_ms_after_start": 183.9715,
+      "frame_bytes": 307
+    },
+    {
+      "sequence": 60,
+      "first_index": 7168,
+      "count": 128,
+      "host_ms_after_start": 184.94,
+      "frame_bytes": 307
+    },
+    {
+      "sequence": 61,
+      "first_index": 7296,
+      "count": 128,
+      "host_ms_after_start": 189.8085,
+      "frame_bytes": 307
+    },
+    {
+      "sequence": 62,
+      "first_index": 7424,
+      "count": 128,
+      "host_ms_after_start": 191.6631,
+      "frame_bytes": 307
+    },
+    {
+      "sequence": 63,
+      "first_index": 7552,
+      "count": 128,
+      "host_ms_after_start": 196.4076,
+      "frame_bytes": 307
+    },
+    {
+      "sequence": 64,
+      "first_index": 7680,
+      "count": 128,
+      "host_ms_after_start": 197.8616,
+      "frame_bytes": 307
+    },
+    {
+      "sequence": 65,
+      "first_index": 7808,
+      "count": 128,
+      "host_ms_after_start": 200.8349,
+      "frame_bytes": 307
+    },
+    {
+      "sequence": 66,
+      "first_index": 7936,
+      "count": 128,
+      "host_ms_after_start": 204.8488,
+      "frame_bytes": 307
+    },
+    {
+      "sequence": 67,
+      "first_index": 8064,
+      "count": 128,
+      "host_ms_after_start": 207.8568,
+      "frame_bytes": 307
+    },
+    {
+      "sequence": 68,
+      "first_index": 8192,
+      "count": 128,
+      "host_ms_after_start": 210.8458,
+      "frame_bytes": 307
+    },
+    {
+      "sequence": 69,
+      "first_index": 8320,
+      "count": 128,
+      "host_ms_after_start": 213.8445,
+      "frame_bytes": 307
+    },
+    {
+      "sequence": 70,
+      "first_index": 8448,
+      "count": 128,
+      "host_ms_after_start": 216.9302,
+      "frame_bytes": 307
+    },
+    {
+      "sequence": 71,
+      "first_index": 8576,
+      "count": 128,
+      "host_ms_after_start": 219.8742,
+      "frame_bytes": 307
+    },
+    {
+      "sequence": 72,
+      "first_index": 8704,
+      "count": 128,
+      "host_ms_after_start": 225.1206,
+      "frame_bytes": 307
+    },
+    {
+      "sequence": 73,
+      "first_index": 8832,
+      "count": 128,
+      "host_ms_after_start": 226.3058,
+      "frame_bytes": 307
+    },
+    {
+      "sequence": 74,
+      "first_index": 8960,
+      "count": 128,
+      "host_ms_after_start": 227.4173,
+      "frame_bytes": 306
+    },
+    {
+      "sequence": 75,
+      "first_index": 9088,
+      "count": 128,
+      "host_ms_after_start": 231.2553,
+      "frame_bytes": 307
+    },
+    {
+      "sequence": 76,
+      "first_index": 9216,
+      "count": 128,
+      "host_ms_after_start": 234.1178,
+      "frame_bytes": 307
+    },
+    {
+      "sequence": 77,
+      "first_index": 9344,
+      "count": 128,
+      "host_ms_after_start": 235.6759,
+      "frame_bytes": 307
+    },
+    {
+      "sequence": 78,
+      "first_index": 9472,
+      "count": 128,
+      "host_ms_after_start": 240.2453,
+      "frame_bytes": 307
+    },
+    {
+      "sequence": 79,
+      "first_index": 9600,
+      "count": 128,
+      "host_ms_after_start": 241.9157,
+      "frame_bytes": 307
+    },
+    {
+      "sequence": 80,
+      "first_index": 9728,
+      "count": 128,
+      "host_ms_after_start": 244.0623,
+      "frame_bytes": 306
+    },
+    {
+      "sequence": 81,
+      "first_index": 9856,
+      "count": 128,
+      "host_ms_after_start": 247.8212,
+      "frame_bytes": 307
+    },
+    {
+      "sequence": 82,
+      "first_index": 9984,
+      "count": 128,
+      "host_ms_after_start": 249.8,
+      "frame_bytes": 307
+    },
+    {
+      "sequence": 83,
+      "first_index": 10112,
+      "count": 128,
+      "host_ms_after_start": 252.7667,
+      "frame_bytes": 307
+    }
+  ],
+  "firmware": {
+    "folder": "build/v5-fw-09",
+    "build_id": "0x56325333",
+    "bin_sha256": "a35d3675e5d9d3b8b6a60c2b7103b14d10f81d1f064a6884436a46d844977665",
+    "source_sha256": {
+      "firmware/protocol/mt_live_device.c": "be3effe882ebc209c68645fe1140f83a102ca54286d0b9677ab538d7fce3ab4d",
+      "firmware/app/mt_live_runtime.c": "96ebd81a52b15a4d10abc2501d7c6ff3bb7369418ce78d88eaeaaea249bdb7bf",
+      "firmware/acquisition/mt_sample_queue.h": "4c856b9b312b93bdd0fbf4d616316b2d101cad0a807734c4e7488fd03968edc4",
+      "firmware/boot/tusb_config.h": "341fd5a09fe5594c9e6dbee0c14427c485476e58bd8efb640091a717dd657c9e"
+    },
+    "reason_1_source": "firmware/protocol/mt_live_device.c:442-443: failed mt_sample_queue_push, FULL -> terminate(reason=1); also terminal tail push can retain FULL reason",
+    "queue_slots": 16,
+    "samples_per_slot": 128,
+    "nominal_queue_duration_ms": 40.96,
+    "wire_offer_bytes_per_step": 64,
+    "cdc_tx_fifo_bytes": 64,
+    "cdc_tx_endpoint_bytes": 64,
+    "typical_data_frame_minimum_write_steps": 5,
+    "flush_per_outer_runtime_step": true
+  },
+  "host": {
+    "read_offer_bound_bytes": 544,
+    "owner_poll_target_ms": 1,
+    "max_service_gap_ms_from_probe": 34,
+    "peak_raw_items_from_probe": 3,
+    "failure": "source_error/device_1",
+    "storage_failure_observed": false
+  },
+  "conclusions": [
+    "Host profile is accepted: START_ACK generation3/config1 followed by80 contiguous valid DATA frames.",
+    "Device END reason1 flags3 stop_request0 precedes host STOP; no UI Stop caused this primary terminal.",
+    "Exact firmware reason1 means sample-queue-full. Buffered blocks were drained to verified prefix_end10240; produced endpoint remains unknown.",
+    "Observed DATA delivery between first and last blocks is about41.5k samples/s, below nominal50k production; this is consistent with filling the16-block queue.",
+    "64-byte TX offer/FIFO and flush-per-step require at least5 write acceptances per307-byte DATA frame. Traffic alone does not isolate CPU step cost, USB scheduling, or host scheduling as the limiting component.",
+    "CDC115200 is line-coding metadata in this native USB backend, not evidence of a115200-baud UART throughput limit.",
+    "Existing offline equality receipt proves8960 selected raw codes [1280,10240) match wire byte-for-byte; no inference of lossless unseen ADC tail or calibrated voltage/time."
+  ],
+  "real_com_opened": false,
+  "swd_accessed": false,
+  "firmware_or_host_modified": false
+}

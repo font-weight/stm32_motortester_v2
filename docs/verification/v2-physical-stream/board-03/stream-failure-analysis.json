@@ -1,0 +1,112 @@
+{
+  "schema": "v2-stream-failure-analysis-1",
+  "scope": "Offline interpretation of preserved trial03 evidence; no new hardware operation",
+  "firmware_build": "0x56325333",
+  "image_bin_sha256": "a35d3675e5d9d3b8b6a60c2b7103b14d10f81d1f064a6884436a46d844977665",
+  "evidence_sha256": {
+    "ram-stream-failure.bin": "213e3f204c960d5c52a6488692519c259e8f0a0e95cbc207866354223fbd037c",
+    "diagnostics-first.bin": "be8e3bee40a3c614a96111684f08823fc281cab834959fd68ef57513f743d3fc",
+    "diagnostics-second.bin": "be8e3bee40a3c614a96111684f08823fc281cab834959fd68ef57513f743d3fc",
+    "diagnostics-decoded.json": "96a11b5481c3a540e3da1a475875b8e7f20c8e3597715bcd1e19db97c892c5d7",
+    "run/result.json": "2eb2fde28b99ef34f2bfcce7dadee29bb0e9ea5b723cbab3f1953eb9313424d9",
+    "run/traffic.bin": "bc302399d0be20b5b13624b0451f8d98dd27cb0baad19d22e7253a63048f2ff8"
+  },
+  "ram_fields": {
+    "start_before_us": {
+      "address": "0x200007c0",
+      "value": 59697054,
+      "meaning": "TIM3 CEN lower timestamp"
+    },
+    "start_after_us": {
+      "address": "0x200007c4",
+      "value": 59697055,
+      "meaning": "TIM3 CEN upper timestamp"
+    },
+    "adc_first_fault": {
+      "address": "0x20000808",
+      "value": 0,
+      "meaning": "0=NONE"
+    },
+    "adc_fault": {
+      "address": "0x200007e0",
+      "value": 0,
+      "meaning": "0=NONE"
+    },
+    "adc_first_sample_index": {
+      "address": "0x200007d0",
+      "value": 10368,
+      "meaning": "driver next full-block index"
+    },
+    "stop_count": {
+      "address": "0x200007ec",
+      "value": 27,
+      "meaning": "stopped DMA tail count, not produced total"
+    },
+    "stop_first_index": {
+      "address": "0x200007f8",
+      "value": 10368,
+      "meaning": "stopped DMA tail first index"
+    },
+    "stop_dma_end": {
+      "address": "0x20000800",
+      "value": 10395,
+      "meaning": "DMA-only endpoint; not produced_end"
+    },
+    "queue_head_index": {
+      "address": "0x20001850",
+      "value": 10240,
+      "meaning": "after drain"
+    },
+    "queue_next_index": {
+      "address": "0x20001858",
+      "value": 10240,
+      "meaning": "accepted queue prefix end"
+    },
+    "queue_used": {
+      "address": "0x20001864",
+      "value": 0,
+      "meaning": "after drain"
+    },
+    "queue_sealed": {
+      "address": "0x20001868",
+      "value": 1,
+      "meaning": "input closed"
+    },
+    "queue_first_fault": {
+      "address": "0x2000186c",
+      "value": 7,
+      "meaning": "7=MT_SAMPLE_QUEUE_FULL"
+    },
+    "timebase_state": {
+      "address": "0x2000231c",
+      "value": 1,
+      "meaning": "1=RUNNING"
+    },
+    "timebase_fault": {
+      "address": "0x20002320",
+      "value": 0,
+      "meaning": "0=NO_FAULT"
+    }
+  },
+  "frozen_diagnostics": {
+    "queue_high_water": 16,
+    "first_acquisition_reason": 1,
+    "first_adc_fault": 0,
+    "driver_observed_poll_gap_us": 1274,
+    "copy_max_us": 54,
+    "step_count": 421,
+    "tx_count": 421,
+    "tx_max_cycles": 63785,
+    "poll_count": 328,
+    "copy_count": 81,
+    "final_adc_owned": 0,
+    "final_hardware_off": 1
+  },
+  "conclusion": "The first stopped cause is firmware sample-queue FULL:16 slots, first_fault7/reason1. The accepted contiguous prefix0..10240 was drained; the next offered block[10240,10368) was rejected. ADC fault and TIME fault stayed0. CEN bracket is1us. Later stopped DMA tail is not joined across the lost block.",
+  "limits": [
+    "Firmware clocks/cycles are observations, not an independently measured frequency or WCET.",
+    "DMA endpoint10395 does not prove produced_end; wire produced endpoint remains unknown.",
+    "Queue full proves producer/consumer imbalance in this trial, not USB physical bandwidth or a host storage fault.",
+    "Current diagnostics do not measure CRC total cost separately; the source has two bitwise CRC passes per DATA as an optimization target."
+  ]
+}
