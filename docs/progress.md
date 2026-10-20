@@ -73,6 +73,20 @@ UI-профили не меняют физическую шкалу.
   без изменения поведения. По замечанию критика общая подпись режима 2
   заменена на «Просмотр записи»/«Запись»: тот же режим содержит и завершённую
   DEMO-запись в памяти, поэтому факт открытия файла нельзя выводить из номера режима.
+- При закрытии во время передачи критик воспроизвёл ещё один дефект:
+  поздний неполный результат появлялся после начала shutdown, а завершившийся
+  worker уже не мог принять ACK после сохранения. V2 теперь удерживает точный
+  результат с его контекстом и после завершения worker разрешает локальное
+  освобождение только после успешного сохранения именно этого результата.
+  При живом worker сохраняется его подтверждение; ошибка записи не снимает
+  удержание. GUI больше не игнорирует отказ ACK.
+  [Новая проверка адаптера](verification/v2-device/late-incomplete-core.log):
+  **1 PASS, 0,082 с**; 250 исходных кодов, 1798 отсутствующих, ошибка сохранения,
+  верное сохранение/контекст и отказ для другого объекта/повторного ACK.
+  [Путь окна](verification/v2-device/late-incomplete-gui.log):
+  **1 PASS, 1,228 с**; Close во время partial → JSON → штатное Close.
+  [Затронутый прежний live ACK](verification/v2-device/live-incomplete-ack.log):
+  **1 PASS, 0,101 с**. Все три проверки используют fake serial, без COM.
 
 Команды этих адресных проверок из `host/`:
 
@@ -80,6 +94,23 @@ UI-профили не меняют физическую шкалу.
 ..\.venv\Scripts\python.exe -m unittest discover -s tests -p test_v2_device.py -v
 ..\.venv\Scripts\python.exe -m unittest discover -s tests -p test_v2_device_gui.py -v
 ```
+
+После исправления shutdown повторялись только затронутые случаи:
+
+```powershell
+..\.venv\Scripts\python.exe -m unittest discover -s tests -p test_v2_device.py -k shutdown_late_incomplete -v
+..\.venv\Scripts\python.exe -m unittest discover -s tests -p test_v2_device_gui.py -k close_during_partial -v
+..\.venv\Scripts\python.exe -m unittest discover -s tests -p test_v2_device.py -k disconnect_retains -v
+```
+
+Первый пакет этой итерации из `9228f5d82af3543570a6cc282a16c2cae6c76e3c`
+собран в `build/v3w` и прошёл свой ограниченный frozen smoke, но **не принят**
+из-за найденного при независимом ревью дефекта поздней неполноты.
+ZIP SHA-256 `1745fd5cb7d1c8cb767b0e016206a20c54c8d4029072685d39acb5f944640cac`.
+Исходный ZIP и журналы сохранены; [отчёт предшественника](verification/v2-device/package-before-close-fix/build-report.json).
+Визуальный осмотр его [панели](verification/v2-device/package-before-close-fix/device-panel.png)
+также показал светлый фон числового поля — для QSpinBox добавлен тёмный стиль.
+Это не изменяет аппаратный порог.
 
 Первичная независимая проверка обнаружила подмену последнего сохраняемого окна
 при порядке READY → capture, перенос старого результата в новый запуск,

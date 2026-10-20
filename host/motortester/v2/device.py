@@ -146,12 +146,13 @@ class DeviceBridge(QtCore.QObject):
                                         clock_ms=clock_ms, interval_ms=interval_ms)
         self._channel_name, self._ui_profile = "Канал 1", "oscilloscope"
         self._recording = self._capture = None
-        self._last_incomplete = self._incomplete_context = None
+        self._incomplete_item = self._pending_incomplete = self._saved_incomplete = None
+        self._worker_finished = False
         self.bridge.state_changed.connect(self._state_changed)
         self.bridge.capture_ready.connect(self._capture_ready)
         self.bridge.incomplete_ready.connect(self._incomplete_ready)
         self.bridge.error.connect(self.error.emit)
-        self.bridge.finished.connect(self.finished.emit)
+        self.bridge.finished.connect(self._finished)
 
     @property
     def state(self):
@@ -167,7 +168,7 @@ class DeviceBridge(QtCore.QObject):
 
     @property
     def pending_incomplete(self):
-        return self.bridge.pending_incomplete
+        return self._pending_incomplete
 
     def connect_source(self, port, reset_confirmed=False):
         return self.bridge.connect_source("device", port=port, reset_confirmed=reset_confirmed)
@@ -196,13 +197,30 @@ class DeviceBridge(QtCore.QObject):
         return self.bridge.acknowledge(self._capture)
 
     def acknowledge_incomplete(self, result):
+        if result is None or result is not self._pending_incomplete:
+            return False
+        if self._worker_finished:
+            # Shutdown can produce fragments while closing the transport. The
+            # dead worker cannot consume an ACK; only our exact successful save
+            # permits settling that retained result locally.
+            if result is not self._saved_incomplete:
+                return False
+            self._pending_incomplete = None
+            return True
+        # A queued live ACK can still be cancelled by Shutdown. Retain the local
+        # result until a worker state confirms that it actually consumed it.
         return self.bridge.acknowledge_incomplete(result)
 
     def save_incomplete(self, path, result):
-        if result is not self._last_incomplete:
+        item = self._incomplete_item
+        if item is None or result is not item[0]:
             raise V2Error("Неполный результат не принадлежит этому подключению")
-        snapshot, name, profile = self._incomplete_context
+        # The immutable tuple binds data and context for the entire file job,
+        # even if a later GUI notification installs another result meanwhile.
+        _, snapshot, name, profile = item
         save_incomplete(path, result, snapshot=snapshot, channel_name=name, ui_profile=profile)
+        if self._incomplete_item is item:
+            self._saved_incomplete = result
 
     def stop(self):
         return self.bridge.stop()
@@ -217,6 +235,8 @@ class DeviceBridge(QtCore.QObject):
     def _state_changed(self, state):
         if not state.has_capture:
             self._recording = self._capture = None
+        if not state.has_incomplete and not self._worker_finished:
+            self._pending_incomplete = None
         self.state_changed.emit(state)
 
     @QtCore.Slot(object)
@@ -234,6 +254,15 @@ class DeviceBridge(QtCore.QObject):
 
     @QtCore.Slot(object)
     def _incomplete_ready(self, result):
-        self._last_incomplete = result
-        self._incomplete_context = (self.snapshot, self._channel_name, self._ui_profile)
+        if self._incomplete_item is None or self._incomplete_item[0] is not result:
+            self._incomplete_item = (result, self.snapshot, self._channel_name, self._ui_profile)
+            self._saved_incomplete = None
+        self._pending_incomplete = result
         self.incomplete_ready.emit(result)
+
+    @QtCore.Slot()
+    def _finished(self):
+        # AcquisitionBridge emits finished only after its final drain and
+        # nonblocking native join. Late incomplete_ready has already arrived.
+        self._worker_finished = True
+        self.finished.emit()

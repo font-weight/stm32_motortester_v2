@@ -1,6 +1,7 @@
 """One native Qt scenario across DEMO/device/file boundaries; no physical COM."""
 import csv
 from dataclasses import replace
+import json
 from pathlib import Path
 import sys
 import tempfile
@@ -165,6 +166,52 @@ class DeviceGuiTest(unittest.TestCase):
                 window.device_acquiring = False
                 window.close()
                 self.app.processEvents()
+
+    def test_close_during_partial_window_save_then_close(self):
+        """Shutdown-created fragments must be saveable before the final close."""
+        controls, calls, errors = {"trigger": True, "hold_partial": True}, [], []
+        def factory(parent):
+            return DeviceBridge(parent, serial_factory=lambda: SerialTransport(
+                backend_factory=lambda **kw: FakeSerial(controls, calls, **kw)), interval_ms=2)
+        def wait(predicate):
+            end = time.monotonic() + 5
+            while not predicate() and time.monotonic() < end:
+                self.app.processEvents()
+                time.sleep(.005)
+            self.app.processEvents()
+            self.assertEqual(errors, [])
+            self.assertTrue(predicate(), "Late incomplete GUI operation timed out")
+        with tempfile.TemporaryDirectory() as tmp, patch.object(
+                sys, "excepthook", side_effect=lambda kind, value, tb: errors.append(str(value))):
+            window = MainWindow(settings_path=Path(tmp) / "settings.ini", device_bridge_factory=factory)
+            window.show()
+            try:
+                with patch("motortester.v2.device_ui.available_ports", return_value=()):
+                    window.device_info()
+                window.device_panel.port.setCurrentText("FAKE_V2")
+                window.device_panel.connect_device()
+                wait(lambda: window.device.snapshot and window.device.snapshot.phase is Phase.READY)
+                window.start_device(2)
+                wait(lambda: controls.get("partial_delivered"))
+                self.assertIsNone(window.device.pending_incomplete)
+                window.close()
+                wait(lambda: window._device_shutdown and window.device.pending_incomplete is not None)
+                self.assertFalse(window.device.bridge.running)
+                self.assertTrue(window.isVisible())
+                path = Path(tmp) / "late.json"
+                with patch.object(QtWidgets.QFileDialog, "getSaveFileName", return_value=(str(path), "")):
+                    window.save_device_fragments()
+                wait(lambda: not window.busy)
+                self.assertIsNone(window.device.pending_incomplete)
+                data = json.loads(path.read_text(encoding="utf-8"))
+                self.assertEqual(sum(len(f["samples"]) for f in data["result"]["fragments"]), 250)
+                self.assertEqual(data["result"]["missing_ranges"], [[250, 2048]])
+                window.close()
+                wait(lambda: not window.isVisible())
+            finally:
+                window.device.shutdown()
+                wait(lambda: not window.device.bridge.running)
+                window.hide()
 
 
 if __name__ == "__main__":

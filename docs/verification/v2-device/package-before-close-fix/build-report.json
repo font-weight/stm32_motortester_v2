@@ -1,0 +1,142 @@
+{
+  "status": "PASS",
+  "scope": "Local portable package verification on the recorded Windows host; not a clean-machine, physical-device or public-release acceptance",
+  "source_commit": "9228f5d82af3543570a6cc282a16c2cae6c76e3c",
+  "portable_zip": "MotortesterV2-windows-x64.zip",
+  "portable_sha256": "1745fd5cb7d1c8cb767b0e016206a20c54c8d4029072685d39acb5f944640cac",
+  "source_sha256": "ff3e39b50db7bc0f26acb68799ea1c5163a8c3508c553821340455ef5637aea0",
+  "executable_sha256": {
+    "MotortesterV2.exe": "cedae45eec86b5819a8be4bdbf8ef0513e3a1bb69c7eb5fcff66480abc30b856",
+    "MotortesterV2Inspect.exe": "2568d45cb26dcb39918730afaa1dd2a43d837e4a177d2ee33931cc76949396ae"
+  },
+  "extracted_bundle": "C:\\Users\\Alexandr\\Desktop\\New folder\\универ\\мотортестер 2\\build\\v3w\\Проверка переноса\\MotortesterV2",
+  "working_directory": "C:\\Users\\Alexandr\\Desktop\\New folder\\универ\\мотортестер 2\\build\\v3w\\Другая рабочая папка",
+  "isolated_path": "C:\\Windows\\System32",
+  "frozen_smoke": {
+    "status": "PASS",
+    "platform": "win32",
+    "windows": "Windows-10-10.0.19045-SP0",
+    "python": "3.14.7 (tags/v3.14.7:823f032, Aug  5 2026, 10:51:32) [MSC v.1944 64 bit (AMD64)]",
+    "frozen": true,
+    "executable": "C:\\Users\\Alexandr\\Desktop\\New folder\\универ\\мотортестер 2\\build\\v3w\\Проверка переноса\\MotortesterV2\\MotortesterV2.exe",
+    "cwd": "C:\\Users\\Alexandr\\Desktop\\New folder\\универ\\мотортестер 2\\build\\v3w\\Другая рабочая папка",
+    "checks": [
+      "packaged Windows pyserial; device panel with mocked enumeration; no COM open",
+      "native GUI; both DEMO profiles; V/mV keeps raw and physical values",
+      "single capture; pause-independent recording with a real data gap",
+      "GUI save/open keeps raw and input snapshot; CSV/JSON keeps gap and checksum",
+      "synthetic wire 0.1 window -> V2 unknown scale -> exact save/reopen"
+    ],
+    "callback_errors": [],
+    "qt_platform": "windows",
+    "qt": "6.12.0",
+    "numpy": "2.5.3",
+    "sample_count": 7500,
+    "session_id": "59b7092a-6360-47f7-b167-682a1c7f9951",
+    "device_verification": {
+      "status": "PASS",
+      "serial_version": "3.5",
+      "serial_backend": "serial.serialwin32",
+      "enumeration_mocked": true,
+      "panel_created": true,
+      "serial_open_calls": 0,
+      "worker_running": false,
+      "wire_source": "demo",
+      "sample_count": 2048,
+      "session_id": "00000000-0000-0000-5349-4d0000000001",
+      "voltage_state": "unconfigured",
+      "time_basis": "nominal_unverified",
+      "physical_device_verified": false
+    },
+    "files": {
+      "device-panel.png": {
+        "bytes": 27513,
+        "sha256": "2ca93866cbf99ee0e90db68189b7862a6630294d2b3af992fc33deea0ac544f0"
+      },
+      "device-window.mtv2": {
+        "bytes": 5678,
+        "sha256": "4ed868c2315a919cc6bc816b03f21a94e069b412f9a75adaf5995e60c88b0276"
+      },
+      "export.csv": {
+        "bytes": 351704,
+        "sha256": "15412527f9638f3fcb668f33502c00092c66d9e4606da1a460a980004c879674"
+      },
+      "export.csv.json": {
+        "bytes": 1996,
+        "sha256": "eb5c1f041634f24a2ce2d4e8ea3b6430c167ab19e5e22fd7481af646c77d2e1f"
+      },
+      "ignition.png": {
+        "bytes": 105519,
+        "sha256": "7a6d1d409a73555c94f7e100e1611ab5fc2aefc523f6a8cf798ca993151e4c00"
+      },
+      "sample.mtv2": {
+        "bytes": 16757,
+        "sha256": "6aa9ecca903abb8b56ca411fa472f885b17d8bfc14aa282abf5f79afcdc500f1"
+      },
+      "scope.png": {
+        "bytes": 124370,
+        "sha256": "2984b49760ec73672f56351f4eccfc9453c97512f4d559b3a0c4c8a2610be10d"
+      }
+    }
+  },
+  "png_files": {
+    "scope.png": {
+      "sha256": "2984b49760ec73672f56351f4eccfc9453c97512f4d559b3a0c4c8a2610be10d",
+      "bytes": 124370,
+      "width": 1440,
+      "height": 920,
+      "validation": "PNG IHDR/CRC and SHA-256"
+    },
+    "ignition.png": {
+      "sha256": "7a6d1d409a73555c94f7e100e1611ab5fc2aefc523f6a8cf798ca993151e4c00",
+      "bytes": 105519,
+      "width": 1440,
+      "height": 920,
+      "validation": "PNG IHDR/CRC and SHA-256"
+    },
+    "device-panel.png": {
+      "sha256": "2ca93866cbf99ee0e90db68189b7862a6630294d2b3af992fc33deea0ac544f0",
+      "bytes": 27513,
+      "width": 510,
+      "height": 670,
+      "validation": "PNG IHDR/CRC and SHA-256"
+    }
+  },
+  "console_inspector": {
+    "status": "PASS",
+    "report": "inspect-report.json",
+    "sample_count": 7500
+  },
+  "device_window_inspector": {
+    "status": "PASS",
+    "report": "device-inspect-report.json",
+    "sample_count": 2048,
+    "source": "demo",
+    "voltage_state": "unconfigured"
+  },
+  "ordinary_gui_entrypoint": {
+    "status": "PASS",
+    "mode": "live DEMO ignition",
+    "automatic_screenshot_exit": true,
+    "png": {
+      "sha256": "23889f0bfdf153fa8a82b6be153f17d4e24bf01c8b28eaa5881e3b9110a4a242",
+      "bytes": 104073,
+      "width": 1440,
+      "height": 920,
+      "validation": "PNG IHDR/CRC and SHA-256"
+    }
+  },
+  "smoke_files": {
+    "device-panel.png": "2ca93866cbf99ee0e90db68189b7862a6630294d2b3af992fc33deea0ac544f0",
+    "device-window.mtv2": "4ed868c2315a919cc6bc816b03f21a94e069b412f9a75adaf5995e60c88b0276",
+    "export.csv": "15412527f9638f3fcb668f33502c00092c66d9e4606da1a460a980004c879674",
+    "export.csv.json": "eb5c1f041634f24a2ce2d4e8ea3b6430c167ab19e5e22fd7481af646c77d2e1f",
+    "ignition.png": "7a6d1d409a73555c94f7e100e1611ab5fc2aefc523f6a8cf798ca993151e4c00",
+    "result.json": "f2e9bf0ec0482de8cb567a36f5aad8b3c4c7009fb443193197c7a3d934169b39",
+    "sample.mtv2": "6aa9ecca903abb8b56ca411fa472f885b17d8bfc14aa282abf5f79afcdc500f1",
+    "scope.png": "2984b49760ec73672f56351f4eccfc9453c97512f4d559b3a0c4c8a2610be10d"
+  },
+  "windows_host": "Windows-10-10.0.19045-SP0",
+  "public_release_approved": false,
+  "physical_device_verified": false
+}

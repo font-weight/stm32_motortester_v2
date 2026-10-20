@@ -27,7 +27,13 @@ class DevicePanel(QtWidgets.QDialog):
         self.viewer = viewer
         self.setWindowTitle("STM32 · подключение и захват")
         self.resize(510, 670)
-        self.setStyleSheet("QDialog { background: #0d1d28; }")
+        self.setStyleSheet("""
+            QDialog { background: #0d1d28; }
+            QSpinBox { background: #081822; border: 1px solid #2b495b;
+                       border-radius: 4px; padding: 5px 2px; }
+            QSpinBox QLineEdit { background: transparent; border: none; }
+            QSpinBox:disabled, QSpinBox:disabled QLineEdit { color: #647d8b; }
+        """)
         box = QtWidgets.QVBoxLayout(self)
         box.addWidget(note("Wire 0.1 · отдельные окна CH1\n"
                           "Подключение проверяет версию и возможности. АЦП запускается отдельной кнопкой."))
@@ -318,8 +324,10 @@ class DeviceControlsMixin:
             self, "Новый файл неполных данных", "", "Диагностика (*.json)")
         if path:
             def done(_):
-                self.device.acknowledge_incomplete(result)
-                self.statusBar().showMessage("Исходные фрагменты сохранены: " + path)
+                if self.device.acknowledge_incomplete(result):
+                    self.statusBar().showMessage("Исходные фрагменты сохранены: " + path)
+                else:
+                    self._device_error("Файл сохранён, но освобождение результата ещё не подтверждено: " + path)
             self._submit(lambda: self.device.save_incomplete(path, result), done)
 
     def _device_finished(self):

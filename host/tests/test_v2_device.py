@@ -35,6 +35,7 @@ class FakeSerial:
         peer_class = IncompatibleHelloDevice if controls.get("incompatible_hello") else DeviceEmulator
         self.peer = peer_class(all_analog_modes=True, pretrigger=True)
         self.sent_decoder, self.sent_kinds = StreamDecoder(), []
+        self.received_decoder = StreamDecoder()
         self.port, self.is_open = None, False
         self.calls.append(("create", threading.get_ident()))
         controls["backend"] = self
@@ -53,12 +54,19 @@ class FakeSerial:
 
     def read(self, size):
         self.calls.append(("read", threading.get_ident()))
-        if self.controls.get("silent"):
+        if self.controls.get("silent") or (
+                self.controls.get("hold_partial") and self.controls.get("partial_delivered")):
             return b""
         if self.controls.get("read_error"):
             raise OSError("fake disconnected")
         if self.controls.get("trigger") and self.peer.snapshot().state == WAITING:
             self.peer.trigger(self.now())
+        if self.controls.get("hold_partial"):
+            data = self.peer.read(min(size, 750), self.now())
+            frames = self.received_decoder.feed(data, self.now()).frames
+            if any(frame.message_type == 145 for frame in frames):
+                self.controls["partial_delivered"] = True
+            return data
         if self.controls.get("partial"):
             # BEGIN and first DATA arrive; remaining bytes are lost on next call.
             data = self.peer.read(min(size, 750), self.now())
@@ -73,6 +81,13 @@ class FakeSerial:
         self.peer.disconnect(self.now())
 
 
+class HoldAfterPartialFakeSerial(FakeSerial):
+    """Deliver one DATA fragment, then idle until the owner shuts down."""
+    def __init__(self, controls, calls, **settings):
+        controls["hold_partial"] = True
+        super().__init__(controls, calls, **settings)
+
+
 class V2DeviceTests(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
@@ -83,10 +98,9 @@ class V2DeviceTests(unittest.TestCase):
 
     def tearDown(self):
         for device in self.bridges:
-            finished = []
-            device.finished.connect(lambda: finished.append(True))
-            device.shutdown()
-            self.wait(lambda: bool(finished) and not device.bridge.running)
+            if device.bridge.running:
+                device.shutdown()
+                self.wait(lambda: not device.bridge.running)
             device.deleteLater()
         pump_events(5)
 
@@ -97,9 +111,9 @@ class V2DeviceTests(unittest.TestCase):
                 self.fail("Bounded fake-device wait timed out")
             pump_events(5)
 
-    def device(self, *, wait_ready=True):
+    def device(self, *, wait_ready=True, backend_class=FakeSerial):
         def factory():
-            return SerialTransport(backend_factory=lambda **kw: FakeSerial(self.controls, self.calls, **kw))
+            return SerialTransport(backend_factory=lambda **kw: backend_class(self.controls, self.calls, **kw))
         device = DeviceBridge(serial_factory=factory, interval_ms=2)
         device.records, device.incompletes, device.errors = [], [], []
         device.recording_ready.connect(device.records.append)
@@ -228,6 +242,41 @@ class V2DeviceTests(unittest.TestCase):
         self.assertEqual(device.snapshot.recovery.reason.value, "TIMEOUT")
         self.assertEqual(device.records, [])
         self.assertTrue(device.errors)
+
+    def test_shutdown_late_incomplete_can_be_saved_and_acknowledged_after_finished(self):
+        self.controls["trigger"] = True
+        device = self.device(backend_class=HoldAfterPartialFakeSerial)
+        self.assertTrue(device.start(mode=2, channel_name="Позднее окно", ui_profile="ignition"))
+        self.wait(lambda: self.controls.get("partial_delivered"))
+        self.assertIsNone(device.pending_incomplete)
+        session = device.snapshot.session
+        finished = []
+        device.finished.connect(lambda: finished.append(True))
+        self.assertTrue(device.shutdown())
+        self.wait(lambda: bool(finished) and not device.bridge.running)
+        partial = device.pending_incomplete
+        self.assertIs(partial, device.incompletes[0])
+        self.assertEqual(sum(len(block.samples) for block in partial.fragments), 250)
+        self.assertEqual(partial.missing_ranges, ((250, 2048),))
+        self.assertFalse(device.acknowledge_incomplete(replace(partial)))
+        self.assertFalse(device.acknowledge_incomplete(partial))  # Not saved yet.
+        with tempfile.TemporaryDirectory() as folder:
+            with self.assertRaises(FileNotFoundError):
+                device.save_incomplete(Path(folder) / "missing" / "partial.json", partial)
+            self.assertIs(device.pending_incomplete, partial)
+            self.assertFalse(device.acknowledge_incomplete(partial))
+            path = Path(folder) / "partial.json"
+            device.save_incomplete(path, partial)
+            report = json.loads(path.read_text(encoding="utf-8"))
+            self.assertEqual(report["session_id"], str(UUID(int=session)))
+            self.assertEqual(report["channel_name"], "Позднее окно")
+            self.assertEqual(report["ui_profile"], "ignition")
+            self.assertEqual(report["result"]["fragments"][0]["samples"],
+                             list(partial.fragments[0].samples))
+            self.assertFalse(device.acknowledge_incomplete(replace(partial)))
+            self.assertTrue(device.acknowledge_incomplete(partial))
+            self.assertIsNone(device.pending_incomplete)
+            self.assertFalse(device.acknowledge_incomplete(partial))
 
 
 if __name__ == "__main__":
