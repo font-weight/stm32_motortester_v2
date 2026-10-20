@@ -25,6 +25,11 @@ EXE, но остановился до ZIP/проверки на несовпад
 Восстановлены 57 файлов, адресный запуск прежнего collector в
 `build/v2-windows-candidate/licenses-check` завершился с кодом 0.
 
+Вторая попытка из `a5daa85238532bb86e1c8c6528457acfbd2073f9` остановилась
+при установке PySide6 из-за ограничения длины пути Windows, до сборки EXE.
+Журнал сохранён в `build/v2-windows-candidate-02/build.log`.
+Каталог по умолчанию сокращён до `build/v2w`; настройки Windows не менялись.
+
 Отдельный рецепт — `host/packaging/v2/build_windows.py`: CPython 3.14.7 x64,
 PyInstaller 6.22.3, закреплённые Windows wheels. NumPy cp314 выбран по
 [официальным метаданным 2.5.3](https://pypi.org/pypi/numpy/2.5.3/json);

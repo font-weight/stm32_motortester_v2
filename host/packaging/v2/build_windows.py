@@ -129,8 +129,8 @@ def restore_pinned_notice_bytes(staging):
 
 def main(argv=None):
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--output", type=Path, default=HOST / "build" / "windows-v2-candidate",
-                        help="New output directory; an existing directory is never removed")
+    parser.add_argument("--output", type=Path, default=REPOSITORY / "build" / "v2w",
+                        help="New short output path (Windows path limits); never removes an existing directory")
     args = parser.parse_args(argv)
     if (sys.platform != "win32" or platform.machine().upper() not in ("AMD64", "X86_64")
             or sys.maxsize <= 2**32 or sys.version_info[:3] != EXPECTED_PYTHON

@@ -74,7 +74,7 @@ export_csv("analysis.csv", part)
 Команда **из корня репозитория**:
 
 ```powershell
-.\.venv\Scripts\python.exe host\packaging\v2\build_windows.py --output build\v2-windows-candidate
+.\.venv\Scripts\python.exe host\packaging\v2\build_windows.py --output build\v2w
 ```
 
 Для повторной сборки указать новую выходную папку. В ней ожидаются:
