@@ -1,0 +1,31 @@
+{
+  "schema": "v2-start-failure-analysis-1",
+  "scope": "Offline interpretation of preserved trial02 evidence; no new hardware operation",
+  "firmware_build": "0x56325332",
+  "image_bin_sha256": "0298ce70716b9d9282e575291c627e271a57bedca501989d027b3fc045b6ba1e",
+  "ram": "ram-start-failure.bin",
+  "source": "build/v5-fw-07/source/firmware/platform/adc_timer_dma.c",
+  "observations": {
+    "start_before_us": {"address": "0x200007c0", "value": 34061736},
+    "start_after_us": {"address": "0x200007c4", "value": 34061759},
+    "adc_first_fault": {"address": "0x20000808", "value": 3, "enum": "MT_ADC_DMA_FAULT_TIMEBASE"},
+    "adc_fault": {"address": "0x200007e0", "value": 3},
+    "timebase_state": {"address": "0x2000231c", "value": 1, "enum": "MT_TIMEBASE_RUNNING"},
+    "timebase_fault": {"address": "0x20002320", "value": 0, "enum": "MT_TIMEBASE_NO_FAULT"},
+    "last_runtime": {"address": "0x20000478", "value": 1, "enum": "MT_LIVE_RUNTIME_IDLE"},
+    "dma_cndtr_after_stop": 255,
+    "frozen_diag_first_adc_fault": 3,
+    "frozen_diag_final_hardware_off": 1
+  },
+  "calculation": {
+    "bracket_us": 23,
+    "unchanged_limit_us": 20,
+    "rejected_expression": "(uint32_t)(start_after_us - start_before_us) > MT_ADC_DMA_SAMPLE_US"
+  },
+  "conclusion": "START failed after TIM3 CEN because the validated timestamp bracket was 23 us, above the 20 us acceptance bound. Calibration was already complete and DMA remaining count changed from 256 to 255 before verified quiesce. This is the ADC start-bracket fault, not the earlier 32 ms TIME service failure.",
+  "limits": [
+    "Values are firmware timer observations; oscillator frequency and timing accuracy were not independently measured.",
+    "One DMA transfer is not a successful START_ACK, accepted DATA block, or voltage measurement.",
+    "The width includes validation/admission code around CEN; it is not ADC aperture or first-conversion latency."
+  ]
+}

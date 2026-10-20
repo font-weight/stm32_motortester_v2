@@ -1,0 +1,123 @@
+{
+  "schema": "v2-stream-wire-analysis-1",
+  "analysis_kind": "retained traffic decode and exact firmware source comparison; no live I/O",
+  "status": "VALID_HOST_START_DEVICE_START_FAILURE",
+  "traffic_path": "run/traffic.bin",
+  "traffic_sha256": "9f351e883a0c8038745493262446ecf9878f74fa70f45c80fb32c679959b8f68",
+  "frame_envelopes_crc_payloads": "PASS",
+  "trailing_bytes": 0,
+  "chunks": 6,
+  "frames": [
+    {
+      "direction": "host",
+      "host_monotonic_s": 1068283.6220739,
+      "kind": "HELLO",
+      "nonce_hex": "0000000000000000",
+      "sequence": 1,
+      "request_id": 1,
+      "payload": {
+        "nonce": 17169008787060720023
+      },
+      "payload_hex": "978150ca869244ee",
+      "framed_hex": "0103020102080101010101010101010102010101020101010d978150ca869244ee3536ca4100"
+    },
+    {
+      "direction": "device",
+      "host_monotonic_s": 1068283.6257709,
+      "kind": "HELLO_ACK",
+      "nonce_hex": "ee449286ca508197",
+      "sequence": 1,
+      "request_id": 1,
+      "payload": {
+        "firmware_build": 1446138674
+      },
+      "payload_hex": "0002010c000280003253325601000000",
+      "framed_hex": "01030281021001010a978150ca869244ee01010102010101010402010c0302800632533256010101057cad35da00"
+    },
+    {
+      "direction": "host",
+      "host_monotonic_s": 1068283.6267612,
+      "kind": "GET_CAPS",
+      "nonce_hex": "ee449286ca508197",
+      "sequence": 2,
+      "request_id": 2,
+      "payload": null,
+      "payload_hex": "",
+      "framed_hex": "01030202010101010a978150ca869244ee0201010202010105c279e35300"
+    },
+    {
+      "direction": "device",
+      "host_monotonic_s": 1068283.6299307,
+      "kind": "CAPS",
+      "nonce_hex": "ee449286ca508197",
+      "sequence": 2,
+      "request_id": 2,
+      "payload": {
+        "config_id": 1,
+        "profile": 1,
+        "channel": 0,
+        "adc_bits": 12,
+        "fs_num": 50000,
+        "fs_den": 1,
+        "max_block": 128,
+        "flags": 1
+      },
+      "payload_hex": "010000000100000c50c30000010000008000000001000000",
+      "framed_hex": "01030282021801010a978150ca869244ee0201010202010102010101020101040c50c301020101010280010102010101053c5f9c3400"
+    },
+    {
+      "direction": "host",
+      "host_monotonic_s": 1068283.6459267,
+      "kind": "START",
+      "nonce_hex": "ee449286ca508197",
+      "sequence": 3,
+      "request_id": 3,
+      "payload": 1,
+      "payload_hex": "01000000",
+      "framed_hex": "01030208020401010a978150ca869244ee03010102030101020101010537d9c7e700"
+    },
+    {
+      "direction": "device",
+      "host_monotonic_s": 1068283.6492546,
+      "kind": "ERROR",
+      "nonce_hex": "ee449286ca508197",
+      "sequence": 3,
+      "request_id": 3,
+      "payload": {
+        "rejected_type": 8,
+        "code": 4,
+        "generation": 3
+      },
+      "payload_hex": "0804000003000000",
+      "framed_hex": "010302ff020801010a978150ca869244ee03010102030101030804010203010105465cac8b00"
+    }
+  ],
+  "start_to_error_host_ms": 3.3279,
+  "timing_scope": "Host chunk timestamps include transport/OS scheduling; not device execution time",
+  "firmware_build_hex": "0x56325332",
+  "source_files_sha256": {
+    "firmware/protocol/mt_live_device.c": "be3effe882ebc209c68645fe1140f83a102ca54286d0b9677ab538d7fce3ab4d",
+    "firmware/app/mt_live_runtime.c": "96ebd81a52b15a4d10abc2501d7c6ff3bb7369418ce78d88eaeaaea249bdb7bf",
+    "firmware/app/mt_live_adc.c": "43955136b4e44b4dc7ff572d7513981b506b6a6e9b07229a1f9fcaec24957f9f",
+    "firmware/platform/adc_timer_dma.c": "ddd022b79a3d07ea745a384cc4db5a258ad31feb31e68bc23b5c364054f4f52e"
+  },
+  "conclusions": {
+    "host_config_compatible": true,
+    "wire_profile": 1,
+    "reserved": 0,
+    "request_and_nonce_correlated": true,
+    "start_ack_seen": false,
+    "data_frames": 0,
+    "source_ref": "build/v5-fw-07/source/firmware/protocol/mt_live_device.c:202-234",
+    "error_4_meaning": "START passed state/CAPS/payload guards; preliminary quiesce did not certify hardware_off OR start callback did not return 1; cleanup then reserved ERROR code 4",
+    "config_rejection_codes": {
+      "1": "invalid START length/profile/reserved",
+      "2": "CAPS not ready/pending response"
+    },
+    "remaining_unknown": "Which ADC admission/calibration/time/clock/stop condition rejected start; requires preserved RAM/diagnostics. ERROR itself does not identify it.",
+    "host_event_thresholds": "UI EventConfig is host analysis; it is absent from the START payload and does not configure a firmware trigger"
+  },
+  "real_com_opened": false,
+  "swd_accessed": false,
+  "firmware_or_host_modified": false
+}

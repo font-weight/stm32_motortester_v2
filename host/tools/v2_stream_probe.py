@@ -119,8 +119,9 @@ def run(args):
             assert connection.observed_build_id == args.build_id, "Unexpected build; START not sent"
             assert bridge.state.validated_samples == 0, "Connect unexpectedly started ADC"
             assert bridge.start_live(), "Preview rejected"
-            wait(lambda: bridge.state.validated_samples > 1000 or bridge.state.error, 5, "No stream")
-            assert not bridge.state.error, bridge.state.error
+            wait(lambda: bridge.state.validated_samples > 1000 or
+                 bridge.state.error or bridge.state.phase == "fault", 5, "No stream")
+            assert not bridge.state.error and bridge.state.phase != "fault", compact()
             record = output / "physical.mtstream"
             assert bridge.record(record), "Record rejected"
             wait(lambda: bridge.state.phase == "recording" or bridge.state.error, 5, "No record")

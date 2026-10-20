@@ -1,0 +1,62 @@
+{
+  "status": "FAIL",
+  "port": "COM6",
+  "source": "physical",
+  "seconds_requested": 15.0,
+  "expected_build": 1446138674,
+  "input_condition": "PA0 unconnected, as reported by user",
+  "voltage_calibration_verified": false,
+  "callback_errors": [],
+  "errors": [
+    "Приём остановлен: device_error_4. Сохранён проверенный префикс."
+  ],
+  "connection": {
+    "selection": {
+      "port": "COM6",
+      "declared_source_commit": "c10884fa39ad1a10ce0fcfc9d6e17f170e1e0bf0",
+      "declared_artifact_sha256": "0298ce70716b9d9282e575291c627e271a57bedca501989d027b3fc045b6ba1e"
+    },
+    "execution_kind": "physical",
+    "observed_build_id": 1446138674,
+    "observed_caps": [
+      1,
+      1,
+      0,
+      12,
+      50000,
+      1,
+      128,
+      1
+    ],
+    "dtr_requested": true,
+    "accounting_domain": "unknown",
+    "image_verified": false
+  },
+  "exception": "Traceback (most recent call last):\n  File \"C:\\Users\\Alexandr\\Desktop\\New folder\\универ\\мотортестер 2\\host\\tools\\v2_stream_probe.py\", line 122, in run\n    wait(lambda: bridge.state.validated_samples > 1000 or bridge.state.error, 5, \"No stream\")\n    ~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\Alexandr\\Desktop\\New folder\\универ\\мотортестер 2\\host\\tools\\v2_stream_probe.py\", line 88, in wait\n    raise RuntimeError(label + \": \" + str(bridge.state))\nRuntimeError: No stream: ControllerStatus(revision=1, phase='fault', path=None, bridge=BridgeSnapshot(endpoint_state=<State.RESET_REQUIRED: 'reset_required'>, identity=StreamIdentity(session_id='wire-0.2:ee449286ca508197', generation=3, config_id=1, nominal_fs_hz=50000, origin='device', protocol_revision='0.2-draft-081721', firmware_version='build:56325332', application_version='v2-serial-unknown-accounting:physical'), session=SessionSnapshot(identity=StreamIdentity(session_id='wire-0.2:ee449286ca508197', generation=3, config_id=1, nominal_fs_hz=50000, origin='device', protocol_revision='0.2-draft-081721', firmware_version='build:56325332', application_version='v2-serial-unknown-accounting:physical'), source_started=False, source_first_sample_index=None, received_end_sample_index=None, selected_start_sample_index=None, queued_end_sample_index=None, accepted_end_sample_index=None, checkpointed_end_sample_index=None, finalized_end_sample_index=None, raw_bytes_held=0, raw_items_held=0, pending_operation_id=None, source_end=None, stop_acknowledgement=None, first_failure=FailureEvidence(code='source_error', detail='wire device_error_4; ordinary=3; stop=None', operation='START', request_id=3, source_code=None), stop_requested=True, admission_fenced=True, writer_fenced=False, finalized=False, finalization_started=False, finalization_unresolved=False, clean_completion_reported=False, unbound_reason=None, latest_display=None), storage=None, source_received_end=0, source_prefix_crc32=0, source_terminal=None, endpoint_first_fault=FirstFault(code='device_error_4', at_ms=1068283649, ordinary=Pending(kind=<Kind.START: 8>, nonce=17169008787060720023, request_id=3, sequence=3, action_id=1, admitted_ms=1068283645, deadline_ms=1068285645, accepted_bytes=34, frame_accepted_bytes=34, complete=True), stop=None, causal_request=Pending(kind=<Kind.START: 8>, nonce=17169008787060720023, request_id=3, sequence=3, action_id=1, admitted_ms=1068283645, deadline_ms=1068285645, accepted_bytes=34, frame_accepted_bytes=34, complete=True)), recovery=RecoverySnapshot(nonce=17169008787060720023, generation=3, received_end=0, received_crc32=0, terminal=None, first_fault=FirstFault(code='device_error_4', at_ms=1068283649, ordinary=Pending(kind=<Kind.START: 8>, nonce=17169008787060720023, request_id=3, sequence=3, action_id=1, admitted_ms=1068283645, deadline_ms=1068285645, accepted_bytes=34, frame_accepted_bytes=34, complete=True), stop=None, causal_request=Pending(kind=<Kind.START: 8>, nonce=17169008787060720023, request_id=3, sequence=3, action_id=1, admitted_ms=1068283645, deadline_ms=1068285645, accepted_bytes=34, frame_accepted_bytes=34, complete=True)), ordinary=Pending(kind=<Kind.START: 8>, nonce=17169008787060720023, request_id=3, sequence=3, action_id=1, admitted_ms=1068283645, deadline_ms=1068285645, accepted_bytes=34, frame_accepted_bytes=34, complete=True), stop=None, outstanding_offer=None, causal_request=Pending(kind=<Kind.START: 8>, nonce=17169008787060720023, request_id=3, sequence=3, action_id=1, admitted_ms=1068283645, deadline_ms=1068285645, accepted_bytes=34, frame_accepted_bytes=34, complete=True)), pending_start=None, pending_stop=None, storage_job_id=None, late_fault=None, closed=False, mailbox=None, accepted_build_id=1446138674, accepted_caps=(1, 1, 0, 12, 50000, 1, 128, 1)), config=EventConfig(threshold_code=2600, release_code=2200, polarity='above', pre_samples=50, post_samples=150, baseline_samples=25, holdoff_samples=100, max_event_samples=500, rail_low=0, rail_high=4095), config_revision=1, command_pending=False, stop_pending=False, stop_requested=False, close_requested=False, worker_unresolved=False, can_preview=False, can_record=False, can_open=True, error=None, display_error=None, receiver_steps=3184, max_service_gap_ms=28, validated_blocks=0, validated_samples=0, raw_available_start=0, ring_samples=0, detector_status=DetectorStatus(outcome='unknown_loss', indexed_events=0, processed_until=None, pending=None, discontinuity=Discontinuity(expected_index=None, observed_index=None, reason='unknown_loss'), suppressed_crossings=0, retention='recent', first_retained_ordinal=0, next_ordinal=0, evicted_events=0), display_pending=False, display_running=False, displays_built=0, displays_replaced=0, peak_raw_items=0, peak_raw_bytes=0, raw_item_limit=256, raw_byte_limit=262144, storage_raw_limit=67108864, serial=SerialPeerStatus(port='COM6', generation=1, state='open', handle_settled=False, first_error=None, close_error=None), serial_call=None, serial_operation_id=3176, serial_operation_generation=1, serial_unresolved=True, can_connect=False, can_disconnect=True, can_retry_close=False, can_prepare=False, ready=False)\n",
+  "cleanup_finished": true,
+  "final_state": {
+    "host_monotonic": 1068288.6718752,
+    "phase": "closed",
+    "received": 0,
+    "error": null,
+    "failure": {
+      "code": "source_error",
+      "detail": "wire device_error_4; ordinary=3; stop=None",
+      "operation": "START",
+      "request_id": 3,
+      "source_code": null
+    },
+    "R": null,
+    "accepted": null,
+    "checkpoint": null,
+    "max_service_gap_ms": 28,
+    "peak_raw_items": 0
+  },
+  "traffic": {
+    "host_bytes": 102,
+    "device_bytes": 139,
+    "chunks": 6,
+    "format": "<BdI + payload; 0=host,1=device; monotonic seconds",
+    "sha256": "9f351e883a0c8038745493262446ecf9878f74fa70f45c80fb32c679959b8f68"
+  }
+}
