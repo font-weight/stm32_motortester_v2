@@ -38,6 +38,7 @@ def exercise(app, window, output, flush):
         assert not QtGui.QImage(str(output / name)).isNull()
 
     window.change_profile("oscilloscope")
+    assert window.ui_profile == "oscilloscope", "Stream check requires a fresh editable workspace"
     window.open_stream_workspace()
     dialog = window.stream_dialog
     try:

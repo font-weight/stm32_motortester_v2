@@ -239,6 +239,10 @@ def run(output_name):
             }
             report["checks"].append("actual exit dialog: Esc retains partial; explicit discard closes without JSON")
             from motortester.v2.stream_smoke import exercise as exercise_stream
+            # The preceding chain intentionally left an opened immutable
+            # recording in the old window. Start a fresh workspace for profiles.
+            window = MainWindow(settings_path=Path(temporary) / "stream-settings.ini")
+            window.timer.stop()
             window.show()
             report["stream_verification"] = exercise_stream(app, window, output, flush)
             assert port_open.call_count == 0

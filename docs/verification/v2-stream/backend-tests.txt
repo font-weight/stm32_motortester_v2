@@ -143,3 +143,12 @@ N=3 PASS: Windows native qt, Preview→Record R12672, экспорт19126raw, п
 оба профиля, parent close, unknown tail, fresh healthy open, serial_open_calls0.
 Полные результаты/неудачные raw сохранены в соседних source-smoke1/2/3.
 Небольшая последующая правка компоновки графика проверяется уже в финальном пакете.
+
+Пакет build/v4w1, source a42664de5fa8a7ba38f8bbe11c122e590ac42d2a:
+frozen smoke FAIL после прежних успешных GUI/window/close checks.
+Причина — fixture переиспользовал окно с открытой неизменяемой записью ignition;
+change_profile правильно не изменил сохранённый профиль, а smoke ожидал scope.
+Исправление: потоковый этап smoke создаёт свежее MainWindow с отдельным INI;
+проверяемая продуктовая логика профилей не изменена. Скриншот подтвердил исправленную
+компоновку с видимой осью времени. Результат и raw сохранены в package-failed1,
+весь неудачный пакет/исходный архив/лог остаются build/v4w1.

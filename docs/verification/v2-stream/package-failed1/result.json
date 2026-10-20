@@ -1,0 +1,102 @@
+{
+  "status": "FAIL",
+  "platform": "win32",
+  "windows": "Windows-10-10.0.19045-SP0",
+  "python": "3.14.7 (tags/v3.14.7:823f032, Aug  5 2026, 10:51:32) [MSC v.1944 64 bit (AMD64)]",
+  "frozen": true,
+  "executable": "C:\\Users\\Alexandr\\Desktop\\New folder\\универ\\мотортестер 2\\build\\v4w1\\Проверка переноса\\MotortesterV2\\MotortesterV2.exe",
+  "cwd": "C:\\Users\\Alexandr\\Desktop\\New folder\\универ\\мотортестер 2\\build\\v4w1\\Другая рабочая папка",
+  "checks": [
+    "packaged Windows pyserial; device panel with mocked enumeration; no COM open",
+    "native GUI; both DEMO profiles; V/mV keeps raw and physical values",
+    "single capture saved through GUI; pause-independent recording with a real data gap",
+    "GUI save/open keeps raw and input snapshot; CSV/JSON keeps gap and checksum",
+    "synthetic wire 0.1 window -> V2 unknown scale -> exact save/reopen",
+    "actual exit dialog: Esc retains partial; explicit discard closes without JSON"
+  ],
+  "callback_errors": [],
+  "qt_platform": "windows",
+  "qt": "6.12.0",
+  "numpy": "2.5.3",
+  "sample_count": 7500,
+  "session_id": "71a567a8-35e0-4d2b-a275-a18e7eb60ae1",
+  "device_verification": {
+    "status": "PASS",
+    "serial_version": "3.5",
+    "serial_backend": "serial.serialwin32",
+    "enumeration_mocked": true,
+    "panel_created": true,
+    "serial_open_calls": 0,
+    "worker_running": false,
+    "wire_source": "demo",
+    "sample_count": 2048,
+    "session_id": "00000000-0000-0000-5349-4d0000000001",
+    "voltage_state": "unconfigured",
+    "time_basis": "nominal_unverified",
+    "physical_device_verified": false
+  },
+  "close_verification": {
+    "status": "PASS",
+    "source": "synthetic injected partial; no serial worker",
+    "fragment_samples": 250,
+    "default_and_escape": "cancel",
+    "decisions": [
+      "cancel",
+      "discard"
+    ],
+    "closed_without_json": true,
+    "saved_record_unchanged": true,
+    "serial_open_calls": 0
+  },
+  "error": "Traceback (most recent call last):\n  File \"package_smoke.py\", line 243, in run\n  File \"motortester\\v2\\stream_smoke.py\", line 69, in exercise\nAssertionError\n",
+  "files": {
+    "device-panel.png": {
+      "bytes": 27556,
+      "sha256": "4948d8b9c9a064a61bb9cc31e09615358caf29e5a360bdec82f04d110e52af12"
+    },
+    "device-window.mtv2": {
+      "bytes": 5678,
+      "sha256": "3412b3ceff6a4d6f2bb3a9707c4c91c7afd089f8dfa5c2f216075d3cd055214e"
+    },
+    "export.csv": {
+      "bytes": 351704,
+      "sha256": "15412527f9638f3fcb668f33502c00092c66d9e4606da1a460a980004c879674"
+    },
+    "export.csv.json": {
+      "bytes": 1996,
+      "sha256": "910fe33735581900aafbcc127a94fa037833257d507c3b2517810e4f355b7e27"
+    },
+    "ignition.png": {
+      "bytes": 105518,
+      "sha256": "3775e24f48c385f75ddc4b08bd39cdf4c46b04ff38d9d2a79cc56f212acca0d4"
+    },
+    "incomplete-close.png": {
+      "bytes": 11232,
+      "sha256": "4ba859186b8f53becbec9f739fa5043b2926f2e544653974a43778a8d112bbd9"
+    },
+    "sample.mtv2": {
+      "bytes": 16757,
+      "sha256": "2f32ca7073f5d4cbaefe8868c48bc5948b26a634559a564a64bbcf6d1a01092d"
+    },
+    "scope.png": {
+      "bytes": 124376,
+      "sha256": "5fabf13d0222c389654aeac2646c9634bf192ef762cf053c48b7453cf232869d"
+    },
+    "single.mtv2": {
+      "bytes": 2029,
+      "sha256": "e5b8cd7b49e05b26ba0d88c56fd2fb7f433884902ce25857d1f9798604e0d00f"
+    },
+    "stream-scope.mtstream": {
+      "bytes": 39204,
+      "sha256": "35bcb557982029756ee3e0945295551c6c499d1e3e110350302b2d5282a59164"
+    },
+    "stream-scope.mtstream.v2.json": {
+      "bytes": 1456,
+      "sha256": "c0c8a6f1bda63c687b4a412fb6aeb84d3a393ed484c8a62cddec5deadba7d7a8"
+    },
+    "stream-scope.png": {
+      "bytes": 51748,
+      "sha256": "8dc035e305fd68b46e757258795a3d3cdc59daf09592239f1718c875b6178516"
+    }
+  }
+}
