@@ -1,0 +1,79 @@
+{
+  "platform": "windows",
+  "qt": "6.12.0",
+  "images": {
+    "01_scope": {
+      "logical_size": [
+        1283,
+        707
+      ],
+      "pixels": [
+        1925,
+        1061
+      ],
+      "device_pixel_ratio": 1.5
+    },
+    "08_millivolts": {
+      "logical_size": [
+        1283,
+        707
+      ],
+      "pixels": [
+        1925,
+        1061
+      ],
+      "device_pixel_ratio": 1.5
+    },
+    "04_ignition": {
+      "logical_size": [
+        1283,
+        707
+      ],
+      "pixels": [
+        1925,
+        1061
+      ],
+      "device_pixel_ratio": 1.5
+    },
+    "05_compact": {
+      "logical_size": [
+        1024,
+        700
+      ],
+      "pixels": [
+        1536,
+        1050
+      ],
+      "device_pixel_ratio": 1.5
+    },
+    "06_single_ignition": {
+      "logical_size": [
+        1283,
+        707
+      ],
+      "pixels": [
+        1925,
+        1061
+      ],
+      "device_pixel_ratio": 1.5
+    },
+    "07_rename": {
+      "logical_size": [
+        360,
+        157
+      ],
+      "pixels": [
+        540,
+        236
+      ],
+      "device_pixel_ratio": 1.5
+    }
+  },
+  "checks": [
+    "V/mV display keeps the same raw snapshot and physical cursor measurement",
+    "compact plot >=170px; plot/cursor geometries do not overlap; explicit units",
+    "ignition 5ms single capture has 250 samples; rename dialog opens",
+    "floating viewport boundaries do not add false truncated flags to a complete capture"
+  ],
+  "status": "PASS"
+}

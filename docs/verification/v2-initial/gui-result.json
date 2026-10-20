@@ -1,0 +1,405 @@
+{
+  "scope": "synthetic real-Qt GUI; no device or packaged Windows release",
+  "platform": "Windows-10-10.0.19045-SP0",
+  "python": "3.14.7 (tags/v3.14.7:823f032, Aug  5 2026, 10:51:32) [MSC v.1944 64 bit (AMD64)]",
+  "qt": "6.12.0",
+  "checks": [
+    "pause-independent recording, gap, GUI save/open, CSV+JSON",
+    "persistent CH1 name; old snapshot unchanged",
+    "200 ms single waits for posthistory; exact raw; independent dirty guards",
+    "signed saved input/threshold; legacy unknown scale and threshold=None",
+    "real visible Qt screenshots: scope, recording, single, ignition, compact request",
+    "physical grid spacing; unavailable event analysis leaves a complete view",
+    "one 2,000,000-sample raw save/open/view resource observation"
+  ],
+  "screenshots": {
+    "01_scope": {
+      "file": "01_scope.png",
+      "size": [
+        1440,
+        920
+      ],
+      "minimum_size_hint": [
+        1097,
+        702
+      ],
+      "device_pixel_ratio": 1.0,
+      "knobs": {
+        "sweep": {
+          "text": "2 мс/дел",
+          "width": 99,
+          "editor_text": "2 мс/дел",
+          "editor_width": 99,
+          "editor_contents_width": 99,
+          "text_color": "#e9f4fa",
+          "visible": true,
+          "enabled": true
+        },
+        "yscale": {
+          "text": "0,5 В/дел",
+          "width": 98,
+          "editor_text": "0,5 В/дел",
+          "editor_width": 98,
+          "editor_contents_width": 98,
+          "text_color": "#e9f4fa",
+          "visible": true,
+          "enabled": true
+        },
+        "xposition": {
+          "text": "980 мс",
+          "width": 99,
+          "editor_text": "980 мс",
+          "editor_width": 99,
+          "editor_contents_width": 99,
+          "text_color": "#e9f4fa",
+          "visible": true,
+          "enabled": true
+        },
+        "yposition": {
+          "text": "1,65 В",
+          "width": 98,
+          "editor_text": "1,65 В",
+          "editor_width": 98,
+          "editor_contents_width": 98,
+          "text_color": "#e9f4fa",
+          "visible": true,
+          "enabled": true
+        },
+        "threshold": {
+          "text": "1,65 В",
+          "width": 99,
+          "editor_text": "1,65 В",
+          "editor_width": 99,
+          "editor_contents_width": 99,
+          "text_color": "#e9f4fa",
+          "visible": true,
+          "enabled": true
+        },
+        "holdoff": {
+          "text": "1 мс",
+          "width": 98,
+          "editor_text": "1 мс",
+          "editor_width": 98,
+          "editor_contents_width": 98,
+          "text_color": "#e9f4fa",
+          "visible": true,
+          "enabled": true
+        }
+      }
+    },
+    "02_recording": {
+      "file": "02_recording.png",
+      "size": [
+        1440,
+        920
+      ],
+      "minimum_size_hint": [
+        1174,
+        673
+      ],
+      "device_pixel_ratio": 1.0,
+      "knobs": {
+        "sweep": {
+          "text": "40 мс/дел",
+          "width": 99,
+          "editor_text": "40 мс/дел",
+          "editor_width": 99,
+          "editor_contents_width": 99,
+          "text_color": "#e9f4fa",
+          "visible": true,
+          "enabled": true
+        },
+        "yscale": {
+          "text": "0,5 В/дел",
+          "width": 98,
+          "editor_text": "0,5 В/дел",
+          "editor_width": 98,
+          "editor_contents_width": 98,
+          "text_color": "#e9f4fa",
+          "visible": true,
+          "enabled": true
+        },
+        "xposition": {
+          "text": "1000 мс",
+          "width": 99,
+          "editor_text": "1000 мс",
+          "editor_width": 99,
+          "editor_contents_width": 99,
+          "text_color": "#e9f4fa",
+          "visible": true,
+          "enabled": true
+        },
+        "yposition": {
+          "text": "1,65 В",
+          "width": 98,
+          "editor_text": "1,65 В",
+          "editor_width": 98,
+          "editor_contents_width": 98,
+          "text_color": "#e9f4fa",
+          "visible": true,
+          "enabled": true
+        },
+        "threshold": {
+          "text": "1,65 В",
+          "width": 99,
+          "editor_text": "1,65 В",
+          "editor_width": 99,
+          "editor_contents_width": 99,
+          "text_color": "#647d8b",
+          "visible": true,
+          "enabled": false
+        },
+        "holdoff": {
+          "text": "1 мс",
+          "width": 98,
+          "editor_text": "1 мс",
+          "editor_width": 98,
+          "editor_contents_width": 98,
+          "text_color": "#647d8b",
+          "visible": true,
+          "enabled": false
+        }
+      }
+    },
+    "03_single": {
+      "file": "03_single.png",
+      "size": [
+        1440,
+        920
+      ],
+      "minimum_size_hint": [
+        1188,
+        702
+      ],
+      "device_pixel_ratio": 1.0,
+      "knobs": {
+        "sweep": {
+          "text": "20 мс/дел",
+          "width": 99,
+          "editor_text": "20 мс/дел",
+          "editor_width": 99,
+          "editor_contents_width": 99,
+          "text_color": "#e9f4fa",
+          "visible": true,
+          "enabled": true
+        },
+        "yscale": {
+          "text": "0,5 В/дел",
+          "width": 98,
+          "editor_text": "0,5 В/дел",
+          "editor_width": 98,
+          "editor_contents_width": 98,
+          "text_color": "#e9f4fa",
+          "visible": true,
+          "enabled": true
+        },
+        "xposition": {
+          "text": "1360 мс",
+          "width": 99,
+          "editor_text": "1360 мс",
+          "editor_width": 99,
+          "editor_contents_width": 99,
+          "text_color": "#e9f4fa",
+          "visible": true,
+          "enabled": true
+        },
+        "yposition": {
+          "text": "1,6 В",
+          "width": 98,
+          "editor_text": "1,6 В",
+          "editor_width": 98,
+          "editor_contents_width": 98,
+          "text_color": "#e9f4fa",
+          "visible": true,
+          "enabled": true
+        },
+        "threshold": {
+          "text": "1,65 В",
+          "width": 99,
+          "editor_text": "1,65 В",
+          "editor_width": 99,
+          "editor_contents_width": 99,
+          "text_color": "#647d8b",
+          "visible": true,
+          "enabled": false
+        },
+        "holdoff": {
+          "text": "1 мс",
+          "width": 98,
+          "editor_text": "1 мс",
+          "editor_width": 98,
+          "editor_contents_width": 98,
+          "text_color": "#647d8b",
+          "visible": true,
+          "enabled": false
+        }
+      }
+    },
+    "04_ignition": {
+      "file": "04_ignition.png",
+      "size": [
+        1440,
+        920
+      ],
+      "minimum_size_hint": [
+        1051,
+        702
+      ],
+      "device_pixel_ratio": 1.0,
+      "knobs": {
+        "sweep": {
+          "text": "20 мс/дел",
+          "width": 99,
+          "editor_text": "20 мс/дел",
+          "editor_width": 99,
+          "editor_contents_width": 99,
+          "text_color": "#e9f4fa",
+          "visible": true,
+          "enabled": true
+        },
+        "yscale": {
+          "text": "0,5 В/дел",
+          "width": 98,
+          "editor_text": "0,5 В/дел",
+          "editor_width": 98,
+          "editor_contents_width": 98,
+          "text_color": "#e9f4fa",
+          "visible": true,
+          "enabled": true
+        },
+        "xposition": {
+          "text": "850 мс",
+          "width": 99,
+          "editor_text": "850 мс",
+          "editor_width": 99,
+          "editor_contents_width": 99,
+          "text_color": "#e9f4fa",
+          "visible": true,
+          "enabled": true
+        },
+        "yposition": {
+          "text": "1,6 В",
+          "width": 98,
+          "editor_text": "1,6 В",
+          "editor_width": 98,
+          "editor_contents_width": 98,
+          "text_color": "#e9f4fa",
+          "visible": true,
+          "enabled": true
+        },
+        "threshold": {
+          "text": "1,2 В",
+          "width": 99,
+          "editor_text": "1,2 В",
+          "editor_width": 99,
+          "editor_contents_width": 99,
+          "text_color": "#e9f4fa",
+          "visible": true,
+          "enabled": true
+        },
+        "holdoff": {
+          "text": "5 мс",
+          "width": 98,
+          "editor_text": "5 мс",
+          "editor_width": 98,
+          "editor_contents_width": 98,
+          "text_color": "#e9f4fa",
+          "visible": true,
+          "enabled": true
+        }
+      }
+    },
+    "05_compact": {
+      "file": "05_compact.png",
+      "size": [
+        1024,
+        700
+      ],
+      "minimum_size_hint": [
+        903,
+        682
+      ],
+      "device_pixel_ratio": 1.0,
+      "knobs": {
+        "sweep": {
+          "text": "20 мс/дел",
+          "width": 99,
+          "editor_text": "20 мс/дел",
+          "editor_width": 99,
+          "editor_contents_width": 99,
+          "text_color": "#e9f4fa",
+          "visible": true,
+          "enabled": true
+        },
+        "yscale": {
+          "text": "0,5 В/дел",
+          "width": 98,
+          "editor_text": "0,5 В/дел",
+          "editor_width": 98,
+          "editor_contents_width": 98,
+          "text_color": "#e9f4fa",
+          "visible": true,
+          "enabled": true
+        },
+        "xposition": {
+          "text": "850 мс",
+          "width": 99,
+          "editor_text": "850 мс",
+          "editor_width": 99,
+          "editor_contents_width": 99,
+          "text_color": "#e9f4fa",
+          "visible": true,
+          "enabled": true
+        },
+        "yposition": {
+          "text": "1,6 В",
+          "width": 98,
+          "editor_text": "1,6 В",
+          "editor_width": 98,
+          "editor_contents_width": 98,
+          "text_color": "#e9f4fa",
+          "visible": true,
+          "enabled": true
+        },
+        "threshold": {
+          "text": "1,2 В",
+          "width": 99,
+          "editor_text": "1,2 В",
+          "editor_width": 99,
+          "editor_contents_width": 99,
+          "text_color": "#e9f4fa",
+          "visible": true,
+          "enabled": true
+        },
+        "holdoff": {
+          "text": "5 мс",
+          "width": 98,
+          "editor_text": "5 мс",
+          "editor_width": 98,
+          "editor_contents_width": 98,
+          "text_color": "#e9f4fa",
+          "visible": true,
+          "enabled": true
+        }
+      }
+    }
+  },
+  "callback_errors": [],
+  "status": "PASS",
+  "qt_platform": "windows",
+  "maximum_recording": {
+    "samples": 2000000,
+    "file_bytes": 4001536,
+    "save_open_view_seconds": 2.8780864999862388,
+    "total_with_analysis_seconds": 2.9524916999507695,
+    "event_loop_heartbeats_during_open_and_analysis": 8
+  },
+  "compact_requested": [
+    1024,
+    700
+  ],
+  "compact_actual": [
+    1024,
+    700
+  ]
+}

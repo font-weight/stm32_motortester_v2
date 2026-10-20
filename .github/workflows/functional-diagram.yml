@@ -1,13 +1,6 @@
-name: Functional diagram package
+name: Historical functional diagram (manual, current V2 repository)
 on:
-  push:
-    branches: [dot-a/functional-diagram-gost]
-  pull_request:
-    paths:
-      - hardware/functional-diagram/**
-      - scripts/check_functional_diagram.py
-      - scripts/requirements-functional-diagram-ci.txt
-      - .github/workflows/functional-diagram.yml
+  workflow_dispatch:
 permissions:
   contents: read
 jobs:
