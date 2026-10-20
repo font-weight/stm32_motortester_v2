@@ -1,0 +1,28 @@
+{
+  "status": "FAIL",
+  "source": "injected synthetic wire 0.2",
+  "physical_stream_verified": false,
+  "real_serial_open_calls": 0,
+  "qt_platform": "windows",
+  "callback_errors": [],
+  "ready_close": {
+    "commands": [
+      1,
+      2
+    ],
+    "phase": "closed",
+    "endpoint_first_fault": null,
+    "emitted_errors": [],
+    "handle_closed": true,
+    "lease_released": true,
+    "samples": 0
+  },
+  "error": "Traceback (most recent call last):\n  File \"motortester\\v2\\stream_stop_smoke.py\", line 244, in exercise\nAssertionError: Plot overlaps range_label\n",
+  "files": {
+    "stop-open-compact-bottom.png": "9f132cd8d807bd00ac29d1bfbe2bfd89cba97292765d3a922a7892bcd3f38f9d",
+    "stop-open-compact.png": "48372811855ae34aca79b4d1c4f98f59ed3f2b00f90f0aadce2b216ab236aaa7",
+    "stop-open-details.png": "39670773dc6b0adb89cf62777fb16969e6da47f4eeeb501e45b16fdb1666b99c",
+    "stop-unknown-tail.mtstream": "2bc7abaf9aae1a2d876b7238a232b9b12931f467834f72696e029ca795506db7",
+    "stop-unknown-tail.mtstream.v2.json": "e2eb612cdbad0a1bb588f8c64948fb3723f1b56eda3935b64684fa11146a8b61"
+  }
+}

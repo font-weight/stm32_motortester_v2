@@ -100,7 +100,8 @@ class StreamDialog(QtWidgets.QDialog):
         self.viewer.curve.setPen(pg.mkPen("#ffe500", width=1.6))
         self.viewer.plot.setYRange(0, 4095, padding=0)
         self.viewer.plot.setSizePolicy(QtWidgets.QSizePolicy.Policy.Expanding,
-                                       QtWidgets.QSizePolicy.Policy.Ignored)
+                                       QtWidgets.QSizePolicy.Policy.Preferred)
+        self.viewer.plot.setMaximumHeight(300)
         # The unknown voltage scale is explained above the plot. Keep axis
         # labels short enough for the minimum-height graph and narrow window.
         self.viewer.plot.setLabel("left", "Код АЦП")
