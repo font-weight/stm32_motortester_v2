@@ -1,5 +1,13 @@
 # Координация самостоятельного V2
 
+HW-V2-02, база `24cce1928e8a400010536bb38715e34948c17246`:
+root — соединения/BOM P1-LV и документация; input_research — чтение первичных
+паспортов/сравнение вариантов, затем только schematic.py/SVG/PNG по нетлисту root;
+input_model — только новые model.py/plot.py
+и их расчётные артефакты в `hardware/v2-input/p1-lv`; input_critic — независимый
+отчёт и manifest, без авторства реализации. COM, ST-Link, firmware и приложение
+не входят в эту документационно-расчётную итерацию.
+
 V2-05a, база `375600c`: root — stream_ui, интеграция, документация и пакет;
 v2_core — stream_endpoint/bridge/controller, v2/stream_device и адресные
 backend-проверки; v2_docs — stream_stop_smoke и его подключение в stream_smoke;

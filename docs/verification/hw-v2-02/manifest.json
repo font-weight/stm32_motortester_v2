@@ -1,0 +1,185 @@
+{
+  "schema": "hw-v2-02-review-manifest-v1",
+  "base_commit": "24cce1928e8a400010536bb38715e34948c17246",
+  "branch": "ui-v2/initial-design",
+  "reviewer": "input_critic",
+  "reviewed_at": "2026-10-20",
+  "scope": "documentation_and_ideal_model_only",
+  "verdict": "PASS",
+  "score": 9.68,
+  "criterion_scores": {
+    "C1": 9.8,
+    "C2": 9.6,
+    "C3": 9.7,
+    "C4": 9.5,
+    "C5": 9.7
+  },
+  "hash_semantics": "sha256: exact original working-tree bytes; sha256_lf_normalized: UTF-8 text with CRLF replaced by LF for checkout portability. Binary PNG: exact sha256 only. Self excluded to avoid recursive digest.",
+  "unchanged_criteria_at_base": [
+    "AGENTS.md",
+    "docs/quality-gate.md",
+    "docs/design/motortester_alt_prompts.txt"
+  ],
+  "files": [
+    {
+      "path": "README.md",
+      "sha256": "da10112df5f20544592a32f5eead2b916afc94cfcc075ac8f47a2db7813d6c4a",
+      "bytes": 23377,
+      "sha256_lf_normalized": "c578364b8c7222761c05bc46f8ee4ddf6f5aaa26be558e5360b7234655381125"
+    },
+    {
+      "path": "docs/architecture.md",
+      "sha256": "3a6b93d3e73a02ec092e6535a5a91324367de5a323c662131cc5d2f14956d257",
+      "bytes": 37360,
+      "sha256_lf_normalized": "0abade5fcf9111039d45cd85ba13016216ed1d520289d851d614333ebde2191c"
+    },
+    {
+      "path": "docs/bench.md",
+      "sha256": "6337591bd3636a4180b241f78c8224987a127f1bfe6a96406453e4e4dd033086",
+      "bytes": 22483,
+      "sha256_lf_normalized": "c92b157103f52cabeaa69e54a31abee7da5008e13a77e370a9e8e07d631529d1"
+    },
+    {
+      "path": "docs/coordination.md",
+      "sha256": "86bf37e2fc818feeaf4578f47ba463f2745cc1e1c6659eb34f7bbd3bb090d256",
+      "bytes": 35895,
+      "sha256_lf_normalized": "c9b7d2377380473e6f8c7560bfb14c7ab910b0d5e82bb95c2449c01d226e6b93"
+    },
+    {
+      "path": "docs/decisions.md",
+      "sha256": "b782ee1cfbbfd4e8d2cc0fa6d5dbb901555d293407f06983efa2b01701c7aed8",
+      "bytes": 38099,
+      "sha256_lf_normalized": "475b55f9c30b0d3f29159dccde64f25f4e1c11af88c21a010f2c215818685e83"
+    },
+    {
+      "path": "docs/hardware-input.md",
+      "sha256": "3617d144e7b5a69dac4173f9c058329c7535f8282490896e45a80ed12f050629",
+      "bytes": 38555,
+      "sha256_lf_normalized": "3617d144e7b5a69dac4173f9c058329c7535f8282490896e45a80ed12f050629"
+    },
+    {
+      "path": "docs/progress.md",
+      "sha256": "8472245b086d55b8e938b6e9642fef59d80e3f7a0334acad89aa0d849bf75736",
+      "bytes": 199704,
+      "sha256_lf_normalized": "3948021db26de2c3d565f21af06656d90e1574b7c757a618408f806028770ddd"
+    },
+    {
+      "path": "docs/reviews/hw-v2-02-review.md",
+      "sha256": "dd96ba9693787b4f8d43971231c78f5958c0029f3e582451db59334ad20c6ef4",
+      "bytes": 11767,
+      "sha256_lf_normalized": "dd96ba9693787b4f8d43971231c78f5958c0029f3e582451db59334ad20c6ef4"
+    },
+    {
+      "path": "docs/sources.md",
+      "sha256": "0b5779f89783df7bc8da036a787682ec0652814f848745f07746141cf3b1edae",
+      "bytes": 31269,
+      "sha256_lf_normalized": "f4bccc7bdfc8158231b348e0d4181753ecc167c8fdfeaee0a4947aa598576fa2"
+    },
+    {
+      "path": "docs/validation.md",
+      "sha256": "22051057256204f68a814d5a11d79cbb6002dd2655e0e8b1ec19d0e52e73b369",
+      "bytes": 24422,
+      "sha256_lf_normalized": "3c4d49430e042ee1874b36b06f556e5be7615dff10e57c01157812232bf5e0a9"
+    },
+    {
+      "path": "docs/verification/hw-v2-02/critic-check.json",
+      "sha256": "e78523abfad468455c77c96fb5a76e10679a4eaf80f087996d60a4df115e0ec7",
+      "bytes": 1603,
+      "sha256_lf_normalized": "e78523abfad468455c77c96fb5a76e10679a4eaf80f087996d60a4df115e0ec7"
+    },
+    {
+      "path": "docs/verification/hw-v2-02/final-link-check.json",
+      "sha256": "2a4985294c799dfafc2916ffd3f1a985b10667c58e744902a82e9eb498244df9",
+      "bytes": 199,
+      "sha256_lf_normalized": "3414f6af65219f070a88cad7d3794cec9d1751f89a8a07badd2aa21acdab56ff"
+    },
+    {
+      "path": "docs/verification/hw-v2-02/root-check.json",
+      "sha256": "4e3881aacad06405c1e1fc64ef7b1694c7049a84b5dc19b97f8de900fd4e5232",
+      "bytes": 507,
+      "sha256_lf_normalized": "6e8470c33668604237c61fd59838d89db9f03e12244a61bfa1e37dd8f58c94ba"
+    },
+    {
+      "path": "hardware/v2-input/netlist.md",
+      "sha256": "8703cf60019a53f119929feda75d9e559d0c722c84c78be872385a67f96e11ca",
+      "bytes": 8654,
+      "sha256_lf_normalized": "8703cf60019a53f119929feda75d9e559d0c722c84c78be872385a67f96e11ca"
+    },
+    {
+      "path": "hardware/v2-input/p1-lv/README.md",
+      "sha256": "4009f6ccc76cf724bdfc1ff6eed0c0a20193bc8f6dfa5e105909249402aa8364",
+      "bytes": 5993,
+      "sha256_lf_normalized": "4009f6ccc76cf724bdfc1ff6eed0c0a20193bc8f6dfa5e105909249402aa8364"
+    },
+    {
+      "path": "hardware/v2-input/p1-lv/calculations.json",
+      "sha256": "870b68c2eb04700f02a20c843c0ed8ab5cd62733a90e7df6d8a3d66590ad5dad",
+      "bytes": 710538,
+      "sha256_lf_normalized": "cb8e3d434628420d8a01b943946925f82ecbda9b27ef16e9f110b73dd5b4d5ff"
+    },
+    {
+      "path": "hardware/v2-input/p1-lv/measurement-template.csv",
+      "sha256": "c61fa2b54e16e0fd1169bd905121a5edfa188af388fdc8809e41e49ba6bd7380",
+      "bytes": 481,
+      "sha256_lf_normalized": "c61fa2b54e16e0fd1169bd905121a5edfa188af388fdc8809e41e49ba6bd7380"
+    },
+    {
+      "path": "hardware/v2-input/p1-lv/model-report.png",
+      "sha256": "7aa562ab052949e3f633fb57be94706ea102b5f6bbb479b6a04945f18eaea5df",
+      "bytes": 309352
+    },
+    {
+      "path": "hardware/v2-input/p1-lv/model-report.svg",
+      "sha256": "7eebb3cb3749410cbaf7bf1d6429deec5253600cc1c8c5331a89b075eeb498d7",
+      "bytes": 200641,
+      "sha256_lf_normalized": "0eff069de4c051c4a9609482fac199c115b0cd25a6345bd9b1a7cf98695736a7"
+    },
+    {
+      "path": "hardware/v2-input/p1-lv/model.py",
+      "sha256": "28838d296b37b97cf91d78466e8778f3ff1d5729097c990aa718b87dfd5d101e",
+      "bytes": 16663,
+      "sha256_lf_normalized": "28838d296b37b97cf91d78466e8778f3ff1d5729097c990aa718b87dfd5d101e"
+    },
+    {
+      "path": "hardware/v2-input/p1-lv/netlist.md",
+      "sha256": "87977d57942d4949adec5971e54444011ecfed4e4aca0bc8f9fdda4f82be32ae",
+      "bytes": 9583,
+      "sha256_lf_normalized": "87977d57942d4949adec5971e54444011ecfed4e4aca0bc8f9fdda4f82be32ae"
+    },
+    {
+      "path": "hardware/v2-input/p1-lv/plot.py",
+      "sha256": "2cdd55f3afc1634f30ab85ab7e017bc944e53287dd04067c16a341ae8441721d",
+      "bytes": 5635,
+      "sha256_lf_normalized": "2cdd55f3afc1634f30ab85ab7e017bc944e53287dd04067c16a341ae8441721d"
+    },
+    {
+      "path": "hardware/v2-input/p1-lv/schematic.png",
+      "sha256": "db24ce94595f5d48cb3b4b33f4712dbc1cb52fb82ab024891ac69fcde9465796",
+      "bytes": 334174
+    },
+    {
+      "path": "hardware/v2-input/p1-lv/schematic.py",
+      "sha256": "5475f684618568e7870efe50e6aa911ca60804476d1772c104b08d00125bdf51",
+      "bytes": 14667,
+      "sha256_lf_normalized": "5475f684618568e7870efe50e6aa911ca60804476d1772c104b08d00125bdf51"
+    },
+    {
+      "path": "hardware/v2-input/p1-lv/schematic.svg",
+      "sha256": "d8dae2eba1dc10ac96190074a396083a52f06825ea70e7c3a8384d85953ab5fc",
+      "bytes": 26313,
+      "sha256_lf_normalized": "4d87cce2ad020c285078155b5fbd352fe4700ba64c72ad5cc8b300e31ef88203"
+    },
+    {
+      "path": "requirements.md",
+      "sha256": "c671ff44453f91dab32addcbf7bd8e201d744a6ebce42b7ac9ca64a2a335b2fd",
+      "bytes": 46714,
+      "sha256_lf_normalized": "b75f6bc93f80b96135af265a4f7971ff6d9a704a9f01ebe63f017accce65915e"
+    },
+    {
+      "path": "task.md",
+      "sha256": "507c18f6340c4edee99508734c47fd26de03a00835286d354a6d6cb74b6ffcba",
+      "bytes": 44683,
+      "sha256_lf_normalized": "54068d21f88c1cae427d7cfb380ed88ba18c40b41d6ceefd1e96e28b783f3cfe"
+    }
+  ]
+}

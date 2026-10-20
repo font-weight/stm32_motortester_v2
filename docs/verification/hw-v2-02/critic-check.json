@@ -1,0 +1,39 @@
+{
+  "base": "24cce1928e8a400010536bb38715e34948c17246",
+  "critic": "input_critic",
+  "evidence_level": "documentation_and_ideal_calculation_only",
+  "python": "3.14.7 (tags/v3.14.7:823f032, Aug 5 2026) [MSC v.1944 64 bit (AMD64)]",
+  "platform": "Windows-10-10.0.19045-SP0",
+  "model_json_matches_single_in_memory_build": true,
+  "independent_dc_kcl_residual_a": 3.3881317890172014e-21,
+  "independent_filter_nodal_gain_residual": 4.440892098500626e-16,
+  "independent_test_source_kcl_residual_a": 3.8116482626443515e-21,
+  "test_upper_corner_v": 0.9221469267082147,
+  "test_lower_loaded_nominal_v": 0.0016522718738265114,
+  "p1_open_ch1_nominal_v": 1.8857142857142857,
+  "p1_resistance_ohm": 1140285.7142857143,
+  "filter_3000hz_nominal_db": -2.9636561007257938,
+  "filter_3000hz_corner_db_min_max": [-3.336735944310108, -2.5955655986217363],
+  "numerical_dc_residual_v": 6.283930260586601e-7,
+  "numerical_dt_refinement_trace_difference_v": 1.886825184982399e-8,
+  "independent_visual_review": [
+    "schematic.png: readable Cyrillic; nets and pins compared to netlist and TI SOIC-14",
+    "model-report.png: units, limitations and graph interpretations checked"
+  ],
+  "initial_link_check": {
+    "links_checked": 351,
+    "only_missing_target_before_critic_report_creation": "docs/reviews/hw-v2-02-review.md"
+  },
+  "csv_columns": 16,
+  "csv_measurement_rows": 10,
+  "csv_measurement_cells_all_blank": true,
+  "not_executed": [
+    "GUI",
+    "COM",
+    "ST-Link",
+    "firmware",
+    "physical measurements",
+    "full inherited test suite"
+  ],
+  "result": "PASS_CALCULATION_AND_DOCUMENTATION"
+}
