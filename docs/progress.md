@@ -30,6 +30,17 @@ EXE, но остановился до ZIP/проверки на несовпад
 Журнал сохранён в `build/v2-windows-candidate-02/build.log`.
 Каталог по умолчанию сокращён до `build/v2w`; настройки Windows не менялись.
 
+Третья попытка из `7cda0233afdaa53d074d60a08ae99a36d89f9449` создала ZIP,
+но frozen-проверка честно завершилась `FAIL`: импорт QtCore не нашёл процедуру.
+Сохранены `build/v2w/build.log` и `build/v2w/frozen-smoke/result.json`.
+Сопоставление DLL-импортов/экспортов показало подмену системной `icuuc.dll`
+библиотекой Poppler из PATH среды Codex: отсутствовали 20 требуемых Qt имён
+без суффикса `_78`. Также попала посторонняя UCRT из libheif.
+PATH сборки теперь ограничен CPython и System32; Git вызывается по заранее
+найденному абсолютному пути. Рецепт отвергает бинарные зависимости вне
+изолированной venv, CPython и Windows. Ни системные файлы, ни исходный
+неудачный ZIP не изменялись.
+
 Отдельный рецепт — `host/packaging/v2/build_windows.py`: CPython 3.14.7 x64,
 PyInstaller 6.22.3, закреплённые Windows wheels. NumPy cp314 выбран по
 [официальным метаданным 2.5.3](https://pypi.org/pypi/numpy/2.5.3/json);

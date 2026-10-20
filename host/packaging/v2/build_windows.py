@@ -80,8 +80,13 @@ def clean_environment():
     env = os.environ.copy()
     for name in list(env):
         upper = name.upper()
-        if upper in ("PYTHONPATH", "PYTHONHOME") or upper.startswith(("QT", "QML")):
+        if upper in ("PATH", "PYTHONPATH", "PYTHONHOME") or upper.startswith(("QT", "QML")):
             env.pop(name)
+    # Dependency discovery must not borrow DLLs from unrelated desktop tools.
+    # In particular Poppler's ICU has a different ABI from Windows' system ICU.
+    env["PATH"] = os.pathsep.join((sys.base_prefix,
+                                  str(Path(sys.base_prefix) / "Scripts"),
+                                  str(Path(os.environ["SystemRoot"]) / "System32")))
     env.update(PYTHONNOUSERSITE="1", PYTHONUTF8="1", PYTHONHASHSEED="0",
                PYQTGRAPH_QT_LIB="PySide6")
     return env
@@ -136,10 +141,13 @@ def main(argv=None):
             or sys.maxsize <= 2**32 or sys.version_info[:3] != EXPECTED_PYTHON
             or sysconfig.get_config_var("Py_GIL_DISABLED")):
         parser.error("Use regular CPython 3.14.7 x64 on Windows")
+    git = shutil.which("git")
+    if not git:
+        parser.error("Git must be installed")
     revision = subprocess.check_output(
-        ["git", "rev-parse", "HEAD"], cwd=REPOSITORY, text=True).strip()
+        [git, "rev-parse", "HEAD"], cwd=REPOSITORY, text=True).strip()
     dirty = subprocess.check_output(
-        ["git", "status", "--porcelain", "--untracked-files=all"], cwd=REPOSITORY, text=True)
+        [git, "status", "--porcelain", "--untracked-files=all"], cwd=REPOSITORY, text=True)
     if dirty.strip():
         parser.error("Commit the reviewed source first; the candidate needs a clean checkout")
     output = args.output.resolve()
@@ -174,7 +182,7 @@ def main(argv=None):
     # Git archives retain the exact committed notice bytes. A Windows checkout
     # may have CRLF conversion, which must never be worked around by repinning.
     license_archive = output / "license-input.zip"
-    run("git", "-C", REPOSITORY, "archive", "--format=zip", f"--output={license_archive}",
+    run(git, "-C", REPOSITORY, "archive", "--format=zip", f"--output={license_archive}",
         revision, "host/packaging/collect_licenses.py", "host/packaging/licenses",
         "host/docs/dependency-sources.md")
     license_input = output / "license-input"
@@ -188,10 +196,10 @@ def main(argv=None):
     shutil.copy2(PACKAGING / "README_PORTABLE_RU.txt", bundle / "README_RU.txt")
     shutil.copy2(lock, bundle / lock.name)
 
-    run("git", "-C", REPOSITORY, "diff", "--exit-code", revision, "--",
+    run(git, "-C", REPOSITORY, "diff", "--exit-code", revision, "--",
         "host", "AGENTS.md", "README.md", "requirements.md", "task.md", "docs")
     source_archive = output / "source.zip"
-    run("git", "-C", REPOSITORY, "archive", "--format=zip", f"--output={source_archive}",
+    run(git, "-C", REPOSITORY, "archive", "--format=zip", f"--output={source_archive}",
         revision, "host", "AGENTS.md", "README.md", "requirements.md", "task.md", "docs")
     manifest = {
         "status": "local-technical-candidate-not-public-release",
@@ -209,6 +217,8 @@ def main(argv=None):
             "PYTHONHASHSEED": env["PYTHONHASHSEED"],
             "PYQTGRAPH_QT_LIB": env["PYQTGRAPH_QT_LIB"],
             "python_home_path_and_qt_overrides_removed": True,
+            "PATH": env["PATH"],
+            "git_executable": git,
         },
         "packages": packages,
         "lock_sha256": sha256(lock),
