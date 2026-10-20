@@ -1,0 +1,520 @@
+{
+  "status": "PASS",
+  "platform": "win32",
+  "windows": "Windows-10-10.0.19045-SP0",
+  "python": "3.14.7 (tags/v3.14.7:823f032, Aug  5 2026, 10:51:32) [MSC v.1944 64 bit (AMD64)]",
+  "frozen": true,
+  "executable": "C:\\Users\\Alexandr\\Desktop\\New folder\\универ\\мотортестер 2\\build\\v4aw1\\Проверка переноса\\MotortesterV2\\MotortesterV2.exe",
+  "cwd": "C:\\Users\\Alexandr\\Desktop\\New folder\\универ\\мотортестер 2\\build\\v4aw1\\Другая рабочая папка",
+  "checks": [
+    "packaged Windows pyserial; device panel with mocked enumeration; no COM open",
+    "native GUI; both DEMO profiles; V/mV keeps raw and physical values",
+    "single capture saved through GUI; pause-independent recording with a real data gap",
+    "GUI save/open keeps raw and input snapshot; CSV/JSON keeps gap and checksum",
+    "synthetic wire 0.1 window -> V2 unknown scale -> exact save/reopen",
+    "actual exit dialog: Esc retains partial; explicit discard closes without JSON",
+    "paced stream: Preview/Record/pause/Stop/open/CSV; unknown tail; child and parent close"
+  ],
+  "callback_errors": [],
+  "qt_platform": "windows",
+  "qt": "6.12.0",
+  "numpy": "2.5.3",
+  "sample_count": 7500,
+  "session_id": "69829d23-daae-4f7d-96a0-d979c71b97fe",
+  "device_verification": {
+    "status": "PASS",
+    "serial_version": "3.5",
+    "serial_backend": "serial.serialwin32",
+    "enumeration_mocked": true,
+    "panel_created": true,
+    "serial_open_calls": 0,
+    "worker_running": false,
+    "wire_source": "demo",
+    "sample_count": 2048,
+    "session_id": "00000000-0000-0000-5349-4d0000000001",
+    "voltage_state": "unconfigured",
+    "time_basis": "nominal_unverified",
+    "physical_device_verified": false
+  },
+  "close_verification": {
+    "status": "PASS",
+    "source": "synthetic injected partial; no serial worker",
+    "fragment_samples": 250,
+    "default_and_escape": "cancel",
+    "decisions": [
+      "cancel",
+      "discard"
+    ],
+    "closed_without_json": true,
+    "saved_record_unchanged": true,
+    "serial_open_calls": 0
+  },
+  "stream_verification": {
+    "status": "PASS",
+    "source": "paced synthetic wire 0.2",
+    "record_start": 3667072,
+    "exported_samples": 672903,
+    "pause_independent": true,
+    "raw_roundtrip": true,
+    "unknown_tail_preserved": true,
+    "parent_close_drained": true,
+    "record_picker": {
+      "status": "PASS",
+      "source": "paced synthetic wire 0.2",
+      "hold_seconds_minimum": 2.1,
+      "selected_path": "C:\\Users\\Alexandr\\Desktop\\New folder\\универ\\мотортестер 2\\build\\v4aw1\\frozen-smoke\\stream-scope.mtstream",
+      "save_picker_seconds_minimum": 70.0,
+      "record_seconds_minimum": 12.0,
+      "qt_widget_picker": true,
+      "physical_stream_verified": false,
+      "cancel_picker": {
+        "before": {
+          "revision": 1,
+          "phase": "preview",
+          "samples": 32256,
+          "viewer_sequence": 6,
+          "plot_updates": 2,
+          "record_start": null,
+          "writer_accepted_end": null,
+          "writer_checkpointed_end": null,
+          "failure_code": null
+        },
+        "checkpoints": [],
+        "finished_events": [
+          {
+            "result": 0,
+            "elapsed_seconds": 2.1198533999267966,
+            "wall_time_unix_seconds": 1792500700.3088841,
+            "state": {
+              "revision": 1,
+              "phase": "preview",
+              "samples": 137984,
+              "viewer_sequence": 27,
+              "plot_updates": 23,
+              "record_start": null,
+              "writer_accepted_end": null,
+              "writer_checkpointed_end": null,
+              "failure_code": null
+            }
+          }
+        ],
+        "elapsed_seconds": 2.114935399964452,
+        "max_poll_gap_seconds": 0.08974900003522635,
+        "max_sample_update_gap_seconds": 0.08974900003522635,
+        "controller_max_service_gap_ms": 47,
+        "after": {
+          "revision": 1,
+          "phase": "preview",
+          "samples": 137984,
+          "viewer_sequence": 27,
+          "plot_updates": 23,
+          "record_start": null,
+          "writer_accepted_end": null,
+          "writer_checkpointed_end": null,
+          "failure_code": null
+        },
+        "samples_per_wall_second": 49991.12502527363
+      },
+      "save_picker": {
+        "before": {
+          "revision": 1,
+          "phase": "preview",
+          "samples": 156928,
+          "viewer_sequence": 31,
+          "plot_updates": 27,
+          "record_start": null,
+          "writer_accepted_end": null,
+          "writer_checkpointed_end": null,
+          "failure_code": null
+        },
+        "checkpoints": [
+          {
+            "revision": 1,
+            "phase": "preview",
+            "samples": 659200,
+            "viewer_sequence": 130,
+            "plot_updates": 125,
+            "record_start": null,
+            "writer_accepted_end": null,
+            "writer_checkpointed_end": null,
+            "failure_code": null,
+            "elapsed_seconds": 10.043712799903005
+          },
+          {
+            "revision": 1,
+            "phase": "preview",
+            "samples": 1158528,
+            "viewer_sequence": 228,
+            "plot_updates": 223,
+            "record_start": null,
+            "writer_accepted_end": null,
+            "writer_checkpointed_end": null,
+            "failure_code": null,
+            "elapsed_seconds": 20.032513399841264
+          },
+          {
+            "revision": 1,
+            "phase": "preview",
+            "samples": 1659776,
+            "viewer_sequence": 327,
+            "plot_updates": 319,
+            "record_start": null,
+            "writer_accepted_end": null,
+            "writer_checkpointed_end": null,
+            "failure_code": null,
+            "elapsed_seconds": 30.06939830002375
+          },
+          {
+            "revision": 1,
+            "phase": "preview",
+            "samples": 2160896,
+            "viewer_sequence": 425,
+            "plot_updates": 417,
+            "record_start": null,
+            "writer_accepted_end": null,
+            "writer_checkpointed_end": null,
+            "failure_code": null,
+            "elapsed_seconds": 40.080118200043216
+          },
+          {
+            "revision": 1,
+            "phase": "preview",
+            "samples": 2660608,
+            "viewer_sequence": 523,
+            "plot_updates": 511,
+            "record_start": null,
+            "writer_accepted_end": null,
+            "writer_checkpointed_end": null,
+            "failure_code": null,
+            "elapsed_seconds": 50.08710090001114
+          },
+          {
+            "revision": 1,
+            "phase": "preview",
+            "samples": 3158656,
+            "viewer_sequence": 621,
+            "plot_updates": 599,
+            "record_start": null,
+            "writer_accepted_end": null,
+            "writer_checkpointed_end": null,
+            "failure_code": null,
+            "elapsed_seconds": 60.034499699948356
+          },
+          {
+            "revision": 1,
+            "phase": "preview",
+            "samples": 3657216,
+            "viewer_sequence": 719,
+            "plot_updates": 689,
+            "record_start": null,
+            "writer_accepted_end": null,
+            "writer_checkpointed_end": null,
+            "failure_code": null,
+            "elapsed_seconds": 70.0170400000643
+          }
+        ],
+        "finished_events": [
+          {
+            "result": 1,
+            "elapsed_seconds": 70.16241699992679,
+            "wall_time_unix_seconds": 1792500770.845044,
+            "state": {
+              "revision": 1,
+              "phase": "preview",
+              "samples": 3664384,
+              "viewer_sequence": 720,
+              "plot_updates": 690,
+              "record_start": null,
+              "writer_accepted_end": null,
+              "writer_checkpointed_end": null,
+              "failure_code": null
+            }
+          }
+        ],
+        "elapsed_seconds": 70.023953899974,
+        "max_poll_gap_seconds": 0.1792474000249058,
+        "max_sample_update_gap_seconds": 0.1792474000249058,
+        "controller_max_service_gap_ms": 47,
+        "after": {
+          "revision": 1,
+          "phase": "preview",
+          "samples": 3657856,
+          "viewer_sequence": 719,
+          "plot_updates": 689,
+          "record_start": null,
+          "writer_accepted_end": null,
+          "writer_checkpointed_end": null,
+          "failure_code": null
+        },
+        "samples_per_wall_second": 49996.148532271036
+      },
+      "sustained_record": {
+        "before": {
+          "revision": 1,
+          "phase": "recording",
+          "samples": 3682816,
+          "viewer_sequence": 724,
+          "plot_updates": 691,
+          "record_start": 3667072,
+          "writer_accepted_end": 3682688,
+          "writer_checkpointed_end": 3667072,
+          "failure_code": null
+        },
+        "checkpoints": [
+          {
+            "revision": 1,
+            "phase": "recording",
+            "samples": 3789312,
+            "viewer_sequence": 745,
+            "plot_updates": 705,
+            "record_start": 3667072,
+            "writer_accepted_end": 3789056,
+            "writer_checkpointed_end": 3667072,
+            "failure_code": null,
+            "elapsed_seconds": 2.129520099842921
+          },
+          {
+            "revision": 1,
+            "phase": "recording",
+            "samples": 3885568,
+            "viewer_sequence": 764,
+            "plot_updates": 718,
+            "record_start": 3667072,
+            "writer_accepted_end": 3885440,
+            "writer_checkpointed_end": 3667072,
+            "failure_code": null,
+            "elapsed_seconds": 4.054775399854407
+          },
+          {
+            "revision": 1,
+            "phase": "recording",
+            "samples": 3988352,
+            "viewer_sequence": 784,
+            "plot_updates": 731,
+            "record_start": 3667072,
+            "writer_accepted_end": 3987968,
+            "writer_checkpointed_end": 3667072,
+            "failure_code": null,
+            "elapsed_seconds": 6.109403499867767
+          },
+          {
+            "revision": 1,
+            "phase": "recording",
+            "samples": 4085760,
+            "viewer_sequence": 804,
+            "plot_updates": 743,
+            "record_start": 3667072,
+            "writer_accepted_end": 4083712,
+            "writer_checkpointed_end": 3667072,
+            "failure_code": null,
+            "elapsed_seconds": 8.083048099884763
+          },
+          {
+            "revision": 1,
+            "phase": "recording",
+            "samples": 4184832,
+            "viewer_sequence": 823,
+            "plot_updates": 758,
+            "record_start": 3667072,
+            "writer_accepted_end": 4183296,
+            "writer_checkpointed_end": 3667072,
+            "failure_code": null,
+            "elapsed_seconds": 10.041847300017253
+          },
+          {
+            "revision": 1,
+            "phase": "recording",
+            "samples": 4288768,
+            "viewer_sequence": 844,
+            "plot_updates": 771,
+            "record_start": 3667072,
+            "writer_accepted_end": 4288128,
+            "writer_checkpointed_end": 4191360,
+            "failure_code": null,
+            "elapsed_seconds": 12.137925899820402
+          }
+        ],
+        "max_poll_gap_seconds": 0.19441309990361333,
+        "elapsed_seconds": 12.145524099934846,
+        "after": {
+          "revision": 1,
+          "phase": "recording",
+          "samples": 4289664,
+          "viewer_sequence": 844,
+          "plot_updates": 771,
+          "record_start": 3667072,
+          "writer_accepted_end": 4289536,
+          "writer_checkpointed_end": 4191360,
+          "failure_code": null
+        },
+        "samples_per_wall_second": 49964.7438024725
+      },
+      "after_accept": {
+        "revision": 1,
+        "phase": "recording",
+        "samples": 3682816,
+        "viewer_sequence": 724,
+        "plot_updates": 691,
+        "record_start": 3667072,
+        "writer_accepted_end": 3682688,
+        "writer_checkpointed_end": 3667072,
+        "failure_code": null
+      },
+      "recording_continues": {
+        "revision": 1,
+        "phase": "recording",
+        "samples": 4289664,
+        "viewer_sequence": 844,
+        "plot_updates": 771,
+        "record_start": 3667072,
+        "writer_accepted_end": 4289536,
+        "writer_checkpointed_end": 4191360,
+        "failure_code": null
+      },
+      "main_window_timer_active": true,
+      "roundtrip": {
+        "raw_verified": true,
+        "clean_stop_reported": true,
+        "first_sample_index": 3667072,
+        "end_sample_index": 4339975,
+        "reopened_raw_samples": 672903
+      },
+      "stopped_source_choice": {
+        "revision": 2,
+        "samples": 16972,
+        "new_file_created": false,
+        "message": "Запись не началась: состояние потока изменилось во время выбора файла. Проверьте сообщение о приёме. После сбоя закройте окно непрерывного приёма и откройте его заново.",
+        "new_source_admitted": false
+      }
+    },
+    "existing_path_picker": {
+      "status": "PASS",
+      "selected_existing_path": "C:\\Users\\Alexandr\\Desktop\\New folder\\универ\\мотортестер 2\\build\\v4aw1\\frozen-smoke\\stream-scope.mtstream",
+      "before": {
+        "stream-scope.mtstream": {
+          "sha256": "9e428bd672d8ce7964a61313d2cf55401529b159c34534a48e702300704636f9",
+          "bytes": 1350993
+        },
+        "stream-scope.mtstream.v2.json": {
+          "sha256": "ea01fa6cd588ce1fcc73d4bdbe5d297527fab958714f473f9fa17d61a106bdc1",
+          "bytes": 1466
+        }
+      },
+      "physical_stream_verified": false,
+      "error_code": "host_io",
+      "visible_message": "Файл уже существует. Существующие записи не заменяются; выберите новое имя.\nПричина: storage prepare failed: FileExistsError · Операция: создание файла\nФайл: C:/Users/Alexandr/Desktop/New folder/универ/мотортестер 2/build/v4aw1/frozen-smoke/stream-scope.mtstream\nДля новой попытки закройте это окно непрерывного приёма и откройте его заново.",
+      "state_message": "Контекст записи не сохранён · Получено: 6 804 отсчётов · Запись не началась · НЕПОЛНЫЕ ДАННЫЕ: host_io",
+      "after": {
+        "stream-scope.mtstream": {
+          "sha256": "9e428bd672d8ce7964a61313d2cf55401529b159c34534a48e702300704636f9",
+          "bytes": 1350993
+        },
+        "stream-scope.mtstream.v2.json": {
+          "sha256": "ea01fa6cd588ce1fcc73d4bdbe5d297527fab958714f473f9fa17d61a106bdc1",
+          "bytes": 1466
+        }
+      },
+      "recording_reported_saved": false,
+      "test_workspace_closed": true
+    },
+    "physical_stream_verified": false
+  },
+  "files": {
+    "device-panel.png": {
+      "bytes": 27556,
+      "sha256": "4948d8b9c9a064a61bb9cc31e09615358caf29e5a360bdec82f04d110e52af12"
+    },
+    "device-window.mtv2": {
+      "bytes": 5678,
+      "sha256": "f2126334211f3c44f6760b2c408255cdf9061c7f089bd0e51fee660462c08411"
+    },
+    "export.csv": {
+      "bytes": 351704,
+      "sha256": "15412527f9638f3fcb668f33502c00092c66d9e4606da1a460a980004c879674"
+    },
+    "export.csv.json": {
+      "bytes": 1996,
+      "sha256": "cafae9572cf9c586dd3a1feadfad7ae093e3a3c610a0cc96ed02caa0b6115c8a"
+    },
+    "ignition.png": {
+      "bytes": 105518,
+      "sha256": "3775e24f48c385f75ddc4b08bd39cdf4c46b04ff38d9d2a79cc56f212acca0d4"
+    },
+    "incomplete-close.png": {
+      "bytes": 11232,
+      "sha256": "4ba859186b8f53becbec9f739fa5043b2926f2e544653974a43778a8d112bbd9"
+    },
+    "sample.mtv2": {
+      "bytes": 16757,
+      "sha256": "10a7c099ef83245206a10a35c97197da5cc99f4cbd6451b5bb8ec3d3627e5b0f"
+    },
+    "scope.png": {
+      "bytes": 124376,
+      "sha256": "5fabf13d0222c389654aeac2646c9634bf192ef762cf053c48b7453cf232869d"
+    },
+    "single.mtv2": {
+      "bytes": 2029,
+      "sha256": "c28f0f9066d1109afbab41414d8627c7ecdd86a2d9b9fd080094db110ca01c1f"
+    },
+    "stream-existing-path-result.json": {
+      "bytes": 1719,
+      "sha256": "a311e62153afdcd586c82564c1740dea4d2571cd1a2cf77ae18fe734ab37c5e4"
+    },
+    "stream-existing-path.png": {
+      "bytes": 52017,
+      "sha256": "457f6b896e22cce94c8c135584eb14818bafa0a67d058aed45c3a7cba15cc201"
+    },
+    "stream-export.csv": {
+      "bytes": 14763356,
+      "sha256": "7e0edfe51dcbad27ecbc313b857acafbd28edc68cb1a8ff71e37df76fdf7e5cb"
+    },
+    "stream-export.csv.json": {
+      "bytes": 2304,
+      "sha256": "46e45132189cfb56fe038b7c81f8e5034ca62295b4bc7287769e109be0f6a0de"
+    },
+    "stream-ignition.mtstream": {
+      "bytes": 103728,
+      "sha256": "0855f8f6462e5bfdd94000e99f645615feb45e80a0ca8375da7871dca0f275ed"
+    },
+    "stream-ignition.mtstream.v2.json": {
+      "bytes": 1453,
+      "sha256": "4c016a875cd0f175a3a55025e385da04ef9b74fa4bed0693dd6ba463ae99552b"
+    },
+    "stream-ignition.png": {
+      "bytes": 53052,
+      "sha256": "97766fb79304a55bfff68668652bb20c16d7f372d188676bd5f9a1a7a98aa565"
+    },
+    "stream-picker-result.json": {
+      "bytes": 9904,
+      "sha256": "d5d1dbedf4a9180acfb906d5201c8aac38af6eeb2651685845cb872f6e15d903"
+    },
+    "stream-record-picker.png": {
+      "bytes": 21320,
+      "sha256": "ee1815f73ebe69d91ae0646afa48502296080b76379532c2835596ae9c61d444"
+    },
+    "stream-scope.mtstream": {
+      "bytes": 1350993,
+      "sha256": "9e428bd672d8ce7964a61313d2cf55401529b159c34534a48e702300704636f9"
+    },
+    "stream-scope.mtstream.v2.json": {
+      "bytes": 1466,
+      "sha256": "ea01fa6cd588ce1fcc73d4bdbe5d297527fab958714f473f9fa17d61a106bdc1"
+    },
+    "stream-scope.png": {
+      "bytes": 61358,
+      "sha256": "4971ad211801d17c1e5f7fb0c49250e675cceff30c15f408bd74a9b05667bb8a"
+    },
+    "stream-unknown-tail.mtstream": {
+      "bytes": 12797,
+      "sha256": "6cc91320cde8d26ddcc4a0b8046c47c6c76b7a7e961e47ffec0f9a50b05f2b68"
+    },
+    "stream-unknown-tail.mtstream.v2.json": {
+      "bytes": 1455,
+      "sha256": "2c0581420cd540e3ec7cade990eac6c6e202c915a777d7441c7312c13de58a45"
+    },
+    "stream-unknown-tail.png": {
+      "bytes": 69234,
+      "sha256": "a24982bee63e3094d7b941e69ad7b8ded304bc5a4d30808ffe87e191d8fc9af8"
+    }
+  }
+}

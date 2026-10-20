@@ -2,6 +2,7 @@
 
 V2-04a, база `cdd868a`: root — диагностика/stream_ui/документы/упаковка;
 v2_core — адресный GUI-сценарий диалога и подключение его в stream_smoke;
+v2_docs — пакетные задания stream_session и адресные test_stream_storage_batch;
 requirements_audit — независимый критик, только новый отчёт.
 
 V2-04, исходная база `db0592a06a03ecbc6844ed931fa0e5cb31f136b4`:
