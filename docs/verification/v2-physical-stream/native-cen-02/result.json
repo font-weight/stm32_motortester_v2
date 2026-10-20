@@ -1,0 +1,75 @@
+{
+  "status": "PASS",
+  "scope": "Execute narrow CEN regression with exact image C bodies and full TIME/ADC.",
+  "image": "C:\\Users\\Alexandr\\Desktop\\New folder\\\u0443\u043d\u0438\u0432\u0435\u0440\\\u043c\u043e\u0442\u043e\u0440\u0442\u0435\u0441\u0442\u0435\u0440 2\\build\\v5-fw-09",
+  "firmware_build": 1446138675,
+  "image_bin_sha256": "a35d3675e5d9d3b8b6a60c2b7103b14d10f81d1f064a6884436a46d844977665",
+  "inputs": {
+    "C:\\Users\\Alexandr\\Desktop\\New folder\\\u0443\u043d\u0438\u0432\u0435\u0440\\\u043c\u043e\u0442\u043e\u0440\u0442\u0435\u0441\u0442\u0435\u0440 2\\tests\\v2-stream-firmware\\check_cen_transaction.py": "acfe16bf46cd8e92e4f4d6cc9cf6ae19ff3842400ca3e13164d6956640bee3d8",
+    "C:\\Users\\Alexandr\\Desktop\\New folder\\\u0443\u043d\u0438\u0432\u0435\u0440\\\u043c\u043e\u0442\u043e\u0440\u0442\u0435\u0441\u0442\u0435\u0440 2\\build\\v5-native-toolchain\\zig-x86_64-windows-0.15.2\\zig.exe": "d408dd38eed3e5204af841bcebf70502a4dbbb8399a3a3262be55059370bc018",
+    "C:\\Users\\Alexandr\\Desktop\\New folder\\\u0443\u043d\u0438\u0432\u0435\u0440\\\u043c\u043e\u0442\u043e\u0440\u0442\u0435\u0441\u0442\u0435\u0440 2\\tests\\v2-stream-firmware\\check_usb_gate.py": "067de6afbaa2faa1c60828b4fdc46d1e5bd8f1344f78efba9ca70c87181f9ad7",
+    "C:\\Users\\Alexandr\\Desktop\\New folder\\\u0443\u043d\u0438\u0432\u0435\u0440\\\u043c\u043e\u0442\u043e\u0440\u0442\u0435\u0441\u0442\u0435\u0440 2\\build\\v5-fw-09\\receipt.json": "1aeaacf4af8c4d55f74d2db0e9d875cd0da1604a74b342131ec973cd7a0de8af",
+    "C:\\Users\\Alexandr\\Desktop\\New folder\\\u0443\u043d\u0438\u0432\u0435\u0440\\\u043c\u043e\u0442\u043e\u0440\u0442\u0435\u0441\u0442\u0435\u0440 2\\build\\v5-fw-09\\patched\\v2\\app\\mt_live_runtime.c": "e9d5c7703a2252d683ebbf269d354cf2700952cc2afb49a8fa11879b00c34919",
+    "C:\\Users\\Alexandr\\Desktop\\New folder\\\u0443\u043d\u0438\u0432\u0435\u0440\\\u043c\u043e\u0442\u043e\u0440\u0442\u0435\u0441\u0442\u0435\u0440 2\\tests\\v2-stream-firmware\\cen_transaction_model.c": "38040754ef9aff4fbd4de2dfcc37800cb6b6dceddd1759dbae5a8176bc40257c",
+    "C:\\Users\\Alexandr\\Desktop\\New folder\\\u0443\u043d\u0438\u0432\u0435\u0440\\\u043c\u043e\u0442\u043e\u0440\u0442\u0435\u0441\u0442\u0435\u0440 2\\build\\v5-fw-09\\patched\\v2\\platform\\adc_timer_dma.c": "b8c6c4301a1c4e72ae0a3a4f9353a1bab109ccd1a96095d4684d899d5e34ce2b",
+    "C:\\Users\\Alexandr\\Desktop\\New folder\\\u0443\u043d\u0438\u0432\u0435\u0440\\\u043c\u043e\u0442\u043e\u0440\u0442\u0435\u0441\u0442\u0435\u0440 2\\build\\v5-fw-09\\patched\\v2\\platform\\adc_timer_dma.h": "81566249d59d9582ce4d6fa139a6f83cfb293d189754c06589e2fbb302f3e829",
+    "C:\\Users\\Alexandr\\Desktop\\New folder\\\u0443\u043d\u0438\u0432\u0435\u0440\\\u043c\u043e\u0442\u043e\u0440\u0442\u0435\u0441\u0442\u0435\u0440 2\\build\\v5-fw-09\\source\\firmware\\platform\\mt_timebase.c": "e9adfde14df828040bd665781ecbd737a3a27e8b3d396e8639d5e93a500ca774",
+    "C:\\Users\\Alexandr\\Desktop\\New folder\\\u0443\u043d\u0438\u0432\u0435\u0440\\\u043c\u043e\u0442\u043e\u0440\u0442\u0435\u0441\u0442\u0435\u0440 2\\build\\v5-fw-09\\source\\firmware\\platform\\mt_timebase.h": "b41cc0a080ddae68bffd5a1b7f4af31da7900bb29f3939c2bd2c2e690026ad39",
+    "C:\\Users\\Alexandr\\Desktop\\New folder\\\u0443\u043d\u0438\u0432\u0435\u0440\\\u043c\u043e\u0442\u043e\u0440\u0442\u0435\u0441\u0442\u0435\u0440 2\\build\\v5-fw-09\\source\\firmware\\platform\\mt_stream_diag.h": "a2dc9c01d5a1ca9168e776e33c719ec727f0e0e301aad755d12b3280931774e5"
+  },
+  "commands": [
+    {
+      "name": "version",
+      "argv": [
+        "C:\\Users\\Alexandr\\Desktop\\New folder\\\u0443\u043d\u0438\u0432\u0435\u0440\\\u043c\u043e\u0442\u043e\u0440\u0442\u0435\u0441\u0442\u0435\u0440 2\\build\\v5-native-toolchain\\zig-x86_64-windows-0.15.2\\zig.exe",
+        "version"
+      ],
+      "exit_code": 0
+    },
+    {
+      "name": "compile",
+      "argv": [
+        "C:\\Users\\Alexandr\\Desktop\\New folder\\\u0443\u043d\u0438\u0432\u0435\u0440\\\u043c\u043e\u0442\u043e\u0440\u0442\u0435\u0441\u0442\u0435\u0440 2\\build\\v5-native-toolchain\\zig-x86_64-windows-0.15.2\\zig.exe",
+        "cc",
+        "-std=c11",
+        "-O1",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-Wno-unused-function",
+        "-Wno-unused-parameter",
+        "cen.c",
+        "adc_timer_dma.c",
+        "mt_timebase.c",
+        "-o",
+        "cen.exe"
+      ],
+      "exit_code": 0
+    },
+    {
+      "name": "cen",
+      "argv": [
+        "C:\\Users\\Alexandr\\Desktop\\New folder\\\u0443\u043d\u0438\u0432\u0435\u0440\\\u043c\u043e\u0442\u043e\u0440\u0442\u0435\u0441\u0442\u0435\u0440 2\\build\\v5-native-cen-02\\cen.exe"
+      ],
+      "exit_code": 0
+    }
+  ],
+  "compiler_version": "0.15.2",
+  "stdout": "PASS expensive full guards / 20us / CNT16 and us32 wrap; old path rejects\r\nPASS 21us rejection / original PRIMASK restored / verified quiesce\r\nPASS post-CEN TIME / lifecycle / original actor / counter-order denial\r\n",
+  "generated": {
+    "adc_timer_dma.c": "b8c6c4301a1c4e72ae0a3a4f9353a1bab109ccd1a96095d4684d899d5e34ce2b",
+    "adc_timer_dma.h": "81566249d59d9582ce4d6fa139a6f83cfb293d189754c06589e2fbb302f3e829",
+    "cen.c": "4fb20835c88b15addbf8a166cfd1b0310d10d13140bd376e88b801fd4d952692",
+    "cen.exe": "62d2a859b2902332cd10942a6e75a8f27719798253f138e522d4bc7055104b97",
+    "mt_stream_diag.h": "a2dc9c01d5a1ca9168e776e33c719ec727f0e0e301aad755d12b3280931774e5",
+    "mt_timebase.c": "e9adfde14df828040bd665781ecbd737a3a27e8b3d396e8639d5e93a500ca774",
+    "mt_timebase.h": "b41cc0a080ddae68bffd5a1b7f4af31da7900bb29f3939c2bd2c2e690026ad39"
+  },
+  "negative_control": "Old validated-timestamp path rejected by unchanged20us gate",
+  "not_verified": [
+    "ARM/bus/CPU timing",
+    "USB PHY and full lifecycle implementation",
+    "ADC conversion latency",
+    "Physical sampling or voltage"
+  ]
+}

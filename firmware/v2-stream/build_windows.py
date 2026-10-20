@@ -1,4 +1,4 @@
-"""Build the separately reviewed V2S2 transport candidate; never flash hardware."""
+"""Build the separately reviewed V2S3 transport candidate; never flash hardware."""
 import argparse
 import hashlib
 import importlib.util
@@ -197,16 +197,27 @@ def main():
         (out / "patched/dcd_stm32_fsdev.c").write_bytes(fsdev)
         # Preserve the canonical archive. V2 patches are a second, independently
         # pinned layer over exactly the inputs named in the overlay manifest.
-        v2_patches = json.loads((here / "overlays/usb-nvic.json").read_text("utf-8"))
-        require(v2_patches["schema"] == "motortester-v2-usb-nvic-overlay-1",
-                "Unexpected V2 overlay schema")
-        receipt["v2_overlays"] = v2_patches["patches"]
-        for row in v2_patches["patches"]:
-            target = out / "patched" / row["target"]
-            target.parent.mkdir(parents=True, exist_ok=True)
-            target.write_bytes(apply_patch(
-                (out / row["source"]).read_bytes(),
-                (here / "overlays" / row["patch"]).read_bytes(), row))
+        receipt["v2_overlays"] = []
+        for name, schema in (("usb-nvic.json", "motortester-v2-usb-nvic-overlay-1"),
+                             ("adc-cen.json", "motortester-v2-adc-cen-overlay-1")):
+            v2_patches = json.loads((here / "overlays" / name).read_text("utf-8"))
+            require(v2_patches["schema"] == schema, "Unexpected V2 overlay schema")
+            receipt["v2_overlays"].extend(v2_patches["patches"])
+            for row in v2_patches["patches"]:
+                target = out / "patched" / row["target"]
+                target.parent.mkdir(parents=True, exist_ok=True)
+                target.write_bytes(apply_patch(
+                    (out / row["source"]).read_bytes(),
+                    (here / "overlays" / row["patch"]).read_bytes(), row))
+        # Keep quoted relative header includes inside one coherent V2 tree.
+        # Unchanged headers are byte copies of the pinned archive; never replace
+        # the two explicit API overlays or mutate the canonical source tree.
+        for area in ("boot", "platform", "app", "protocol", "transport", "acquisition"):
+            for original in (source / "firmware" / area).rglob("*.h"):
+                target = out / "patched/v2" / original.relative_to(source / "firmware")
+                target.parent.mkdir(parents=True, exist_ok=True)
+                if not target.exists():
+                    target.write_bytes(original.read_bytes())
         # Quoted relative includes must resolve to the V2 header alongside the
         # patched translation unit, never silently fall back to the old gate.
         for original, target in (
@@ -223,7 +234,9 @@ def main():
         entries = [r for r in manifest["components"] if r["source"] not in REMOVE]
         require(len(entries) == 20, "Unexpected retained component count")
         entries += [{"source": path, "flags": standard} for path in ADD]
-        includes = ["-Isource/firmware/" + p for p in
+        includes = ["-Ipatched/v2/" + p for p in
+                    ("boot", "platform", "app", "protocol", "transport", "acquisition")]
+        includes += ["-Isource/firmware/" + p for p in
                     ("boot", "platform", "app", "protocol", "transport", "acquisition")]
         for relative in ("tinyusb/src", "cmsis-device-f1/Include", "cmsis-core/CMSIS/Core/Include",
                          "tinyusb/src/portable/st/stm32_fsdev"):
@@ -260,6 +273,8 @@ def main():
             path = src.replace("@patched/", "patched/") if src.startswith("@") else "source/" + src
             path = {
                 "source/firmware/app/mt_live_runtime.c": "patched/v2/app/mt_live_runtime.c",
+                "source/firmware/app/mt_live_adc.c": "patched/v2/app/mt_live_adc.c",
+                "source/firmware/platform/adc_timer_dma.c": "patched/v2/platform/adc_timer_dma.c",
                 "source/firmware/transport/mt_usb_bridge.c": "patched/v2/transport/mt_usb_bridge.c",
             }.get(path, path)
             compile_c(f"{index:02}-{Path(src).stem}", path, row["flags"])
