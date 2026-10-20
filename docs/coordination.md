@@ -1,5 +1,13 @@
 # Координация самостоятельного V2
 
+V2-05, база `a746825`: root — stream_ui/device_ui/gui, единое владение COM,
+общие документы, чтение/возврат платы, интеграция и Windows-пакет;
+v2_core — stream_controller/bridge/provenance, v2/stream_device и адресные
+backend-проверки; v2_docs — новый firmware/v2-stream и tests/v2-stream-firmware;
+requirements_audit — независимый критик без авторства реализации.
+Реальные COM/ST-Link использует только root. Сначала отдельный допуск точного
+образа к ограниченному опыту; результаты измерений не подменяются сборкой.
+
 V2-04a, база `cdd868a`: root — диагностика/stream_ui/документы/упаковка;
 v2_core — адресный GUI-сценарий диалога и подключение его в stream_smoke;
 v2_docs — пакетные задания stream_session и адресные test_stream_storage_batch;
