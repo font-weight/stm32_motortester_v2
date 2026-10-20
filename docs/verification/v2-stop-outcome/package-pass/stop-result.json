@@ -1,0 +1,279 @@
+{
+  "status": "PASS",
+  "source": "injected synthetic wire 0.2",
+  "physical_stream_verified": false,
+  "real_serial_open_calls": 0,
+  "qt_platform": "windows",
+  "callback_errors": [],
+  "ready_close": {
+    "commands": [
+      1,
+      2
+    ],
+    "phase": "closed",
+    "endpoint_first_fault": null,
+    "emitted_errors": [],
+    "handle_closed": true,
+    "lease_released": true,
+    "samples": 0
+  },
+  "normal_stop": {
+    "phase": "stopped unknown tail",
+    "live_text": "Остановлено по команде · полнота хвоста неизвестна · Получено: 57 599 отсчётов · Принято в запись: 24 703 · Подтверждено в файле: 24 703",
+    "fresh_open_quality": "Остановлено по команде · полнота хвоста неизвестна. Потери по записи: неизвестны.",
+    "end": {
+      "generation": 3,
+      "config_id": 1,
+      "prefix_end": 57599,
+      "produced_end": null,
+      "last_data_sequence": 453,
+      "prefix_crc32": 445084046,
+      "reason": 0,
+      "flags": 3,
+      "stop_request_id": 4
+    },
+    "ack": {
+      "generation": 3,
+      "prefix_end": 57599,
+      "terminal_sequence": 454,
+      "flags": 3
+    },
+    "end_sequence": 454,
+    "ack_request_id": 4,
+    "terminal": {
+      "identity": {
+        "session_id": "wire-0.2:5b6e8842ba01f042",
+        "generation": 3,
+        "config_id": 1,
+        "nominal_fs_hz": 50000,
+        "origin": "synthetic",
+        "protocol_revision": "0.2-draft-081721",
+        "firmware_version": "build:5632444d",
+        "application_version": "v2-serial-unknown-accounting:injected-test"
+      },
+      "end_sample_index": 57599,
+      "reason": "stopped",
+      "terminal_observed": true,
+      "device_generated_end_sample_index": null,
+      "device_transmitted_end_sample_index": 57599,
+      "loss_samples": null,
+      "boundary_evidence": "validated_wire_full_prefix_crc32",
+      "failure": null,
+      "stop_requested": true,
+      "stop_request_id": 4
+    },
+    "clean_stop_reported": false,
+    "range": [
+      32896,
+      57599
+    ],
+    "raw_samples_compared": 24703,
+    "raw_sha256": "ba1779cb2dbfb16b8628353a1b7ffc6feacbecea9cd291f4e2962b6eb62b1804",
+    "journal_sha256_unchanged": "764f6d48b6fba646129d24837505973f38da8f69d53fa775d74f50d137c69c81",
+    "emitted_errors": [],
+    "main_timer_active": true,
+    "csv": {
+      "rows": 24703,
+      "csv_sha256": "c7a138402a5e8d0b45b38a7a64419a7499b8442af40a27b3ad5292efb5e32c32",
+      "raw_sha256": "ba1779cb2dbfb16b8628353a1b7ffc6feacbecea9cd291f4e2962b6eb62b1804",
+      "export_complete": true,
+      "terminal_equal": true,
+      "clean_stop_reported": false,
+      "produced_end": null,
+      "loss_samples": null,
+      "origin": "synthetic",
+      "input_profile_state": "unconfigured"
+    },
+    "screenshots": [
+      {
+        "path": "stop-open-details.png",
+        "width": 1220,
+        "height": 870,
+        "logical_width": 1220,
+        "logical_height": 870
+      },
+      {
+        "path": "stop-open-compact.png",
+        "width": 850,
+        "height": 650,
+        "logical_width": 850,
+        "logical_height": 650
+      },
+      {
+        "path": "stop-open-compact-bottom.png",
+        "width": 850,
+        "height": 650,
+        "logical_width": 850,
+        "logical_height": 650
+      }
+    ],
+    "compact_bottom_geometry": {
+      "scope": "Widget rectangles only; visual/glyph assessment requires PNG review.",
+      "scroll_value": 453,
+      "scroll_maximum": 453,
+      "viewport_size": [
+        816,
+        278
+      ],
+      "content_size": [
+        816,
+        731
+      ],
+      "plot_content_rect": [
+        18,
+        176,
+        780,
+        300
+      ],
+      "details": {
+        "source_label": {
+          "content_rect": [
+            18,
+            57,
+            780,
+            68
+          ],
+          "viewport_rect": [
+            18,
+            -396,
+            780,
+            68
+          ],
+          "intersects_viewport": false,
+          "contained_in_viewport": false,
+          "plot_intersection": false
+        },
+        "range_label": {
+          "content_rect": [
+            18,
+            482,
+            780,
+            34
+          ],
+          "viewport_rect": [
+            18,
+            29,
+            780,
+            34
+          ],
+          "intersects_viewport": true,
+          "contained_in_viewport": true,
+          "plot_intersection": false
+        },
+        "storage_label": {
+          "content_rect": [
+            18,
+            522,
+            780,
+            105
+          ],
+          "viewport_rect": [
+            18,
+            69,
+            780,
+            105
+          ],
+          "intersects_viewport": true,
+          "contained_in_viewport": true,
+          "plot_intersection": false
+        },
+        "index_label": {
+          "content_rect": [
+            18,
+            633,
+            780,
+            34
+          ],
+          "viewport_rect": [
+            18,
+            180,
+            780,
+            34
+          ],
+          "intersects_viewport": true,
+          "contained_in_viewport": true,
+          "plot_intersection": false
+        },
+        "event_label": {
+          "content_rect": [
+            18,
+            673,
+            780,
+            17
+          ],
+          "viewport_rect": [
+            18,
+            220,
+            780,
+            17
+          ],
+          "intersects_viewport": true,
+          "contained_in_viewport": true,
+          "plot_intersection": false
+        },
+        "status_label": {
+          "content_rect": [
+            18,
+            696,
+            780,
+            17
+          ],
+          "viewport_rect": [
+            18,
+            243,
+            780,
+            17
+          ],
+          "intersects_viewport": true,
+          "contained_in_viewport": true,
+          "plot_intersection": false
+        }
+      }
+    }
+  },
+  "unconfirmed_stop": {
+    "phase": "fault",
+    "fault": {
+      "code": "stop_timeout",
+      "at_ms": 1074703345,
+      "ordinary": null,
+      "stop": {
+        "kind": 5,
+        "nonce": 11822322466885738741,
+        "request_id": 4,
+        "sequence": 4,
+        "action_id": 2,
+        "admitted_ms": 1074701344,
+        "deadline_ms": 1074703344,
+        "accepted_bytes": 34,
+        "frame_accepted_bytes": 34,
+        "complete": true
+      },
+      "causal_request": null
+    },
+    "end": {
+      "generation": 3,
+      "config_id": 1,
+      "prefix_end": 9079,
+      "produced_end": null,
+      "last_data_sequence": 74,
+      "prefix_crc32": 1182367952,
+      "reason": 0,
+      "flags": 3,
+      "stop_request_id": 4
+    },
+    "ack_frames": 0,
+    "ack_attempts_suppressed": 1,
+    "error_text": "Поток прерван. Полнота записи не подтверждена.\nПричина: wire stop_timeout; ordinary=None; stop=4 · Операция: STOP\nДля новой попытки закройте это окно непрерывного приёма и откройте его заново.",
+    "normal_stop_label_absent": true
+  },
+  "files": {
+    "stop-open-compact-bottom.png": "c2d0a1052953b6692f8b4f29bba5396432f18e18c419b84179f274cebecc8ca4",
+    "stop-open-compact.png": "532a77a085835696643f1de2fc28e95d9f97e686b4f850b2a562fd0e2e9df55f",
+    "stop-open-details.png": "f2d5ede227d659c3192c1069688c1bb7c5610630f5fb11bac8effd9c42a5d11b",
+    "stop-unknown-tail.csv": "c7a138402a5e8d0b45b38a7a64419a7499b8442af40a27b3ad5292efb5e32c32",
+    "stop-unknown-tail.csv.json": "8b4628f32c001e7ced2b76314218d94eba9e8a1da390e0c0c15ac39205b63936",
+    "stop-unknown-tail.mtstream": "764f6d48b6fba646129d24837505973f38da8f69d53fa775d74f50d137c69c81",
+    "stop-unknown-tail.mtstream.v2.json": "4f08f9111c7ffa2096ff39bc8cbe85cfbc9351f31e8a05e90a7b253381c15607"
+  }
+}

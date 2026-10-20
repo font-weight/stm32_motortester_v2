@@ -1,0 +1,79 @@
+{
+  "status": "PASS",
+  "source": "injected serial byte fixtures",
+  "physical_stream_verified": false,
+  "real_serial_open_calls": 0,
+  "qt_platform": "windows",
+  "callback_errors": [],
+  "checkpoints": [
+    "window pending Connect blocks stream before serial construction",
+    "stream pending Connect blocks window button and stale handler",
+    "DTR before open; HELLO/CAPS ready without START or waveform",
+    "actual Record/Stop/Open buttons; raw and unknown connection roundtrip",
+    "parent close retains ownership; explicit retry settles owners and releases lease"
+  ],
+  "prepared": {
+    "commands": [
+      1,
+      2
+    ],
+    "samples": 0,
+    "connection": {
+      "selection": {
+        "port": "V2_SYNTHETIC_SERIAL",
+        "declared_source_commit": null,
+        "declared_artifact_sha256": null
+      },
+      "execution_kind": "injected-test",
+      "observed_build_id": 1446134861,
+      "observed_caps": [
+        1,
+        1,
+        0,
+        12,
+        50000,
+        1,
+        128,
+        1
+      ],
+      "dtr_requested": true,
+      "accounting_domain": "unknown",
+      "image_verified": false
+    }
+  },
+  "recording": {
+    "seconds": 2.4827618000563234,
+    "samples_before": 76544,
+    "samples_after": 181248,
+    "revision": 1,
+    "main_timer_active": true
+  },
+  "settlement": {
+    "selected_path": "C:\\Users\\Alexandr\\Desktop\\New folder\\универ\\мотортестер 2\\build\\v5aw2\\frozen-smoke\\serial-window.mtstream",
+    "saved_path": "C:/Users/Alexandr/Desktop/New folder/универ/мотортестер 2/build/v5aw2/frozen-smoke/serial-window.mtstream",
+    "normalized_path_matches": true,
+    "metadata_pending": false
+  },
+  "roundtrip": {
+    "first_sample_index": 55296,
+    "end_sample_index": 200845,
+    "raw_samples_compared": 145549,
+    "unknown_tail_preserved": true,
+    "origin": "synthetic",
+    "open_path_choice_injected": true
+  },
+  "close": {
+    "failed_close_retained_lease": true,
+    "explicit_retry_button": true,
+    "parent_closed": true,
+    "close_attempts": 2
+  },
+  "files": {
+    "serial-close-retry.png": "fc343fba67408891ea61a486e24bc6178193c9a156feba9f79bd5e5c9df7836b",
+    "serial-open-unknown-tail.png": "cbcb7ba9f1bf81b3f42e65b8f93d464a0953675bd5e5ca0aafdaae294141a955",
+    "serial-ready.png": "92371f6866f9d50b4e0931a9c781a25c41262f496d6610a481f3dfe3a750d628",
+    "serial-recording.png": "a2adb576ecfcf9474f344088839590962a094ede29ed3f70fb50828802707653",
+    "serial-window.mtstream": "c358c47548dae1c98c30d1a19c8d345e2ed85cf5d5be8642d2efc9a47d889bf7",
+    "serial-window.mtstream.v2.json": "42421f856f5a8bde553624259def22ab396127c6cd9e99839bbe3aca72032cfb"
+  }
+}
