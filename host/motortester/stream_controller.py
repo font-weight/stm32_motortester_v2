@@ -18,7 +18,7 @@ from .stream_bridge import BridgeSnapshot, StreamBridge
 from .stream_model import StreamBlock, StreamError, StreamIdentity
 from .stream_recording import StreamLimits
 from .stream_provenance import (ProvenanceError, admit_profile, admit_fake_diagnostic_declaration,
-                                validate_physical_context)
+                                validate_physical_context, validate_device_context)
 from .stream_session import SessionLimits
 from .stream_serial import SerialPeerStatus, SerialStreamPeer
 from .stream_view import (DetectorStatus, Envelope, EventConfig, EventDetector,
@@ -74,6 +74,8 @@ class ControllerStatus:
     can_connect: bool = False
     can_disconnect: bool = False
     can_retry_close: bool = False
+    can_prepare: bool = False
+    ready: bool = False
 
 
 @dataclass(frozen=True, slots=True)
@@ -163,7 +165,7 @@ class StreamController:
     def __init__(self, peer, *, event_config: EventConfig, threaded=True,
                  session_limits=SessionLimits(), storage_limits=StreamLimits(),
                  clock=None, managed_peer=False, producer_profile=None, fake_diagnostic_declaration=None,
-                 physical_diagnostic_context=None):
+                 physical_diagnostic_context=None, device_context=None):
         if type(event_config) is not EventConfig:
             raise ValueError("Explicit HOST display EventConfig required")
         event_config.__post_init__()
@@ -174,6 +176,12 @@ class StreamController:
                                             admit_fake_diagnostic_declaration(fake_diagnostic_declaration))
         self._physical_diagnostic_context = (None if physical_diagnostic_context is None else
                                              validate_physical_context(physical_diagnostic_context))
+        self._device_context = None if device_context is None else validate_device_context(device_context)
+        if self._device_context is not None:
+            if (not managed_peer or any(x is not None for x in
+                    (producer_profile, fake_diagnostic_declaration, physical_diagnostic_context)) or
+                    (self._device_context.execution_kind == "injected-test") != peer.fake_backend_selected):
+                raise ProvenanceError("Device context requires its matching exclusive managed serial seam")
         if self._physical_diagnostic_context is not None and (producer_profile is not None or
                 fake_diagnostic_declaration is not None or not managed_peer or
                 type(peer) is not SerialStreamPeer or peer.fake_backend_selected or peer._factory is None):
@@ -219,6 +227,7 @@ class StreamController:
         self._bridge = None
         self._pending_action = None
         self._negotiation = None
+        self._prepared = False
         self._revision = self._config_revision = 0
         self._path = self._error = None
         self._faulted = False
@@ -249,6 +258,7 @@ class StreamController:
         with self._lock:
             status = self._status
             allowed = (status.can_connect if kind == "connect" else
+                       status.can_prepare if kind == "prepare" else
                        status.can_preview if kind == "preview" else status.can_record)
             if (not allowed or self._ordinary_inflight or self._command is not None or self._stop_requested or
                     self._close_requested or
@@ -258,13 +268,18 @@ class StreamController:
             self._command = _Command(kind, path, config)
             self._ordinary_inflight = True
             self._intent_busy = True
-            self._status = replace(status, can_preview=False, can_record=False, can_open=False)
+            self._status = replace(status, can_preview=False, can_record=False,
+                                   can_prepare=False, can_open=False)
         self._wake.set()
         return True
 
     def connect(self):
         """Explicit managed open only; never negotiates, previews or records."""
         return self._managed_peer and self._submit("connect", None, None)
+
+    def prepare(self):
+        """Explicit HELLO/CAPS only. No START reservation or writer is created."""
+        return self._managed_peer and self._submit("prepare", None, None)
 
     def disconnect(self):
         """Reserved immediate admission fence; serial close runs on receiver."""
@@ -334,6 +349,11 @@ class StreamController:
             return replace(self._status, command_pending=self._command is not None,
                 stop_pending=self._stop_requested, close_requested=self._close_requested,
                 can_preview=self._status.can_preview and not self._intent_busy and not self._close_requested and not self._serial_fenced,
+                can_prepare=self._status.can_prepare and not self._ordinary_inflight and
+                    not self._close_requested and not self._serial_fenced,
+                ready=self._status.ready and not self._intent_busy and
+                    not self._ordinary_inflight and not self._close_requested and
+                    not self._serial_fenced and not self._stop_requested,
                 can_record=self._status.can_record and not self._ordinary_inflight and not self._close_requested and not self._serial_fenced,
                 can_open=self._status.can_open and not self._intent_busy and not self._close_requested,
                 display_pending=self._display_input is not None,
@@ -517,11 +537,13 @@ class StreamController:
         self._path = command.path
         self._error = None
         self._stop_issued = False
+        self._prepared = False
         self._bridge = StreamBridge(uuid.uuid4().hex, session_limits=self._limits,
                                     storage_limits=self._storage_limits,
                                     producer_profile=self._producer_profile,
                                     fake_diagnostic_declaration=self._fake_diagnostic_declaration,
-                                    physical_diagnostic_context=self._physical_diagnostic_context)
+                                    physical_diagnostic_context=self._physical_diagnostic_context,
+                                    device_context=self._device_context)
         self._pending_action = command
         self._negotiation = "hello"
         self._detector = EventDetector(self._config, EVENT_CAPACITY, retention="recent")
@@ -538,7 +560,16 @@ class StreamController:
 
     def _command_action(self, command, now):
         previous = None if self._bridge is None else self._bridge.snapshot()
-        if self._restartable(previous):
+        if command.kind == "preview" and self._ready(previous):
+            self._prepared = False
+            if command.config != self._config:
+                self._config_revision += 1
+            self._config = command.config
+            self._detector = EventDetector(self._config, EVENT_CAPACITY, retention="recent")
+            self._bridge.preview(self._current_time())
+        elif command.kind == "prepare" and self._restartable(previous):
+            self._begin(command, now)
+        elif self._device_context is None and self._restartable(previous):
             self._begin(command, now)
         elif command.kind == "record" and self._path is None and command.config == self._config:
             self._bridge.record(command.path, uuid.uuid4().hex, self._current_time())
@@ -558,7 +589,9 @@ class StreamController:
                     command, self._pending_action = self._pending_action, None
                     if command is not None:
                         try:
-                            if command.kind == "preview":
+                            if command.kind == "prepare":
+                                self._prepared = True
+                            elif command.kind == "preview":
                                 self._bridge.preview(self._current_time())
                             else:
                                 self._bridge.record(command.path, uuid.uuid4().hex, self._current_time())
@@ -629,6 +662,12 @@ class StreamController:
         self._dirty = False
         self._display_wake.set()
 
+    def _ready(self, snap):
+        return bool(self._prepared and snap and not snap.closed and snap.session is None and
+                    not self._faulted and not snap.endpoint_first_fault and not snap.late_fault and
+                    not self._negotiation and not self._stop_issued and
+                    snap.endpoint_state == wire.State.STOPPED and snap.accepted_caps is not None)
+
     def _restartable(self, snap):
         if snap is None:
             return True
@@ -695,6 +734,8 @@ class StreamController:
             phase = "saved" if self._path else "preview stopped"
         elif self._negotiation:
             phase = "negotiating"
+        elif self._ready(snap):
+            phase = "ready"
         elif session is None:
             phase = "idle" if bridge is None else "stopped before START"
         elif session.stop_requested or self._stop_issued:
@@ -706,15 +747,24 @@ class StreamController:
         else:
             phase = "preview" if session.source_started else "starting preview"
         restart = self._restartable(snap)
+        ready = self._ready(snap)
+        can_prepare = self._managed_peer and restart and not ready and self._serial_io_ready()
         can_record = restart or bool(not self._faulted and session and session.source_started and
             self._path is None and not session.stop_requested and not session.admission_fenced)
+        if self._device_context is not None:
+            can_record = bool(not self._faulted and session and session.source_started and
+                self._path is None and not session.stop_requested and not session.admission_fenced)
+            restart = ready
+        else:
+            restart = restart or ready
         can_open = bridge is None or finished or bool(session and session.finalized and settled and source_done)
         with self._lock:
             display_settled = not self._display_running and self._display_input is None
             serial_call = self._serial_call
         serial_settled = not self._managed_peer or (self._serial_status.handle_settled and serial_call is None)
         can_connect = bool(self._managed_peer and serial_settled and settled and display_settled and
-            (snap is None or snap.closed or restart) and not self._close_requested)
+            (snap is None or snap.closed or restart) and not self._close_requested and
+            (self._device_context is None or not self._faulted))
         if self._managed_peer:
             restart = restart and self._serial_io_ready()
             can_record = can_record and self._serial_io_ready()
@@ -734,12 +784,12 @@ class StreamController:
             peak_raw_items=self._peak_items, peak_raw_bytes=self._peak_bytes,
             raw_item_limit=self._limits.max_raw_items, raw_byte_limit=self._limits.max_raw_bytes,
             storage_raw_limit=self._storage_limits.max_raw_bytes,
-            can_connect=can_connect, serial=self._serial_status)
+            can_connect=can_connect, serial=self._serial_status, can_prepare=can_prepare, ready=ready)
         with self._lock:
             self._status = status
             if self._command is None:
                 self._ordinary_inflight = False
-            if finished or (bridge is None and self._command is None):
+            if finished or ready or (bridge is None and self._command is None):
                 self._intent_busy = False
         if self._close_requested and not unresolved and serial_settled and display_settled:
             self._finished.set()
@@ -776,6 +826,7 @@ class StreamController:
         # Stop wins over an ordinary command still waiting for owner acceptance.
         if stop:
             self._pending_action = None
+            self._prepared = False
             if bridge is not None and bridge.snapshot().session is not None and not self._stop_issued:
                 snap = bridge.snapshot()
                 if not snap.closed and not snap.session.finalization_started and not snap.session.stop_requested:

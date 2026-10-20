@@ -1,0 +1,65 @@
+{
+  "operation": "HELLO/GET_CAPS after user USB reconnect; no CONFIG/ARM",
+  "port": "COM6",
+  "snapshot": {
+    "phase": "READY",
+    "session": 1849517442235163682,
+    "next_tx_sequence": 3,
+    "next_request_id": 3,
+    "next_rx_sequence": 3,
+    "pending_request_id": 0,
+    "pending_stop_id": 0,
+    "config": null,
+    "config_id": 0,
+    "generation": 0,
+    "stop_barrier": false,
+    "window_barrier": false,
+    "window_id": 0,
+    "terminal": null,
+    "capabilities": {
+      "firmware_build": 20261017,
+      "capability_bits": 61,
+      "profile": 1,
+      "timer_clock_hz": 72000000,
+      "timer_psc": 71,
+      "timer_arr": 19,
+      "adc_clock_hz": 12000000,
+      "adc_sample_cycles_x2": 143,
+      "window_samples": 2048,
+      "pretrigger_samples": [
+        0,
+        512,
+        1024
+      ],
+      "mode_bits": 7,
+      "source_bits": 1,
+      "edge_bits": 3
+    },
+    "now_ms": 1064492264,
+    "tx_offset": null,
+    "source_sha": "b6ae8025baf1a47e8173997029d2d8b858ada74c",
+    "validation_scope": "draft_analog_control",
+    "device_status": null,
+    "device_status_stale": false,
+    "recovery": null
+  },
+  "status": "READY",
+  "traffic": [
+    {
+      "direction": "host",
+      "hex": "0103010102080101010101010101010102010101020101010d22e4508650ceaa19c389c40d00"
+    },
+    {
+      "direction": "device",
+      "hex": "01030181021001010a22e4508650ceaa1901010102010101010401010c02020708992835013d010105ee3d373b00"
+    },
+    {
+      "direction": "host",
+      "hex": "01030102010101010a22e4508650ceaa190201010202010105b8aaadbe00"
+    },
+    {
+      "direction": "device",
+      "hex": "01030182021e01010a22e4508650ceaa1902010102020101020102010105a24a0447021301031bb7028f010608030701030101020206047b12ee4b00"
+    }
+  ]
+}

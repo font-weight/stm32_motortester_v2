@@ -1,0 +1,283 @@
+test_close_failure_retains_owner_and_requires_explicit_retry (test_v2_stream_serial.V2StreamSerialTests.test_close_failure_retains_owner_and_requires_explicit_retry) ... ERROR
+test_companion_retry_keeps_exact_connection_and_raw_prefix (test_v2_stream_serial.V2StreamSerialTests.test_companion_retry_keeps_exact_connection_and_raw_prefix) ... FAIL
+test_companion_retry_keeps_exact_connection_and_raw_prefix (test_v2_stream_serial.V2StreamSerialTests.test_companion_retry_keeps_exact_connection_and_raw_prefix) ... ERROR
+test_connect_is_inert_then_dtr_hello_caps_without_start (test_v2_stream_serial.V2StreamSerialTests.test_connect_is_inert_then_dtr_hello_caps_without_start) ... ERROR
+test_incompatible_hello_or_caps_never_admits_start_or_writer (test_v2_stream_serial.V2StreamSerialTests.test_incompatible_hello_or_caps_never_admits_start_or_writer) ... ERROR
+test_nonzero_record_boundary_unknown_tail_and_durable_connection (test_v2_stream_serial.V2StreamSerialTests.test_nonzero_record_boundary_unknown_tail_and_durable_connection) ... FAIL
+test_nonzero_record_boundary_unknown_tail_and_durable_connection (test_v2_stream_serial.V2StreamSerialTests.test_nonzero_record_boundary_unknown_tail_and_durable_connection) ... ERROR
+test_prepared_stop_cancels_queued_start_and_device_identity_is_not_str1 (test_v2_stream_serial.V2StreamSerialTests.test_prepared_stop_cancels_queued_start_and_device_identity_is_not_str1) ... ERROR
+
+======================================================================
+ERROR: test_close_failure_retains_owner_and_requires_explicit_retry (test_v2_stream_serial.V2StreamSerialTests.test_close_failure_retains_owner_and_requires_explicit_retry)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "<frozen os>", line 377, in walk
+PermissionError: [WinError 5] Access is denied: 'C:\\Users\\Alexandr\\AppData\\Local\\Temp\\v2-serial-x0jo9xv8'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Alexandr\Desktop\New folder\универ\мотортестер 2\host\tests\test_v2_stream_serial.py", line 123, in tearDown
+    self.folder.cleanup()
+    ~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\Alexandr\AppData\Local\Python\pythoncore-3.14-64\Lib\tempfile.py", line 976, in cleanup
+    self._rmtree(self.name, ignore_errors=self._ignore_cleanup_errors)
+    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Alexandr\AppData\Local\Python\pythoncore-3.14-64\Lib\tempfile.py", line 956, in _rmtree
+    _shutil.rmtree(name, onexc=onexc)
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Alexandr\AppData\Local\Python\pythoncore-3.14-64\Lib\shutil.py", line 852, in rmtree
+    _rmtree_impl(path, dir_fd, onexc)
+    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Alexandr\AppData\Local\Python\pythoncore-3.14-64\Lib\shutil.py", line 689, in _rmtree_unsafe
+    for dirpath, dirnames, filenames in results:
+                                        ^^^^^^^
+  File "<frozen os>", line 413, in walk
+  File "C:\Users\Alexandr\AppData\Local\Python\pythoncore-3.14-64\Lib\shutil.py", line 687, in onerror
+    onexc(os.scandir, err.filename, err)
+    ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Alexandr\AppData\Local\Python\pythoncore-3.14-64\Lib\tempfile.py", line 928, in onexc
+    _resetperms(path)
+    ~~~~~~~~~~~^^^^^^
+  File "C:\Users\Alexandr\AppData\Local\Python\pythoncore-3.14-64\Lib\tempfile.py", line 283, in _resetperms
+    _dont_follow_symlinks(_os.chmod, path, 0o700)
+    ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Alexandr\AppData\Local\Python\pythoncore-3.14-64\Lib\tempfile.py", line 272, in _dont_follow_symlinks
+    func(path, *args, follow_symlinks=False)
+    ~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+PermissionError: [WinError 5] Access is denied: 'C:\\Users\\Alexandr\\AppData\\Local\\Temp\\v2-serial-x0jo9xv8'
+
+======================================================================
+ERROR: test_companion_retry_keeps_exact_connection_and_raw_prefix (test_v2_stream_serial.V2StreamSerialTests.test_companion_retry_keeps_exact_connection_and_raw_prefix)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "<frozen os>", line 377, in walk
+PermissionError: [WinError 5] Access is denied: 'C:\\Users\\Alexandr\\AppData\\Local\\Temp\\v2-serial-hegyaaxj'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Alexandr\Desktop\New folder\универ\мотортестер 2\host\tests\test_v2_stream_serial.py", line 123, in tearDown
+    self.folder.cleanup()
+    ~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\Alexandr\AppData\Local\Python\pythoncore-3.14-64\Lib\tempfile.py", line 976, in cleanup
+    self._rmtree(self.name, ignore_errors=self._ignore_cleanup_errors)
+    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Alexandr\AppData\Local\Python\pythoncore-3.14-64\Lib\tempfile.py", line 956, in _rmtree
+    _shutil.rmtree(name, onexc=onexc)
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Alexandr\AppData\Local\Python\pythoncore-3.14-64\Lib\shutil.py", line 852, in rmtree
+    _rmtree_impl(path, dir_fd, onexc)
+    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Alexandr\AppData\Local\Python\pythoncore-3.14-64\Lib\shutil.py", line 689, in _rmtree_unsafe
+    for dirpath, dirnames, filenames in results:
+                                        ^^^^^^^
+  File "<frozen os>", line 413, in walk
+  File "C:\Users\Alexandr\AppData\Local\Python\pythoncore-3.14-64\Lib\shutil.py", line 687, in onerror
+    onexc(os.scandir, err.filename, err)
+    ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Alexandr\AppData\Local\Python\pythoncore-3.14-64\Lib\tempfile.py", line 928, in onexc
+    _resetperms(path)
+    ~~~~~~~~~~~^^^^^^
+  File "C:\Users\Alexandr\AppData\Local\Python\pythoncore-3.14-64\Lib\tempfile.py", line 283, in _resetperms
+    _dont_follow_symlinks(_os.chmod, path, 0o700)
+    ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Alexandr\AppData\Local\Python\pythoncore-3.14-64\Lib\tempfile.py", line 272, in _dont_follow_symlinks
+    func(path, *args, follow_symlinks=False)
+    ~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+PermissionError: [WinError 5] Access is denied: 'C:\\Users\\Alexandr\\AppData\\Local\\Temp\\v2-serial-hegyaaxj'
+
+======================================================================
+ERROR: test_connect_is_inert_then_dtr_hello_caps_without_start (test_v2_stream_serial.V2StreamSerialTests.test_connect_is_inert_then_dtr_hello_caps_without_start)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "<frozen os>", line 377, in walk
+PermissionError: [WinError 5] Access is denied: 'C:\\Users\\Alexandr\\AppData\\Local\\Temp\\v2-serial-fze8hzwi'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Alexandr\Desktop\New folder\универ\мотортестер 2\host\tests\test_v2_stream_serial.py", line 123, in tearDown
+    self.folder.cleanup()
+    ~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\Alexandr\AppData\Local\Python\pythoncore-3.14-64\Lib\tempfile.py", line 976, in cleanup
+    self._rmtree(self.name, ignore_errors=self._ignore_cleanup_errors)
+    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Alexandr\AppData\Local\Python\pythoncore-3.14-64\Lib\tempfile.py", line 956, in _rmtree
+    _shutil.rmtree(name, onexc=onexc)
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Alexandr\AppData\Local\Python\pythoncore-3.14-64\Lib\shutil.py", line 852, in rmtree
+    _rmtree_impl(path, dir_fd, onexc)
+    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Alexandr\AppData\Local\Python\pythoncore-3.14-64\Lib\shutil.py", line 689, in _rmtree_unsafe
+    for dirpath, dirnames, filenames in results:
+                                        ^^^^^^^
+  File "<frozen os>", line 413, in walk
+  File "C:\Users\Alexandr\AppData\Local\Python\pythoncore-3.14-64\Lib\shutil.py", line 687, in onerror
+    onexc(os.scandir, err.filename, err)
+    ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Alexandr\AppData\Local\Python\pythoncore-3.14-64\Lib\tempfile.py", line 928, in onexc
+    _resetperms(path)
+    ~~~~~~~~~~~^^^^^^
+  File "C:\Users\Alexandr\AppData\Local\Python\pythoncore-3.14-64\Lib\tempfile.py", line 283, in _resetperms
+    _dont_follow_symlinks(_os.chmod, path, 0o700)
+    ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Alexandr\AppData\Local\Python\pythoncore-3.14-64\Lib\tempfile.py", line 272, in _dont_follow_symlinks
+    func(path, *args, follow_symlinks=False)
+    ~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+PermissionError: [WinError 5] Access is denied: 'C:\\Users\\Alexandr\\AppData\\Local\\Temp\\v2-serial-fze8hzwi'
+
+======================================================================
+ERROR: test_incompatible_hello_or_caps_never_admits_start_or_writer (test_v2_stream_serial.V2StreamSerialTests.test_incompatible_hello_or_caps_never_admits_start_or_writer)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "<frozen os>", line 377, in walk
+PermissionError: [WinError 5] Access is denied: 'C:\\Users\\Alexandr\\AppData\\Local\\Temp\\v2-serial-uk24c8dh'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Alexandr\Desktop\New folder\универ\мотортестер 2\host\tests\test_v2_stream_serial.py", line 123, in tearDown
+    self.folder.cleanup()
+    ~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\Alexandr\AppData\Local\Python\pythoncore-3.14-64\Lib\tempfile.py", line 976, in cleanup
+    self._rmtree(self.name, ignore_errors=self._ignore_cleanup_errors)
+    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Alexandr\AppData\Local\Python\pythoncore-3.14-64\Lib\tempfile.py", line 956, in _rmtree
+    _shutil.rmtree(name, onexc=onexc)
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Alexandr\AppData\Local\Python\pythoncore-3.14-64\Lib\shutil.py", line 852, in rmtree
+    _rmtree_impl(path, dir_fd, onexc)
+    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Alexandr\AppData\Local\Python\pythoncore-3.14-64\Lib\shutil.py", line 689, in _rmtree_unsafe
+    for dirpath, dirnames, filenames in results:
+                                        ^^^^^^^
+  File "<frozen os>", line 413, in walk
+  File "C:\Users\Alexandr\AppData\Local\Python\pythoncore-3.14-64\Lib\shutil.py", line 687, in onerror
+    onexc(os.scandir, err.filename, err)
+    ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Alexandr\AppData\Local\Python\pythoncore-3.14-64\Lib\tempfile.py", line 928, in onexc
+    _resetperms(path)
+    ~~~~~~~~~~~^^^^^^
+  File "C:\Users\Alexandr\AppData\Local\Python\pythoncore-3.14-64\Lib\tempfile.py", line 283, in _resetperms
+    _dont_follow_symlinks(_os.chmod, path, 0o700)
+    ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Alexandr\AppData\Local\Python\pythoncore-3.14-64\Lib\tempfile.py", line 272, in _dont_follow_symlinks
+    func(path, *args, follow_symlinks=False)
+    ~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+PermissionError: [WinError 5] Access is denied: 'C:\\Users\\Alexandr\\AppData\\Local\\Temp\\v2-serial-uk24c8dh'
+
+======================================================================
+ERROR: test_nonzero_record_boundary_unknown_tail_and_durable_connection (test_v2_stream_serial.V2StreamSerialTests.test_nonzero_record_boundary_unknown_tail_and_durable_connection)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "<frozen os>", line 377, in walk
+PermissionError: [WinError 5] Access is denied: 'C:\\Users\\Alexandr\\AppData\\Local\\Temp\\v2-serial-sefw0cr6'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Alexandr\Desktop\New folder\универ\мотортестер 2\host\tests\test_v2_stream_serial.py", line 123, in tearDown
+    self.folder.cleanup()
+    ~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\Alexandr\AppData\Local\Python\pythoncore-3.14-64\Lib\tempfile.py", line 976, in cleanup
+    self._rmtree(self.name, ignore_errors=self._ignore_cleanup_errors)
+    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Alexandr\AppData\Local\Python\pythoncore-3.14-64\Lib\tempfile.py", line 956, in _rmtree
+    _shutil.rmtree(name, onexc=onexc)
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Alexandr\AppData\Local\Python\pythoncore-3.14-64\Lib\shutil.py", line 852, in rmtree
+    _rmtree_impl(path, dir_fd, onexc)
+    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Alexandr\AppData\Local\Python\pythoncore-3.14-64\Lib\shutil.py", line 689, in _rmtree_unsafe
+    for dirpath, dirnames, filenames in results:
+                                        ^^^^^^^
+  File "<frozen os>", line 413, in walk
+  File "C:\Users\Alexandr\AppData\Local\Python\pythoncore-3.14-64\Lib\shutil.py", line 687, in onerror
+    onexc(os.scandir, err.filename, err)
+    ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Alexandr\AppData\Local\Python\pythoncore-3.14-64\Lib\tempfile.py", line 928, in onexc
+    _resetperms(path)
+    ~~~~~~~~~~~^^^^^^
+  File "C:\Users\Alexandr\AppData\Local\Python\pythoncore-3.14-64\Lib\tempfile.py", line 283, in _resetperms
+    _dont_follow_symlinks(_os.chmod, path, 0o700)
+    ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Alexandr\AppData\Local\Python\pythoncore-3.14-64\Lib\tempfile.py", line 272, in _dont_follow_symlinks
+    func(path, *args, follow_symlinks=False)
+    ~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+PermissionError: [WinError 5] Access is denied: 'C:\\Users\\Alexandr\\AppData\\Local\\Temp\\v2-serial-sefw0cr6'
+
+======================================================================
+ERROR: test_prepared_stop_cancels_queued_start_and_device_identity_is_not_str1 (test_v2_stream_serial.V2StreamSerialTests.test_prepared_stop_cancels_queued_start_and_device_identity_is_not_str1)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "<frozen os>", line 377, in walk
+PermissionError: [WinError 5] Access is denied: 'C:\\Users\\Alexandr\\AppData\\Local\\Temp\\v2-serial-3rvqyulq'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Alexandr\Desktop\New folder\универ\мотортестер 2\host\tests\test_v2_stream_serial.py", line 123, in tearDown
+    self.folder.cleanup()
+    ~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\Alexandr\AppData\Local\Python\pythoncore-3.14-64\Lib\tempfile.py", line 976, in cleanup
+    self._rmtree(self.name, ignore_errors=self._ignore_cleanup_errors)
+    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Alexandr\AppData\Local\Python\pythoncore-3.14-64\Lib\tempfile.py", line 956, in _rmtree
+    _shutil.rmtree(name, onexc=onexc)
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Alexandr\AppData\Local\Python\pythoncore-3.14-64\Lib\shutil.py", line 852, in rmtree
+    _rmtree_impl(path, dir_fd, onexc)
+    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Alexandr\AppData\Local\Python\pythoncore-3.14-64\Lib\shutil.py", line 689, in _rmtree_unsafe
+    for dirpath, dirnames, filenames in results:
+                                        ^^^^^^^
+  File "<frozen os>", line 413, in walk
+  File "C:\Users\Alexandr\AppData\Local\Python\pythoncore-3.14-64\Lib\shutil.py", line 687, in onerror
+    onexc(os.scandir, err.filename, err)
+    ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Alexandr\AppData\Local\Python\pythoncore-3.14-64\Lib\tempfile.py", line 928, in onexc
+    _resetperms(path)
+    ~~~~~~~~~~~^^^^^^
+  File "C:\Users\Alexandr\AppData\Local\Python\pythoncore-3.14-64\Lib\tempfile.py", line 283, in _resetperms
+    _dont_follow_symlinks(_os.chmod, path, 0o700)
+    ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Alexandr\AppData\Local\Python\pythoncore-3.14-64\Lib\tempfile.py", line 272, in _dont_follow_symlinks
+    func(path, *args, follow_symlinks=False)
+    ~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+PermissionError: [WinError 5] Access is denied: 'C:\\Users\\Alexandr\\AppData\\Local\\Temp\\v2-serial-3rvqyulq'
+
+======================================================================
+FAIL: test_companion_retry_keeps_exact_connection_and_raw_prefix (test_v2_stream_serial.V2StreamSerialTests.test_companion_retry_keeps_exact_connection_and_raw_prefix)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Alexandr\Desktop\New folder\универ\мотортестер 2\host\tests\test_v2_stream_serial.py", line 249, in test_companion_retry_keeps_exact_connection_and_raw_prefix
+    path, _ = self.record_prefix(bridge, factory)
+              ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Users\Alexandr\Desktop\New folder\универ\мотортестер 2\host\tests\test_v2_stream_serial.py", line 153, in record_prefix
+    self.wait(lambda: bridge.state.phase == "waiting for boundary")
+    ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Alexandr\Desktop\New folder\универ\мотортестер 2\host\tests\test_v2_stream_serial.py", line 108, in wait
+    self.fail("Bounded serial wait timed out")
+    ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Bounded serial wait timed out
+
+======================================================================
+FAIL: test_nonzero_record_boundary_unknown_tail_and_durable_connection (test_v2_stream_serial.V2StreamSerialTests.test_nonzero_record_boundary_unknown_tail_and_durable_connection)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Alexandr\Desktop\New folder\универ\мотортестер 2\host\tests\test_v2_stream_serial.py", line 207, in test_nonzero_record_boundary_unknown_tail_and_durable_connection
+    path, backend = self.record_prefix(bridge, factory)
+                    ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Users\Alexandr\Desktop\New folder\универ\мотортестер 2\host\tests\test_v2_stream_serial.py", line 153, in record_prefix
+    self.wait(lambda: bridge.state.phase == "waiting for boundary")
+    ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Alexandr\Desktop\New folder\универ\мотортестер 2\host\tests\test_v2_stream_serial.py", line 108, in wait
+    self.fail("Bounded serial wait timed out")
+    ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Bounded serial wait timed out
+
+----------------------------------------------------------------------
+Ran 6 tests in 12.567s
+
+FAILED (failures=2, errors=6)

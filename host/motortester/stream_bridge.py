@@ -15,7 +15,8 @@ from .stream_recording import PreparedStreamWriter, StreamLimits
 from .stream_provenance import (ProvenanceError, admit_profile, validate_negotiation,
                                admit_fake_diagnostic_declaration,
                                validate_fake_diagnostic_negotiation, rehearsal_identity_metadata,
-                               validate_physical_context, physical_context_identity)
+                               validate_physical_context, physical_context_identity,
+                               validate_device_context, device_context_identity)
 from .stream_session import (JobCompletion, JobFailure, SessionLimits,
                              SourceEnd, SourceStarted, StopAcknowledgement,
                              StreamSession)
@@ -276,7 +277,8 @@ class StreamBridge:
     this transport-free component cannot authenticate a caller's byte source.
     """
     def __init__(self, attempt_id, *, session_limits=SessionLimits(), storage_limits=StreamLimits(),
-                 producer_profile=None, fake_diagnostic_declaration=None, physical_diagnostic_context=None):
+                 producer_profile=None, fake_diagnostic_declaration=None, physical_diagnostic_context=None,
+                 device_context=None):
         text(attempt_id, 128)
         require(type(session_limits) is SessionLimits and type(storage_limits) is StreamLimits,
                 "Exact limits required")
@@ -286,6 +288,10 @@ class StreamBridge:
                                             admit_fake_diagnostic_declaration(fake_diagnostic_declaration))
         self._physical_diagnostic_context = (None if physical_diagnostic_context is None else
                                              validate_physical_context(physical_diagnostic_context))
+        self._device_context = None if device_context is None else validate_device_context(device_context)
+        if self._device_context is not None and any(x is not None for x in
+                (producer_profile, fake_diagnostic_declaration, physical_diagnostic_context)):
+            raise ProvenanceError("Generic device context cannot borrow a producer declaration")
         if self._physical_diagnostic_context is not None and (producer_profile is not None or
                 fake_diagnostic_declaration is not None):
             raise ProvenanceError("Operational STR1 context must be exclusive")
@@ -518,6 +524,8 @@ class StreamBridge:
         origin = "synthetic"
         if self._physical_diagnostic_context is not None:
             origin, metadata = physical_context_identity(self._physical_diagnostic_context)
+        if self._device_context is not None:
+            origin, metadata = device_context_identity(self._device_context, self._build)
         self._identity = StreamIdentity("wire-0.2:" + format(self._plan.nonce, "016x"),
             self._plan.generation, caps.config_id, caps.fs_num // caps.fs_den,
             origin, *metadata)

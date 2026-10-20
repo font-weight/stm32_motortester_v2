@@ -1,0 +1,23 @@
+{
+  "status": "PASS",
+  "checks": [
+    {
+      "name": "unresolved_indirect_call",
+      "status": "PASS",
+      "rejection": "Unresolved indirect call: mt_live_device_step"
+    },
+    {
+      "name": "recursive_callback_graph",
+      "status": "PASS",
+      "rejection": "Recursive stack graph"
+    },
+    {
+      "name": "frame_claim_vs_machine_code",
+      "status": "PASS",
+      "rejection": "CFG/.su disagreement for mt_live_device_step: 88/96"
+    }
+  ],
+  "input_image": "C:\\Users\\Alexandr\\Desktop\\New folder\\\u0443\u043d\u0438\u0432\u0435\u0440\\\u043c\u043e\u0442\u043e\u0440\u0442\u0435\u0441\u0442\u0435\u0440 2\\build\\v5-fw-03",
+  "analyzer_sha256": "2f7e6cdca48d1c1aa34c29603ce1c23e568cf377588e47a825c9cb0f823c791a",
+  "scope": "Static analyzer rejection controls; no firmware execution or timing evidence"
+}

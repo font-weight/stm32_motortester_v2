@@ -118,11 +118,15 @@ class DevicePanel(QtWidgets.QDialog):
             return
         if self.viewer.dirty and not self.viewer._confirm_discard():
             return
+        if not self.viewer._reserve_serial(self.viewer.device, self.port.currentText().strip()):
+            self.error.setText("Порт принадлежит непрерывному приёму. Закройте его окно перед подключением.")
+            return
         self.error.setText("")
         if self.viewer.device.connect_source(self.port.currentText().strip(), self.reset.isChecked()):
             self.viewer._clear_device_window("Проверка соединения")
             self.viewer._update_actions()
         else:
+            self.viewer._release_window_serial_if_closed()
             if not self.error.text():
                 self.error.setText("Подключение сейчас недоступно. Проверьте порт и состояние.")
         self.reset.setChecked(False)
@@ -145,6 +149,7 @@ class DevicePanel(QtWidgets.QDialog):
         self.connect_button.setEnabled(not state.connected and not state.busy and not state.closing
                                        and not state.close_failed and not state.has_incomplete
                                        and not self.viewer.busy and not self.viewer.recording
+                                       and self.viewer._serial_owner in (None, self.viewer.device)
                                        and bool(self.port.currentText().strip()))
         self.disconnect_button.setEnabled(state.connected or state.close_failed)
         for widget in (self.level, self.edge, self.pre):
@@ -195,6 +200,9 @@ class DeviceControlsMixin:
         self.device_panel.raise_()
 
     def enter_device(self):
+        if self._serial_owner is not None and self._serial_owner is not self.device:
+            self.statusBar().showMessage("Сначала закройте окно непрерывного приёма STM32.")
+            return False
         if self.recording or self.busy or self.armed_after is not None:
             return False
         if self.device_active:
@@ -290,6 +298,7 @@ class DeviceControlsMixin:
         self.device.accept(recording)
 
     def _device_state(self, state):
+        self._release_window_serial_if_closed()
         snapshot = state.snapshot
         was_acquiring = self.device_acquiring
         self.device_acquiring = (state.start_pending or bool(snapshot and

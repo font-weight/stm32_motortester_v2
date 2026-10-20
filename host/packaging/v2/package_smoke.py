@@ -246,6 +246,15 @@ def run(output_name):
             report["stream_verification"] = exercise_stream(app, window, output, flush)
             assert port_open.call_count == 0
             report["checks"].append("paced stream: Preview/Record/pause/Stop/open/CSV; unknown tail; child and parent close")
+            from motortester.v2.serial_smoke import exercise as exercise_serial
+            # Reuse this QApplication; the helper owns a fresh normal workspace
+            # and injected byte transports, never a physical COM connection.
+            report["serial_stream_verification"] = exercise_serial(app, output, flush)
+            assert report["serial_stream_verification"]["status"] == "PASS"
+            assert port_open.call_count == 0
+            report["checks"].append(
+                "serial fixtures: Connect without START; both COM ownership guards; "
+                "Record/Stop/Open unknown tail; failed close and explicit retry")
             flush()
             report["status"] = "PASS"
     except BaseException:

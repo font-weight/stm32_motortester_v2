@@ -21,8 +21,9 @@ PACKAGING = Path(__file__).resolve().parent
 HOST = PACKAGING.parent.parent
 REPOSITORY = HOST.parent
 EXPECTED_PYTHON = (3, 14, 7)
-# Includes the save-picker regression beyond the observed ~61 s preview fault.
-FROZEN_TIMEOUT = 120
+# The existing 70 s picker + 12 s writer regression is followed by the short
+# injected-serial GUI flow (Connect/Record/Stop/Open/close retry).
+FROZEN_TIMEOUT = 150
 APP_NAME = "MotortesterV2"
 
 # The existing runner records commands, exit codes and bounded-child cleanup.
@@ -75,6 +76,69 @@ def png_info(path):
         raise ValueError(f"Invalid PNG header checksum: {path}")
     return {"sha256": sha256(path), "bytes": path.stat().st_size,
             "width": width, "height": height, "validation": "PNG IHDR/CRC and SHA-256"}
+
+
+def verify_serial_smoke(directory, receipt):
+    """Bind the injected-serial GUI receipt to its raw file, context and PNGs."""
+    if (type(receipt) is not dict or receipt.get("status") != "PASS"
+            or receipt.get("source") != "injected serial byte fixtures"
+            or receipt.get("qt_platform") != "windows"
+            or receipt.get("physical_stream_verified") is not False
+            or receipt.get("real_serial_open_calls") != 0
+            or receipt.get("callback_errors") != []
+            or receipt.get("error") or receipt.get("cleanup_error")
+            or read_json(directory / "serial-result.json") != receipt):
+        raise RuntimeError("Packaged serial-stream GUI verification did not pass")
+    prepared, recording = receipt.get("prepared", {}), receipt.get("recording", {})
+    connection = prepared.get("connection", {})
+    settlement, roundtrip = receipt.get("settlement", {}), receipt.get("roundtrip", {})
+    closed = receipt.get("close", {})
+    start, end = roundtrip.get("first_sample_index", 0), roundtrip.get("end_sample_index", 0)
+    journal_path = directory / "serial-window.mtstream"
+    if (prepared.get("commands") != [1, 2] or prepared.get("samples") != 0
+            or connection.get("execution_kind") != "injected-test"
+            or connection.get("dtr_requested") is not True
+            or connection.get("accounting_domain") != "unknown"
+            or connection.get("image_verified") is not False
+            or recording.get("seconds", 0) < 2 or recording.get("main_timer_active") is not True
+            or recording.get("samples_after", 0) <= recording.get("samples_before", 0)
+            or settlement.get("normalized_path_matches") is not True
+            or settlement.get("metadata_pending") is not False
+            or any(Path(settlement.get(key, "")).resolve() != journal_path.resolve()
+                   for key in ("selected_path", "saved_path"))
+            or type(start) is not int or type(end) is not int or not 0 < start < end
+            or roundtrip.get("raw_samples_compared") != end - start
+            or roundtrip.get("unknown_tail_preserved") is not True
+            or roundtrip.get("origin") != "synthetic"
+            or not all(closed.get(key) is True for key in (
+                "failed_close_retained_lease", "explicit_retry_button", "parent_closed"))
+            or closed.get("close_attempts", 0) < 2
+            or not {
+                "window pending Connect blocks stream before serial construction",
+                "stream pending Connect blocks window button and stale handler",
+            }.issubset(receipt.get("checkpoints", []))):
+        raise RuntimeError("Packaged serial-stream lifecycle evidence is incomplete")
+    companion_path = directory / "serial-window.mtstream.v2.json"
+    companion = read_json(companion_path)
+    profile = companion.get("context", {}).get("input_profile", {})
+    journal = companion.get("journal", {})
+    if (companion.get("format") != "motortester-v2-stream-context"
+            or companion.get("format_version") != 2
+            or companion.get("connection") != connection
+            or companion.get("time_basis") != "nominal_unverified"
+            or profile.get("state") != "unconfigured"
+            or profile.get("a") is not None or profile.get("b") is not None
+            or journal.get("identity", {}).get("origin") != "synthetic"
+            or journal.get("first_sample_index") != start or journal.get("end_sample_index") != end
+            or companion.get("journal_sha256") != sha256(journal_path)
+            or companion.get("journal_bytes") != journal_path.stat().st_size):
+        raise RuntimeError("Packaged serial-stream raw/context binding differs from its receipt")
+    pngs = {name: png_info(directory / name) for name in (
+        "serial-ready.png", "serial-recording.png", "serial-open-unknown-tail.png", "serial-close-retry.png")}
+    for name in (*pngs, journal_path.name, companion_path.name):
+        if receipt.get("files", {}).get(name) != sha256(directory / name):
+            raise RuntimeError(f"Packaged serial-stream receipt checksum differs: {name}")
+    return pngs
 
 
 def clean_environment():
@@ -225,8 +289,9 @@ def main(argv=None):
         "lock_sha256": sha256(lock),
         "wheelhouse": file_tree(wheelhouse),
         "entrypoints": [gui_name, inspect_name],
-        "scope": "V2 DEMO/files and explicit wire 0.1 device windows; "
-                 "package checks use a synthetic wire window and mocked COM enumeration",
+        "scope": "V2 DEMO/files, explicit wire 0.1 device windows and wire 0.2 serial streams; "
+                 "package checks use injected synthetic byte peers and mocked COM enumeration, "
+                 "without physical-device or firmware-image acceptance",
         "license_scope": "Existing notices/source guide included; third-party source archives "
                          "are not bundled; public distribution review remains open",
         "license_input_restoration": restored_notices,
@@ -312,6 +377,7 @@ def main(argv=None):
             for name in ("scope.png", "ignition.png", "device-panel.png", "incomplete-close.png",
                          "stream-scope.png", "stream-ignition.png", "stream-unknown-tail.png",
                          "stream-record-picker.png", "stream-existing-path.png")}
+    pngs.update(verify_serial_smoke(smoke_output, smoke.get("serial_stream_verification")))
     for name in ("sample.mtv2", "export.csv", "export.csv.json", "device-window.mtv2"):
         path = smoke_output / name
         if not path.is_file() or path.stat().st_size == 0:

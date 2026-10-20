@@ -111,6 +111,8 @@ class MainWindow(DeviceControlsMixin, QtWidgets.QMainWindow):
         self.gap_items = []
         self.stream_dialog = None
         self._stream_close_pending = False
+        self._serial_owner = None
+        self._serial_port = None
         self._init_device(device_bridge_factory)
         self.setWindowTitle("Мотортестер V2")
         self.resize(1440, 920)
@@ -395,6 +397,9 @@ class MainWindow(DeviceControlsMixin, QtWidgets.QMainWindow):
         self.device_button = self._button("STM32 · подключение", self.device_info)
         self.stream_button = self._button("Непрерывный приём · ДЕМО", self.open_stream_workspace)
         side.addWidget(self.stream_button)
+        self.device_stream_button = self._button("Непрерывный приём · STM32",
+                                                 self.open_device_stream_workspace)
+        side.addWidget(self.device_stream_button)
         side.addWidget(self.device_button)
         self.gap_button = self._button("ДЕМО · пропуск 100 мс", self.inject_gap)
         self.gap_button.setToolTip("Явно пропустить синтетические отсчёты для проверки записи и отображения разрывов.")
@@ -1287,18 +1292,80 @@ class MainWindow(DeviceControlsMixin, QtWidgets.QMainWindow):
         self.overview.setFixedHeight(48 if compact else 100)
 
     def open_stream_workspace(self):
+        return self._open_stream_workspace(None)
+
+    def open_device_stream_workspace(self):
+        from .device import available_ports
+        from .stream_device import SerialStreamSelection
+        if self.stream_dialog is not None and not self.stream_dialog.closed:
+            self.stream_dialog.show()
+            self.stream_dialog.raise_()
+            self.statusBar().showMessage("Для смены источника сначала закройте текущее окно потока.")
+            return False
+        try:
+            ports = [name for name, _ in available_ports()]
+        except Exception:
+            ports = []
+        dialog = QtWidgets.QInputDialog(self)
+        dialog.setWindowTitle("STM32 · порт непрерывного приёма")
+        dialog.setLabelText("Выберите или введите COM-порт.\n"
+                            "Следующая кнопка подключения проверит протокол без запуска АЦП.")
+        dialog.setComboBoxItems(["", *ports])
+        dialog.setComboBoxEditable(True)
+        dialog.setOkButtonText("Открыть панель")
+        dialog.setCancelButtonText("Отмена")
+        if dialog.exec() != QtWidgets.QDialog.DialogCode.Accepted:
+            return False
+        try:
+            selection = SerialStreamSelection(dialog.textValue().strip())
+        except ValueError as exc:
+            self.statusBar().showMessage(str(exc))
+            return False
+        return self._open_stream_workspace(selection)
+
+    def _reserve_serial(self, owner, port):
+        self._release_window_serial_if_closed()
+        if self._serial_owner is not None and self._serial_owner is not owner:
+            return False
+        self._serial_owner, self._serial_port = owner, port
+        if self.device_panel:
+            self.device_panel.update_state()
+        return True
+
+    def _release_serial(self, owner):
+        if self._serial_owner is owner:
+            self._serial_owner = self._serial_port = None
+        if self.device_panel:
+            self.device_panel.update_state()
+
+    def _release_window_serial_if_closed(self):
+        state = self.device.state
+        if (self._serial_owner is self.device and not state.connected and
+                not state.busy and not state.close_failed and not self.device.bridge.active):
+            self._serial_owner = self._serial_port = None
+
+    def _open_stream_workspace(self, selection):
         from .stream_device import StreamContext
         from .stream_ui import StreamDialog
+        if (self.stream_dialog is not None and not self.stream_dialog.closed and
+                self.stream_dialog.selection != selection):
+            self.stream_dialog.show()
+            self.stream_dialog.raise_()
+            self.statusBar().showMessage("Для смены источника сначала закройте текущее окно потока.")
+            return False
         if self.stream_dialog is None or self.stream_dialog.closed:
             if self.stream_dialog is not None:
                 self.stream_dialog.deleteLater()
             self.stream_dialog = StreamDialog(
-                self, context=StreamContext(self.channel_name, self.ui_profile))
+                self, context=StreamContext(self.channel_name, self.ui_profile),
+                selection=selection, acquire_serial=self._reserve_serial,
+                release_serial=self._release_serial)
             self.stream_dialog.settled.connect(self._stream_settled)
             self.stream_dialog.close_cancelled.connect(self._stream_close_cancelled)
         self.stream_dialog.show()
         self.stream_dialog.raise_()
         self.stream_dialog.activateWindow()
+        return True
 
     def _stream_settled(self):
         if self._stream_close_pending:

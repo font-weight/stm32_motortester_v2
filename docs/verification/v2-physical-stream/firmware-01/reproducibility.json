@@ -1,0 +1,42 @@
+{
+  "status": "PASS",
+  "scope": "Two independent native builds with identical pinned inputs in different fresh output directories",
+  "files": [
+    {
+      "file": "MotortesterV2-stream-candidate.elf",
+      "first_sha256": "a2a22017e57c0709ac46d1b695acfb9dbc9f9e30d99ee725eeb45c85e271eaa9",
+      "second_sha256": "a2a22017e57c0709ac46d1b695acfb9dbc9f9e30d99ee725eeb45c85e271eaa9",
+      "identical": true
+    },
+    {
+      "file": "MotortesterV2-stream-candidate.bin",
+      "first_sha256": "dbc34181ecefc39b9799c6b5c9d4e103478e36ef42bf5e56a209c75e04f96665",
+      "second_sha256": "dbc34181ecefc39b9799c6b5c9d4e103478e36ef42bf5e56a209c75e04f96665",
+      "identical": true
+    },
+    {
+      "file": "MotortesterV2-stream-candidate.hex",
+      "first_sha256": "bb5351c305957049abfa05f60087d8265592f10465f036ac844336df2b55b3b1",
+      "second_sha256": "bb5351c305957049abfa05f60087d8265592f10465f036ac844336df2b55b3b1",
+      "identical": true
+    },
+    {
+      "file": "image.map",
+      "first_sha256": "49b4a6e19d5584c2f68d4af3d2d9136fc149cad0db18e7d017f4fa78252d12c6",
+      "second_sha256": "49b4a6e19d5584c2f68d4af3d2d9136fc149cad0db18e7d017f4fa78252d12c6",
+      "identical": true
+    },
+    {
+      "file": "image.dis",
+      "first_sha256": "d6ee278796d3cdba98554e84e5f5a36908e3bed00c14039af430a8ecbba7546d",
+      "second_sha256": "d6ee278796d3cdba98554e84e5f5a36908e3bed00c14039af430a8ecbba7546d",
+      "identical": true
+    },
+    {
+      "file": "image.nm",
+      "first_sha256": "dc56c031c8a348ce2ebd4afab8835e0531f9c39f71920c2108c34a05e4f5f03c",
+      "second_sha256": "dc56c031c8a348ce2ebd4afab8835e0531f9c39f71920c2108c34a05e4f5f03c",
+      "identical": true
+    }
+  ]
+}

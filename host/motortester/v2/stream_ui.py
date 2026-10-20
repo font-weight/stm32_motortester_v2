@@ -1,4 +1,4 @@
-"""V2 streaming workspace: paced wire DEMO, bounded display, disk recording."""
+"""V2 streaming workspace: explicit serial or DEMO, bounded display and disk."""
 from concurrent.futures import ThreadPoolExecutor
 
 from PySide6 import QtCore, QtWidgets
@@ -13,18 +13,24 @@ from .widgets import STYLE
 
 
 class StreamDialog(QtWidgets.QDialog):
-    """One immutable channel/profile per workspace; no physical COM factory."""
+    """One immutable channel/profile/port; connect never starts acquisition."""
     settled = QtCore.Signal()
     close_cancelled = QtCore.Signal()
 
-    def __init__(self, parent=None, *, context=StreamContext(), bridge_factory=StreamDeviceBridge):
+    def __init__(self, parent=None, *, context=StreamContext(), bridge_factory=StreamDeviceBridge,
+                 selection=None, acquire_serial=None, release_serial=None):
         super().__init__(parent)
         self.setWindowTitle("Мотортестер V2 · непрерывный приём")
         self.resize(1220, 870)
         self.setMinimumSize(850, 650)
         self.setStyleSheet(STYLE)
         self.context = context
-        self.bridge = bridge_factory(self, context=context)
+        self.bridge = bridge_factory(self, context=context,
+                                     **({"selection": selection} if selection is not None else {}))
+        self.selection = selection
+        self._acquire_serial = acquire_serial
+        self._release_serial = release_serial
+        self._serial_reserved = False
         self._revision = self._handle = None
         self._sent_view = None
         self._paused = self._closing = self.closed = False
@@ -43,12 +49,24 @@ class StreamDialog(QtWidgets.QDialog):
         layout.addWidget(self.heading)
         self._heading(context)
         self.notice = QtWidgets.QLabel(
-            "ДЕМО ПОТОКА · 50 000 отсчётов/с · CH1\n"
-            "STM32 на COM6 пока передаёт отдельные окна. Для потока нужна другая проверенная прошивка.\n"
+            ("ДЕМО ПОТОКА · 50 000 отсчётов/с · CH1\n"
+             "Программный источник; COM-порт не используется.\n" if selection is None else
+             f"STM32 · {selection.port} · CH1 · потоковый протокол 0.2\n"
+             "Сначала подключитесь и дождитесь проверки возможностей, затем запустите поток.\n") +
             "Шкала напряжения не настроена. Здесь проверяются передача и запись исходных кодов.")
         self._live_notice = self.notice.text()
         self.notice.setWordWrap(True)
         layout.addWidget(self.notice)
+        self.connect_button = self.disconnect_button = None
+        if selection is not None:
+            connection_row = QtWidgets.QHBoxLayout()
+            self.connect_button = QtWidgets.QPushButton(f"Подключить {selection.port}")
+            self.connect_button.clicked.connect(self.connect_device)
+            self.disconnect_button = QtWidgets.QPushButton("Отключить")
+            self.disconnect_button.clicked.connect(self.disconnect_device)
+            connection_row.addWidget(self.connect_button)
+            connection_row.addWidget(self.disconnect_button)
+            layout.addLayout(connection_row)
         row = QtWidgets.QHBoxLayout()
         for name, text, action in (
             ("live_button", "Живой поток", self.start_live),
@@ -72,6 +90,9 @@ class StreamDialog(QtWidgets.QDialog):
         self.quality.setWordWrap(True)
         layout.addWidget(self.quality)
         self.viewer = StreamViewerPanel(event_config=self.bridge.state.config)
+        self.viewer.source_label.setText(
+            "Источник и параметры появятся после запуска потока или открытия записи.")
+        self.viewer.status_label.setText("Ожидание потока или открытия записи")
         self.viewer.plot.setBackground("#081b25")
         self.viewer.curve.setPen(pg.mkPen("#ffe500", width=1.6))
         self.viewer.plot.setYRange(0, 4095, padding=0)
@@ -146,6 +167,26 @@ class StreamDialog(QtWidgets.QDialog):
         self._paused = False
         self.pause_button.setText("Пауза просмотра")
         self.viewer._timer.start()
+
+    def connect_device(self):
+        if self.selection is None or self._closing or self.busy:
+            return False
+        if not self._serial_reserved:
+            if self._acquire_serial is not None and not self._acquire_serial(self, self.selection.port):
+                self.error_label.setText(
+                    "Порт занят оконным режимом STM32. Отключите его в панели подключения.")
+                return False
+            self._serial_reserved = True
+        if not self.bridge.connect_source():
+            self.error_label.setText("Подключение сейчас недоступно. Проверьте состояние порта.")
+            return False
+        self.error_label.clear()
+        return True
+
+    def disconnect_device(self):
+        if self.bridge.state.can_retry_close:
+            return self.bridge.retry_close()
+        return self.bridge.disconnect_source()
 
     def start_live(self):
         if self.busy or self._closing:
@@ -268,8 +309,9 @@ class StreamDialog(QtWidgets.QDialog):
             self._handle = self.viewer.begin_live(source.identity, event_config=source.config,
                                                   event_config_revision=source.config_revision)
             self.viewer.source_label.setText(
-                "Программный источник → потоковый протокол 0.2 → проверка → файл и ограниченный обзор. "
-                "COM-порт не используется. Частота времени номинальная.")
+                ("Программный источник; COM-порт не используется. " if self.selection is None else
+                 f"Выбранный порт {self.selection.port}; происхождение: {source.identity.origin}. ") +
+                "Потоковый протокол 0.2 → проверка → файл и ограниченный обзор. Время номинальное.")
         if self._paused:
             return
         index = LiveEventIndex(self._handle, source.sequence, source.config_revision,
@@ -295,14 +337,40 @@ class StreamDialog(QtWidgets.QDialog):
         self._publish_view()
         idle = (not self._closing and not self.busy and not self.bridge.metadata_pending
                 and self._record_picker is None)
-        self.live_button.setEnabled(idle and status.can_preview)
-        self.record_button.setEnabled(idle and status.can_record)
+        physical = self.selection is not None
+        self.live_button.setEnabled(idle and status.can_preview and (not physical or status.ready))
+        self.record_button.setEnabled(idle and status.can_record and
+                                      (not physical or status.phase == "preview"))
+        if physical:
+            self.connect_button.setEnabled(idle and status.can_connect)
+            self.disconnect_button.setEnabled(status.can_retry_close or
+                                              (not self._closing and status.can_disconnect))
+            self.disconnect_button.setText("Повторить закрытие порта" if status.can_retry_close
+                                           else "Отключить")
+            connection = self.bridge.connection
+            if connection is not None:
+                frequency = connection.observed_caps[4] / connection.observed_caps[5]
+                self._live_notice = (
+                    f"STM32 · {self.selection.port} · CH1 · протокол 0.2 · "
+                    f"{frequency:g} отсчётов/с номинально\n"
+                    f"Плата сообщила сборку 0x{connection.observed_build_id:08X}. "
+                    "Это не проверка файла прошивки или точности частоты.\n"
+                    "Шкала напряжения не настроена. Полнота произведённых отсчётов неизвестна.")
+                if not self._opening:
+                    self.notice.setText(self._live_notice)
+            if status.error:
+                self.error_label.setText(
+                    str(status.error) + "\nНужна потоковая прошивка протокола 0.2. "
+                    "Оконная прошивка 0.1 здесь несовместима. "
+                    "После сбоя отключите порт; перед новой попыткой перезапустите плату.")
         self.open_button.setEnabled(idle and status.can_open)
         self.stop_button.setEnabled(not self._closing and not status.can_open)
         self.pause_button.setEnabled(not self._closing and not self._opening and self._revision is not None)
         self.export_button.setEnabled(idle and self.archive is not None and
                                       not isinstance(self.archive, AttemptReport))
-        phases = {"idle": "Готово", "preview": "Живой поток", "recording": "Идёт запись",
+        phases = {"idle": "Не подключено" if physical else "Готово",
+                  "ready": "Подключено · готово к запуску",
+                  "preview": "Живой поток", "recording": "Идёт запись",
                   "saved": "Запись завершена", "preview stopped": "Поток остановлен",
                   "negotiating": "Согласование", "starting preview": "Запуск потока",
                   "preparing": "Подготовка файла", "waiting for boundary": "Ожидание начала записи",
@@ -486,6 +554,11 @@ class StreamDialog(QtWidgets.QDialog):
         self._timer.stop()
         self._executor.shutdown(wait=False)
         self.closed = True
+        # Retain the shared serial lease until workers AND the OS handle have
+        # settled. A stopped graph or a requested disconnect is insufficient.
+        if self._serial_reserved and self._release_serial is not None:
+            self._release_serial(self)
+        self._serial_reserved = False
         self.settled.emit()
         self.close()
 

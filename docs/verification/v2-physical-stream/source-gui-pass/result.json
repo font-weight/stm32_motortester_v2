@@ -1,0 +1,82 @@
+{
+  "status": "PASS",
+  "windows": "Windows-10-10.0.19045-SP0",
+  "python": "3.14.7 (tags/v3.14.7:823f032, Aug  5 2026, 10:51:32) [MSC v.1944 64 bit (AMD64)]",
+  "frozen": false,
+  "qt_platform": "windows",
+  "source": "injected serial byte fixtures",
+  "physical_stream_verified": false,
+  "real_serial_open_calls": 0,
+  "callback_errors": [],
+  "checkpoints": [
+    "window pending Connect blocks stream before serial construction",
+    "stream pending Connect blocks window button and stale handler",
+    "DTR before open; HELLO/CAPS ready without START or waveform",
+    "actual Record/Stop/Open buttons; raw and unknown connection roundtrip",
+    "parent close retains ownership; explicit retry settles owners and releases lease"
+  ],
+  "prepared": {
+    "commands": [
+      1,
+      2
+    ],
+    "samples": 0,
+    "connection": {
+      "selection": {
+        "port": "V2_SYNTHETIC_SERIAL",
+        "declared_source_commit": null,
+        "declared_artifact_sha256": null
+      },
+      "execution_kind": "injected-test",
+      "observed_build_id": 1446134861,
+      "observed_caps": [
+        1,
+        1,
+        0,
+        12,
+        50000,
+        1,
+        128,
+        1
+      ],
+      "dtr_requested": true,
+      "accounting_domain": "unknown",
+      "image_verified": false
+    }
+  },
+  "recording": {
+    "seconds": 2.196942900074646,
+    "samples_before": 45952,
+    "samples_after": 148480,
+    "revision": 1,
+    "main_timer_active": true
+  },
+  "settlement": {
+    "selected_path": "C:\\Users\\Alexandr\\Desktop\\New folder\\универ\\мотортестер 2\\build\\v5-serial-gui-02\\serial-window.mtstream",
+    "saved_path": "C:/Users/Alexandr/Desktop/New folder/универ/мотортестер 2/build/v5-serial-gui-02/serial-window.mtstream",
+    "normalized_path_matches": true,
+    "metadata_pending": false
+  },
+  "roundtrip": {
+    "first_sample_index": 35968,
+    "end_sample_index": 155915,
+    "raw_samples_compared": 119947,
+    "unknown_tail_preserved": true,
+    "origin": "synthetic",
+    "open_path_choice_injected": true
+  },
+  "close": {
+    "failed_close_retained_lease": true,
+    "explicit_retry_button": true,
+    "parent_closed": true,
+    "close_attempts": 2
+  },
+  "files": {
+    "serial-close-retry.png": "9954d5bc607e53a5cb163b5a778438cd5f4fe28ab33c0631207ac64f3dedde3c",
+    "serial-open-unknown-tail.png": "859872fd82433dbf1180dd074373a9e78a8a7bd1e3c7c2e2c6f22b5ae5204f93",
+    "serial-ready.png": "d3fe9453c6957a866c0a295c393caf8f429371d1c582b2f278a2f4e44c564076",
+    "serial-recording.png": "baaf64b42c8825335771f63dfb5be768cda3004005e6e4710346884ff1482019",
+    "serial-window.mtstream": "6d3f62c8bba12fcb78adfef3e5cb15bbec7b1681c9b3a3959398c919c19329ff",
+    "serial-window.mtstream.v2.json": "b3d32eb08d6e6afee7fc8c78fed9de8a8a7a8636655119c4784b44d66981f66f"
+  }
+}

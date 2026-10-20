@@ -1,0 +1,29 @@
+test_close_failure_retains_owner_and_requires_explicit_retry (test_v2_stream_serial.V2StreamSerialTests.test_close_failure_retains_owner_and_requires_explicit_retry) ... ok
+test_companion_retry_keeps_exact_connection_and_raw_prefix (test_v2_stream_serial.V2StreamSerialTests.test_companion_retry_keeps_exact_connection_and_raw_prefix) ... ok
+test_connect_is_inert_then_dtr_hello_caps_without_start (test_v2_stream_serial.V2StreamSerialTests.test_connect_is_inert_then_dtr_hello_caps_without_start) ... ok
+test_incompatible_hello_or_caps_never_admits_start_or_writer (test_v2_stream_serial.V2StreamSerialTests.test_incompatible_hello_or_caps_never_admits_start_or_writer) ... ok
+test_nonzero_record_boundary_unknown_tail_and_durable_connection (test_v2_stream_serial.V2StreamSerialTests.test_nonzero_record_boundary_unknown_tail_and_durable_connection) ... ERROR
+test_prepared_stop_cancels_queued_start_and_device_identity_is_not_str1 (test_v2_stream_serial.V2StreamSerialTests.test_prepared_stop_cancels_queued_start_and_device_identity_is_not_str1) ... ok
+
+======================================================================
+ERROR: test_nonzero_record_boundary_unknown_tail_and_durable_connection (test_v2_stream_serial.V2StreamSerialTests.test_nonzero_record_boundary_unknown_tail_and_durable_connection)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Alexandr\Desktop\New folder\универ\мотортестер 2\host\tests\test_v2_stream_serial.py", line 212, in test_nonzero_record_boundary_unknown_tail_and_durable_connection
+    self.assertEqual(fresh.read_raw(128, 384), waveform(2))
+                     ~~~~~~~~~~~~~~^^^^^^^^^^
+  File "C:\Users\Alexandr\Desktop\New folder\универ\мотортестер 2\host\motortester\stream_recording.py", line 448, in read_raw
+    require(self.first_sample_index <= start_sample_index <= self.end_sample_index and
+    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+            start_sample_index + count <= self.end_sample_index,
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+            "Запрошены недоступные отсчёты")
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Alexandr\Desktop\New folder\универ\мотортестер 2\host\motortester\stream_model.py", line 17, in require
+    raise StreamError(message)
+motortester.stream_model.StreamError: Запрошены недоступные отсчёты
+
+----------------------------------------------------------------------
+Ran 6 tests in 4.653s
+
+FAILED (errors=1)

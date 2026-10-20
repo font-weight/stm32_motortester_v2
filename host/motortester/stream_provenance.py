@@ -16,6 +16,34 @@ class ProvenanceError(ValueError):
 
 
 @dataclass(frozen=True, slots=True)
+class DeviceStreamContext:
+    """Select transport provenance without claiming a qualified firmware image.
+
+    This uses the original wire counter interpretation, not the historical STR1
+    completed-DMA domain. Injected serial fixtures retain synthetic provenance.
+    A HELLO build number is an observation, never authentication of an image.
+    """
+    execution_kind: str = "physical"
+
+
+def validate_device_context(context):
+    if (type(context) is not DeviceStreamContext or
+            type(context.execution_kind) is not str or
+            context.execution_kind not in ("physical", "injected-test")):
+        raise ProvenanceError("Exact device/test stream context required")
+    return context
+
+
+def device_context_identity(context, observed_build):
+    context = validate_device_context(context)
+    if type(observed_build) is not int or not 0 <= observed_build <= 0xffffffff:
+        raise ProvenanceError("Validated HELLO build observation required")
+    origin = "device" if context.execution_kind == "physical" else "synthetic"
+    return origin, ("0.2-draft-081721", f"build:{observed_build:08x}",
+                    "v2-serial-unknown-accounting:" + context.execution_kind)
+
+
+@dataclass(frozen=True, slots=True)
 class ProducerProfile:
     profile_id: str
     accounting_domain: str
@@ -190,6 +218,18 @@ def profile_for_identity(identity):
     revision, artifact, producer = (identity.protocol_revision,
                                     identity.firmware_version,
                                     identity.application_version)
+    if (producer or "").startswith("v2-serial-unknown-accounting:"):
+        execution_kind = producer.removeprefix("v2-serial-unknown-accounting:")
+        context = validate_device_context(DeviceStreamContext(execution_kind))
+        try:
+            build = int(artifact.removeprefix("build:"), 16)
+        except (AttributeError, TypeError, ValueError) as exc:
+            raise ProvenanceError("Missing observed device build") from exc
+        origin, metadata = device_context_identity(context, build)
+        if ((revision, artifact, producer) != metadata or identity.origin != origin or
+                identity.config_id != 1 or identity.nominal_fs_hz != 50000):
+            raise ProvenanceError("Mixed generic device identity")
+        return None  # Deliberately preserves original, non-DMA counter semantics.
     marked = ("dma-sequence" in (revision or "") or
               "completed-dma" in (revision or "") or
               (producer or "").startswith(("producer:", "rehearsal:", "physical:")))
@@ -217,6 +257,11 @@ def provenance_text(identity):
     """Portable visible meaning; used for live, recorded and no-R views."""
     profile = profile_for_identity(identity)
     if profile is None:
+        if (identity.application_version or "").startswith("v2-serial-unknown-accounting:"):
+            return (f"Источник {identity.origin}; наблюдённый HELLO {identity.firmware_version}. "
+                    "Образ прошивки и полнота учёта ADC не подтверждены; DMA-домен не заявлен. "
+                    "Неизвестный хвост и потери остаются неизвестными. "
+                    "Время = индекс / номинальная Fs, шкала CH1 не настроена.")
         return (f"Прежняя декларация: protocol {identity.protocol_revision}; "
                 f"firmware {identity.firmware_version}; application {identity.application_version}. "
                 "Новый DMA-домен не заявлен; исходный смысл метаданных сохранён.")
