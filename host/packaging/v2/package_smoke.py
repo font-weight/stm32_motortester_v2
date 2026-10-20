@@ -73,6 +73,7 @@ def run(output_name):
         with tempfile.TemporaryDirectory(dir=output) as temporary, \
              patch.object(QtWidgets.QMessageBox, "critical", side_effect=unexpected_message), \
              patch.object(QtWidgets.QMessageBox, "warning", side_effect=unexpected_message), \
+             patch.object(QtWidgets.QMessageBox, "question", side_effect=unexpected_message), \
              patch.object(serialwin32.Serial, "open",
                           side_effect=RuntimeError("Package verification must not open a COM port")) as port_open, \
              patch.object(list_ports, "comports", return_value=(
@@ -112,6 +113,13 @@ def run(output_name):
                     break
             assert window.single and window.single.sample_count == 250
             assert not window.single.quality_flags
+            single = window.single
+            single_path = output / "single.mtv2"
+            with patch.object(window, "_choose_path", return_value=(single_path, False)):
+                window.save_dialog()
+            wait_idle()
+            assert load(single_path) == single
+            assert not window.single_dirty
             window.set_mode(0)
             window.toggle_record()
             window._tick()
@@ -125,7 +133,7 @@ def run(output_name):
             window.stop_recording()
             captured = window.completed
             assert captured.sample_count == 7500 and len(captured.gaps) == 1
-            report["checks"].append("single capture; pause-independent recording with a real data gap")
+            report["checks"].append("single capture saved through GUI; pause-independent recording with a real data gap")
 
             sample = output / "sample.mtv2"
             with patch.object(window, "_choose_path", return_value=(sample, False)):
@@ -135,7 +143,7 @@ def run(output_name):
             with patch.object(QtWidgets.QFileDialog, "getOpenFileName", return_value=(str(sample), "")):
                 window.open_dialog()
             wait_idle()
-            assert window.completed == captured
+            assert window.completed is not captured and window.completed == captured
             window.full_signal()
             exported = output / "export.csv"
             with patch.object(window, "_choose_path", return_value=(exported, False)):
