@@ -1,4 +1,4 @@
-"""Build the separately reviewed V2S3 transport candidate; never flash hardware."""
+"""Build the separately reviewed V2S4 transport candidate; never flash hardware."""
 import argparse
 import hashlib
 import importlib.util
@@ -199,7 +199,8 @@ def main():
         # pinned layer over exactly the inputs named in the overlay manifest.
         receipt["v2_overlays"] = []
         for name, schema in (("usb-nvic.json", "motortester-v2-usb-nvic-overlay-1"),
-                             ("adc-cen.json", "motortester-v2-adc-cen-overlay-1")):
+                             ("adc-cen.json", "motortester-v2-adc-cen-overlay-1"),
+                             ("crc32.json", "motortester-v2-crc32-overlay-1")):
             v2_patches = json.loads((here / "overlays" / name).read_text("utf-8"))
             require(v2_patches["schema"] == schema, "Unexpected V2 overlay schema")
             receipt["v2_overlays"].extend(v2_patches["patches"])
@@ -209,6 +210,8 @@ def main():
                 target.write_bytes(apply_patch(
                     (out / row["source"]).read_bytes(),
                     (here / "overlays" / row["patch"]).read_bytes(), row))
+        (out / "patched/v2/protocol/mt_v2_crc32.h").write_bytes(
+            (here / "overlays/mt_v2_crc32.h").read_bytes())
         # Keep quoted relative header includes inside one coherent V2 tree.
         # Unchanged headers are byte copies of the pinned archive; never replace
         # the two explicit API overlays or mutate the canonical source tree.
@@ -275,6 +278,8 @@ def main():
                 "source/firmware/app/mt_live_runtime.c": "patched/v2/app/mt_live_runtime.c",
                 "source/firmware/app/mt_live_adc.c": "patched/v2/app/mt_live_adc.c",
                 "source/firmware/platform/adc_timer_dma.c": "patched/v2/platform/adc_timer_dma.c",
+                "source/firmware/protocol/mt_wire.c": "patched/v2/protocol/mt_wire.c",
+                "source/firmware/protocol/mt_live_device.c": "patched/v2/protocol/mt_live_device.c",
                 "source/firmware/transport/mt_usb_bridge.c": "patched/v2/transport/mt_usb_bridge.c",
             }.get(path, path)
             compile_c(f"{index:02}-{Path(src).stem}", path, row["flags"])

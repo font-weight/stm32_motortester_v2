@@ -166,6 +166,18 @@ def analyze(out):
             [8000000, 1000000, 0, board_build, 0, 1, 1], "Board scalar configuration")
     require([elf.word(elf.value("mt_stream_timing") + i * 4) for i in range(3)] ==
             [1, 1, 1], "Provisional timing declaration")
+    crc_table = elf.symbols["mt_v2_crc32_table"]
+    crc_section = elf.sections[crc_table["ndx"]]
+    require(crc_table["size"] == 1024 and
+            0x08000000 <= crc_table["value"] <= 0x08010000 - 1024 and
+            crc_section["flags"] & 2 and not crc_section["flags"] & 1,
+            "CRC table must be immutable Flash data")
+    for byte in range(256):
+        expected = byte
+        for _ in range(8):
+            expected = (expected >> 1) ^ (0xedb88320 if expected & 1 else 0)
+        require(elf.word(crc_table["value"] + byte * 4) == expected,
+                "CRC table entry differs")
     # The deferred-function producer is retained but unreachable. No code/data
     # reference to its address may exist in this image, and no graph edge may call
     # it. Incoming USB packets do not populate this internal event kind.
@@ -299,6 +311,8 @@ def analyze(out):
         "status": "CONDITIONAL_EXACT_IMAGE_STATIC_BOUND",
         "elf_sha256": sha(elf_path), "analyzer_sha256": sha(Path(__file__)),
         "firmware_build": f"0x{board_build:08x}", "roots": roots,
+        "crc_table": {"address": hex(crc_table["value"]), "bytes": 1024,
+                      "immutable_flash": True, "all_entries_verified": True},
         "exception_allowance_bytes": 108, "upper_bound_bytes": total,
         "aligned_minimum_bytes": rounded, "reserved_bytes": 8192,
         "functions": cfg_results, "call_edges": edges, "callback_sites": callback_sites,

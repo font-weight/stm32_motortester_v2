@@ -6,3 +6,4 @@ docs/verification/v2-stream/** -text whitespace=cr-at-eol
 docs/verification/v2-stream-picker/** -text whitespace=cr-at-eol
 # V2 firmware overlays are applied only after an exact byte-hash check.
 firmware/v2-stream/overlays/*.patch -text
+firmware/v2-stream/overlays/mt_v2_crc32.h -text

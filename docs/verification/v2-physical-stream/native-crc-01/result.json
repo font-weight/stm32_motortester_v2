@@ -1,0 +1,105 @@
+{
+  "status": "PASS",
+  "scope": "Exact CRC equivalence against upstream C and actual saved wire/raw; no hardware.",
+  "image": "C:\\Users\\Alexandr\\Desktop\\New folder\\\u0443\u043d\u0438\u0432\u0435\u0440\\\u043c\u043e\u0442\u043e\u0440\u0442\u0435\u0441\u0442\u0435\u0440 2\\build\\v5-fw-10",
+  "firmware_build": 1446138676,
+  "image_bin_sha256": "04ba2853b6a964cd812bf555a32da7fb019bcd60ba9fda0bd586d71112b3143d",
+  "inputs": {
+    "C:\\Users\\Alexandr\\Desktop\\New folder\\\u0443\u043d\u0438\u0432\u0435\u0440\\\u043c\u043e\u0442\u043e\u0440\u0442\u0435\u0441\u0442\u0435\u0440 2\\tests\\v2-stream-firmware\\check_crc_equivalence.py": "23b693f74fde3bd1c6b0bcff7c8ac642e90bb601a0b6beccdfac59dd762bfb59",
+    "C:\\Users\\Alexandr\\Desktop\\New folder\\\u0443\u043d\u0438\u0432\u0435\u0440\\\u043c\u043e\u0442\u043e\u0440\u0442\u0435\u0441\u0442\u0435\u0440 2\\build\\v5-native-toolchain\\zig-x86_64-windows-0.15.2\\zig.exe": "d408dd38eed3e5204af841bcebf70502a4dbbb8399a3a3262be55059370bc018",
+    "C:\\Users\\Alexandr\\Desktop\\New folder\\\u0443\u043d\u0438\u0432\u0435\u0440\\\u043c\u043e\u0442\u043e\u0440\u0442\u0435\u0441\u0442\u0435\u0440 2\\build\\v5-fw-10\\receipt.json": "e43627a9934282c788d43c8b7cffbc936b4da67810abb52c06cbd39f75e0080f",
+    "C:\\Users\\Alexandr\\Desktop\\New folder\\\u0443\u043d\u0438\u0432\u0435\u0440\\\u043c\u043e\u0442\u043e\u0440\u0442\u0435\u0441\u0442\u0435\u0440 2\\tests\\v2-stream-firmware\\check_usb_gate.py": "067de6afbaa2faa1c60828b4fdc46d1e5bd8f1344f78efba9ca70c87181f9ad7",
+    "C:\\Users\\Alexandr\\Desktop\\New folder\\\u0443\u043d\u0438\u0432\u0435\u0440\\\u043c\u043e\u0442\u043e\u0440\u0442\u0435\u0441\u0442\u0435\u0440 2\\build\\v5-fw-10\\source\\firmware\\protocol\\mt_live_device.c": "be3effe882ebc209c68645fe1140f83a102ca54286d0b9677ab538d7fce3ab4d",
+    "C:\\Users\\Alexandr\\Desktop\\New folder\\\u0443\u043d\u0438\u0432\u0435\u0440\\\u043c\u043e\u0442\u043e\u0440\u0442\u0435\u0441\u0442\u0435\u0440 2\\build\\v5-fw-10\\patched\\v2\\protocol\\mt_live_device.c": "b74801c3ecaab6ae1627f4812326c71cfd821bc47eb8e458613e6c8d3c00bdc5",
+    "C:\\Users\\Alexandr\\Desktop\\New folder\\\u0443\u043d\u0438\u0432\u0435\u0440\\\u043c\u043e\u0442\u043e\u0440\u0442\u0435\u0441\u0442\u0435\u0440 2\\tests\\v2-stream-firmware\\crc_equivalence_model.c": "87185db55360f2309616882865c27490816e270069abecd0535774552b5d6d75",
+    "C:\\Users\\Alexandr\\Desktop\\New folder\\\u0443\u043d\u0438\u0432\u0435\u0440\\\u043c\u043e\u0442\u043e\u0440\u0442\u0435\u0441\u0442\u0435\u0440 2\\build\\v5-fw-10\\patched\\v2\\protocol\\mt_wire.c": "db75cb70135ecde3c4f3aaefb032a55cb59808e7541fe232955d302043382d8d",
+    "C:\\Users\\Alexandr\\Desktop\\New folder\\\u0443\u043d\u0438\u0432\u0435\u0440\\\u043c\u043e\u0442\u043e\u0440\u0442\u0435\u0441\u0442\u0435\u0440 2\\build\\v5-fw-10\\source\\firmware\\protocol\\mt_wire.c": "9649b9d23b03deaff9fd66bb2c28b886811b88f844288bba365837f8f20b5c7b",
+    "C:\\Users\\Alexandr\\Desktop\\New folder\\\u0443\u043d\u0438\u0432\u0435\u0440\\\u043c\u043e\u0442\u043e\u0440\u0442\u0435\u0441\u0442\u0435\u0440 2\\build\\v5-fw-10\\source\\firmware\\protocol\\mt_wire.h": "e8edcb0aea5cdc946106db3146d358ff9061970313efaf67102b216653c0273d",
+    "C:\\Users\\Alexandr\\Desktop\\New folder\\\u0443\u043d\u0438\u0432\u0435\u0440\\\u043c\u043e\u0442\u043e\u0440\u0442\u0435\u0441\u0442\u0435\u0440 2\\build\\v5-fw-10\\patched\\v2\\protocol\\mt_v2_crc32.h": "48f29791e8b0595dabdc70ec06807f4dc064a56e66db514df24dd04ea9222a2f",
+    "C:\\Users\\Alexandr\\Desktop\\New folder\\\u0443\u043d\u0438\u0432\u0435\u0440\\\u043c\u043e\u0442\u043e\u0440\u0442\u0435\u0441\u0442\u0435\u0440 2\\host\\motortester\\stream_wire.py": "356b2c1cedc2d3364ff46af29565aba25248cac0aa222ecee3ff56923e0d057b",
+    "C:\\Users\\Alexandr\\Desktop\\New folder\\\u0443\u043d\u0438\u0432\u0435\u0440\\\u043c\u043e\u0442\u043e\u0440\u0442\u0435\u0441\u0442\u0435\u0440 2\\build\\v5-board-stream-03\\run\\traffic.bin": "bc302399d0be20b5b13624b0451f8d98dd27cb0baad19d22e7253a63048f2ff8"
+  },
+  "commands": [
+    {
+      "name": "version",
+      "argv": [
+        "C:\\Users\\Alexandr\\Desktop\\New folder\\\u0443\u043d\u0438\u0432\u0435\u0440\\\u043c\u043e\u0442\u043e\u0440\u0442\u0435\u0441\u0442\u0435\u0440 2\\build\\v5-native-toolchain\\zig-x86_64-windows-0.15.2\\zig.exe",
+        "version"
+      ],
+      "exit_code": 0
+    },
+    {
+      "name": "compile-oracle",
+      "argv": [
+        "C:\\Users\\Alexandr\\Desktop\\New folder\\\u0443\u043d\u0438\u0432\u0435\u0440\\\u043c\u043e\u0442\u043e\u0440\u0442\u0435\u0441\u0442\u0435\u0440 2\\build\\v5-native-toolchain\\zig-x86_64-windows-0.15.2\\zig.exe",
+        "cc",
+        "-std=c11",
+        "-O1",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-Dmt_wire_crc32=oracle_mt_wire_crc32",
+        "-Dmt_wire_encode_revision=oracle_mt_wire_encode_revision",
+        "-Dmt_wire_decode_revision=oracle_mt_wire_decode_revision",
+        "-Dmt_wire_encode=oracle_mt_wire_encode",
+        "-Dmt_wire_decode=oracle_mt_wire_decode",
+        "-c",
+        "oracle.c",
+        "-o",
+        "oracle.o"
+      ],
+      "exit_code": 0
+    },
+    {
+      "name": "compile",
+      "argv": [
+        "C:\\Users\\Alexandr\\Desktop\\New folder\\\u0443\u043d\u0438\u0432\u0435\u0440\\\u043c\u043e\u0442\u043e\u0440\u0442\u0435\u0441\u0442\u0435\u0440 2\\build\\v5-native-toolchain\\zig-x86_64-windows-0.15.2\\zig.exe",
+        "cc",
+        "-std=c11",
+        "-O1",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "check.c",
+        "wire.c",
+        "oracle.o",
+        "-o",
+        "check.exe"
+      ],
+      "exit_code": 0
+    },
+    {
+      "name": "crc",
+      "argv": [
+        "C:\\Users\\Alexandr\\Desktop\\New folder\\\u0443\u043d\u0438\u0432\u0435\u0440\\\u043c\u043e\u0442\u043e\u0440\u0442\u0435\u0441\u0442\u0435\u0440 2\\build\\v5-native-crc-01\\check.exe"
+      ],
+      "exit_code": 0
+    }
+  ],
+  "compiler_version": "0.15.2",
+  "stdout": "PASS all256 table/byte values / known CRC / lengths0..540\r\nPASS full wire payload lengths0..512 / 89 actual traffic frames\r\nPASS explicit LE incremental prefix / chunking1,17,127,128 / 10240 actual raw codes\r\n",
+  "actual_vectors": {
+    "traffic_chunks": 90,
+    "wire_frames": 89,
+    "raw_codes": 10240,
+    "raw_sha256": "e7282d757f825b77d1044e8e90ffd1f74569ebc884ff59bf68b7e355b71bb14a",
+    "raw_crc32": 2257910402
+  },
+  "generated": {
+    "actual-codes.bin": "e8c15e0d5718d38cde37146697742d9b206cc01d8157e41d02002d20236dfc48",
+    "actual-frames.bin": "9cda2703774b60f9b83d38829989ceb80a7192d998b2bbe395870cd8eebb35cb",
+    "check.c": "41e3ceae88a6ffe155510ae7fbeb332c8916a8c72c8e52cd97ea1ed443761bcd",
+    "check.exe": "07d6c740d95582a474660480ecfd7a2af4c011128b87a58c0bfca246de9fddfb",
+    "mt_v2_crc32.h": "48f29791e8b0595dabdc70ec06807f4dc064a56e66db514df24dd04ea9222a2f",
+    "mt_wire.h": "e8edcb0aea5cdc946106db3146d358ff9061970313efaf67102b216653c0273d",
+    "oracle.c": "9649b9d23b03deaff9fd66bb2c28b886811b88f844288bba365837f8f20b5c7b",
+    "oracle.o": "2d7fa820ac8efa1ab8fca2f9e0172ea8a5dde8ef62e5e52e4baa26716b29bb5f",
+    "wire.c": "db75cb70135ecde3c4f3aaefb032a55cb59808e7541fe232955d302043382d8d"
+  },
+  "not_verified": [
+    "Physical throughput or timing",
+    "USB/ADC scheduling margin",
+    "Physical sample losslessness",
+    "Voltage calibration"
+  ]
+}
