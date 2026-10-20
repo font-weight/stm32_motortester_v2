@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="730" viewBox="0 0 1600 730">
+<rect width="100%" height="100%" fill="white"/>
+<text x="80" y="276.8" font-family="Segoe UI, sans-serif" font-size="36" font-weight="700" fill="#007e87" text-anchor="start">CH1</text>
+<polyline points="80,310 205.0,310" fill="none" stroke="#173340" stroke-width="4" />
+<rect x="205.0" y="292" width="100" height="36" rx="0" fill="white" stroke="#173340" stroke-width="4"/>
+<polyline points="305.0,310 430,310" fill="none" stroke="#173340" stroke-width="4" />
+<text x="255.0" y="231.2" font-family="Segoe UI, sans-serif" font-size="34" font-weight="700" fill="#173340" text-anchor="middle">R1</text>
+<text x="255.0" y="274.6" font-family="Segoe UI, sans-serif" font-size="32" font-weight="400" fill="#173340" text-anchor="middle">499 кОм</text>
+<polyline points="430,310 560.0,310" fill="none" stroke="#173340" stroke-width="4" />
+<rect x="560.0" y="292" width="100" height="36" rx="0" fill="white" stroke="#173340" stroke-width="4"/>
+<polyline points="660.0,310 790,310" fill="none" stroke="#173340" stroke-width="4" />
+<text x="610.0" y="231.2" font-family="Segoe UI, sans-serif" font-size="34" font-weight="700" fill="#173340" text-anchor="middle">R2</text>
+<text x="610.0" y="274.6" font-family="Segoe UI, sans-serif" font-size="32" font-weight="400" fill="#173340" text-anchor="middle">499 кОм</text>
+<text x="435" y="378.8" font-family="Segoe UI, sans-serif" font-size="31" font-weight="700" fill="#007e87" text-anchor="middle">IN_MID</text>
+<polyline points="790,310 1180,310" fill="none" stroke="#173340" stroke-width="4" />
+<circle cx="820" cy="310" r="7" fill="#173340" stroke="#173340" stroke-width="3"/>
+<text x="955" y="287.8" font-family="Segoe UI, sans-serif" font-size="36" font-weight="700" fill="#007e87" text-anchor="middle">SUM</text>
+<text x="820" y="53.8" font-family="Segoe UI, sans-serif" font-size="36" font-weight="700" fill="#54656e" text-anchor="middle">V_A</text>
+<polyline points="820,80 820,156.0" fill="none" stroke="#173340" stroke-width="4" />
+<rect x="802" y="156.0" width="36" height="78" rx="0" fill="white" stroke="#173340" stroke-width="4"/>
+<polyline points="820,234.0 820,310" fill="none" stroke="#173340" stroke-width="4" />
+<text x="860" y="178.6" font-family="Segoe UI, sans-serif" font-size="32" font-weight="400" fill="#173340" text-anchor="start">R3</text>
+<text x="860" y="223.6" font-family="Segoe UI, sans-serif" font-size="32" font-weight="400" fill="#173340" text-anchor="start">249 кОм</text>
+<polyline points="820,310 820,376.0" fill="none" stroke="#173340" stroke-width="4" />
+<rect x="802" y="376.0" width="36" height="78" rx="0" fill="white" stroke="#173340" stroke-width="4"/>
+<polyline points="820,454.0 820,520" fill="none" stroke="#173340" stroke-width="4" />
+<text x="860" y="398.6" font-family="Segoe UI, sans-serif" font-size="32" font-weight="400" fill="#173340" text-anchor="start">R4</text>
+<text x="860" y="443.6" font-family="Segoe UI, sans-serif" font-size="32" font-weight="400" fill="#173340" text-anchor="start">332 кОм</text>
+<polyline points="820,522 820,540" fill="none" stroke="#173340" stroke-width="4" />
+<polyline points="794,540 846,540" fill="none" stroke="#173340" stroke-width="4" />
+<polyline points="802,550 838,550" fill="none" stroke="#173340" stroke-width="4" />
+<polyline points="812,560 828,560" fill="none" stroke="#173340" stroke-width="4" />
+<text x="860" y="556.8" font-family="Segoe UI, sans-serif" font-size="31" font-weight="400" fill="#54656e" text-anchor="start">AGND</text>
+<polygon points="1180,257.0 1180,437.0 1360,347" fill="#eef7f7" stroke="#173340" stroke-width="4"/>
+<text x="1196" y="330.4" font-family="Segoe UI, sans-serif" font-size="38" font-weight="700" fill="#173340" text-anchor="start">+</text>
+<text x="1196" y="407.9" font-family="Segoe UI, sans-serif" font-size="38" font-weight="700" fill="#173340" text-anchor="start">−</text>
+<text x="1246" y="357.4" font-family="Segoe UI, sans-serif" font-size="33" font-weight="700" fill="#007e87" text-anchor="start">U1A</text>
+<polyline points="1360,347 1520,347" fill="none" stroke="#173340" stroke-width="4" />
+<text x="1480" y="310.8" font-family="Segoe UI, sans-serif" font-size="36" font-weight="700" fill="#007e87" text-anchor="middle">BUF</text>
+<circle cx="1420" cy="347" r="7" fill="#173340" stroke="#173340" stroke-width="3"/>
+<polyline points="1420,347 1420,527 1100,527 1100,384 1180,384" fill="none" stroke="#173340" stroke-width="4" />
+<text x="40" y="641.4" font-family="Segoe UI, sans-serif" font-size="33" font-weight="400" fill="#54656e" text-anchor="start">SUM задаётся тремя ветвями: от CH1, от V_A и к AGND.</text>
+<text x="40" y="687.4" font-family="Segoe UI, sans-serif" font-size="33" font-weight="400" fill="#54656e" text-anchor="start">U1A повторяет SUM и отделяет делитель от следующей нагрузки.</text>
+</svg>

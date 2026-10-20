@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900">
+<rect width="100%" height="100%" fill="white"/>
+<rect x="40" y="90" width="410" height="240" rx="16" fill="#f4f6f7" stroke="#94abb2" stroke-width="3"/>
+<text x="245.0" y="172.2" font-family="Segoe UI, sans-serif" font-size="34" font-weight="700" fill="#173340" text-anchor="middle">Будущий датчик</text>
+<text x="245.0" y="220.2" font-family="Segoe UI, sans-serif" font-size="34" font-weight="400" fill="#173340" text-anchor="middle">и кабель</text>
+<text x="245.0" y="268.2" font-family="Segoe UI, sans-serif" font-size="34" font-weight="400" fill="#173340" text-anchor="middle">ёмкостной съём</text>
+<rect x="590" y="90" width="420" height="240" rx="16" fill="#eef7f7" stroke="#94abb2" stroke-width="3"/>
+<text x="800.0" y="172.2" font-family="Segoe UI, sans-serif" font-size="34" font-weight="700" fill="#173340" text-anchor="middle">Аналоговый тракт</text>
+<text x="800.0" y="220.2" font-family="Segoe UI, sans-serif" font-size="34" font-weight="400" fill="#173340" text-anchor="middle">нагрузка и смещение</text>
+<text x="800.0" y="268.2" font-family="Segoe UI, sans-serif" font-size="34" font-weight="400" fill="#173340" text-anchor="middle">фильтрация</text>
+<rect x="1150" y="90" width="410" height="240" rx="16" fill="#eef7f7" stroke="#94abb2" stroke-width="3"/>
+<text x="1355.0" y="172.2" font-family="Segoe UI, sans-serif" font-size="34" font-weight="700" fill="#173340" text-anchor="middle">STM32 · PA0</text>
+<text x="1355.0" y="220.2" font-family="Segoe UI, sans-serif" font-size="34" font-weight="400" fill="#173340" text-anchor="middle">встроенный АЦП</text>
+<text x="1355.0" y="268.2" font-family="Segoe UI, sans-serif" font-size="34" font-weight="400" fill="#173340" text-anchor="middle">коды 0…4095</text>
+<polyline points="450,210 590,210" fill="none" stroke="#007e87" stroke-width="5" />
+<polygon points="590,210 572.0,219.0 572.0,201.0" fill="#007e87"/>
+<text x="520" y="176.4" font-family="Segoe UI, sans-serif" font-size="33" font-weight="700" fill="#007e87" text-anchor="middle">U_CH1</text>
+<text x="520" y="266.6" font-family="Segoe UI, sans-serif" font-size="27" font-weight="400" fill="#54656e" text-anchor="middle">разъём</text>
+<polyline points="1010,210 1150,210" fill="none" stroke="#007e87" stroke-width="5" />
+<polygon points="1150,210 1132.0,219.0 1132.0,201.0" fill="#007e87"/>
+<text x="1080" y="176.4" font-family="Segoe UI, sans-serif" font-size="33" font-weight="700" fill="#007e87" text-anchor="middle">U_ADC</text>
+<rect x="1150" y="500" width="410" height="220" rx="16" fill="#eef7f7" stroke="#94abb2" stroke-width="3"/>
+<text x="1355.0" y="572.2" font-family="Segoe UI, sans-serif" font-size="34" font-weight="700" fill="#173340" text-anchor="middle">USB самой платы</text>
+<text x="1355.0" y="620.2" font-family="Segoe UI, sans-serif" font-size="34" font-weight="400" fill="#173340" text-anchor="middle">пакеты данных</text>
+<text x="1355.0" y="668.2" font-family="Segoe UI, sans-serif" font-size="34" font-weight="400" fill="#173340" text-anchor="middle">COM в Windows</text>
+<polyline points="1355,330 1355,500" fill="none" stroke="#007e87" stroke-width="5" />
+<polygon points="1355,500 1346.0,482.0 1364.0,482.0" fill="#007e87"/>
+<text x="1380" y="417.2" font-family="Segoe UI, sans-serif" font-size="34" font-weight="700" fill="#007e87" text-anchor="start">raw</text>
+<rect x="590" y="500" width="420" height="220" rx="16" fill="#eef7f7" stroke="#94abb2" stroke-width="3"/>
+<text x="800.0" y="574.3" font-family="Segoe UI, sans-serif" font-size="31" font-weight="700" fill="#173340" text-anchor="middle">Приложение V2</text>
+<text x="800.0" y="619.3" font-family="Segoe UI, sans-serif" font-size="31" font-weight="400" fill="#173340" text-anchor="middle">U_CH1 = a × code + b</text>
+<text x="800.0" y="664.3" font-family="Segoe UI, sans-serif" font-size="31" font-weight="400" fill="#173340" text-anchor="middle">если профиль известен</text>
+<polyline points="1150,610 1010,610" fill="none" stroke="#007e87" stroke-width="5" />
+<polygon points="1010,610 1028.0,601.0 1028.0,619.0" fill="#007e87"/>
+<rect x="40" y="500" width="410" height="220" rx="16" fill="#eef7f7" stroke="#94abb2" stroke-width="3"/>
+<text x="245.0" y="574.3" font-family="Segoe UI, sans-serif" font-size="31" font-weight="700" fill="#173340" text-anchor="middle">Файл записи</text>
+<text x="245.0" y="619.3" font-family="Segoe UI, sans-serif" font-size="31" font-weight="400" fill="#173340" text-anchor="middle">raw, время, разрывы</text>
+<text x="245.0" y="664.3" font-family="Segoe UI, sans-serif" font-size="31" font-weight="400" fill="#173340" text-anchor="middle">и профиль входа</text>
+<polyline points="590,610 450,610" fill="none" stroke="#007e87" stroke-width="5" />
+<polygon points="450,610 468.0,601.0 468.0,619.0" fill="#007e87"/>
+<text x="40" y="804.8" font-family="Segoe UI, sans-serif" font-size="31" font-weight="400" fill="#54656e" text-anchor="start">U_CH1 — на входном разъёме; U_ADC — на выводе PA0; raw — исходные коды.</text>
+<text x="40" y="848.8" font-family="Segoe UI, sans-serif" font-size="31" font-weight="400" fill="#54656e" text-anchor="start">Это разные величины. Напряжение на свече в кВ приложение не вычисляет.</text>
+</svg>

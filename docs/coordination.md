@@ -1,5 +1,12 @@
 # Координация самостоятельного V2
 
+HW-V2-02b, база `c28363188eddd6c517917549c4742249a0c21600`:
+root — docs/guides/* и ссылки/общая документация; input_research —
+только docs/guide-assets/*; input_model — чтение/арифметика без записи;
+input_critic — только docs/reviews/hw-v2-02b-review.md
+и docs/verification/hw-v2-02b/*. Критик не пишет учебный текст/рисунки.
+Не затрагиваются измерительные соединения, firmware, COM и приложение.
+
 HW-V2-02a, база `8ba6227890091b0c1e1e683891287b729ceda6df`:
 root — materials-ru.md, ссылки из README/netlist P1-LV и task/progress/coordination;
 input_critic — только независимый docs/reviews/hw-v2-02a-review.md

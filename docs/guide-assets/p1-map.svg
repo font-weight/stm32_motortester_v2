@@ -1,0 +1,59 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1190" viewBox="0 0 1600 1190">
+<rect width="100%" height="100%" fill="white"/>
+<rect x="40" y="20" width="1520" height="110" rx="16" fill="#f4f6f7" stroke="#94abb2" stroke-width="3"/>
+<text x="68" y="64.8" font-family="Segoe UI, sans-serif" font-size="31" font-weight="400" fill="#54656e" text-anchor="start">J3: V_A / AGND → питание U1 (pins 4 / 11) и местного TEST.</text>
+<text x="68" y="108.8" font-family="Segoe UI, sans-serif" font-size="31" font-weight="400" fill="#54656e" text-anchor="start">V_A должна быть общей с VDDA/Vref+ АЦП; источник и монтаж требуют проверки.</text>
+<rect x="40" y="205" width="430" height="250" rx="16" fill="#eef7f7" stroke="#94abb2" stroke-width="3"/>
+<text x="255.0" y="295.0" font-family="Segoe UI, sans-serif" font-size="30" font-weight="700" fill="#173340" text-anchor="middle">J1: CH1 / AGND</text>
+<text x="255.0" y="339.0" font-family="Segoe UI, sans-serif" font-size="30" font-weight="400" fill="#173340" text-anchor="middle">JP_TEST: TEST или ноль</text>
+<text x="255.0" y="383.0" font-family="Segoe UI, sans-serif" font-size="30" font-weight="400" fill="#173340" text-anchor="middle">TEST: R10–RV1–R11</text>
+<rect x="585" y="205" width="430" height="250" rx="16" fill="#eef7f7" stroke="#94abb2" stroke-width="3"/>
+<text x="800.0" y="294.3" font-family="Segoe UI, sans-serif" font-size="31" font-weight="700" fill="#173340" text-anchor="middle">Делитель</text>
+<text x="800.0" y="339.3" font-family="Segoe UI, sans-serif" font-size="31" font-weight="400" fill="#173340" text-anchor="middle">R1 → IN_MID → R2</text>
+<text x="800.0" y="384.3" font-family="Segoe UI, sans-serif" font-size="31" font-weight="400" fill="#173340" text-anchor="middle">R3 к V_A; R4 к AGND</text>
+<rect x="1130" y="205" width="430" height="250" rx="16" fill="#eef7f7" stroke="#94abb2" stroke-width="3"/>
+<text x="1345.0" y="292.9" font-family="Segoe UI, sans-serif" font-size="33" font-weight="700" fill="#173340" text-anchor="middle">U1A · буфер</text>
+<text x="1345.0" y="339.9" font-family="Segoe UI, sans-serif" font-size="33" font-weight="400" fill="#173340" text-anchor="middle">SUM → повторитель</text>
+<text x="1345.0" y="386.9" font-family="Segoe UI, sans-serif" font-size="33" font-weight="400" fill="#173340" text-anchor="middle">на выходе BUF</text>
+<polyline points="470,330 585,330" fill="none" stroke="#007e87" stroke-width="5" />
+<polygon points="585,330 567.0,339.0 567.0,321.0" fill="#007e87"/>
+<text x="527" y="299.0" font-family="Segoe UI, sans-serif" font-size="30" font-weight="700" fill="#007e87" text-anchor="middle">CH1</text>
+<polyline points="1015,330 1130,330" fill="none" stroke="#007e87" stroke-width="5" />
+<polygon points="1130,330 1112.0,339.0 1112.0,321.0" fill="#007e87"/>
+<text x="1072" y="299.0" font-family="Segoe UI, sans-serif" font-size="30" font-weight="700" fill="#007e87" text-anchor="middle">SUM</text>
+<polyline points="1345,455 1345,580" fill="none" stroke="#007e87" stroke-width="5" />
+<polygon points="1345,580 1336.0,562.0 1354.0,562.0" fill="#007e87"/>
+<text x="1370" y="519.8" font-family="Segoe UI, sans-serif" font-size="31" font-weight="700" fill="#007e87" text-anchor="start">BUF</text>
+<rect x="1130" y="580" width="430" height="220" rx="16" fill="#eef7f7" stroke="#94abb2" stroke-width="3"/>
+<text x="1345.0" y="654.3" font-family="Segoe UI, sans-serif" font-size="31" font-weight="700" fill="#173340" text-anchor="middle">U1B · первый ФНЧ</text>
+<text x="1345.0" y="699.3" font-family="Segoe UI, sans-serif" font-size="31" font-weight="400" fill="#173340" text-anchor="middle">R5/R6: X1 → Y1</text>
+<text x="1345.0" y="744.3" font-family="Segoe UI, sans-serif" font-size="31" font-weight="400" fill="#173340" text-anchor="middle">C1a/C1b и C2</text>
+<rect x="585" y="580" width="430" height="220" rx="16" fill="#eef7f7" stroke="#94abb2" stroke-width="3"/>
+<text x="800.0" y="654.3" font-family="Segoe UI, sans-serif" font-size="31" font-weight="700" fill="#173340" text-anchor="middle">U1C · второй ФНЧ</text>
+<text x="800.0" y="699.3" font-family="Segoe UI, sans-serif" font-size="31" font-weight="400" fill="#173340" text-anchor="middle">R7/R8: X2 → Y2</text>
+<text x="800.0" y="744.3" font-family="Segoe UI, sans-serif" font-size="31" font-weight="400" fill="#173340" text-anchor="middle">C3 и C4</text>
+<polyline points="1130,690 1015,690" fill="none" stroke="#007e87" stroke-width="5" />
+<polygon points="1015,690 1033.0,681.0 1033.0,699.0" fill="#007e87"/>
+<text x="1072" y="657.8" font-family="Segoe UI, sans-serif" font-size="31" font-weight="700" fill="#007e87" text-anchor="middle">LP1</text>
+<rect x="40" y="580" width="430" height="220" rx="16" fill="#eef7f7" stroke="#94abb2" stroke-width="3"/>
+<text x="255.0" y="654.3" font-family="Segoe UI, sans-serif" font-size="31" font-weight="700" fill="#173340" text-anchor="middle">Выходная цепь</text>
+<text x="255.0" y="699.3" font-family="Segoe UI, sans-serif" font-size="31" font-weight="400" fill="#173340" text-anchor="middle">R9: 330 Ом</text>
+<text x="255.0" y="744.3" font-family="Segoe UI, sans-serif" font-size="31" font-weight="400" fill="#173340" text-anchor="middle">C5: 1 нФ к AGND</text>
+<polyline points="585,690 470,690" fill="none" stroke="#007e87" stroke-width="5" />
+<polygon points="470,690 488.0,681.0 488.0,699.0" fill="#007e87"/>
+<text x="527" y="657.8" font-family="Segoe UI, sans-serif" font-size="31" font-weight="700" fill="#007e87" text-anchor="middle">LP2</text>
+<polyline points="255,800 255,930 590,930" fill="none" stroke="#007e87" stroke-width="4" />
+<text x="270" y="894.8" font-family="Segoe UI, sans-serif" font-size="31" font-weight="700" fill="#007e87" text-anchor="start">ADC_NODE</text>
+<circle cx="590" cy="930" r="10" fill="white" stroke="#007e87" stroke-width="3"/>
+<circle cx="715" cy="930" r="10" fill="white" stroke="#007e87" stroke-width="3"/>
+<text x="652" y="872.6" font-family="Segoe UI, sans-serif" font-size="32" font-weight="700" fill="#173340" text-anchor="middle">JP_ADC</text>
+<text x="652" y="992.6" font-family="Segoe UI, sans-serif" font-size="32" font-weight="700" fill="#a4412d" text-anchor="middle">снята</text>
+<polyline points="725,930 1130,930" fill="none" stroke="#007e87" stroke-width="5" />
+<polygon points="1130,930 1112.0,939.0 1112.0,921.0" fill="#007e87"/>
+<text x="920" y="897.8" font-family="Segoe UI, sans-serif" font-size="31" font-weight="700" fill="#007e87" text-anchor="middle">ADC_TARGET</text>
+<rect x="1130" y="850" width="430" height="170" rx="16" fill="#f4f6f7" stroke="#94abb2" stroke-width="3"/>
+<text x="1345.0" y="921.8" font-family="Segoe UI, sans-serif" font-size="31" font-weight="700" fill="#173340" text-anchor="middle">J2: к PA0 и AGND</text>
+<text x="1345.0" y="966.8" font-family="Segoe UI, sans-serif" font-size="31" font-weight="400" fill="#173340" text-anchor="middle">после проверки</text>
+<text x="40" y="1074.0" font-family="Segoe UI, sans-serif" font-size="30" font-weight="400" fill="#54656e" text-anchor="start">U1D: повторитель BUF, выход наружу не используется. Общая земля — AGND.</text>
+<text x="40" y="1117.0" font-family="Segoe UI, sans-serif" font-size="30" font-weight="400" fill="#54656e" text-anchor="start">Функциональная карта P1-LV. Не монтажная схема и не вход ёмкостного датчика.</text>
+</svg>

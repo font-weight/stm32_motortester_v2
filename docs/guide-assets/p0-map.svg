@@ -1,0 +1,56 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1170" viewBox="0 0 1600 1170">
+<rect width="100%" height="100%" fill="white"/>
+<rect x="40" y="70" width="280" height="180" rx="16" fill="#eef7f7" stroke="#94abb2" stroke-width="3"/>
+<text x="180.0" y="124.3" font-family="Segoe UI, sans-serif" font-size="31" font-weight="700" fill="#173340" text-anchor="middle">BNC · CH1</text>
+<text x="180.0" y="169.3" font-family="Segoe UI, sans-serif" font-size="31" font-weight="400" fill="#173340" text-anchor="middle">U_CH1</text>
+<text x="180.0" y="214.3" font-family="Segoe UI, sans-serif" font-size="31" font-weight="400" fill="#173340" text-anchor="middle">экран: AGND</text>
+<rect x="450" y="70" width="320" height="180" rx="16" fill="#eef7f7" stroke="#94abb2" stroke-width="3"/>
+<text x="610.0" y="124.3" font-family="Segoe UI, sans-serif" font-size="31" font-weight="700" fill="#173340" text-anchor="middle">R1 + R2</text>
+<text x="610.0" y="169.3" font-family="Segoe UI, sans-serif" font-size="31" font-weight="400" fill="#173340" text-anchor="middle">51 + 51 кОм</text>
+<text x="610.0" y="214.3" font-family="Segoe UI, sans-serif" font-size="31" font-weight="400" fill="#173340" text-anchor="middle">всего 102 кОм</text>
+<rect x="1090" y="70" width="470" height="180" rx="16" fill="#eef7f7" stroke="#94abb2" stroke-width="3"/>
+<text x="1325.0" y="124.3" font-family="Segoe UI, sans-serif" font-size="31" font-weight="700" fill="#173340" text-anchor="middle">OPA140 · буфер</text>
+<text x="1325.0" y="169.3" font-family="Segoe UI, sans-serif" font-size="31" font-weight="400" fill="#173340" text-anchor="middle">проектное питание ±15 В</text>
+<text x="1325.0" y="214.3" font-family="Segoe UI, sans-serif" font-size="31" font-weight="400" fill="#173340" text-anchor="middle">выход BUF</text>
+<polyline points="320,160 450,160" fill="none" stroke="#007e87" stroke-width="5" />
+<polygon points="450,160 432.0,169.0 432.0,151.0" fill="#007e87"/>
+<circle cx="380" cy="160" r="7" fill="#007e87" stroke="#007e87" stroke-width="3"/>
+<polyline points="770,160 1090,160" fill="none" stroke="#007e87" stroke-width="5" />
+<polygon points="1090,160 1072.0,169.0 1072.0,151.0" fill="#007e87"/>
+<text x="930" y="129.4" font-family="Segoe UI, sans-serif" font-size="33" font-weight="700" fill="#007e87" text-anchor="middle">HI_Z</text>
+<circle cx="930" cy="160" r="7" fill="#007e87" stroke="#007e87" stroke-width="3"/>
+<polyline points="380,160 380,355" fill="none" stroke="#007e87" stroke-width="4" />
+<rect x="40" y="355" width="470" height="225" rx="16" fill="#eef7f7" stroke="#94abb2" stroke-width="3"/>
+<text x="275.0" y="430.4" font-family="Segoe UI, sans-serif" font-size="33" font-weight="700" fill="#173340" text-anchor="middle">RLOAD → AGND</text>
+<text x="275.0" y="477.4" font-family="Segoe UI, sans-serif" font-size="33" font-weight="400" fill="#173340" text-anchor="middle">10 / 100 МОм</text>
+<text x="275.0" y="524.4" font-family="Segoe UI, sans-serif" font-size="33" font-weight="400" fill="#173340" text-anchor="middle">стоит до 102 кОм</text>
+<polyline points="930,160 930,355" fill="none" stroke="#007e87" stroke-width="4" />
+<rect x="620" y="355" width="940" height="225" rx="16" fill="#f4f6f7" stroke="#94abb2" stroke-width="3"/>
+<text x="1090.0" y="431.1" font-family="Segoe UI, sans-serif" font-size="32" font-weight="700" fill="#173340" text-anchor="middle">Два ограничителя PAD1</text>
+<text x="1090.0" y="477.1" font-family="Segoe UI, sans-serif" font-size="32" font-weight="400" fill="#173340" text-anchor="middle">HI_Z ↔ CLAMP_P10 / CLAMP_N10</text>
+<text x="1090.0" y="523.1" font-family="Segoe UI, sans-serif" font-size="32" font-weight="400" fill="#173340" text-anchor="middle">LM4040A-10: шины ±10 В относительно AGND</text>
+<polyline points="1545,250 1580,250 1580,680 1330,680 1330,710" fill="none" stroke="#007e87" stroke-width="5" />
+<polygon points="1330,710 1321.0,692.0 1339.0,692.0" fill="#007e87"/>
+<text x="1440" y="655.6" font-family="Segoe UI, sans-serif" font-size="32" font-weight="700" fill="#007e87" text-anchor="start">BUF</text>
+<rect x="1090" y="710" width="470" height="210" rx="16" fill="#eef7f7" stroke="#94abb2" stroke-width="3"/>
+<text x="1325.0" y="779.3" font-family="Segoe UI, sans-serif" font-size="31" font-weight="700" fill="#173340" text-anchor="middle">Смещение + диапазоны</text>
+<text x="1325.0" y="824.3" font-family="Segoe UI, sans-serif" font-size="31" font-weight="400" fill="#173340" text-anchor="middle">TLV9064 · VDDA</text>
+<text x="1325.0" y="869.3" font-family="Segoe UI, sans-serif" font-size="31" font-weight="400" fill="#173340" text-anchor="middle">±0,5 / ±2 / ±10 В*</text>
+<rect x="540" y="710" width="410" height="210" rx="16" fill="#eef7f7" stroke="#94abb2" stroke-width="3"/>
+<text x="745.0" y="777.9" font-family="Segoe UI, sans-serif" font-size="33" font-weight="700" fill="#173340" text-anchor="middle">ФНЧ</text>
+<text x="745.0" y="824.9" font-family="Segoe UI, sans-serif" font-size="33" font-weight="400" fill="#173340" text-anchor="middle">две секции</text>
+<text x="745.0" y="871.9" font-family="Segoe UI, sans-serif" font-size="33" font-weight="400" fill="#173340" text-anchor="middle">около 3 кГц*</text>
+<polyline points="1090,815 950,815" fill="none" stroke="#007e87" stroke-width="5" />
+<polygon points="950,815 968.0,806.0 968.0,824.0" fill="#007e87"/>
+<text x="1020" y="765.0" font-family="Segoe UI, sans-serif" font-size="25" font-weight="700" fill="#007e87" text-anchor="middle">GAIN_OUT</text>
+<rect x="40" y="710" width="360" height="210" rx="16" fill="#eef7f7" stroke="#94abb2" stroke-width="3"/>
+<text x="220.0" y="778.6" font-family="Segoe UI, sans-serif" font-size="32" font-weight="700" fill="#173340" text-anchor="middle">Выход к ADC</text>
+<text x="220.0" y="824.6" font-family="Segoe UI, sans-serif" font-size="32" font-weight="400" fill="#173340" text-anchor="middle">330 Ом + 1 нФ</text>
+<text x="220.0" y="870.6" font-family="Segoe UI, sans-serif" font-size="32" font-weight="400" fill="#173340" text-anchor="middle">ADC_NODE</text>
+<polyline points="540,815 400,815" fill="none" stroke="#007e87" stroke-width="5" />
+<polygon points="400,815 418.0,806.0 418.0,824.0" fill="#007e87"/>
+<text x="470" y="779.8" font-family="Segoe UI, sans-serif" font-size="31" font-weight="700" fill="#007e87" text-anchor="middle">LP2</text>
+<text x="40" y="1004.8" font-family="Segoe UI, sans-serif" font-size="31" font-weight="400" fill="#54656e" text-anchor="start">* Проектные диапазоны и полоса; физическая проверка не выполнена.</text>
+<text x="40" y="1048.8" font-family="Segoe UI, sans-serif" font-size="31" font-weight="400" fill="#54656e" text-anchor="start">P0 — отдельный высокоомный проект. Питание ±15 В пока не подготовлено.</text>
+<text x="40" y="1092.8" font-family="Segoe UI, sans-serif" font-size="31" font-weight="400" fill="#54656e" text-anchor="start">Защита при выключении и пригодность для зажигания остаются непроверенными.</text>
+</svg>

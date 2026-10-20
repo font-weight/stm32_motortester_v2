@@ -1,0 +1,201 @@
+{
+  "schema": "hw-v2-02b-review-manifest-v1",
+  "base_commit": "c28363188eddd6c517917549c4742249a0c21600",
+  "branch": "ui-v2/initial-design",
+  "reviewed_at": "2026-10-20",
+  "reviewer": "input_critic",
+  "scope": "explanatory_word_guide_and_repository_documentation_only",
+  "verdict": "PASS",
+  "score": 9.745,
+  "criterion_scores": {
+    "C1": 9.8,
+    "C2": 9.8,
+    "C3": 9.7,
+    "C4": 9.6,
+    "C5": 9.7
+  },
+  "hash_semantics": "sha256: exact working-tree bytes; sha256_lf_normalized: UTF-8 text with CRLF replaced by LF, for checkout portability. Binary files only raw. Self excluded to avoid recursive digest.",
+  "unchanged_bases_at_base_commit": [
+    "AGENTS.md",
+    "requirements.md",
+    "docs/quality-gate.md",
+    "docs/architecture.md",
+    "docs/bench.md",
+    "docs/validation.md",
+    "hardware/v2-input/p1-lv/netlist.md",
+    "hardware/v2-input/p1-lv/materials-ru.md",
+    "hardware/v2-input/netlist.md",
+    "hardware/analog-source/README_RU.md"
+  ],
+  "verification": {
+    "critic_check": "docs/verification/hw-v2-02b/critic-check.json",
+    "render_evidence": "docs/verification/hw-v2-02b/render-evidence.json",
+    "final_link_check": "docs/verification/hw-v2-02b/final-link-check.json",
+    "local_links_checked": 241,
+    "missing": 0,
+    "render": "build/hw-v2-02b/render-04",
+    "pages": 22
+  },
+  "files": [
+    {
+      "path": "docs/coordination.md",
+      "sha256": "e2f944629ed4443653751cc349d3f946d26ee2ce722b4cfefa94bda2408af2c4",
+      "bytes": 36885,
+      "sha256_lf_normalized": "0c81af2d489005c79296fd4ec5079f39a3610dd1ae7d1fb640ed95e4a38ddd5f"
+    },
+    {
+      "path": "docs/guide-assets/generate.py",
+      "sha256": "fb0869a9057fe4efaf3b61975afcc5452a534d28fdc664dec53b14a151290aa0",
+      "bytes": 19466,
+      "sha256_lf_normalized": "fb0869a9057fe4efaf3b61975afcc5452a534d28fdc664dec53b14a151290aa0"
+    },
+    {
+      "path": "docs/guide-assets/offset-example.png",
+      "sha256": "78477e615a32b71274c48aca8cefe4f7ae8af0804347f3a89eb81bf5aae02130",
+      "bytes": 83212
+    },
+    {
+      "path": "docs/guide-assets/offset-example.svg",
+      "sha256": "9eb0efc17e8bdd424da09a5e6eba24bafbefaa3f8d3bbfcdf86f5bafb3f65754",
+      "bytes": 4638,
+      "sha256_lf_normalized": "292da8efa0b5808fa3d03a7db536dd04bfb86a772a3a8a81b3533edaaa2030e1"
+    },
+    {
+      "path": "docs/guide-assets/opamp-follower.png",
+      "sha256": "85a652ec6871463f905d217284bb4ac6abe93844dfd0d4606c78db2ef8ad9f5f",
+      "bytes": 51824
+    },
+    {
+      "path": "docs/guide-assets/opamp-follower.svg",
+      "sha256": "7395a7ff6542b430dec72da0fe8bc68bf2e2b3c6c6536ffb1835aa959fc37062",
+      "bytes": 2890,
+      "sha256_lf_normalized": "1830d85bd43a86c23a04e4bb904aff0fd3b6dae9e20827339f1c70a0c9b468d2"
+    },
+    {
+      "path": "docs/guide-assets/p0-map.png",
+      "sha256": "6b3330b6d1a2c62babbe8ae1591e9b5ee1989257dd7818141a2d5fd3d9852455",
+      "bytes": 120194
+    },
+    {
+      "path": "docs/guide-assets/p0-map.svg",
+      "sha256": "cf19cd2f2ef34a725e2f7fea9654c20df9fdbe0149f2ee0fd1a50399777de884",
+      "bytes": 7333,
+      "sha256_lf_normalized": "2d44f0da99a3bbbbe27c57945ed6c844efe1314333cbdf3d73c20bcc23dba734"
+    },
+    {
+      "path": "docs/guide-assets/p1-divider.png",
+      "sha256": "035c79cf96f229d3f75738b6dfcc1c533f470db36b9bc32f1bb6c01972d0587f",
+      "bytes": 49554
+    },
+    {
+      "path": "docs/guide-assets/p1-divider.svg",
+      "sha256": "4db0a293d5b5e42fe4321adafb22473c6537820ef8ec5a36c95bdb2ed6889238",
+      "bytes": 5017,
+      "sha256_lf_normalized": "e0aaa465df0d5ed349cd2eb1875da671793466411511f6f0fb4bc6da7c8eee5e"
+    },
+    {
+      "path": "docs/guide-assets/p1-map.png",
+      "sha256": "eede579b2fe7f7fcb568198ab29b75817a7a50c47744a60b9c6c27fcd19370d6",
+      "bytes": 126967
+    },
+    {
+      "path": "docs/guide-assets/p1-map.svg",
+      "sha256": "3e682209e8adb0ac9448a0196af702cee2e24616e9ba12ed7f53eac4d51d075c",
+      "bytes": 7662,
+      "sha256_lf_normalized": "9e2bc1744174e3857ad8fe3c6d31aa8224f42831704485a3f618c7bcac1bb27d"
+    },
+    {
+      "path": "docs/guide-assets/sallen-key.png",
+      "sha256": "29eff04392db2abbcc1c13eb4cd6e19f1dfbf16938f623e1d121b9477dd76f5c",
+      "bytes": 40225
+    },
+    {
+      "path": "docs/guide-assets/sallen-key.svg",
+      "sha256": "9676b7b445cf13e3f0851aef941fdd188bcba717be7d9234922cc04a50ea9935",
+      "bytes": 4638,
+      "sha256_lf_normalized": "aba6c9022095f9b573454ba999cb4449b92710b329836222bcc9fccd499116f0"
+    },
+    {
+      "path": "docs/guide-assets/signal-path.png",
+      "sha256": "e81c01a26946b010eaff2b09db834555cf879c8dab232c88eca848cfc1303f1b",
+      "bytes": 97929
+    },
+    {
+      "path": "docs/guide-assets/signal-path.svg",
+      "sha256": "81d08cfd429cd35fcd84fb1c4d9da43c3f825219c65be4844dd0b6d2c4cbbd92",
+      "bytes": 5600,
+      "sha256_lf_normalized": "4b42921742ebb738db2c5dc00a4735f7e0584d0dde21d14f1578c296ee5b9ef1"
+    },
+    {
+      "path": "docs/guides/README.md",
+      "sha256": "11c55a54c68485ca80ec12d8d714836991b6f3fd4ca874c46b8144ec994b8559",
+      "bytes": 1871,
+      "sha256_lf_normalized": "11c55a54c68485ca80ec12d8d714836991b6f3fd4ca874c46b8144ec994b8559"
+    },
+    {
+      "path": "docs/guides/build_guide.py",
+      "sha256": "667954ac658e23d682edc39c74e8b166258eb6fccea16a0eb8c793d379b497bd",
+      "bytes": 8887,
+      "sha256_lf_normalized": "667954ac658e23d682edc39c74e8b166258eb6fccea16a0eb8c793d379b497bd"
+    },
+    {
+      "path": "docs/guides/input-explained-ru.md",
+      "sha256": "1b42e56968c9b2936327d7a15cb81e5e4ae524d2bf3b898297a61acdd4e989a1",
+      "bytes": 72584,
+      "sha256_lf_normalized": "1b42e56968c9b2936327d7a15cb81e5e4ae524d2bf3b898297a61acdd4e989a1"
+    },
+    {
+      "path": "docs/guides/motortester-input-guide-ru.docx",
+      "sha256": "fdbe6cef921ab1d6279be3bacf45826ecf819794e8c82b8bc3011e3802d4a8f8",
+      "bytes": 587681
+    },
+    {
+      "path": "docs/progress.md",
+      "sha256": "84f499ddb775903eebc9c91262843ce932d3334837adc477835bf30ea792ea33",
+      "bytes": 206752,
+      "sha256_lf_normalized": "7ba1d7a4aba2cbdaff6c9c1ed5e824e594e205bbe942bf0458bbf1b825d2049e"
+    },
+    {
+      "path": "docs/reviews/hw-v2-02b-review.md",
+      "sha256": "d27f5fc10cdd05a8436b45f6278ad89e5b73545dae16a44ce1bf615914ff1e27",
+      "bytes": 12892,
+      "sha256_lf_normalized": "d27f5fc10cdd05a8436b45f6278ad89e5b73545dae16a44ce1bf615914ff1e27"
+    },
+    {
+      "path": "docs/sources.md",
+      "sha256": "fafb7db3366c6ea26c8c7a9a3bd873f16c50fba9453bd75c3982f39242977b38",
+      "bytes": 31994,
+      "sha256_lf_normalized": "2fb2c830fdd05630bc1f2cacd2abdd8e40a97f56c9248475748a6aedc361f7a9"
+    },
+    {
+      "path": "docs/verification/hw-v2-02b/critic-check.json",
+      "sha256": "9bdf60d2188359f5b1aedb1ef8692dace12db2d9200e4e2217d311659a5eb0e8",
+      "bytes": 1930,
+      "sha256_lf_normalized": "1a36221e6291531fc51e0d126227dc092a3787cea4c8e4e2036b5ae070a06a58"
+    },
+    {
+      "path": "docs/verification/hw-v2-02b/final-link-check.json",
+      "sha256": "3db155979d540ac309b2d01b4a09b29dac7ad288b7bf34f2113b5056aba699b1",
+      "bytes": 31799,
+      "sha256_lf_normalized": "94d1b5f948f5f6aa626e0758bd4d52287ed7975adbe770d7b6a561b2f7c64c06"
+    },
+    {
+      "path": "docs/verification/hw-v2-02b/render-evidence.json",
+      "sha256": "0852e449d366a419ec58fdc09d3fb58bbfa608edd14ee32524577155e15529de",
+      "bytes": 6874,
+      "sha256_lf_normalized": "4b761fe6f4498310e5189140279f79ed5f02a47b89166582f434442d22ed91e4"
+    },
+    {
+      "path": "hardware/v2-input/p1-lv/README.md",
+      "sha256": "213ce5d4e674932deb7ec069352c66c766a7d8333eff394d007f8fb3e5ad2882",
+      "bytes": 6451,
+      "sha256_lf_normalized": "213ce5d4e674932deb7ec069352c66c766a7d8333eff394d007f8fb3e5ad2882"
+    },
+    {
+      "path": "task.md",
+      "sha256": "a48482e3903eae1cb839aa8166c80c9401dae58bedaeb8aaf8d1066e7e8ab298",
+      "bytes": 47441,
+      "sha256_lf_normalized": "49ca42d40168c66d770134a5071653853de633777ba7ccf7e43b97bb0818d4ce"
+    }
+  ]
+}

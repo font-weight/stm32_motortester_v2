@@ -1,0 +1,62 @@
+{
+  "schema": "hw-v2-02b-critic-check-v1",
+  "reviewer": "input_critic",
+  "date": "2026-10-20",
+  "scope": "explanatory_document_only",
+  "environment": {
+    "platform": "Windows-10-10.0.19045-SP0",
+    "python": "3.12.14",
+    "executable": "C:\\Users\\Alexandr\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\python\\python.exe"
+  },
+  "docx": {
+    "path": "docs/guides/motortester-input-guide-ru.docx",
+    "sha256": "fdbe6cef921ab1d6279be3bacf45826ecf819794e8c82b8bc3011e3802d4a8f8",
+    "embedded_images": 7,
+    "embedded_images_match_current_source_png": true,
+    "external_images": 0,
+    "tables": 10,
+    "external_source_links": 7,
+    "separate_bibliography_paragraphs": 7
+  },
+  "visual_review": {
+    "final_render": "build/hw-v2-02b/render-04",
+    "page_count": 22,
+    "all_pages_inspected": true,
+    "changed_from_render_03": [
+      1,
+      8,
+      22
+    ],
+    "unchanged_pages_compared_by_sha256": 19,
+    "unresolved_layout_defects": []
+  },
+  "independent_simple_arithmetic": {
+    "input_gain_v_per_v": 0.12478075670258079,
+    "input_bias_v_at_3v3": 1.6504134302179903,
+    "u_adc_v_at_ch1_0_04_08": [
+      1.6504134302179903,
+      1.7003257328990227,
+      1.7502380355800549
+    ],
+    "open_ch1_v": 1.8857142857142857,
+    "input_thevenin_ohm": 1140285.7142857143,
+    "adc_lsb_mv": 0.8056640625,
+    "ch1_lsb_mv": 6.456637095256025,
+    "example_calibration_a_v_per_code": 0.0064516129032258064,
+    "example_calibration_b_v": -13.225806451612904,
+    "sample_interval_us_at_50khz": 20.0,
+    "window_2048_duration_ms": 40.96,
+    "window_first_last_ms": 40.94,
+    "sensor_tau_ms_100m_201pf": 20.1,
+    "sensor_tau_ms_114m_201pf": 0.22913999999999998
+  },
+  "not_executed": [
+    "hardware measurements",
+    "COM",
+    "ST-Link",
+    "firmware",
+    "GUI",
+    "analogue model build",
+    "full test suite"
+  ]
+}
