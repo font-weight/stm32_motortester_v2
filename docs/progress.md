@@ -13,8 +13,20 @@
 Сохранённое полное `.mtv2` от наличия такого фрагмента не становится повреждённым.
 
 База исправления — `40ea52c2ab71e10715801be8f5292cb1bafdb1cd`,
-ветка `ui-v2/initial-design`, только V2. **Исправление в проверке; новая сборка
-и независимая приёмка ещё не зафиксированы.**
+ветка `ui-v2/initial-design`, только V2. Исполняемый код новой сборки —
+**`236cfb5a515df8e2c1c427e6c027f2f831c38cc4`**.
+**V2-03a принят: независимый PASS 9,66/10**, открытых P0/P1 нет.
+[Отчёт критика](reviews/v2-close-review.md) привязан к точному исходному commit
+и ZIP ниже; замечание C-R1 о новом pending после старого согласия закрыто.
+Критик прочитал адресные свидетельства, независимо сверил хеши и осмотрел диалог;
+повторных запусков EXE/COM/тестов им не выполнялось.
+
+Актуальный пакет с исправлением — **`build/v3a1/MotortesterV2-windows-x64.zip`**,
+60 790 697 байт, SHA-256
+`c58a6bdc864e12bb4e6605fb3ba58ad16277d3a96fd928ab60e63a4dc00af055`.
+Готовый запуск: `build/v3a1/Проверка переноса/MotortesterV2/MotortesterV2.exe`.
+Старая сборка `build/v3w3` сохранена, но этого исправления не содержит.
+ZIP/source.zip остаются локально; код, инструкции и небольшие свидетельства — в Git.
 
 Реализован диалог «Незавершённое окно»: «Сохранить JSON», «Закрыть без JSON»,
 «Отмена»; default/Esc — отмена. Сохранение продолжает закрытие только после успеха.
@@ -46,6 +58,39 @@
 ..\.venv\Scripts\python.exe -m unittest discover -s tests -p test_v2_device.py -k live_incomplete_release_survives_shutdown -v
 ..\.venv\Scripts\python.exe -m unittest discover -s tests -p test_v2_device_gui.py -k close_during_partial_window_save_then_close -v
 ```
+
+Конечная упаковка из чистого исходного commit:
+
+```powershell
+.\.venv\Scripts\python.exe -u host\packaging\v2\build_windows.py --output build\v3a1
+```
+
+[Отчёт](verification/v2-close/package/build-report.json),
+[журнал](verification/v2-close/package/build.log) и
+[frozen receipt](verification/v2-close/package/frozen-smoke/result.json):
+**PASS** после распаковки в другую папку с кириллицей, из посторонней рабочей
+папки с PATH только System32, без Python/Qt overrides. Native Qt на Windows 10
+build 19045; окружение и зависимости прежние, зафиксированы в
+[manifest](verification/v2-close/package/build-manifest.json).
+
+Сценарий конечного EXE за **2,885 с** использовал настоящий QMessageBox:
+default/Esc — «Отмена», Esc оставил синтетические 250 фрагментарных отсчётов;
+повторный Close → «Закрыть без JSON» завершил окно без нового JSON и без изменения
+ранее сохранённого `.mtv2`. Частичный результат **подставлен программно**,
+serial worker в этом frozen-сценарии отсутствует; его native-переходы проверены
+адресными тестами выше. Открытий COM — **0**.
+Основной агент лично осмотрел
+[новый диалог](verification/v2-close/package/frozen-smoke/incomplete-close.png):
+весь текст и три кнопки читаемы. Обычный запуск EXE отдельно завершён за **2,496 с**,
+[PNG](verification/v2-close/package/normal-startup.png).
+Встроенный прежний короткий smoke упаковки также проверил DEMO Save/Open/CSV и CLI;
+полный унаследованный набор не запускался.
+
+[SHA256SUMS](verification/v2-close/package/SHA256SUMS.txt) относится к исходной
+выходной папке `build/v3a1`, копии свидетельств сохранены побайтно.
+SHA-256 `source.zip`:
+`2e73435b17328ab67b0889be5d354d35799e7deaac7d4a5bcb2c27bda7201a4c`.
+Пакет и исходники после проверки не изменялись.
 
 Использован синтетический serial; COM6 и прошивка в V2-03a не затрагивались.
 Следующий пользовательский шаг после новой сборки — повторить закрытие и выбрать
