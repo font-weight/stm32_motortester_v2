@@ -355,7 +355,8 @@ def exercise(app, output, flush=None):
             assert archive.identity.origin == "synthetic"
             assert dialog.verified_context.context.input_profile.state == "unconfigured"
             assert dialog.verified_context.connection == dialog.bridge.connection
-            assert "НЕПОЛНЫЕ ДАННЫЕ" in dialog.quality.text()
+            assert archive.terminal.reason == "stopped" and archive.terminal.failure is None
+            assert "Остановлено по команде · полнота хвоста неизвестна" in dialog.quality.text()
             period = np.frombuffer(backend.peer._period_raw, dtype="<u2")
             compared = 0
             for block in archive.iter_raw():

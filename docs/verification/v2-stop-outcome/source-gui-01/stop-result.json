@@ -1,0 +1,148 @@
+{
+  "status": "PASS",
+  "source": "injected synthetic wire 0.2",
+  "physical_stream_verified": false,
+  "real_serial_open_calls": 0,
+  "qt_platform": "windows",
+  "callback_errors": [],
+  "ready_close": {
+    "commands": [
+      1,
+      2
+    ],
+    "phase": "closed",
+    "endpoint_first_fault": null,
+    "emitted_errors": [],
+    "handle_closed": true,
+    "lease_released": true,
+    "samples": 0
+  },
+  "normal_stop": {
+    "phase": "stopped unknown tail",
+    "live_text": "Остановлено по команде · полнота хвоста неизвестна · Получено: 45 955 отсчётов · Принято в запись: 17 795 · Подтверждено в файле: 17 795",
+    "fresh_open_quality": "Остановлено по команде · полнота хвоста неизвестна. Потери по записи: неизвестны.",
+    "end": {
+      "generation": 3,
+      "config_id": 1,
+      "prefix_end": 45955,
+      "produced_end": null,
+      "last_data_sequence": 363,
+      "prefix_crc32": 3171115206,
+      "reason": 0,
+      "flags": 3,
+      "stop_request_id": 4
+    },
+    "ack": {
+      "generation": 3,
+      "prefix_end": 45955,
+      "terminal_sequence": 364,
+      "flags": 3
+    },
+    "end_sequence": 364,
+    "ack_request_id": 4,
+    "terminal": {
+      "identity": {
+        "session_id": "wire-0.2:cc33e766e5706c3b",
+        "generation": 3,
+        "config_id": 1,
+        "nominal_fs_hz": 50000,
+        "origin": "synthetic",
+        "protocol_revision": "0.2-draft-081721",
+        "firmware_version": "build:5632444d",
+        "application_version": "v2-serial-unknown-accounting:injected-test"
+      },
+      "end_sample_index": 45955,
+      "reason": "stopped",
+      "terminal_observed": true,
+      "device_generated_end_sample_index": null,
+      "device_transmitted_end_sample_index": 45955,
+      "loss_samples": null,
+      "boundary_evidence": "validated_wire_full_prefix_crc32",
+      "failure": null,
+      "stop_requested": true,
+      "stop_request_id": 4
+    },
+    "clean_stop_reported": false,
+    "range": [
+      28160,
+      45955
+    ],
+    "raw_samples_compared": 17795,
+    "raw_sha256": "78e5db77b2ee2e839fbb92dc22449783fd3d805d9ad2df1fcdb87038f0cea20d",
+    "journal_sha256_unchanged": "557a17e2d023af67a89487c7c22e58a7ce5ad965055bf541a3989a4ff3106d0c",
+    "emitted_errors": [],
+    "main_timer_active": true,
+    "csv": {
+      "rows": 17795,
+      "csv_sha256": "fca9ad479bfe24ec9e881c99b7c4e06c3f38f7ff26b5674a5abf29fa4a4bd4d8",
+      "raw_sha256": "78e5db77b2ee2e839fbb92dc22449783fd3d805d9ad2df1fcdb87038f0cea20d",
+      "export_complete": true,
+      "terminal_equal": true,
+      "clean_stop_reported": false,
+      "produced_end": null,
+      "loss_samples": null,
+      "origin": "synthetic",
+      "input_profile_state": "unconfigured"
+    },
+    "screenshots": [
+      {
+        "path": "stop-open-details.png",
+        "width": 1220,
+        "height": 870,
+        "logical_width": 1220,
+        "logical_height": 870
+      },
+      {
+        "path": "stop-open-compact.png",
+        "width": 850,
+        "height": 650,
+        "logical_width": 850,
+        "logical_height": 650
+      }
+    ]
+  },
+  "unconfirmed_stop": {
+    "phase": "fault",
+    "fault": {
+      "code": "stop_timeout",
+      "at_ms": 1073297160,
+      "ordinary": null,
+      "stop": {
+        "kind": 5,
+        "nonce": 6703580714689799106,
+        "request_id": 4,
+        "sequence": 4,
+        "action_id": 2,
+        "admitted_ms": 1073295156,
+        "deadline_ms": 1073297156,
+        "accepted_bytes": 34,
+        "frame_accepted_bytes": 34,
+        "complete": true
+      },
+      "causal_request": null
+    },
+    "end": {
+      "generation": 3,
+      "config_id": 1,
+      "prefix_end": 8908,
+      "produced_end": null,
+      "last_data_sequence": 73,
+      "prefix_crc32": 28040049,
+      "reason": 0,
+      "flags": 3,
+      "stop_request_id": 4
+    },
+    "ack_frames": 0,
+    "ack_attempts_suppressed": 1,
+    "error_text": "Поток прерван. Полнота записи не подтверждена.\nПричина: wire stop_timeout; ordinary=None; stop=4 · Операция: STOP\nДля новой попытки закройте это окно непрерывного приёма и откройте его заново.",
+    "normal_stop_label_absent": true
+  },
+  "files": {
+    "stop-open-compact.png": "01f5789dc530461d61239a42218fda4a5ffabc9e8c337f47b782cddeb2c35f6a",
+    "stop-open-details.png": "efead9f28da77b0edc739031086ad34e61c2fcf71b10e3359204791b372d029e",
+    "stop-unknown-tail.csv": "fca9ad479bfe24ec9e881c99b7c4e06c3f38f7ff26b5674a5abf29fa4a4bd4d8",
+    "stop-unknown-tail.csv.json": "5d2621fa7d2a963a13596b86ede4a814323d6048d56477ac7498f90d296c49a7",
+    "stop-unknown-tail.mtstream": "557a17e2d023af67a89487c7c22e58a7ce5ad965055bf541a3989a4ff3106d0c",
+    "stop-unknown-tail.mtstream.v2.json": "a19cb7a738c22fed7324d6a6a684eca5f4a2bc2748031e893c6cfc3319712c91"
+  }
+}

@@ -455,7 +455,9 @@ class StreamController:
                     # Orderly completed preview has no writer and needs no
                     # invented fault. Active disconnect is a real source loss;
                     # allow the accepted bounded failure drain/journal finish.
-                    if not self._restartable(snap):
+                    if snap.unstarted_ready:
+                        bridge.close(self._current_time())
+                    elif not self._restartable(snap):
                         now = self._current_time()
                         self._observe(bridge.transport_fault(now), now)
             bridge.accept_storage_completion(self._current_time())
@@ -620,7 +622,9 @@ class StreamController:
                 self._ring_count = min(RECENT_SAMPLES, self._ring_count + block.sample_count)
                 self._dirty = True
             elif isinstance(event, wire.ValidatedEnd):
-                reason = "source_fault" if event.terminal.reason or event.terminal.flags else "stopped"
+                failure = ((event.terminal.reason or event.terminal.flags)
+                           and not wire.is_unknown_tail_stop(event.terminal))
+                reason = "source_fault" if failure else "stopped"
                 self._detector.finish(reason)
                 self._dirty = True
             elif isinstance(event, (wire.Fault, wire.RecoveryRequired, wire.ResetRequired)):
@@ -714,6 +718,11 @@ class StreamController:
         saved_clean = wire_clean and bool(session.clean_completion_reported and storage and storage.returned and storage.closed and not storage.failure)
         clean = bool(wire_clean if self._path is None else saved_clean)
         settled = bool(storage is None or (storage.closed and not unresolved))
+        stopped_unknown_tail = bool(
+            wire_clean and snap.source_terminal
+            and wire.is_unknown_tail_stop(snap.source_terminal.terminal)
+            and (self._path is None or (session.finalized and storage
+                 and storage.returned and storage.closed and not storage.failure)))
         source_done = bool(snap and (snap.closed or snap.endpoint_state in
             (wire.State.NEEDS_HELLO, wire.State.RESET_REQUIRED) or
             (self._stop_issued and not self._negotiation and not snap.pending_start and
@@ -730,6 +739,8 @@ class StreamController:
             phase = "error"
         elif self._faulted:
             phase = "fault; writer unresolved" if unresolved else "fault"
+        elif stopped_unknown_tail and settled:
+            phase = "stopped unknown tail"
         elif clean and settled:
             phase = "saved" if self._path else "preview stopped"
         elif self._negotiation:

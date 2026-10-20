@@ -21,6 +21,16 @@ MAX_EVENTS = 64
 MAX_TAIL_DATA, MAX_TAIL_CONTROL = 32, 4
 
 
+def is_unknown_tail_stop(terminal: End) -> bool:
+    """An ordinary requested Stop can leave the produced endpoint unknown.
+
+    This describes END only, not successful completion: the matching STOP_ACK
+    and its existing deadline/quiescence checks remain mandatory.
+    """
+    return (terminal.reason == 0 and terminal.flags == 3
+            and terminal.produced_end is None and terminal.stop_request_id != 0)
+
+
 class State(str, Enum):
     NO_SESSION = "no_session"
     HELLO = "hello"
@@ -703,7 +713,7 @@ class Endpoint:
             self._data_deadline = None
             self.state = State.TERMINAL
             events = [self.terminal]
-            if payload.reason or payload.flags:
+            if (payload.reason or payload.flags) and not is_unknown_tail_stop(payload):
                 events.extend(self._latch("device_" + str(payload.reason), now_ms))
             if payload.flags & 4:
                 events.extend(self._recover("quiescence_unconfirmed", now_ms))

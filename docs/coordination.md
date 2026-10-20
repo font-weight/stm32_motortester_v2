@@ -1,5 +1,11 @@
 # Координация самостоятельного V2
 
+V2-05a, база `375600c`: root — stream_ui, интеграция, документация и пакет;
+v2_core — stream_endpoint/bridge/controller, v2/stream_device и адресные
+backend-проверки; v2_docs — stream_stop_smoke и его подключение в stream_smoke;
+requirements_audit — независимый отчёт без авторства реализации.
+Прошивка и реальный COM не затрагиваются; пакетный источник синтетический.
+
 V2-05, база `a746825`: root — stream_ui/device_ui/gui, единое владение COM,
 общие документы, чтение/возврат платы, интеграция и Windows-пакет;
 v2_core — stream_controller/bridge/provenance, v2/stream_device и адресные

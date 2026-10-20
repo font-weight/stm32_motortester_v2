@@ -12,6 +12,9 @@ from .stream_files import open_stream, export_stream
 from .widgets import STYLE
 
 
+STOPPED_UNKNOWN = "Остановлено по команде · полнота хвоста неизвестна"
+
+
 class StreamDialog(QtWidgets.QDialog):
     """One immutable channel/profile/port; connect never starts acquisition."""
     settled = QtCore.Signal()
@@ -98,7 +101,10 @@ class StreamDialog(QtWidgets.QDialog):
         self.viewer.plot.setYRange(0, 4095, padding=0)
         self.viewer.plot.setSizePolicy(QtWidgets.QSizePolicy.Policy.Expanding,
                                        QtWidgets.QSizePolicy.Policy.Ignored)
-        self.viewer.plot.setLabel("left", "Код АЦП · шкала напряжения не настроена")
+        # The unknown voltage scale is explained above the plot. Keep axis
+        # labels short enough for the minimum-height graph and narrow window.
+        self.viewer.plot.setLabel("left", "Код АЦП")
+        self.viewer.plot.setLabel("bottom", "Время, с · номинально")
         self.viewer.open_button.hide()
         self.viewer.source_label.hide()
         self.viewer.index_label.hide()
@@ -303,7 +309,10 @@ class StreamDialog(QtWidgets.QDialog):
         tail = {"running": "приём продолжается", "unknown": "полнота хвоста неизвестна",
                 "reported_stopped": "источник сообщил об остановке"}[source.tail_state]
         loss = "неизвестны" if source.loss_samples is None else str(source.loss_samples)
-        self.quality.setText(f"Потери по данным источника: {loss}; {tail}.")
+        self.quality.setText(
+            STOPPED_UNKNOWN + ". Потери по данным источника: неизвестны."
+            if self.bridge.state.phase == "stopped unknown tail" else
+            f"Потери по данным источника: {loss}; {tail}.")
         if self._revision != source.revision:
             self._revision = source.revision
             self._handle = self.viewer.begin_live(source.identity, event_config=source.config,
@@ -369,13 +378,18 @@ class StreamDialog(QtWidgets.QDialog):
         self.export_button.setEnabled(idle and self.archive is not None and
                                       not isinstance(self.archive, AttemptReport))
         phases = {"idle": "Не подключено" if physical else "Готово",
+                  "connected": "Соединение открыто", "disconnected": "Отключено",
+                  "serial close unconfirmed": "Закрытие порта не подтверждено",
                   "ready": "Подключено · готово к запуску",
                   "preview": "Живой поток", "recording": "Идёт запись",
                   "saved": "Запись завершена", "preview stopped": "Поток остановлен",
                   "negotiating": "Согласование", "starting preview": "Запуск потока",
                   "preparing": "Подготовка файла", "waiting for boundary": "Ожидание начала записи",
                   "draining": "Завершение записи", "fault": "Поток прерван",
+                  "fault; writer unresolved": "Поток прерван · завершение файла",
+                  "stopped unknown tail": STOPPED_UNKNOWN,
                   "closed": "Закрыто", "closing": "Закрытие",
+                  "stopped before START": "Остановлено до запуска",
                   "stopped without R": "Нет отсчётов записи", "error": "Ошибка"}
         text = phases.get(status.phase, status.phase)
         if self._closing:
@@ -395,6 +409,9 @@ class StreamDialog(QtWidgets.QDialog):
             text += f" · Получено: {status.validated_samples:,} отсчётов".replace(",", " ")
         if self._paused:
             text += " · Просмотр на паузе"
+        if not self._opening and status.phase == "stopped unknown tail":
+            self.quality.setText(
+                STOPPED_UNKNOWN + ". Потери по данным источника: неизвестны.")
         session = None if status.bridge is None else status.bridge.session
         if not self._opening and session is not None:
             failure = session.first_failure
@@ -525,7 +542,14 @@ class StreamDialog(QtWidgets.QDialog):
                 else:
                     terminal = rec.terminal
                     loss = "неизвестны" if terminal is None or terminal.loss_samples is None else str(terminal.loss_samples)
+                    stopped_unknown = (
+                        terminal is not None and terminal.reason == "stopped"
+                        and terminal.terminal_observed and terminal.stop_requested
+                        and terminal.stop_request_id is not None and terminal.failure is None
+                        and terminal.device_generated_end_sample_index is None
+                        and terminal.loss_samples is None and not rec.recovery_issue)
                     state = ("Источник сообщил о полном завершении" if rec.clean_stop_reported else
+                             STOPPED_UNKNOWN if stopped_unknown else
                              "НЕПОЛНЫЕ ДАННЫЕ · полнота хвоста не подтверждена")
                     self.quality.setText(f"{state}. Потери по записи: {loss}.")
                     if terminal is not None and terminal.failure is not None:

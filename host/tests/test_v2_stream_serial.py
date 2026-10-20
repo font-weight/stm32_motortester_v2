@@ -181,8 +181,31 @@ class V2StreamSerialTests(unittest.TestCase):
         self.assertFalse(bridge.connection.image_verified)
         self.assertTrue(bridge.disconnect_source())
         self.wait(lambda: bridge.state.serial.handle_settled)
+        self.assertIsNone(bridge.state.bridge.endpoint_first_fault)
+        self.assertIsNone(bridge.state.error)
+        self.assertEqual(bridge.errors, [])
         self.assertNotIn(8, [c[0] for c in peer.commands])
         self.assertFalse((self.root / "forbidden.mtstream").exists())
+        bridge.shutdown()
+        self.wait(lambda: bridge._closed)
+        self.assertEqual(bridge.errors, [])
+
+    def test_ready_read_failure_remains_visible_after_shutdown(self):
+        bridge, factory = self.ready()
+        backend = factory.backends[0]
+        with patch.object(backend, "read", side_effect=OSError("injected READY read failure")):
+            self.wait(lambda: bridge.state.bridge.endpoint_first_fault is not None)
+            bridge._poll()
+            first_fault = bridge.state.bridge.endpoint_first_fault
+            self.assertEqual(first_fault.code, "transport")
+            self.assertTrue(bridge.errors)
+            self.assertEqual(bridge.state.validated_samples, 0)
+            self.assertNotIn(8, [command[0] for command in backend.peer.commands])
+            bridge.shutdown()
+            self.wait(lambda: bridge._closed)
+        self.assertEqual(bridge.state.bridge.endpoint_first_fault, first_fault)
+        self.assertTrue(bridge.errors)
+        self.assertFalse(backend.is_open)
 
     def test_incompatible_hello_or_caps_never_admits_start_or_writer(self):
         for incompatible in ("version", "caps"):
@@ -214,7 +237,15 @@ class V2StreamSerialTests(unittest.TestCase):
         self.assertIsNone(profile_for_identity(fresh.identity))
         self.assertIsNone(fresh.terminal.device_generated_end_sample_index)
         self.assertFalse(fresh.clean_stop_reported)
-        self.assertFalse(bridge.start_live())  # Fault/unknown tail is not a fresh clean source.
+        self.assertEqual(fresh.terminal.reason, "stopped")
+        self.assertIsNone(fresh.terminal.failure)
+        self.assertIsNone(fresh.terminal.loss_samples)
+        self.assertIsNotNone(fresh.terminal.stop_request_id)
+        self.assertEqual(bridge.state.phase, "stopped unknown tail")
+        self.assertIsNone(bridge.state.bridge.session.first_failure)
+        self.assertIsNone(bridge.state.bridge.endpoint_first_fault)
+        self.assertEqual(bridge.errors, [])
+        self.assertFalse(bridge.start_live())  # Physical attempts need a fresh explicit connection.
         context = open_verified_context(path)
         self.assertEqual(context.context.input_profile, UNKNOWN_PROFILE)
         self.assertEqual(context.context.channel_name, "Сохранённый CH1")
@@ -224,6 +255,21 @@ class V2StreamSerialTests(unittest.TestCase):
         # A prepared-source revision must remain displayable after explicit START.
         self.wait(lambda: bool(bridge.frames))
         self.assertEqual(bridge.frames[0].source.revision, bridge.state.revision)
+        bridge.shutdown()
+        self.wait(lambda: bridge._closed)
+        self.assertEqual(bridge.errors, [])
+        # Preview has no journal to finalize; END/ACK still settles its owner.
+        preview, preview_factory = self.ready()
+        preview.start_live()
+        self.wait(lambda: preview.state.phase == "preview")
+        preview_factory.backends[0].peer.data()
+        self.wait(lambda: preview.state.validated_samples == 128)
+        preview.stop()
+        self.wait(lambda: preview.state.phase == "stopped unknown tail")
+        preview.shutdown()
+        self.wait(lambda: preview._closed)
+        self.assertEqual(preview.errors, [])
+        self.assertIsNone(preview.state.bridge.endpoint_first_fault)
 
     def test_close_failure_retains_owner_and_requires_explicit_retry(self):
         bridge, factory = self.ready()
@@ -235,6 +281,9 @@ class V2StreamSerialTests(unittest.TestCase):
         self.assertFalse(bridge._closed)
         self.assertFalse(bridge.finished_events)
         self.assertFalse(bridge.connect_source())
+        self.assertIsNone(bridge.state.bridge.endpoint_first_fault)
+        bridge._poll()  # Deliver the receiver's already-published close error to Qt.
+        self.assertTrue(any("Serial close unconfirmed:" in error for error in bridge.errors))
         closes = len([c for c in factory.calls if c[0] == "close"])
         bridge._poll()
         self.assertEqual(len([c for c in factory.calls if c[0] == "close"]), closes)
@@ -243,6 +292,7 @@ class V2StreamSerialTests(unittest.TestCase):
         self.wait(lambda: bridge._closed)
         self.assertFalse(backend.is_open)
         self.assertEqual(bridge.finished_events, [True])
+        self.assertIsNone(bridge.state.bridge.endpoint_first_fault)
 
     def test_companion_retry_keeps_exact_connection_and_raw_prefix(self):
         bridge, factory = self.ready()
@@ -282,6 +332,8 @@ class V2StreamSerialTests(unittest.TestCase):
             controller.close()
             controller.service(0)
             self.assertTrue(controller.join(0))
+            self.assertIsNone(controller.snapshot().bridge.endpoint_first_fault)
+            self.assertIsNone(controller.snapshot().error)
         # Pure identity construction is not a physical capture test.
         origin, metadata = device_context_identity(DeviceStreamContext(), 0xabcdef01)
         identity = StreamIdentity("declared-model", 3, 1, 50000, origin, *metadata)

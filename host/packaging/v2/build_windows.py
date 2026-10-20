@@ -141,6 +141,46 @@ def verify_serial_smoke(directory, receipt):
     return pngs
 
 
+def verify_stop_smoke(directory, receipt):
+    """Keep the final EXE's Stop witness tied to its saved files and images."""
+    if (not isinstance(receipt, dict) or receipt.get("status") != "PASS"
+            or receipt.get("qt_platform") != "windows"
+            or receipt.get("physical_stream_verified") is not False
+            or receipt.get("real_serial_open_calls") != 0
+            or receipt.get("callback_errors") != []
+            or receipt != read_json(directory / "stop-result.json")):
+        raise RuntimeError("Packaged Stop verification did not pass")
+    ready = receipt.get("ready_close", {})
+    normal = receipt.get("normal_stop", {})
+    negative = receipt.get("unconfirmed_stop", {})
+    terminal = normal.get("terminal", {})
+    exported = normal.get("csv", {})
+    if (ready.get("commands") != [1, 2] or ready.get("samples") != 0
+            or ready.get("emitted_errors") != []
+            or ready.get("handle_closed") is not True or ready.get("lease_released") is not True
+            or normal.get("phase") != "stopped unknown tail"
+            or normal.get("emitted_errors") != []
+            or terminal.get("reason") != "stopped" or terminal.get("failure") is not None
+            or terminal.get("device_generated_end_sample_index") is not None
+            or terminal.get("loss_samples") is not None
+            or normal.get("clean_stop_reported") is not False
+            or normal.get("raw_samples_compared", 0) <= 0
+            or normal.get("journal_sha256_unchanged") != sha256(directory / "stop-unknown-tail.mtstream")
+            or exported.get("rows") != normal.get("raw_samples_compared")
+            or exported.get("terminal_equal") is not True
+            or exported.get("csv_sha256") != sha256(directory / "stop-unknown-tail.csv")
+            or exported.get("raw_sha256") != normal.get("raw_sha256")
+            or negative.get("phase") != "fault" or negative.get("ack_frames") != 0
+            or negative.get("normal_stop_label_absent") is not True):
+        raise RuntimeError("Packaged Stop/unknown-tail boundary evidence is incomplete")
+    for name, digest in receipt.get("files", {}).items():
+        if Path(name).name != name or sha256(directory / name) != digest:
+            raise RuntimeError(f"Packaged Stop receipt checksum differs: {name}")
+    return {name: png_info(directory / name)
+            for name in ("stop-open-details.png", "stop-open-compact.png",
+                         "stop-open-compact-bottom.png")}
+
+
 def clean_environment():
     env = os.environ.copy()
     for name in list(env):
@@ -378,6 +418,7 @@ def main(argv=None):
                          "stream-scope.png", "stream-ignition.png", "stream-unknown-tail.png",
                          "stream-record-picker.png", "stream-existing-path.png")}
     pngs.update(verify_serial_smoke(smoke_output, smoke.get("serial_stream_verification")))
+    pngs.update(verify_stop_smoke(smoke_output, stream_check.get("stop_verification")))
     for name in ("sample.mtv2", "export.csv", "export.csv.json", "device-window.mtv2"):
         path = smoke_output / name
         if not path.is_file() or path.stat().st_size == 0:

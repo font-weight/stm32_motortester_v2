@@ -200,6 +200,7 @@ class StreamControls(QtWidgets.QWidget):
             "waiting for boundary": "Ожидание следующего целого DATA", "recording": "Запись",
             "draining": "Stop: приём хвоста / завершение файла", "saved": "Запись завершена",
             "preview stopped": "Просмотр остановлен", "stopped without R": "Остановлено без R",
+            "stopped unknown tail": "Остановлено по команде · полнота хвоста неизвестна",
             "fault": "Отказ", "fault; writer unresolved": "Отказ; writer не разрешён",
             "closing": "Закрытие ожидает writer", "closed": "Закрыто", "error": "Ошибка",
             "stopped before START": "Остановлено до START"}

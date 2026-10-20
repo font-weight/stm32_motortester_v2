@@ -1,0 +1,482 @@
+test_real_terminal_faults_and_first_failures_are_not_softened (test_v2_stream_stop.UnknownTailStopTests.test_real_terminal_faults_and_first_failures_are_not_softened) ... ok
+test_record_waits_for_matching_ack_and_preserves_unknown_raw (test_v2_stream_stop.UnknownTailStopTests.test_record_waits_for_matching_ack_and_preserves_unknown_raw) ... 
+  test_record_waits_for_matching_ack_and_preserves_unknown_raw (test_v2_stream_stop.UnknownTailStopTests.test_record_waits_for_matching_ack_and_preserves_unknown_raw) (reply='matching') ... ERROR
+  test_record_waits_for_matching_ack_and_preserves_unknown_raw (test_v2_stream_stop.UnknownTailStopTests.test_record_waits_for_matching_ack_and_preserves_unknown_raw) (reply='missing') ... ERROR
+  test_record_waits_for_matching_ack_and_preserves_unknown_raw (test_v2_stream_stop.UnknownTailStopTests.test_record_waits_for_matching_ack_and_preserves_unknown_raw) (reply='wrong') ... ERROR
+  test_record_waits_for_matching_ack_and_preserves_unknown_raw (test_v2_stream_stop.UnknownTailStopTests.test_record_waits_for_matching_ack_and_preserves_unknown_raw) (reply='storage') ... ERROR
+  test_record_waits_for_matching_ack_and_preserves_unknown_raw (test_v2_stream_stop.UnknownTailStopTests.test_record_waits_for_matching_ack_and_preserves_unknown_raw) (reply='late') ... ERROR
+test_connect_is_inert_then_dtr_hello_caps_without_start (test_v2_stream_serial.V2StreamSerialTests.test_connect_is_inert_then_dtr_hello_caps_without_start) ... ERROR
+test_nonzero_record_boundary_unknown_tail_and_durable_connection (test_v2_stream_serial.V2StreamSerialTests.test_nonzero_record_boundary_unknown_tail_and_durable_connection) ... FAIL
+test_nonzero_record_boundary_unknown_tail_and_durable_connection (test_v2_stream_serial.V2StreamSerialTests.test_nonzero_record_boundary_unknown_tail_and_durable_connection) ... ERROR
+test_close_failure_retains_owner_and_requires_explicit_retry (test_v2_stream_serial.V2StreamSerialTests.test_close_failure_retains_owner_and_requires_explicit_retry) ... FAIL
+test_close_failure_retains_owner_and_requires_explicit_retry (test_v2_stream_serial.V2StreamSerialTests.test_close_failure_retains_owner_and_requires_explicit_retry) ... ERROR
+test_prepared_stop_cancels_queued_start_and_device_identity_is_not_str1 (test_v2_stream_serial.V2StreamSerialTests.test_prepared_stop_cancels_queued_start_and_device_identity_is_not_str1) ... ERROR
+
+======================================================================
+ERROR: test_record_waits_for_matching_ack_and_preserves_unknown_raw (test_v2_stream_stop.UnknownTailStopTests.test_record_waits_for_matching_ack_and_preserves_unknown_raw) (reply='matching')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Alexandr\Desktop\New folder\универ\мотортестер 2\host\tests\test_v2_stream_stop.py", line 93, in test_record_waits_for_matching_ack_and_preserves_unknown_raw
+    advance(lambda s: s.phase == "waiting for boundary")
+    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Alexandr\Desktop\New folder\универ\мотортестер 2\host\tests\test_v2_stream_stop.py", line 85, in advance
+    self.fail("Finite scheduler exhausted: " + repr(controller.snapshot()))
+    ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Finite scheduler exhausted: ControllerStatus(revision=1, phase='fault', path='C:\\Users\\Alexandr\\Desktop\\New folder\\универ\\мотортестер 2\\build\\v5a-backend-01\\temp\\v2-stop-u3utozka\\selected.mtstream', bridge=BridgeSnapshot(endpoint_state=<State.TERMINAL: 'terminal'>, identity=StreamIdentity(session_id='wire-0.2:92d5cbce699400a1', generation=3, config_id=1, nominal_fs_hz=50000, origin='synthetic', protocol_revision='0.2-draft-081721', firmware_version='build:00001234', application_version='isolated-stream-bridge'), session=SessionSnapshot(identity=StreamIdentity(session_id='wire-0.2:92d5cbce699400a1', generation=3, config_id=1, nominal_fs_hz=50000, origin='synthetic', protocol_revision='0.2-draft-081721', firmware_version='build:00001234', application_version='isolated-stream-bridge'), source_started=True, source_first_sample_index=0, received_end_sample_index=128, selected_start_sample_index=None, queued_end_sample_index=None, accepted_end_sample_index=None, checkpointed_end_sample_index=None, finalized_end_sample_index=None, raw_bytes_held=0, raw_items_held=0, pending_operation_id=None, source_end=SourceEnd(terminal_id='end:10580586986971857057:5', terminal=StreamTerminal(identity=StreamIdentity(session_id='wire-0.2:92d5cbce699400a1', generation=3, config_id=1, nominal_fs_hz=50000, origin='synthetic', protocol_revision='0.2-draft-081721', firmware_version='build:00001234', application_version='isolated-stream-bridge'), end_sample_index=128, reason='stopped', terminal_observed=True, device_generated_end_sample_index=None, device_transmitted_end_sample_index=128, loss_samples=None, boundary_evidence='validated_wire_full_prefix_crc32', failure=None, stop_requested=True, stop_request_id=4)), stop_acknowledgement=None, first_failure=FailureEvidence(code='host_io', detail='storage prepare failed: PermissionError', operation='prepare', request_id=None, source_code=None), stop_requested=True, admission_fenced=True, writer_fenced=True, finalized=False, finalization_started=False, finalization_unresolved=False, clean_completion_reported=False, unbound_reason=None, latest_display=StreamBlock(identity=StreamIdentity(session_id='wire-0.2:92d5cbce699400a1', generation=3, config_id=1, nominal_fs_hz=50000, origin='synthetic', protocol_revision='0.2-draft-081721', firmware_version='build:00001234', application_version='isolated-stream-bridge'), first_sample_index=0, raw_u16le=b'd\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00\xd0\x07\xd0\x07\xd0\x07\xd0\x07\xd0\x07\xd0\x07\xd0\x07\xd0\x07 \x03 \x03 \x03 \x03 \x03 \x03 \x03 \x03 \x03d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00')), storage=StorageStatus(operation_id=1, operation='prepare', returned=False, closed=True, failure=FailureEvidence(code='host_io', detail='storage prepare failed: PermissionError', operation='prepare', request_id=None, source_code=None), accepted_end=None, checkpointed_end=None, selected_sha256='e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855'), source_received_end=128, source_prefix_crc32=2069448778, source_terminal=ValidatedEnd(nonce=10580586986971857057, sequence=5, terminal=End(generation=3, config_id=1, prefix_end=128, produced_end=None, last_data_sequence=4, prefix_crc32=2069448778, reason=0, flags=3, stop_request_id=4)), endpoint_first_fault=FirstFault(code='storage', at_ms=0, ordinary=None, stop=None, causal_request=None), recovery=None, pending_start=None, pending_stop=Pending(kind=<Kind.STOP: 5>, nonce=10580586986971857057, request_id=4, sequence=4, action_id=2, admitted_ms=0, deadline_ms=2000, accepted_bytes=34, frame_accepted_bytes=34, complete=True), storage_job_id=None, late_fault=None, closed=False, mailbox=MailboxState(operation_id=None, running=False, result_pending=False, close_requested=False, close_acknowledged=None), accepted_build_id=4660, accepted_caps=(1, 1, 0, 12, 50000, 1, 128, 1)), config=EventConfig(threshold_code=1000, release_code=500, polarity='above', pre_samples=8, post_samples=12, baseline_samples=3, holdoff_samples=0, max_event_samples=256, rail_low=0, rail_high=4095), config_revision=1, command_pending=False, stop_pending=False, stop_requested=False, close_requested=False, worker_unresolved=False, can_preview=False, can_record=False, can_open=False, error=None, display_error=None, receiver_steps=104, max_service_gap_ms=0, validated_blocks=1, validated_samples=128, raw_available_start=0, ring_samples=128, detector_status=DetectorStatus(outcome='stopped', indexed_events=1, processed_until=128, pending=None, discontinuity=None, suppressed_crossings=0, retention='recent', first_retained_ordinal=0, next_ordinal=1, evicted_events=0), display_pending=False, display_running=False, displays_built=0, displays_replaced=0, peak_raw_items=0, peak_raw_bytes=0, raw_item_limit=256, raw_byte_limit=262144, storage_raw_limit=67108864, serial=None, serial_call=None, serial_operation_id=0, serial_operation_generation=0, serial_unresolved=False, can_connect=False, can_disconnect=False, can_retry_close=False, can_prepare=False, ready=False)
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "<frozen os>", line 377, in walk
+PermissionError: [WinError 5] Access is denied: 'C:\\Users\\Alexandr\\Desktop\\New folder\\универ\\мотортестер 2\\build\\v5a-backend-01\\temp\\v2-stop-u3utozka'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Alexandr\Desktop\New folder\универ\мотортестер 2\host\tests\test_v2_stream_stop.py", line 68, in test_record_waits_for_matching_ack_and_preserves_unknown_raw
+    with self.subTest(reply=reply), tempfile.TemporaryDirectory(
+                                    ~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+            prefix="v2-stop-") as folder, patch(
+            ^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Alexandr\AppData\Local\Python\pythoncore-3.14-64\Lib\tempfile.py", line 972, in __exit__
+    self.cleanup()
+    ~~~~~~~~~~~~^^
+  File "C:\Users\Alexandr\AppData\Local\Python\pythoncore-3.14-64\Lib\tempfile.py", line 976, in cleanup
+    self._rmtree(self.name, ignore_errors=self._ignore_cleanup_errors)
+    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Alexandr\AppData\Local\Python\pythoncore-3.14-64\Lib\tempfile.py", line 956, in _rmtree
+    _shutil.rmtree(name, onexc=onexc)
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Alexandr\AppData\Local\Python\pythoncore-3.14-64\Lib\shutil.py", line 852, in rmtree
+    _rmtree_impl(path, dir_fd, onexc)
+    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Alexandr\AppData\Local\Python\pythoncore-3.14-64\Lib\shutil.py", line 689, in _rmtree_unsafe
+    for dirpath, dirnames, filenames in results:
+                                        ^^^^^^^
+  File "<frozen os>", line 413, in walk
+  File "C:\Users\Alexandr\AppData\Local\Python\pythoncore-3.14-64\Lib\shutil.py", line 687, in onerror
+    onexc(os.scandir, err.filename, err)
+    ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Alexandr\AppData\Local\Python\pythoncore-3.14-64\Lib\tempfile.py", line 928, in onexc
+    _resetperms(path)
+    ~~~~~~~~~~~^^^^^^
+  File "C:\Users\Alexandr\AppData\Local\Python\pythoncore-3.14-64\Lib\tempfile.py", line 283, in _resetperms
+    _dont_follow_symlinks(_os.chmod, path, 0o700)
+    ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Alexandr\AppData\Local\Python\pythoncore-3.14-64\Lib\tempfile.py", line 272, in _dont_follow_symlinks
+    func(path, *args, follow_symlinks=False)
+    ~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+PermissionError: [WinError 5] Access is denied: 'C:\\Users\\Alexandr\\Desktop\\New folder\\универ\\мотортестер 2\\build\\v5a-backend-01\\temp\\v2-stop-u3utozka'
+
+======================================================================
+ERROR: test_record_waits_for_matching_ack_and_preserves_unknown_raw (test_v2_stream_stop.UnknownTailStopTests.test_record_waits_for_matching_ack_and_preserves_unknown_raw) (reply='missing')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Alexandr\Desktop\New folder\универ\мотортестер 2\host\tests\test_v2_stream_stop.py", line 93, in test_record_waits_for_matching_ack_and_preserves_unknown_raw
+    advance(lambda s: s.phase == "waiting for boundary")
+    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Alexandr\Desktop\New folder\универ\мотортестер 2\host\tests\test_v2_stream_stop.py", line 85, in advance
+    self.fail("Finite scheduler exhausted: " + repr(controller.snapshot()))
+    ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Finite scheduler exhausted: ControllerStatus(revision=1, phase='fault', path='C:\\Users\\Alexandr\\Desktop\\New folder\\универ\\мотортестер 2\\build\\v5a-backend-01\\temp\\v2-stop-s3_3hjys\\selected.mtstream', bridge=BridgeSnapshot(endpoint_state=<State.TERMINAL: 'terminal'>, identity=StreamIdentity(session_id='wire-0.2:2b8c5f4b088a359e', generation=3, config_id=1, nominal_fs_hz=50000, origin='synthetic', protocol_revision='0.2-draft-081721', firmware_version='build:00001234', application_version='isolated-stream-bridge'), session=SessionSnapshot(identity=StreamIdentity(session_id='wire-0.2:2b8c5f4b088a359e', generation=3, config_id=1, nominal_fs_hz=50000, origin='synthetic', protocol_revision='0.2-draft-081721', firmware_version='build:00001234', application_version='isolated-stream-bridge'), source_started=True, source_first_sample_index=0, received_end_sample_index=128, selected_start_sample_index=None, queued_end_sample_index=None, accepted_end_sample_index=None, checkpointed_end_sample_index=None, finalized_end_sample_index=None, raw_bytes_held=0, raw_items_held=0, pending_operation_id=None, source_end=SourceEnd(terminal_id='end:3137987816240854430:5', terminal=StreamTerminal(identity=StreamIdentity(session_id='wire-0.2:2b8c5f4b088a359e', generation=3, config_id=1, nominal_fs_hz=50000, origin='synthetic', protocol_revision='0.2-draft-081721', firmware_version='build:00001234', application_version='isolated-stream-bridge'), end_sample_index=128, reason='stopped', terminal_observed=True, device_generated_end_sample_index=None, device_transmitted_end_sample_index=128, loss_samples=None, boundary_evidence='validated_wire_full_prefix_crc32', failure=None, stop_requested=True, stop_request_id=4)), stop_acknowledgement=None, first_failure=FailureEvidence(code='host_io', detail='storage prepare failed: PermissionError', operation='prepare', request_id=None, source_code=None), stop_requested=True, admission_fenced=True, writer_fenced=True, finalized=False, finalization_started=False, finalization_unresolved=False, clean_completion_reported=False, unbound_reason=None, latest_display=StreamBlock(identity=StreamIdentity(session_id='wire-0.2:2b8c5f4b088a359e', generation=3, config_id=1, nominal_fs_hz=50000, origin='synthetic', protocol_revision='0.2-draft-081721', firmware_version='build:00001234', application_version='isolated-stream-bridge'), first_sample_index=0, raw_u16le=b'd\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00\xd0\x07\xd0\x07\xd0\x07\xd0\x07\xd0\x07\xd0\x07\xd0\x07\xd0\x07 \x03 \x03 \x03 \x03 \x03 \x03 \x03 \x03 \x03d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00')), storage=StorageStatus(operation_id=1, operation='prepare', returned=False, closed=True, failure=FailureEvidence(code='host_io', detail='storage prepare failed: PermissionError', operation='prepare', request_id=None, source_code=None), accepted_end=None, checkpointed_end=None, selected_sha256='e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855'), source_received_end=128, source_prefix_crc32=2069448778, source_terminal=ValidatedEnd(nonce=3137987816240854430, sequence=5, terminal=End(generation=3, config_id=1, prefix_end=128, produced_end=None, last_data_sequence=4, prefix_crc32=2069448778, reason=0, flags=3, stop_request_id=4)), endpoint_first_fault=FirstFault(code='storage', at_ms=0, ordinary=None, stop=None, causal_request=None), recovery=None, pending_start=None, pending_stop=Pending(kind=<Kind.STOP: 5>, nonce=3137987816240854430, request_id=4, sequence=4, action_id=2, admitted_ms=0, deadline_ms=2000, accepted_bytes=34, frame_accepted_bytes=34, complete=True), storage_job_id=None, late_fault=None, closed=False, mailbox=MailboxState(operation_id=None, running=False, result_pending=False, close_requested=False, close_acknowledged=None), accepted_build_id=4660, accepted_caps=(1, 1, 0, 12, 50000, 1, 128, 1)), config=EventConfig(threshold_code=1000, release_code=500, polarity='above', pre_samples=8, post_samples=12, baseline_samples=3, holdoff_samples=0, max_event_samples=256, rail_low=0, rail_high=4095), config_revision=1, command_pending=False, stop_pending=False, stop_requested=False, close_requested=False, worker_unresolved=False, can_preview=False, can_record=False, can_open=False, error=None, display_error=None, receiver_steps=104, max_service_gap_ms=0, validated_blocks=1, validated_samples=128, raw_available_start=0, ring_samples=128, detector_status=DetectorStatus(outcome='stopped', indexed_events=1, processed_until=128, pending=None, discontinuity=None, suppressed_crossings=0, retention='recent', first_retained_ordinal=0, next_ordinal=1, evicted_events=0), display_pending=False, display_running=False, displays_built=0, displays_replaced=0, peak_raw_items=0, peak_raw_bytes=0, raw_item_limit=256, raw_byte_limit=262144, storage_raw_limit=67108864, serial=None, serial_call=None, serial_operation_id=0, serial_operation_generation=0, serial_unresolved=False, can_connect=False, can_disconnect=False, can_retry_close=False, can_prepare=False, ready=False)
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "<frozen os>", line 377, in walk
+PermissionError: [WinError 5] Access is denied: 'C:\\Users\\Alexandr\\Desktop\\New folder\\универ\\мотортестер 2\\build\\v5a-backend-01\\temp\\v2-stop-s3_3hjys'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Alexandr\Desktop\New folder\универ\мотортестер 2\host\tests\test_v2_stream_stop.py", line 68, in test_record_waits_for_matching_ack_and_preserves_unknown_raw
+    with self.subTest(reply=reply), tempfile.TemporaryDirectory(
+                                    ~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+            prefix="v2-stop-") as folder, patch(
+            ^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Alexandr\AppData\Local\Python\pythoncore-3.14-64\Lib\tempfile.py", line 972, in __exit__
+    self.cleanup()
+    ~~~~~~~~~~~~^^
+  File "C:\Users\Alexandr\AppData\Local\Python\pythoncore-3.14-64\Lib\tempfile.py", line 976, in cleanup
+    self._rmtree(self.name, ignore_errors=self._ignore_cleanup_errors)
+    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Alexandr\AppData\Local\Python\pythoncore-3.14-64\Lib\tempfile.py", line 956, in _rmtree
+    _shutil.rmtree(name, onexc=onexc)
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Alexandr\AppData\Local\Python\pythoncore-3.14-64\Lib\shutil.py", line 852, in rmtree
+    _rmtree_impl(path, dir_fd, onexc)
+    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Alexandr\AppData\Local\Python\pythoncore-3.14-64\Lib\shutil.py", line 689, in _rmtree_unsafe
+    for dirpath, dirnames, filenames in results:
+                                        ^^^^^^^
+  File "<frozen os>", line 413, in walk
+  File "C:\Users\Alexandr\AppData\Local\Python\pythoncore-3.14-64\Lib\shutil.py", line 687, in onerror
+    onexc(os.scandir, err.filename, err)
+    ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Alexandr\AppData\Local\Python\pythoncore-3.14-64\Lib\tempfile.py", line 928, in onexc
+    _resetperms(path)
+    ~~~~~~~~~~~^^^^^^
+  File "C:\Users\Alexandr\AppData\Local\Python\pythoncore-3.14-64\Lib\tempfile.py", line 283, in _resetperms
+    _dont_follow_symlinks(_os.chmod, path, 0o700)
+    ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Alexandr\AppData\Local\Python\pythoncore-3.14-64\Lib\tempfile.py", line 272, in _dont_follow_symlinks
+    func(path, *args, follow_symlinks=False)
+    ~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+PermissionError: [WinError 5] Access is denied: 'C:\\Users\\Alexandr\\Desktop\\New folder\\универ\\мотортестер 2\\build\\v5a-backend-01\\temp\\v2-stop-s3_3hjys'
+
+======================================================================
+ERROR: test_record_waits_for_matching_ack_and_preserves_unknown_raw (test_v2_stream_stop.UnknownTailStopTests.test_record_waits_for_matching_ack_and_preserves_unknown_raw) (reply='wrong')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Alexandr\Desktop\New folder\универ\мотортестер 2\host\tests\test_v2_stream_stop.py", line 93, in test_record_waits_for_matching_ack_and_preserves_unknown_raw
+    advance(lambda s: s.phase == "waiting for boundary")
+    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Alexandr\Desktop\New folder\универ\мотортестер 2\host\tests\test_v2_stream_stop.py", line 85, in advance
+    self.fail("Finite scheduler exhausted: " + repr(controller.snapshot()))
+    ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Finite scheduler exhausted: ControllerStatus(revision=1, phase='fault', path='C:\\Users\\Alexandr\\Desktop\\New folder\\универ\\мотортестер 2\\build\\v5a-backend-01\\temp\\v2-stop-snga2f5q\\selected.mtstream', bridge=BridgeSnapshot(endpoint_state=<State.TERMINAL: 'terminal'>, identity=StreamIdentity(session_id='wire-0.2:1778fe7477511933', generation=3, config_id=1, nominal_fs_hz=50000, origin='synthetic', protocol_revision='0.2-draft-081721', firmware_version='build:00001234', application_version='isolated-stream-bridge'), session=SessionSnapshot(identity=StreamIdentity(session_id='wire-0.2:1778fe7477511933', generation=3, config_id=1, nominal_fs_hz=50000, origin='synthetic', protocol_revision='0.2-draft-081721', firmware_version='build:00001234', application_version='isolated-stream-bridge'), source_started=True, source_first_sample_index=0, received_end_sample_index=128, selected_start_sample_index=None, queued_end_sample_index=None, accepted_end_sample_index=None, checkpointed_end_sample_index=None, finalized_end_sample_index=None, raw_bytes_held=0, raw_items_held=0, pending_operation_id=None, source_end=SourceEnd(terminal_id='end:1691381436249086259:5', terminal=StreamTerminal(identity=StreamIdentity(session_id='wire-0.2:1778fe7477511933', generation=3, config_id=1, nominal_fs_hz=50000, origin='synthetic', protocol_revision='0.2-draft-081721', firmware_version='build:00001234', application_version='isolated-stream-bridge'), end_sample_index=128, reason='stopped', terminal_observed=True, device_generated_end_sample_index=None, device_transmitted_end_sample_index=128, loss_samples=None, boundary_evidence='validated_wire_full_prefix_crc32', failure=None, stop_requested=True, stop_request_id=4)), stop_acknowledgement=None, first_failure=FailureEvidence(code='host_io', detail='storage prepare failed: PermissionError', operation='prepare', request_id=None, source_code=None), stop_requested=True, admission_fenced=True, writer_fenced=True, finalized=False, finalization_started=False, finalization_unresolved=False, clean_completion_reported=False, unbound_reason=None, latest_display=StreamBlock(identity=StreamIdentity(session_id='wire-0.2:1778fe7477511933', generation=3, config_id=1, nominal_fs_hz=50000, origin='synthetic', protocol_revision='0.2-draft-081721', firmware_version='build:00001234', application_version='isolated-stream-bridge'), first_sample_index=0, raw_u16le=b'd\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00\xd0\x07\xd0\x07\xd0\x07\xd0\x07\xd0\x07\xd0\x07\xd0\x07\xd0\x07 \x03 \x03 \x03 \x03 \x03 \x03 \x03 \x03 \x03d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00')), storage=StorageStatus(operation_id=1, operation='prepare', returned=False, closed=True, failure=FailureEvidence(code='host_io', detail='storage prepare failed: PermissionError', operation='prepare', request_id=None, source_code=None), accepted_end=None, checkpointed_end=None, selected_sha256='e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855'), source_received_end=128, source_prefix_crc32=2069448778, source_terminal=ValidatedEnd(nonce=1691381436249086259, sequence=5, terminal=End(generation=3, config_id=1, prefix_end=128, produced_end=None, last_data_sequence=4, prefix_crc32=2069448778, reason=0, flags=3, stop_request_id=4)), endpoint_first_fault=FirstFault(code='storage', at_ms=0, ordinary=None, stop=None, causal_request=None), recovery=None, pending_start=None, pending_stop=Pending(kind=<Kind.STOP: 5>, nonce=1691381436249086259, request_id=4, sequence=4, action_id=2, admitted_ms=0, deadline_ms=2000, accepted_bytes=34, frame_accepted_bytes=34, complete=True), storage_job_id=None, late_fault=None, closed=False, mailbox=MailboxState(operation_id=None, running=False, result_pending=False, close_requested=False, close_acknowledged=None), accepted_build_id=4660, accepted_caps=(1, 1, 0, 12, 50000, 1, 128, 1)), config=EventConfig(threshold_code=1000, release_code=500, polarity='above', pre_samples=8, post_samples=12, baseline_samples=3, holdoff_samples=0, max_event_samples=256, rail_low=0, rail_high=4095), config_revision=1, command_pending=False, stop_pending=False, stop_requested=False, close_requested=False, worker_unresolved=False, can_preview=False, can_record=False, can_open=False, error=None, display_error=None, receiver_steps=104, max_service_gap_ms=0, validated_blocks=1, validated_samples=128, raw_available_start=0, ring_samples=128, detector_status=DetectorStatus(outcome='stopped', indexed_events=1, processed_until=128, pending=None, discontinuity=None, suppressed_crossings=0, retention='recent', first_retained_ordinal=0, next_ordinal=1, evicted_events=0), display_pending=False, display_running=False, displays_built=0, displays_replaced=0, peak_raw_items=0, peak_raw_bytes=0, raw_item_limit=256, raw_byte_limit=262144, storage_raw_limit=67108864, serial=None, serial_call=None, serial_operation_id=0, serial_operation_generation=0, serial_unresolved=False, can_connect=False, can_disconnect=False, can_retry_close=False, can_prepare=False, ready=False)
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "<frozen os>", line 377, in walk
+PermissionError: [WinError 5] Access is denied: 'C:\\Users\\Alexandr\\Desktop\\New folder\\универ\\мотортестер 2\\build\\v5a-backend-01\\temp\\v2-stop-snga2f5q'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Alexandr\Desktop\New folder\универ\мотортестер 2\host\tests\test_v2_stream_stop.py", line 68, in test_record_waits_for_matching_ack_and_preserves_unknown_raw
+    with self.subTest(reply=reply), tempfile.TemporaryDirectory(
+                                    ~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+            prefix="v2-stop-") as folder, patch(
+            ^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Alexandr\AppData\Local\Python\pythoncore-3.14-64\Lib\tempfile.py", line 972, in __exit__
+    self.cleanup()
+    ~~~~~~~~~~~~^^
+  File "C:\Users\Alexandr\AppData\Local\Python\pythoncore-3.14-64\Lib\tempfile.py", line 976, in cleanup
+    self._rmtree(self.name, ignore_errors=self._ignore_cleanup_errors)
+    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Alexandr\AppData\Local\Python\pythoncore-3.14-64\Lib\tempfile.py", line 956, in _rmtree
+    _shutil.rmtree(name, onexc=onexc)
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Alexandr\AppData\Local\Python\pythoncore-3.14-64\Lib\shutil.py", line 852, in rmtree
+    _rmtree_impl(path, dir_fd, onexc)
+    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Alexandr\AppData\Local\Python\pythoncore-3.14-64\Lib\shutil.py", line 689, in _rmtree_unsafe
+    for dirpath, dirnames, filenames in results:
+                                        ^^^^^^^
+  File "<frozen os>", line 413, in walk
+  File "C:\Users\Alexandr\AppData\Local\Python\pythoncore-3.14-64\Lib\shutil.py", line 687, in onerror
+    onexc(os.scandir, err.filename, err)
+    ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Alexandr\AppData\Local\Python\pythoncore-3.14-64\Lib\tempfile.py", line 928, in onexc
+    _resetperms(path)
+    ~~~~~~~~~~~^^^^^^
+  File "C:\Users\Alexandr\AppData\Local\Python\pythoncore-3.14-64\Lib\tempfile.py", line 283, in _resetperms
+    _dont_follow_symlinks(_os.chmod, path, 0o700)
+    ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Alexandr\AppData\Local\Python\pythoncore-3.14-64\Lib\tempfile.py", line 272, in _dont_follow_symlinks
+    func(path, *args, follow_symlinks=False)
+    ~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+PermissionError: [WinError 5] Access is denied: 'C:\\Users\\Alexandr\\Desktop\\New folder\\универ\\мотортестер 2\\build\\v5a-backend-01\\temp\\v2-stop-snga2f5q'
+
+======================================================================
+ERROR: test_record_waits_for_matching_ack_and_preserves_unknown_raw (test_v2_stream_stop.UnknownTailStopTests.test_record_waits_for_matching_ack_and_preserves_unknown_raw) (reply='storage')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Alexandr\Desktop\New folder\универ\мотортестер 2\host\tests\test_v2_stream_stop.py", line 93, in test_record_waits_for_matching_ack_and_preserves_unknown_raw
+    advance(lambda s: s.phase == "waiting for boundary")
+    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Alexandr\Desktop\New folder\универ\мотортестер 2\host\tests\test_v2_stream_stop.py", line 85, in advance
+    self.fail("Finite scheduler exhausted: " + repr(controller.snapshot()))
+    ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Finite scheduler exhausted: ControllerStatus(revision=1, phase='fault', path='C:\\Users\\Alexandr\\Desktop\\New folder\\универ\\мотортестер 2\\build\\v5a-backend-01\\temp\\v2-stop-5cw_djuk\\selected.mtstream', bridge=BridgeSnapshot(endpoint_state=<State.TERMINAL: 'terminal'>, identity=StreamIdentity(session_id='wire-0.2:2fdda997ec87d33a', generation=3, config_id=1, nominal_fs_hz=50000, origin='synthetic', protocol_revision='0.2-draft-081721', firmware_version='build:00001234', application_version='isolated-stream-bridge'), session=SessionSnapshot(identity=StreamIdentity(session_id='wire-0.2:2fdda997ec87d33a', generation=3, config_id=1, nominal_fs_hz=50000, origin='synthetic', protocol_revision='0.2-draft-081721', firmware_version='build:00001234', application_version='isolated-stream-bridge'), source_started=True, source_first_sample_index=0, received_end_sample_index=128, selected_start_sample_index=None, queued_end_sample_index=None, accepted_end_sample_index=None, checkpointed_end_sample_index=None, finalized_end_sample_index=None, raw_bytes_held=0, raw_items_held=0, pending_operation_id=None, source_end=SourceEnd(terminal_id='end:3449099359609148218:5', terminal=StreamTerminal(identity=StreamIdentity(session_id='wire-0.2:2fdda997ec87d33a', generation=3, config_id=1, nominal_fs_hz=50000, origin='synthetic', protocol_revision='0.2-draft-081721', firmware_version='build:00001234', application_version='isolated-stream-bridge'), end_sample_index=128, reason='stopped', terminal_observed=True, device_generated_end_sample_index=None, device_transmitted_end_sample_index=128, loss_samples=None, boundary_evidence='validated_wire_full_prefix_crc32', failure=None, stop_requested=True, stop_request_id=4)), stop_acknowledgement=None, first_failure=FailureEvidence(code='host_io', detail='storage prepare failed: PermissionError', operation='prepare', request_id=None, source_code=None), stop_requested=True, admission_fenced=True, writer_fenced=True, finalized=False, finalization_started=False, finalization_unresolved=False, clean_completion_reported=False, unbound_reason=None, latest_display=StreamBlock(identity=StreamIdentity(session_id='wire-0.2:2fdda997ec87d33a', generation=3, config_id=1, nominal_fs_hz=50000, origin='synthetic', protocol_revision='0.2-draft-081721', firmware_version='build:00001234', application_version='isolated-stream-bridge'), first_sample_index=0, raw_u16le=b'd\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00\xd0\x07\xd0\x07\xd0\x07\xd0\x07\xd0\x07\xd0\x07\xd0\x07\xd0\x07 \x03 \x03 \x03 \x03 \x03 \x03 \x03 \x03 \x03d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00')), storage=StorageStatus(operation_id=1, operation='prepare', returned=False, closed=True, failure=FailureEvidence(code='host_io', detail='storage prepare failed: PermissionError', operation='prepare', request_id=None, source_code=None), accepted_end=None, checkpointed_end=None, selected_sha256='e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855'), source_received_end=128, source_prefix_crc32=2069448778, source_terminal=ValidatedEnd(nonce=3449099359609148218, sequence=5, terminal=End(generation=3, config_id=1, prefix_end=128, produced_end=None, last_data_sequence=4, prefix_crc32=2069448778, reason=0, flags=3, stop_request_id=4)), endpoint_first_fault=FirstFault(code='storage', at_ms=0, ordinary=None, stop=None, causal_request=None), recovery=None, pending_start=None, pending_stop=Pending(kind=<Kind.STOP: 5>, nonce=3449099359609148218, request_id=4, sequence=4, action_id=2, admitted_ms=0, deadline_ms=2000, accepted_bytes=34, frame_accepted_bytes=34, complete=True), storage_job_id=None, late_fault=None, closed=False, mailbox=MailboxState(operation_id=None, running=False, result_pending=False, close_requested=False, close_acknowledged=None), accepted_build_id=4660, accepted_caps=(1, 1, 0, 12, 50000, 1, 128, 1)), config=EventConfig(threshold_code=1000, release_code=500, polarity='above', pre_samples=8, post_samples=12, baseline_samples=3, holdoff_samples=0, max_event_samples=256, rail_low=0, rail_high=4095), config_revision=1, command_pending=False, stop_pending=False, stop_requested=False, close_requested=False, worker_unresolved=False, can_preview=False, can_record=False, can_open=False, error=None, display_error=None, receiver_steps=104, max_service_gap_ms=0, validated_blocks=1, validated_samples=128, raw_available_start=0, ring_samples=128, detector_status=DetectorStatus(outcome='stopped', indexed_events=1, processed_until=128, pending=None, discontinuity=None, suppressed_crossings=0, retention='recent', first_retained_ordinal=0, next_ordinal=1, evicted_events=0), display_pending=False, display_running=False, displays_built=0, displays_replaced=0, peak_raw_items=0, peak_raw_bytes=0, raw_item_limit=256, raw_byte_limit=262144, storage_raw_limit=67108864, serial=None, serial_call=None, serial_operation_id=0, serial_operation_generation=0, serial_unresolved=False, can_connect=False, can_disconnect=False, can_retry_close=False, can_prepare=False, ready=False)
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "<frozen os>", line 377, in walk
+PermissionError: [WinError 5] Access is denied: 'C:\\Users\\Alexandr\\Desktop\\New folder\\универ\\мотортестер 2\\build\\v5a-backend-01\\temp\\v2-stop-5cw_djuk'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Alexandr\Desktop\New folder\универ\мотортестер 2\host\tests\test_v2_stream_stop.py", line 68, in test_record_waits_for_matching_ack_and_preserves_unknown_raw
+    with self.subTest(reply=reply), tempfile.TemporaryDirectory(
+                                    ~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+            prefix="v2-stop-") as folder, patch(
+            ^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Alexandr\AppData\Local\Python\pythoncore-3.14-64\Lib\tempfile.py", line 972, in __exit__
+    self.cleanup()
+    ~~~~~~~~~~~~^^
+  File "C:\Users\Alexandr\AppData\Local\Python\pythoncore-3.14-64\Lib\tempfile.py", line 976, in cleanup
+    self._rmtree(self.name, ignore_errors=self._ignore_cleanup_errors)
+    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Alexandr\AppData\Local\Python\pythoncore-3.14-64\Lib\tempfile.py", line 956, in _rmtree
+    _shutil.rmtree(name, onexc=onexc)
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Alexandr\AppData\Local\Python\pythoncore-3.14-64\Lib\shutil.py", line 852, in rmtree
+    _rmtree_impl(path, dir_fd, onexc)
+    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Alexandr\AppData\Local\Python\pythoncore-3.14-64\Lib\shutil.py", line 689, in _rmtree_unsafe
+    for dirpath, dirnames, filenames in results:
+                                        ^^^^^^^
+  File "<frozen os>", line 413, in walk
+  File "C:\Users\Alexandr\AppData\Local\Python\pythoncore-3.14-64\Lib\shutil.py", line 687, in onerror
+    onexc(os.scandir, err.filename, err)
+    ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Alexandr\AppData\Local\Python\pythoncore-3.14-64\Lib\tempfile.py", line 928, in onexc
+    _resetperms(path)
+    ~~~~~~~~~~~^^^^^^
+  File "C:\Users\Alexandr\AppData\Local\Python\pythoncore-3.14-64\Lib\tempfile.py", line 283, in _resetperms
+    _dont_follow_symlinks(_os.chmod, path, 0o700)
+    ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Alexandr\AppData\Local\Python\pythoncore-3.14-64\Lib\tempfile.py", line 272, in _dont_follow_symlinks
+    func(path, *args, follow_symlinks=False)
+    ~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+PermissionError: [WinError 5] Access is denied: 'C:\\Users\\Alexandr\\Desktop\\New folder\\универ\\мотортестер 2\\build\\v5a-backend-01\\temp\\v2-stop-5cw_djuk'
+
+======================================================================
+ERROR: test_record_waits_for_matching_ack_and_preserves_unknown_raw (test_v2_stream_stop.UnknownTailStopTests.test_record_waits_for_matching_ack_and_preserves_unknown_raw) (reply='late')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Alexandr\Desktop\New folder\универ\мотортестер 2\host\tests\test_v2_stream_stop.py", line 93, in test_record_waits_for_matching_ack_and_preserves_unknown_raw
+    advance(lambda s: s.phase == "waiting for boundary")
+    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Alexandr\Desktop\New folder\универ\мотортестер 2\host\tests\test_v2_stream_stop.py", line 85, in advance
+    self.fail("Finite scheduler exhausted: " + repr(controller.snapshot()))
+    ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Finite scheduler exhausted: ControllerStatus(revision=1, phase='fault', path='C:\\Users\\Alexandr\\Desktop\\New folder\\универ\\мотортестер 2\\build\\v5a-backend-01\\temp\\v2-stop-oox9_uqa\\selected.mtstream', bridge=BridgeSnapshot(endpoint_state=<State.TERMINAL: 'terminal'>, identity=StreamIdentity(session_id='wire-0.2:f7a234f916a266fe', generation=3, config_id=1, nominal_fs_hz=50000, origin='synthetic', protocol_revision='0.2-draft-081721', firmware_version='build:00001234', application_version='isolated-stream-bridge'), session=SessionSnapshot(identity=StreamIdentity(session_id='wire-0.2:f7a234f916a266fe', generation=3, config_id=1, nominal_fs_hz=50000, origin='synthetic', protocol_revision='0.2-draft-081721', firmware_version='build:00001234', application_version='isolated-stream-bridge'), source_started=True, source_first_sample_index=0, received_end_sample_index=128, selected_start_sample_index=None, queued_end_sample_index=None, accepted_end_sample_index=None, checkpointed_end_sample_index=None, finalized_end_sample_index=None, raw_bytes_held=0, raw_items_held=0, pending_operation_id=None, source_end=SourceEnd(terminal_id='end:17843882918026569470:5', terminal=StreamTerminal(identity=StreamIdentity(session_id='wire-0.2:f7a234f916a266fe', generation=3, config_id=1, nominal_fs_hz=50000, origin='synthetic', protocol_revision='0.2-draft-081721', firmware_version='build:00001234', application_version='isolated-stream-bridge'), end_sample_index=128, reason='stopped', terminal_observed=True, device_generated_end_sample_index=None, device_transmitted_end_sample_index=128, loss_samples=None, boundary_evidence='validated_wire_full_prefix_crc32', failure=None, stop_requested=True, stop_request_id=4)), stop_acknowledgement=None, first_failure=FailureEvidence(code='host_io', detail='storage prepare failed: PermissionError', operation='prepare', request_id=None, source_code=None), stop_requested=True, admission_fenced=True, writer_fenced=True, finalized=False, finalization_started=False, finalization_unresolved=False, clean_completion_reported=False, unbound_reason=None, latest_display=StreamBlock(identity=StreamIdentity(session_id='wire-0.2:f7a234f916a266fe', generation=3, config_id=1, nominal_fs_hz=50000, origin='synthetic', protocol_revision='0.2-draft-081721', firmware_version='build:00001234', application_version='isolated-stream-bridge'), first_sample_index=0, raw_u16le=b'd\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00\xd0\x07\xd0\x07\xd0\x07\xd0\x07\xd0\x07\xd0\x07\xd0\x07\xd0\x07 \x03 \x03 \x03 \x03 \x03 \x03 \x03 \x03 \x03d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00d\x00')), storage=StorageStatus(operation_id=1, operation='prepare', returned=False, closed=True, failure=FailureEvidence(code='host_io', detail='storage prepare failed: PermissionError', operation='prepare', request_id=None, source_code=None), accepted_end=None, checkpointed_end=None, selected_sha256='e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855'), source_received_end=128, source_prefix_crc32=2069448778, source_terminal=ValidatedEnd(nonce=17843882918026569470, sequence=5, terminal=End(generation=3, config_id=1, prefix_end=128, produced_end=None, last_data_sequence=4, prefix_crc32=2069448778, reason=0, flags=3, stop_request_id=4)), endpoint_first_fault=FirstFault(code='storage', at_ms=0, ordinary=None, stop=None, causal_request=None), recovery=None, pending_start=None, pending_stop=Pending(kind=<Kind.STOP: 5>, nonce=17843882918026569470, request_id=4, sequence=4, action_id=2, admitted_ms=0, deadline_ms=2000, accepted_bytes=34, frame_accepted_bytes=34, complete=True), storage_job_id=None, late_fault=None, closed=False, mailbox=MailboxState(operation_id=None, running=False, result_pending=False, close_requested=False, close_acknowledged=None), accepted_build_id=4660, accepted_caps=(1, 1, 0, 12, 50000, 1, 128, 1)), config=EventConfig(threshold_code=1000, release_code=500, polarity='above', pre_samples=8, post_samples=12, baseline_samples=3, holdoff_samples=0, max_event_samples=256, rail_low=0, rail_high=4095), config_revision=1, command_pending=False, stop_pending=False, stop_requested=False, close_requested=False, worker_unresolved=False, can_preview=False, can_record=False, can_open=False, error=None, display_error=None, receiver_steps=104, max_service_gap_ms=0, validated_blocks=1, validated_samples=128, raw_available_start=0, ring_samples=128, detector_status=DetectorStatus(outcome='stopped', indexed_events=1, processed_until=128, pending=None, discontinuity=None, suppressed_crossings=0, retention='recent', first_retained_ordinal=0, next_ordinal=1, evicted_events=0), display_pending=False, display_running=False, displays_built=0, displays_replaced=0, peak_raw_items=0, peak_raw_bytes=0, raw_item_limit=256, raw_byte_limit=262144, storage_raw_limit=67108864, serial=None, serial_call=None, serial_operation_id=0, serial_operation_generation=0, serial_unresolved=False, can_connect=False, can_disconnect=False, can_retry_close=False, can_prepare=False, ready=False)
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "<frozen os>", line 377, in walk
+PermissionError: [WinError 5] Access is denied: 'C:\\Users\\Alexandr\\Desktop\\New folder\\универ\\мотортестер 2\\build\\v5a-backend-01\\temp\\v2-stop-oox9_uqa'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Alexandr\Desktop\New folder\универ\мотортестер 2\host\tests\test_v2_stream_stop.py", line 68, in test_record_waits_for_matching_ack_and_preserves_unknown_raw
+    with self.subTest(reply=reply), tempfile.TemporaryDirectory(
+                                    ~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+            prefix="v2-stop-") as folder, patch(
+            ^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Alexandr\AppData\Local\Python\pythoncore-3.14-64\Lib\tempfile.py", line 972, in __exit__
+    self.cleanup()
+    ~~~~~~~~~~~~^^
+  File "C:\Users\Alexandr\AppData\Local\Python\pythoncore-3.14-64\Lib\tempfile.py", line 976, in cleanup
+    self._rmtree(self.name, ignore_errors=self._ignore_cleanup_errors)
+    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Alexandr\AppData\Local\Python\pythoncore-3.14-64\Lib\tempfile.py", line 956, in _rmtree
+    _shutil.rmtree(name, onexc=onexc)
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Alexandr\AppData\Local\Python\pythoncore-3.14-64\Lib\shutil.py", line 852, in rmtree
+    _rmtree_impl(path, dir_fd, onexc)
+    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Alexandr\AppData\Local\Python\pythoncore-3.14-64\Lib\shutil.py", line 689, in _rmtree_unsafe
+    for dirpath, dirnames, filenames in results:
+                                        ^^^^^^^
+  File "<frozen os>", line 413, in walk
+  File "C:\Users\Alexandr\AppData\Local\Python\pythoncore-3.14-64\Lib\shutil.py", line 687, in onerror
+    onexc(os.scandir, err.filename, err)
+    ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Alexandr\AppData\Local\Python\pythoncore-3.14-64\Lib\tempfile.py", line 928, in onexc
+    _resetperms(path)
+    ~~~~~~~~~~~^^^^^^
+  File "C:\Users\Alexandr\AppData\Local\Python\pythoncore-3.14-64\Lib\tempfile.py", line 283, in _resetperms
+    _dont_follow_symlinks(_os.chmod, path, 0o700)
+    ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Alexandr\AppData\Local\Python\pythoncore-3.14-64\Lib\tempfile.py", line 272, in _dont_follow_symlinks
+    func(path, *args, follow_symlinks=False)
+    ~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+PermissionError: [WinError 5] Access is denied: 'C:\\Users\\Alexandr\\Desktop\\New folder\\универ\\мотортестер 2\\build\\v5a-backend-01\\temp\\v2-stop-oox9_uqa'
+
+======================================================================
+ERROR: test_connect_is_inert_then_dtr_hello_caps_without_start (test_v2_stream_serial.V2StreamSerialTests.test_connect_is_inert_then_dtr_hello_caps_without_start)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "<frozen os>", line 377, in walk
+PermissionError: [WinError 5] Access is denied: 'C:\\Users\\Alexandr\\Desktop\\New folder\\универ\\мотортестер 2\\build\\v5a-backend-01\\temp\\v2-serial-_0dba15p'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Alexandr\Desktop\New folder\универ\мотортестер 2\host\tests\test_v2_stream_serial.py", line 123, in tearDown
+    self.folder.cleanup()
+    ~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\Alexandr\AppData\Local\Python\pythoncore-3.14-64\Lib\tempfile.py", line 976, in cleanup
+    self._rmtree(self.name, ignore_errors=self._ignore_cleanup_errors)
+    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Alexandr\AppData\Local\Python\pythoncore-3.14-64\Lib\tempfile.py", line 956, in _rmtree
+    _shutil.rmtree(name, onexc=onexc)
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Alexandr\AppData\Local\Python\pythoncore-3.14-64\Lib\shutil.py", line 852, in rmtree
+    _rmtree_impl(path, dir_fd, onexc)
+    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Alexandr\AppData\Local\Python\pythoncore-3.14-64\Lib\shutil.py", line 689, in _rmtree_unsafe
+    for dirpath, dirnames, filenames in results:
+                                        ^^^^^^^
+  File "<frozen os>", line 413, in walk
+  File "C:\Users\Alexandr\AppData\Local\Python\pythoncore-3.14-64\Lib\shutil.py", line 687, in onerror
+    onexc(os.scandir, err.filename, err)
+    ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Alexandr\AppData\Local\Python\pythoncore-3.14-64\Lib\tempfile.py", line 928, in onexc
+    _resetperms(path)
+    ~~~~~~~~~~~^^^^^^
+  File "C:\Users\Alexandr\AppData\Local\Python\pythoncore-3.14-64\Lib\tempfile.py", line 283, in _resetperms
+    _dont_follow_symlinks(_os.chmod, path, 0o700)
+    ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Alexandr\AppData\Local\Python\pythoncore-3.14-64\Lib\tempfile.py", line 272, in _dont_follow_symlinks
+    func(path, *args, follow_symlinks=False)
+    ~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+PermissionError: [WinError 5] Access is denied: 'C:\\Users\\Alexandr\\Desktop\\New folder\\универ\\мотортестер 2\\build\\v5a-backend-01\\temp\\v2-serial-_0dba15p'
+
+======================================================================
+ERROR: test_nonzero_record_boundary_unknown_tail_and_durable_connection (test_v2_stream_serial.V2StreamSerialTests.test_nonzero_record_boundary_unknown_tail_and_durable_connection)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "<frozen os>", line 377, in walk
+PermissionError: [WinError 5] Access is denied: 'C:\\Users\\Alexandr\\Desktop\\New folder\\универ\\мотортестер 2\\build\\v5a-backend-01\\temp\\v2-serial-2quy6rzr'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Alexandr\Desktop\New folder\универ\мотортестер 2\host\tests\test_v2_stream_serial.py", line 123, in tearDown
+    self.folder.cleanup()
+    ~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\Alexandr\AppData\Local\Python\pythoncore-3.14-64\Lib\tempfile.py", line 976, in cleanup
+    self._rmtree(self.name, ignore_errors=self._ignore_cleanup_errors)
+    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Alexandr\AppData\Local\Python\pythoncore-3.14-64\Lib\tempfile.py", line 956, in _rmtree
+    _shutil.rmtree(name, onexc=onexc)
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Alexandr\AppData\Local\Python\pythoncore-3.14-64\Lib\shutil.py", line 852, in rmtree
+    _rmtree_impl(path, dir_fd, onexc)
+    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Alexandr\AppData\Local\Python\pythoncore-3.14-64\Lib\shutil.py", line 689, in _rmtree_unsafe
+    for dirpath, dirnames, filenames in results:
+                                        ^^^^^^^
+  File "<frozen os>", line 413, in walk
+  File "C:\Users\Alexandr\AppData\Local\Python\pythoncore-3.14-64\Lib\shutil.py", line 687, in onerror
+    onexc(os.scandir, err.filename, err)
+    ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Alexandr\AppData\Local\Python\pythoncore-3.14-64\Lib\tempfile.py", line 928, in onexc
+    _resetperms(path)
+    ~~~~~~~~~~~^^^^^^
+  File "C:\Users\Alexandr\AppData\Local\Python\pythoncore-3.14-64\Lib\tempfile.py", line 283, in _resetperms
+    _dont_follow_symlinks(_os.chmod, path, 0o700)
+    ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Alexandr\AppData\Local\Python\pythoncore-3.14-64\Lib\tempfile.py", line 272, in _dont_follow_symlinks
+    func(path, *args, follow_symlinks=False)
+    ~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+PermissionError: [WinError 5] Access is denied: 'C:\\Users\\Alexandr\\Desktop\\New folder\\универ\\мотортестер 2\\build\\v5a-backend-01\\temp\\v2-serial-2quy6rzr'
+
+======================================================================
+ERROR: test_close_failure_retains_owner_and_requires_explicit_retry (test_v2_stream_serial.V2StreamSerialTests.test_close_failure_retains_owner_and_requires_explicit_retry)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "<frozen os>", line 377, in walk
+PermissionError: [WinError 5] Access is denied: 'C:\\Users\\Alexandr\\Desktop\\New folder\\универ\\мотортестер 2\\build\\v5a-backend-01\\temp\\v2-serial-x6oqbfvb'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Alexandr\Desktop\New folder\универ\мотортестер 2\host\tests\test_v2_stream_serial.py", line 123, in tearDown
+    self.folder.cleanup()
+    ~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\Alexandr\AppData\Local\Python\pythoncore-3.14-64\Lib\tempfile.py", line 976, in cleanup
+    self._rmtree(self.name, ignore_errors=self._ignore_cleanup_errors)
+    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Alexandr\AppData\Local\Python\pythoncore-3.14-64\Lib\tempfile.py", line 956, in _rmtree
+    _shutil.rmtree(name, onexc=onexc)
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Alexandr\AppData\Local\Python\pythoncore-3.14-64\Lib\shutil.py", line 852, in rmtree
+    _rmtree_impl(path, dir_fd, onexc)
+    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Alexandr\AppData\Local\Python\pythoncore-3.14-64\Lib\shutil.py", line 689, in _rmtree_unsafe
+    for dirpath, dirnames, filenames in results:
+                                        ^^^^^^^
+  File "<frozen os>", line 413, in walk
+  File "C:\Users\Alexandr\AppData\Local\Python\pythoncore-3.14-64\Lib\shutil.py", line 687, in onerror
+    onexc(os.scandir, err.filename, err)
+    ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Alexandr\AppData\Local\Python\pythoncore-3.14-64\Lib\tempfile.py", line 928, in onexc
+    _resetperms(path)
+    ~~~~~~~~~~~^^^^^^
+  File "C:\Users\Alexandr\AppData\Local\Python\pythoncore-3.14-64\Lib\tempfile.py", line 283, in _resetperms
+    _dont_follow_symlinks(_os.chmod, path, 0o700)
+    ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Alexandr\AppData\Local\Python\pythoncore-3.14-64\Lib\tempfile.py", line 272, in _dont_follow_symlinks
+    func(path, *args, follow_symlinks=False)
+    ~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+PermissionError: [WinError 5] Access is denied: 'C:\\Users\\Alexandr\\Desktop\\New folder\\универ\\мотортестер 2\\build\\v5a-backend-01\\temp\\v2-serial-x6oqbfvb'
+
+======================================================================
+ERROR: test_prepared_stop_cancels_queued_start_and_device_identity_is_not_str1 (test_v2_stream_serial.V2StreamSerialTests.test_prepared_stop_cancels_queued_start_and_device_identity_is_not_str1)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "<frozen os>", line 377, in walk
+PermissionError: [WinError 5] Access is denied: 'C:\\Users\\Alexandr\\Desktop\\New folder\\универ\\мотортестер 2\\build\\v5a-backend-01\\temp\\v2-serial-29vo6ia4'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Alexandr\Desktop\New folder\универ\мотортестер 2\host\tests\test_v2_stream_serial.py", line 123, in tearDown
+    self.folder.cleanup()
+    ~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\Alexandr\AppData\Local\Python\pythoncore-3.14-64\Lib\tempfile.py", line 976, in cleanup
+    self._rmtree(self.name, ignore_errors=self._ignore_cleanup_errors)
+    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Alexandr\AppData\Local\Python\pythoncore-3.14-64\Lib\tempfile.py", line 956, in _rmtree
+    _shutil.rmtree(name, onexc=onexc)
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Alexandr\AppData\Local\Python\pythoncore-3.14-64\Lib\shutil.py", line 852, in rmtree
+    _rmtree_impl(path, dir_fd, onexc)
+    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Alexandr\AppData\Local\Python\pythoncore-3.14-64\Lib\shutil.py", line 689, in _rmtree_unsafe
+    for dirpath, dirnames, filenames in results:
+                                        ^^^^^^^
+  File "<frozen os>", line 413, in walk
+  File "C:\Users\Alexandr\AppData\Local\Python\pythoncore-3.14-64\Lib\shutil.py", line 687, in onerror
+    onexc(os.scandir, err.filename, err)
+    ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Alexandr\AppData\Local\Python\pythoncore-3.14-64\Lib\tempfile.py", line 928, in onexc
+    _resetperms(path)
+    ~~~~~~~~~~~^^^^^^
+  File "C:\Users\Alexandr\AppData\Local\Python\pythoncore-3.14-64\Lib\tempfile.py", line 283, in _resetperms
+    _dont_follow_symlinks(_os.chmod, path, 0o700)
+    ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Alexandr\AppData\Local\Python\pythoncore-3.14-64\Lib\tempfile.py", line 272, in _dont_follow_symlinks
+    func(path, *args, follow_symlinks=False)
+    ~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+PermissionError: [WinError 5] Access is denied: 'C:\\Users\\Alexandr\\Desktop\\New folder\\универ\\мотортестер 2\\build\\v5a-backend-01\\temp\\v2-serial-29vo6ia4'
+
+======================================================================
+FAIL: test_nonzero_record_boundary_unknown_tail_and_durable_connection (test_v2_stream_serial.V2StreamSerialTests.test_nonzero_record_boundary_unknown_tail_and_durable_connection)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Alexandr\Desktop\New folder\универ\мотортестер 2\host\tests\test_v2_stream_serial.py", line 213, in test_nonzero_record_boundary_unknown_tail_and_durable_connection
+    path, backend = self.record_prefix(bridge, factory)
+                    ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Users\Alexandr\Desktop\New folder\универ\мотортестер 2\host\tests\test_v2_stream_serial.py", line 153, in record_prefix
+    self.wait(lambda: bridge.state.phase == "waiting for boundary")
+    ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Alexandr\Desktop\New folder\универ\мотортестер 2\host\tests\test_v2_stream_serial.py", line 108, in wait
+    self.fail("Bounded serial wait timed out")
+    ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Bounded serial wait timed out
+
+======================================================================
+FAIL: test_close_failure_retains_owner_and_requires_explicit_retry (test_v2_stream_serial.V2StreamSerialTests.test_close_failure_retains_owner_and_requires_explicit_retry)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Alexandr\Desktop\New folder\универ\мотортестер 2\host\tests\test_v2_stream_serial.py", line 268, in test_close_failure_retains_owner_and_requires_explicit_retry
+    self.assertTrue(any("Serial close unconfirmed:" in error for error in bridge.errors))
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: False is not true
+
+----------------------------------------------------------------------
+Ran 6 tests in 4.476s
+
+FAILED (failures=2, errors=9)

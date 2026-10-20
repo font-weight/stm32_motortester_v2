@@ -18,6 +18,7 @@ def exercise(app, window, output, flush):
     from .stream_files import open_stream
     from .stream_picker_smoke import (
         exercise_record_picker, exercise_stopped_source_picker, exercise_existing_path_picker)
+    from .stream_stop_smoke import STOP_TEXT, exercise as exercise_stop
     from .stream_ui import StreamDialog
     from ..stream_recording import AttemptReport
 
@@ -129,7 +130,8 @@ def exercise(app, window, output, flush):
         assert recorded.first_sample_index == 0 and recorded.terminal.clean_stop_reported
         assert context.context.ui_profile == "ignition"
 
-        # Diagnostic STR1-like unknown END must not become complete/zero-loss.
+        # Requested normal Stop remains incomplete in accounting; a matching
+        # END/ACK must not be mislabelled as an acquisition fault.
         dialog = StreamDialog(context=StreamContext(),
             bridge_factory=lambda parent, **kw: StreamDeviceBridge(
                 parent, peer=PacedStreamPeer(unknown_tail=True), **kw))
@@ -139,14 +141,19 @@ def exercise(app, window, output, flush):
         assert dialog.record_path(partial_path)
         wait(lambda: dialog.bridge.state.validated_samples >= 5000)
         dialog.stop()
-        wait(lambda: dialog.saved_path is not None)
-        assert "НЕПОЛНЫЕ ДАННЫЕ" in dialog.state_label.text()
+        wait(lambda: dialog.saved_path is not None and
+             dialog.bridge.state.phase == "stopped unknown tail")
+        assert STOP_TEXT in dialog.state_label.text()
+        assert not dialog.error_label.text(), dialog.error_label.text()
         assert dialog.open_path(partial_path)
         wait(lambda: not dialog.busy and dialog.archive is not None and not dialog.viewer.busy)
         assert dialog.archive.terminal.loss_samples is None
         assert not dialog.archive.terminal.clean_stop_reported
+        assert dialog.archive.terminal.reason == "stopped"
+        assert dialog.archive.terminal.failure is None
+        assert STOP_TEXT in dialog.quality.text()
         image("stream-unknown-tail.png", dialog)
-        # Open a healthy recording after the fault: no old counter/failure.
+        # Open a fully accounted recording: no stale unknown-tail warning.
         assert dialog.open_path(path)
         wait(lambda: not dialog.busy and dialog.archive is not None)
         assert "НЕПОЛНЫЕ ДАННЫЕ" not in dialog.state_label.text()
@@ -154,12 +161,14 @@ def exercise(app, window, output, flush):
         dialog.close()
         wait(lambda: dialog.closed)
         existing_path_receipt = exercise_existing_path_picker(path, output, flush)
+        stop_receipt = exercise_stop(app, output, flush)
         return {"status": "PASS", "source": "paced synthetic wire 0.2",
                 "record_start": archive.first_sample_index, "exported_samples": rows_count,
                 "pause_independent": True, "raw_roundtrip": True,
                 "unknown_tail_preserved": True, "parent_close_drained": True,
                 "record_picker": picker_receipt,
                 "existing_path_picker": existing_path_receipt,
+                "stop_verification": stop_receipt,
                 "physical_stream_verified": False}
     finally:
         if not dialog.closed:

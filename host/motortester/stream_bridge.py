@@ -266,6 +266,15 @@ class BridgeSnapshot:
     accepted_build_id: int | None = None
     accepted_caps: tuple[int, ...] | None = None
 
+    @property
+    def unstarted_ready(self):
+        """Closing a healthy HELLO/CAPS-only connection loses no acquisition."""
+        return bool(not self.closed and self.endpoint_state == wire.State.STOPPED
+                    and self.accepted_caps is not None and self.identity is None
+                    and self.session is None and self.storage is None
+                    and self.pending_start is None and self.pending_stop is None
+                    and self.endpoint_first_fault is None and self.late_fault is None)
+
 
 class StreamBridge:
     """One attempt, one planned generation and at most one recording pathname.
@@ -416,7 +425,7 @@ class StreamBridge:
             elif isinstance(event, wire.ValidatedEnd):
                 terminal = event.terminal
                 failure = None
-                if terminal.reason or terminal.flags:
+                if (terminal.reason or terminal.flags) and not wire.is_unknown_tail_stop(terminal):
                     failure = self._failure("device_" + str(terminal.reason), source_code=terminal.reason)
                 loss = None if terminal.produced_end is None else terminal.produced_end - terminal.prefix_end
                 normalized = StreamTerminal(self._identity, terminal.prefix_end,
@@ -657,7 +666,17 @@ class StreamBridge:
         self._clock(now_ms)
         if self._closed:
             return
-        if self._session is None or not self._session.snapshot().finalized:
+        snap = self.snapshot()
+        # Preview has no writer to finalize. Its actual END + matching ACK is
+        # sufficient to close ownership, but does not assert a lossless tail.
+        stopped_preview = bool(
+            snap.session is not None and snap.storage is None
+            and snap.session.source_end and snap.session.stop_acknowledgement
+            and snap.session.stop_acknowledgement.quiescence_reported
+            and not snap.session.first_failure and not snap.endpoint_first_fault
+            and not snap.late_fault and not snap.pending_start and not snap.pending_stop)
+        if (not snap.unstarted_ready and not stopped_preview
+                and (snap.session is None or not snap.session.finalized)):
             self._events(self._endpoint.transport_fault(now_ms))
         if self._job is not None:
             self._session.storage_failed(JobFailure.for_job(self._job,
