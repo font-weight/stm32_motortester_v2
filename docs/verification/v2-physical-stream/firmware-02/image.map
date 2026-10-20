@@ -1,0 +1,1481 @@
+
+Discarded input sections
+
+ .comment       0x00000000       0x44 objects/00-mt_boot_cpu.o
+ .note.GNU-stack
+                0x00000000        0x0 objects/00-mt_boot_cpu.o
+ .comment       0x00000000       0x44 objects/01-adc_timer_dma.o
+ .note.GNU-stack
+                0x00000000        0x0 objects/01-adc_timer_dma.o
+ .comment       0x00000000       0x44 objects/02-mt_timebase.o
+ .note.GNU-stack
+                0x00000000        0x0 objects/02-mt_timebase.o
+ .comment       0x00000000       0x44 objects/03-mt_irq_guard.o
+ .note.GNU-stack
+                0x00000000        0x0 objects/03-mt_irq_guard.o
+ .comment       0x00000000       0x44 objects/04-mt_wire.o
+ .note.GNU-stack
+                0x00000000        0x0 objects/04-mt_wire.o
+ .comment       0x00000000       0x44 objects/05-mt_usb_epoch.o
+ .note.GNU-stack
+                0x00000000        0x0 objects/05-mt_usb_epoch.o
+ .comment       0x00000000       0x44 objects/06-mt_usb_bridge.o
+ .note.GNU-stack
+                0x00000000        0x0 objects/06-mt_usb_bridge.o
+ .comment       0x00000000       0x44 objects/07-mt_usb_descriptors.o
+ .note.GNU-stack
+                0x00000000        0x0 objects/07-mt_usb_descriptors.o
+ .comment       0x00000000       0x44 objects/08-mt_memory.o
+ .note.GNU-stack
+                0x00000000        0x0 objects/08-mt_memory.o
+ .comment       0x00000000       0x44 objects/09-tusb.o
+ .note.GNU-stack
+                0x00000000        0x0 objects/09-tusb.o
+ .comment       0x00000000       0x44 objects/10-tusb_fifo.o
+ .note.GNU-stack
+                0x00000000        0x0 objects/10-tusb_fifo.o
+ .comment       0x00000000       0x44 objects/11-cdc_device.o
+ .note.GNU-stack
+                0x00000000        0x0 objects/11-cdc_device.o
+ .comment       0x00000000       0x44 objects/12-usbd.o
+ .note.GNU-stack
+                0x00000000        0x0 objects/12-usbd.o
+ .comment       0x00000000       0x44 objects/13-dcd_stm32_fsdev.o
+ .note.GNU-stack
+                0x00000000        0x0 objects/13-dcd_stm32_fsdev.o
+ .comment       0x00000000       0x44 objects/14-fsdev_common.o
+ .note.GNU-stack
+                0x00000000        0x0 objects/14-fsdev_common.o
+ .comment       0x00000000       0x44 objects/15-mt_clock_startup.o
+ .note.GNU-stack
+                0x00000000        0x0 objects/15-mt_clock_startup.o
+ .comment       0x00000000       0x44 objects/16-mt_boot_time.o
+ .note.GNU-stack
+                0x00000000        0x0 objects/16-mt_boot_time.o
+ .comment       0x00000000       0x44 objects/17-mt_boot_usb.o
+ .note.GNU-stack
+                0x00000000        0x0 objects/17-mt_boot_usb.o
+ .comment       0x00000000       0x44 objects/18-mt_usb_time.o
+ .note.GNU-stack
+                0x00000000        0x0 objects/18-mt_usb_time.o
+ .comment       0x00000000       0x44 objects/19-mt_usb_irq.o
+ .note.GNU-stack
+                0x00000000        0x0 objects/19-mt_usb_irq.o
+ .comment       0x00000000       0x44 objects/20-mt_stream_main.o
+ .note.GNU-stack
+                0x00000000        0x0 objects/20-mt_stream_main.o
+ .comment       0x00000000       0x44 objects/21-mt_live_runtime.o
+ .note.GNU-stack
+                0x00000000        0x0 objects/21-mt_live_runtime.o
+ .comment       0x00000000       0x44 objects/22-mt_live_adc.o
+ .note.GNU-stack
+                0x00000000        0x0 objects/22-mt_live_adc.o
+ .comment       0x00000000       0x44 objects/23-mt_live_clock.o
+ .note.GNU-stack
+                0x00000000        0x0 objects/23-mt_live_clock.o
+ .comment       0x00000000       0x44 objects/24-mt_live_device.o
+ .note.GNU-stack
+                0x00000000        0x0 objects/24-mt_live_device.o
+ .comment       0x00000000       0x44 objects/25-mt_sample_queue.o
+ .note.GNU-stack
+                0x00000000        0x0 objects/25-mt_sample_queue.o
+ .comment       0x00000000       0x44 objects/26-mt_stream_diag.o
+ .note.GNU-stack
+                0x00000000        0x0 objects/26-mt_stream_diag.o
+ .note.GNU-stack
+                0x00000000        0x0 objects/reset.o
+ .comment       0x00000000       0x44 objects/board.o
+ .note.GNU-stack
+                0x00000000        0x0 objects/board.o
+ .comment       0x00000000       0x44 objects/timing.o
+ .note.GNU-stack
+                0x00000000        0x0 objects/timing.o
+
+Memory Configuration
+
+Name             Origin             Length             Attributes
+FLASH            0x08000000         0x00010000         xr
+RAM              0x20000000         0x00005000         rw
+*default*        0x00000000         0xffffffff
+
+Linker script and memory map
+
+                0x00002000                        __boot_stack_bytes = 0x2000
+                0x20005000                        __StackTop = (ORIGIN (RAM) + LENGTH (RAM))
+                0x20003000                        __StackLimit = (__StackTop - __boot_stack_bytes)
+
+.isr_vector     0x08000000       0xec
+ *(.isr_vector .isr_vector.*)
+ .isr_vector    0x08000000       0xec objects/reset.o
+                0x08000000                mt_boot_vectors
+
+.text           0x080000ec     0x8380
+ *(.text .text.*)
+ .text          0x080000ec        0x0 objects/00-mt_boot_cpu.o
+ .text.mt_boot_cpu_masked
+                0x080000ec       0x30 objects/00-mt_boot_cpu.o
+                0x080000ec                mt_boot_cpu_masked
+ .text.mt_boot_cpu_admit
+                0x0800011c       0x1a objects/00-mt_boot_cpu.o
+                0x0800011c                mt_boot_cpu_admit
+ .text.mt_boot_cpu_halt
+                0x08000136        0x6 objects/00-mt_boot_cpu.o
+                0x08000136                mt_boot_cpu_halt
+ .text          0x0800013c        0x0 objects/01-adc_timer_dma.o
+ .text.rd       0x0800013c        0xa objects/01-adc_timer_dma.o
+ .text.wr       0x08000146        0xa objects/01-adc_timer_dma.o
+ .text.now      0x08000150        0x6 objects/01-adc_timer_dma.o
+ .text.valid    0x08000156        0xc objects/01-adc_timer_dma.o
+ .text.wait_clear
+                0x08000162       0x3e objects/01-adc_timer_dma.o
+ .text.gates_enabled
+                0x080001a0       0x40 objects/01-adc_timer_dma.o
+ .text.invalidate_history
+                0x080001e0       0x22 objects/01-adc_timer_dma.o
+ *fill*         0x08000202        0x2 
+ .text.hardware_off
+                0x08000204       0x6c objects/01-adc_timer_dma.o
+ .text.clock_plan
+                0x08000270      0x194 objects/01-adc_timer_dma.o
+ .text.quiesce  0x08000404      0x2d0 objects/01-adc_timer_dma.o
+ .text.fail     0x080006d4       0x28 objects/01-adc_timer_dma.o
+ .text.start    0x080006fc      0x444 objects/01-adc_timer_dma.o
+ .text.mt_adc_dma_mmio_read32
+                0x08000b40        0x4 objects/01-adc_timer_dma.o
+                0x08000b40                mt_adc_dma_mmio_read32
+ .text.mt_adc_dma_mmio_write32
+                0x08000b44        0x4 objects/01-adc_timer_dma.o
+                0x08000b44                mt_adc_dma_mmio_write32
+ .text.mt_adc_dma_init
+                0x08000b48       0x42 objects/01-adc_timer_dma.o
+                0x08000b48                mt_adc_dma_init
+ *fill*         0x08000b8a        0x2 
+ .text.mt_adc_dma_profile1_ready
+                0x08000b8c       0x8c objects/01-adc_timer_dma.o
+                0x08000b8c                mt_adc_dma_profile1_ready
+ .text.mt_adc_dma_start
+                0x08000c18        0x6 objects/01-adc_timer_dma.o
+                0x08000c18                mt_adc_dma_start
+ .text.mt_adc_dma_start_guarded
+                0x08000c1e       0x18 objects/01-adc_timer_dma.o
+                0x08000c1e                mt_adc_dma_start_guarded
+ *fill*         0x08000c36        0x2 
+ .text.mt_adc_dma_read_block
+                0x08000c38      0x244 objects/01-adc_timer_dma.o
+                0x08000c38                mt_adc_dma_read_block
+ .text.mt_adc_dma_stop
+                0x08000e7c       0x3a objects/01-adc_timer_dma.o
+                0x08000e7c                mt_adc_dma_stop
+ .text.mt_adc_dma_enable_stream
+                0x08000eb6       0x2a objects/01-adc_timer_dma.o
+                0x08000eb6                mt_adc_dma_enable_stream
+ .text.mt_adc_dma_invalidate_stream_history
+                0x08000ee0       0x22 objects/01-adc_timer_dma.o
+                0x08000ee0                mt_adc_dma_invalidate_stream_history
+ .text.mt_adc_dma_stop_snapshot
+                0x08000f02       0xfa objects/01-adc_timer_dma.o
+                0x08000f02                mt_adc_dma_stop_snapshot
+ .text          0x08000ffc        0x0 objects/02-mt_timebase.o
+ .text.write_reg
+                0x08000ffc        0x6 objects/02-mt_timebase.o
+ *fill*         0x08001002        0x2 
+ .text.mt_timebase_update
+                0x08001004      0x208 objects/02-mt_timebase.o
+                0x08001004                mt_timebase_update
+ .text.mt_timebase_init
+                0x0800120c      0x290 objects/02-mt_timebase.o
+                0x0800120c                mt_timebase_init
+ .text.mt_timebase_healthy
+                0x0800149c       0x24 objects/02-mt_timebase.o
+                0x0800149c                mt_timebase_healthy
+ .text.mt_timebase_now_us
+                0x080014c0       0x20 objects/02-mt_timebase.o
+                0x080014c0                mt_timebase_now_us
+ .text.mt_timebase_now_ms
+                0x080014e0       0x20 objects/02-mt_timebase.o
+                0x080014e0                mt_timebase_now_ms
+ .text.mt_timebase_snapshot
+                0x08001500       0x2a objects/02-mt_timebase.o
+                0x08001500                mt_timebase_snapshot
+ *fill*         0x0800152a        0x2 
+ .text.mt_timebase_stop
+                0x0800152c       0x80 objects/02-mt_timebase.o
+                0x0800152c                mt_timebase_stop
+ .text          0x080015ac        0x0 objects/03-mt_irq_guard.o
+ .text.mt_irq_guard_enter
+                0x080015ac        0x8 objects/03-mt_irq_guard.o
+                0x080015ac                mt_irq_guard_enter
+ .text.mt_irq_guard_leave
+                0x080015b4        0x6 objects/03-mt_irq_guard.o
+                0x080015b4                mt_irq_guard_leave
+ .text          0x080015ba        0x0 objects/04-mt_wire.o
+ .text.put32    0x080015ba       0x10 objects/04-mt_wire.o
+ .text.get32    0x080015ca       0x18 objects/04-mt_wire.o
+ *fill*         0x080015e2        0x2 
+ .text.mt_wire_crc32
+                0x080015e4       0x30 objects/04-mt_wire.o
+                0x080015e4                mt_wire_crc32
+ .text.mt_wire_encode_revision.part.0
+                0x08001614       0xf2 objects/04-mt_wire.o
+ .text.mt_wire_decode_revision.part.0
+                0x08001706      0x12c objects/04-mt_wire.o
+ .text.mt_wire_encode_revision
+                0x08001832       0x1c objects/04-mt_wire.o
+                0x08001832                mt_wire_encode_revision
+ .text.mt_wire_decode_revision
+                0x0800184e       0x16 objects/04-mt_wire.o
+                0x0800184e                mt_wire_decode_revision
+ .text.mt_wire_encode
+                0x08001864       0x16 objects/04-mt_wire.o
+                0x08001864                mt_wire_encode
+ .text.mt_wire_decode
+                0x0800187a       0x12 objects/04-mt_wire.o
+                0x0800187a                mt_wire_decode
+ .text          0x0800188c        0x0 objects/05-mt_usb_epoch.o
+ .text.current  0x0800188c       0x18 objects/05-mt_usb_epoch.o
+ .text.mt_usb_epoch_init
+                0x080018a4        0xe objects/05-mt_usb_epoch.o
+                0x080018a4                mt_usb_epoch_init
+ .text.mt_usb_epoch_reset
+                0x080018b2       0x36 objects/05-mt_usb_epoch.o
+                0x080018b2                mt_usb_epoch_reset
+ .text.mt_usb_epoch_disconnect
+                0x080018e8       0x36 objects/05-mt_usb_epoch.o
+                0x080018e8                mt_usb_epoch_disconnect
+ .text.mt_usb_epoch_enqueued
+                0x0800191e       0x40 objects/05-mt_usb_epoch.o
+                0x0800191e                mt_usb_epoch_enqueued
+ .text.mt_usb_epoch_cleaned
+                0x0800195e       0x10 objects/05-mt_usb_epoch.o
+                0x0800195e                mt_usb_epoch_cleaned
+ .text.mt_usb_epoch_dispatch
+                0x0800196e       0x46 objects/05-mt_usb_epoch.o
+                0x0800196e                mt_usb_epoch_dispatch
+ .text.mt_usb_epoch_reset_done
+                0x080019b4       0x14 objects/05-mt_usb_epoch.o
+                0x080019b4                mt_usb_epoch_reset_done
+ .text.mt_usb_epoch_core_io
+                0x080019c8        0x6 objects/05-mt_usb_epoch.o
+                0x080019c8                mt_usb_epoch_core_io
+ .text.mt_usb_epoch_configured
+                0x080019ce       0x12 objects/05-mt_usb_epoch.o
+                0x080019ce                mt_usb_epoch_configured
+ .text.mt_usb_epoch_app_io
+                0x080019e0       0x16 objects/05-mt_usb_epoch.o
+                0x080019e0                mt_usb_epoch_app_io
+ .text.mt_usb_epoch_fail
+                0x080019f6       0x32 objects/05-mt_usb_epoch.o
+                0x080019f6                mt_usb_epoch_fail
+ .text.mt_usb_epoch_suspend
+                0x08001a28       0x24 objects/05-mt_usb_epoch.o
+                0x08001a28                mt_usb_epoch_suspend
+ .text.mt_usb_epoch_resume
+                0x08001a4c       0x24 objects/05-mt_usb_epoch.o
+                0x08001a4c                mt_usb_epoch_resume
+ .text          0x08001a70        0x0 objects/06-mt_usb_bridge.o
+ .text.permitted
+                0x08001a70       0x40 objects/06-mt_usb_bridge.o
+ .text.result.part.0
+                0x08001ab0       0x14 objects/06-mt_usb_bridge.o
+ .text.mt_usb_bridge_init
+                0x08001ac4       0x54 objects/06-mt_usb_bridge.o
+                0x08001ac4                mt_usb_bridge_init
+ .text.mt_usb_bridge_lock
+                0x08001b18       0x10 objects/06-mt_usb_bridge.o
+                0x08001b18                mt_usb_bridge_lock
+ .text.mt_usb_bridge_unlock
+                0x08001b28       0x10 objects/06-mt_usb_bridge.o
+                0x08001b28                mt_usb_bridge_unlock
+ .text.mt_usb_bridge_ingress
+                0x08001b38       0x5c objects/06-mt_usb_bridge.o
+                0x08001b38                mt_usb_bridge_ingress
+ .text.mt_usb_bridge_pma_overrun
+                0x08001b94       0x34 objects/06-mt_usb_bridge.o
+                0x08001b94                mt_usb_bridge_pma_overrun
+ .text.mt_usb_bridge_enqueued
+                0x08001bc8       0x10 objects/06-mt_usb_bridge.o
+                0x08001bc8                mt_usb_bridge_enqueued
+ .text.mt_usb_bridge_actor
+                0x08001bd8        0xc objects/06-mt_usb_bridge.o
+                0x08001bd8                mt_usb_bridge_actor
+ .text.mt_usb_bridge_snapshot
+                0x08001be4       0x2c objects/06-mt_usb_bridge.o
+                0x08001be4                mt_usb_bridge_snapshot
+ .text.mt_usb_bridge_cleaned
+                0x08001c10       0x20 objects/06-mt_usb_bridge.o
+                0x08001c10                mt_usb_bridge_cleaned
+ .text.mt_usb_bridge_dispatch
+                0x08001c30       0x98 objects/06-mt_usb_bridge.o
+                0x08001c30                mt_usb_bridge_dispatch
+ .text.mt_usb_bridge_app_enter
+                0x08001cc8       0x5c objects/06-mt_usb_bridge.o
+                0x08001cc8                mt_usb_bridge_app_enter
+ .text.mt_usb_bridge_leave
+                0x08001d24       0x24 objects/06-mt_usb_bridge.o
+                0x08001d24                mt_usb_bridge_leave
+ .text.mt_usb_bridge_reset_done
+                0x08001d48       0x2c objects/06-mt_usb_bridge.o
+                0x08001d48                mt_usb_bridge_reset_done
+ .text.mt_usb_bridge_config_begin
+                0x08001d74       0x3c objects/06-mt_usb_bridge.o
+                0x08001d74                mt_usb_bridge_config_begin
+ .text.mt_usb_bridge_config_done
+                0x08001db0       0x3c objects/06-mt_usb_bridge.o
+                0x08001db0                mt_usb_bridge_config_done
+ .text.mt_usb_bridge_xfer
+                0x08001dec       0x46 objects/06-mt_usb_bridge.o
+                0x08001dec                mt_usb_bridge_xfer
+ .text.mt_usb_bridge_fifo
+                0x08001e32       0x46 objects/06-mt_usb_bridge.o
+                0x08001e32                mt_usb_bridge_fifo
+ .text.mt_usb_bridge_open
+                0x08001e78       0x32 objects/06-mt_usb_bridge.o
+                0x08001e78                mt_usb_bridge_open
+ .text.mt_usb_bridge_stall
+                0x08001eaa       0x24 objects/06-mt_usb_bridge.o
+                0x08001eaa                mt_usb_bridge_stall
+ .text.mt_usb_bridge_clear_stall
+                0x08001ece       0x24 objects/06-mt_usb_bridge.o
+                0x08001ece                mt_usb_bridge_clear_stall
+ .text.mt_usb_bridge_status
+                0x08001ef2       0x24 objects/06-mt_usb_bridge.o
+                0x08001ef2                mt_usb_bridge_status
+ .text.mt_usb_bridge_sof
+                0x08001f16       0x24 objects/06-mt_usb_bridge.o
+                0x08001f16                mt_usb_bridge_sof
+ .text.mt_usb_bridge_close_all
+                0x08001f3a       0x20 objects/06-mt_usb_bridge.o
+                0x08001f3a                mt_usb_bridge_close_all
+ *fill*         0x08001f5a        0x2 
+ .text.mt_usb_bridge_address
+                0x08001f5c       0x68 objects/06-mt_usb_bridge.o
+                0x08001f5c                mt_usb_bridge_address
+ .text.mt_usb_bridge_address_result
+                0x08001fc4       0x20 objects/06-mt_usb_bridge.o
+                0x08001fc4                mt_usb_bridge_address_result
+ .text          0x08001fe4        0x0 objects/07-mt_usb_descriptors.o
+ .text.mt_usb_descriptors_init
+                0x08001fe4      0x128 objects/07-mt_usb_descriptors.o
+                0x08001fe4                mt_usb_descriptors_init
+ .text.tud_descriptor_device_cb
+                0x0800210c       0x18 objects/07-mt_usb_descriptors.o
+                0x0800210c                tud_descriptor_device_cb
+ .text.tud_descriptor_configuration_cb
+                0x08002124       0x1c objects/07-mt_usb_descriptors.o
+                0x08002124                tud_descriptor_configuration_cb
+ .text.tud_descriptor_string_cb
+                0x08002140       0x34 objects/07-mt_usb_descriptors.o
+                0x08002140                tud_descriptor_string_cb
+ .text          0x08002174        0x0 objects/08-mt_memory.o
+ .text.memcpy   0x08002174       0x18 objects/08-mt_memory.o
+                0x08002174                memcpy
+ .text.memmove  0x0800218c       0x2a objects/08-mt_memory.o
+                0x0800218c                memmove
+ .text.memset   0x080021b6       0x10 objects/08-mt_memory.o
+                0x080021b6                memset
+ .text.memcmp   0x080021c6       0x1c objects/08-mt_memory.o
+                0x080021c6                memcmp
+ .text          0x080021e2        0x0 objects/09-tusb.o
+ .text.stream_claim
+                0x080021e2       0x12 objects/09-tusb.o
+ .text.stream_xfer
+                0x080021f4       0x32 objects/09-tusb.o
+ .text.stream_release.isra.0
+                0x08002226        0xe objects/09-tusb.o
+ .text.tusb_time_delay_ms_api
+                0x08002234       0x16 objects/09-tusb.o
+                0x08002234                tusb_time_delay_ms_api
+ .text.tusb_app_virt_to_phys
+                0x0800224a        0x2 objects/09-tusb.o
+                0x0800224a                tusb_app_virt_to_phys
+ .text.tusb_app_phys_to_virt
+                0x0800224c        0x2 objects/09-tusb.o
+                0x0800224c                tusb_app_phys_to_virt
+ *fill*         0x0800224e        0x2 
+ .text.tusb_rhport_init
+                0x08002250       0x64 objects/09-tusb.o
+                0x08002250                tusb_rhport_init
+ .text.tusb_inited
+                0x080022b4        0x4 objects/09-tusb.o
+                0x080022b4                tusb_inited
+ .text.tusb_int_handler
+                0x080022b8       0x18 objects/09-tusb.o
+                0x080022b8                tusb_int_handler
+ .text.tusb_deinit
+                0x080022d0       0x38 objects/09-tusb.o
+                0x080022d0                tusb_deinit
+ .text.tu_desc_find
+                0x08002308       0x16 objects/09-tusb.o
+                0x08002308                tu_desc_find
+ .text.tu_desc_find2
+                0x0800231e       0x1e objects/09-tusb.o
+                0x0800231e                tu_desc_find2
+ .text.tu_desc_find3
+                0x0800233c       0x28 objects/09-tusb.o
+                0x0800233c                tu_desc_find3
+ .text.tu_edpt_claim
+                0x08002364       0x22 objects/09-tusb.o
+                0x08002364                tu_edpt_claim
+ .text.tu_edpt_release
+                0x08002386       0x1c objects/09-tusb.o
+                0x08002386                tu_edpt_release
+ .text.tu_bind_driver_to_ep_itf
+                0x080023a2       0x5a objects/09-tusb.o
+                0x080023a2                tu_bind_driver_to_ep_itf
+ .text.tu_edpt_stream_init
+                0x080023fc       0x2a objects/09-tusb.o
+                0x080023fc                tu_edpt_stream_init
+ .text.tu_edpt_stream_write_zlp_if_needed
+                0x08002426       0x46 objects/09-tusb.o
+                0x08002426                tu_edpt_stream_write_zlp_if_needed
+ .text.tu_edpt_stream_write_xfer
+                0x0800246c       0x86 objects/09-tusb.o
+                0x0800246c                tu_edpt_stream_write_xfer
+ .text.tu_edpt_stream_write
+                0x080024f2       0x48 objects/09-tusb.o
+                0x080024f2                tu_edpt_stream_write
+ .text.tu_edpt_stream_write_available
+                0x0800253a       0x24 objects/09-tusb.o
+                0x0800253a                tu_edpt_stream_write_available
+ .text.tu_edpt_stream_read_xfer
+                0x0800255e       0x94 objects/09-tusb.o
+                0x0800255e                tu_edpt_stream_read_xfer
+ .text.tu_edpt_stream_read
+                0x080025f2       0x1a objects/09-tusb.o
+                0x080025f2                tu_edpt_stream_read
+ .text          0x0800260c        0x0 objects/10-tusb_fifo.o
+ .text.advance_index
+                0x0800260c       0x18 objects/10-tusb_fifo.o
+ .text.ff_peek_local
+                0x08002624       0x44 objects/10-tusb_fifo.o
+ .text.tu_fifo_config
+                0x08002668       0x1c objects/10-tusb_fifo.o
+                0x08002668                tu_fifo_config
+ .text.tu_fifo_clear
+                0x08002684        0x8 objects/10-tusb_fifo.o
+                0x08002684                tu_fifo_clear
+ .text.tu_fifo_set_overwritable
+                0x0800268c        0xa objects/10-tusb_fifo.o
+                0x0800268c                tu_fifo_set_overwritable
+ .text.tu_hwfifo_write
+                0x08002696       0x34 objects/10-tusb_fifo.o
+                0x08002696                tu_hwfifo_write
+ .text.tu_hwfifo_read
+                0x080026ca       0x32 objects/10-tusb_fifo.o
+                0x080026ca                tu_hwfifo_read
+ .text.tu_fifo_peek_n_access_mode
+                0x080026fc      0x13c objects/10-tusb_fifo.o
+                0x080026fc                tu_fifo_peek_n_access_mode
+ .text.tu_fifo_peek_n
+                0x08002838       0x18 objects/10-tusb_fifo.o
+                0x08002838                tu_fifo_peek_n
+ .text.tu_fifo_read_n_access_mode
+                0x08002850       0x2a objects/10-tusb_fifo.o
+                0x08002850                tu_fifo_read_n_access_mode
+ .text.tu_fifo_write_n_access_mode
+                0x0800287a      0x19a objects/10-tusb_fifo.o
+                0x0800287a                tu_fifo_write_n_access_mode
+ .text.tu_fifo_discard_n
+                0x08002a14       0x3a objects/10-tusb_fifo.o
+                0x08002a14                tu_fifo_discard_n
+ .text.tu_fifo_read
+                0x08002a4e       0x26 objects/10-tusb_fifo.o
+                0x08002a4e                tu_fifo_read
+ .text.tu_fifo_peek
+                0x08002a74        0xc objects/10-tusb_fifo.o
+                0x08002a74                tu_fifo_peek
+ .text.tu_fifo_write
+                0x08002a80       0x50 objects/10-tusb_fifo.o
+                0x08002a80                tu_fifo_write
+ .text.tu_fifo_advance_write_pointer
+                0x08002ad0       0x14 objects/10-tusb_fifo.o
+                0x08002ad0                tu_fifo_advance_write_pointer
+ .text.tu_fifo_correct_read_pointer
+                0x08002ae4       0x14 objects/10-tusb_fifo.o
+                0x08002ae4                tu_fifo_correct_read_pointer
+ .text.tu_fifo_advance_read_pointer
+                0x08002af8       0x14 objects/10-tusb_fifo.o
+                0x08002af8                tu_fifo_advance_read_pointer
+ .text.tu_fifo_get_read_info
+                0x08002b0c       0x6c objects/10-tusb_fifo.o
+                0x08002b0c                tu_fifo_get_read_info
+ .text.tu_fifo_get_write_info
+                0x08002b78       0x5e objects/10-tusb_fifo.o
+                0x08002b78                tu_fifo_get_write_info
+ .text          0x08002bd6        0x0 objects/11-cdc_device.o
+ .text.tud_cdc_rx_cb
+                0x08002bd6        0x2 objects/11-cdc_device.o
+                0x08002bd6                tud_cdc_rx_cb
+ .text.tud_cdc_rx_wanted_cb
+                0x08002bd8        0x2 objects/11-cdc_device.o
+                0x08002bd8                tud_cdc_rx_wanted_cb
+ .text.tud_cdc_tx_complete_cb
+                0x08002bda        0x2 objects/11-cdc_device.o
+                0x08002bda                tud_cdc_tx_complete_cb
+ .text.tud_cdc_notify_complete_cb
+                0x08002bdc        0x2 objects/11-cdc_device.o
+                0x08002bdc                tud_cdc_notify_complete_cb
+ .text.tud_cdc_line_state_cb
+                0x08002bde        0x2 objects/11-cdc_device.o
+                0x08002bde                tud_cdc_line_state_cb
+ .text.tud_cdc_line_coding_cb
+                0x08002be0        0x2 objects/11-cdc_device.o
+                0x08002be0                tud_cdc_line_coding_cb
+ .text.tud_cdc_send_break_cb
+                0x08002be2        0x2 objects/11-cdc_device.o
+                0x08002be2                tud_cdc_send_break_cb
+ .text.tud_cdc_n_ready
+                0x08002be4       0x34 objects/11-cdc_device.o
+                0x08002be4                tud_cdc_n_ready
+ .text.tud_cdc_n_connected
+                0x08002c18       0x28 objects/11-cdc_device.o
+                0x08002c18                tud_cdc_n_connected
+ .text.tud_cdc_n_get_line_state
+                0x08002c40       0x10 objects/11-cdc_device.o
+                0x08002c40                tud_cdc_n_get_line_state
+ .text.tud_cdc_n_get_line_coding
+                0x08002c50       0x18 objects/11-cdc_device.o
+                0x08002c50                tud_cdc_n_get_line_coding
+ .text.tud_cdc_n_set_wanted_char
+                0x08002c68        0xc objects/11-cdc_device.o
+                0x08002c68                tud_cdc_n_set_wanted_char
+ .text.tud_cdc_n_available
+                0x08002c74       0x2c objects/11-cdc_device.o
+                0x08002c74                tud_cdc_n_available
+ .text.tud_cdc_n_read
+                0x08002ca0       0x10 objects/11-cdc_device.o
+                0x08002ca0                tud_cdc_n_read
+ .text.tud_cdc_n_peek
+                0x08002cb0       0x10 objects/11-cdc_device.o
+                0x08002cb0                tud_cdc_n_peek
+ .text.tud_cdc_n_read_flush
+                0x08002cc0       0x20 objects/11-cdc_device.o
+                0x08002cc0                tud_cdc_n_read_flush
+ .text.tud_cdc_n_write
+                0x08002ce0       0x10 objects/11-cdc_device.o
+                0x08002ce0                tud_cdc_n_write
+ .text.tud_cdc_n_write_flush
+                0x08002cf0       0x10 objects/11-cdc_device.o
+                0x08002cf0                tud_cdc_n_write_flush
+ .text.tud_cdc_n_write_available
+                0x08002d00       0x10 objects/11-cdc_device.o
+                0x08002d00                tud_cdc_n_write_available
+ .text.tud_cdc_n_write_clear
+                0x08002d10       0x18 objects/11-cdc_device.o
+                0x08002d10                tud_cdc_n_write_clear
+ .text.cdcd_init
+                0x08002d28       0x58 objects/11-cdc_device.o
+                0x08002d28                cdcd_init
+ .text.cdcd_deinit
+                0x08002d80        0x4 objects/11-cdc_device.o
+                0x08002d80                cdcd_deinit
+ .text.cdcd_reset
+                0x08002d84       0x28 objects/11-cdc_device.o
+                0x08002d84                cdcd_reset
+ .text.cdcd_open
+                0x08002dac      0x134 objects/11-cdc_device.o
+                0x08002dac                cdcd_open
+ .text.cdcd_control_xfer_cb
+                0x08002ee0       0x9c objects/11-cdc_device.o
+                0x08002ee0                cdcd_control_xfer_cb
+ .text.cdcd_xfer_cb
+                0x08002f7c      0x104 objects/11-cdc_device.o
+                0x08002f7c                cdcd_xfer_cb
+ .text          0x08003080        0x0 objects/12-usbd.o
+ .text.tud_vendor_control_xfer_cb
+                0x08003080        0x4 objects/12-usbd.o
+                0x08003080                tud_vendor_control_xfer_cb
+ .text.configuration_reset
+                0x08003084       0x88 objects/12-usbd.o
+ .text.usbd_int_set
+                0x0800310c       0x14 objects/12-usbd.o
+                0x0800310c                usbd_int_set
+ .text.invoke_class_control.constprop.0.isra.0
+                0x08003120       0x10 objects/12-usbd.o
+ .text.tud_event_hook_cb
+                0x08003130        0x2 objects/12-usbd.o
+                0x08003130                tud_event_hook_cb
+ *fill*         0x08003132        0x2 
+ .text.queue_event_epoch.isra.0
+                0x08003134       0x94 objects/12-usbd.o
+ .text.tud_sof_cb
+                0x080031c8        0x2 objects/12-usbd.o
+                0x080031c8                tud_sof_cb
+ .text.tud_descriptor_bos_cb
+                0x080031ca        0x4 objects/12-usbd.o
+                0x080031ca                tud_descriptor_bos_cb
+ .text.tud_descriptor_device_qualifier_cb
+                0x080031ce        0x4 objects/12-usbd.o
+                0x080031ce                tud_descriptor_device_qualifier_cb
+ .text.tud_descriptor_other_speed_configuration_cb
+                0x080031d2        0x4 objects/12-usbd.o
+                0x080031d2                tud_descriptor_other_speed_configuration_cb
+ .text.tud_mount_cb
+                0x080031d6        0x2 objects/12-usbd.o
+                0x080031d6                tud_mount_cb
+ .text.tud_umount_cb
+                0x080031d8        0x2 objects/12-usbd.o
+                0x080031d8                tud_umount_cb
+ .text.tud_suspend_cb
+                0x080031da        0x2 objects/12-usbd.o
+                0x080031da                tud_suspend_cb
+ .text.tud_resume_cb
+                0x080031dc        0x2 objects/12-usbd.o
+                0x080031dc                tud_resume_cb
+ .text.dcd_deinit
+                0x080031de        0x4 objects/12-usbd.o
+ .text.dcd_connect
+                0x080031e2        0x2 objects/12-usbd.o
+                0x080031e2                dcd_connect
+ .text.dcd_disconnect
+                0x080031e4        0x2 objects/12-usbd.o
+                0x080031e4                dcd_disconnect
+ .text.dcd_dcache_clean
+                0x080031e6        0x4 objects/12-usbd.o
+                0x080031e6                dcd_dcache_clean
+ .text.dcd_dcache_invalidate
+                0x080031ea        0x4 objects/12-usbd.o
+                0x080031ea                dcd_dcache_invalidate
+ .text.dcd_dcache_clean_invalidate
+                0x080031ee        0x4 objects/12-usbd.o
+                0x080031ee                dcd_dcache_clean_invalidate
+ .text.usbd_app_driver_get_cb
+                0x080031f2        0x8 objects/12-usbd.o
+                0x080031f2                usbd_app_driver_get_cb
+ .text.dcd_edpt_xfer_fifo
+                0x080031fa        0x4 objects/12-usbd.o
+ .text.dcd_configure
+                0x080031fe        0x4 objects/12-usbd.o
+                0x080031fe                dcd_configure
+ *fill*         0x08003202        0x2 
+ .text.tud_speed_get
+                0x08003204        0xc objects/12-usbd.o
+                0x08003204                tud_speed_get
+ .text.tud_connected
+                0x08003210       0x10 objects/12-usbd.o
+                0x08003210                tud_connected
+ .text.tud_mounted
+                0x08003220       0x10 objects/12-usbd.o
+                0x08003220                tud_mounted
+ .text.tud_suspended
+                0x08003230       0x10 objects/12-usbd.o
+                0x08003230                tud_suspended
+ .text.tud_remote_wakeup
+                0x08003240       0x28 objects/12-usbd.o
+                0x08003240                tud_remote_wakeup
+ .text.tud_disconnect
+                0x08003268       0x14 objects/12-usbd.o
+                0x08003268                tud_disconnect
+ .text.tud_connect
+                0x0800327c       0x14 objects/12-usbd.o
+                0x0800327c                tud_connect
+ .text.tud_inited
+                0x08003290       0x10 objects/12-usbd.o
+                0x08003290                tud_inited
+ .text.tud_configure
+                0x080032a0        0x8 objects/12-usbd.o
+                0x080032a0                tud_configure
+ .text.tud_rhport_init
+                0x080032a8       0xd8 objects/12-usbd.o
+                0x080032a8                tud_rhport_init
+ .text.tud_deinit
+                0x08003380       0xa8 objects/12-usbd.o
+                0x08003380                tud_deinit
+ .text.tud_task_event_ready
+                0x08003428       0x38 objects/12-usbd.o
+                0x08003428                tud_task_event_ready
+ .text.dcd_edpt0_status_complete
+                0x08003460        0x2 objects/12-usbd.o
+ *fill*         0x08003462        0x2 
+ .text.usbd_get_ctrl_buf
+                0x08003464        0x8 objects/12-usbd.o
+                0x08003464                usbd_get_ctrl_buf
+ .text.dcd_event_handler
+                0x0800346c      0x188 objects/12-usbd.o
+                0x0800346c                dcd_event_handler
+ .text.usbd_spin_lock
+                0x080035f4       0x1c objects/12-usbd.o
+                0x080035f4                usbd_spin_lock
+ .text.usbd_spin_unlock
+                0x08003610       0x1c objects/12-usbd.o
+                0x08003610                usbd_spin_unlock
+ .text.usbd_defer_func
+                0x0800362c       0x30 objects/12-usbd.o
+                0x0800362c                usbd_defer_func
+ .text.usbd_edpt_open
+                0x0800365c       0x34 objects/12-usbd.o
+                0x0800365c                usbd_edpt_open
+ .text.usbd_open_edpt_pair
+                0x08003690       0x5c objects/12-usbd.o
+                0x08003690                usbd_open_edpt_pair
+ .text.usbd_edpt_claim
+                0x080036ec       0x1c objects/12-usbd.o
+                0x080036ec                usbd_edpt_claim
+ .text.usbd_edpt_release
+                0x08003708       0x1c objects/12-usbd.o
+                0x08003708                usbd_edpt_release
+ .text.usbd_edpt_xfer
+                0x08003724       0x60 objects/12-usbd.o
+                0x08003724                usbd_edpt_xfer
+ .text.tud_control_status
+                0x08003784       0x28 objects/12-usbd.o
+                0x08003784                tud_control_status
+ .text.data_stage_xact
+                0x080037ac       0x64 objects/12-usbd.o
+ .text.tud_control_xfer
+                0x08003810       0x4c objects/12-usbd.o
+                0x08003810                tud_control_xfer
+ .text.usbd_edpt_xfer_fifo
+                0x0800385c       0x60 objects/12-usbd.o
+                0x0800385c                usbd_edpt_xfer_fifo
+ .text.usbd_edpt_busy
+                0x080038bc       0x1c objects/12-usbd.o
+                0x080038bc                usbd_edpt_busy
+ .text.usbd_edpt_stall
+                0x080038d8       0x30 objects/12-usbd.o
+                0x080038d8                usbd_edpt_stall
+ .text.usbd_edpt_clear_stall
+                0x08003908       0x30 objects/12-usbd.o
+                0x08003908                usbd_edpt_clear_stall
+ .text.usbd_edpt_stalled
+                0x08003938       0x1c objects/12-usbd.o
+                0x08003938                usbd_edpt_stalled
+ .text.tud_task_ext
+                0x08003954      0x690 objects/12-usbd.o
+                0x08003954                tud_task_ext
+ .text.usbd_edpt_close
+                0x08003fe4        0x2 objects/12-usbd.o
+                0x08003fe4                usbd_edpt_close
+ *fill*         0x08003fe6        0x2 
+ .text.usbd_sof_enable
+                0x08003fe8       0x50 objects/12-usbd.o
+                0x08003fe8                usbd_sof_enable
+ .text.tud_sof_cb_enable
+                0x08004038       0x10 objects/12-usbd.o
+                0x08004038                tud_sof_cb_enable
+ .text.usbd_edpt_iso_alloc
+                0x08004048       0x28 objects/12-usbd.o
+                0x08004048                usbd_edpt_iso_alloc
+ .text.usbd_edpt_iso_activate
+                0x08004070       0x4c objects/12-usbd.o
+                0x08004070                usbd_edpt_iso_activate
+ .text          0x080040bc        0x0 objects/13-dcd_stm32_fsdev.o
+ .text.__NVIC_EnableIRQ
+                0x080040bc       0x1c objects/13-dcd_stm32_fsdev.o
+ .text.__NVIC_DisableIRQ
+                0x080040d8       0x24 objects/13-dcd_stm32_fsdev.o
+ .text.dcd_ep_alloc
+                0x080040fc       0x80 objects/13-dcd_stm32_fsdev.o
+ .text.dcd_pma_alloc.constprop.0
+                0x0800417c       0x3c objects/13-dcd_stm32_fsdev.o
+ .text.handle_bus_reset.isra.0
+                0x080041b8       0xc8 objects/13-dcd_stm32_fsdev.o
+ .text.dcd_transmit_packet
+                0x08004280      0x10c objects/13-dcd_stm32_fsdev.o
+ .text.edpt_xfer.constprop.0
+                0x0800438c       0xac objects/13-dcd_stm32_fsdev.o
+ .text.mt_usb_fsdev_ctr_deferred
+                0x08004438        0xc objects/13-dcd_stm32_fsdev.o
+                0x08004438                mt_usb_fsdev_ctr_deferred
+ .text.mt_usb_fsdev_irq_held
+                0x08004444        0xc objects/13-dcd_stm32_fsdev.o
+                0x08004444                mt_usb_fsdev_irq_held
+ .text.mt_usb_fsdev_lifecycle_pending
+                0x08004450       0x18 objects/13-dcd_stm32_fsdev.o
+                0x08004450                mt_usb_fsdev_lifecycle_pending
+ .text.mt_usb_fsdev_irq_grant
+                0x08004468       0x88 objects/13-dcd_stm32_fsdev.o
+                0x08004468                mt_usb_fsdev_irq_grant
+ .text.dcd_init
+                0x080044f0       0x34 objects/13-dcd_stm32_fsdev.o
+                0x080044f0                dcd_init
+ .text.dcd_deinit
+                0x08004524        0xa objects/13-dcd_stm32_fsdev.o
+                0x08004524                dcd_deinit
+ *fill*         0x0800452e        0x2 
+ .text.dcd_sof_enable
+                0x08004530       0x24 objects/13-dcd_stm32_fsdev.o
+                0x08004530                dcd_sof_enable
+ .text.dcd_remote_wakeup
+                0x08004554       0x20 objects/13-dcd_stm32_fsdev.o
+                0x08004554                dcd_remote_wakeup
+ .text.dcd_int_handler
+                0x08004574      0x3c8 objects/13-dcd_stm32_fsdev.o
+                0x08004574                dcd_int_handler
+ .text.dcd_edpt0_status_complete
+                0x0800493c       0x20 objects/13-dcd_stm32_fsdev.o
+                0x0800493c                dcd_edpt0_status_complete
+ .text.dcd_edpt_open
+                0x0800495c       0xfc objects/13-dcd_stm32_fsdev.o
+                0x0800495c                dcd_edpt_open
+ .text.dcd_edpt_iso_alloc
+                0x08004a58        0x4 objects/13-dcd_stm32_fsdev.o
+                0x08004a58                dcd_edpt_iso_alloc
+ .text.dcd_edpt_iso_activate
+                0x08004a5c        0x4 objects/13-dcd_stm32_fsdev.o
+                0x08004a5c                dcd_edpt_iso_activate
+ .text.dcd_edpt_xfer
+                0x08004a60       0x2c objects/13-dcd_stm32_fsdev.o
+                0x08004a60                dcd_edpt_xfer
+ .text.dcd_set_address
+                0x08004a8c       0x18 objects/13-dcd_stm32_fsdev.o
+                0x08004a8c                dcd_set_address
+ .text.dcd_edpt_xfer_fifo
+                0x08004aa4       0x2c objects/13-dcd_stm32_fsdev.o
+                0x08004aa4                dcd_edpt_xfer_fifo
+ .text.dcd_edpt_stall
+                0x08004ad0       0x88 objects/13-dcd_stm32_fsdev.o
+                0x08004ad0                dcd_edpt_stall
+ .text.dcd_edpt_clear_stall
+                0x08004b58       0x98 objects/13-dcd_stm32_fsdev.o
+                0x08004b58                dcd_edpt_clear_stall
+ .text.dcd_int_enable
+                0x08004bf0       0x28 objects/13-dcd_stm32_fsdev.o
+                0x08004bf0                dcd_int_enable
+ .text.dcd_int_disable
+                0x08004c18       0x12 objects/13-dcd_stm32_fsdev.o
+                0x08004c18                dcd_int_disable
+ *fill*         0x08004c2a        0x2 
+ .text.dcd_edpt_close_all
+                0x08004c2c       0x44 objects/13-dcd_stm32_fsdev.o
+                0x08004c2c                dcd_edpt_close_all
+ .text          0x08004c70        0x0 objects/14-fsdev_common.o
+ .text.fsdev_core_reset
+                0x08004c70       0x50 objects/14-fsdev_common.o
+                0x08004c70                fsdev_core_reset
+ .text.fsdev_deinit
+                0x08004cc0       0x30 objects/14-fsdev_common.o
+                0x08004cc0                fsdev_deinit
+ .text.pma_align_buffer_size
+                0x08004cf0       0x24 objects/14-fsdev_common.o
+                0x08004cf0                pma_align_buffer_size
+ .text.btable_set_rx_bufsize
+                0x08004d14       0x42 objects/14-fsdev_common.o
+                0x08004d14                btable_set_rx_bufsize
+ .text          0x08004d56        0x0 objects/15-mt_clock_startup.o
+ .text.rd       0x08004d56        0x6 objects/15-mt_clock_startup.o
+ .text.update   0x08004d5c       0x22 objects/15-mt_clock_startup.o
+ .text.wait_bits
+                0x08004d7e       0x32 objects/15-mt_clock_startup.o
+ .text.snapshot
+                0x08004db0       0x30 objects/15-mt_clock_startup.o
+ .text.domains_idle
+                0x08004de0       0x7c objects/15-mt_clock_startup.o
+ .text.on_hsi   0x08004e5c       0x34 objects/15-mt_clock_startup.o
+ .text.fail     0x08004e90       0xe0 objects/15-mt_clock_startup.o
+ .text.matches  0x08004f70       0x44 objects/15-mt_clock_startup.o
+ .text.mt_clock_mmio_read32
+                0x08004fb4        0x4 objects/15-mt_clock_startup.o
+                0x08004fb4                mt_clock_mmio_read32
+ .text.mt_clock_mmio_write32
+                0x08004fb8        0x4 objects/15-mt_clock_startup.o
+                0x08004fb8                mt_clock_mmio_write32
+ .text.mt_clock_plan_72
+                0x08004fbc       0x70 objects/15-mt_clock_startup.o
+                0x08004fbc                mt_clock_plan_72
+ .text.mt_clock_apply
+                0x0800502c      0x218 objects/15-mt_clock_startup.o
+                0x0800502c                mt_clock_apply
+ .text          0x08005244        0x0 objects/16-mt_boot_time.o
+ .text.read_reg
+                0x08005244        0x6 objects/16-mt_boot_time.o
+ *fill*         0x0800524a        0x2 
+ .text.same_clock
+                0x0800524c       0x60 objects/16-mt_boot_time.o
+ .text.mt_boot_time_start
+                0x080052ac      0x184 objects/16-mt_boot_time.o
+                0x080052ac                mt_boot_time_start
+ .text          0x08005430        0x0 objects/17-mt_boot_usb.o
+ .text.rd       0x08005430        0x6 objects/17-mt_boot_usb.o
+ .text.wr       0x08005436        0x6 objects/17-mt_boot_usb.o
+ .text.same_clock
+                0x0800543c       0x60 objects/17-mt_boot_usb.o
+ .text.quiescent
+                0x0800549c       0xd4 objects/17-mt_boot_usb.o
+ .text.priorities_match
+                0x08005570       0x3c objects/17-mt_boot_usb.o
+ .text.mt_boot_usb_prepare
+                0x080055ac      0x1fc objects/17-mt_boot_usb.o
+                0x080055ac                mt_boot_usb_prepare
+ .text          0x080057a8        0x0 objects/18-mt_usb_time.o
+ .text.fail     0x080057a8       0x10 objects/18-mt_usb_time.o
+ .text.mt_usb_time_valid
+                0x080057b8       0x2c objects/18-mt_usb_time.o
+                0x080057b8                mt_usb_time_valid
+ .text.mt_usb_time_status
+                0x080057e4       0x10 objects/18-mt_usb_time.o
+                0x080057e4                mt_usb_time_status
+ .text.mt_usb_time_bind
+                0x080057f4       0x80 objects/18-mt_usb_time.o
+                0x080057f4                mt_usb_time_bind
+ .text.tusb_time_millis_api
+                0x08005874       0x70 objects/18-mt_usb_time.o
+                0x08005874                tusb_time_millis_api
+ .text          0x080058e4        0x0 objects/19-mt_usb_irq.o
+ .text.usb_irq_dispatch
+                0x080058e4       0x18 objects/19-mt_usb_irq.o
+ .text.USB_HP_CAN1_TX_IRQHandler
+                0x080058fc        0x4 objects/19-mt_usb_irq.o
+                0x080058fc                USB_HP_CAN1_TX_IRQHandler
+ .text.USB_LP_CAN1_RX0_IRQHandler
+                0x08005900        0x4 objects/19-mt_usb_irq.o
+                0x08005900                USB_LP_CAN1_RX0_IRQHandler
+ .text          0x08005904        0x0 objects/20-mt_stream_main.o
+ .text.rd       0x08005904        0x8 objects/20-mt_stream_main.o
+ .text.startup.main
+                0x0800590c      0x4e8 objects/20-mt_stream_main.o
+                0x0800590c                main
+ .text          0x08005df4        0x0 objects/21-mt_live_runtime.o
+ .text.adc_read
+                0x08005df4        0xe objects/21-mt_live_runtime.o
+ .text.adc_write
+                0x08005e02        0xe objects/21-mt_live_runtime.o
+ .text.quiescent
+                0x08005e10       0x22 objects/21-mt_live_runtime.o
+ .text.commit_enter
+                0x08005e32        0x4 objects/21-mt_live_runtime.o
+ .text.commit_leave
+                0x08005e36        0x6 objects/21-mt_live_runtime.o
+ .text.live_stop
+                0x08005e3c       0x36 objects/21-mt_live_runtime.o
+ .text.live_time
+                0x08005e72        0xa objects/21-mt_live_runtime.o
+ .text.adc_time
+                0x08005e7c        0xc objects/21-mt_live_runtime.o
+ .text.time_fault
+                0x08005e88       0x38 objects/21-mt_live_runtime.o
+ .text.synchronize_loss
+                0x08005ec0       0xd4 objects/21-mt_live_runtime.o
+ .text.stable   0x08005f94       0x88 objects/21-mt_live_runtime.o
+ .text.usable   0x0800601c       0x34 objects/21-mt_live_runtime.o
+ .text.live_isolate
+                0x08006050       0x2e objects/21-mt_live_runtime.o
+ .text.commit_allowed
+                0x0800607e       0x2c objects/21-mt_live_runtime.o
+ .text.live_start
+                0x080060aa       0x2a objects/21-mt_live_runtime.o
+ .text.commit_timed
+                0x080060d4       0x38 objects/21-mt_live_runtime.o
+ .text.live_write
+                0x0800610c       0x76 objects/21-mt_live_runtime.o
+ *fill*         0x08006182        0x2 
+ .text.mt_live_runtime_init
+                0x08006184      0x230 objects/21-mt_live_runtime.o
+                0x08006184                mt_live_runtime_init
+ .text.mt_live_runtime_step
+                0x080063b4      0x3ea objects/21-mt_live_runtime.o
+                0x080063b4                mt_live_runtime_step
+ .text          0x0800679e        0x0 objects/22-mt_live_adc.o
+ .text.valid    0x0800679e       0x2e objects/22-mt_live_adc.o
+ .text.reason   0x080067cc       0x2a objects/22-mt_live_adc.o
+ .text.clock_ok
+                0x080067f6       0x1e objects/22-mt_live_adc.o
+ .text.mt_live_adc_init
+                0x08006814       0x8c objects/22-mt_live_adc.o
+                0x08006814                mt_live_adc_init
+ .text.mt_live_adc_start
+                0x080068a0       0x58 objects/22-mt_live_adc.o
+                0x080068a0                mt_live_adc_start
+ .text.mt_live_adc_quiesce
+                0x080068f8       0xb2 objects/22-mt_live_adc.o
+                0x080068f8                mt_live_adc_quiesce
+ .text.mt_live_adc_service
+                0x080069aa       0xb4 objects/22-mt_live_adc.o
+                0x080069aa                mt_live_adc_service
+ .text          0x08006a5e        0x0 objects/23-mt_live_clock.o
+ .text.mt_live_clock_init
+                0x08006a5e       0x42 objects/23-mt_live_clock.o
+                0x08006a5e                mt_live_clock_init
+ .text.mt_live_clock_now
+                0x08006aa0       0x5e objects/23-mt_live_clock.o
+                0x08006aa0                mt_live_clock_now
+ .text          0x08006afe        0x0 objects/24-mt_live_device.o
+ .text.r32      0x08006afe       0x18 objects/24-mt_live_device.o
+ .text.w32      0x08006b16        0xc objects/24-mt_live_device.o
+ .text.w64      0x08006b22       0x2a objects/24-mt_live_device.o
+ .text.deadline
+                0x08006b4c       0x56 objects/24-mt_live_device.o
+ .text.raw_barrier
+                0x08006ba2       0x46 objects/24-mt_live_device.o
+ .text.recover  0x08006be8       0x58 objects/24-mt_live_device.o
+ .text.error_reply
+                0x08006c40       0x36 objects/24-mt_live_device.o
+ .text.now      0x08006c76       0x60 objects/24-mt_live_device.o
+ .text.expire   0x08006cd6       0x22 objects/24-mt_live_device.o
+ .text.terminate
+                0x08006cf8      0x26c objects/24-mt_live_device.o
+ .text.accept_frame
+                0x08006f64      0x4d8 objects/24-mt_live_device.o
+ .text.build_tx
+                0x0800743c      0x328 objects/24-mt_live_device.o
+ .text.mt_live_device_init
+                0x08007764       0x66 objects/24-mt_live_device.o
+                0x08007764                mt_live_device_init
+ .text.mt_live_device_receive
+                0x080077ca       0xba objects/24-mt_live_device.o
+                0x080077ca                mt_live_device_receive
+ .text.mt_live_device_step
+                0x08007884      0x44c objects/24-mt_live_device.o
+                0x08007884                mt_live_device_step
+ .text.mt_live_device_offer
+                0x08007cd0       0x6c objects/24-mt_live_device.o
+                0x08007cd0                mt_live_device_offer
+ .text.mt_live_device_fault
+                0x08007d3c       0x90 objects/24-mt_live_device.o
+                0x08007d3c                mt_live_device_fault
+ .text.mt_live_device_transport_lost
+                0x08007dcc       0x2c objects/24-mt_live_device.o
+                0x08007dcc                mt_live_device_transport_lost
+ .text          0x08007df8        0x0 objects/25-mt_sample_queue.o
+ .text.mt_sample_queue_init
+                0x08007df8       0x22 objects/25-mt_sample_queue.o
+                0x08007df8                mt_sample_queue_init
+ .text.mt_sample_queue_push
+                0x08007e1a      0x110 objects/25-mt_sample_queue.o
+                0x08007e1a                mt_sample_queue_push
+ .text.mt_sample_queue_seal
+                0x08007f2a        0xc objects/25-mt_sample_queue.o
+                0x08007f2a                mt_sample_queue_seal
+ .text.mt_sample_queue_peek
+                0x08007f36       0x38 objects/25-mt_sample_queue.o
+                0x08007f36                mt_sample_queue_peek
+ .text.mt_sample_queue_pop
+                0x08007f6e       0x4e objects/25-mt_sample_queue.o
+                0x08007f6e                mt_sample_queue_pop
+ .text          0x08007fbc        0x0 objects/26-mt_stream_diag.o
+ .text.increment
+                0x08007fbc       0x20 objects/26-mt_stream_diag.o
+ .text.mt_stream_diag_cycle
+                0x08007fdc       0x94 objects/26-mt_stream_diag.o
+                0x08007fdc                mt_stream_diag_cycle
+ .text.mt_stream_diag_init
+                0x08008070       0xd4 objects/26-mt_stream_diag.o
+                0x08008070                mt_stream_diag_init
+ .text.mt_stream_diag_begin
+                0x08008144       0x28 objects/26-mt_stream_diag.o
+                0x08008144                mt_stream_diag_begin
+ .text.mt_stream_diag_replaced
+                0x0800816c       0x40 objects/26-mt_stream_diag.o
+                0x0800816c                mt_stream_diag_replaced
+ .text.mt_stream_diag_poll
+                0x080081ac       0x4c objects/26-mt_stream_diag.o
+                0x080081ac                mt_stream_diag_poll
+ .text.mt_stream_diag_copy
+                0x080081f8       0x24 objects/26-mt_stream_diag.o
+                0x080081f8                mt_stream_diag_copy
+ .text.mt_stream_diag_tx
+                0x0800821c       0x2c objects/26-mt_stream_diag.o
+                0x0800821c                mt_stream_diag_tx
+ .text.mt_stream_diag_note
+                0x08008248       0x44 objects/26-mt_stream_diag.o
+                0x08008248                mt_stream_diag_note
+ .text.mt_stream_diag_observe
+                0x0800828c       0x98 objects/26-mt_stream_diag.o
+                0x0800828c                mt_stream_diag_observe
+ .text          0x08008324        0x0 objects/reset.o
+ .text.Reset_Handler
+                0x08008324       0x6c objects/reset.o
+                0x08008324                Reset_Handler
+ .text.Default_Handler
+                0x08008390        0x4 objects/reset.o
+                0x08008390                RTC_Alarm_IRQHandler
+                0x08008390                EXTI2_IRQHandler
+                0x08008390                DebugMon_Handler
+                0x08008390                TIM1_CC_IRQHandler
+                0x08008390                HardFault_Handler
+                0x08008390                SysTick_Handler
+                0x08008390                PVD_IRQHandler
+                0x08008390                PendSV_Handler
+                0x08008390                NMI_Handler
+                0x08008390                EXTI3_IRQHandler
+                0x08008390                EXTI0_IRQHandler
+                0x08008390                I2C2_EV_IRQHandler
+                0x08008390                UsageFault_Handler
+                0x08008390                ADC1_2_IRQHandler
+                0x08008390                SPI1_IRQHandler
+                0x08008390                TAMPER_IRQHandler
+                0x08008390                DMA1_Channel4_IRQHandler
+                0x08008390                USART3_IRQHandler
+                0x08008390                RTC_IRQHandler
+                0x08008390                DMA1_Channel7_IRQHandler
+                0x08008390                CAN1_RX1_IRQHandler
+                0x08008390                TIM4_IRQHandler
+                0x08008390                I2C1_EV_IRQHandler
+                0x08008390                DMA1_Channel6_IRQHandler
+                0x08008390                TIM3_IRQHandler
+                0x08008390                RCC_IRQHandler
+                0x08008390                TIM1_TRG_COM_IRQHandler
+                0x08008390                DMA1_Channel1_IRQHandler
+                0x08008390                Default_Handler
+                0x08008390                EXTI15_10_IRQHandler
+                0x08008390                EXTI9_5_IRQHandler
+                0x08008390                SPI2_IRQHandler
+                0x08008390                MemManage_Handler
+                0x08008390                SVC_Handler
+                0x08008390                DMA1_Channel5_IRQHandler
+                0x08008390                EXTI4_IRQHandler
+                0x08008390                DMA1_Channel3_IRQHandler
+                0x08008390                TIM1_UP_IRQHandler
+                0x08008390                WWDG_IRQHandler
+                0x08008390                TIM2_IRQHandler
+                0x08008390                TIM1_BRK_IRQHandler
+                0x08008390                EXTI1_IRQHandler
+                0x08008390                USART2_IRQHandler
+                0x08008390                I2C2_ER_IRQHandler
+                0x08008390                DMA1_Channel2_IRQHandler
+                0x08008390                CAN1_SCE_IRQHandler
+                0x08008390                FLASH_IRQHandler
+                0x08008390                BusFault_Handler
+                0x08008390                USART1_IRQHandler
+                0x08008390                I2C1_ER_IRQHandler
+                0x08008390                USBWakeUp_IRQHandler
+ .text          0x08008394        0x0 objects/board.o
+ .text          0x08008394        0x0 objects/timing.o
+ *(.rodata .rodata.*)
+ .rodata.ahb_divs.0
+                0x08008394       0x20 objects/01-adc_timer_dma.o
+ .rodata.languages
+                0x080083b4        0x4 objects/07-mt_usb_descriptors.o
+ .rodata._usbd_driver
+                0x080083b8       0x24 objects/12-usbd.o
+ .rodata        0x080083dc       0x18 objects/20-mt_stream_main.o
+ .rodata.mt_board
+                0x080083f4       0x30 objects/board.o
+                0x080083f4                mt_board
+ .rodata.v2_serial
+                0x08008424        0xe objects/board.o
+ .rodata.v2_product
+                0x08008432       0x1f objects/board.o
+ .rodata.v2_manufacturer
+                0x08008451        0xc objects/board.o
+ *fill*         0x0800845d        0x3 
+ .rodata.mt_stream_timing
+                0x08008460        0xc objects/timing.o
+                0x08008460                mt_stream_timing
+                0x0800846c                        . = ALIGN (0x4)
+
+.data           0x20000000       0x80 load address 0x0800846c
+                0x20000000                        __data_start = .
+ *(.data .data.*)
+ .data          0x20000000        0x0 objects/00-mt_boot_cpu.o
+ .data          0x20000000        0x0 objects/01-adc_timer_dma.o
+ .data          0x20000000        0x0 objects/02-mt_timebase.o
+ .data          0x20000000        0x0 objects/03-mt_irq_guard.o
+ .data          0x20000000        0x0 objects/04-mt_wire.o
+ .data          0x20000000        0x0 objects/05-mt_usb_epoch.o
+ .data          0x20000000        0x0 objects/06-mt_usb_bridge.o
+ .data          0x20000000        0x0 objects/07-mt_usb_descriptors.o
+ .data.configuration
+                0x20000000       0x4b objects/07-mt_usb_descriptors.o
+ .data.device   0x2000004b       0x12 objects/07-mt_usb_descriptors.o
+ .data          0x2000005d        0x0 objects/08-mt_memory.o
+ .data          0x2000005d        0x0 objects/09-tusb.o
+ .data          0x2000005d        0x0 objects/10-tusb_fifo.o
+ .data          0x2000005d        0x0 objects/11-cdc_device.o
+ .data          0x2000005d        0x0 objects/12-usbd.o
+ *fill*         0x2000005d        0x3 
+ .data._usbd_qdef
+                0x20000060       0x14 objects/12-usbd.o
+                0x20000060                _usbd_qdef
+ .data._usbd_spin
+                0x20000074        0x8 objects/12-usbd.o
+ .data._usbd_rhport
+                0x2000007c        0x1 objects/12-usbd.o
+ .data          0x2000007d        0x0 objects/13-dcd_stm32_fsdev.o
+ .data          0x2000007d        0x0 objects/14-fsdev_common.o
+ .data          0x2000007d        0x0 objects/15-mt_clock_startup.o
+ .data          0x2000007d        0x0 objects/16-mt_boot_time.o
+ .data          0x2000007d        0x0 objects/17-mt_boot_usb.o
+ .data          0x2000007d        0x0 objects/18-mt_usb_time.o
+ .data          0x2000007d        0x0 objects/19-mt_usb_irq.o
+ .data          0x2000007d        0x0 objects/20-mt_stream_main.o
+ .data          0x2000007d        0x0 objects/21-mt_live_runtime.o
+ .data          0x2000007d        0x0 objects/22-mt_live_adc.o
+ .data          0x2000007d        0x0 objects/23-mt_live_clock.o
+ .data          0x2000007d        0x0 objects/24-mt_live_device.o
+ .data          0x2000007d        0x0 objects/25-mt_sample_queue.o
+ .data          0x2000007d        0x0 objects/26-mt_stream_diag.o
+ .data          0x2000007d        0x0 objects/reset.o
+ .data          0x2000007d        0x0 objects/board.o
+ .data          0x2000007d        0x0 objects/timing.o
+                0x20000080                        . = ALIGN (0x4)
+ *fill*         0x2000007d        0x3 
+                0x20000080                        __data_end = .
+                0x0800846c                        __data_load = LOADADDR (.data)
+
+.bss            0x20000080     0x2394 load address 0x080084ec
+                0x20000080                        __bss_start = .
+ *(.bss .bss.*)
+ .bss           0x20000080        0x0 objects/00-mt_boot_cpu.o
+ .bss           0x20000080        0x0 objects/01-adc_timer_dma.o
+ .bss           0x20000080        0x0 objects/02-mt_timebase.o
+ .bss           0x20000080        0x0 objects/03-mt_irq_guard.o
+ .bss           0x20000080        0x0 objects/04-mt_wire.o
+ .bss           0x20000080        0x0 objects/05-mt_usb_epoch.o
+ .bss           0x20000080        0x0 objects/06-mt_usb_bridge.o
+ .bss.address_accepted
+                0x20000080        0x4 objects/06-mt_usb_bridge.o
+ .bss.address_seen
+                0x20000084        0x4 objects/06-mt_usb_bridge.o
+ .bss.address_pending
+                0x20000088        0x4 objects/06-mt_usb_bridge.o
+ .bss.actor     0x2000008c        0x4 objects/06-mt_usb_bridge.o
+ .bss.unlock_fn
+                0x20000090        0x4 objects/06-mt_usb_bridge.o
+ .bss.lock_fn   0x20000094        0x4 objects/06-mt_usb_bridge.o
+ .bss.state     0x20000098       0x30 objects/06-mt_usb_bridge.o
+ .bss           0x200000c8        0x0 objects/07-mt_usb_descriptors.o
+ .bss.initialized
+                0x200000c8        0x4 objects/07-mt_usb_descriptors.o
+ .bss.strings   0x200000cc       0xc0 objects/07-mt_usb_descriptors.o
+ .bss           0x2000018c        0x0 objects/08-mt_memory.o
+ .bss           0x2000018c        0x0 objects/09-tusb.o
+ .bss._tusb_rhport_role
+                0x2000018c        0x8 objects/09-tusb.o
+                0x2000018c                _tusb_rhport_role
+ .bss           0x20000194        0x0 objects/10-tusb_fifo.o
+ .bss           0x20000194        0x0 objects/11-cdc_device.o
+ .bss._cdcd_itf
+                0x20000194       0xbc objects/11-cdc_device.o
+ .bss           0x20000250        0x0 objects/12-usbd.o
+ .bss._usbd_q   0x20000250        0x4 objects/12-usbd.o
+ .bss.mt_has_held
+                0x20000254        0x1 objects/12-usbd.o
+ *fill*         0x20000255        0x3 
+ .bss.mt_held   0x20000258       0x10 objects/12-usbd.o
+ .bss._usbd_qdef_buf
+                0x20000268      0x100 objects/12-usbd.o
+                0x20000268                _usbd_qdef_buf
+ .bss._app_driver_count
+                0x20000368        0x1 objects/12-usbd.o
+ *fill*         0x20000369        0x3 
+ .bss._app_driver
+                0x2000036c        0x4 objects/12-usbd.o
+ .bss._ctrl_epbuf
+                0x20000370       0x40 objects/12-usbd.o
+ .bss._usbd_queued_setup
+                0x200003b0        0x1 objects/12-usbd.o
+ *fill*         0x200003b1        0x3 
+ .bss._usbd_dev
+                0x200003b4       0x2c objects/12-usbd.o
+ .bss           0x200003e0        0x0 objects/13-dcd_stm32_fsdev.o
+ .bss.ep_buf_ptr
+                0x200003e0        0x2 objects/13-dcd_stm32_fsdev.o
+ .bss.mt_irq_held
+                0x200003e2        0x1 objects/13-dcd_stm32_fsdev.o
+ .bss.mt_ctr_deferred
+                0x200003e3        0x1 objects/13-dcd_stm32_fsdev.o
+ .bss.remoteWakeCountdown
+                0x200003e4        0x1 objects/13-dcd_stm32_fsdev.o
+ .bss.ep_alloc_status
+                0x200003e5       0x20 objects/13-dcd_stm32_fsdev.o
+ *fill*         0x20000405        0x3 
+ .bss.xfer_status
+                0x20000408       0x60 objects/13-dcd_stm32_fsdev.o
+ .bss           0x20000468        0x0 objects/14-fsdev_common.o
+ .bss           0x20000468        0x0 objects/15-mt_clock_startup.o
+ .bss           0x20000468        0x0 objects/16-mt_boot_time.o
+ .bss           0x20000468        0x0 objects/17-mt_boot_usb.o
+ .bss           0x20000468        0x0 objects/18-mt_usb_time.o
+ .bss.state     0x20000468        0x4 objects/18-mt_usb_time.o
+ .bss.active    0x2000046c        0x4 objects/18-mt_usb_time.o
+ .bss.last_good_ms
+                0x20000470        0x4 objects/18-mt_usb_time.o
+ .bss.bound_clock
+                0x20000474        0x4 objects/18-mt_usb_time.o
+ .bss           0x20000478        0x0 objects/19-mt_usb_irq.o
+ .bss           0x20000478        0x0 objects/20-mt_stream_main.o
+ .bss.mt_main_last_runtime
+                0x20000478        0x4 objects/20-mt_stream_main.o
+                0x20000478                mt_main_last_runtime
+ .bss.mt_main_usb_init_result
+                0x2000047c        0x4 objects/20-mt_stream_main.o
+                0x2000047c                mt_main_usb_init_result
+ .bss.mt_main_irq_admitted
+                0x20000480        0x4 objects/20-mt_stream_main.o
+                0x20000480                mt_main_irq_admitted
+ .bss.mt_main_boot_failure
+                0x20000484        0x4 objects/20-mt_stream_main.o
+                0x20000484                mt_main_boot_failure
+ .bss.runtime   0x20000488     0x1e50 objects/20-mt_stream_main.o
+ .bss.usb_start
+                0x200022d8       0x10 objects/20-mt_stream_main.o
+ .bss.time_start
+                0x200022e8       0x10 objects/20-mt_stream_main.o
+ .bss.timebase  0x200022f8       0x34 objects/20-mt_stream_main.o
+ .bss.startup   0x2000232c       0x40 objects/20-mt_stream_main.o
+ .bss           0x2000236c        0x0 objects/21-mt_live_runtime.o
+ .bss           0x2000236c        0x0 objects/22-mt_live_adc.o
+ .bss           0x2000236c        0x0 objects/23-mt_live_clock.o
+ .bss           0x2000236c        0x0 objects/24-mt_live_device.o
+ .bss           0x2000236c        0x0 objects/25-mt_sample_queue.o
+ .bss           0x2000236c        0x0 objects/26-mt_stream_diag.o
+ .bss.have_raw_cycle
+                0x2000236c        0x4 objects/26-mt_stream_diag.o
+ .bss.have_poll
+                0x20002370        0x4 objects/26-mt_stream_diag.o
+ .bss.have_step
+                0x20002374        0x4 objects/26-mt_stream_diag.o
+ .bss.last_raw_cycle
+                0x20002378        0x4 objects/26-mt_stream_diag.o
+ .bss.last_poll
+                0x2000237c        0x4 objects/26-mt_stream_diag.o
+ .bss.last_step
+                0x20002380        0x4 objects/26-mt_stream_diag.o
+ .bss.bus_context
+                0x20002384        0x4 objects/26-mt_stream_diag.o
+ .bss.read_register
+                0x20002388        0x4 objects/26-mt_stream_diag.o
+ .bss.mt_stream_diagnostics
+                0x2000238c       0x88 objects/26-mt_stream_diag.o
+                0x2000238c                mt_stream_diagnostics
+ .bss           0x20002414        0x0 objects/reset.o
+ .bss           0x20002414        0x0 objects/board.o
+ .bss           0x20002414        0x0 objects/timing.o
+                0x20002414                        . = ALIGN (0x4)
+                0x20002414                        __bss_end = .
+                0x20002414                        __static_end = .
+
+.unsupported
+ *(.preinit_array* .init_array* .fini_array* .ctors* .dtors*)
+ *(.init .fini .tdata* .tbss* .noinit*)
+ *(COMMON)
+
+.ARM.extab
+ *(.ARM.extab* .gnu.linkonce.armextab.*)
+
+.ARM.exidx
+ *(.ARM.exidx* .gnu.linkonce.armexidx.*)
+
+.unsupported_stubs
+                0x080084ec        0x0
+ *(.glue_7 .glue_7t .vfp11_veneer .v4_bx .iplt)
+ .glue_7        0x080084ec        0x0 linker stubs
+ .glue_7t       0x080084ec        0x0 linker stubs
+ .vfp11_veneer  0x080084ec        0x0 linker stubs
+ .v4_bx         0x080084ec        0x0 linker stubs
+ .iplt          0x080084ec        0x0 objects/00-mt_boot_cpu.o
+
+.rel.iplt       0x080084ec        0x0
+ *(.rel.iplt)
+ .rel.iplt      0x080084ec        0x0 objects/00-mt_boot_cpu.o
+
+.igot.plt       0x20002414        0x0
+ *(.igot.plt)
+ .igot.plt      0x20002414        0x0 objects/00-mt_boot_cpu.o
+
+.ARM.attributes
+                0x00000000       0x2b
+ *(.ARM.attributes)
+ .ARM.attributes
+                0x00000000       0x2d objects/00-mt_boot_cpu.o
+ .ARM.attributes
+                0x0000002d       0x2d objects/01-adc_timer_dma.o
+ .ARM.attributes
+                0x0000005a       0x2d objects/02-mt_timebase.o
+ .ARM.attributes
+                0x00000087       0x2d objects/03-mt_irq_guard.o
+ .ARM.attributes
+                0x000000b4       0x2d objects/04-mt_wire.o
+ .ARM.attributes
+                0x000000e1       0x2d objects/05-mt_usb_epoch.o
+ .ARM.attributes
+                0x0000010e       0x2d objects/06-mt_usb_bridge.o
+ .ARM.attributes
+                0x0000013b       0x2d objects/07-mt_usb_descriptors.o
+ .ARM.attributes
+                0x00000168       0x2d objects/08-mt_memory.o
+ .ARM.attributes
+                0x00000195       0x2d objects/09-tusb.o
+ .ARM.attributes
+                0x000001c2       0x2d objects/10-tusb_fifo.o
+ .ARM.attributes
+                0x000001ef       0x2d objects/11-cdc_device.o
+ .ARM.attributes
+                0x0000021c       0x2d objects/12-usbd.o
+ .ARM.attributes
+                0x00000249       0x2d objects/13-dcd_stm32_fsdev.o
+ .ARM.attributes
+                0x00000276       0x2d objects/14-fsdev_common.o
+ .ARM.attributes
+                0x000002a3       0x2d objects/15-mt_clock_startup.o
+ .ARM.attributes
+                0x000002d0       0x2d objects/16-mt_boot_time.o
+ .ARM.attributes
+                0x000002fd       0x2d objects/17-mt_boot_usb.o
+ .ARM.attributes
+                0x0000032a       0x2d objects/18-mt_usb_time.o
+ .ARM.attributes
+                0x00000357       0x2d objects/19-mt_usb_irq.o
+ .ARM.attributes
+                0x00000384       0x2d objects/20-mt_stream_main.o
+ .ARM.attributes
+                0x000003b1       0x2d objects/21-mt_live_runtime.o
+ .ARM.attributes
+                0x000003de       0x2d objects/22-mt_live_adc.o
+ .ARM.attributes
+                0x0000040b       0x2d objects/23-mt_live_clock.o
+ .ARM.attributes
+                0x00000438       0x2d objects/24-mt_live_device.o
+ .ARM.attributes
+                0x00000465       0x2d objects/25-mt_sample_queue.o
+ .ARM.attributes
+                0x00000492       0x2d objects/26-mt_stream_diag.o
+ .ARM.attributes
+                0x000004bf       0x21 objects/reset.o
+ .ARM.attributes
+                0x000004e0       0x2d objects/board.o
+ .ARM.attributes
+                0x0000050d       0x2d objects/timing.o
+
+/DISCARD/
+ *(.comment .note.GNU-stack)
+                0x00000001                        ASSERT (DEFINED (Reset_Handler), missing Reset_Handler)
+                0x00000001                        ASSERT (DEFINED (main), missing main)
+                0x00000001                        ASSERT ((ADDR (.isr_vector) == ORIGIN (FLASH)), vector base must be Flash origin)
+                0x00000001                        ASSERT (((ADDR (.isr_vector) & 0x1ff) == 0x0), vector base must align to 512 bytes)
+                0x00000001                        ASSERT ((SIZEOF (.isr_vector) == 0xec), expected exactly 59 vector words)
+                0x00000001                        ASSERT (DEFINED (__boot_stack_bytes), explicit __boot_stack_bytes required)
+                0x00000001                        ASSERT (((__boot_stack_bytes > 0x0) && (__boot_stack_bytes <= LENGTH (RAM))), invalid stack reservation)
+                0x00000001                        ASSERT (((__boot_stack_bytes & 0x7) == 0x0), stack reservation must align to 8 bytes)
+                0x00000001                        ASSERT (((__StackTop & 0x7) == 0x0), initial MSP must align to 8 bytes)
+                0x00000001                        ASSERT ((__static_end <= __StackLimit), static storage overlaps reserved stack)
+                0x00000001                        ASSERT (((((((__data_start | __data_end) | __data_load) | __bss_start) | __bss_end) & 0x3) == 0x0), reset ranges must align to words)
+                0x00000001                        ASSERT (((__data_start <= __data_end) && (__bss_start <= __bss_end)), reversed reset range)
+                0x00000001                        ASSERT (((__data_start >= ORIGIN (RAM)) && (__bss_end <= __StackTop)), reset range outside SRAM)
+                0x00000001                        ASSERT (((__data_load >= ORIGIN (FLASH)) && ((__data_load + SIZEOF (.data)) <= (ORIGIN (FLASH) + LENGTH (FLASH)))), data load image outside Flash)
+                0x00000001                        ASSERT ((SIZEOF (.unsupported) == 0x0), constructors, TLS, noinit and COMMON unsupported)
+                0x00000001                        ASSERT (((SIZEOF (.ARM.extab) == 0x0) && (SIZEOF (.ARM.exidx) == 0x0)), unwind tables unsupported)
+                0x00000001                        ASSERT ((((SIZEOF (.unsupported_stubs) == 0x0) && (SIZEOF (.rel.iplt) == 0x0)) && (SIZEOF (.igot.plt) == 0x0)), interworking and dynamic stubs unsupported)
+LOAD objects/00-mt_boot_cpu.o
+LOAD objects/01-adc_timer_dma.o
+LOAD objects/02-mt_timebase.o
+LOAD objects/03-mt_irq_guard.o
+LOAD objects/04-mt_wire.o
+LOAD objects/05-mt_usb_epoch.o
+LOAD objects/06-mt_usb_bridge.o
+LOAD objects/07-mt_usb_descriptors.o
+LOAD objects/08-mt_memory.o
+LOAD objects/09-tusb.o
+LOAD objects/10-tusb_fifo.o
+LOAD objects/11-cdc_device.o
+LOAD objects/12-usbd.o
+LOAD objects/13-dcd_stm32_fsdev.o
+LOAD objects/14-fsdev_common.o
+LOAD objects/15-mt_clock_startup.o
+LOAD objects/16-mt_boot_time.o
+LOAD objects/17-mt_boot_usb.o
+LOAD objects/18-mt_usb_time.o
+LOAD objects/19-mt_usb_irq.o
+LOAD objects/20-mt_stream_main.o
+LOAD objects/21-mt_live_runtime.o
+LOAD objects/22-mt_live_adc.o
+LOAD objects/23-mt_live_clock.o
+LOAD objects/24-mt_live_device.o
+LOAD objects/25-mt_sample_queue.o
+LOAD objects/26-mt_stream_diag.o
+LOAD objects/reset.o
+LOAD objects/board.o
+LOAD objects/timing.o
+OUTPUT(MotortesterV2-stream-candidate.elf elf32-littlearm)
+LOAD linker stubs

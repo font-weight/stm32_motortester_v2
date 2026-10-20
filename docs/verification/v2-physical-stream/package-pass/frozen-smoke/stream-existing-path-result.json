@@ -1,0 +1,30 @@
+{
+  "status": "PASS",
+  "selected_existing_path": "C:\\Users\\Alexandr\\Desktop\\New folder\\универ\\мотортестер 2\\build\\v5w1\\frozen-smoke\\stream-scope.mtstream",
+  "before": {
+    "stream-scope.mtstream": {
+      "sha256": "f241646e954b7204f141f75da77a978de75576cd8b3822622987feaa2f1c2300",
+      "bytes": 1334624
+    },
+    "stream-scope.mtstream.v2.json": {
+      "sha256": "eab54290abe78b204ebf248a330e7f8d3abd4553ab0930cedf606f63425ec05a",
+      "bytes": 1466
+    }
+  },
+  "physical_stream_verified": false,
+  "error_code": "host_io",
+  "visible_message": "Файл уже существует. Существующие записи не заменяются; выберите новое имя.\nПричина: storage prepare failed: FileExistsError · Операция: создание файла\nФайл: C:/Users/Alexandr/Desktop/New folder/универ/мотортестер 2/build/v5w1/frozen-smoke/stream-scope.mtstream\nДля новой попытки закройте это окно непрерывного приёма и откройте его заново.",
+  "state_message": "Контекст записи не сохранён · Получено: 6 647 отсчётов · Запись не началась · НЕПОЛНЫЕ ДАННЫЕ: host_io",
+  "after": {
+    "stream-scope.mtstream": {
+      "sha256": "f241646e954b7204f141f75da77a978de75576cd8b3822622987feaa2f1c2300",
+      "bytes": 1334624
+    },
+    "stream-scope.mtstream.v2.json": {
+      "sha256": "eab54290abe78b204ebf248a330e7f8d3abd4553ab0930cedf606f63425ec05a",
+      "bytes": 1466
+    }
+  },
+  "recording_reported_saved": false,
+  "test_workspace_closed": true
+}

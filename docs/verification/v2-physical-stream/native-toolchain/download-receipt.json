@@ -1,0 +1,49 @@
+{
+  "status": "READY_VERSION_COMMANDS_PASS",
+  "version": "0.15.2",
+  "index_url": "https://ziglang.org/download/index.json",
+  "archive_url": "https://ziglang.org/download/0.15.2/zig-x86_64-windows-0.15.2.zip",
+  "archive_sha256": "3a0ed1e8799a2f8ce2a6e6290a9ff22e6906f8227865911fb7ddedc3cc14cb0c",
+  "bytes": 92614574,
+  "system_install": false,
+  "PATH_modified": false,
+  "extracted_entries": 19312,
+  "zig_executable": "C:\\Users\\Alexandr\\Desktop\\New folder\\универ\\мотортестер 2\\build\\v5-native-toolchain\\zig-x86_64-windows-0.15.2\\zig.exe",
+  "zig_executable_sha256": "d408dd38eed3e5204af841bcebf70502a4dbbb8399a3a3262be55059370bc018",
+  "commands": [
+    {
+      "argv": [
+        "C:\\Users\\Alexandr\\Desktop\\New folder\\универ\\мотортестер 2\\build\\v5-native-toolchain\\zig-x86_64-windows-0.15.2\\zig.exe",
+        "version"
+      ],
+      "exit_code": 0,
+      "stdout": "0.15.2\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "C:\\Users\\Alexandr\\Desktop\\New folder\\универ\\мотортестер 2\\build\\v5-native-toolchain\\zig-x86_64-windows-0.15.2\\zig.exe",
+        "cc",
+        "--version"
+      ],
+      "exit_code": 0,
+      "stdout": "clang version 20.1.2 (https://github.com/ziglang/zig-bootstrap 7ef74e656cf8ddbd6bf891a8475892aa1afa6891)\nTarget: x86_64-unknown-windows-gnu\nThread model: posix\nInstalledDir: C:/Users/Alexandr/Desktop/New folder/универ/мотортестер 2/build/v5-native-toolchain/zig-x86_64-windows-0.15.2\n",
+      "stderr": ""
+    }
+  ],
+  "download_attempts": [
+    {
+      "attempt": 1,
+      "scope": "sandbox",
+      "status": "FAILED",
+      "stage": "official index fetch before archive creation",
+      "error": "URLError: <urlopen error [WinError 10061] No connection could be made because the target machine actively refused it>"
+    },
+    {
+      "attempt": 2,
+      "scope": "approved escalated command",
+      "status": "PASS",
+      "archive_sha256": "3a0ed1e8799a2f8ce2a6e6290a9ff22e6906f8227865911fb7ddedc3cc14cb0c"
+    }
+  ]
+}

@@ -1,0 +1,15 @@
+--- a/fsdev_stm32.h
++++ b/fsdev_stm32.h
+@@ -216,6 +216,12 @@
+ 
+ TU_ATTR_ALWAYS_INLINE static inline void fsdev_int_enable(uint8_t rhport) {
+   (void)rhport;
++#if CFG_MT_USB_CTR_FAIRNESS
++  /* Covers direct ep_write helpers as well as OSAL's dcd_int_enable wrapper.
++   * Only the foreground grant clears this hold; nested enables cannot do so. */
++  extern bool mt_usb_fsdev_irq_held(void);
++  if (mt_usb_fsdev_irq_held()) return;
++#endif
+ 
+   // forces write to RAM before allowing ISR to execute
+   __DSB(); __ISB();

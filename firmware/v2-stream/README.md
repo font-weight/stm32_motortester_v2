@@ -1,4 +1,4 @@
-# Отдельный кандидат V2S1: непрерывный транспорт
+# Отдельный кандидат V2S2: непрерывный транспорт
 
 Это сборка для подготовки ограниченного опыта с **неподключённым A0**.
 Сборка и статический анализ не разрешают прошивку автоматически и не подтверждают
@@ -30,8 +30,9 @@ Windows GCC 12.3.1 из CubeIDE 1.15.0; `--toolchain` допускает дру�
 
 Состав — отдельный потоковый entrypoint, runtime, ADC adapter, очередь и wire 0.2,
 30 объектных файлов вместе с DWT-диагностикой. Оконный runtime не входит в образ.
-V2 генерирует только собственные board/timing definitions; build ID `0x56325331`
-(`V2S1`), USB product `Motortester V2 transport trial`. Это декларация прошивки,
+V2 генерирует собственные board/timing definitions и накладывает отдельный
+NVIC-патч `overlays/usb-nvic.json`; build ID `0x56325332`
+(`V2S2`), USB product `Motortester V2 transport trial`. Это декларация прошивки,
 не способ аутентификации платы. Старые STR1 ELF/BIN/attestations не экспортируются.
 
 Сохранены upstream compiler flags по компонентам, freestanding/soft-float/no-LTO;
@@ -45,6 +46,45 @@ HSE 8 МГц crystal, fixed USB pull-up, шина USB 100 мА, priority 0, DTR 
 Имена `verified_*` сохранены лишь в структуре ABI upstream и не означают измерение.
 Номинальная шкала TIM3 50 квыб/с, 12-битный ADC1/PA0, DMA256, блок128.
 В/мВ не назначаются: аппаратный профиль и калибровка остаются unconfigured.
+
+## V2S2: ограничение USB IRQ
+
+Исходный CTR-патч выключал только `USB_CNTR.CTRM`, оставляя необслуженный CTR.
+В [RM0008, §23.5.1, USB_ISTR](https://www.st.com/resource/en/reference_manual/rm0008-stm32f101xx-stm32f102xx-stm32f103xx-stm32f105xx-and-stm32f107xx-advanced-armbased-32bit-mcus-stmicroelectronics.pdf)
+описан отдельный запрос конечной точки, независимый от CTRM. Поэтому этот
+способ не гарантирует возвращение CPU в foreground. Фактическая история первого
+опыта и его ограничения находятся в [progress.md](../../docs/progress.md).
+
+V2S2 при входе **в каждое** USB-прерывание удерживает NVIC19/20 выключенными.
+Общий `fsdev_int_enable` проверяет hold: его не обходят OSAL и прямой `ep_write`.
+После обслуживания foreground разрешает одну следующую IRQ opportunity.
+При непустой очереди, неоконченной очистке epoch или soft pause разрешены только
+lifecycle-события; CTR остаётся нетронутым. Поэтому RESET/PMAOVR/SUSP/WKUP могут
+продвигаться и во время карантина. Дополнительная проверка ещё не обработанных
+аппаратных lifecycle-флагов блокирует dispatch, публикацию конфигурации и app I/O
+по устаревшему epoch. Прежние проверки actual Stop/epoch/TX сохраняются.
+Если SUSP приходит после уже разрешённого CTR-кванта, ISR может принять одну
+CTR-итерацию в очередь; `pending_soft` и физическая проверка запрещают её
+dispatch/app I/O до обработки lifecycle. Отсутствие такого ingress не заявляется.
+
+Это квант по числу операций, **не измеренная длительность** выключенных IRQ.
+Предел TIME 32 мс не расширяется; обнаруженный TIME_FAULT остаётся sticky,
+без выдачи новых IRQ-квантов, до сброса MCU. Автоматическое восстановление из него
+не обещается. Пять V2-патчей проверяют SHA входа, diff и результата; исходный
+архив c108 остаётся неизменным. Receipt перечисляет эту дополнительную цепочку.
+
+Узкий нативный контроль использует извлечённые из конкретной сборки C-функции
+gate/ISR/bridge, логические NVIC/MMIO и исходную метаинформацию epoch:
+
+```powershell
+.\.venv\Scripts\python.exe -I -B tests\v2-stream-firmware\check_usb_gate.py --image build\v5-fw-candidate --zig PATH_TO_LOCAL_ZIG_EXE --output build\v5-native-gate
+```
+
+Модель проверяет pending CTR при CTRM=0, обходы enable, один IRQ-квант,
+RESET/PMAOVR и SUSP/WKUP при удерживаемой очереди. Удаление нового ISR hold
+должно быть отвергнуто тем же контролем. Модель не исполняет USB PHY, полную
+обработку дескрипторов и payload-copy; она не подтверждает enumeration или WCET.
+Host-компилятор относится только к этой проверке; ARM-образ остаётся GCC 12.3.1.
 
 ## Проверяемая граница
 

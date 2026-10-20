@@ -1,0 +1,628 @@
+{
+  "status": "PASS",
+  "platform": "win32",
+  "windows": "Windows-10-10.0.19045-SP0",
+  "python": "3.14.7 (tags/v3.14.7:823f032, Aug  5 2026, 10:51:32) [MSC v.1944 64 bit (AMD64)]",
+  "frozen": true,
+  "executable": "C:\\Users\\Alexandr\\Desktop\\New folder\\универ\\мотортестер 2\\build\\v5w1\\Проверка переноса\\MotortesterV2\\MotortesterV2.exe",
+  "cwd": "C:\\Users\\Alexandr\\Desktop\\New folder\\универ\\мотортестер 2\\build\\v5w1\\Другая рабочая папка",
+  "checks": [
+    "packaged Windows pyserial; device panel with mocked enumeration; no COM open",
+    "native GUI; both DEMO profiles; V/mV keeps raw and physical values",
+    "single capture saved through GUI; pause-independent recording with a real data gap",
+    "GUI save/open keeps raw and input snapshot; CSV/JSON keeps gap and checksum",
+    "synthetic wire 0.1 window -> V2 unknown scale -> exact save/reopen",
+    "actual exit dialog: Esc retains partial; explicit discard closes without JSON",
+    "paced stream: Preview/Record/pause/Stop/open/CSV; unknown tail; child and parent close",
+    "serial fixtures: Connect without START; both COM ownership guards; Record/Stop/Open unknown tail; failed close and explicit retry"
+  ],
+  "callback_errors": [],
+  "qt_platform": "windows",
+  "qt": "6.12.0",
+  "numpy": "2.5.3",
+  "sample_count": 7500,
+  "session_id": "5f83bbea-68ed-4e2d-8404-6cb7c9298c1d",
+  "device_verification": {
+    "status": "PASS",
+    "serial_version": "3.5",
+    "serial_backend": "serial.serialwin32",
+    "enumeration_mocked": true,
+    "panel_created": true,
+    "serial_open_calls": 0,
+    "worker_running": false,
+    "wire_source": "demo",
+    "sample_count": 2048,
+    "session_id": "00000000-0000-0000-5349-4d0000000001",
+    "voltage_state": "unconfigured",
+    "time_basis": "nominal_unverified",
+    "physical_device_verified": false
+  },
+  "close_verification": {
+    "status": "PASS",
+    "source": "synthetic injected partial; no serial worker",
+    "fragment_samples": 250,
+    "default_and_escape": "cancel",
+    "decisions": [
+      "cancel",
+      "discard"
+    ],
+    "closed_without_json": true,
+    "saved_record_unchanged": true,
+    "serial_open_calls": 0
+  },
+  "stream_verification": {
+    "status": "PASS",
+    "source": "paced synthetic wire 0.2",
+    "record_start": 3671424,
+    "exported_samples": 664743,
+    "pause_independent": true,
+    "raw_roundtrip": true,
+    "unknown_tail_preserved": true,
+    "parent_close_drained": true,
+    "record_picker": {
+      "status": "PASS",
+      "source": "paced synthetic wire 0.2",
+      "hold_seconds_minimum": 2.1,
+      "selected_path": "C:\\Users\\Alexandr\\Desktop\\New folder\\универ\\мотортестер 2\\build\\v5w1\\frozen-smoke\\stream-scope.mtstream",
+      "save_picker_seconds_minimum": 70.0,
+      "record_seconds_minimum": 12.0,
+      "qt_widget_picker": true,
+      "physical_stream_verified": false,
+      "cancel_picker": {
+        "before": {
+          "revision": 1,
+          "phase": "preview",
+          "samples": 34560,
+          "viewer_sequence": 6,
+          "plot_updates": 3,
+          "record_start": null,
+          "writer_accepted_end": null,
+          "writer_checkpointed_end": null,
+          "failure_code": null
+        },
+        "checkpoints": [],
+        "finished_events": [
+          {
+            "result": 0,
+            "elapsed_seconds": 2.17188120004721,
+            "wall_time_unix_seconds": 1792504921.0800135,
+            "state": {
+              "revision": 1,
+              "phase": "preview",
+              "samples": 142848,
+              "viewer_sequence": 28,
+              "plot_updates": 24,
+              "record_start": null,
+              "writer_accepted_end": null,
+              "writer_checkpointed_end": null,
+              "failure_code": null
+            }
+          }
+        ],
+        "elapsed_seconds": 2.1611685000825673,
+        "max_poll_gap_seconds": 0.08906830009073019,
+        "max_sample_update_gap_seconds": 0.08906830009073019,
+        "controller_max_service_gap_ms": 36,
+        "after": {
+          "revision": 1,
+          "phase": "preview",
+          "samples": 142720,
+          "viewer_sequence": 28,
+          "plot_updates": 24,
+          "record_start": null,
+          "writer_accepted_end": null,
+          "writer_checkpointed_end": null,
+          "failure_code": null
+        },
+        "samples_per_wall_second": 50047.00003533633
+      },
+      "save_picker": {
+        "before": {
+          "revision": 1,
+          "phase": "preview",
+          "samples": 160768,
+          "viewer_sequence": 32,
+          "plot_updates": 26,
+          "record_start": null,
+          "writer_accepted_end": null,
+          "writer_checkpointed_end": null,
+          "failure_code": null
+        },
+        "checkpoints": [
+          {
+            "revision": 1,
+            "phase": "preview",
+            "samples": 663808,
+            "viewer_sequence": 131,
+            "plot_updates": 125,
+            "record_start": null,
+            "writer_accepted_end": null,
+            "writer_checkpointed_end": null,
+            "failure_code": null,
+            "elapsed_seconds": 10.060104000149295
+          },
+          {
+            "revision": 1,
+            "phase": "preview",
+            "samples": 1163008,
+            "viewer_sequence": 229,
+            "plot_updates": 223,
+            "record_start": null,
+            "writer_accepted_end": null,
+            "writer_checkpointed_end": null,
+            "failure_code": null,
+            "elapsed_seconds": 20.046945499954745
+          },
+          {
+            "revision": 1,
+            "phase": "preview",
+            "samples": 1660800,
+            "viewer_sequence": 327,
+            "plot_updates": 321,
+            "record_start": null,
+            "writer_accepted_end": null,
+            "writer_checkpointed_end": null,
+            "failure_code": null,
+            "elapsed_seconds": 30.004437900148332
+          },
+          {
+            "revision": 1,
+            "phase": "preview",
+            "samples": 2165760,
+            "viewer_sequence": 426,
+            "plot_updates": 415,
+            "record_start": null,
+            "writer_accepted_end": null,
+            "writer_checkpointed_end": null,
+            "failure_code": null,
+            "elapsed_seconds": 40.114493400091305
+          },
+          {
+            "revision": 1,
+            "phase": "preview",
+            "samples": 2664832,
+            "viewer_sequence": 525,
+            "plot_updates": 503,
+            "record_start": null,
+            "writer_accepted_end": null,
+            "writer_checkpointed_end": null,
+            "failure_code": null,
+            "elapsed_seconds": 50.09589280001819
+          },
+          {
+            "revision": 1,
+            "phase": "preview",
+            "samples": 3160704,
+            "viewer_sequence": 623,
+            "plot_updates": 588,
+            "record_start": null,
+            "writer_accepted_end": null,
+            "writer_checkpointed_end": null,
+            "failure_code": null,
+            "elapsed_seconds": 60.02129720011726
+          },
+          {
+            "revision": 1,
+            "phase": "preview",
+            "samples": 3661184,
+            "viewer_sequence": 721,
+            "plot_updates": 678,
+            "record_start": null,
+            "writer_accepted_end": null,
+            "writer_checkpointed_end": null,
+            "failure_code": null,
+            "elapsed_seconds": 70.0218223000411
+          }
+        ],
+        "finished_events": [
+          {
+            "result": 1,
+            "elapsed_seconds": 70.15969899995252,
+            "wall_time_unix_seconds": 1792504991.5897202,
+            "state": {
+              "revision": 1,
+              "phase": "preview",
+              "samples": 3667968,
+              "viewer_sequence": 722,
+              "plot_updates": 679,
+              "record_start": null,
+              "writer_accepted_end": null,
+              "writer_checkpointed_end": null,
+              "failure_code": null
+            }
+          }
+        ],
+        "elapsed_seconds": 70.02920180000365,
+        "max_poll_gap_seconds": 0.30690830014646053,
+        "max_sample_update_gap_seconds": 0.30690830014646053,
+        "controller_max_service_gap_ms": 36,
+        "after": {
+          "revision": 1,
+          "phase": "preview",
+          "samples": 3662208,
+          "viewer_sequence": 721,
+          "plot_updates": 678,
+          "record_start": null,
+          "writer_accepted_end": null,
+          "writer_checkpointed_end": null,
+          "failure_code": null
+        },
+        "samples_per_wall_second": 49999.71311967485
+      },
+      "sustained_record": {
+        "before": {
+          "revision": 1,
+          "phase": "recording",
+          "samples": 3687296,
+          "viewer_sequence": 726,
+          "plot_updates": 681,
+          "record_start": 3671424,
+          "writer_accepted_end": 3687168,
+          "writer_checkpointed_end": 3671424,
+          "failure_code": null
+        },
+        "checkpoints": [
+          {
+            "revision": 1,
+            "phase": "recording",
+            "samples": 3793280,
+            "viewer_sequence": 746,
+            "plot_updates": 696,
+            "record_start": 3671424,
+            "writer_accepted_end": 3792768,
+            "writer_checkpointed_end": 3671424,
+            "failure_code": null,
+            "elapsed_seconds": 2.118965700035915
+          },
+          {
+            "revision": 1,
+            "phase": "recording",
+            "samples": 3890560,
+            "viewer_sequence": 765,
+            "plot_updates": 709,
+            "record_start": 3671424,
+            "writer_accepted_end": 3890304,
+            "writer_checkpointed_end": 3671424,
+            "failure_code": null,
+            "elapsed_seconds": 4.0652405000291765
+          },
+          {
+            "revision": 1,
+            "phase": "recording",
+            "samples": 3987712,
+            "viewer_sequence": 785,
+            "plot_updates": 723,
+            "record_start": 3671424,
+            "writer_accepted_end": 3987328,
+            "writer_checkpointed_end": 3671424,
+            "failure_code": null,
+            "elapsed_seconds": 6.011320699937642
+          },
+          {
+            "revision": 1,
+            "phase": "recording",
+            "samples": 4088448,
+            "viewer_sequence": 804,
+            "plot_updates": 736,
+            "record_start": 3671424,
+            "writer_accepted_end": 4087936,
+            "writer_checkpointed_end": 3671424,
+            "failure_code": null,
+            "elapsed_seconds": 8.034692300017923
+          },
+          {
+            "revision": 1,
+            "phase": "recording",
+            "samples": 4191616,
+            "viewer_sequence": 825,
+            "plot_updates": 750,
+            "record_start": 3671424,
+            "writer_accepted_end": 4190976,
+            "writer_checkpointed_end": 3671424,
+            "failure_code": null,
+            "elapsed_seconds": 10.094950000056997
+          },
+          {
+            "revision": 1,
+            "phase": "recording",
+            "samples": 4291968,
+            "viewer_sequence": 845,
+            "plot_updates": 763,
+            "record_start": 3671424,
+            "writer_accepted_end": 4291200,
+            "writer_checkpointed_end": 4195712,
+            "failure_code": null,
+            "elapsed_seconds": 12.090718500083312
+          }
+        ],
+        "max_poll_gap_seconds": 0.21491169999353588,
+        "elapsed_seconds": 12.097964500077069,
+        "after": {
+          "revision": 1,
+          "phase": "recording",
+          "samples": 4292352,
+          "viewer_sequence": 845,
+          "plot_updates": 763,
+          "record_start": 3671424,
+          "writer_accepted_end": 4292224,
+          "writer_checkpointed_end": 4195712,
+          "failure_code": null
+        },
+        "samples_per_wall_second": 50013.04144975343
+      },
+      "after_accept": {
+        "revision": 1,
+        "phase": "recording",
+        "samples": 3687296,
+        "viewer_sequence": 726,
+        "plot_updates": 681,
+        "record_start": 3671424,
+        "writer_accepted_end": 3687168,
+        "writer_checkpointed_end": 3671424,
+        "failure_code": null
+      },
+      "recording_continues": {
+        "revision": 1,
+        "phase": "recording",
+        "samples": 4292352,
+        "viewer_sequence": 845,
+        "plot_updates": 763,
+        "record_start": 3671424,
+        "writer_accepted_end": 4292224,
+        "writer_checkpointed_end": 4195712,
+        "failure_code": null
+      },
+      "main_window_timer_active": true,
+      "roundtrip": {
+        "raw_verified": true,
+        "clean_stop_reported": true,
+        "first_sample_index": 3671424,
+        "end_sample_index": 4336167,
+        "reopened_raw_samples": 664743
+      },
+      "stopped_source_choice": {
+        "revision": 2,
+        "samples": 13005,
+        "new_file_created": false,
+        "message": "Запись не началась: состояние потока изменилось во время выбора файла. Проверьте сообщение о приёме. После сбоя закройте окно непрерывного приёма и откройте его заново.",
+        "new_source_admitted": false
+      }
+    },
+    "existing_path_picker": {
+      "status": "PASS",
+      "selected_existing_path": "C:\\Users\\Alexandr\\Desktop\\New folder\\универ\\мотортестер 2\\build\\v5w1\\frozen-smoke\\stream-scope.mtstream",
+      "before": {
+        "stream-scope.mtstream": {
+          "sha256": "f241646e954b7204f141f75da77a978de75576cd8b3822622987feaa2f1c2300",
+          "bytes": 1334624
+        },
+        "stream-scope.mtstream.v2.json": {
+          "sha256": "eab54290abe78b204ebf248a330e7f8d3abd4553ab0930cedf606f63425ec05a",
+          "bytes": 1466
+        }
+      },
+      "physical_stream_verified": false,
+      "error_code": "host_io",
+      "visible_message": "Файл уже существует. Существующие записи не заменяются; выберите новое имя.\nПричина: storage prepare failed: FileExistsError · Операция: создание файла\nФайл: C:/Users/Alexandr/Desktop/New folder/универ/мотортестер 2/build/v5w1/frozen-smoke/stream-scope.mtstream\nДля новой попытки закройте это окно непрерывного приёма и откройте его заново.",
+      "state_message": "Контекст записи не сохранён · Получено: 6 647 отсчётов · Запись не началась · НЕПОЛНЫЕ ДАННЫЕ: host_io",
+      "after": {
+        "stream-scope.mtstream": {
+          "sha256": "f241646e954b7204f141f75da77a978de75576cd8b3822622987feaa2f1c2300",
+          "bytes": 1334624
+        },
+        "stream-scope.mtstream.v2.json": {
+          "sha256": "eab54290abe78b204ebf248a330e7f8d3abd4553ab0930cedf606f63425ec05a",
+          "bytes": 1466
+        }
+      },
+      "recording_reported_saved": false,
+      "test_workspace_closed": true
+    },
+    "physical_stream_verified": false
+  },
+  "serial_stream_verification": {
+    "status": "PASS",
+    "source": "injected serial byte fixtures",
+    "physical_stream_verified": false,
+    "real_serial_open_calls": 0,
+    "qt_platform": "windows",
+    "callback_errors": [],
+    "checkpoints": [
+      "window pending Connect blocks stream before serial construction",
+      "stream pending Connect blocks window button and stale handler",
+      "DTR before open; HELLO/CAPS ready without START or waveform",
+      "actual Record/Stop/Open buttons; raw and unknown connection roundtrip",
+      "parent close retains ownership; explicit retry settles owners and releases lease"
+    ],
+    "prepared": {
+      "commands": [
+        1,
+        2
+      ],
+      "samples": 0,
+      "connection": {
+        "selection": {
+          "port": "V2_SYNTHETIC_SERIAL",
+          "declared_source_commit": null,
+          "declared_artifact_sha256": null
+        },
+        "execution_kind": "injected-test",
+        "observed_build_id": 1446134861,
+        "observed_caps": [
+          1,
+          1,
+          0,
+          12,
+          50000,
+          1,
+          128,
+          1
+        ],
+        "dtr_requested": true,
+        "accounting_domain": "unknown",
+        "image_verified": false
+      }
+    },
+    "recording": {
+      "seconds": 2.3872320998925716,
+      "samples_before": 61824,
+      "samples_after": 170368,
+      "revision": 1,
+      "main_timer_active": true
+    },
+    "settlement": {
+      "selected_path": "C:\\Users\\Alexandr\\Desktop\\New folder\\универ\\мотортестер 2\\build\\v5w1\\frozen-smoke\\serial-window.mtstream",
+      "saved_path": "C:/Users/Alexandr/Desktop/New folder/универ/мотортестер 2/build/v5w1/frozen-smoke/serial-window.mtstream",
+      "normalized_path_matches": true,
+      "metadata_pending": false
+    },
+    "roundtrip": {
+      "first_sample_index": 42368,
+      "end_sample_index": 181405,
+      "raw_samples_compared": 139037,
+      "unknown_tail_preserved": true,
+      "origin": "synthetic",
+      "open_path_choice_injected": true
+    },
+    "close": {
+      "failed_close_retained_lease": true,
+      "explicit_retry_button": true,
+      "parent_closed": true,
+      "close_attempts": 2
+    },
+    "files": {
+      "serial-close-retry.png": "b9143ca668192228b52491f94662ac0412980ce27bfe851141431ae6efa4facd",
+      "serial-open-unknown-tail.png": "e4835ce6e584d37386a3f9489680b6690f85da50d87c8821ebf257c109f30c97",
+      "serial-ready.png": "92371f6866f9d50b4e0931a9c781a25c41262f496d6610a481f3dfe3a750d628",
+      "serial-recording.png": "cf845b0586aaad2f2320846bc8f5dc3ecdfad11a850cf18c16cdba0c9750924b",
+      "serial-window.mtstream": "95843bc335019de2577730b04cbd7cc6844ecdb6f26f00a9e7ff237e1d5dcee1",
+      "serial-window.mtstream.v2.json": "f218809a2c9fab3d8f185dfbd57b207ef7b7c2363dfe9f8fe8e360f7c3585fe4"
+    }
+  },
+  "files": {
+    "device-panel.png": {
+      "bytes": 27556,
+      "sha256": "4948d8b9c9a064a61bb9cc31e09615358caf29e5a360bdec82f04d110e52af12"
+    },
+    "device-window.mtv2": {
+      "bytes": 5678,
+      "sha256": "803cc7c8edcdf97ea8dde22495c392b2d8966487d77afa5304d64bef14113498"
+    },
+    "export.csv": {
+      "bytes": 351704,
+      "sha256": "15412527f9638f3fcb668f33502c00092c66d9e4606da1a460a980004c879674"
+    },
+    "export.csv.json": {
+      "bytes": 1996,
+      "sha256": "3d28e38506530cdf74cd10f41f1d050f556212818be2ea3bb12f49d366b3ad2b"
+    },
+    "ignition.png": {
+      "bytes": 105522,
+      "sha256": "1f04a709e14ece3d431a9c736998802779704bd7a83f36c42ab94aa56e3a79c3"
+    },
+    "incomplete-close.png": {
+      "bytes": 11232,
+      "sha256": "4ba859186b8f53becbec9f739fa5043b2926f2e544653974a43778a8d112bbd9"
+    },
+    "sample.mtv2": {
+      "bytes": 16757,
+      "sha256": "2d172ecbeb331823e3d8e1ff2dd680f208769bff0db10e45fb1ee7fcd8732473"
+    },
+    "scope.png": {
+      "bytes": 124380,
+      "sha256": "22d13bcf5fc84c62bf9f069bce160c8c5eb67a40bca3e8ca732db91af3efcd7f"
+    },
+    "serial-close-retry.png": {
+      "bytes": 99880,
+      "sha256": "b9143ca668192228b52491f94662ac0412980ce27bfe851141431ae6efa4facd"
+    },
+    "serial-open-unknown-tail.png": {
+      "bytes": 98156,
+      "sha256": "e4835ce6e584d37386a3f9489680b6690f85da50d87c8821ebf257c109f30c97"
+    },
+    "serial-ready.png": {
+      "bytes": 48339,
+      "sha256": "92371f6866f9d50b4e0931a9c781a25c41262f496d6610a481f3dfe3a750d628"
+    },
+    "serial-recording.png": {
+      "bytes": 80887,
+      "sha256": "cf845b0586aaad2f2320846bc8f5dc3ecdfad11a850cf18c16cdba0c9750924b"
+    },
+    "serial-result.json": {
+      "bytes": 2756,
+      "sha256": "16628a6b47f52e2b3b023081fbd1b31315f3a8e420cf27270bd3fd3278e6cdc4"
+    },
+    "serial-window.mtstream": {
+      "bytes": 280125,
+      "sha256": "95843bc335019de2577730b04cbd7cc6844ecdb6f26f00a9e7ff237e1d5dcee1"
+    },
+    "serial-window.mtstream.v2.json": {
+      "bytes": 1920,
+      "sha256": "f218809a2c9fab3d8f185dfbd57b207ef7b7c2363dfe9f8fe8e360f7c3585fe4"
+    },
+    "single.mtv2": {
+      "bytes": 2029,
+      "sha256": "e0b0673738af15cfbd0eaf6811b3e3ac1d9a69fd793e3d9ba62b81d8188541dd"
+    },
+    "stream-existing-path-result.json": {
+      "bytes": 1717,
+      "sha256": "02fadede9da5cfe2d35f334a9b93f5f23bf47ce6afb2c3cd63172afeaef014d4"
+    },
+    "stream-existing-path.png": {
+      "bytes": 50897,
+      "sha256": "c5bd0b77535dd656770510d675540001db8d1b41d2c57de411678825a260b87b"
+    },
+    "stream-export.csv": {
+      "bytes": 14578269,
+      "sha256": "0989cbd35662c50d05bffb24020d80112d238a334a039d3147c991daeb9d8e11"
+    },
+    "stream-export.csv.json": {
+      "bytes": 2304,
+      "sha256": "ab5c50c788740762a81bc9b487a379329d72e6209836d1863fa8e3da7cfd6ef8"
+    },
+    "stream-ignition.mtstream": {
+      "bytes": 102708,
+      "sha256": "a53b5cdfe449921824cf96b5b6ca71e2bfc0ff622e555c7bf6f41cd5be3c0b2c"
+    },
+    "stream-ignition.mtstream.v2.json": {
+      "bytes": 1453,
+      "sha256": "4934d70d7d459054f539e3043f4410861e893cc7bd0cc342ff39fdd314b5e24b"
+    },
+    "stream-ignition.png": {
+      "bytes": 51918,
+      "sha256": "19451f70ee33ceb191044a2c1b14f0c1ff323cf2c0a8abe385cc5350ddc22356"
+    },
+    "stream-picker-result.json": {
+      "bytes": 9908,
+      "sha256": "a36b776b95669b4424e9710293e0617c4bb035e7c8e3d9001439fbe5ad63bcb2"
+    },
+    "stream-record-picker.png": {
+      "bytes": 21256,
+      "sha256": "7fe11979c42ebc4fffe4af7c1a7e6c4620e1b1024e2ad04f0597bf80f6c05d6a"
+    },
+    "stream-scope.mtstream": {
+      "bytes": 1334624,
+      "sha256": "f241646e954b7204f141f75da77a978de75576cd8b3822622987feaa2f1c2300"
+    },
+    "stream-scope.mtstream.v2.json": {
+      "bytes": 1466,
+      "sha256": "eab54290abe78b204ebf248a330e7f8d3abd4553ab0930cedf606f63425ec05a"
+    },
+    "stream-scope.png": {
+      "bytes": 59463,
+      "sha256": "4db56bdc5686190fd6adc7268de9f4395471025ef09605508913413689a0f10c"
+    },
+    "stream-unknown-tail.mtstream": {
+      "bytes": 13087,
+      "sha256": "ec372af9c59e410d7fad9034c350f35faf743bdde1e7f896a1ba719265e75866"
+    },
+    "stream-unknown-tail.mtstream.v2.json": {
+      "bytes": 1455,
+      "sha256": "1556f5ecc0ed11c01a3cba2bbc12b67df83773273ba207365f4e826697471cfa"
+    },
+    "stream-unknown-tail.png": {
+      "bytes": 68845,
+      "sha256": "b7eceaf7858282857df9c28a3ccff3f6645a077c98c1d2ea411be4738fff713e"
+    }
+  }
+}

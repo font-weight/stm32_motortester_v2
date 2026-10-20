@@ -1,4 +1,4 @@
-"""Build the separately reviewed V2S1 transport candidate; never flash hardware."""
+"""Build the separately reviewed V2S2 transport candidate; never flash hardware."""
 import argparse
 import hashlib
 import importlib.util
@@ -195,6 +195,28 @@ def main():
         fsdev = patch(patch(fsdev, usb_pins["fsdev"]), "stream-ctr-fairness.json")
         (out / "patched/usbd.c").write_bytes(usbd)
         (out / "patched/dcd_stm32_fsdev.c").write_bytes(fsdev)
+        # Preserve the canonical archive. V2 patches are a second, independently
+        # pinned layer over exactly the inputs named in the overlay manifest.
+        v2_patches = json.loads((here / "overlays/usb-nvic.json").read_text("utf-8"))
+        require(v2_patches["schema"] == "motortester-v2-usb-nvic-overlay-1",
+                "Unexpected V2 overlay schema")
+        receipt["v2_overlays"] = v2_patches["patches"]
+        for row in v2_patches["patches"]:
+            target = out / "patched" / row["target"]
+            target.parent.mkdir(parents=True, exist_ok=True)
+            target.write_bytes(apply_patch(
+                (out / row["source"]).read_bytes(),
+                (here / "overlays" / row["patch"]).read_bytes(), row))
+        # Quoted relative includes must resolve to the V2 header alongside the
+        # patched translation unit, never silently fall back to the old gate.
+        for original, target in (
+            ("firmware/third_party/usb/vendor/tinyusb/src/portable/st/stm32_fsdev/fsdev_common.h",
+             "fsdev_common.h"),
+            ("firmware/platform/mt_stream_diag.h", "v2/platform/mt_stream_diag.h"),
+        ):
+            copied = out / "patched" / target
+            copied.parent.mkdir(parents=True, exist_ok=True)
+            copied.write_bytes((source / original).read_bytes())
         manifest = json.loads((source / "firmware/build/inputs.json").read_text("utf-8"))
         standard = next(r["flags"] for r in manifest["components"]
                         if r["source"] == "firmware/app/mt_runtime.c")
@@ -236,6 +258,10 @@ def main():
         for index, row in enumerate(entries):
             src = row["source"]
             path = src.replace("@patched/", "patched/") if src.startswith("@") else "source/" + src
+            path = {
+                "source/firmware/app/mt_live_runtime.c": "patched/v2/app/mt_live_runtime.c",
+                "source/firmware/transport/mt_usb_bridge.c": "patched/v2/transport/mt_usb_bridge.c",
+            }.get(path, path)
             compile_c(f"{index:02}-{Path(src).stem}", path, row["flags"])
         reset = "objects/reset.o"
         run("compile-reset", [tools["gcc"], "-mcpu=cortex-m3", "-mthumb", "-mfloat-abi=soft",

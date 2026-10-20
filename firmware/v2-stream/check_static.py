@@ -159,8 +159,10 @@ def analyze(out):
     for name in ("_usbd_qdef", "_usbd_spin"):
         require(elf.word(elf.value(name)) == target("usbd_int_set") | 1, "OSAL lock callback")
     require(elf.symbols["mt_board"]["size"] == 48, "Board ABI size")
+    board_build = elf.word(elf.value("mt_board") + 12)
+    require(board_build == receipt["config"]["firmware_build"], "ELF/config build ID differs")
     require([elf.word(elf.value("mt_board") + i * 4) for i in range(7)] ==
-            [8000000, 1000000, 0, 0x56325331, 0, 1, 1], "Board scalar configuration")
+            [8000000, 1000000, 0, board_build, 0, 1, 1], "Board scalar configuration")
     require([elf.word(elf.value("mt_stream_timing") + i * 4) for i in range(3)] ==
             [1, 1, 1], "Provisional timing declaration")
     # The deferred-function producer is retained but unreachable. No code/data
@@ -295,7 +297,7 @@ def analyze(out):
     return {
         "status": "CONDITIONAL_EXACT_IMAGE_STATIC_BOUND",
         "elf_sha256": sha(elf_path), "analyzer_sha256": sha(Path(__file__)),
-        "firmware_build": "0x56325331", "roots": roots,
+        "firmware_build": f"0x{board_build:08x}", "roots": roots,
         "exception_allowance_bytes": 108, "upper_bound_bytes": total,
         "aligned_minimum_bytes": rounded, "reserved_bytes": 8192,
         "functions": cfg_results, "call_edges": edges, "callback_sites": callback_sites,

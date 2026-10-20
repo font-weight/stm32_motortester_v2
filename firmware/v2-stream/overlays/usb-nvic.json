@@ -1,0 +1,45 @@
+{
+  "schema": "motortester-v2-usb-nvic-overlay-1",
+  "patches": [
+    {
+      "source": "patched/dcd_stm32_fsdev.c",
+      "target": "dcd_stm32_fsdev.c",
+      "patch": "v2-nvic-dcd.patch",
+      "source_sha256": "ff734b0c3a80884006927f172ebddf7986e07ef71d63eda31764d761469635c6",
+      "patch_sha256": "d450b7bec8121567dc096b452de98476009b51f3b87605cc7183ef276810e3d7",
+      "result_sha256": "fc32d066d899693afec30830a419f0c5bc81129261a1a70001ed499a892b460d"
+    },
+    {
+      "source": "source/firmware/third_party/usb/vendor/tinyusb/src/portable/st/stm32_fsdev/fsdev_stm32.h",
+      "target": "fsdev_stm32.h",
+      "patch": "v2-nvic-enable.patch",
+      "source_sha256": "8ad617f61884ef9acc137fed9eab34264af79ef75df916cef1126f3106fdeabe",
+      "patch_sha256": "e8747ab44e9a95a3aca9b247ebf7e3693bdc18021630d38aa4fd7a73c55961e0",
+      "result_sha256": "d4a32d1b7c5ec2c7698c1b0c2e175ecb0ff00bdb96314b007d0d6a866de391a0"
+    },
+    {
+      "source": "source/firmware/app/mt_live_runtime.c",
+      "target": "v2/app/mt_live_runtime.c",
+      "patch": "v2-nvic-runtime.patch",
+      "source_sha256": "96ebd81a52b15a4d10abc2501d7c6ff3bb7369418ce78d88eaeaaea249bdb7bf",
+      "patch_sha256": "5fc51ae4a25f180a65e84983d6cdd24dcceebf2b1a96f244ad85c9a7d663b886",
+      "result_sha256": "eefa74ee9cbaf3d9aaa36e36046b88481af87e03e48af78e40f399c24182eb3a"
+    },
+    {
+      "source": "source/firmware/transport/mt_usb_bridge.c",
+      "target": "v2/transport/mt_usb_bridge.c",
+      "patch": "v2-nvic-bridge.patch",
+      "source_sha256": "5e6a12261a5a0488c82b572d516a3fd9d0c0e27fccc8e1ade22b59013a2b7d5a",
+      "patch_sha256": "839f558054e3942fcc07dc0f6269a3f39025373055694a9620e034b88eee2333",
+      "result_sha256": "dad3783c3497f601a55d9d9d02c54500856b84beb3a2c99628ca7146b98eea10"
+    },
+    {
+      "source": "source/firmware/platform/mt_usb_ctr.h",
+      "target": "v2/platform/mt_usb_ctr.h",
+      "patch": "v2-nvic-api.patch",
+      "source_sha256": "a5ef602be6d2734572e9dedad9ef46cb1f6104eba44702c021688ac291d68dd1",
+      "patch_sha256": "d19b42cc047bb14ff1d5c621153f809f4c2d8946d692a489c3e56b4df30644f1",
+      "result_sha256": "dfc05ed468745b07752807642682c4f4618dddf8c2de57573e11b6a21dfbad64"
+    }
+  ]
+}
