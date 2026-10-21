@@ -189,7 +189,7 @@ def p1_map():
 
 def dc_shift():
     f = Figure("offset-example", 1110)
-    f.text(800, 25, "U_SUM = 0,1247808 × U_CH1 + 1,6504134 В", 40, INK, True, "middle")
+    f.text(800, 25, "U_SUM = 0,1198910 × U_CH1 + 1,6814714 В", 40, INK, True, "middle")
     f.text(800, 85, "Условная статическая модель при V_A = 3,300 В", 32, GRAY, anchor="middle")
     left, top, width, height = 165, 190, 1260, 560
     xmin, xmax, ymin, ymax = -16, 16, -0.7, 4.0
@@ -209,7 +209,7 @@ def dc_shift():
     f.text(170, 135, "U_SUM, В", 32, TEAL, True)
     f.text(1450, 776, "U_CH1, В", 32, TEAL, True, "end")
     f.text(190, y33+20, "Коридор АЦП: 0…V_A", 30, GRAY)
-    k, b = .124780756702581, 1.65041343021799
+    k, b = .1198910081743869, 1.6814713896457766
     crosses = [(0-b)/k, (3.3-b)/k]
     f.line([xy(xmin, k*xmin+b), xy(crosses[0], 0)], RED, 4, True)
     f.line([xy(crosses[0], 0), xy(crosses[1], 3.3)], TEAL, 6)
@@ -217,9 +217,9 @@ def dc_shift():
     for x in (-10, 0, 10):
         f.circle(*xy(x, k*x+b), 8)
     z = xy(0, b)
-    f.text(z[0]+25, z[1]+35, "0 В → 1,650 В", 32, TEAL, True)
+    f.text(z[0]+25, z[1]+35, "0 В → 1,681 В", 32, TEAL, True)
     f.lines(40, 850,
-            ["Пример: −10 В → 0,403 В; 0 В → 1,650 В; +10 В → 2,898 В.",
+            ["Пример: −10 В → 0,483 В; 0 В → 1,681 В; +10 В → 2,880 В.",
              "При постоянном уровне идеальные буферы и ФНЧ дают U_ADC = U_SUM.",
              "Выход за 0…V_A не даёт достоверного результата: возникает насыщение."],
             31, GRAY)
@@ -332,15 +332,15 @@ def divider():
     f=Figure("p1-divider", 730)
     y=310
     f.text(80, 248, "CH1", 36, TEAL, True)
-    resistor_horizontal(f, 80, 430, y, "R1", "499 кОм")
-    resistor_horizontal(f, 430, 790, y, "R2", "499 кОм")
+    resistor_horizontal(f, 80, 430, y, "R1", "510 кОм")
+    resistor_horizontal(f, 430, 790, y, "R2", "510 кОм")
     f.text(435, 354, "IN_MID", 31, TEAL, True, "middle")
     f.line([(790, y), (1180, y)], INK, 4)
     f.circle(820, y, fill=INK, stroke=INK)
     f.text(955, 259, "SUM", 36, TEAL, True, "middle")
     f.text(820, 25, "V_A", 36, GRAY, True, "middle")
-    resistor_vertical(f, 820, 80, 310, "R3", "249 кОм")
-    resistor_vertical(f, 820, 310, 520, "R4", "332 кОм")
+    resistor_vertical(f, 820, 80, 310, "R3", "240 кОм")
+    resistor_vertical(f, 820, 310, 520, "R4", "330 кОм")
     ground_symbol(f, 820, 540)
     op_symbol(f, 1180, 347, ref="U1A")
     # The inputs are separate from the power rails; only functional signal pins

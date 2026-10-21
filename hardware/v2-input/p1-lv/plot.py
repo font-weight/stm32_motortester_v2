@@ -22,10 +22,10 @@ def main():
     plt.rcParams.update({
         "font.family": "DejaVu Sans", "font.size": 10,
         "axes.spines.top": False, "axes.spines.right": False,
-        "axes.grid": True, "grid.alpha": 0.22, "svg.hashsalt": "HW-V2-02-P1",
+        "axes.grid": True, "grid.alpha": 0.22, "svg.hashsalt": "HW-V2-02d-P1-r2",
     })
     fig, axes = plt.subplots(2, 2, figsize=(14, 9))
-    fig.suptitle("P1: расчёт низковольтного макета без датчика\n"
+    fig.suptitle("P1-LV r2: расчёт низковольтного макета без датчика\n"
                  "РАСЧЁТ · ИДЕАЛЬНАЯ ЛИНЕЙНАЯ МОДЕЛЬ · НЕ ИЗМЕРЕНИЕ",
                  fontsize=16, weight="bold", y=0.99)
     colors = ("#d45c35", "#c38f18", "#18827d", "#4769ae")
@@ -83,7 +83,7 @@ def main():
                     [p["adc_corner_min_max_v"][0] for p in points],
                     [p["adc_corner_min_max_v"][1] for p in points],
                     color="#18827d", alpha=0.18,
-                    label="R ±0,1%; VDDA 3,2…3,4 В")
+                    label="R ±1%; VDDA 3,2…3,4 В")
     ax.axvspan(0, 1, color="#e8b44c", alpha=0.3,
                label="План первого опыта: 0…1 В")
     ax.set(title="Расчётная DC-передача и выбранные углы допусков",
@@ -99,7 +99,13 @@ def main():
              "Датчик, кабель и плата не изготовлены.", ha="center", fontsize=9)
     fig.tight_layout(rect=(0, 0.04, 1, 0.92))
     fig.savefig(folder / "model-report.png", dpi=160)
-    fig.savefig(folder / "model-report.svg", metadata={"Date": None})
+    svg_path = folder / "model-report.svg"
+    fig.savefig(svg_path, metadata={"Date": None})
+    # Matplotlib may append whitespace to SVG path lines; preserve geometry
+    # while keeping this generated text deterministic and diff-friendly.
+    svg_path.write_text("\n".join(line.rstrip() for line in
+                        svg_path.read_text(encoding="utf-8").splitlines()) + "\n",
+                        encoding="utf-8", newline="\n")
     plt.close(fig)
     print("Written model-report.png and model-report.svg (calculation, not measurement).")
 

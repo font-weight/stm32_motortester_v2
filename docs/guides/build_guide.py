@@ -154,7 +154,7 @@ def build():
         run.font.color.rgb = RGBColor(0, 0, 0)
     fp = sec.footer.paragraphs[0]
     fp.alignment = WD_ALIGN_PARAGRAPH.RIGHT
-    fp.add_run("Редакция 1   •   ")
+    fp.add_run("Редакция 2   •   ")
     field = OxmlElement("w:fldSimple")
     field.set(qn("w:instr"), "PAGE")
     fp._p.append(field)

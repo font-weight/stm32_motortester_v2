@@ -3,7 +3,7 @@
 <rect width="1920" height="1610" fill="#f2f5f5"/>
 <text x="40" y="54" font-size="35" class="" text-anchor="start">P1-LV • расчётный лабораторный проект</text>
 <text x="42" y="90" font-size="24" class="warning" text-anchor="start">Не проверено физически · не для датчика зажигания · JP_ADC снята</text>
-<text x="42" y="119" font-size="18" class="small" text-anchor="start">Ревизия r1 · электрические соединения по netlist.md · одинаковые имена сетей означают соединение</text>
+<text x="42" y="119" font-size="18" class="small" text-anchor="start">Ревизия r2 · R1…R9 1% · R10…R12 5% с отбором · все R 0,25 Вт · одинаковые имена сетей соединены</text>
 <rect x="30" y="145" width="910" height="380" rx="10" fill="#fff" stroke="#c3d2d6" stroke-width="1.5"/>
 <text x="54" y="182" font-size="25" class="" text-anchor="start">1. DC-вход и буфер</text>
 <path d="M54,199 L916,199" class="wire"/>
@@ -18,14 +18,14 @@
 <rect x="206.0" y="324" width="68" height="22" class="part"/>
 <path d="M274.0,335 L310,335" class="wire"/>
 <text x="240.0" y="290" font-size="19" class="" text-anchor="middle">R1</text>
-<text x="240.0" y="312" font-size="19" class="" text-anchor="middle">499 кОм</text>
+<text x="240.0" y="312" font-size="19" class="" text-anchor="middle">510 кОм</text>
 <path d="M310,335 L350,335" class="wire"/>
 <text x="330" y="369" font-size="21" class="net" text-anchor="middle">IN_MID</text>
 <path d="M350,335 L386.0,335" class="wire"/>
 <rect x="386.0" y="324" width="68" height="22" class="part"/>
 <path d="M454.0,335 L490,335" class="wire"/>
 <text x="420.0" y="290" font-size="19" class="" text-anchor="middle">R2</text>
-<text x="420.0" y="312" font-size="19" class="" text-anchor="middle">499 кОм</text>
+<text x="420.0" y="312" font-size="19" class="" text-anchor="middle">510 кОм</text>
 <path d="M490,335 L660,335" class="wire"/>
 <circle cx="145" cy="335" r="4.2" fill="#234551"/>
 <path d="M145,335 L145,312" class="wire"/>
@@ -43,13 +43,13 @@
 <rect x="514" y="257.5" width="22" height="60" class="part"/>
 <path d="M525,317.5 L525,335" class="wire"/>
 <text x="557" y="248.5" font-size="19" class="" text-anchor="start">R3</text>
-<text x="557" y="272.5" font-size="19" class="" text-anchor="start">249 кОм</text>
+<text x="557" y="272.5" font-size="19" class="" text-anchor="start">240 кОм</text>
 <circle cx="525" cy="335" r="4.2" fill="#234551"/>
 <path d="M525,335 L525,362.5" class="wire"/>
 <rect x="514" y="362.5" width="22" height="60" class="part"/>
 <path d="M525,422.5 L525,450" class="wire"/>
 <text x="547" y="388.5" font-size="19" class="" text-anchor="start">R4</text>
-<text x="547" y="412.5" font-size="19" class="" text-anchor="start">332 кОм</text>
+<text x="547" y="412.5" font-size="19" class="" text-anchor="start">330 кОм</text>
 <path d="M525,450 L525,464" class="wire"/>
 <path d="M507,464 L543,464" class="wire"/>
 <path d="M513,471 L537,471" class="wire"/>
@@ -139,13 +139,13 @@
 <rect x="156.0" y="779" width="68" height="22" class="part"/>
 <path d="M224.0,790 L300,790" class="wire"/>
 <text x="190.0" y="745" font-size="19" class="" text-anchor="middle">R5</text>
-<text x="190.0" y="767" font-size="19" class="" text-anchor="middle">4,87 кОм</text>
+<text x="190.0" y="767" font-size="19" class="" text-anchor="middle">4,7 кОм</text>
 <path d="M300,790 L360,790" class="wire"/>
 <path d="M360,790 L411.0,790" class="wire"/>
 <rect x="411.0" y="779" width="68" height="22" class="part"/>
 <path d="M479.0,790 L530,790" class="wire"/>
 <text x="445.0" y="834" font-size="19" class="" text-anchor="middle">R6</text>
-<text x="445.0" y="856" font-size="19" class="" text-anchor="middle">4,87 кОм</text>
+<text x="445.0" y="856" font-size="19" class="" text-anchor="middle">4,7 кОм</text>
 <path d="M530,790 L660,790" class="wire"/>
 <circle cx="340" cy="790" r="4.2" fill="#234551"/>
 <circle cx="550" cy="790" r="4.2" fill="#234551"/>
@@ -203,13 +203,13 @@
 <rect x="1096.0" y="779" width="68" height="22" class="part"/>
 <path d="M1164.0,790 L1240,790" class="wire"/>
 <text x="1130.0" y="745" font-size="19" class="" text-anchor="middle">R7</text>
-<text x="1130.0" y="767" font-size="19" class="" text-anchor="middle">2,03 кОм</text>
+<text x="1130.0" y="767" font-size="19" class="" text-anchor="middle">2 кОм</text>
 <path d="M1240,790 L1300,790" class="wire"/>
 <path d="M1300,790 L1351.0,790" class="wire"/>
 <rect x="1351.0" y="779" width="68" height="22" class="part"/>
 <path d="M1419.0,790 L1470,790" class="wire"/>
 <text x="1385.0" y="834" font-size="19" class="" text-anchor="middle">R8</text>
-<text x="1385.0" y="856" font-size="19" class="" text-anchor="middle">2,03 кОм</text>
+<text x="1385.0" y="856" font-size="19" class="" text-anchor="middle">2 кОм</text>
 <path d="M1470,790 L1600,790" class="wire"/>
 <circle cx="1280" cy="790" r="4.2" fill="#234551"/>
 <circle cx="1490" cy="790" r="4.2" fill="#234551"/>

@@ -1,5 +1,15 @@
 # Координация самостоятельного V2
 
+HW-V2-02d, база `7ee0919df6bf53eb5fcabe4e92bcecbe7d01be14`:
+root — netlist/materials/README/schematic P1, общие task/requirements/
+architecture/bench/validation/hardware-input/decisions/progress/sources;
+p1_r2_model — model/JSON/plot/графики P1 и verification/hw-v2-02d/model-notes.md;
+p1_r2_guide — docs/guides/* и docs/guide-assets/*, Word/рендер;
+p1_r2_critic — только reviews/hw-v2-02d-review.md,
+verification/hw-v2-02d/critic* и manifest.json. Критик не автор.
+Область: расчётная r2 и объяснения. Приложение, firmware, COM, ST-Link,
+закупка и физические соединения не затрагиваются.
+
 HW-V2-02c, база 29503934e1c3bf833d7eded7664f553ac0c3abbb:
 root — task/architecture/decisions/progress/sources/coordination,
 docs/verification/hw-v2-02c/compare_resistors.py и comparison.json;

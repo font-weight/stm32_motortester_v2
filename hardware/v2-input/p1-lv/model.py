@@ -1,4 +1,4 @@
-"""HW-V2-02/P1: arithmetic and ideal linear model, never a hardware test.
+"""HW-V2-02d/P1-LV r2: arithmetic and ideal model, never a hardware test.
 
 Run with Python >=3.10, standard library only:
     python hardware/v2-input/p1-lv/model.py
@@ -18,17 +18,18 @@ import math
 from pathlib import Path
 
 
-R_INPUT_PARTS = (499_000.0, 499_000.0)
-R_UP, R_DOWN = 249_000.0, 332_000.0
+R_INPUT_PARTS = (510_000.0, 510_000.0)
+R_UP, R_DOWN = 240_000.0, 330_000.0
 VDDA = 3.3  # Assumed; the actual board reference has not been measured.
 SECTIONS = (
-    (4_870.0, 4_870.0, 11.8e-9, 10e-9),
-    (2_030.0, 2_030.0, 68e-9, 10e-9),
+    (4_700.0, 4_700.0, 11.8e-9, 10e-9),
+    (2_000.0, 2_000.0, 68e-9, 10e-9),
 )
 R_OUT, C_OUT = 330.0, 1e-9
 CP_NOMINAL = 20e-12  # Hypothetical TOTAL capacitance SUM -> AC ground.
-R_TOL, C_TOL = 0.001, 0.02
-R_OUT_TOL = 0.01  # R9 is 1%; divider and Sallen-Key resistors are 0.1%.
+R_TOL, C_TOL = 0.01, 0.02
+R_OUT_TOL = 0.01  # R1...R9 remain specified 1%; selection is not needed.
+R_AUX_TOL = 0.05  # R10...R12: full rated tolerance, even after DMM screening.
 
 
 def divider(r1=R_INPUT_PARTS[0], r2=R_INPUT_PARTS[1],
@@ -77,6 +78,25 @@ def response(frequency, sections=SECTIONS, cp=CP_NOMINAL, rth=None,
     s = 2j * math.pi * frequency
     return (section_h(frequency, sections[0]) * section_h(frequency, sections[1])
             / ((1 + s * rth * cp) * (1 + s * r_out * c_out)))
+
+
+def cutoff_hz(sections=SECTIONS, cp=CP_NOMINAL, r_out=R_OUT, c_out=C_OUT):
+    """Half-power crossing on the roll-off, normalized to the DC gain.
+
+    These positive-R/C low-pass variants bracket the crossing between
+    100 Hz and 10 kHz. This is a model frequency, not measured bandwidth.
+    """
+    lo, hi = 100.0, 10_000.0
+    target = 1 / math.sqrt(2)
+    assert abs(response(lo, sections, cp, r_out=r_out, c_out=c_out)) > target
+    assert abs(response(hi, sections, cp, r_out=r_out, c_out=c_out)) < target
+    for _ in range(60):
+        middle = (lo + hi) / 2
+        if abs(response(middle, sections, cp, r_out=r_out, c_out=c_out)) > target:
+            lo = middle
+        else:
+            hi = middle
+    return (lo + hi) / 2
 
 
 def step_trace(start_v, end_v, dt_s, duration_s=0.002, cp=CP_NOMINAL):
@@ -168,13 +188,15 @@ def build():
     dc = divider()
     rth = dc["r_sum_thevenin_ohm"]
     result = {
-        "schema": "HW-V2-02/P1-ideal-linear-v1",
+        "schema": "HW-V2-02d/P1-LV-r2-ideal-linear-v2",
         "evidence_level": "CALCULATION_ONLY_NOT_MEASURED",
         "not_an_allowed_input_rating": True,
         "assumptions": {
             "vdda_v": VDDA, "vdda_corner_v": [3.2, 3.4],
             "divider_and_sallen_key_resistor_relative_tolerance": R_TOL,
             "output_resistor_relative_tolerance": R_OUT_TOL,
+            "auxiliary_resistor_relative_tolerance": R_AUX_TOL,
+            "measured_screening_does_not_narrow_model_tolerance": True,
             "filter_capacitor_relative_tolerance": C_TOL,
             "sum_parasitic_capacitance_hypothetical_f": [10e-12, 20e-12, 30e-12],
             "adc_bits": 12, "adc_code_denominator": 4096,
@@ -196,6 +218,15 @@ def build():
         "dc_points": [],
     }
     r_corners = list(itertools.product((-1, 1), repeat=4))
+    dc_corner_parameters = [divider(*(value * (1 + R_TOL * sign)
+        for value, sign in zip((*R_INPUT_PARTS, R_UP, R_DOWN), signs)))
+        for signs in r_corners]
+    result["dc_resistor_corners_at_nominal_vdda"] = {
+        "vdda_v": VDDA, "corners_count": len(dc_corner_parameters),
+        **{name: [min(p[name] for p in dc_corner_parameters),
+                  max(p[name] for p in dc_corner_parameters)]
+           for name in ("k_v_per_v", "offset_v", "r_input_thevenin_ohm", "v_open_bnc_v")},
+    }
     for vin in (-10.0, -1.0, 0.0, 1.0, 10.0):
         adc = dc["offset_v"] + dc["k_v_per_v"] * vin
         corners = []
@@ -228,8 +259,8 @@ def build():
         "zero": "CH1 directly jumpered to AGND; pot bottom through 1k is not zero",
         "jp_adc_open": True,
         "meter_input_hypothesis_ohm": 10e6,
-        "meter_actual_spec": "TBD, 10Mohm is an example, not verified RM102 property",
-        "corners": "R10/R11 ±1%; pot total ±20%; P1 R ±0.1%; VDDA 3.2/3.4",
+        "meter_actual_spec": "10Mohm example; RM101/RM102 manual lists 10Mohm for DC voltage, actual unit/range/condition not verified",
+        "corners": "R10/R11 ±5%; pot total ±20%; P1 R ±1%; VDDA 3.2/3.4; no narrowing after DMM screening",
         "points": [],
     }
     for fraction in (0.0, 0.5, 1.0):
@@ -241,7 +272,7 @@ def build():
                 resistors = tuple(value*(1+R_TOL*sign)
                                   for value, sign in zip((*R_INPUT_PARTS, R_UP, R_DOWN), signs))
                 corners.append(dc_test_source(fraction, vdda=vdda,
-                    r10=33_000*(1+0.01*s10), r11=1000*(1+0.01*s11),
+                    r10=33_000*(1+R_AUX_TOL*s10), r11=1000*(1+R_AUX_TOL*s11),
                     pot=10_000*(1+0.2*spot), p1_resistors=resistors)["ch1_loaded_v"])
         dc_test["points"].append({
             **nominal, "with_hypothetical_10m_meter_ch1_v": with_meter["ch1_loaded_v"],
@@ -257,6 +288,40 @@ def build():
     dc_test["less_than_1v_in_listed_linear_corners"] = True
     dc_test["does_not_cover"] = "wiring error, missing ground, pot failure, wrong component, external source"
     result["own_rail_dc_test"] = dc_test
+    # R12 is a passive rail load, not a clamp or a guaranteed current sink.
+    result["r12_rail_load"] = {
+        "resistance_ohm": 10_000.0, "tolerance": R_AUX_TOL,
+        "current_min_max_a_at_3p2_3p4_v": [3.2 / 10_500, 3.4 / 9_500],
+        "maximum_power_w_at_3p4_v": 3.4 ** 2 / 9_500,
+        "not_a_protective_shunt": True,
+    }
+    # A deliberately loose acceptance window for ordinary 5% auxiliary
+    # resistors. The uncertainty interval is conditional on this manual
+    # applying to the actual healthy meter and its specified environment.
+    result["conditional_rm102_resistor_screening"] = {
+        "manual_url": "https://uelectronics.com/wp-content/uploads/2022/11/RM102-English.pdf",
+        "accuracy_rule": "±(0.5% of displayed reading + 3 least-significant digits)",
+        "measurement_condition": "unpowered isolated resistor, settled display, cooled part; actual meter validity TBD",
+        "display_window_relative_to_nominal": [-0.03, 0.03],
+        "not_a_new_component_tolerance_or_calibration": True,
+        "does_not_establish": "TCR, long-term stability, pulse rating or actual meter calibration",
+        "parts": [],
+    }
+    for name, nominal, range_ohm, resolution in (
+            ("R10", 33_000.0, 60_000.0, 10.0),
+            ("R11", 1_000.0, 6_000.0, 1.0),
+            ("R12", 10_000.0, 60_000.0, 10.0)):
+        low, high = nominal * 0.97, nominal * 1.03
+        low_actual = low - (0.005 * low + 3 * resolution)
+        high_actual = high + (0.005 * high + 3 * resolution)
+        assert low_actual >= nominal * 0.95 and high_actual <= nominal * 1.05
+        result["conditional_rm102_resistor_screening"]["parts"].append({
+            "ref": name, "nominal_ohm": nominal, "meter_range_ohm": range_ohm,
+            "resolution_ohm": resolution, "display_min_max_ohm": [low, high],
+            "conditional_actual_min_max_ohm": [low_actual, high_actual],
+            "conditional_relative_error_min_max": [low_actual / nominal - 1,
+                                                    high_actual / nominal - 1],
+        })
     # P1 small-signal loading alone. At DC it has Vopen, so this model does NOT
     # imply that the biased P1 is a suitable replacement for the grounded P0.
     result["pickup_sensitivity"] = {
@@ -296,9 +361,14 @@ def build():
             for s in SECTIONS for a, b, c, d in (s,)
         ],
         "output_rc_pole_hz": 1 / (2 * math.pi * R_OUT * C_OUT),
-        "corners_scope": "2^10 filter R/C corners; SK resistors ±0.1%, R9 ±1%, C ±2%; nominal SUM capacitance/Rth; ideal op amps",
+        "corners_scope": "2^10 filter R/C corners; SK resistors ±1%, R9 ±1%, C ±2%; nominal SUM capacitance/Rth; ideal op amps",
         "normalized_to_dc": True, "response": [],
     }
+    result["filter"]["half_power_nominal_hz"] = cutoff_hz()
+    cutoff_corners = [cutoff_hz(section, r_out=R_OUT*(1+R_OUT_TOL*rs),
+                              c_out=C_OUT*(1+C_TOL*cs))
+        for section in filter_corners for rs, cs in itertools.product((-1, 1), repeat=2)]
+    result["filter"]["half_power_filter_only_corner_min_max_hz"] = [min(cutoff_corners), max(cutoff_corners)]
     for f in frequencies:
         mag = abs(response(f))
         corners = [
@@ -312,7 +382,8 @@ def build():
                                              20 * math.log10(max(corners))],
         })
     steps, refinements = [], []
-    for start, end in ((-1.0, 1.0), (1.0, -1.0), (-10.0, 10.0), (10.0, -10.0)):
+    for start, end in ((0.0, 1.0), (1.0, 0.0), (-1.0, 1.0), (1.0, -1.0),
+                       (-10.0, 10.0), (10.0, -10.0)):
         coarse = step_trace(start, end, 0.1e-6)
         fine = step_trace(start, end, 0.05e-6)
         # These are two numerical resolutions of the same ideal model,

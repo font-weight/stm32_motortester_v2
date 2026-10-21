@@ -1,0 +1,471 @@
+{
+  "status": "PASS_INDEPENDENT_NUMERICAL_CHECKS_ONLY",
+  "evidence_level": "CALCULATION_NOT_MEASURED",
+  "author_calculations_sha256": "f57a4a6234636ee293a983a70a1296fae66e55ff7974f74e568e1a6f5ee930ed",
+  "independent_method": "Gaussian KCL including IN_MID; complex SK KCL; physical node-state transient RK4",
+  "dc_gain": 0.11989100817438691,
+  "dc_zero_v": 1.681471389645776,
+  "dc_bounds": [
+    {
+      "ch1_v": -10.0,
+      "sum_corner_v": [
+        0.4033902924263484,
+        0.5627210068924182
+      ]
+    },
+    {
+      "ch1_v": -1.0,
+      "sum_corner_v": [
+        1.4934074619137163,
+        1.6307461792028768
+      ]
+    },
+    {
+      "ch1_v": 0.0,
+      "sum_corner_v": [
+        1.6145204807456461,
+        1.7494156427929277
+      ]
+    },
+    {
+      "ch1_v": 1.0,
+      "sum_corner_v": [
+        1.735633499577576,
+        1.8680851063829786
+      ]
+    },
+    {
+      "ch1_v": 10.0,
+      "sum_corner_v": [
+        2.8084032236033334,
+        2.9530044843049326
+      ]
+    }
+  ],
+  "test_points": [
+    {
+      "q": 0.0,
+      "nominal_v": 0.0016470801760515449,
+      "bounds_v": [
+        0.0014911994812404495,
+        0.001813051588022908
+      ]
+    },
+    {
+      "q": 0.5,
+      "nominal_v": 0.3908262175347713,
+      "bounds_v": [
+        0.306106561185319,
+        0.4787449018414926
+      ]
+    },
+    {
+      "q": 1.0,
+      "nominal_v": 0.7759339879469201,
+      "bounds_v": [
+        0.6080634953871448,
+        0.9499434104049086
+      ]
+    }
+  ],
+  "transition_minus10_to10": {
+    "min_v": [
+      0.48256130790190704,
+      0.48256130790190704,
+      0.48256130790190704,
+      0.48256130790190704
+    ],
+    "max_v": [
+      2.8803814713896343,
+      2.8818383441259368,
+      3.153962113643114,
+      3.1539562618124095
+    ],
+    "final_adc_v": 2.88038153176163
+  },
+  "selection": [
+    {
+      "ref": "R10",
+      "display_ohm": [
+        32010,
+        33990
+      ],
+      "conditional_true_bound_ohm": [
+        31819.95,
+        34189.95
+      ],
+      "manufacturer_5pct_bound_ohm": [
+        31350.0,
+        34650.0
+      ]
+    },
+    {
+      "ref": "R11",
+      "display_ohm": [
+        970,
+        1030
+      ],
+      "conditional_true_bound_ohm": [
+        962.15,
+        1038.15
+      ],
+      "manufacturer_5pct_bound_ohm": [
+        950.0,
+        1050.0
+      ]
+    },
+    {
+      "ref": "R12",
+      "display_ohm": [
+        9700,
+        10300
+      ],
+      "conditional_true_bound_ohm": [
+        9621.5,
+        10381.5
+      ],
+      "manufacturer_5pct_bound_ohm": [
+        9500.0,
+        10500.0
+      ]
+    }
+  ],
+  "comparisons": [
+    {
+      "name": "gain",
+      "absolute_error": 0.0,
+      "limit": 1e-11
+    },
+    {
+      "name": "zero",
+      "absolute_error": 4.440892098500626e-16,
+      "limit": 1e-11
+    },
+    {
+      "name": "dc -10.0 bound 0",
+      "absolute_error": 2.220446049250313e-16,
+      "limit": 1e-11
+    },
+    {
+      "name": "dc -10.0 bound 1",
+      "absolute_error": 2.220446049250313e-16,
+      "limit": 1e-11
+    },
+    {
+      "name": "dc -1.0 bound 0",
+      "absolute_error": 4.440892098500626e-16,
+      "limit": 1e-11
+    },
+    {
+      "name": "dc -1.0 bound 1",
+      "absolute_error": 2.220446049250313e-16,
+      "limit": 1e-11
+    },
+    {
+      "name": "dc 0.0 bound 0",
+      "absolute_error": 4.440892098500626e-16,
+      "limit": 1e-11
+    },
+    {
+      "name": "dc 0.0 bound 1",
+      "absolute_error": 2.220446049250313e-16,
+      "limit": 1e-11
+    },
+    {
+      "name": "dc 1.0 bound 0",
+      "absolute_error": 4.440892098500626e-16,
+      "limit": 1e-11
+    },
+    {
+      "name": "dc 1.0 bound 1",
+      "absolute_error": 2.220446049250313e-16,
+      "limit": 1e-11
+    },
+    {
+      "name": "dc 10.0 bound 0",
+      "absolute_error": 0.0,
+      "limit": 1e-11
+    },
+    {
+      "name": "dc 10.0 bound 1",
+      "absolute_error": 0.0,
+      "limit": 1e-11
+    },
+    {
+      "name": "test 0.0 nominal",
+      "absolute_error": 2.168404344971009e-19,
+      "limit": 1e-11
+    },
+    {
+      "name": "test 0.0 meter",
+      "absolute_error": 2.168404344971009e-19,
+      "limit": 1e-11
+    },
+    {
+      "name": "test 0.0 bound 0",
+      "absolute_error": 4.336808689942018e-19,
+      "limit": 1e-11
+    },
+    {
+      "name": "test 0.0 bound 1",
+      "absolute_error": 0.0,
+      "limit": 1e-11
+    },
+    {
+      "name": "test 0.5 nominal",
+      "absolute_error": 5.551115123125783e-17,
+      "limit": 1e-11
+    },
+    {
+      "name": "test 0.5 meter",
+      "absolute_error": 0.0,
+      "limit": 1e-11
+    },
+    {
+      "name": "test 0.5 bound 0",
+      "absolute_error": 3.3306690738754696e-16,
+      "limit": 1e-11
+    },
+    {
+      "name": "test 0.5 bound 1",
+      "absolute_error": 1.1102230246251565e-16,
+      "limit": 1e-11
+    },
+    {
+      "name": "test 1.0 nominal",
+      "absolute_error": 6.661338147750939e-16,
+      "limit": 1e-11
+    },
+    {
+      "name": "test 1.0 meter",
+      "absolute_error": 5.551115123125783e-16,
+      "limit": 1e-11
+    },
+    {
+      "name": "test 1.0 bound 0",
+      "absolute_error": 7.771561172376096e-16,
+      "limit": 1e-11
+    },
+    {
+      "name": "test 1.0 bound 1",
+      "absolute_error": 4.440892098500626e-16,
+      "limit": 1e-11
+    },
+    {
+      "name": "frequency 0",
+      "absolute_error": 0.0,
+      "limit": 1e-11
+    },
+    {
+      "name": "frequency 0 bound 0",
+      "absolute_error": 0.0,
+      "limit": 1e-10
+    },
+    {
+      "name": "frequency 0 bound 1",
+      "absolute_error": 1.928654933106574e-15,
+      "limit": 1e-10
+    },
+    {
+      "name": "frequency 100",
+      "absolute_error": 2.220446049250313e-16,
+      "limit": 1e-11
+    },
+    {
+      "name": "frequency 100 bound 0",
+      "absolute_error": 2.8931934972775686e-15,
+      "limit": 1e-10
+    },
+    {
+      "name": "frequency 100 bound 1",
+      "absolute_error": 0.0,
+      "limit": 1e-10
+    },
+    {
+      "name": "frequency 1000",
+      "absolute_error": 0.0,
+      "limit": 1e-11
+    },
+    {
+      "name": "frequency 1000 bound 0",
+      "absolute_error": 1.942890293094024e-15,
+      "limit": 1e-10
+    },
+    {
+      "name": "frequency 1000 bound 1",
+      "absolute_error": 1.915134717478395e-15,
+      "limit": 1e-10
+    },
+    {
+      "name": "frequency 1500",
+      "absolute_error": 0.0,
+      "limit": 1e-11
+    },
+    {
+      "name": "frequency 1500 bound 0",
+      "absolute_error": 2.942091015256665e-15,
+      "limit": 1e-10
+    },
+    {
+      "name": "frequency 1500 bound 1",
+      "absolute_error": 1.8318679906315083e-15,
+      "limit": 1e-10
+    },
+    {
+      "name": "frequency 2000",
+      "absolute_error": 5.551115123125783e-16,
+      "limit": 1e-11
+    },
+    {
+      "name": "frequency 2000 bound 0",
+      "absolute_error": 1.9984014443252818e-15,
+      "limit": 1e-10
+    },
+    {
+      "name": "frequency 2000 bound 1",
+      "absolute_error": 3.7192471324942744e-15,
+      "limit": 1e-10
+    },
+    {
+      "name": "frequency 3000",
+      "absolute_error": 2.220446049250313e-16,
+      "limit": 1e-11
+    },
+    {
+      "name": "frequency 3000 bound 0",
+      "absolute_error": 1.3322676295501878e-15,
+      "limit": 1e-10
+    },
+    {
+      "name": "frequency 3000 bound 1",
+      "absolute_error": 4.884981308350689e-15,
+      "limit": 1e-10
+    },
+    {
+      "name": "frequency 10000",
+      "absolute_error": 1.734723475976807e-18,
+      "limit": 1e-11
+    },
+    {
+      "name": "frequency 10000 bound 0",
+      "absolute_error": 0.0,
+      "limit": 1e-10
+    },
+    {
+      "name": "frequency 10000 bound 1",
+      "absolute_error": 7.105427357601002e-15,
+      "limit": 1e-10
+    },
+    {
+      "name": "frequency 25000",
+      "absolute_error": 0.0,
+      "limit": 1e-11
+    },
+    {
+      "name": "frequency 25000 bound 0",
+      "absolute_error": 1.4210854715202004e-14,
+      "limit": 1e-10
+    },
+    {
+      "name": "frequency 25000 bound 1",
+      "absolute_error": 0.0,
+      "limit": 1e-10
+    },
+    {
+      "name": "frequency 47000",
+      "absolute_error": 6.776263578034403e-21,
+      "limit": 1e-11
+    },
+    {
+      "name": "frequency 47000 bound 0",
+      "absolute_error": 0.0,
+      "limit": 1e-10
+    },
+    {
+      "name": "frequency 47000 bound 1",
+      "absolute_error": 0.0,
+      "limit": 1e-10
+    },
+    {
+      "name": "frequency 50000",
+      "absolute_error": 3.3881317890172014e-21,
+      "limit": 1e-11
+    },
+    {
+      "name": "frequency 50000 bound 0",
+      "absolute_error": 0.0,
+      "limit": 1e-10
+    },
+    {
+      "name": "frequency 50000 bound 1",
+      "absolute_error": 0.0,
+      "limit": 1e-10
+    },
+    {
+      "name": "half-power nominal",
+      "absolute_error": 5.551115123125783e-16,
+      "limit": 1e-11
+    },
+    {
+      "name": "half-power corner boundary 0",
+      "absolute_error": 1.1102230246251565e-16,
+      "limit": 1e-11
+    },
+    {
+      "name": "half-power corner boundary 1",
+      "absolute_error": 0.0,
+      "limit": 1e-11
+    },
+    {
+      "name": "step BUF min_v",
+      "absolute_error": 2.7755575615628914e-16,
+      "limit": 1e-09
+    },
+    {
+      "name": "step BUF max_v",
+      "absolute_error": 4.440892098500626e-16,
+      "limit": 1e-09
+    },
+    {
+      "name": "step SK1 min_v",
+      "absolute_error": 2.7755575615628914e-16,
+      "limit": 1e-09
+    },
+    {
+      "name": "step SK1 max_v",
+      "absolute_error": 4.440892098500626e-16,
+      "limit": 1e-09
+    },
+    {
+      "name": "step SK2 min_v",
+      "absolute_error": 2.7755575615628914e-16,
+      "limit": 1e-09
+    },
+    {
+      "name": "step SK2 max_v",
+      "absolute_error": 7.993605777301127e-15,
+      "limit": 1e-09
+    },
+    {
+      "name": "step ADC min_v",
+      "absolute_error": 2.7755575615628914e-16,
+      "limit": 1e-09
+    },
+    {
+      "name": "step ADC max_v",
+      "absolute_error": 7.993605777301127e-15,
+      "limit": 1e-09
+    },
+    {
+      "name": "step final",
+      "absolute_error": 1.7763568394002505e-15,
+      "limit": 1e-09
+    }
+  ],
+  "limitations": [
+    "No hardware or device accessed",
+    "No proof of RM102 actual accuracy or calibration",
+    "Only the specified ideal model and listed corners, not complete hardware uncertainty",
+    "Does not qualify ADC connection, ignition input or transient protection"
+  ]
+}
