@@ -1,5 +1,13 @@
 # Координация самостоятельного V2
 
+HW-V2-02c, база 29503934e1c3bf833d7eded7664f553ac0c3abbb:
+root — task/architecture/decisions/progress/sources/coordination,
+docs/verification/hw-v2-02c/compare_resistors.py и comparison.json;
+input_model — независимая арифметика без записи; input_critic —
+только docs/reviews/hw-v2-02c-review.md и
+docs/verification/hw-v2-02c/critic-check.json, manifest.json.
+Схемы, BOM, Word, прошивка и приложение не изменяются.
+
 HW-V2-02b, база `c28363188eddd6c517917549c4742249a0c21600`:
 root — docs/guides/* и ссылки/общая документация; input_research —
 только docs/guide-assets/*; input_model — чтение/арифметика без записи;

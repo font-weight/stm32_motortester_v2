@@ -1,5 +1,15 @@
 # Первичные источники
 
+<a id="hw-v2-02c-resistors"></a>
+## HW-V2-02c — составные резисторы
+
+[Analog Devices, Activity: Series and Parallel Resistors](https://wiki.analog.com/university/courses/alm1k/intro/series-parallel-2).
+Проверено 21.10.2026: последовательная сумма, параллельная проводимость
+и различие узлов соединения. Пределы ±1% выведены в architecture из этих
+формул; источник не доказывает точность конкретной сборки.
+Фильтр — по ранее приведённому TI SLOA024B; номиналы/сравнение P1 —
+собственная арифметика, не данные производителя.
+
 ## Учебное объяснение схем HW-V2-02b
 
 [TI Analysis of the Sallen-Key Architecture, SLOA024B](https://www.ti.com/lit/an/sloa024b/sloa024b.pdf).

@@ -1,0 +1,94 @@
+{
+  "schema": "hw-v2-02c-review-manifest-v1",
+  "base_commit": "29503934e1c3bf833d7eded7664f553ac0c3abbb",
+  "branch": "ui-v2/initial-design",
+  "reviewed_at": "2026-10-21",
+  "reviewer": "input_critic",
+  "scope": "documentation_and_limited_ideal_arithmetic_comparison",
+  "verdict": "PASS",
+  "score": 9.74,
+  "criterion_scores": {
+    "C1": 9.8,
+    "C2": 9.7,
+    "C3": 9.8,
+    "C4": 9.6,
+    "C5": 9.7
+  },
+  "hash_semantics": "sha256 hashes exact working-tree bytes. sha256_lf_normalized hashes UTF-8 content with CRLF replaced by LF for checkout portability. Manifest itself excluded.",
+  "unchanged_bases_at_base_commit": [
+    "AGENTS.md",
+    "requirements.md",
+    "docs/quality-gate.md",
+    "hardware/v2-input/p1-lv/netlist.md",
+    "hardware/v2-input/p1-lv/model.py",
+    "docs/guides/motortester-input-guide-ru.docx"
+  ],
+  "verification": {
+    "critic_check": "docs/verification/hw-v2-02c/critic-check.json",
+    "local_file_links_checked": 271,
+    "missing_links": 0,
+    "comparison_reproduced_in_memory": true
+  },
+  "files": [
+    {
+      "path": "docs/architecture.md",
+      "sha256": "9cfa2dfbea9f4fb5a6993fb5c89efab82b3b46926aa9bbeb6fd7fd301609b055",
+      "sha256_lf_normalized": "84b3f22bac59c76c395a8afbd7abb8a656e00606b183df511633755ea94212a9",
+      "bytes": 46861
+    },
+    {
+      "path": "docs/coordination.md",
+      "sha256": "a68e894634c4ac964eeb59f02e88905293b468ac0be5fb22098ca54af3742d64",
+      "sha256_lf_normalized": "6ef03ea39df571588108b1693500fae18085d9a70044dda52b31545a24408d60",
+      "bytes": 37385
+    },
+    {
+      "path": "docs/decisions.md",
+      "sha256": "5c5d9979b3bab85428997c44b00881e05d85660454af4cc261492afbadd95f53",
+      "sha256_lf_normalized": "318a889d65011bfd455787f4a6aeeab35e43ce611641638eafd1881f23cdf6d0",
+      "bytes": 39057
+    },
+    {
+      "path": "docs/progress.md",
+      "sha256": "f14aa22f13717f857493b09f2edc122574a54ee430fea2c42521ed3da53284ca",
+      "sha256_lf_normalized": "cb283162b36e21e784b9ae18f28317482467276f88c119397c1e10b77dd59d1e",
+      "bytes": 210516
+    },
+    {
+      "path": "docs/reviews/hw-v2-02c-review.md",
+      "sha256": "426ae53e7ff2143efb703ec3bcfb7405bafabe54f80a5c3613bd2265440f099f",
+      "sha256_lf_normalized": "426ae53e7ff2143efb703ec3bcfb7405bafabe54f80a5c3613bd2265440f099f",
+      "bytes": 7664
+    },
+    {
+      "path": "docs/sources.md",
+      "sha256": "a7724cdfdcfbd25acc1b32c04adbc84d7b2b0bcf9146371a57b39875e94d5048",
+      "sha256_lf_normalized": "3210931ff48163be4888776a5d646456510743bf78ffe4bd536097da0e424445",
+      "bytes": 32787
+    },
+    {
+      "path": "docs/verification/hw-v2-02c/compare_resistors.py",
+      "sha256": "d382af13002820614fe0b530a0c64379e34ce18b0c3c15bd603dccf698233c16",
+      "sha256_lf_normalized": "d382af13002820614fe0b530a0c64379e34ce18b0c3c15bd603dccf698233c16",
+      "bytes": 4420
+    },
+    {
+      "path": "docs/verification/hw-v2-02c/comparison.json",
+      "sha256": "dae20cbbcd52de0d96f153e88166ba5bc2078d31bd2938c5047c16c7a3769172",
+      "sha256_lf_normalized": "e633fb62445f064410e733a7135ceaea2b35bcd53b4e2fedbbd61cf049c14d43",
+      "bytes": 6583
+    },
+    {
+      "path": "docs/verification/hw-v2-02c/critic-check.json",
+      "sha256": "61230355f071d4ff0b8031cdafcbe3cc78b3be39325388c5cccad84d14152a6a",
+      "sha256_lf_normalized": "545089a539da73befaf9fcfe6f3fef7778fd61071af203ef087229771f9276e9",
+      "bytes": 4390
+    },
+    {
+      "path": "task.md",
+      "sha256": "6b7454b0b4d86ecc4d33dee387420d08325df73c661b06fa36f9ec69df5acc2c",
+      "sha256_lf_normalized": "02ded5cecba6eb16a2c6b16821de00013e13af32ca6876bee25b58d66d6511cb",
+      "bytes": 48699
+    }
+  ]
+}

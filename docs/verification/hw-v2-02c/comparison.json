@@ -1,0 +1,299 @@
+{
+  "scope": "HW-V2-02c arithmetic comparison, no hardware acceptance",
+  "assumptions": {
+    "V_A_v": 3.3,
+    "ideal_low_impedance_source": true,
+    "ideal_opamps": true,
+    "capacitors_nominal_f": [
+      [
+        1.18e-08,
+        1e-08
+      ],
+      [
+        6.8e-08,
+        1e-08
+      ]
+    ],
+    "filter_tolerance_sweep_performed": false,
+    "dc_corners": "resistor bounds at exactly 3.300 V; no supply/temperature/noise errors",
+    "excluded": [
+      "parasitics",
+      "output RC",
+      "ADC load",
+      "transient rail checks",
+      "physical measurements",
+      "hardware connection approval"
+    ]
+  },
+  "cases": {
+    "original_reference": {
+      "series_constituents_R1_to_R8_ohm": [
+        [
+          499000
+        ],
+        [
+          499000
+        ],
+        [
+          249000
+        ],
+        [
+          332000
+        ],
+        [
+          4870
+        ],
+        [
+          4870
+        ],
+        [
+          2030
+        ],
+        [
+          2030
+        ]
+      ],
+      "equivalent_R1_to_R8_ohm": [
+        499000,
+        499000,
+        249000,
+        332000,
+        4870,
+        4870,
+        2030,
+        2030
+      ],
+      "physical_fixed_resistor_count_including_R9_to_R12": 12,
+      "RV1_count_separate": 1,
+      "R1_to_R8_relative_tolerance": 0.001,
+      "k_v_per_v": 0.12478075670258079,
+      "zero_adc_v": 1.65041343021799,
+      "gain_change_from_original_percent": 0.0,
+      "zero_change_from_original_mv": 0.0,
+      "zero_adc_resistor_corner_bounds_v": [
+        1.6487634299081506,
+        1.6520634297009695
+      ],
+      "filter_sections": [
+        {
+          "f0_hz": 3008.5010456560776,
+          "q": 0.5431390245600107
+        },
+        {
+          "f0_hz": 3006.558353533975,
+          "q": 1.30384048104053
+        }
+      ],
+      "ideal_two_section_cascade_minus3db_hz": 3009.7766408117177
+    },
+    "A_single_E24": {
+      "series_constituents_R1_to_R8_ohm": [
+        [
+          510000
+        ],
+        [
+          510000
+        ],
+        [
+          240000
+        ],
+        [
+          330000
+        ],
+        [
+          4700
+        ],
+        [
+          4700
+        ],
+        [
+          2000
+        ],
+        [
+          2000
+        ]
+      ],
+      "equivalent_R1_to_R8_ohm": [
+        510000,
+        510000,
+        240000,
+        330000,
+        4700,
+        4700,
+        2000,
+        2000
+      ],
+      "physical_fixed_resistor_count_including_R9_to_R12": 12,
+      "RV1_count_separate": 1,
+      "R1_to_R8_relative_tolerance": 0.01,
+      "k_v_per_v": 0.11989100817438691,
+      "zero_adc_v": 1.6814713896457765,
+      "gain_change_from_original_percent": -3.9186719630565747,
+      "zero_change_from_original_mv": 31.057959427786443,
+      "zero_adc_resistor_corner_bounds_v": [
+        1.6649742457689476,
+        1.6979622415343123
+      ],
+      "filter_sections": [
+        {
+          "f0_hz": 3117.3191685840625,
+          "q": 0.5431390245600107
+        },
+        {
+          "f0_hz": 3051.6567288369847,
+          "q": 1.3038404810405297
+        }
+      ],
+      "ideal_two_section_cascade_minus3db_hz": 3085.87808325842
+    },
+    "B_all_composite": {
+      "series_constituents_R1_to_R8_ohm": [
+        [
+          470000,
+          30000
+        ],
+        [
+          470000,
+          30000
+        ],
+        [
+          240000,
+          9100
+        ],
+        [
+          330000,
+          2000
+        ],
+        [
+          4700,
+          180
+        ],
+        [
+          4700,
+          180
+        ],
+        [
+          2000,
+          30
+        ],
+        [
+          2000,
+          30
+        ]
+      ],
+      "equivalent_R1_to_R8_ohm": [
+        500000,
+        500000,
+        249100,
+        332000,
+        4880,
+        4880,
+        2030,
+        2030
+      ],
+      "physical_fixed_resistor_count_including_R9_to_R12": 20,
+      "RV1_count_separate": 1,
+      "R1_to_R8_relative_tolerance": 0.01,
+      "k_v_per_v": 0.12458730113775027,
+      "zero_adc_v": 1.650494153972605,
+      "gain_change_from_original_percent": -0.15503637735715392,
+      "zero_change_from_original_mv": 0.08072375461498638,
+      "zero_adc_resistor_corner_bounds_v": [
+        1.6339941060369922,
+        1.6669941030774322
+      ],
+      "filter_sections": [
+        {
+          "f0_hz": 3002.336084496946,
+          "q": 0.5431390245600107
+        },
+        {
+          "f0_hz": 3006.558353533975,
+          "q": 1.30384048104053
+        }
+      ],
+      "ideal_two_section_cascade_minus3db_hz": 3006.6954037242276
+    },
+    "hybrid_composite_divider": {
+      "series_constituents_R1_to_R8_ohm": [
+        [
+          470000,
+          30000
+        ],
+        [
+          470000,
+          30000
+        ],
+        [
+          240000,
+          9100
+        ],
+        [
+          330000,
+          2000
+        ],
+        [
+          4700
+        ],
+        [
+          4700
+        ],
+        [
+          2000
+        ],
+        [
+          2000
+        ]
+      ],
+      "equivalent_R1_to_R8_ohm": [
+        500000,
+        500000,
+        249100,
+        332000,
+        4700,
+        4700,
+        2000,
+        2000
+      ],
+      "physical_fixed_resistor_count_including_R9_to_R12": 16,
+      "RV1_count_separate": 1,
+      "R1_to_R8_relative_tolerance": 0.01,
+      "k_v_per_v": 0.12458730113775027,
+      "zero_adc_v": 1.650494153972605,
+      "gain_change_from_original_percent": -0.15503637735715392,
+      "zero_change_from_original_mv": 0.08072375461498638,
+      "zero_adc_resistor_corner_bounds_v": [
+        1.6339941060369922,
+        1.6669941030774322
+      ],
+      "filter_sections": [
+        {
+          "f0_hz": 3117.3191685840625,
+          "q": 0.5431390245600107
+        },
+        {
+          "f0_hz": 3051.6567288369847,
+          "q": 1.3038404810405297
+        }
+      ],
+      "ideal_two_section_cascade_minus3db_hz": 3085.87808325842
+    }
+  },
+  "alternative_for_each_R1_or_R2": {
+    "series_ohm": [
+      470000,
+      30000
+    ],
+    "parallel_ohm": [
+      1000000,
+      1000000
+    ],
+    "series_equivalent_ohm": 500000,
+    "parallel_equivalent_ohm": 500000.0,
+    "bounds_both_topologies_at_1pct_ohm": [
+      495000.0,
+      505000.0
+    ],
+    "guaranteed_tolerance_improved": false
+  }
+}
