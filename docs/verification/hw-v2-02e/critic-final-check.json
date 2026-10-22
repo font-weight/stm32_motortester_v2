@@ -1,0 +1,142 @@
+{
+  "scope": "Package identity and local link checks, no rendering/model regeneration or physical tests",
+  "result": "PASS",
+  "checks": [
+    {
+      "name": "final_docx_sha256",
+      "pass": true,
+      "detail": "495afcf04707c70c72f1c9a94d91697ac508902fb3abce6b906e96cada3df868"
+    },
+    {
+      "name": "guide_sources_match_evidence",
+      "pass": true,
+      "detail": {
+        "docs/guides/input-explained-ru.md": true,
+        "docs/guides/build_guide.py": true,
+        "docs/guides/README.md": true,
+        "docs/guide-assets/generate.py": true,
+        "hardware/v2-input/p1-lv/schematic.png": true,
+        "docs/guide-assets/signal-path.png": true,
+        "docs/guide-assets/opamp-follower.png": true,
+        "docs/guide-assets/offset-example.png": true,
+        "docs/guide-assets/p1-map.png": true,
+        "docs/guide-assets/p1-divider.png": true,
+        "docs/guide-assets/sallen-key.png": true,
+        "docs/guide-assets/p1-schematic-input.png": true,
+        "docs/guide-assets/p1-schematic-power.png": true,
+        "docs/guide-assets/p1-schematic-filter1.png": true,
+        "docs/guide-assets/p1-schematic-filter2.png": true,
+        "docs/guide-assets/p1-schematic-test.png": true,
+        "docs/guide-assets/p1-schematic-output.png": true,
+        "docs/guide-assets/p0-map.png": true
+      }
+    },
+    {
+      "name": "all_29_personally_reviewed_pages_match_evidence",
+      "pass": true,
+      "detail": {
+        "page-1.png": true,
+        "page-2.png": true,
+        "page-3.png": true,
+        "page-4.png": true,
+        "page-5.png": true,
+        "page-6.png": true,
+        "page-7.png": true,
+        "page-8.png": true,
+        "page-9.png": true,
+        "page-10.png": true,
+        "page-11.png": true,
+        "page-12.png": true,
+        "page-13.png": true,
+        "page-14.png": true,
+        "page-15.png": true,
+        "page-16.png": true,
+        "page-17.png": true,
+        "page-18.png": true,
+        "page-19.png": true,
+        "page-20.png": true,
+        "page-21.png": true,
+        "page-22.png": true,
+        "page-23.png": true,
+        "page-24.png": true,
+        "page-25.png": true,
+        "page-26.png": true,
+        "page-27.png": true,
+        "page-28.png": true,
+        "page-29.png": true
+      }
+    },
+    {
+      "name": "embedded_media_matches_sources",
+      "pass": true,
+      "detail": {
+        "word/media/image1.png": "e81c01a26946b010eaff2b09db834555cf879c8dab232c88eca848cfc1303f1b",
+        "word/media/image2.png": "85a652ec6871463f905d217284bb4ac6abe93844dfd0d4606c78db2ef8ad9f5f",
+        "word/media/image3.png": "6910e0c4d58c83cbc39922459ca0db9c90e2c5807a44f0da1da82acb9a3597ef",
+        "word/media/image4.png": "eede579b2fe7f7fcb568198ab29b75817a7a50c47744a60b9c6c27fcd19370d6",
+        "word/media/image5.png": "bf1d5924791b1dee794d22acccfee53c5123eed3f8693688a3859c58f54a796d",
+        "word/media/image6.png": "29eff04392db2abbcc1c13eb4cd6e19f1dfbf16938f623e1d121b9477dd76f5c",
+        "word/media/image7.png": "240a9824d2fd1aa7e7eba0c4fa50d69cd1ed321c6291a7826bbe14be25e87a19",
+        "word/media/image8.png": "4513a242cf512df678a8b632620488e5efaae64de6501caa582ef89c9c5d5dc5",
+        "word/media/image9.png": "e456562508738dcc8008ec636636db0264232d7191d265870c0c322e584577d7",
+        "word/media/image10.png": "7445b233dbb72c8ae4568ee601c3ec2262e84a3072d8e504943c80ffee38170b",
+        "word/media/image11.png": "b2cd8e7ed225d9dae4e9c4e06ac8c29dbd41e04ede28990fb19545513c2b4781",
+        "word/media/image12.png": "227024a439fd55f833aa997f43c49ed076775de5902aca4a433d4bdad3bb92ed",
+        "word/media/image13.png": "6b3330b6d1a2c62babbe8ae1591e9b5ee1989257dd7818141a2d5fd3d9852455"
+      }
+    },
+    {
+      "name": "docx_table_figure_counts",
+      "pass": true,
+      "detail": {
+        "tables": 14,
+        "figures": 13
+      }
+    },
+    {
+      "name": "independent_arithmetic_is_current",
+      "pass": true,
+      "detail": {
+        "sha256": "7fdb817eb5c6499f81eac98e4ab0f7b076126f9df496936af46e821e3a8c6f28",
+        "comparisons": 24
+      }
+    },
+    {
+      "name": "changed_markdown_local_targets_exist",
+      "pass": true,
+      "detail": {
+        "files": [
+          "README.md",
+          "docs/architecture.md",
+          "docs/bench.md",
+          "docs/budget.md",
+          "docs/coordination.md",
+          "docs/decisions.md",
+          "docs/guides/README.md",
+          "docs/guides/input-explained-ru.md",
+          "docs/hardware-input.md",
+          "docs/progress.md",
+          "docs/reviews/hw-v2-02e-review.md",
+          "docs/sources.md",
+          "docs/validation.md",
+          "docs/verification/hw-v2-02e/model-notes.md",
+          "hardware/v2-input/p1-lv/README.md",
+          "hardware/v2-input/p1-lv/materials-ru.md",
+          "hardware/v2-input/p1-lv/netlist.md",
+          "requirements.md",
+          "task.md"
+        ],
+        "links": 431,
+        "missing": []
+      }
+    },
+    {
+      "name": "git_diff_check",
+      "pass": true,
+      "detail": {
+        "returncode": 0,
+        "stdout": ""
+      }
+    }
+  ]
+}

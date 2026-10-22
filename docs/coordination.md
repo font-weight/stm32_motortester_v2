@@ -1,5 +1,13 @@
 # Координация самостоятельного V2
 
+HW-V2-02e, база `50dcb5f4e0ff38a93e1ef718efbfd2fbb8133725`:
+root — netlist/materials/README/schematic P1 и общие канонические документы;
+p1_r3_model — model/JSON/plot/графики P1 и verification/hw-v2-02e/model-notes.md;
+p1_r3_guide — docs/guides/*, docs/guide-assets/*, Word/рендер и guide-evidence.json;
+p1_r3_critic — только reviews/hw-v2-02e-review.md, verification/hw-v2-02e/critic*
+и manifest.json. Критик не автор реализации. Область — документация/расчёт r3;
+COM, ST-Link, приложение, прошивка, физическая сборка и покупка не затрагиваются.
+
 HW-V2-02d, база `7ee0919df6bf53eb5fcabe4e92bcecbe7d01be14`:
 root — netlist/materials/README/schematic P1, общие task/requirements/
 architecture/bench/validation/hardware-input/decisions/progress/sources;

@@ -22,10 +22,10 @@ def main():
     plt.rcParams.update({
         "font.family": "DejaVu Sans", "font.size": 10,
         "axes.spines.top": False, "axes.spines.right": False,
-        "axes.grid": True, "grid.alpha": 0.22, "svg.hashsalt": "HW-V2-02d-P1-r2",
+        "axes.grid": True, "grid.alpha": 0.22, "svg.hashsalt": "HW-V2-02e-P1-r3",
     })
     fig, axes = plt.subplots(2, 2, figsize=(14, 9))
-    fig.suptitle("P1-LV r2: расчёт низковольтного макета без датчика\n"
+    fig.suptitle("P1-LV r3: TLV9064QDRQ1 · R 1% · MKP/C0G 5%\n"
                  "РАСЧЁТ · ИДЕАЛЬНАЯ ЛИНЕЙНАЯ МОДЕЛЬ · НЕ ИЗМЕРЕНИЕ",
                  fontsize=16, weight="bold", y=0.99)
     colors = ("#d45c35", "#c38f18", "#18827d", "#4769ae")
@@ -52,12 +52,20 @@ def main():
     for cp, color in zip((10e-12, 20e-12, 30e-12), ("#4769ae", "#18827d", "#d45c35")):
         ax.semilogx(freq, [20*math.log10(abs(response(f, cp=cp))) for f in freq],
                     label=f"C SUM = {cp*1e12:g} пФ", color=color)
+    peak = data["filter"]["largest_peak_among_corners"]
+    ax.semilogx(freq, [20*math.log10(abs(response(f, sections=peak["sections"],
+                     r_out=peak["r_out"], c_out=peak["c_out"]))) for f in freq],
+                 label="Угол с наибольшим подъёмом", color="#c38f18", linestyle="--")
     ax.axvline(3000, color="0.5", ls=":", linewidth=1)
     ax.axvline(25000, color="0.5", ls=":", linewidth=1)
     ax.set(title="Частотная характеристика: SUM + ФНЧ + RC",
            xlabel="Частота, Гц", ylabel="Относительно передачи на DC, дБ",
            ylim=(-100, 2), xlim=(10, 50e3))
     ax.legend(loc="lower left", fontsize=9)
+    low, high = data["filter"]["half_power_filter_only_corner_min_max_hz"]
+    ax.text(0.03, 0.39, f"Углы f½: {low/1000:.3f}…{high/1000:.3f} кГц\n"
+            f"Максимальный подъём: {peak['db']:.3f} дБ (идеальная модель)",
+            transform=ax.transAxes, fontsize=8)
 
     ax = axes[1, 0]
     step = next(s for s in data["steps_nominal_ideal"] if s["start_ch1_v"] == -10)

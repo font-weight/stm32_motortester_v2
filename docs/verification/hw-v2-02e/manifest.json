@@ -1,0 +1,303 @@
+{
+  "iteration": "HW-V2-02e",
+  "base_sha": "50dcb5f4e0ff38a93e1ef718efbfd2fbb8133725",
+  "critic": "/root/p1_r3_critic",
+  "verdict": "PASS",
+  "score": 9.74,
+  "hash_policy": "Primary sha256 normalizes CRLF to LF for listed text suffixes only; all other bytes stay exact. Binary artifacts use raw SHA256. observed_raw_sha256 records the reviewed Windows working-tree bytes but is not the portable pass criterion. No claim that these SHA256 values are Git object IDs.",
+  "text_suffixes": [
+    ".csv",
+    ".json",
+    ".md",
+    ".py",
+    ".svg",
+    ".txt"
+  ],
+  "verification_command": ".venv/Scripts/python.exe -B docs/verification/hw-v2-02e/critic_manifest.py",
+  "excluded": [
+    "manifest.json itself to avoid a hash cycle",
+    "build render pages: individually hashed in guide-evidence.json"
+  ],
+  "files": {
+    "AGENTS.md": {
+      "mode": "sha256-crlf-to-lf",
+      "sha256": "56122f27c651eb1c36a1e76afd52138f4a9cdd3e6bba8fb9f0e652cad7611c37",
+      "observed_raw_sha256": "56122f27c651eb1c36a1e76afd52138f4a9cdd3e6bba8fb9f0e652cad7611c37"
+    },
+    "README.md": {
+      "mode": "sha256-crlf-to-lf",
+      "sha256": "cec15fe859351a1ec69d75296ad43b3528aac9e670284773e43daabd5ae02d77",
+      "observed_raw_sha256": "8cc6249bc2ee27ed218c0d1da7779ffa4af1763b82f341165f5c0be094c76d78"
+    },
+    "docs/architecture.md": {
+      "mode": "sha256-crlf-to-lf",
+      "sha256": "24128e73c5245f97c3a5f5bba1633a4e9028eb4ff934d8e8b917f0c4ee203fb4",
+      "observed_raw_sha256": "a508357f9643fbf8b9101a51da802023fa84aeb774c50824bf22a34c8ba0ae01"
+    },
+    "docs/bench.md": {
+      "mode": "sha256-crlf-to-lf",
+      "sha256": "0730908bba96419e3dc6d388965e508882ec36ef0f266cde27a039c433d5eb94",
+      "observed_raw_sha256": "e0fc6506eda88ca8b8222ffc88a2334ce4a1c13968034412d92990a120185c91"
+    },
+    "docs/budget.md": {
+      "mode": "sha256-crlf-to-lf",
+      "sha256": "c978948639ad5fe2434af30a590a11a0b019c1e71a225df6ef3e3c50bde7c611",
+      "observed_raw_sha256": "bc05fe0df1f3ee2a655e682e9814cf66650f739925ceb86e494921086ede10b8"
+    },
+    "docs/coordination.md": {
+      "mode": "sha256-crlf-to-lf",
+      "sha256": "c87840c2334d94b3650c707e8cb9e926556e08a4288cfb213472258fa4559f4c",
+      "observed_raw_sha256": "033a2abe364fc75504fdd7b75d9cc824887a1c86ad135349e4339a8cd637e31f"
+    },
+    "docs/decisions.md": {
+      "mode": "sha256-crlf-to-lf",
+      "sha256": "22e744265179ef2219f9d030594b78807c94192a90895baf8b11e69deb1f9920",
+      "observed_raw_sha256": "e7f3de186efa5821ad095ac2e6440222202d2d86642061cfbf0bae720db00fc3"
+    },
+    "docs/guide-assets/generate.py": {
+      "mode": "sha256-crlf-to-lf",
+      "sha256": "1c084c534d94b0ff2bc6724b36397e5f8f81cdb5229efbf92dd4b00e3b0c389d",
+      "observed_raw_sha256": "1c084c534d94b0ff2bc6724b36397e5f8f81cdb5229efbf92dd4b00e3b0c389d"
+    },
+    "docs/guide-assets/offset-example.png": {
+      "mode": "sha256-raw",
+      "sha256": "6910e0c4d58c83cbc39922459ca0db9c90e2c5807a44f0da1da82acb9a3597ef",
+      "observed_raw_sha256": "6910e0c4d58c83cbc39922459ca0db9c90e2c5807a44f0da1da82acb9a3597ef"
+    },
+    "docs/guide-assets/opamp-follower.png": {
+      "mode": "sha256-raw",
+      "sha256": "85a652ec6871463f905d217284bb4ac6abe93844dfd0d4606c78db2ef8ad9f5f",
+      "observed_raw_sha256": "85a652ec6871463f905d217284bb4ac6abe93844dfd0d4606c78db2ef8ad9f5f"
+    },
+    "docs/guide-assets/p0-map.png": {
+      "mode": "sha256-raw",
+      "sha256": "6b3330b6d1a2c62babbe8ae1591e9b5ee1989257dd7818141a2d5fd3d9852455",
+      "observed_raw_sha256": "6b3330b6d1a2c62babbe8ae1591e9b5ee1989257dd7818141a2d5fd3d9852455"
+    },
+    "docs/guide-assets/p1-divider.png": {
+      "mode": "sha256-raw",
+      "sha256": "bf1d5924791b1dee794d22acccfee53c5123eed3f8693688a3859c58f54a796d",
+      "observed_raw_sha256": "bf1d5924791b1dee794d22acccfee53c5123eed3f8693688a3859c58f54a796d"
+    },
+    "docs/guide-assets/p1-map.png": {
+      "mode": "sha256-raw",
+      "sha256": "eede579b2fe7f7fcb568198ab29b75817a7a50c47744a60b9c6c27fcd19370d6",
+      "observed_raw_sha256": "eede579b2fe7f7fcb568198ab29b75817a7a50c47744a60b9c6c27fcd19370d6"
+    },
+    "docs/guide-assets/p1-schematic-filter1.png": {
+      "mode": "sha256-raw",
+      "sha256": "e456562508738dcc8008ec636636db0264232d7191d265870c0c322e584577d7",
+      "observed_raw_sha256": "e456562508738dcc8008ec636636db0264232d7191d265870c0c322e584577d7"
+    },
+    "docs/guide-assets/p1-schematic-filter2.png": {
+      "mode": "sha256-raw",
+      "sha256": "7445b233dbb72c8ae4568ee601c3ec2262e84a3072d8e504943c80ffee38170b",
+      "observed_raw_sha256": "7445b233dbb72c8ae4568ee601c3ec2262e84a3072d8e504943c80ffee38170b"
+    },
+    "docs/guide-assets/p1-schematic-input.png": {
+      "mode": "sha256-raw",
+      "sha256": "240a9824d2fd1aa7e7eba0c4fa50d69cd1ed321c6291a7826bbe14be25e87a19",
+      "observed_raw_sha256": "240a9824d2fd1aa7e7eba0c4fa50d69cd1ed321c6291a7826bbe14be25e87a19"
+    },
+    "docs/guide-assets/p1-schematic-output.png": {
+      "mode": "sha256-raw",
+      "sha256": "227024a439fd55f833aa997f43c49ed076775de5902aca4a433d4bdad3bb92ed",
+      "observed_raw_sha256": "227024a439fd55f833aa997f43c49ed076775de5902aca4a433d4bdad3bb92ed"
+    },
+    "docs/guide-assets/p1-schematic-power.png": {
+      "mode": "sha256-raw",
+      "sha256": "4513a242cf512df678a8b632620488e5efaae64de6501caa582ef89c9c5d5dc5",
+      "observed_raw_sha256": "4513a242cf512df678a8b632620488e5efaae64de6501caa582ef89c9c5d5dc5"
+    },
+    "docs/guide-assets/p1-schematic-test.png": {
+      "mode": "sha256-raw",
+      "sha256": "b2cd8e7ed225d9dae4e9c4e06ac8c29dbd41e04ede28990fb19545513c2b4781",
+      "observed_raw_sha256": "b2cd8e7ed225d9dae4e9c4e06ac8c29dbd41e04ede28990fb19545513c2b4781"
+    },
+    "docs/guide-assets/sallen-key.png": {
+      "mode": "sha256-raw",
+      "sha256": "29eff04392db2abbcc1c13eb4cd6e19f1dfbf16938f623e1d121b9477dd76f5c",
+      "observed_raw_sha256": "29eff04392db2abbcc1c13eb4cd6e19f1dfbf16938f623e1d121b9477dd76f5c"
+    },
+    "docs/guide-assets/signal-path.png": {
+      "mode": "sha256-raw",
+      "sha256": "e81c01a26946b010eaff2b09db834555cf879c8dab232c88eca848cfc1303f1b",
+      "observed_raw_sha256": "e81c01a26946b010eaff2b09db834555cf879c8dab232c88eca848cfc1303f1b"
+    },
+    "docs/guides/README.md": {
+      "mode": "sha256-crlf-to-lf",
+      "sha256": "b0e5c5208aa21612b1bcab87b6b7fca50fd6732336c4e6e6db9c6949828a54df",
+      "observed_raw_sha256": "b0e5c5208aa21612b1bcab87b6b7fca50fd6732336c4e6e6db9c6949828a54df"
+    },
+    "docs/guides/build_guide.py": {
+      "mode": "sha256-crlf-to-lf",
+      "sha256": "b1519efd476f7d8fff169d297ea80c671554d0fa0a1abc79c515d7611bbfc5c6",
+      "observed_raw_sha256": "b1519efd476f7d8fff169d297ea80c671554d0fa0a1abc79c515d7611bbfc5c6"
+    },
+    "docs/guides/input-explained-ru.md": {
+      "mode": "sha256-crlf-to-lf",
+      "sha256": "3383df8b112d3a17ee20c5f3505d8168f1bcf7b76fec90ca5c35a6f2bc6c26df",
+      "observed_raw_sha256": "3383df8b112d3a17ee20c5f3505d8168f1bcf7b76fec90ca5c35a6f2bc6c26df"
+    },
+    "docs/guides/motortester-input-guide-ru.docx": {
+      "mode": "sha256-raw",
+      "sha256": "495afcf04707c70c72f1c9a94d91697ac508902fb3abce6b906e96cada3df868",
+      "observed_raw_sha256": "495afcf04707c70c72f1c9a94d91697ac508902fb3abce6b906e96cada3df868"
+    },
+    "docs/hardware-input.md": {
+      "mode": "sha256-crlf-to-lf",
+      "sha256": "17cea92b265719c4f34c69eddcc0e2d75da05efe7e9c46562e9bb847cbe358ee",
+      "observed_raw_sha256": "2d3eeae90fd4ac69ad9153bccbfa0edb4d16708e4479c3595daf456b1e9ee925"
+    },
+    "docs/legacy-notice.md": {
+      "mode": "sha256-crlf-to-lf",
+      "sha256": "ecffa0e968c39b9e6941589851b4ed7d12ac9bcfaef425df4f119a4561f7da90",
+      "observed_raw_sha256": "ecffa0e968c39b9e6941589851b4ed7d12ac9bcfaef425df4f119a4561f7da90"
+    },
+    "docs/mvp-spec.md": {
+      "mode": "sha256-crlf-to-lf",
+      "sha256": "5da1b56f59d65797c2bf72a5c347f2e97a5ece68100511e02b4885284d85beeb",
+      "observed_raw_sha256": "2bfbd052ad2db3a140d65caa3cf1e7e8f8fd32cce45a2c70d6253b319457dde0"
+    },
+    "docs/progress.md": {
+      "mode": "sha256-crlf-to-lf",
+      "sha256": "10e7ea1e79c03ab459e7ef03fd50e47ea5d05db57725e8265b50cd546d085959",
+      "observed_raw_sha256": "c8fde44194237e109aed14fa2d0dbf9a80e0ba05992fe255384200ca473e7b96"
+    },
+    "docs/quality-gate.md": {
+      "mode": "sha256-crlf-to-lf",
+      "sha256": "13aad51298aea4211725ab839a29c0859d7a0e5af34cb6d10ea7110578cf787c",
+      "observed_raw_sha256": "be4e7de71777d247f1554c8bec4d001b6afaac3c6e50479e0aad2001e4ff1489"
+    },
+    "docs/reviews/hw-v2-02e-review.md": {
+      "mode": "sha256-crlf-to-lf",
+      "sha256": "3f7d3710a39e7a17525039e1127282ed729dca5a9b81abb8c2aa2d1dee7bb61d",
+      "observed_raw_sha256": "3f7d3710a39e7a17525039e1127282ed729dca5a9b81abb8c2aa2d1dee7bb61d"
+    },
+    "docs/sources.md": {
+      "mode": "sha256-crlf-to-lf",
+      "sha256": "6d1b199e93bbc154f04eee7baa94531da0b2b673f393ed5cd085264813c99f1e",
+      "observed_raw_sha256": "1eef756d9fccd10e495c926a3f3d764c598dc9d0a0d420cd7c67372c300281f3"
+    },
+    "docs/validation.md": {
+      "mode": "sha256-crlf-to-lf",
+      "sha256": "9427e5da6654b376c79db7413a735ec611e422b29c28b1d912e6ba85f92ebb8a",
+      "observed_raw_sha256": "bb9a00f4698c4535a097ac5c79fb56abaca935e8c1b8ff7b8782b104aa2c5d7c"
+    },
+    "docs/verification/hw-v2-02d/critic_check.py": {
+      "mode": "sha256-crlf-to-lf",
+      "sha256": "37c913137ac5975cbf74992f1191a93ca9b99d0a2cdf7490e33fc2e579707580",
+      "observed_raw_sha256": "37c913137ac5975cbf74992f1191a93ca9b99d0a2cdf7490e33fc2e579707580"
+    },
+    "docs/verification/hw-v2-02d/model-notes.md": {
+      "mode": "sha256-crlf-to-lf",
+      "sha256": "fb764363af884d48e0b33141fd900f32f28cba79f0d96385993d7be7ccc58f0e",
+      "observed_raw_sha256": "fb764363af884d48e0b33141fd900f32f28cba79f0d96385993d7be7ccc58f0e"
+    },
+    "docs/verification/hw-v2-02e/critic-check.json": {
+      "mode": "sha256-crlf-to-lf",
+      "sha256": "410a6cf557a97188ce842546a1ea8bbf0ecc2502a5efa95a42e2a243fcba5eff",
+      "observed_raw_sha256": "d8f281586513550609e8a0f80791281d6e689e82594f28280d200bfcaf5be7b4"
+    },
+    "docs/verification/hw-v2-02e/critic-final-check.json": {
+      "mode": "sha256-crlf-to-lf",
+      "sha256": "78023c07e02b8ba0e46a5bc838ad127531ddb6da00932d94bf36736478a6f16a",
+      "observed_raw_sha256": "2d933ce3fdb67efdb738a21da0722b20244a42769bd4d94315aab979555084aa"
+    },
+    "docs/verification/hw-v2-02e/critic_check.py": {
+      "mode": "sha256-crlf-to-lf",
+      "sha256": "3478a1b784e16deb2e4cfcebee1009f20aca02378c5c5d2a3a60e61296826ac6",
+      "observed_raw_sha256": "3478a1b784e16deb2e4cfcebee1009f20aca02378c5c5d2a3a60e61296826ac6"
+    },
+    "docs/verification/hw-v2-02e/critic_final_check.py": {
+      "mode": "sha256-crlf-to-lf",
+      "sha256": "4a4f4ffb9178a41a09ce11468b1c7c24780e57c67b5ee91480a21e746a01d776",
+      "observed_raw_sha256": "4a4f4ffb9178a41a09ce11468b1c7c24780e57c67b5ee91480a21e746a01d776"
+    },
+    "docs/verification/hw-v2-02e/critic_manifest.py": {
+      "mode": "sha256-crlf-to-lf",
+      "sha256": "d163b1d6b21fbba5c8f78f07b9b5f533dfe2ecf53cb3221851ec71447715807c",
+      "observed_raw_sha256": "d163b1d6b21fbba5c8f78f07b9b5f533dfe2ecf53cb3221851ec71447715807c"
+    },
+    "docs/verification/hw-v2-02e/guide-evidence.json": {
+      "mode": "sha256-crlf-to-lf",
+      "sha256": "94676455c80758b944798edcaf1c56b625562036056e10421d2a7c09f563f027",
+      "observed_raw_sha256": "7567eadc9474da37d590ff228986ca62a0617bd9fe85c1a44cc814bdae252be2"
+    },
+    "docs/verification/hw-v2-02e/model-notes.md": {
+      "mode": "sha256-crlf-to-lf",
+      "sha256": "09293ecce12c561b28357027cc99ab4e37ae0aee33e309bc3b0d0ebf0e550a19",
+      "observed_raw_sha256": "09293ecce12c561b28357027cc99ab4e37ae0aee33e309bc3b0d0ebf0e550a19"
+    },
+    "hardware/v2-input/p1-lv/README.md": {
+      "mode": "sha256-crlf-to-lf",
+      "sha256": "9dd70ff445bae88704f3f7a39142fbf46cc17cc4e42ffa3534b7c9868b35c55e",
+      "observed_raw_sha256": "8d56fa3725666a753440d8da5b735067569859e799b86e6b33cbb791fcf335ee"
+    },
+    "hardware/v2-input/p1-lv/calculations.json": {
+      "mode": "sha256-crlf-to-lf",
+      "sha256": "2d64653a3cc4fb18ced27dc1119159a1e2519d3bb7448634074c39586a8f1f98",
+      "observed_raw_sha256": "7fdb817eb5c6499f81eac98e4ab0f7b076126f9df496936af46e821e3a8c6f28"
+    },
+    "hardware/v2-input/p1-lv/materials-ru.md": {
+      "mode": "sha256-crlf-to-lf",
+      "sha256": "3669fdc69f13aae70b39dea6e6d4418d5ef7b2c58e286bcaba34e3addbcacc86",
+      "observed_raw_sha256": "3669fdc69f13aae70b39dea6e6d4418d5ef7b2c58e286bcaba34e3addbcacc86"
+    },
+    "hardware/v2-input/p1-lv/measurement-template.csv": {
+      "mode": "sha256-crlf-to-lf",
+      "sha256": "c61fa2b54e16e0fd1169bd905121a5edfa188af388fdc8809e41e49ba6bd7380",
+      "observed_raw_sha256": "c61fa2b54e16e0fd1169bd905121a5edfa188af388fdc8809e41e49ba6bd7380"
+    },
+    "hardware/v2-input/p1-lv/model-report.png": {
+      "mode": "sha256-raw",
+      "sha256": "20cf6cc20ceffc7ccd41f4fa13d9f4084a358bcc391dfa3532caf158799d3ae8",
+      "observed_raw_sha256": "20cf6cc20ceffc7ccd41f4fa13d9f4084a358bcc391dfa3532caf158799d3ae8"
+    },
+    "hardware/v2-input/p1-lv/model-report.svg": {
+      "mode": "sha256-crlf-to-lf",
+      "sha256": "60dc7bbb3b512748f1532dc47fca40776d8cca86e6281dca2ccdcb490d9ee28b",
+      "observed_raw_sha256": "60dc7bbb3b512748f1532dc47fca40776d8cca86e6281dca2ccdcb490d9ee28b"
+    },
+    "hardware/v2-input/p1-lv/model.py": {
+      "mode": "sha256-crlf-to-lf",
+      "sha256": "97450a6e77e3245acbd94dfd2934aa627c0875e6ab350abc3b9dc7887ecaa4b1",
+      "observed_raw_sha256": "97450a6e77e3245acbd94dfd2934aa627c0875e6ab350abc3b9dc7887ecaa4b1"
+    },
+    "hardware/v2-input/p1-lv/netlist.md": {
+      "mode": "sha256-crlf-to-lf",
+      "sha256": "fcb3bb8fc716e6b41d0bf6a6b35b0a6e5cddfee0c352b4575e6c953c0a2ba1b8",
+      "observed_raw_sha256": "8aa3d2d51a3ad8bd1e72ee617f3be4e364c52fd49e9a5843ea40410696de7c86"
+    },
+    "hardware/v2-input/p1-lv/plot.py": {
+      "mode": "sha256-crlf-to-lf",
+      "sha256": "842737b33eccb9bd4fd2442b31e9223b9ac07653281545da87c052c074e6b21e",
+      "observed_raw_sha256": "842737b33eccb9bd4fd2442b31e9223b9ac07653281545da87c052c074e6b21e"
+    },
+    "hardware/v2-input/p1-lv/schematic.png": {
+      "mode": "sha256-raw",
+      "sha256": "cb90acd06ca87d2903aacf225c3d56577dd9bf15b0caea868c651be72c7b9854",
+      "observed_raw_sha256": "cb90acd06ca87d2903aacf225c3d56577dd9bf15b0caea868c651be72c7b9854"
+    },
+    "hardware/v2-input/p1-lv/schematic.py": {
+      "mode": "sha256-crlf-to-lf",
+      "sha256": "3255955c59988b0517bb97f862e39221d5cb97cf4ff911a1033e2ad606476290",
+      "observed_raw_sha256": "b647bca1b44f05003e9f43c99b3450bd11ffb98f766a7f80d21d235524a987f8"
+    },
+    "hardware/v2-input/p1-lv/schematic.svg": {
+      "mode": "sha256-crlf-to-lf",
+      "sha256": "5dda5df5a42ea8b8f4848bf1c1f6604e7ea88a9c33679615a204ac0711d90223",
+      "observed_raw_sha256": "c344f7ed872f6f1ad36757d5726dd63dbf9af4117a20ee28aeed601d84ad39ea"
+    },
+    "requirements.md": {
+      "mode": "sha256-crlf-to-lf",
+      "sha256": "11740b1068479573824eae62563eaec9f1e6f156933fc61f526998b1a9542bfa",
+      "observed_raw_sha256": "5c86c7343d617b855fed6399ad60fb55ef9d6e4d4564b7fae80a7dbf71f69119"
+    },
+    "task.md": {
+      "mode": "sha256-crlf-to-lf",
+      "sha256": "233d04f9344273ab537467672639bfb7d00db770f74fbc2e916dfc7c2f63587a",
+      "observed_raw_sha256": "d8b5363d47ef9920cb6418fcddb02153443043381e4d92962519c78bae14ca40"
+    }
+  }
+}

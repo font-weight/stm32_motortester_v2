@@ -392,6 +392,29 @@ def sallen_key():
     f.save()
 
 
+def p1_schematic_panels():
+    """Embed every panel of the authoritative P1 drawing at readable page width.
+
+    Coordinates follow schematic.py (1920 x 1610). No circuitry is redrawn:
+    the six crops preserve wires, designators, pin numbers and panel notes.
+    The guide separately repeats the drawing's global revision/limitations.
+    """
+    source = OUT.parent.parent / "hardware/v2-input/p1-lv/schematic.png"
+    image = Image.open(source)
+    if image.size != (1920, 1610):
+        raise ValueError("P1 schematic dimensions changed; review panel bounds")
+    panels = {
+        "input": (28, 143, 942, 527),
+        "power": (968, 143, 1892, 527),
+        "filter1": (28, 548, 942, 1012),
+        "filter2": (968, 548, 1892, 1012),
+        "test": (28, 1038, 942, 1542),
+        "output": (968, 1038, 1892, 1542),
+    }
+    for name, bounds in panels.items():
+        image.crop(bounds).save(OUT / f"p1-schematic-{name}.png")
+
+
 if __name__ == "__main__":
     signal_chain()
     p1_map()
@@ -400,3 +423,4 @@ if __name__ == "__main__":
     opamp_follower()
     divider()
     sallen_key()
+    p1_schematic_panels()

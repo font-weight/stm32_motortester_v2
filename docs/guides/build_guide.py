@@ -62,7 +62,11 @@ def table(doc, rows):
     cells = [row for row in cells if not all(re.fullmatch(r"[: -]+", v) for v in row)]
     count = len(cells[0])
     # Short numeric/designator columns leave room for electrical destinations.
-    if count == 4 and cells[0][0] == "Секция":
+    if count == 4 and cells[0][0] == "Обозначение":
+        widths = [2.8, 1.3, 4.0, 8.4]
+    elif count == 3 and cells[0][0] == "Материал":
+        widths = [4.5, 2.0, 10.0]
+    elif count == 4 and cells[0][0] == "Секция":
         widths = [3.0, 4.2, 4.8, 4.5]
     elif count == 4:
         widths = [2.5, 3.0, 4.6, 6.4]
@@ -111,7 +115,7 @@ def table(doc, rows):
                 run.font.size = Pt(9.5)
                 if index == 0:
                     run.bold = True
-            if count == 4 and col < 2:
+            if (count == 4 and col < 2) or (cells[0][0] == "Материал" and col == 1):
                 p.alignment = WD_ALIGN_PARAGRAPH.CENTER
     doc.add_paragraph().paragraph_format.space_after = Pt(0)
 
@@ -154,7 +158,7 @@ def build():
         run.font.color.rgb = RGBColor(0, 0, 0)
     fp = sec.footer.paragraphs[0]
     fp.alignment = WD_ALIGN_PARAGRAPH.RIGHT
-    fp.add_run("Редакция 2   •   ")
+    fp.add_run("Редакция 3   •   ")
     field = OxmlElement("w:fldSimple")
     field.set(qn("w:instr"), "PAGE")
     fp._p.append(field)
