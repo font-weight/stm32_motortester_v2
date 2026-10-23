@@ -1,5 +1,12 @@
 # Координация самостоятельного V2
 
+V2-06e: root — аппаратные действия, build/v6e-board-01, канонические документы;
+higher_fs_review — firmware/v2-stream, tests/v2-stream-firmware и build/v6e-*;
+host_200k — только порученный offline-разбор физических файлов;
+stream200_critic — docs/reviews/v2-06e*.md и
+docs/verification/v2-100ksps-schedule/critic*.json. Приложение/пакет неизменны.
+Никто кроме root не открывает COM/SWD. S8 требует отдельного точного допуска.
+
 V2-06d: root — COM/ST-Link, build/v6d-board-01, упаковка Windows,
 канонические документы и интеграция. higher_fs_review — firmware/v2-stream,
 tests/v2-stream-firmware и build/v6d-fw-*/v6d-native-*; host_200k — host/motortester,

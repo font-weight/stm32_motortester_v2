@@ -1,4 +1,37 @@
-# Кандидат V2S7: 100 kS/s и приём целого кадра
+# Кандидат V2S8: 100 kS/s с расписанием S4
+
+V2-06e проверяет конкретную гипотезу после сохранённых отказов S5/S6/S7:
+повторные ADC/TIME-проверки могут ограничивать опустошение очереди. Новый
+`schedule-s4.json` накладывает один точный патч поверх S7: тело `step`
+побайтно возвращается к S4, неиспользуемый `adc_checkpoint` удаляется.
+Исходные барьеры TIME/loss/epoch/Stop вокруг task/RX/TX/flush и итоговый
+IRQ grant сохраняются. Убираются две дополнительные ADC opportunities
+с дополнительными TIME/loss парами, введённые для кандидата200k S5.
+
+- Build `0x56325338`, USB product `Motortester V2 100k USB8`.
+- Fs100000/1, TIM3 PSC71/ARR9, ADC12MHz/41,5+12,5 такта, DMA1024/half512,
+  строгое обслуживание/копирование <5120мкс, queue8×DATA128 и Stop tail
+  остаются точными S7. Whole-fit, FIFO384 и ограниченная IN-серия не меняются.
+- В healthy DATA-проходе с пустым DMA 14 вместо22 полных TIME update;
+  один update читает27 MMIO. Это подсчёт операций, не измерение CPU/USB
+  и не доказательство, что100k стали устойчивыми. Более редкое обслуживание
+  ADC не снимает проверку дедлайна; нарушения по-прежнему останавливают поток.
+- До аппаратного опыта нужны независимый допуск exact BIN и сохранённый
+  возврат S4. Сборка/native не открывают COM/SWD и не подтверждают АЦП,
+  точность частоты, полосу или допустимое напряжение.
+
+```powershell
+.\.venv\Scripts\python.exe -I -B firmware\v2-stream\build_windows.py --output build\v6e-fw-candidate
+.\.venv\Scripts\python.exe -I -B tests\v2-stream-firmware\check_schedule_s4.py --image build\v6e-fw-candidate --baseline build\v5-fw-10 --previous build\v6d-fw-01 --zig PATH_TO_LOCAL_ZIG_EXE --output build\v6e-native-schedule
+```
+
+Контроль сопоставляет exact step/21 runtime functions и неизменные S7
+driver/core/USB guards. Узкая логическая модель исполняет извлечённый runtime
+с граничными ADC/USB/core callbacks: готовый ADC, Stop/неудавшаяся остановка,
+epoch/TIME loss и известный0 whole-fit. Физические DMA/USB/throughput модель
+не исполняет. Неизменные host и широкие native USB suites не повторяются.
+
+## Сохранённая основа V2S7: 100 kS/s и приём целого кадра
 
 V2-06d — промежуточный программный кандидат после сохранённых отказов S5/S6.
 Номинальные100000/1 дают шаг10мкс и период DATA1281280мкс. Это ещё не
@@ -144,7 +177,7 @@ V2-06 меняет номинальную частоту одного PA0 на *
 Из корня V2, Python из существующей среды:
 
 ```powershell
-.\.venv\Scripts\python.exe -I -B firmware\v2-stream\build_windows.py --output build\v6d-fw-candidate
+.\.venv\Scripts\python.exe -I -B firmware\v2-stream\build_windows.py --output build\v6e-fw-candidate
 ```
 
 Каталог вывода должен быть новым. Ошибочный вывод сохраняется. По умолчанию используется
@@ -168,7 +201,7 @@ Windows GCC 12.3.1 из CubeIDE 1.15.0; `--toolchain` допускает дру�
 V2 генерирует собственные board/timing definitions и накладывает отдельный
 NVIC-патч `overlays/usb-nvic.json`, CEN-патч `overlays/adc-cen.json`
 и CRC-патч `overlays/crc32.json`;
-build ID `0x56325337` (`V2S7`), USB product `Motortester V2 100k USB7`.
+build ID `0x56325338` (`V2S8`), USB product `Motortester V2 100k USB8`.
 Это декларация прошивки,
 не способ аутентификации платы. Старые STR1 ELF/BIN/attestations не экспортируются.
 
