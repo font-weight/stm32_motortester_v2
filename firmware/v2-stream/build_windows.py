@@ -1,4 +1,4 @@
-"""Build the separate V2S8 100 kS/s S4-schedule candidate; never flash hardware."""
+"""Build the separate V2S9 100 kS/s profiling candidate; never flash hardware."""
 import argparse
 import hashlib
 import importlib.util
@@ -30,6 +30,7 @@ ADD = [
     "firmware/app/mt_live_adc.c", "firmware/platform/mt_live_clock.c",
     "firmware/protocol/mt_live_device.c", "firmware/acquisition/mt_sample_queue.c",
     "firmware/platform/mt_stream_diag.c",
+    "firmware/platform/mt_stream_profile.c",
 ]
 
 
@@ -126,7 +127,7 @@ def main():
         "local_head": None, "config": config, "inputs_before": inputs,
         "commands": [], "objects": [], "dependencies": {},
         "hardware_verified": False, "timing_qualified": False, "flash_approved": False,
-        "instrumentation_profile": "foreground-dwt-v1",
+        "instrumentation_profile": "foreground-dwt-v1+active-profile-v1",
         "scope": "V2 transport candidate; no-input experiment requires separate exact-image review",
         "unverified": ["Physical HSE frequency/mode and USB pull-up",
                        "ADC/USB service latency and 1 ms transaction bound",
@@ -261,6 +262,15 @@ def main():
             target = out / "patched" / row["target"]
             target.write_bytes(apply_patch((out / row["source"]).read_bytes(),
                 (here / "overlays" / row["patch"]).read_bytes(), row))
+        profile = json.loads((here / "overlays/stream-profile.json").read_text("utf-8"))
+        require(profile["schema"] == "motortester-v2-stream-profile-overlay-1", "Unexpected profiler overlay")
+        receipt["v2_overlays"].extend(profile["patches"])
+        for row in profile["patches"]:
+            target = out / "patched" / row["target"]
+            target.write_bytes(apply_patch((out / row["source"]).read_bytes(),
+                (here / "overlays" / row["patch"]).read_bytes(), row))
+        for name in ("mt_stream_profile.c", "mt_stream_profile.h"):
+            (out / "patched/v2/platform" / name).write_bytes((here / "profile" / name).read_bytes())
         manifest = json.loads((source / "firmware/build/inputs.json").read_text("utf-8"))
         standard = next(r["flags"] for r in manifest["components"]
                         if r["source"] == "firmware/app/mt_runtime.c")
@@ -308,6 +318,8 @@ def main():
                 "source/firmware/app/mt_live_runtime.c": "patched/v2/app/mt_live_runtime.c",
                 "source/firmware/app/mt_live_adc.c": "patched/v2/app/mt_live_adc.c",
                 "source/firmware/platform/adc_timer_dma.c": "patched/v2/platform/adc_timer_dma.c",
+                "source/firmware/platform/mt_timebase.c": "patched/v2/platform/mt_timebase.c",
+                "source/firmware/platform/mt_stream_profile.c": "patched/v2/platform/mt_stream_profile.c",
                 "source/firmware/protocol/mt_wire.c": "patched/v2/protocol/mt_wire.c",
                 "source/firmware/protocol/mt_live_device.c": "patched/v2/protocol/mt_live_device.c",
                 "source/firmware/acquisition/mt_sample_queue.c": "patched/v2/acquisition/mt_sample_queue.c",
@@ -322,7 +334,7 @@ def main():
         objects.append(reset)
         compile_c("board", "generated/board.c", standard)
         compile_c("timing", "generated/timing.c", standard)
-        require(len(objects) == 30, "Unexpected link input count")
+        require(len(objects) == 31, "Unexpected link input count")
         checker = load(source / "tests/boot-link/tools/run_boot_link_tests.py")
         vectors_path = source / "tests/boot-link/vector_map.json"
         require(digest(vectors_path) == checker.VECTOR_SHA, "Vector map differs")

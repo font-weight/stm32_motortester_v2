@@ -1,0 +1,62 @@
+{
+  "schema": "v2-06f-native-profile-decoder-check-1",
+  "status": "PASS",
+  "scope": "Actual C native frozen record parsed by independent Python decoder; SYNTHETIC ONLY",
+  "independent_hardware_reads": false,
+  "copy_origin": "Both files deliberately duplicate one actual-C-generated native fixture",
+  "physical_trial_performed": false,
+  "hardware_access": false,
+  "native_test_repeated": false,
+  "physical_100ksps_qualified": false,
+  "input_files": [
+    {
+      "path": "C:\\Users\\Alexandr\\Desktop\\New folder\\\u0443\u043d\u0438\u0432\u0435\u0440\\\u043c\u043e\u0442\u043e\u0440\u0442\u0435\u0441\u0442\u0435\u0440 2\\build\\v6f-native-profile-01\\actual-profile.bin",
+      "bytes": 512,
+      "sha256": "20392b84fb3ca4ee495a5a6cd4af4dd2c3bbfc3d0b44b90a038d87f33f88f87d"
+    },
+    {
+      "path": "C:\\Users\\Alexandr\\Desktop\\New folder\\\u0443\u043d\u0438\u0432\u0435\u0440\\\u043c\u043e\u0442\u043e\u0440\u0442\u0435\u0441\u0442\u0435\u0440 2\\build\\v6f-native-profile-01\\result.json",
+      "bytes": 41269,
+      "sha256": "7854e16567353ab202254e5977f3d034d51a91af8f0367268e8f38830214ccfd"
+    },
+    {
+      "path": "C:\\Users\\Alexandr\\Desktop\\New folder\\\u0443\u043d\u0438\u0432\u0435\u0440\\\u043c\u043e\u0442\u043e\u0440\u0442\u0435\u0441\u0442\u0435\u0440 2\\build\\v6f-native-profile-01\\model.c",
+      "bytes": 10331,
+      "sha256": "b8781b44888f588cb367e293e66a659c5e8d38615f563592471ac27b6f440b9c"
+    },
+    {
+      "path": "C:\\Users\\Alexandr\\Desktop\\New folder\\\u0443\u043d\u0438\u0432\u0435\u0440\\\u043c\u043e\u0442\u043e\u0440\u0442\u0435\u0441\u0442\u0435\u0440 2\\build\\v6f-native-profile-01\\platform\\mt_stream_profile.c",
+      "bytes": 12694,
+      "sha256": "8b2ef3dad3ce272bb39fd189ee8e897de92b2b2ce0491b96c9fb8925bfd1e4b2"
+    },
+    {
+      "path": "C:\\Users\\Alexandr\\Desktop\\New folder\\\u0443\u043d\u0438\u0432\u0435\u0440\\\u043c\u043e\u0442\u043e\u0440\u0442\u0435\u0441\u0442\u0435\u0440 2\\build\\v6f-native-profile-01\\platform\\mt_stream_profile.h",
+      "bytes": 6312,
+      "sha256": "786ccf29551bc2a56f6ccd380f2efa5a7506e812929756adda59aeef49a8c5c3"
+    }
+  ],
+  "source_files_unchanged": true,
+  "command": [
+    "C:\\Users\\Alexandr\\Desktop\\New folder\\\u0443\u043d\u0438\u0432\u0435\u0440\\\u043c\u043e\u0442\u043e\u0440\u0442\u0435\u0441\u0442\u0435\u0440 2\\.venv\\Scripts\\python.exe",
+    "-B",
+    "C:\\Users\\Alexandr\\Desktop\\New folder\\\u0443\u043d\u0438\u0432\u0435\u0440\\\u043c\u043e\u0442\u043e\u0440\u0442\u0435\u0441\u0442\u0435\u0440 2\\build\\v6f-decoder\\decode_profile.py",
+    "C:\\Users\\Alexandr\\Desktop\\New folder\\\u0443\u043d\u0438\u0432\u0435\u0440\\\u043c\u043e\u0442\u043e\u0440\u0442\u0435\u0441\u0442\u0435\u0440 2\\build\\v6f-decoder\\native-check-01\\native-first.bin",
+    "C:\\Users\\Alexandr\\Desktop\\New folder\\\u0443\u043d\u0438\u0432\u0435\u0440\\\u043c\u043e\u0442\u043e\u0440\u0442\u0435\u0441\u0442\u0435\u0440 2\\build\\v6f-decoder\\native-check-01\\native-second.bin",
+    "--build",
+    "0x56325339",
+    "--nonce",
+    "0x0123456789abcdef",
+    "--generation",
+    "3",
+    "--epoch",
+    "7",
+    "--output",
+    "C:\\Users\\Alexandr\\Desktop\\New folder\\\u0443\u043d\u0438\u0432\u0435\u0440\\\u043c\u043e\u0442\u043e\u0440\u0442\u0435\u0441\u0442\u0435\u0440 2\\build\\v6f-decoder\\native-check-01\\decoded-native-fixture.json"
+  ],
+  "stdout": "{\"diagnostic_integrity\": \"VALID_FROZEN\", \"physical_trial_status\": \"NOT_ASSESSED\", \"issues\": [], \"output\": \"C:\\\\Users\\\\Alexandr\\\\Desktop\\\\New folder\\\\\u0443\u043d\u0438\u0432\u0435\u0440\\\\\u043c\u043e\u0442\u043e\u0440\u0442\u0435\u0441\u0442\u0435\u0440 2\\\\build\\\\v6f-decoder\\\\native-check-01\\\\decoded-native-fixture.json\"}\n",
+  "stderr": "",
+  "decoder_sha256": "bb4cbc9ea28a2ab8d3681d42ca93ca1161eaf03514b537f081097db99cef03f1",
+  "check_sha256": "0599af95de5103f4648e0bdae66016bb4e53fa8246d7f504df7151015925fc31",
+  "decoded_report_sha256": "84fc9c4e3eabf3f18519cf43d8f321dc52ca272836430663a662d76da5c22ddf",
+  "fixture_sha256": "20392b84fb3ca4ee495a5a6cd4af4dd2c3bbfc3d0b44b90a038d87f33f88f87d"
+}

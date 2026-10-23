@@ -1,4 +1,40 @@
-# Кандидат V2S8: 100 kS/s с расписанием S4
+# Диагностический кандидат V2S9: active-only профиль S8
+
+V2-06f1 добавляет измерение затрат к сохранённому S8/100k после его физического
+queue-full. **Это диагностический образ, а не приёмка устойчивых100k.**
+Build `0x56325339`, product `Motortester V2 100k USB9`. Частота, ADC/DMA,
+проверки сроков/потерь, очередь, S8 schedule, whole-fit/FIFO384/burst и wire
+прежние. Наблюдатель не меняет raw и не пишет в CDC.
+
+Новый отдельный `mt_stream_profile` ABI1/512байт описан в
+[profile/ABI.md](profile/ABI.md). Он считает активные wall-интервалы фаз,
+TIME updates и USB ISR/grants, accepted/zero/transfer progress и hold causes.
+Первое queue-full и другие отказы закрывают его **до физической остановки**;
+последующие tail/drain/ACK не дописываются. Частичные интервалы и synthetic
+начальные RX/STEP видимы отдельно. Foreground и ISR flags/counters имеют
+раздельных writers; grant-seen shared только под прежним IRQ guard.
+
+18000000DWT cycles — целевой checkpoint250мс при номинальных72MHz, не жёсткий
+wall deadline. Он останавливает только сбор; actual elapsed/overshoot выводятся
+из меток. TIME/ISR/STEP/grant интервалы пересекаются и не складываются как
+независимые проценты CPU. Калибровка raw-read пары — heuristic observer
+indicator, не поправка/граница всех накладных расходов. Данные читаются root
+после Stop по адресу **конкретного нового ELF**; старый diag136 неизменён.
+
+```powershell
+.\.venv\Scripts\python.exe -I -B firmware\v2-stream\build_windows.py --output build\v6f-fw-candidate
+.\.venv\Scripts\python.exe -I -B tests\v2-stream-firmware\check_stream_profile.py --image build\v6f-fw-candidate --baseline build\v6e-fw-01 --zig PATH_TO_LOCAL_ZIG_EXE --output build\v6f-native-profile
+```
+
+Узкая логическая проверка исполняет actual profiler: lifecycle/first-close,
+partial и поздние эпилоги, cap/overshoot, modulo wrap/saturation и owners.
+Рабочие тела/guard-условия сопоставляются с S8 после удаления observer hooks.
+Сборка/static обязаны подтвердить64KiB/20KiB со стеком8192 и всего512 новых
+static bytes. Ни логическая модель, ни successful diagnostics не квалифицируют
+физический100k/200k, аналоговый вход или допустимое напряжение. Нужны отдельное
+ревью точного образа, аппаратный допуск и сохранённый откат S4.
+
+## Сохранённая основа V2S8: 100 kS/s с расписанием S4
 
 V2-06e проверяет конкретную гипотезу после сохранённых отказов S5/S6/S7:
 повторные ADC/TIME-проверки могут ограничивать опустошение очереди. Новый
@@ -21,7 +57,7 @@ IRQ grant сохраняются. Убираются две дополнител
   точность частоты, полосу или допустимое напряжение.
 
 ```powershell
-.\.venv\Scripts\python.exe -I -B firmware\v2-stream\build_windows.py --output build\v6e-fw-candidate
+.\.venv\Scripts\python.exe -I -B firmware\v2-stream\build_windows.py --output build\v6f-fw-candidate
 .\.venv\Scripts\python.exe -I -B tests\v2-stream-firmware\check_schedule_s4.py --image build\v6e-fw-candidate --baseline build\v5-fw-10 --previous build\v6d-fw-01 --zig PATH_TO_LOCAL_ZIG_EXE --output build\v6e-native-schedule
 ```
 
@@ -201,7 +237,7 @@ Windows GCC 12.3.1 из CubeIDE 1.15.0; `--toolchain` допускает дру�
 V2 генерирует собственные board/timing definitions и накладывает отдельный
 NVIC-патч `overlays/usb-nvic.json`, CEN-патч `overlays/adc-cen.json`
 и CRC-патч `overlays/crc32.json`;
-build ID `0x56325338` (`V2S8`), USB product `Motortester V2 100k USB8`.
+build ID `0x56325339` (`V2S9`), USB product `Motortester V2 100k USB9`.
 Это декларация прошивки,
 не способ аутентификации платы. Старые STR1 ELF/BIN/attestations не экспортируются.
 

@@ -1,0 +1,295 @@
+{
+  "schema": "v2-06f1-software-evidence-1",
+  "status": "ARCHIVED_BYTE_VERIFIED",
+  "scope": "Diagnostic software only; no Flash admission or physical 100/200k qualification",
+  "base_commit": "49cf581f1e2f53f2c5f848138fbf5e63c0c2e271",
+  "archiver": "build/v6f-archive.py",
+  "archiver_sha256": "4f138f66fdb38692bb5b2b9d315936c76822fc2223912b59fcb0f94f5559d7b3",
+  "files": [
+    {
+      "source": "build/v6f-freeze.json",
+      "copy": "docs/verification/v2-stream-profile/software/v6f-freeze.json",
+      "bytes": 18638,
+      "sha256": "ef15775d2de9df33cb7670c0ce068a5314af778dae0e9065fb147462ce05292a",
+      "copy_sha256": "ef15775d2de9df33cb7670c0ce068a5314af778dae0e9065fb147462ce05292a",
+      "byte_equal": true
+    },
+    {
+      "source": "build/v6f-fw-03/MotortesterV2-stream-candidate.bin",
+      "copy": "docs/verification/v2-stream-profile/software/v6f-fw-03/MotortesterV2-stream-candidate.bin",
+      "bytes": 38924,
+      "sha256": "a28db0890aaf971895286ccfc042c883563b73a6938751267f54ff262739cab1",
+      "copy_sha256": "a28db0890aaf971895286ccfc042c883563b73a6938751267f54ff262739cab1",
+      "byte_equal": true
+    },
+    {
+      "source": "build/v6f-fw-03/MotortesterV2-stream-candidate.elf",
+      "copy": "docs/verification/v2-stream-profile/software/v6f-fw-03/MotortesterV2-stream-candidate.elf",
+      "bytes": 75780,
+      "sha256": "e27789b1bf312beab58d624d51a1fcd6182cbde189d24112ff894dac39c23ee9",
+      "copy_sha256": "e27789b1bf312beab58d624d51a1fcd6182cbde189d24112ff894dac39c23ee9",
+      "byte_equal": true
+    },
+    {
+      "source": "build/v6f-fw-03/MotortesterV2-stream-candidate.hex",
+      "copy": "docs/verification/v2-stream-profile/software/v6f-fw-03/MotortesterV2-stream-candidate.hex",
+      "bytes": 109528,
+      "sha256": "cb36fc9f16b79164b63cf993096218813431c09301a1c3d22d223c235cfae195",
+      "copy_sha256": "cb36fc9f16b79164b63cf993096218813431c09301a1c3d22d223c235cfae195",
+      "byte_equal": true
+    },
+    {
+      "source": "build/v6f-fw-03/receipt.json",
+      "copy": "docs/verification/v2-stream-profile/software/v6f-fw-03/receipt.json",
+      "bytes": 387609,
+      "sha256": "ef05c693bd42b8958aa817986d98f6eb7c1b958e97eb02cbf101824ea6818dde",
+      "copy_sha256": "ef05c693bd42b8958aa817986d98f6eb7c1b958e97eb02cbf101824ea6818dde",
+      "byte_equal": true
+    },
+    {
+      "source": "build/v6f-fw-03/static-bound.json",
+      "copy": "docs/verification/v2-stream-profile/software/v6f-fw-03/static-bound.json",
+      "bytes": 194256,
+      "sha256": "4498f7079bf9748e1cdd9a53ed65e531030b22c20665cbeec507ab9202f7a8f0",
+      "copy_sha256": "4498f7079bf9748e1cdd9a53ed65e531030b22c20665cbeec507ab9202f7a8f0",
+      "byte_equal": true
+    },
+    {
+      "source": "build/v6f-fw-03/image.map",
+      "copy": "docs/verification/v2-stream-profile/software/v6f-fw-03/image.map",
+      "bytes": 81649,
+      "sha256": "316657fbb9f07704e134f129f5989f4c5b0f73c66976b97de10095ef78146b95",
+      "copy_sha256": "316657fbb9f07704e134f129f5989f4c5b0f73c66976b97de10095ef78146b95",
+      "byte_equal": true
+    },
+    {
+      "source": "build/v6f-fw-03/image.nm",
+      "copy": "docs/verification/v2-stream-profile/software/v6f-fw-03/image.nm",
+      "bytes": 19347,
+      "sha256": "6d5b687aaa67fa3c9f3ee3eb756ef32c7e6d5f88a041f5ad6895b2d2198bbe8e",
+      "copy_sha256": "6d5b687aaa67fa3c9f3ee3eb756ef32c7e6d5f88a041f5ad6895b2d2198bbe8e",
+      "byte_equal": true
+    },
+    {
+      "source": "build/v6f-native-profile-02/result.json",
+      "copy": "docs/verification/v2-stream-profile/software/v6f-native-profile-02/result.json",
+      "bytes": 41269,
+      "sha256": "936ee8456edbf83459acfeefdc493274a33622370253a8dcd8d124d1f906f20b",
+      "copy_sha256": "936ee8456edbf83459acfeefdc493274a33622370253a8dcd8d124d1f906f20b",
+      "byte_equal": true
+    },
+    {
+      "source": "build/v6f-native-profile-02/source-equivalence.json",
+      "copy": "docs/verification/v2-stream-profile/software/v6f-native-profile-02/source-equivalence.json",
+      "bytes": 10377,
+      "sha256": "2a6cbd6f42fad1a5153ae499eda36ce77d80bd935ea6871502ea89abd322e990",
+      "copy_sha256": "2a6cbd6f42fad1a5153ae499eda36ce77d80bd935ea6871502ea89abd322e990",
+      "byte_equal": true
+    },
+    {
+      "source": "build/v6f-native-profile-02/actual-profile.bin",
+      "copy": "docs/verification/v2-stream-profile/software/v6f-native-profile-02/actual-profile.bin",
+      "bytes": 512,
+      "sha256": "20392b84fb3ca4ee495a5a6cd4af4dd2c3bbfc3d0b44b90a038d87f33f88f87d",
+      "copy_sha256": "20392b84fb3ca4ee495a5a6cd4af4dd2c3bbfc3d0b44b90a038d87f33f88f87d",
+      "byte_equal": true
+    },
+    {
+      "source": "build/v6f-native-profile-02/model.c",
+      "copy": "docs/verification/v2-stream-profile/software/v6f-native-profile-02/model.c",
+      "bytes": 11334,
+      "sha256": "892a4b7ee57b04348bcfe9efab471be0409097e44e8cc28e528e911d1209297c",
+      "copy_sha256": "892a4b7ee57b04348bcfe9efab471be0409097e44e8cc28e528e911d1209297c",
+      "byte_equal": true
+    },
+    {
+      "source": "build/v6f-native-profile-02/compile.stdout",
+      "copy": "docs/verification/v2-stream-profile/software/v6f-native-profile-02/compile.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "copy_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "byte_equal": true
+    },
+    {
+      "source": "build/v6f-native-profile-02/compile.stderr",
+      "copy": "docs/verification/v2-stream-profile/software/v6f-native-profile-02/compile.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "copy_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "byte_equal": true
+    },
+    {
+      "source": "build/v6f-native-profile-02/model.stdout",
+      "copy": "docs/verification/v2-stream-profile/software/v6f-native-profile-02/model.stdout",
+      "bytes": 171,
+      "sha256": "1c4f27ff6c643d65be3abb5ae29d11b5a867af09d6949d87c560a8306eadd989",
+      "copy_sha256": "1c4f27ff6c643d65be3abb5ae29d11b5a867af09d6949d87c560a8306eadd989",
+      "byte_equal": true
+    },
+    {
+      "source": "build/v6f-native-profile-02/model.stderr",
+      "copy": "docs/verification/v2-stream-profile/software/v6f-native-profile-02/model.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "copy_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "byte_equal": true
+    },
+    {
+      "source": "build/v6f-decoder/native-check-02/result.json",
+      "copy": "docs/verification/v2-stream-profile/software/decoder/native-check-02/result.json",
+      "bytes": 4175,
+      "sha256": "49af9063dc44ed5867362646035b78daf10f285b271bcb59794f5835b123a863",
+      "copy_sha256": "49af9063dc44ed5867362646035b78daf10f285b271bcb59794f5835b123a863",
+      "byte_equal": true
+    },
+    {
+      "source": "build/v6f-decoder/check-03/decoded-fixture.json",
+      "copy": "docs/verification/v2-stream-profile/software/decoder/check-03/decoded-fixture.json",
+      "bytes": 14312,
+      "sha256": "11d0d013d8b0fcf578e5a36003b1b9fc05205a14bbb1ae4fb7ec9864472a8f45",
+      "copy_sha256": "11d0d013d8b0fcf578e5a36003b1b9fc05205a14bbb1ae4fb7ec9864472a8f45",
+      "byte_equal": true
+    },
+    {
+      "source": "build/v6f-decoder/check-03/first.bin",
+      "copy": "docs/verification/v2-stream-profile/software/decoder/check-03/first.bin",
+      "bytes": 512,
+      "sha256": "a1cc6e0894c21dc13a19525dfffc37e1fba98b65b2632c633c13dcaa5ccf9678",
+      "copy_sha256": "a1cc6e0894c21dc13a19525dfffc37e1fba98b65b2632c633c13dcaa5ccf9678",
+      "byte_equal": true
+    },
+    {
+      "source": "build/v6f-decoder/check-03/legacy-first.bin",
+      "copy": "docs/verification/v2-stream-profile/software/decoder/check-03/legacy-first.bin",
+      "bytes": 136,
+      "sha256": "ba41ed46f87723e5e57aed208f1bf44403d847172597a35a9c407c3dae459edb",
+      "copy_sha256": "ba41ed46f87723e5e57aed208f1bf44403d847172597a35a9c407c3dae459edb",
+      "byte_equal": true
+    },
+    {
+      "source": "build/v6f-decoder/check-03/legacy-second.bin",
+      "copy": "docs/verification/v2-stream-profile/software/decoder/check-03/legacy-second.bin",
+      "bytes": 136,
+      "sha256": "ba41ed46f87723e5e57aed208f1bf44403d847172597a35a9c407c3dae459edb",
+      "copy_sha256": "ba41ed46f87723e5e57aed208f1bf44403d847172597a35a9c407c3dae459edb",
+      "byte_equal": true
+    },
+    {
+      "source": "build/v6f-decoder/check-03/result.json",
+      "copy": "docs/verification/v2-stream-profile/software/decoder/check-03/result.json",
+      "bytes": 6546,
+      "sha256": "eb626d96b2db2cda130b5fef7ec4f0e4bd3b76c4175ca2dac5a8b29891b18c16",
+      "copy_sha256": "eb626d96b2db2cda130b5fef7ec4f0e4bd3b76c4175ca2dac5a8b29891b18c16",
+      "byte_equal": true
+    },
+    {
+      "source": "build/v6f-decoder/check-03/second.bin",
+      "copy": "docs/verification/v2-stream-profile/software/decoder/check-03/second.bin",
+      "bytes": 512,
+      "sha256": "a1cc6e0894c21dc13a19525dfffc37e1fba98b65b2632c633c13dcaa5ccf9678",
+      "copy_sha256": "a1cc6e0894c21dc13a19525dfffc37e1fba98b65b2632c633c13dcaa5ccf9678",
+      "byte_equal": true
+    },
+    {
+      "source": "build/v6f-decoder/check-03/synthetic-trial-result.json",
+      "copy": "docs/verification/v2-stream-profile/software/decoder/check-03/synthetic-trial-result.json",
+      "bytes": 70,
+      "sha256": "293cc386ecc3522ee62983e4f9b6675ac130cd6c60277ec4cba2b1ac2ed2d8b4",
+      "copy_sha256": "293cc386ecc3522ee62983e4f9b6675ac130cd6c60277ec4cba2b1ac2ed2d8b4",
+      "byte_equal": true
+    },
+    {
+      "source": "build/v6f-decoder/native-check-02/decoded-native-fixture.json",
+      "copy": "docs/verification/v2-stream-profile/software/decoder/native-check-02/decoded-native-fixture.json",
+      "bytes": 12805,
+      "sha256": "785d7ce4e44e0a09eecd05b48bc91c9790d3acf6585a63c756f8b4b6fe0b33fd",
+      "copy_sha256": "785d7ce4e44e0a09eecd05b48bc91c9790d3acf6585a63c756f8b4b6fe0b33fd",
+      "byte_equal": true
+    },
+    {
+      "source": "build/v6f-decoder/native-check-02/native-first.bin",
+      "copy": "docs/verification/v2-stream-profile/software/decoder/native-check-02/native-first.bin",
+      "bytes": 512,
+      "sha256": "20392b84fb3ca4ee495a5a6cd4af4dd2c3bbfc3d0b44b90a038d87f33f88f87d",
+      "copy_sha256": "20392b84fb3ca4ee495a5a6cd4af4dd2c3bbfc3d0b44b90a038d87f33f88f87d",
+      "byte_equal": true
+    },
+    {
+      "source": "build/v6f-decoder/native-check-02/native-second.bin",
+      "copy": "docs/verification/v2-stream-profile/software/decoder/native-check-02/native-second.bin",
+      "bytes": 512,
+      "sha256": "20392b84fb3ca4ee495a5a6cd4af4dd2c3bbfc3d0b44b90a038d87f33f88f87d",
+      "copy_sha256": "20392b84fb3ca4ee495a5a6cd4af4dd2c3bbfc3d0b44b90a038d87f33f88f87d",
+      "byte_equal": true
+    },
+    {
+      "source": "build/v6f-decoder/decode_profile.py",
+      "copy": "docs/verification/v2-stream-profile/software/decoder/decode_profile.py",
+      "bytes": 22774,
+      "sha256": "bb4cbc9ea28a2ab8d3681d42ca93ca1161eaf03514b537f081097db99cef03f1",
+      "copy_sha256": "bb4cbc9ea28a2ab8d3681d42ca93ca1161eaf03514b537f081097db99cef03f1",
+      "byte_equal": true
+    },
+    {
+      "source": "build/v6f-decoder/check_decoder.py",
+      "copy": "docs/verification/v2-stream-profile/software/decoder/check_decoder.py",
+      "bytes": 11414,
+      "sha256": "d326cafac21c4e6cf9fe4d168c0ab58b490dbad5202023966a803b6ddef11707",
+      "copy_sha256": "d326cafac21c4e6cf9fe4d168c0ab58b490dbad5202023966a803b6ddef11707",
+      "byte_equal": true
+    },
+    {
+      "source": "build/v6f-decoder/check_native_fixture.py",
+      "copy": "docs/verification/v2-stream-profile/software/decoder/check_native_fixture.py",
+      "bytes": 3763,
+      "sha256": "0599af95de5103f4648e0bdae66016bb4e53fa8246d7f504df7151015925fc31",
+      "copy_sha256": "0599af95de5103f4648e0bdae66016bb4e53fa8246d7f504df7151015925fc31",
+      "byte_equal": true
+    },
+    {
+      "source": "build/v6f-native-profile-01/result.json",
+      "copy": "docs/verification/v2-stream-profile/software/prior/v6f-native-profile-01/result.json",
+      "bytes": 41269,
+      "sha256": "7854e16567353ab202254e5977f3d034d51a91af8f0367268e8f38830214ccfd",
+      "copy_sha256": "7854e16567353ab202254e5977f3d034d51a91af8f0367268e8f38830214ccfd",
+      "byte_equal": true
+    },
+    {
+      "source": "build/v6f-decoder/native-check-01/result.json",
+      "copy": "docs/verification/v2-stream-profile/software/prior/v6f-decoder/native-check-01/result.json",
+      "bytes": 4175,
+      "sha256": "38b4e60034be92e64a9af645867d250a8e3488bb7faa7d36afa8b27959f4322b",
+      "copy_sha256": "38b4e60034be92e64a9af645867d250a8e3488bb7faa7d36afa8b27959f4322b",
+      "byte_equal": true
+    },
+    {
+      "source": "build/v6f-fw-02/receipt.json",
+      "copy": "docs/verification/v2-stream-profile/software/prior/v6f-fw-02/receipt.json",
+      "bytes": 387486,
+      "sha256": "18001c424a1fc373308520dccf3c2d87d192aab310d7981f2e4ccecbf8fdf763",
+      "copy_sha256": "18001c424a1fc373308520dccf3c2d87d192aab310d7981f2e4ccecbf8fdf763",
+      "byte_equal": true
+    },
+    {
+      "source": "build/v6f-fw-01/receipt.json",
+      "copy": "docs/verification/v2-stream-profile/software/prior/v6f-fw-01/receipt.json",
+      "bytes": 232809,
+      "sha256": "ee1781ec5c68228b529a924b759e7c26a0307c43d9c8b0d9f7440f5ab3acdc1f",
+      "copy_sha256": "ee1781ec5c68228b529a924b759e7c26a0307c43d9c8b0d9f7440f5ab3acdc1f",
+      "byte_equal": true
+    },
+    {
+      "source": "build/v6f-fw-01/compile-13-dcd_stm32_fsdev.stderr",
+      "copy": "docs/verification/v2-stream-profile/software/prior/v6f-fw-01/compile-13-dcd_stm32_fsdev.stderr",
+      "bytes": 2448,
+      "sha256": "cbb12c6f5f1486695eee2e705538eafc9c480c9943ff2f48fec76ce4877788b9",
+      "copy_sha256": "cbb12c6f5f1486695eee2e705538eafc9c480c9943ff2f48fec76ce4877788b9",
+      "byte_equal": true
+    }
+  ],
+  "file_count": 35,
+  "total_bytes": 1735760,
+  "all_source_copy_bytes_equal": true,
+  "hardware_pass_claimed": false,
+  "tests_run_by_archiver": false
+}

@@ -1,0 +1,30 @@
+In file included from patched/dcd_stm32_fsdev.c:104:
+patched/fsdev_common.h: In function 'btable_set_count':
+patched/fsdev_common.h:434:18: warning: conversion from 'unsigned int' to 'uint16_t' {aka 'short unsigned int'} changes the value of '4294966272' [-Wconversion]
+  434 |   cnt          = (cnt & ~0x3FFU) | (byte_count & 0x3FFU);
+      |                  ^
+patched/dcd_stm32_fsdev.c: In function 'dcd_sof_enable':
+patched/dcd_stm32_fsdev.c:294:24: warning: conversion from 'unsigned int' to 'fsdev_bus_t' {aka 'short unsigned int'} changes the value of '4294966783' [-Wconversion]
+  294 |     FSDEV_REG->CNTR &= ~U_CNTR_SOFM;
+      |                        ^
+patched/dcd_stm32_fsdev.c: In function 'mt_profiled_dcd_int_handler_body':
+patched/dcd_stm32_fsdev.c:527:24: warning: conversion from 'unsigned int' to 'fsdev_bus_t' {aka 'short unsigned int'} changes the value of '4294967291' [-Wconversion]
+  527 |     FSDEV_REG->CNTR &= ~U_CNTR_LPMODE;
+      |                        ^
+patched/dcd_stm32_fsdev.c:528:24: warning: conversion from 'unsigned int' to 'fsdev_bus_t' {aka 'short unsigned int'} changes the value of '4294967287' [-Wconversion]
+  528 |     FSDEV_REG->CNTR &= ~U_CNTR_FSUSP;
+      |                        ^
+patched/dcd_stm32_fsdev.c:549:26: warning: conversion from 'unsigned int' to 'fsdev_bus_t' {aka 'short unsigned int'} changes the value of '4294967279' [-Wconversion]
+  549 |       FSDEV_REG->CNTR &= ~U_CNTR_RESUME;
+      |                          ^
+patched/dcd_stm32_fsdev.c:631:94: error: conversion to 'int' from 'unsigned int' may change the sign of the result [-Werror=sign-conversion]
+  631 |     if(mt_profile_guard(mt_profile_hold,mt_continue_tx) && mt_profile_guard(MT_P_HOLD_BUDGET,mt_tx_burst_left) &&
+      |                                                                                              ^~~~~~~~~~~~~~~~
+patched/dcd_stm32_fsdev.c: In function 'dcd_edpt_xfer_fifo':
+patched/dcd_stm32_fsdev.c:1030:3: error: this 'if' clause does not guard... [-Werror=misleading-indentation]
+ 1030 |   if(result)mt_profile_transfer(ep_addr,total_bytes);return result;
+      |   ^~
+patched/dcd_stm32_fsdev.c:1030:54: note: ...this statement, but the latter is misleadingly indented as if it were guarded by the 'if'
+ 1030 |   if(result)mt_profile_transfer(ep_addr,total_bytes);return result;
+      |                                                      ^~~~~~
+cc1.exe: all warnings being treated as errors

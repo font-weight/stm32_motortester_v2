@@ -42,6 +42,7 @@ CALLBACKS = {
     "read_reg": ["mt_clock_mmio_read32"],
     "update": ["mt_clock_mmio_write32"],
     "mt_timebase_update": ["mt_clock_mmio_read32"],
+    "mt_profiled_timebase_update_body": ["mt_clock_mmio_read32"],
     "mt_timebase_init": ["mt_clock_mmio_read32"],
     "mt_timebase_stop": ["mt_clock_mmio_read32"],
     "mt_usb_bridge_lock": ["mt_irq_guard_enter"],

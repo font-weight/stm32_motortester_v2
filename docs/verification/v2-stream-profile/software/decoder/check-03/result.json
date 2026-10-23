@@ -1,0 +1,180 @@
+{
+  "schema": "v2-06f-offline-decoder-synthetic-check-1",
+  "status": "PASS",
+  "scope": "Synthetic ABI/parser checks only; no firmware execution or hardware trial",
+  "groups": [
+    "nominal wrap and complete/partial intervals",
+    "identity/size/frozen/flags rejection",
+    "actual cap overshoot and observer heuristic policy",
+    "pinned CLI roundtrip with physical FAIL preserved"
+  ],
+  "negative_cases": [
+    {
+      "case": "version",
+      "expected_issue": "version_mismatch"
+    },
+    {
+      "case": "bytes_field",
+      "expected_issue": "bytes_mismatch"
+    },
+    {
+      "case": "build",
+      "expected_issue": "firmware_build_mismatch"
+    },
+    {
+      "case": "nonfrozen",
+      "expected_issue": "not_frozen"
+    },
+    {
+      "case": "generation",
+      "expected_issue": "generation_mismatch"
+    },
+    {
+      "case": "nonce",
+      "expected_issue": "nonce_mismatch"
+    },
+    {
+      "case": "epoch",
+      "expected_issue": "epoch_mismatch"
+    },
+    {
+      "case": "FG_saturation",
+      "expected_issue": "foreground_validity_flags"
+    },
+    {
+      "case": "IRQ_saturation",
+      "expected_issue": "ISR_validity_flags"
+    },
+    {
+      "case": "DWT_invalid",
+      "expected_issue": "foreground_validity_flags"
+    },
+    {
+      "case": "partial_stamp",
+      "expected_issue": "partial_phase_stamp_mismatch"
+    },
+    {
+      "case": "core_state_enum",
+      "expected_issue": "first_snapshot_core_state_outside_enum"
+    },
+    {
+      "case": "core_reason_enum",
+      "expected_issue": "first_snapshot_core_first_reason_outside_enum"
+    },
+    {
+      "case": "adc_state_enum",
+      "expected_issue": "first_snapshot_adc_state_outside_enum"
+    },
+    {
+      "case": "adc_fault_enum",
+      "expected_issue": "first_snapshot_adc_first_fault_outside_enum"
+    },
+    {
+      "case": "local_error_enum",
+      "expected_issue": "first_snapshot_core_local_error_outside_enum"
+    },
+    {
+      "case": "typed_close_1_primary_0",
+      "expected_issue": "close_primary_outside_typed_domain"
+    },
+    {
+      "case": "typed_close_1_primary_7",
+      "expected_issue": "close_primary_outside_typed_domain"
+    },
+    {
+      "case": "typed_close_1_primary_65535",
+      "expected_issue": "close_primary_outside_typed_domain"
+    },
+    {
+      "case": "typed_close_7_primary_0",
+      "expected_issue": "close_primary_outside_typed_domain"
+    },
+    {
+      "case": "typed_close_7_primary_8",
+      "expected_issue": "close_primary_outside_typed_domain"
+    },
+    {
+      "case": "typed_close_7_primary_65535",
+      "expected_issue": "close_primary_outside_typed_domain"
+    },
+    {
+      "case": "typed_close_8_primary_0",
+      "expected_issue": "close_primary_outside_typed_domain"
+    },
+    {
+      "case": "typed_close_8_primary_9",
+      "expected_issue": "close_primary_outside_typed_domain"
+    },
+    {
+      "case": "typed_close_8_primary_65535",
+      "expected_issue": "close_primary_outside_typed_domain"
+    }
+  ],
+  "late_private_mutation_rejected": true,
+  "short_record_rejected": true,
+  "no_active_start_timing_unavailable": true,
+  "legacy_DWT_invalid_and_missing_block_attribution": true,
+  "native_or_host_implementation_tests_run": false,
+  "hardware_access": false,
+  "header_sha256": "786ccf29551bc2a56f6ccd380f2efa5a7506e812929756adda59aeef49a8c5c3",
+  "abi_document_sha256": "6ca5f7df50bacb662836def10dc296d824c463c45c3b8b3357434a469b6e5cf6",
+  "decoder_sha256": "bb4cbc9ea28a2ab8d3681d42ca93ca1161eaf03514b537f081097db99cef03f1",
+  "checks_sha256": "d326cafac21c4e6cf9fe4d168c0ab58b490dbad5202023966a803b6ddef11707",
+  "fixture_sha256": "a1cc6e0894c21dc13a19525dfffc37e1fba98b65b2632c633c13dcaa5ccf9678",
+  "cli_argv": [
+    "C:\\Users\\Alexandr\\Desktop\\New folder\\универ\\мотортестер 2\\.venv\\Scripts\\python.exe",
+    "-B",
+    "C:\\Users\\Alexandr\\Desktop\\New folder\\универ\\мотортестер 2\\build\\v6f-decoder\\decode_profile.py",
+    "C:\\Users\\Alexandr\\Desktop\\New folder\\универ\\мотортестер 2\\build\\v6f-decoder\\check-03\\first.bin",
+    "C:\\Users\\Alexandr\\Desktop\\New folder\\универ\\мотортестер 2\\build\\v6f-decoder\\check-03\\second.bin",
+    "--build",
+    "0x56325339",
+    "--nonce",
+    "0x12345678abcdef01",
+    "--generation",
+    "3",
+    "--epoch",
+    "9",
+    "--trial-result",
+    "C:\\Users\\Alexandr\\Desktop\\New folder\\универ\\мотортестер 2\\build\\v6f-decoder\\check-03\\synthetic-trial-result.json",
+    "--no-debug-halt-confirmed",
+    "--single-wrap-bound-confirmed",
+    "--legacy-first",
+    "C:\\Users\\Alexandr\\Desktop\\New folder\\универ\\мотортестер 2\\build\\v6f-decoder\\check-03\\legacy-first.bin",
+    "--legacy-second",
+    "C:\\Users\\Alexandr\\Desktop\\New folder\\универ\\мотортестер 2\\build\\v6f-decoder\\check-03\\legacy-second.bin",
+    "--output",
+    "C:\\Users\\Alexandr\\Desktop\\New folder\\универ\\мотортестер 2\\build\\v6f-decoder\\check-03\\decoded-fixture.json"
+  ],
+  "cli_stdout": "{\"diagnostic_integrity\": \"VALID_FROZEN\", \"physical_trial_status\": \"FAIL\", \"issues\": [], \"output\": \"C:\\\\Users\\\\Alexandr\\\\Desktop\\\\New folder\\\\универ\\\\мотортестер 2\\\\build\\\\v6f-decoder\\\\check-03\\\\decoded-fixture.json\"}\n",
+  "cli_stderr": "",
+  "cap_fixture_window": {
+    "nominal_clock_hz": 72000000,
+    "elapsed_cycles_mod32": 18072000,
+    "elapsed_us_nominal": 251000.0,
+    "start_bracket_cycles": 8,
+    "end_bracket_cycles": 12,
+    "boundary_brackets_sum_cycles": 20,
+    "boundary_to_window_ratio": 1.1066843736166445e-06,
+    "nominal_cap_cycles": 18000000,
+    "cap_overshoot_cycles": 72000,
+    "cap_overshoot_us_nominal": 1000.0,
+    "cap_overshoot_flag": true,
+    "no_debug_halt_confirmed_externally": true,
+    "single_wrap_bound_confirmed_externally": true,
+    "full_wrap_seconds_nominal": 59.652323555555554,
+    "physical_CEN_timestamp_claimed": false
+  },
+  "valid_fixture_observer": {
+    "raw_DWT_reads": 700,
+    "read_pair_min_cycles": 12,
+    "read_pair_max_cycles": 20,
+    "heuristic_cycles_using_pair_min": 4200.0,
+    "heuristic_cycles_using_pair_max": 7000.0,
+    "heuristic_min_to_window_ratio": 0.005833333333333334,
+    "covers_all_hooks": false,
+    "lower_or_upper_bound_claimed": false,
+    "subtracted_from_stats": false,
+    "note": "Only a heuristic indicator for raw-read probes. Max calibration is not WCET; low indicator does not bound actual observer perturbation."
+  }
+}

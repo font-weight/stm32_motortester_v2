@@ -3,7 +3,10 @@
 V2-06f1: разрешён черновик параллельно с исправлениями проекта. Автор
 higher_fs_review — firmware/v2-stream, tests/v2-stream-firmware,
 build/v6f-fw-*,build/v6f-native-*,build/v6f-freeze.json; root — канонические
-документы/интеграция. Критик stream200_critic — проект и независимые
+документы/интеграция. Исключение в tests: host_200k пишет только
+tests/v2-stream-firmware/stream_profile_model.c; также владеет независимым
+offline decoder/fixtures в build/v6f-decoder. Runner модели остаётся автору.
+Критик stream200_critic — проект и независимые
 docs/reviews/v2-06f*.md, docs/verification/v2-stream-profile/critic*.json.
 Host/Windows-пакет прежние. COM/SWD никому не поручены; новый Flash
 допускается только отдельно после exact source/image review.
