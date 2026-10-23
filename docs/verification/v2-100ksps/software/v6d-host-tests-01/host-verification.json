@@ -1,0 +1,143 @@
+{
+  "schema": "motortester-v2-100k-host-verification-1",
+  "status": "PASS",
+  "level": "targeted Python logic and native Windows Qt with injected synthetic source",
+  "changes": "Accept CAPS 50/100/200k from one codec allow-list; 100k default navigation windows retain durations; inherited file/view/CSV time uses admitted CAPS identity. No acquisition/disk limits changed.",
+  "tests": {
+    "count": 5,
+    "seconds": 4.793,
+    "exit_code": 0,
+    "environment": {
+      "PYTHONPATH": "host;host/tests"
+    },
+    "argv": [
+      ".venv/Scripts/python.exe",
+      "-B",
+      "-m",
+      "unittest",
+      "test_stream_wire.WireTests.test_v2_fixed_rates_retain_the_negotiated_timebase",
+      "test_v2_stream_serial.V2StreamSerialTests.test_100k_record_reopen_export_and_companion_rate_binding",
+      "test_v2_stream_serial.V2StreamSerialTests.test_200k_record_reopen_export_and_companion_rate_binding",
+      "test_v2_stream_serial.V2StreamSerialTests.test_nonzero_record_boundary_unknown_tail_and_durable_connection",
+      "test_v2_stream_serial.V2StreamSerialTests.test_incompatible_hello_or_caps_never_admits_start_or_writer"
+    ]
+  },
+  "native_gui": {
+    "exit_code": 0,
+    "environment": {
+      "PYTHONPATH": "host"
+    },
+    "argv": [
+      ".venv/Scripts/python.exe",
+      "-B",
+      "-m",
+      "motortester.v2.stream200_smoke",
+      "build/v6d-host-gui-01",
+      "--sample-rate",
+      "100000"
+    ],
+    "receipt": "build/v6d-host-gui-01/stream100-result.json",
+    "screenshots_visually_inspected": true,
+    "sample_rate_hz": 100000,
+    "interval_us": 10,
+    "roundtrip": {
+      "samples": 537046,
+      "raw_sha256": "57f52e7d178298b615466106505d6c2009cc399facb9ebfb491f6a3972d02e73",
+      "journal_sha256": "8f86523b94b26e6c3033e86ca5fbd200dc91ca1378b00350e669e2b385737b8e",
+      "raw_matches_synthetic_period": true,
+      "csv_rows": 537046,
+      "csv_dt_seconds": 1e-05,
+      "identity": {
+        "session_id": "wire-0.2:c60491a7ed0a1516",
+        "generation": 3,
+        "config_id": 1,
+        "nominal_fs_hz": 100000,
+        "origin": "synthetic",
+        "protocol_revision": "0.2-draft-081721",
+        "firmware_version": "build:56325337",
+        "application_version": "v2-serial-unknown-accounting:injected-test"
+      },
+      "connection": {
+        "selection": {
+          "port": "V2_100K_SYNTHETIC",
+          "declared_source_commit": null,
+          "declared_artifact_sha256": null
+        },
+        "execution_kind": "injected-test",
+        "observed_build_id": 1446138679,
+        "observed_caps": [
+          1,
+          1,
+          0,
+          12,
+          100000,
+          1,
+          128,
+          1
+        ],
+        "dtr_requested": true,
+        "accounting_domain": "unknown",
+        "image_verified": false
+      },
+      "unknown_tail_preserved": true,
+      "minmax_x_end_seconds": 0.65535
+    },
+    "paced_observation": {
+      "seconds": 5.0353082998190075,
+      "samples_received": 503680,
+      "mean_samples_per_host_second": 100029.62480333222,
+      "meaning": "host synthetic scheduling observation, not ADC frequency measurement"
+    },
+    "limits": {
+      "peak_raw_items": 97,
+      "max_raw_items": 1024,
+      "peak_raw_bytes": 24832,
+      "max_raw_bytes": 262144,
+      "max_service_gap_ms": 27,
+      "peak_synthetic_backlog_samples": 3229,
+      "max_synthetic_backlog_samples": 32768,
+      "saturated_reads": 1639
+    },
+    "real_serial_open_calls": 0
+  },
+  "probe_cli": {
+    "exit_code": 0,
+    "argv": [
+      ".venv/Scripts/python.exe",
+      "-B",
+      "host/tools/v2_stream_probe.py",
+      "--help"
+    ],
+    "environment": {
+      "PYTHONPATH": "host"
+    },
+    "advertised_rates": [
+      50000,
+      100000,
+      200000
+    ]
+  },
+  "limits": [
+    "No COM, SWD or physical source was used.",
+    "This does not establish firmware throughput, ADC frequency, voltage calibration or physical 100k reception.",
+    "The firmware produced endpoint/loss remains unknown, including after ordinary Stop.",
+    "No full inherited test suite was run."
+  ],
+  "files_sha256": {
+    "host/motortester/stream_wire.py": "261f3ca6547e665d2db6301f9f13097eeb1f1f2d9e9e0a72adbabd1e922a7f10",
+    "host/motortester/v2/stream_device.py": "b230ba2046605ec5982364c8368c6d4d1b508e1bcd940f4f13b46dd65273f8ed",
+    "host/motortester/v2/stream_ui.py": "a10c2db79229c55150ee83762899955ef3aa54473d0c52726b5bbec4547fa084",
+    "host/motortester/v2/stream200_smoke.py": "0c29c6734a5813240b81c24ff6849e50569212201f1a815bf330569162317c7c",
+    "host/tools/v2_stream_probe.py": "14de99c546586e5f9fd89b03622861e1865c65f448ceb7224c49cb17ab79cb35",
+    "host/tests/test_stream_wire.py": "a70b73c810a149e7993e0dffbc03da82298f96dbf736b0dd1b29c28ab4711494",
+    "host/tests/test_v2_stream_serial.py": "7fa0cfa6782116ccbf232a546db07d6b62c2888304ea062d87af3e12e9eccca6",
+    "build/v6d-host-tests-01/targeted-tests.log": "f71ecf5c756fc7106cb4511204c1eaf487c3bccf887964b9f664784c71fff5b2",
+    "build/v6d-host-tests-01/probe-help.log": "215b9499ebef2732a74d6973a083c8bbcfb5efebfb5aa96e7348a72ddbe18738",
+    "build/v6d-host-gui-01/stream100-result.json": "e4600b42383efa482f882f2a09fb9aa4eef68659c32e15201e63cb9b114d6739",
+    "build/v6d-host-gui-01/stream100-live.png": "4b8a0bfe8e0b42f089501f4fdbbd6971e35e5fc12d9ae1c6a127c4896afc383e",
+    "build/v6d-host-gui-01/stream100-open.png": "d9bf72d004856f3e209af54ef957fff999ed4668f724738c118b25e4d6c6e96f",
+    "build/v6d-host-gui-01/synthetic100.mtstream": "8f86523b94b26e6c3033e86ca5fbd200dc91ca1378b00350e669e2b385737b8e",
+    "build/v6d-host-gui-01/synthetic100.csv": "d4bd09473c0cd56d57fc9e57ea85d731c2406a89e9c92a4a44d90b0786d62736",
+    "build/v6d-host-gui-01/synthetic100.csv.json": "943ed9e34210e729f98c2e2d7fe9c056876907abdcab5678c0bcbe74e1f2c9eb"
+  }
+}

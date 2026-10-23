@@ -1,0 +1,135 @@
+{
+  "status": "PASS",
+  "source": "injected synthetic wire 0.2",
+  "execution_kind": "injected-test",
+  "physical_stream_verified": false,
+  "nominal_fs_hz": 100000,
+  "interval_us": 10,
+  "python": "3.14.7",
+  "platform": "Windows-10-10.0.19045-SP0",
+  "qt_platform": "windows",
+  "callback_errors": [],
+  "errors": [],
+  "screenshots": [
+    {
+      "path": "stream100-live.png",
+      "width": 1220,
+      "height": 870
+    },
+    {
+      "path": "stream100-open.png",
+      "width": 1220,
+      "height": 870
+    }
+  ],
+  "observations": [
+    {
+      "seconds": 0.15016909991391003,
+      "received": 122880,
+      "accepted": 122624,
+      "checkpointed": 75136,
+      "queued_bytes": 512,
+      "queued_items": 2
+    },
+    {
+      "seconds": 1.0613408999051899,
+      "received": 214016,
+      "accepted": 212992,
+      "checkpointed": 75136,
+      "queued_bytes": 2048,
+      "queued_items": 8
+    },
+    {
+      "seconds": 2.143582999939099,
+      "received": 322176,
+      "accepted": 319616,
+      "checkpointed": 75136,
+      "queued_bytes": 5120,
+      "queued_items": 20
+    },
+    {
+      "seconds": 3.090681500034407,
+      "received": 416896,
+      "accepted": 416000,
+      "checkpointed": 75136,
+      "queued_bytes": 1792,
+      "queued_items": 7
+    },
+    {
+      "seconds": 4.183178999926895,
+      "received": 526208,
+      "accepted": 524672,
+      "checkpointed": 75136,
+      "queued_bytes": 3072,
+      "queued_items": 12
+    },
+    {
+      "seconds": 5.072417400078848,
+      "received": 615168,
+      "accepted": 614656,
+      "checkpointed": 599424,
+      "queued_bytes": 1024,
+      "queued_items": 4
+    }
+  ],
+  "paced_observation": {
+    "seconds": 5.075749899959192,
+    "samples_received": 507776,
+    "mean_samples_per_host_second": 100039.60203084128,
+    "meaning": "host synthetic scheduling observation, not ADC frequency measurement"
+  },
+  "limits": {
+    "peak_raw_items": 49,
+    "max_raw_items": 1024,
+    "peak_raw_bytes": 12354,
+    "max_raw_bytes": 262144,
+    "max_service_gap_ms": 26,
+    "peak_synthetic_backlog_samples": 2730,
+    "max_synthetic_backlog_samples": 32768,
+    "saturated_reads": 1811
+  },
+  "roundtrip": {
+    "samples": 562977,
+    "raw_sha256": "9845d8dc19fccbccd853ca2e6b7832312bccf89e724e2f68328254626f353d72",
+    "journal_sha256": "c9a7e141aedf65826a95354eb5799f7a73da841189bf1cc7fbf1f2a380aa107e",
+    "raw_matches_synthetic_period": true,
+    "csv_rows": 562977,
+    "csv_dt_seconds": 1e-05,
+    "identity": {
+      "session_id": "wire-0.2:cb614599c0c7b545",
+      "generation": 3,
+      "config_id": 1,
+      "nominal_fs_hz": 100000,
+      "origin": "synthetic",
+      "protocol_revision": "0.2-draft-081721",
+      "firmware_version": "build:56325337",
+      "application_version": "v2-serial-unknown-accounting:injected-test"
+    },
+    "connection": {
+      "selection": {
+        "port": "V2_100K_SYNTHETIC",
+        "declared_source_commit": null,
+        "declared_artifact_sha256": null
+      },
+      "execution_kind": "injected-test",
+      "observed_build_id": 1446138679,
+      "observed_caps": [
+        1,
+        1,
+        0,
+        12,
+        100000,
+        1,
+        128,
+        1
+      ],
+      "dtr_requested": true,
+      "accounting_domain": "unknown",
+      "image_verified": false
+    },
+    "unknown_tail_preserved": true,
+    "minmax_x_end_seconds": 0.65535
+  },
+  "real_serial_open_calls": 0,
+  "owners_closed": true
+}

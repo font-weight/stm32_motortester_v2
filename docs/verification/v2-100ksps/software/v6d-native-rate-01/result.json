@@ -1,0 +1,86 @@
+{
+  "status": "PASS",
+  "scope": "Narrow exact-source 100 kS/s DMA/whole-fit/core model; no hardware timing claim.",
+  "image_bin_sha256": "f3d5563139d4e5892273312996bd8b8486f222196e6cf3c25042d5c37c6a290b",
+  "inputs": {
+    "C:\\Users\\Alexandr\\Desktop\\New folder\\\u0443\u043d\u0438\u0432\u0435\u0440\\\u043c\u043e\u0442\u043e\u0440\u0442\u0435\u0441\u0442\u0435\u0440 2\\tests\\v2-stream-firmware\\check_rate_100k.py": "f942ed4222ff994e691a8a28b0a569f050ae05bbd497c5beb1e35d0ee2af25bb",
+    "C:\\Users\\Alexandr\\Desktop\\New folder\\\u0443\u043d\u0438\u0432\u0435\u0440\\\u043c\u043e\u0442\u043e\u0440\u0442\u0435\u0441\u0442\u0435\u0440 2\\build\\v5-native-toolchain\\zig-x86_64-windows-0.15.2\\zig.exe": "d408dd38eed3e5204af841bcebf70502a4dbbb8399a3a3262be55059370bc018",
+    "C:\\Users\\Alexandr\\Desktop\\New folder\\\u0443\u043d\u0438\u0432\u0435\u0440\\\u043c\u043e\u0442\u043e\u0440\u0442\u0435\u0441\u0442\u0435\u0440 2\\build\\v6d-fw-01\\receipt.json": "5f65e08a0b4b4be773761ad07c1bbc1776ee6dd359ae9e1257c375cceec52a08",
+    "C:\\Users\\Alexandr\\Desktop\\New folder\\\u0443\u043d\u0438\u0432\u0435\u0440\\\u043c\u043e\u0442\u043e\u0440\u0442\u0435\u0441\u0442\u0435\u0440 2\\tests\\v2-stream-firmware\\check_usb_gate.py": "067de6afbaa2faa1c60828b4fdc46d1e5bd8f1344f78efba9ca70c87181f9ad7",
+    "C:\\Users\\Alexandr\\Desktop\\New folder\\\u0443\u043d\u0438\u0432\u0435\u0440\\\u043c\u043e\u0442\u043e\u0440\u0442\u0435\u0441\u0442\u0435\u0440 2\\build\\v6d-fw-01\\patched\\v2\\app\\mt_live_runtime.c": "e6e7959fda16be23c74ff66305d109c0ae12d65d353d1c9a10a543a30526667e",
+    "C:\\Users\\Alexandr\\Desktop\\New folder\\\u0443\u043d\u0438\u0432\u0435\u0440\\\u043c\u043e\u0442\u043e\u0440\u0442\u0435\u0441\u0442\u0435\u0440 2\\tests\\v2-stream-firmware\\cen_transaction_model.c": "5da630a35cc67b6cc67eb0b8bcce672a042e31e103fcf8783ef1a5eccff29daa",
+    "C:\\Users\\Alexandr\\Desktop\\New folder\\\u0443\u043d\u0438\u0432\u0435\u0440\\\u043c\u043e\u0442\u043e\u0440\u0442\u0435\u0441\u0442\u0435\u0440 2\\tests\\v2-stream-firmware\\rate_100k_model.c": "fdb08dd357a0e5e9291dd920e79a99055f409e858f965961790be4c4d48bfd2f",
+    "C:\\Users\\Alexandr\\Desktop\\New folder\\\u0443\u043d\u0438\u0432\u0435\u0440\\\u043c\u043e\u0442\u043e\u0440\u0442\u0435\u0441\u0442\u0435\u0440 2\\tests\\v2-stream-firmware\\whole_fit_write_model.c": "3e0943e0f755501ac74eef99d3c3692a3cf1fe5a8752095b08aaffd9ed41dc99",
+    "C:\\Users\\Alexandr\\Desktop\\New folder\\\u0443\u043d\u0438\u0432\u0435\u0440\\\u043c\u043e\u0442\u043e\u0440\u0442\u0435\u0441\u0442\u0435\u0440 2\\build\\v6d-fw-01\\patched\\v2\\platform\\adc_timer_dma.c": "2fdd4c15116ba2840e647d4111c76747cec1f217543a60c01582a8c5ae0f503d",
+    "C:\\Users\\Alexandr\\Desktop\\New folder\\\u0443\u043d\u0438\u0432\u0435\u0440\\\u043c\u043e\u0442\u043e\u0440\u0442\u0435\u0441\u0442\u0435\u0440 2\\build\\v6d-fw-01\\patched\\v2\\platform\\adc_timer_dma.h": "8c16e9f23255f34b5503d2aab418cda16022cf5bf6f7b6dedccd5e83950505ca",
+    "C:\\Users\\Alexandr\\Desktop\\New folder\\\u0443\u043d\u0438\u0432\u0435\u0440\\\u043c\u043e\u0442\u043e\u0440\u0442\u0435\u0441\u0442\u0435\u0440 2\\build\\v6d-fw-01\\source\\firmware\\platform\\mt_timebase.c": "e9adfde14df828040bd665781ecbd737a3a27e8b3d396e8639d5e93a500ca774",
+    "C:\\Users\\Alexandr\\Desktop\\New folder\\\u0443\u043d\u0438\u0432\u0435\u0440\\\u043c\u043e\u0442\u043e\u0440\u0442\u0435\u0441\u0442\u0435\u0440 2\\build\\v6d-fw-01\\patched\\v2\\platform\\mt_timebase.h": "b41cc0a080ddae68bffd5a1b7f4af31da7900bb29f3939c2bd2c2e690026ad39",
+    "C:\\Users\\Alexandr\\Desktop\\New folder\\\u0443\u043d\u0438\u0432\u0435\u0440\\\u043c\u043e\u0442\u043e\u0440\u0442\u0435\u0441\u0442\u0435\u0440 2\\build\\v6d-fw-01\\patched\\v2\\platform\\mt_stream_diag.h": "a2dc9c01d5a1ca9168e776e33c719ec727f0e0e301aad755d12b3280931774e5",
+    "C:\\Users\\Alexandr\\Desktop\\New folder\\\u0443\u043d\u0438\u0432\u0435\u0440\\\u043c\u043e\u0442\u043e\u0440\u0442\u0435\u0441\u0442\u0435\u0440 2\\build\\v6d-fw-01\\patched\\v2\\app\\mt_live_adc.c": "5995b7d664e4b9446e9e29400f34b5dd9a2e4c33acb50f32a35db802c55c930a",
+    "C:\\Users\\Alexandr\\Desktop\\New folder\\\u0443\u043d\u0438\u0432\u0435\u0440\\\u043c\u043e\u0442\u043e\u0440\u0442\u0435\u0441\u0442\u0435\u0440 2\\build\\v6d-fw-01\\patched\\v2\\app\\mt_live_adc.h": "a70201bc7375a5d762cd6bf904b66547a850417004d956a1740e9bd412d2d2e8",
+    "C:\\Users\\Alexandr\\Desktop\\New folder\\\u0443\u043d\u0438\u0432\u0435\u0440\\\u043c\u043e\u0442\u043e\u0440\u0442\u0435\u0441\u0442\u0435\u0440 2\\build\\v6d-fw-01\\patched\\v2\\protocol\\mt_live_device.c": "b10ddb2402fd20944b368208152aa22c63d441b8f2e46a342e0f677541528b9b",
+    "C:\\Users\\Alexandr\\Desktop\\New folder\\\u0443\u043d\u0438\u0432\u0435\u0440\\\u043c\u043e\u0442\u043e\u0440\u0442\u0435\u0441\u0442\u0435\u0440 2\\build\\v6d-fw-01\\patched\\v2\\protocol\\mt_live_device.h": "715a75f4f0b436a6375b28c1dc83c4fc660385ac3c42e870452007eb7c80d511",
+    "C:\\Users\\Alexandr\\Desktop\\New folder\\\u0443\u043d\u0438\u0432\u0435\u0440\\\u043c\u043e\u0442\u043e\u0440\u0442\u0435\u0441\u0442\u0435\u0440 2\\build\\v6d-fw-01\\patched\\v2\\protocol\\mt_wire.c": "db75cb70135ecde3c4f3aaefb032a55cb59808e7541fe232955d302043382d8d",
+    "C:\\Users\\Alexandr\\Desktop\\New folder\\\u0443\u043d\u0438\u0432\u0435\u0440\\\u043c\u043e\u0442\u043e\u0440\u0442\u0435\u0441\u0442\u0435\u0440 2\\build\\v6d-fw-01\\patched\\v2\\protocol\\mt_wire.h": "e8edcb0aea5cdc946106db3146d358ff9061970313efaf67102b216653c0273d",
+    "C:\\Users\\Alexandr\\Desktop\\New folder\\\u0443\u043d\u0438\u0432\u0435\u0440\\\u043c\u043e\u0442\u043e\u0440\u0442\u0435\u0441\u0442\u0435\u0440 2\\build\\v6d-fw-01\\patched\\v2\\protocol\\mt_v2_crc32.h": "48f29791e8b0595dabdc70ec06807f4dc064a56e66db514df24dd04ea9222a2f",
+    "C:\\Users\\Alexandr\\Desktop\\New folder\\\u0443\u043d\u0438\u0432\u0435\u0440\\\u043c\u043e\u0442\u043e\u0440\u0442\u0435\u0441\u0442\u0435\u0440 2\\build\\v6d-fw-01\\patched\\v2\\acquisition\\mt_sample_queue.c": "49a1232056101f57423947e266d6bd398eab6b9cae86f3e1d9babf0eb311dc7f",
+    "C:\\Users\\Alexandr\\Desktop\\New folder\\\u0443\u043d\u0438\u0432\u0435\u0440\\\u043c\u043e\u0442\u043e\u0440\u0442\u0435\u0441\u0442\u0435\u0440 2\\build\\v6d-fw-01\\patched\\v2\\acquisition\\mt_sample_queue.h": "929eedaaff900286fc07b8bbffa6794fc5d044e12a4ce25dee3fb1297180b393"
+  },
+  "commands": [
+    {
+      "name": "version",
+      "argv": [
+        "C:\\Users\\Alexandr\\Desktop\\New folder\\\u0443\u043d\u0438\u0432\u0435\u0440\\\u043c\u043e\u0442\u043e\u0440\u0442\u0435\u0441\u0442\u0435\u0440 2\\build\\v5-native-toolchain\\zig-x86_64-windows-0.15.2\\zig.exe",
+        "version"
+      ],
+      "exit_code": 0
+    },
+    {
+      "name": "compile",
+      "argv": [
+        "C:\\Users\\Alexandr\\Desktop\\New folder\\\u0443\u043d\u0438\u0432\u0435\u0440\\\u043c\u043e\u0442\u043e\u0440\u0442\u0435\u0441\u0442\u0435\u0440 2\\build\\v5-native-toolchain\\zig-x86_64-windows-0.15.2\\zig.exe",
+        "cc",
+        "-std=c11",
+        "-O1",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-Wno-unused-function",
+        "-Wno-unused-parameter",
+        "-DMT_TEST_FIRMWARE_BUILD=1446138679",
+        "-I.",
+        "-Iplatform",
+        "-Iapp",
+        "-Iprotocol",
+        "-Iacquisition",
+        "model.c",
+        "whole_fit_write_model.c",
+        "platform/adc_timer_dma.c",
+        "platform/mt_timebase.c",
+        "app/mt_live_adc.c",
+        "protocol/mt_live_device.c",
+        "protocol/mt_wire.c",
+        "acquisition/mt_sample_queue.c",
+        "-o",
+        "model.exe"
+      ],
+      "exit_code": 0
+    },
+    {
+      "name": "model",
+      "argv": [
+        "C:\\Users\\Alexandr\\Desktop\\New folder\\\u0443\u043d\u0438\u0432\u0435\u0440\\\u043c\u043e\u0442\u043e\u0440\u0442\u0435\u0441\u0442\u0435\u0440 2\\build\\v6d-native-rate-01\\model.exe"
+      ],
+      "exit_code": 0
+    }
+  ],
+  "compiler_version": "0.15.2",
+  "stdout": "PASS expensive full guards / one-period CEN / old path rejects\r\nPASS period+1us rejection / original PRIMASK restored / verified quiesce\r\nPASS post-CEN TIME / lifecycle / original actor / counter-order denial\r\nPASS exact 100k TIM3/ADC config / DMA deadline5119 accepted,5120 rejected\r\nPASS actual whole-fit zero leaves FIFO/prefix/sequence; exact room commits one DATA128/CRC\r\nPASS exact CAPS100000/1 / DATA128 unchanged\r\nPASS whole-fit383/384 / reject385 / epoch denial / post-copy known positive preserved\r\n",
+  "not_verified": [
+    "ARM execution time",
+    "USB PHY/host throughput",
+    "Physical sample fidelity",
+    "ADC settling or analogue input",
+    "Flash approval"
+  ]
+}

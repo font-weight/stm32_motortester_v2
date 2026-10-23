@@ -1,0 +1,215 @@
+{
+  "schema": "v2s6-offline-sram-1",
+  "scope": "Post-stop snapshot only; not a historical trace or throughput qualification.",
+  "addresses": {
+    "runtime": "0x200005d0",
+    "adc": "0x200005d0",
+    "device": "0x20001258",
+    "queue": "0x20001278",
+    "cdcd": "0x20000194",
+    "tx_stream": "0x200001a0",
+    "tx_fifo": "0x200001ac"
+  },
+  "runtime": {
+    "epoch": 3,
+    "pending": 0,
+    "open": 0,
+    "in_step": 1,
+    "clock_fault": 0
+  },
+  "adc": {
+    "start_before_us": 36923951,
+    "start_after_us": 36923952,
+    "last_poll_us": 36931748,
+    "last_progress_us": 36931748,
+    "first_sample_index": 1536,
+    "last_remaining": 486,
+    "state": 0,
+    "fault": 0,
+    "next_half": 1,
+    "owns_peripherals": 0,
+    "stream_history_valid": 1,
+    "stop_dma_known": 1,
+    "stop_count": 318,
+    "stop_offset": 512,
+    "stop_first_index": 1536,
+    "stop_dma_end": 1854,
+    "first_fault": 0
+  },
+  "device": {
+    "state": 8,
+    "last_time": 36983,
+    "nonce": 17105748349890483477,
+    "generation": 3,
+    "hardware_off": 1,
+    "local_error": 3,
+    "first_reason": 1,
+    "prefix_end": 1280,
+    "tx_length": 0,
+    "tx_offset": 0,
+    "tx_type": 133,
+    "tx_first_index": 1152,
+    "tx_count": 128,
+    "tx_sequence": 15,
+    "last_write_accepted": 50,
+    "last_write_known": 1
+  },
+  "queue": {
+    "head_index": 1280,
+    "next_index": 1280,
+    "head": 2,
+    "used": 0,
+    "sealed": 1,
+    "first_fault": 7
+  },
+  "tx_stream": {
+    "ep_addr": 130,
+    "mps": 64,
+    "xfer_len": 384,
+    "ep_buf": 0
+  },
+  "tx_fifo": {
+    "buffer": 536871376,
+    "depth": 384,
+    "overwritable": 0,
+    "wr_idx": 265,
+    "rd_idx": 265
+  },
+  "xfers": {
+    "0_0": {
+      "buffer": 0,
+      "ff": 0,
+      "total_len": 0,
+      "queued_len": 0,
+      "max_packet_size": 64,
+      "ep_idx": 0
+    },
+    "0_1": {
+      "buffer": 0,
+      "ff": 0,
+      "total_len": 0,
+      "queued_len": 0,
+      "max_packet_size": 64,
+      "ep_idx": 0
+    },
+    "1_0": {
+      "buffer": 0,
+      "ff": 0,
+      "total_len": 0,
+      "queued_len": 0,
+      "max_packet_size": 0,
+      "ep_idx": 0
+    },
+    "1_1": {
+      "buffer": 0,
+      "ff": 0,
+      "total_len": 0,
+      "queued_len": 0,
+      "max_packet_size": 8,
+      "ep_idx": 1
+    },
+    "2_0": {
+      "buffer": 0,
+      "ff": 536871364,
+      "total_len": 64,
+      "queued_len": 0,
+      "max_packet_size": 64,
+      "ep_idx": 2
+    },
+    "2_1": {
+      "buffer": 0,
+      "ff": 536871340,
+      "total_len": 50,
+      "queued_len": 50,
+      "max_packet_size": 64,
+      "ep_idx": 2
+    }
+  },
+  "burst_state": {
+    "mt_tx_burst_counter": 2151,
+    "mt_tx_burst_left": 6,
+    "mt_irq_held": 0,
+    "mt_ctr_deferred": 0
+  },
+  "inputs": {
+    "build\\v6b-fw-04\\MotortesterV2-stream-candidate.elf": "72ba32c5816e0c483877de685e3f60d28117e0a4ca9bdba32e8df1b97bca1768",
+    "build\\v6-board-02\\sram-20k.bin": "3bc38e17437b0075a78977175fad30aaee482e223101ce81628d8fc29553ce98",
+    "build\\v6c-analysis\\layout.c": "7cbb10f5270e183b03a944db8164d31aea49bfbc169a6ffd3c6c953a3be76539",
+    "build\\v6c-analysis\\layout.o": "2edea6d7215fe02ac6d0fc887dc5e54c6aeb03bd8a7fe28af0ad9f9d0c75faff"
+  },
+  "layout_compile": [
+    "C:\\ST\\STM32CubeIDE_1.15.0\\STM32CubeIDE\\plugins\\com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.12.3.rel1.win32_1.0.100.202403111256\\tools\\bin\\arm-none-eabi-gcc.exe",
+    "-std=c11",
+    "-mcpu=cortex-m3",
+    "-mthumb",
+    "-mfloat-abi=soft",
+    "-ffreestanding",
+    "-fno-common",
+    "-fno-short-enums",
+    "-Wa,--noexecstack",
+    "-ffunction-sections",
+    "-fdata-sections",
+    "-fstack-usage",
+    "-Wall",
+    "-Wextra",
+    "-Wpedantic",
+    "-Wconversion",
+    "-Wsign-conversion",
+    "-DSTM32F103xB",
+    "-Os",
+    "-Werror",
+    "-pedantic-errors",
+    "-fno-unwind-tables",
+    "-fno-asynchronous-unwind-tables",
+    "-fno-stack-protector",
+    "-fno-lto",
+    "-fno-pic",
+    "-fno-pie",
+    "-fno-jump-tables",
+    "-fno-tree-switch-conversion",
+    "-DCFG_MT_USB_CTR_FAIRNESS=1",
+    "-DCFG_MT_STREAM_DIAGNOSTICS=1",
+    "-Ipatched/v2/boot",
+    "-Ipatched/v2/platform",
+    "-Ipatched/v2/app",
+    "-Ipatched/v2/protocol",
+    "-Ipatched/v2/transport",
+    "-Ipatched/v2/acquisition",
+    "-Isource/firmware/boot",
+    "-Isource/firmware/platform",
+    "-Isource/firmware/app",
+    "-Isource/firmware/protocol",
+    "-Isource/firmware/transport",
+    "-Isource/firmware/acquisition",
+    "-isystem",
+    "source/firmware/third_party/usb/vendor/tinyusb/src",
+    "-isystem",
+    "source/firmware/third_party/usb/vendor/cmsis-device-f1/Include",
+    "-isystem",
+    "source/firmware/third_party/usb/vendor/cmsis-core/CMSIS/Core/Include",
+    "-isystem",
+    "source/firmware/third_party/usb/vendor/tinyusb/src/portable/st/stm32_fsdev",
+    "-c",
+    "../v6c-analysis/layout.c",
+    "-o",
+    "../v6c-analysis/layout.o"
+  ],
+  "limits": [
+    "RAM was saved after source stop; former FIFO peaks and IRQ hold causes are not recorded.",
+    "Live non-diagnostic fields can change between SWD reads.",
+    "Layout uses exact ARM headers/config/compiler; synthetic constants do not execute firmware."
+  ],
+  "interpretation": {
+    "stop_dma_completed_end": 1854,
+    "stream_delivered_prefix_end": 1280,
+    "known_completed_DMA_transfers_after_retained_prefix": 574,
+    "produced_ADC_end": "unknown; stopped DMA counter is not produced_end",
+    "post_close_transport_error": "Current SRAM device state8/local_error3 can follow closed COM; frozen diagnostics preserve the earlier queue-full cause.",
+    "throughput_history": "Current empty FIFO and last ACK50 transfer do not establish burst use, former transfer sizes, or timer-expiry frequency.",
+    "next_candidate_options": [
+      "Admission of an entire <=384-byte offer only if FIFO has that much space; otherwise zero acceptance before commit, preserving existing partial/unknown rules.",
+      "Record onset-time accepted/partial/zero and transfer-size/hold-cause counters before another physical200k attempt.",
+      "100k is a fallback candidate with twice the frame/queue time budget, not a physically established rate."
+    ]
+  }
+}

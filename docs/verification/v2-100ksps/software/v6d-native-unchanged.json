@@ -1,0 +1,114 @@
+{
+  "status": "PASS_UNCHANGED_SOURCE_PINS",
+  "baseline": "build/v6b-fw-04",
+  "candidate": "build/v6d-fw-01",
+  "files": [
+    {
+      "path": "patched/dcd_stm32_fsdev.c",
+      "sha256": "b763cceef6be395782aa621a65d9cbbdfe9d5fe61bddcc3d44dc143254c30356"
+    },
+    {
+      "path": "patched/v2/boot/tusb_config.h",
+      "sha256": "7886bfbd42563b0e8f8cd4db6af8ab17691b64a03223c1f247c3633aedef43c3"
+    },
+    {
+      "path": "patched/v2/transport/mt_usb_descriptors.c",
+      "sha256": "cc0ada207e46acde8d72eb988257cbc61b7d294103f1c452257c40b7a3e30e25"
+    },
+    {
+      "path": "patched/v2/transport/mt_usb_bridge.c",
+      "sha256": "dad3783c3497f601a55d9d9d02c54500856b84beb3a2c99628ca7146b98eea10"
+    },
+    {
+      "path": "patched/v2/app/mt_live_adc.c",
+      "sha256": "5995b7d664e4b9446e9e29400f34b5dd9a2e4c33acb50f32a35db802c55c930a"
+    },
+    {
+      "path": "patched/v2/acquisition/mt_sample_queue.c",
+      "sha256": "49a1232056101f57423947e266d6bd398eab6b9cae86f3e1d9babf0eb311dc7f"
+    },
+    {
+      "path": "patched/v2/acquisition/mt_sample_queue.h",
+      "sha256": "929eedaaff900286fc07b8bbffa6794fc5d044e12a4ce25dee3fb1297180b393"
+    },
+    {
+      "path": "patched/v2/protocol/mt_wire.c",
+      "sha256": "db75cb70135ecde3c4f3aaefb032a55cb59808e7541fe232955d302043382d8d"
+    },
+    {
+      "path": "source/firmware/third_party/usb/vendor/tinyusb/src/tusb.c",
+      "sha256": "b5f0e8ca00ba6e63914583f7b4711c540a125c261b261216f89e5136fda2ac6f"
+    },
+    {
+      "path": "source/firmware/third_party/usb/vendor/tinyusb/src/class/cdc/cdc_device.c",
+      "sha256": "2ca9f63f5812e6fd58405e52b1bb282aa0752d1110fa577aca6442c1f67f4840"
+    },
+    {
+      "path": "source/firmware/third_party/usb/vendor/tinyusb/src/common/tusb_fifo.c",
+      "sha256": "d87e25d3329244226f3b794882e89898ac5fe20e04568a7750f4aff154f871ac"
+    }
+  ],
+  "functions": [
+    {
+      "path": "patched/v2/app/mt_live_runtime.c",
+      "function": "stable",
+      "sha256": "01090317289578bd8792d3394d6195bb04a04ca5b756e972e251e3f874bf0331"
+    },
+    {
+      "path": "patched/v2/app/mt_live_runtime.c",
+      "function": "usable",
+      "sha256": "fe557dba1e1b165e92f484b1289ffb96c44e4be91d1e9ddfeb47653a063434ec"
+    },
+    {
+      "path": "patched/v2/app/mt_live_runtime.c",
+      "function": "commit_timer",
+      "sha256": "fffaa9f05751c504e30f7058c60e9e8a90622fb08c0fda5080510b631cccd9d3"
+    },
+    {
+      "path": "patched/v2/app/mt_live_runtime.c",
+      "function": "live_start",
+      "sha256": "97070801227a642d89d65c1296395722a5ceef3ce25e75beb85a008709e4781e"
+    },
+    {
+      "path": "patched/v2/app/mt_live_runtime.c",
+      "function": "live_stop",
+      "sha256": "625eb064f1f6b455fb78159ea5bff56e12cd6f2c1959745a34aee6dd118a2f2b"
+    },
+    {
+      "path": "patched/v2/app/mt_live_runtime.c",
+      "function": "step",
+      "sha256": "d4f2686fcd076341918af46b8a967037db88da74420209e2be0c097155b8eb5d"
+    },
+    {
+      "path": "patched/v2/app/mt_live_runtime.c",
+      "function": "mt_live_runtime_step",
+      "sha256": "7423a76b01e22180bd8f7ac21a223b46260bd1814bd7ee7f0f6b161592176dd3"
+    },
+    {
+      "path": "patched/v2/protocol/mt_live_device.c",
+      "function": "snapshot_valid",
+      "sha256": "4f65bd50cd027830404eb1e18b6ff5f76929b7100e7f29f6486dd9e559141a7a"
+    },
+    {
+      "path": "patched/v2/protocol/mt_live_device.c",
+      "function": "terminate",
+      "sha256": "f18770db97c5ce65dcadbb2267b48de3a8fda04857a1b791a2eeb18ed41e2dd3"
+    },
+    {
+      "path": "patched/v2/protocol/mt_live_device.c",
+      "function": "mt_live_device_step",
+      "sha256": "8c0c19a1fc1538ed3b712ea5ff1aadc838bb441f5bdcec3ed515e9db581f8919"
+    },
+    {
+      "path": "patched/v2/protocol/mt_live_device.c",
+      "function": "mt_live_device_offer",
+      "sha256": "249b0a623ce0d0b5b187225117578205f5e2f5b9b6e15f895eabcde0020c9709"
+    },
+    {
+      "path": "patched/v2/protocol/mt_live_device.c",
+      "function": "mt_live_device_transport_lost",
+      "sha256": "f6f1099cb9741399af4373f27f11912b6bc2d30da6bae8fac5cd5c24ab36a3c6"
+    }
+  ],
+  "scope": "Only source equality; S6 physical200k failure remains unchanged evidence. No new hardware or throughput claim. Changed100k/whole-fit paths are tested separately."
+}

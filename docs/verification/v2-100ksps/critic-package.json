@@ -1,0 +1,66 @@
+{
+  "status": "PASS_WINDOWS_PACKAGE_EVIDENCE",
+  "scope": "Local Windows10 portable package with injected synthetic source; no physical100k claim",
+  "source_commit": "419b75d9a7ea7fa9219da924ca7ba4c00a065e27",
+  "production_commit": "7e4b318164082c90e0b2c0e982936f6f0c786528",
+  "build_report_sha256": "82c5fb666dd6da0557e11a8852e66839cc6d6b9f8a9673b35172f1039da69a62",
+  "zip": {
+    "bytes": 61168311,
+    "sha256": "466f4913c3857158a9721132f4c884f5edc2bfcfa6129e5a2a1b6c30bf8c2b07",
+    "crc_pass": true,
+    "entries": 684
+  },
+  "source_zip_sha256": "fd6ecf219a2e5de9d3d2dc80982ec2be20d02b71a00d0d6285036ba1d576c9d3",
+  "executables": {
+    "MotortesterV2.exe": "1d1d5cf145891e8085e0e4b7b69b8870d87478fe9d71d5f81c60b8114fd74ae1",
+    "MotortesterV2Inspect.exe": "c5fbc1dc686d29e59b08e3994aa1e4ca0116881cdff793f571201965d90d0ccb"
+  },
+  "smoke_file_hashes_checked": 47,
+  "png_hashes_checked": 18,
+  "independent_raw_reopen": {
+    "samples": 562977,
+    "all_codes_equal_synthetic_period": true,
+    "raw_sha256": "9845d8dc19fccbccd853ca2e6b7832312bccf89e724e2f68328254626f353d72",
+    "nominal_fs_hz": 100000,
+    "unknown_tail_preserved": true
+  },
+  "independent_csv_checks": {
+    "rows": 562977,
+    "first_time_s": 0,
+    "second_time_s": 1e-05,
+    "receipt_fs_and_sha_match": true,
+    "all_csv_code_values_compared": false
+  },
+  "visual_review": {
+    "personally_viewed": [
+      "stream100-live.png",
+      "stream100-open.png"
+    ],
+    "result": "Fs100000 and10us readable, synthetic source and unknown tail visible, no overlapping controls/text at1220x870"
+  },
+  "paced_observation": {
+    "seconds": 5.075749899959192,
+    "samples_received": 507776,
+    "mean_samples_per_host_second": 100039.60203084128,
+    "meaning": "host synthetic scheduling observation, not ADC frequency measurement"
+  },
+  "limits": {
+    "peak_raw_items": 49,
+    "max_raw_items": 1024,
+    "peak_raw_bytes": 12354,
+    "max_raw_bytes": 262144,
+    "max_service_gap_ms": 26,
+    "peak_synthetic_backlog_samples": 2730,
+    "max_synthetic_backlog_samples": 32768,
+    "saturated_reads": 1811
+  },
+  "com_open_calls": 0,
+  "owners_closed": true,
+  "earlier_v6dw1_failure": {
+    "retained_build_log_sha256": "0487ae0c84af6ac468528225c75f2a62c818f0acccc59b87c0b5c4f6f9ddc391",
+    "reason": "Postcompile clean-source gitdiff detected critic-source.json visual-review note while builder ran; no production code change; failed before smoke",
+    "not_claimed_pass": true
+  },
+  "overall_v2_06d_accepted": false,
+  "physical_result_pending": true
+}

@@ -1,0 +1,22 @@
+usage: v2_stream_probe.py [-h] --port PORT --output OUTPUT [--seconds SECONDS]
+                          --build-id BUILD_ID
+                          [--sample-rate {50000,100000,200000}]
+                          --source-commit SOURCE_COMMIT
+                          --image-sha256 IMAGE_SHA256 [--expect-disconnect]
+
+One explicitly selected physical stream trial; never flashes or resets a
+board. The real serial factory is wrapped only to preserve byte-level traffic.
+There is no simulator fallback. Host timestamps are diagnostics, not ADC
+timestamps.
+
+options:
+  -h, --help            show this help message and exit
+  --port PORT
+  --output OUTPUT
+  --seconds SECONDS
+  --build-id BUILD_ID
+  --sample-rate {50000,100000,200000}
+                        Require this nominal CAPS rate before START
+  --source-commit SOURCE_COMMIT
+  --image-sha256 IMAGE_SHA256
+  --expect-disconnect

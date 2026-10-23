@@ -1,0 +1,41 @@
+{
+  "status": "BLOCKED_EVIDENCE",
+  "score": null,
+  "scope": "Overall V2-06d software/package plus one physical100k trial",
+  "critic": "stream200_critic",
+  "independent": true,
+  "hardware_touched_by_critic": false,
+  "production_commit": "7e4b318164082c90e0b2c0e982936f6f0c786528",
+  "plan_base_commit": "3665be41e80c8168ad97c61d64cb79b232091d03",
+  "package_source_commit": "419b75d9a7ea7fa9219da924ca7ba4c00a065e27",
+  "software_evidence_sha256": "5c0408d69b390fd45fe55de293d94e218fd10a41d83599931b609386ebc6fa58",
+  "software_copy_pairs_verified": 46,
+  "software_copy_bytes": 1646971,
+  "all_software_copies_byte_equal_to_sources": true,
+  "flash_readback_bytes": 36260,
+  "flash_readback_byte_equal_exact_s7": true,
+  "physical_trial_started": false,
+  "physical100k_accepted": false,
+  "whole_iteration_accepted": false,
+  "missing_mandatory_evidence": [
+    "Actual100k ten-second Record",
+    "Normal END/STOP_ACK and fresh Open/raw-wire equality",
+    "Observed physical receiver rate and frozen diagnostics/registers after trial"
+  ],
+  "preserved_prior_findings": "V2-06a/c physical200k REWORK unchanged",
+  "rubric": {
+    "C1": null,
+    "C2": null,
+    "C3": null,
+    "C4": null,
+    "C5": null
+  },
+  "report_sha256": "c57a2ded1066949f9dc912a2e34822cb1afb66481a6a97d75881194914a7d05e",
+  "critic_evidence": {
+    "critic-source.json": "3b6d4924efc2dc5ff4799c0ace5c35d1beac5120abe10a6907ce620f307d5715",
+    "critic-static.json": "3564c463381ba2dbebb3648762503a62777547b9df15e65e06dde28a39df43ad",
+    "critic-package.json": "bdb17eb528c88970f858b872ad6aac4ad6d032c4034029e114c3cb68ed6414ff",
+    "critic-flash-image.json": "8b77c8603131d00ed0305db4bb487f92fb028e7f4ecdbcfc7bfe188878a64855",
+    "critic-flash.json": "1f0f94fc869af559e4f89877acc9e75f8ee7169d0a8e25a5646168c743e4ac5f"
+  }
+}
