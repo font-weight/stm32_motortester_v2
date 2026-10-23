@@ -21,7 +21,7 @@ from ..stream_session import SessionLimits
 from ..stream_recording import (ATTEMPT_MAGIC, MAX_ATTEMPT_FILE_BYTES, StreamLimits,
                                 recover, recover_attempt)
 from ..stream_view import EventConfig
-from ..stream_wire import supported_caps
+from ..stream_wire import SUPPORTED_SAMPLE_RATES, supported_caps
 from .input import InputProfile, UNKNOWN_PROFILE, text
 from .stream_demo import PacedStreamPeer
 
@@ -31,12 +31,12 @@ DEFAULT_EVENT_CONFIG = EventConfig(2600, 2200, "above", 50, 150, 25, 100, 500, 0
 
 
 def default_event_config(sample_rate_hz):
-    """Keep default navigation durations at 1/3/0.5/2/10 ms for both rates.
+    """Keep default navigation durations at 1/3/0.5/2/10 ms for every rate.
 
     Threshold codes are unchanged. These are host event windows, not an ADC
     trigger or a claim that the whole physical ignition discharge was captured.
     """
-    if sample_rate_hz not in (50_000, 200_000):
+    if sample_rate_hz not in SUPPORTED_SAMPLE_RATES:
         raise ValueError("Неподдерживаемая частота навигации")
     scale = sample_rate_hz // 50_000
     return replace(DEFAULT_EVENT_CONFIG, **{

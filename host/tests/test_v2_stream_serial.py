@@ -34,8 +34,9 @@ class SelectedPeer(EncodedPeer):
         self.sample_rate_hz = sample_rate_hz
 
     def _rx(self, kind, payload, request=0):
-        if kind == 129 and self.sample_rate_hz == 200_000:
-            payload = struct.pack("<BBBBHHII", 0, 2, 1, 12, 512, 128, 0x56325335, 1)
+        if kind == 129 and self.sample_rate_hz in (100_000, 200_000):
+            build = 0x56325337 if self.sample_rate_hz == 100_000 else 0x56325335
+            payload = struct.pack("<BBBBHHII", 0, 2, 1, 12, 512, 128, build, 1)
         if kind == 130:
             payload = struct.pack("<IHBBIIHHI", 1, 1, 0, 12, self.sample_rate_hz, 1, 128, 0, 1)
         if kind == 129 and self.incompatible == "version":
@@ -303,35 +304,42 @@ class V2StreamSerialTests(unittest.TestCase):
         self.assertIsNone(bridge.state.bridge.endpoint_first_fault)
 
     def test_200k_record_reopen_export_and_companion_rate_binding(self):
-        bridge, factory = self.ready(200_000)
-        self.assertEqual(bridge.connection.observed_caps[4], 200_000)
-        self.assertEqual(bridge.connection.observed_build_id, 0x56325335)
+        self._rate_roundtrip(200_000, 0x56325335)
+
+    def test_100k_record_reopen_export_and_companion_rate_binding(self):
+        self._rate_roundtrip(100_000, 0x56325337)
+
+    def _rate_roundtrip(self, rate, build):
+        bridge, factory = self.ready(rate)
+        self.assertEqual(bridge.connection.observed_caps[4], rate)
+        self.assertEqual(bridge.connection.observed_build_id, build)
         self.assertFalse(bridge.connection.image_verified)
         path, _ = self.record_prefix(bridge, factory)
         config = bridge.state.config
         self.assertEqual((config.pre_samples, config.post_samples, config.baseline_samples,
-                          config.holdoff_samples, config.max_event_samples), (200, 600, 100, 400, 2000))
+                          config.holdoff_samples, config.max_event_samples),
+                         tuple(value * (rate // 50_000) for value in (50, 150, 25, 100, 500)))
         bridge.stop()
         self.wait(lambda: bridge.saved)
         recording = recover_attempt(path).recording
         context = open_verified_context(path)
-        self.assertEqual(recording.identity.nominal_fs_hz, 200_000)
+        self.assertEqual(recording.identity.nominal_fs_hz, rate)
         self.assertEqual(recording.identity.origin, "synthetic")
         self.assertEqual(recording.read_raw(128, 256), waveform(2))
         self.assertIsNone(profile_for_identity(recording.identity))
         self.assertIsNone(recording.terminal.loss_samples)
-        self.assertEqual(context.connection.observed_caps[4], 200_000)
-        exported = self.root / "200k.csv"
+        self.assertEqual(context.connection.observed_caps[4], rate)
+        exported = self.root / f"{rate}.csv"
         export_stream(exported, recording, context)
         with exported.open(newline="", encoding="utf-8") as source:
             rows = list(csv.DictReader(source))
         self.assertEqual(len(rows), 256)
         self.assertEqual(float(rows[0]["time_from_recording_start_s"]), 0)
-        self.assertEqual(float(rows[1]["time_from_recording_start_s"]), 0.000005)
-        self.assertEqual(float(rows[-1]["time_from_recording_start_s"]), 255 / 200_000)
+        self.assertEqual(float(rows[1]["time_from_recording_start_s"]), 1 / rate)
+        self.assertEqual(float(rows[-1]["time_from_recording_start_s"]), 255 / rate)
         receipt = json.loads(exported.with_suffix(".csv.json").read_text("utf-8"))
-        self.assertEqual(receipt["identity"]["nominal_fs_hz"], 200_000)
-        # Reusing an old 50k connection next to 200k raw must be rejected,
+        self.assertEqual(receipt["identity"]["nominal_fs_hz"], rate)
+        # Reusing an old 50k connection next to faster raw must be rejected,
         # even though each rate is independently supported.
         sidecar = companion_path(path)
         value = json.loads(sidecar.read_text("utf-8"))

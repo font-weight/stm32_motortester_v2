@@ -256,11 +256,12 @@ def run(output_name):
                 "serial fixtures: Connect without START; both COM ownership guards; "
                 "Record/Stop/Open unknown tail; failed close and explicit retry")
             from motortester.v2.stream200_smoke import exercise as exercise_stream200
-            report["stream200_verification"] = exercise_stream200(app, output, flush)
-            assert report["stream200_verification"]["status"] == "PASS"
+            report["stream100_verification"] = exercise_stream200(
+                app, output, flush, sample_rate_hz=100_000)
+            assert report["stream100_verification"]["status"] == "PASS"
             assert port_open.call_count == 0
             report["checks"].append(
-                "200 kS/s injected stream: native GUI, disk/raw/CSV roundtrip, 5 us time, unknown tail")
+                "100 kS/s injected stream: native GUI, disk/raw/CSV roundtrip, 10 us time, unknown tail")
             flush()
             report["status"] = "PASS"
     except BaseException:

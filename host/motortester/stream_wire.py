@@ -15,13 +15,13 @@ MAX_PAYLOAD, MAX_DECODED, MAX_ENCODED, MAX_FRAME = 512, 540, 543, 544
 MAX_BLOCK, U32_MAX, U64_MAX = 128, 0xffffffff, 0xffffffffffffffff
 COUNTER_RESERVE = 0xffffff00
 HEADER = struct.Struct("<BBBBHHQII")
-# V2S4 and V2S5 use the same wire framing and DATA block size. The CAPS
+# V2S4–V2S7 use the same wire framing and DATA block size. The CAPS
 # numerator selects the nominal timebase; it does not certify the ADC clock.
-SUPPORTED_SAMPLE_RATES = frozenset((50_000, 200_000))
+SUPPORTED_SAMPLE_RATES = frozenset((50_000, 100_000, 200_000))
 
 
 def supported_caps(values):
-    """Admit only the two fixed CH1 stream profiles, with exact integer fields."""
+    """Admit only the supported fixed CH1 rates, with exact integer fields."""
     return (type(values) is tuple and len(values) == 8 and
             all(type(value) is int for value in values) and
             values[4] in SUPPORTED_SAMPLE_RATES and

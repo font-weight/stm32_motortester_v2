@@ -1,4 +1,4 @@
-"""Build the separate V2S6 bounded-USB software candidate; never flash hardware."""
+"""Build the separate V2S7 100 kS/s whole-fit software candidate; never flash hardware."""
 import argparse
 import hashlib
 import importlib.util
@@ -244,6 +244,13 @@ def main():
         require(burst["schema"] == "motortester-v2-usb-burst-overlay-1", "Unexpected USB burst overlay")
         receipt["v2_overlays"].extend(burst["patches"])
         for row in burst["patches"]:
+            target = out / "patched" / row["target"]
+            target.write_bytes(apply_patch((out / row["source"]).read_bytes(),
+                (here / "overlays" / row["patch"]).read_bytes(), row))
+        whole_fit = json.loads((here / "overlays/rate-100k-whole-fit.json").read_text("utf-8"))
+        require(whole_fit["schema"] == "motortester-v2-100k-whole-fit-overlay-1", "Unexpected whole-fit overlay")
+        receipt["v2_overlays"].extend(whole_fit["patches"])
+        for row in whole_fit["patches"]:
             target = out / "patched" / row["target"]
             target.write_bytes(apply_patch((out / row["source"]).read_bytes(),
                 (here / "overlays" / row["patch"]).read_bytes(), row))

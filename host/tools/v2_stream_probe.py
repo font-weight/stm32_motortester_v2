@@ -18,6 +18,7 @@ from PySide6 import QtCore
 
 from motortester import transport
 from motortester.stream_recording import recover_attempt
+from motortester.stream_wire import SUPPORTED_SAMPLE_RATES
 from motortester.v2.stream_device import SerialStreamSelection, StreamDeviceBridge, open_verified_context
 
 
@@ -202,7 +203,7 @@ if __name__ == "__main__":
     parser.add_argument("--output", type=Path, required=True)
     parser.add_argument("--seconds", type=float, default=15)
     parser.add_argument("--build-id", type=lambda s: int(s, 0), required=True)
-    parser.add_argument("--sample-rate", type=int, choices=(50_000, 200_000),
+    parser.add_argument("--sample-rate", type=int, choices=sorted(SUPPORTED_SAMPLE_RATES),
                         help="Require this nominal CAPS rate before START")
     parser.add_argument("--source-commit", required=True)
     parser.add_argument("--image-sha256", required=True)

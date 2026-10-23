@@ -1,4 +1,40 @@
-# Кандидат V2S6: ограниченная пакетная передача USB
+# Кандидат V2S7: 100 kS/s и приём целого кадра
+
+V2-06d — промежуточный программный кандидат после сохранённых отказов S5/S6.
+Номинальные100000/1 дают шаг10мкс и период DATA1281280мкс. Это ещё не
+физически проверенная скорость; на плате остаётся восстановленный V2S4
+до отдельного допуска точного BIN и одного ограниченного опыта.
+
+- Build `0x56325337`, TIM3 72MHz/(71+1)/(9+1)=100kS/s, ADC12MHz с прежней
+  выборкой41,5+12,5=4,5мкс. CEN-скобка≤10мкс не равна задержке первогоADC.
+- DMA1024/half512 и DATA128 прежние; срок обслуживания/копирования строго
+  **<5120мкс**, то есть512/100000. Очередь8×128 даёт10,24мс вместимости,
+  но не устраняет недостаточную среднюю пропускную способность.
+- Под прежним core IRQ/epoch guard `live_write` проверяет FIFO free до
+  необратимого копирования. Если free меньше остатка кадра, возвращается
+  известный0, FIFO/tx_offset/prefix/sequence не продвигаются. Так callback
+  CDC не получает незавершённый фрагмент следующего DATA. При достаточном
+  месте выполняется прежняя запись с сохранением действительного accepted
+  count, включая защиту от неизвестного результата и epoch loss после copy.
+- FIFO384, descriptor maxpacket64, bounded IN0x82 continuation6/<500мкс,
+  DTR/lifecycle/Stop/TIME и обнаружение потерь сохранены. Ни физическая
+  устойчивость100k, ни невозможность200k не следуют из этой сборки.
+
+`rate-100k-whole-fit.json` — шесть новых точных патчей поверх сохранённого
+S6. Старые rate200k/USB-overlays не переписываются. Необходимая новая проверка:
+
+```powershell
+.\.venv\Scripts\python.exe -I -B tests\v2-stream-firmware\check_rate_100k.py --image build\v6d-fw-candidate --zig PATH_TO_LOCAL_ZIG_EXE --output build\v6d-native-rate
+```
+
+Она исполняет точные driver/adapter/core/live_write: конфиг100k, CEN10/11,
+deadline5119/5120, известный0 при free<остатка, один целый DATA/CRC при
+точном месте,383/384/385 и epoch denial/positive acceptance после copy.
+Это логическая MMIO/CDC модель; измерение CPU/USB/АЦП и физический допуск
+в неё не входят. Неизменённые FIFO/DCD guards сопоставляются по пинам S6,
+их прежние модели не заменяют отрицательный физический результат S6.
+
+## Сохранённая USB-основа V2S6
 
 V2-06b сохраняет Fs200000/1, DMA1024/half512 и DATA128, но передаёт целый
 DATA-кадр одной foreground-операцией до384 байт. Это отдельный программный
@@ -108,7 +144,7 @@ V2-06 меняет номинальную частоту одного PA0 на *
 Из корня V2, Python из существующей среды:
 
 ```powershell
-.\.venv\Scripts\python.exe -I -B firmware\v2-stream\build_windows.py --output build\v6b-fw-candidate
+.\.venv\Scripts\python.exe -I -B firmware\v2-stream\build_windows.py --output build\v6d-fw-candidate
 ```
 
 Каталог вывода должен быть новым. Ошибочный вывод сохраняется. По умолчанию используется
@@ -132,7 +168,7 @@ Windows GCC 12.3.1 из CubeIDE 1.15.0; `--toolchain` допускает дру�
 V2 генерирует собственные board/timing definitions и накладывает отдельный
 NVIC-патч `overlays/usb-nvic.json`, CEN-патч `overlays/adc-cen.json`
 и CRC-патч `overlays/crc32.json`;
-build ID `0x56325336` (`V2S6`), USB product `Motortester V2 200k USB6`.
+build ID `0x56325337` (`V2S7`), USB product `Motortester V2 100k USB7`.
 Это декларация прошивки,
 не способ аутентификации платы. Старые STR1 ELF/BIN/attestations не экспортируются.
 

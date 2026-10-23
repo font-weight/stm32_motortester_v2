@@ -7,6 +7,7 @@ import pyqtgraph as pg
 from ..gui_stream import LiveEventIndex, LiveSnapshot, StreamViewerPanel
 from ..stream_controller import EVENT_CAPACITY
 from ..stream_recording import AttemptReport
+from ..stream_wire import SUPPORTED_SAMPLE_RATES
 from .stream_device import StreamContext, StreamDeviceBridge, default_event_config
 from .stream_files import open_stream, export_stream
 from .widgets import STYLE
@@ -538,7 +539,7 @@ class StreamDialog(QtWidgets.QDialog):
                 self.archive = archive.recording if isinstance(archive, AttemptReport) and archive.recording else archive
                 identity = (self.archive.preparation.identity if isinstance(self.archive, AttemptReport)
                             else self.archive.identity)
-                if self.bridge._default_event_config and identity.nominal_fs_hz in (50_000, 200_000):
+                if self.bridge._default_event_config and identity.nominal_fs_hz in SUPPORTED_SAMPLE_RATES:
                     # File navigation is recomputed from raw; the journal does
                     # not store host detector settings or change the raw data.
                     self.viewer._config = default_event_config(identity.nominal_fs_hz)
