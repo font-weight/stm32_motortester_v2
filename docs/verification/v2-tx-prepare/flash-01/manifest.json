@@ -1,0 +1,38 @@
+{
+  "scope": "Program/verify, independent readback, Reset/Run only; awaiting user USB replug; no START yet",
+  "source_commit": "a7b45bccf54f3155de03389aa5e49b237905c994",
+  "files": [
+    {
+      "source": "build/v6g-board-01/program.log",
+      "archive": "docs/verification/v2-tx-prepare/flash-01/program.log",
+      "bytes": 953,
+      "sha256": "c9444dbf0210cb36abefd351300d72059084ecbb031a330778638209b2609f0f"
+    },
+    {
+      "source": "build/v6g-board-01/readback.log",
+      "archive": "docs/verification/v2-tx-prepare/flash-01/readback.log",
+      "bytes": 856,
+      "sha256": "fe67e1df89155b2d63e25fa54ede0a5e07d27738376ab127f8002346003d6228"
+    },
+    {
+      "source": "build/v6g-board-01/readback.bin",
+      "archive": "docs/verification/v2-tx-prepare/flash-01/readback.bin",
+      "bytes": 37132,
+      "sha256": "8e8a5f2597a573ffaecfc054b01de726975ec5de07a33b06c4e56f5de75b3558"
+    },
+    {
+      "source": "build/v6g-board-01/readback-verified.json",
+      "archive": "docs/verification/v2-tx-prepare/flash-01/readback-verified.json",
+      "bytes": 128,
+      "sha256": "74b7858a17b234fa75c1e5d0e17d4a793580027a676bdc2bd5cbd72597cef2d2"
+    },
+    {
+      "source": "build/v6g-board-01/reset-run.log",
+      "archive": "docs/verification/v2-tx-prepare/flash-01/reset-run.log",
+      "bytes": 420,
+      "sha256": "f8596a56771eed9f6bf4ebfd453433d8b7e7796ae747d34ca0eea8f480d620c9"
+    }
+  ],
+  "all_bytes_equal": true,
+  "total_bytes": 39489
+}

@@ -1,0 +1,78 @@
+{
+  "schema": "v2-06g2-independent-flash-admission-1",
+  "reviewer": "stream200_critic",
+  "independent": true,
+  "status": "PASS",
+  "score": 9.605,
+  "scope": "Admission only for one exact V2SA physical trial; not physical100k acceptance",
+  "date": "2026-10-24",
+  "source_commit": "a7b45bccf54f3155de03389aa5e49b237905c994",
+  "source_base_commit": "ae2cf9c7f5653d9c258dcba5a89efcc16a64ed3a",
+  "plan_sha256": "b65c31afeb98d46463749184169cdd10b33f3fa73ea7b51538e7c212d20e3c95",
+  "preflight_manifest_sha256": "7341da7e1310b8c5cb6189133fa15fe837f0f31f2b0797b52271477fa75f4d24",
+  "software_review_sha256": "4e79e84e0a9709d4484042ecc857598d50b816431c6b7909ea147ce6ec01ae9d",
+  "candidate_bytes": 37132,
+  "candidate_sha256": "8e8a5f2597a573ffaecfc054b01de726975ec5de07a33b06c4e56f5de75b3558",
+  "candidate_elf_sha256": "e8a9574fa7374492bdbe258685005b45f7230faf64276755e39c732693359946",
+  "rollback_sha256": "95d3a11f8db843e362b2c59ed6fbf380dd630e067fa23f6ae5a9c7d2b11dff1e",
+  "diagnostic_decoder_sha256": "c5d4eb3076380edc21c9319201b4eeb53dc0f5e649af9c6c0f9b4d6a8ea096cd",
+  "checks_sha256": "1793d4dc566e72a112b3de1e4665a414301348e173aa2e7fe1001706df021076",
+  "ratings": [
+    {
+      "criterion": "C1",
+      "weight": 0.3,
+      "score": 9.6,
+      "basis": "Exact accepted source/image and single10s Record trial; unchanged physical acceptance and voltage/input scope."
+    },
+    {
+      "criterion": "C2",
+      "weight": 0.2,
+      "score": 9.65,
+      "basis": "Fresh full rollback bytes verified, preSTART guards and sole-owner/noSWD sequence; conditional retention respects user instruction without permitting an unconfirmed running source."
+    },
+    {
+      "criterion": "C3",
+      "weight": 0.25,
+      "score": 9.6,
+      "basis": "All11 preflight archive pairs and pinned command inputs verified; readback/dumps/raw checks required as future evidence, not claimed done."
+    },
+    {
+      "criterion": "C4",
+      "weight": 0.15,
+      "score": 9.5,
+      "basis": "One bounded trial with explicit failure handling; remaining actual state and post-replug identity require execution evidence."
+    },
+    {
+      "criterion": "C5",
+      "weight": 0.1,
+      "score": 9.7,
+      "basis": "Source/base, exact plan/image/CLI/helper/decoder hashes and separate result criteria recorded."
+    }
+  ],
+  "open_P0_P1": [],
+  "flash_approved": true,
+  "admitted_START_count": 1,
+  "record_target_seconds_after_preview": 10,
+  "automatic_retry_approved": false,
+  "automatic_rollback_after_failure": false,
+  "conditions": [
+    "Unchanged PA0-empty, board USB power only, ST-Link3.3V disconnected, app closed and same sole probe",
+    "Program and verify exact candidate, independent byte-equal37132 readback before reset/run",
+    "User board USB replug and actual ready reply, exact build/CAPS before START",
+    "One START, Preview then target Record10s; actual duration/overshoot preserved, no automatic repeat",
+    "No SWD while COM owner active: successful probe owners_closed=true; failed probe cleanup_finished=true and final_state.phase=closed, otherwise stop and resolve ownership before readback",
+    "After owner closed: two136 dumps at0x20002BC4, no512profile reads, saved register ranges exclude ADC_DR",
+    "Retain candidate only with confirmed boot/communication/stopped; restore freshS4 only for a concrete recorded condition from plan",
+    "Final result needs independent wire/raw/freshOpen/normalEND+ACK/diagnostics/register/rate verification"
+  ],
+  "physical_100ksps_accepted": false,
+  "hardware_access_by_reviewer": false,
+  "implementation_tests_repeated": false,
+  "limitations": [
+    "Nominal Fs/pacing do not establish calibrated sample clock or analog response",
+    "PA0 empty is not voltage accuracy, ignition or automotive qualification",
+    "tx_max excludesprepare and must not be compared as total TX against S8/S9",
+    "Failed physical trial remains FAIL regardless of successful data preservation",
+    "Plan admission is not evidence that program/readback/replug/START have happened"
+  ]
+}

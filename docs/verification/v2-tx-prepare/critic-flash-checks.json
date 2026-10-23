@@ -1,0 +1,33 @@
+{
+  "schema": "v2-06g2-independent-admission-checks-1",
+  "status": "PASS",
+  "scope": "Read-only exact plan/preflight review; no Flash or START",
+  "plan_sha256": "b65c31afeb98d46463749184169cdd10b33f3fa73ea7b51538e7c212d20e3c95",
+  "preflight_manifest_sha256": "7341da7e1310b8c5cb6189133fa15fe837f0f31f2b0797b52271477fa75f4d24",
+  "archive_pairs": 11,
+  "archive_bytes": 107820,
+  "all_archive_pairs_byte_equal": true,
+  "fresh_backup_65536_byte_equal_previous_verified_S4": true,
+  "bin_readback_length_matches": true,
+  "plan_executable_helper_decoder_hashes_match": true,
+  "no_running_app_processes_recorded": true,
+  "port": "COM6 USB VID1209/PID0001",
+  "probe": "Single ID0; actual backup connection SN57005400120000393333574E,3.2V,ID0x410; List placeholder is not physical SN",
+  "register_ranges_offline_verified_no_ADC_DR": true,
+  "diagnostic_address": "0x20002bc4",
+  "diagnostic_bytes": 136,
+  "source_commit": "a7b45bccf54f3155de03389aa5e49b237905c994",
+  "candidate_sha256": "8e8a5f2597a573ffaecfc054b01de726975ec5de07a33b06c4e56f5de75b3558",
+  "no_profile512_read": true,
+  "hardware_access": false,
+  "software_checks_not_repeated": true,
+  "checker_note": "First read-only snippet used program_argv[7] (address) as path and stopped with FileNotFoundError before any writes; corrected to [6]. No device commands executed.",
+  "remaining_execution_evidence": [
+    "Exact program verify and independent readback",
+    "User USB replug reply",
+    "PreSTART build/CAPS",
+    "One START/Record target10s result and wire/raw validation",
+    "Owner closed then two frozen legacy dumps and stopped registers",
+    "Retain candidate only if boot/communication/stopped confirmed; otherwise recorded concrete rollback reason"
+  ]
+}
