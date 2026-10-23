@@ -1,0 +1,64 @@
+{
+  "status": "PASS_NARROW_SOURCE_REVIEW",
+  "scope": "Software source; final Windows package and physical approval pending",
+  "platform": "Windows-10-10.0.19045-SP0",
+  "python": "3.14.7 (tags/v3.14.7:823f032, Aug  5 2026, 10:51:32) [MSC v.1944 64 bit (AMD64)]",
+  "firmware_bin_sha256": "f3d5563139d4e5892273312996bd8b8486f222196e6cf3c25042d5c37c6a290b",
+  "firmware_elf_sha256": "5bc0eb99bf0490c3ef98ecea28e6d0dd3b006782d6719f02e59e3f858346aa25",
+  "receipt_sha256": "5f65e08a0b4b4be773761ad07c1bbc1776ee6dd359ae9e1257c375cceec52a08",
+  "checks": [
+    {
+      "name": "firmware_inputs_before",
+      "files": 506,
+      "all_hashes_match": true
+    },
+    {
+      "name": "firmware_dependencies",
+      "files": 112,
+      "all_hashes_match": true
+    },
+    {
+      "name": "firmware_artifacts",
+      "files": 3,
+      "all_hashes_match": true
+    },
+    {
+      "name": "firmware_analysis_inputs",
+      "files": 32,
+      "all_hashes_match": true
+    },
+    {
+      "name": "native_inputs",
+      "files": 22,
+      "all_hashes_match": true
+    },
+    {
+      "name": "host_author_sources_and_evidence",
+      "files": 15,
+      "all_hashes_match": true
+    }
+  ],
+  "unchanged_from_s6": {
+    "report_sha256": "524526a220f0f1868ecf53be4809f3f4134522304054962d775b9d9617dbc13a",
+    "files_checked": 11,
+    "bodies_checked": 12
+  },
+  "native_replay": {
+    "path": "build/v6d-native-rate-01/model.exe",
+    "sha256": "1df2c703e2530fb1ab07d3495ff79955a82f7d63e9165e2c692685e8aca6be01",
+    "exit": 0,
+    "stdout": "PASS expensive full guards / one-period CEN / old path rejects\nPASS period+1us rejection / original PRIMASK restored / verified quiesce\nPASS post-CEN TIME / lifecycle / original actor / counter-order denial\nPASS exact 100k TIM3/ADC config / DMA deadline5119 accepted,5120 rejected\nPASS actual whole-fit zero leaves FIFO/prefix/sequence; exact room commits one DATA128/CRC\nPASS exact CAPS100000/1 / DATA128 unchanged\nPASS whole-fit383/384 / reject385 / epoch denial / post-copy known positive preserved\n",
+    "stderr": ""
+  },
+  "static_report_sha256": "3564c463381ba2dbebb3648762503a62777547b9df15e65e06dde28a39df43ad",
+  "static_matches_author": true,
+  "stack_bound": 5924,
+  "host_report_sha256": "78f8bbd78b9948e1362b4dee7b0d56213a63fa990914259af95f8c0e16c9ea27",
+  "host_tests": "Read author five targeted test evidence; not redundantly rerun; frozen package pending",
+  "review_findings": {
+    "whole_fit": "Check and write inside prior core IRQ/epoch lock; insufficient space returns known zero before FIFO write; actual accepted value retained even after epoch loss",
+    "rate": "100000 supported with50/200k; navigation durations and negotiated identity timebase retained"
+  },
+  "physical_verified": false,
+  "flash_approved": false
+}
