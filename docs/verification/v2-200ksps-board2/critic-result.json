@@ -1,0 +1,33 @@
+{
+  "status": "REWORK",
+  "score": 7.4,
+  "scope": "V2-06c one ten-second physical200k transport Record/Stop/Open trial",
+  "base_commit": "faf202bab49bdd938b65133a7166807c40ce5537",
+  "critic": "stream200_critic",
+  "independent": true,
+  "hardware_touched_by_critic": false,
+  "physical_200k_accepted": false,
+  "evidence_sha256": "3b6a27aee06f811c4ae5fa354593ed4fd51afc6de058d920c6564e0ab721d10f",
+  "evidence_file_count": 43,
+  "open_p1": "V2S6 source queue overflow before Record; ten-second physical200k criterion not achieved",
+  "previous_method_p2": "C includes full TIM3 ARR and RCC enable readback; A data remain unchanged",
+  "record_created": false,
+  "received_wire_samples": 1280,
+  "received_raw_sha256": "2ebb8567fe09090d36869605d2ba025ef2ef7c5cab056a4bc89004e83ef898ea",
+  "rollback_readback_sha256": "95d3a11f8db843e362b2c59ed6fbf380dd630e067fa23f6ae5a9c7d2b11dff1e",
+  "installed_after_rollback": "V2S4 / 50000 nominal samples per second, READY only, no new START",
+  "rubric": {
+    "C1": 4.0,
+    "C2": 7.0,
+    "C3": 9.7,
+    "C4": 9.5,
+    "C5": 9.5
+  },
+  "report_sha256": "85c075aba0b819418737b8252d901d50a5060bb8ab5ff7a3508983a17f6e394d",
+  "critic_evidence": {
+    "critic-trial.json": "50d1d8aa5e657bc6cfb5741d334a24c1e15963c5bbdb3212b12fe1accc1231ec",
+    "critic-evidence.json": "be9208faebd7a2150b4c538b515c41036283836538ae6667effe9341e44aba45",
+    "critic-flash.json": "ebf566dd43f4988533f9ff01b51b1ef630a2e4799a9f0b75ee3141d75cf9ac92"
+  },
+  "next_scope_boundary": "Lower frequency or new200k candidate requires separate task/review; does not retroactively pass C."
+}

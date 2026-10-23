@@ -1,0 +1,55 @@
+{
+  "status": "PASS_EXACT_IMAGE_AND_PREFLIGHT",
+  "scope": "Offline image/plan checks only; no flash or COM by critic",
+  "bin_sha256": "12cdc5ae3da7376d5486c5f4461df7b32de0f114e9f02423a7e66f20a20849fd",
+  "elf_sha256": "72ba32c5816e0c483877de685e3f60d28117e0a4ca9bdba32e8df1b97bca1768",
+  "bin_bytes": 36248,
+  "elf_pt_load_reconstruction_matches_bin": true,
+  "load_segments": [
+    {
+      "physical": "0x8000000",
+      "file_bytes": 36120,
+      "memory_bytes": 36120
+    },
+    {
+      "physical": "0x8008d18",
+      "file_bytes": 128,
+      "memory_bytes": 128
+    }
+  ],
+  "initial_msp": "0x20005000",
+  "reset_vector": "0x80087d9",
+  "flash_end": "0x8008d98",
+  "diagnostic_address": "0x20002bc4",
+  "diagnostic_bytes": 136,
+  "backup_bytes": 65536,
+  "backup_sha256": "95d3a11f8db843e362b2c59ed6fbf380dd630e067fa23f6ae5a9c7d2b11dff1e",
+  "backup_byte_equal_previous_working_rollback": true,
+  "v2s4_prefix_bytes": 35384,
+  "v2s4_prefix_sha256": "04ba2853b6a964cd812bf555a32da7fb019bcd60ba9fda0bd586d71112b3143d",
+  "plan_sha256": "1551f752ff6496696932a50a4e4f04dca8f90cab9261302e05ee6ec180b4fdbb",
+  "cli_sha256": "7fb012b5e26abf45342caa05c6bc33936f8a379b67797cc55658ffb8bf15e95f",
+  "register_dumps": {
+    "tim3": {
+      "start": "0x40000400",
+      "bytes": 48,
+      "end_exclusive": "0x40000430"
+    },
+    "adc": {
+      "start": "0x40012408",
+      "bytes": 12,
+      "end_exclusive": "0x40012414"
+    },
+    "dma": {
+      "start": "0x40020008",
+      "bytes": 16,
+      "end_exclusive": "0x40020018"
+    },
+    "rcc": {
+      "start": "0x4002100c",
+      "bytes": 20,
+      "end_exclusive": "0x40021020"
+    }
+  },
+  "adc_dr_0x4001244c_not_in_any_dump": true
+}

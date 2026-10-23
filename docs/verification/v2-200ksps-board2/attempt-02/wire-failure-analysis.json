@@ -1,0 +1,318 @@
+{
+  "schema": "motortester-v2-failed-wire-prefix-analysis-1",
+  "offline_validation_status": "PASS",
+  "physical_trial_status": "FAIL",
+  "scope": "Offline verification and extraction of a received wire prefix; no new hardware operation",
+  "tool_sha256": "adb8b59addf0b69b93093bc358757315953a384d698f59381c25dc3474e41668",
+  "parser_sha256": "30631ddfdd4364a38361f21305e5166a7b4314a4e34aa8ac79b8fbb83fa9a40e",
+  "traffic_sha256": "b66cc938f3cf279dfd89a7638ced83a4713b86dbdecdf277a20189be58e3f464",
+  "trial_receipt_sha256": "1682e3e946055e1fa6d50ef2cbe6ef84a6e3bad21d588eaa23b421a6d4d6ea5f",
+  "nonce_hex": "ed63d37e7c725515",
+  "observed_build_id": 1446138678,
+  "observed_caps": {
+    "config_id": 1,
+    "profile": 1,
+    "channel": 0,
+    "adc_bits": 12,
+    "fs_num": 200000,
+    "fs_den": 1,
+    "max_block": 128,
+    "flags": 1
+  },
+  "wire": {
+    "chunks": 15,
+    "host_bytes": 136,
+    "device_bytes": 3337,
+    "empty_delimiters": 1,
+    "decode_errors": [],
+    "trailing_partial_bytes": [
+      0,
+      0
+    ],
+    "trailing_oversized_frame": [
+      false,
+      false
+    ]
+  },
+  "generation": 3,
+  "start": {
+    "generation": 3,
+    "config_id": 1,
+    "first_index": 0
+  },
+  "plan_sha256": "1551f752ff6496696932a50a4e4f04dca8f90cab9261302e05ee6ec180b4fdbb",
+  "declared_source_commit": "faf202bab49bdd938b65133a7166807c40ce5537",
+  "selected_candidate_sha256": "12cdc5ae3da7376d5486c5f4461df7b32de0f114e9f02423a7e66f20a20849fd",
+  "host_sequence_range": [
+    1,
+    4
+  ],
+  "device_sequence_range": [
+    1,
+    15
+  ],
+  "sequence_gaps_or_duplicates": 0,
+  "reply_correlation_verified": true,
+  "timeline": [
+    {
+      "direction": "host",
+      "kind": "HELLO",
+      "sequence": 1,
+      "request_id": 1,
+      "host_relative_seconds": 0.0,
+      "payload": {
+        "nonce": 17105748349890483477
+      }
+    },
+    {
+      "direction": "device",
+      "kind": "HELLO_ACK",
+      "sequence": 1,
+      "request_id": 1,
+      "host_relative_seconds": 0.004387400113046169,
+      "payload": {
+        "firmware_build": 1446138678
+      }
+    },
+    {
+      "direction": "host",
+      "kind": "GET_CAPS",
+      "sequence": 2,
+      "request_id": 2,
+      "host_relative_seconds": 0.005428300006315112
+    },
+    {
+      "direction": "device",
+      "kind": "CAPS",
+      "sequence": 2,
+      "request_id": 2,
+      "host_relative_seconds": 0.007307100109755993,
+      "payload": {
+        "config_id": 1,
+        "profile": 1,
+        "channel": 0,
+        "adc_bits": 12,
+        "fs_num": 200000,
+        "fs_den": 1,
+        "max_block": 128,
+        "flags": 1
+      }
+    },
+    {
+      "direction": "host",
+      "kind": "START",
+      "sequence": 3,
+      "request_id": 3,
+      "host_relative_seconds": 0.024122500093653798,
+      "payload": 1
+    },
+    {
+      "direction": "device",
+      "kind": "START_ACK",
+      "sequence": 3,
+      "request_id": 3,
+      "host_relative_seconds": 0.027521700132638216,
+      "payload": {
+        "generation": 3,
+        "config_id": 1,
+        "first_index": 0
+      }
+    },
+    {
+      "direction": "device",
+      "kind": "DATA",
+      "sequence": 4,
+      "request_id": 0,
+      "host_relative_seconds": 0.03250940004363656,
+      "first_sample_index": 0,
+      "sample_count": 128
+    },
+    {
+      "direction": "device",
+      "kind": "DATA",
+      "sequence": 5,
+      "request_id": 0,
+      "host_relative_seconds": 0.046440400183200836,
+      "first_sample_index": 128,
+      "sample_count": 128
+    },
+    {
+      "direction": "device",
+      "kind": "DATA",
+      "sequence": 6,
+      "request_id": 0,
+      "host_relative_seconds": 0.04688710020855069,
+      "first_sample_index": 256,
+      "sample_count": 128
+    },
+    {
+      "direction": "device",
+      "kind": "DATA",
+      "sequence": 7,
+      "request_id": 0,
+      "host_relative_seconds": 0.04688710020855069,
+      "first_sample_index": 384,
+      "sample_count": 128
+    },
+    {
+      "direction": "device",
+      "kind": "DATA",
+      "sequence": 8,
+      "request_id": 0,
+      "host_relative_seconds": 0.047518800012767315,
+      "first_sample_index": 512,
+      "sample_count": 128
+    },
+    {
+      "direction": "device",
+      "kind": "DATA",
+      "sequence": 9,
+      "request_id": 0,
+      "host_relative_seconds": 0.047518800012767315,
+      "first_sample_index": 640,
+      "sample_count": 128
+    },
+    {
+      "direction": "device",
+      "kind": "DATA",
+      "sequence": 10,
+      "request_id": 0,
+      "host_relative_seconds": 0.05671979999169707,
+      "first_sample_index": 768,
+      "sample_count": 128
+    },
+    {
+      "direction": "device",
+      "kind": "DATA",
+      "sequence": 11,
+      "request_id": 0,
+      "host_relative_seconds": 0.05757650011219084,
+      "first_sample_index": 896,
+      "sample_count": 128
+    },
+    {
+      "direction": "device",
+      "kind": "DATA",
+      "sequence": 12,
+      "request_id": 0,
+      "host_relative_seconds": 0.05757650011219084,
+      "first_sample_index": 1024,
+      "sample_count": 128
+    },
+    {
+      "direction": "device",
+      "kind": "DATA",
+      "sequence": 13,
+      "request_id": 0,
+      "host_relative_seconds": 0.05828650016337633,
+      "first_sample_index": 1152,
+      "sample_count": 128
+    },
+    {
+      "direction": "device",
+      "kind": "END",
+      "sequence": 14,
+      "request_id": 0,
+      "host_relative_seconds": 0.05828650016337633,
+      "payload": {
+        "generation": 3,
+        "config_id": 1,
+        "prefix_end": 1280,
+        "produced_end": null,
+        "last_data_sequence": 13,
+        "prefix_crc32": 4049940924,
+        "reason": 1,
+        "flags": 3,
+        "stop_request_id": 0
+      }
+    },
+    {
+      "direction": "host",
+      "kind": "STOP",
+      "sequence": 4,
+      "request_id": 4,
+      "host_relative_seconds": 0.06024100002832711,
+      "payload": 3
+    },
+    {
+      "direction": "device",
+      "kind": "STOP_ACK",
+      "sequence": 15,
+      "request_id": 4,
+      "host_relative_seconds": 0.06192960008047521,
+      "payload": {
+        "generation": 3,
+        "prefix_end": 1280,
+        "terminal_sequence": 14,
+        "flags": 3
+      }
+    }
+  ],
+  "timeline_units": "host I/O monotonic seconds, not ADC timestamps",
+  "received_prefix": {
+    "file": "received-prefix.u16le",
+    "sha256": "2ebb8567fe09090d36869605d2ba025ef2ef7c5cab056a4bc89004e83ef898ea",
+    "crc32": 4049940924,
+    "crc32_matches_END": true,
+    "format": "unsigned uint16 little endian, raw 12-bit ADC codes",
+    "first_sample_index": 0,
+    "end_sample_index_exclusive": 1280,
+    "samples": 1280,
+    "bytes": 2560,
+    "DATA_blocks": 10,
+    "nominal_index_interval_seconds": 0.0064,
+    "nominal_last_sample_seconds": 0.006395,
+    "nominal_sample_period_seconds": 5e-06,
+    "selected_mtstream_recording": false
+  },
+  "terminal": {
+    "generation": 3,
+    "config_id": 1,
+    "prefix_end": 1280,
+    "produced_end": null,
+    "last_data_sequence": 13,
+    "prefix_crc32": 4049940924,
+    "reason": 1,
+    "flags": 3,
+    "stop_request_id": 0,
+    "sequence": 14
+  },
+  "stop": {
+    "sent_after_source_END": true,
+    "request_id": 4,
+    "acknowledgement": {
+      "generation": 3,
+      "prefix_end": 1280,
+      "terminal_sequence": 14,
+      "flags": 3,
+      "sequence": 15
+    }
+  },
+  "recording_selection": {
+    "R": null,
+    "accepted": null,
+    "checkpoint": null,
+    "state": "failed_before_record",
+    "journal_created": false
+  },
+  "cause": {
+    "wire_fact": "Device reported END reason 1 before any host STOP, after a valid 1280-sample prefix",
+    "selected_source_interpretation": "reason 1 maps to a full firmware sample queue; it is not a normal requested Stop",
+    "source_path": "build/v6b-fw-04/patched/v2/protocol/mt_live_device.c",
+    "source_sha256": "9eca593152eb91f65cc35af6e78c73a5d1a1c02bafb737ca6e8542c234095868",
+    "source_mapping_line": 452,
+    "source_mapping": "terminate(d,q==MT_SAMPLE_QUEUE_FULL?1u:2u,n)",
+    "root_cause_below_queue_full": "TBD: wire does not measure producer scheduling, USB service, or exact queue occupancy"
+  },
+  "limits": {
+    "actual_produced_samples": null,
+    "lost_samples": null,
+    "continuous_200ksps_verified": false,
+    "actual_ADC_frequency_measured": false,
+    "voltage_calibration_verified": false,
+    "image_authenticated_by_wire": false,
+    "selected_journal_raw_equality_claimed": false,
+    "input_condition": "PA0 unconnected, as reported by user",
+    "note": "Valid transmitted prefix does not establish lossless acquisition. CAPS is a nominal rate declaration. The trial failed before recording selection R."
+  }
+}

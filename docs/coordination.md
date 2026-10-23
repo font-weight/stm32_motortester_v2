@@ -1,5 +1,18 @@
 # Координация самостоятельного V2
 
+V2-06d: root — COM/ST-Link, build/v6d-board-01, упаковка Windows,
+канонические документы и интеграция. higher_fs_review — firmware/v2-stream,
+tests/v2-stream-firmware и build/v6d-fw-*/v6d-native-*; host_200k — host/motortester,
+host/tests, host/tools и build/v6d-host-*. stream200_critic — только
+docs/reviews/v2-06d*.md и docs/verification/v2-100ksps/critic*.json.
+Никто кроме root не использует COM/SWD; аппаратный опыт только после
+отдельного допуска точного образа. Прежние S5/S6 и свидетельства неизменны.
+
+V2-06c: root единолично COM/ST-Link, build/v6-board-02 и канонические
+документы; stream200_critic — только docs/reviews/v2-06c-flash-review.md,
+docs/reviews/v2-06c-review.md и docs/verification/v2-200ksps-board2/critic*.json.
+Программный V2S6 заморожен; новый аппаратный опыт допускается отдельно.
+
 V2-06b: higher_fs_review владеет только firmware/v2-stream,
 tests/v2-stream-firmware и build/v6b-*; root — канонические документы
 и фиксация опыта V2-06a. host_200k пишет только offline файлы

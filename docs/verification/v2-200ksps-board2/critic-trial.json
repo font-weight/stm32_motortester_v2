@@ -1,0 +1,258 @@
+{
+  "status": "PASS_OFFLINE_VERIFICATION_OF_FAILED_TRIAL",
+  "physical_trial": "FAIL",
+  "scope": "Offline only, no hardware operations",
+  "wire": {
+    "chunks": 15,
+    "host_bytes": 136,
+    "device_bytes": 3337,
+    "empty_delimiters": 1,
+    "decode_errors": [],
+    "trailing_partial_bytes": [
+      0,
+      0
+    ],
+    "trailing_oversized_frame": [
+      false,
+      false
+    ]
+  },
+  "sequences": [
+    4,
+    15
+  ],
+  "events": [
+    {
+      "direction": 0,
+      "kind": "HELLO",
+      "sequence": 1,
+      "request_id": 1,
+      "host_stamp": 1334585.8008223
+    },
+    {
+      "direction": 1,
+      "kind": "HELLO_ACK",
+      "sequence": 1,
+      "request_id": 1,
+      "host_stamp": 1334585.8052097
+    },
+    {
+      "direction": 0,
+      "kind": "GET_CAPS",
+      "sequence": 2,
+      "request_id": 2,
+      "host_stamp": 1334585.8062506
+    },
+    {
+      "direction": 1,
+      "kind": "CAPS",
+      "sequence": 2,
+      "request_id": 2,
+      "host_stamp": 1334585.8081294
+    },
+    {
+      "direction": 0,
+      "kind": "START",
+      "sequence": 3,
+      "request_id": 3,
+      "host_stamp": 1334585.8249448
+    },
+    {
+      "direction": 1,
+      "kind": "START_ACK",
+      "sequence": 3,
+      "request_id": 3,
+      "host_stamp": 1334585.828344
+    },
+    {
+      "direction": 1,
+      "kind": "DATA",
+      "sequence": 4,
+      "request_id": 0,
+      "host_stamp": 1334585.8333317
+    },
+    {
+      "direction": 1,
+      "kind": "DATA",
+      "sequence": 5,
+      "request_id": 0,
+      "host_stamp": 1334585.8472627
+    },
+    {
+      "direction": 1,
+      "kind": "DATA",
+      "sequence": 6,
+      "request_id": 0,
+      "host_stamp": 1334585.8477094
+    },
+    {
+      "direction": 1,
+      "kind": "DATA",
+      "sequence": 7,
+      "request_id": 0,
+      "host_stamp": 1334585.8477094
+    },
+    {
+      "direction": 1,
+      "kind": "DATA",
+      "sequence": 8,
+      "request_id": 0,
+      "host_stamp": 1334585.8483411
+    },
+    {
+      "direction": 1,
+      "kind": "DATA",
+      "sequence": 9,
+      "request_id": 0,
+      "host_stamp": 1334585.8483411
+    },
+    {
+      "direction": 1,
+      "kind": "DATA",
+      "sequence": 10,
+      "request_id": 0,
+      "host_stamp": 1334585.8575421
+    },
+    {
+      "direction": 1,
+      "kind": "DATA",
+      "sequence": 11,
+      "request_id": 0,
+      "host_stamp": 1334585.8583988
+    },
+    {
+      "direction": 1,
+      "kind": "DATA",
+      "sequence": 12,
+      "request_id": 0,
+      "host_stamp": 1334585.8583988
+    },
+    {
+      "direction": 1,
+      "kind": "DATA",
+      "sequence": 13,
+      "request_id": 0,
+      "host_stamp": 1334585.8591088
+    },
+    {
+      "direction": 1,
+      "kind": "END",
+      "sequence": 14,
+      "request_id": 0,
+      "host_stamp": 1334585.8591088
+    },
+    {
+      "direction": 0,
+      "kind": "STOP",
+      "sequence": 4,
+      "request_id": 4,
+      "host_stamp": 1334585.8610633
+    },
+    {
+      "direction": 1,
+      "kind": "STOP_ACK",
+      "sequence": 15,
+      "request_id": 4,
+      "host_stamp": 1334585.8627519
+    }
+  ],
+  "nonce_hex": "ed63d37e7c725515",
+  "generation": 3,
+  "raw_samples": 1280,
+  "raw_bytes": 2560,
+  "data_blocks": 10,
+  "raw_sha256": "2ebb8567fe09090d36869605d2ba025ef2ef7c5cab056a4bc89004e83ef898ea",
+  "raw_crc32": 4049940924,
+  "end": {
+    "generation": 3,
+    "config_id": 1,
+    "prefix_end": 1280,
+    "produced_end": null,
+    "last_data_sequence": 13,
+    "prefix_crc32": 4049940924,
+    "reason": 1,
+    "flags": 3,
+    "stop_request_id": 0
+  },
+  "stop_ack": {
+    "generation": 3,
+    "prefix_end": 1280,
+    "terminal_sequence": 14,
+    "flags": 3
+  },
+  "source_end_before_host_stop": true,
+  "journal_exists": false,
+  "record_selected": false,
+  "observed_rate_over_record_interval": null,
+  "owners_closed": true,
+  "diagnostic_sha256": "2ed9623ba3c1792977445d35a9342b5b81757fe6de59cea06568cd82b4e3f41e",
+  "both_diagnostics_equal_and_match_sram": true,
+  "diagnostic_decoder_reproduced": true,
+  "diagnostic_raw": {
+    "magic": 1297368135,
+    "version": 1,
+    "bytes": 136,
+    "firmware_build": 1446138678,
+    "phase": 3,
+    "flags": 4,
+    "generation": 3,
+    "step_count": 67,
+    "step_body_max_cycles": 231993,
+    "step_gap_max_cycles": 232371,
+    "tx_count": 67,
+    "tx_max_cycles": 45211,
+    "poll_count": 29,
+    "driver_observed_poll_gap_us": 1190,
+    "poll_gap_max_cycles": 85717,
+    "copy_count": 3,
+    "copy_max_us": 133,
+    "queue_high_water": 8,
+    "first_runtime_result": 4294967295,
+    "first_local_error": 0,
+    "first_acquisition_reason": 1,
+    "first_adc_fault": 0,
+    "first_epoch": 3,
+    "final_runtime_result": 0,
+    "final_core_state": 7,
+    "final_epoch": 3,
+    "final_adc_state": 0,
+    "final_adc_owned": 0,
+    "final_hardware_off": 1,
+    "start_cycle": 2658450953,
+    "last_cycle": 2661050770,
+    "freeze_cycle": 2661050770,
+    "nonce_low": 2087867669,
+    "nonce_high": 3982742398
+  },
+  "registers": {
+    "TIM3_CR1": "0x0",
+    "TIM3_PSC": "0x47",
+    "TIM3_ARR": "0x4",
+    "ADC1_CR2": "0x0",
+    "ADC1_SMPR2": "0x4",
+    "DMA1_CH1_CCR": "0x25a0",
+    "RCC_APB2RSTR": "0x0",
+    "RCC_APB1RSTR": "0x0",
+    "RCC_AHBENR": "0x15",
+    "RCC_APB2ENR": "0x204",
+    "RCC_APB1ENR": "0x800003"
+  },
+  "register_stop_checks_passed": true,
+  "input_hashes": {
+    "build/v6-board-02/run/traffic.bin": "b66cc938f3cf279dfd89a7638ced83a4713b86dbdecdf277a20189be58e3f464",
+    "build/v6-board-02/run/result.json": "1682e3e946055e1fa6d50ef2cbe6ef84a6e3bad21d588eaa23b421a6d4d6ea5f",
+    "build/v6-board-02/diagnostics-first.bin": "2ed9623ba3c1792977445d35a9342b5b81757fe6de59cea06568cd82b4e3f41e",
+    "build/v6-board-02/diagnostics-second.bin": "2ed9623ba3c1792977445d35a9342b5b81757fe6de59cea06568cd82b4e3f41e",
+    "build/v6-board-02/diagnostics-decoded.json": "d3d7d439f80194b7a9d06e87ad5b803c103cb97a54d65ea459983d508c30a0bf",
+    "build/v6-board-02/sram-20k.bin": "3bc38e17437b0075a78977175fad30aaee482e223101ce81628d8fc29553ce98",
+    "build/v6-board-02/registers-decoded.json": "87bff87d4dc5f0dd4556403aece2477c52d5841f2d8c8f94da7f8fac231f050a",
+    "build/v6-board-02/decode_diagnostics.py": "a107cba01190bdae2c30653868c4ae9eeb42de4272ef4f9a6885a00f275f4cd1",
+    "host/tools/verify_stream_trial.py": "30631ddfdd4364a38361f21305e5166a7b4314a4e34aa8ac79b8fbb83fa9a40e"
+  },
+  "limits": [
+    "Valid received wire prefix is not a selected mtstream Record.",
+    "Produced/lost samples remain unknown.",
+    "Frozen-record validation is not a normal Stop.",
+    "Registers read after failure do not establish throughput, timing or calibrated Fs."
+  ]
+}

@@ -1,0 +1,63 @@
+{
+  "status": "FAIL",
+  "port": "COM6",
+  "source": "physical",
+  "seconds_requested": 10.0,
+  "expected_build": 1446138678,
+  "expected_sample_rate_hz": 200000,
+  "input_condition": "PA0 unconnected, as reported by user",
+  "voltage_calibration_verified": false,
+  "callback_errors": [],
+  "errors": [
+    "Приём остановлен: device_1. Сохранён проверенный префикс."
+  ],
+  "connection": {
+    "selection": {
+      "port": "COM6",
+      "declared_source_commit": "faf202bab49bdd938b65133a7166807c40ce5537",
+      "declared_artifact_sha256": "12cdc5ae3da7376d5486c5f4461df7b32de0f114e9f02423a7e66f20a20849fd"
+    },
+    "execution_kind": "physical",
+    "observed_build_id": 1446138678,
+    "observed_caps": [
+      1,
+      1,
+      0,
+      12,
+      200000,
+      1,
+      128,
+      1
+    ],
+    "dtr_requested": true,
+    "accounting_domain": "unknown",
+    "image_verified": false
+  },
+  "exception": "Traceback (most recent call last):\n  File \"C:\\Users\\Alexandr\\Desktop\\New folder\\универ\\мотортестер 2\\host\\tools\\v2_stream_probe.py\", line 127, in run\n    assert not bridge.state.error and bridge.state.phase != \"fault\", compact()\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: {'host_monotonic': 1334585.8607999, 'phase': 'fault', 'received': 1280, 'error': None, 'failure': {'code': 'source_error', 'detail': 'wire device_1; ordinary=None; stop=None', 'operation': None, 'request_id': None, 'source_code': 1}, 'R': None, 'accepted': None, 'checkpoint': None, 'max_service_gap_ms': 18, 'peak_raw_items': 0}\n",
+  "cleanup_finished": true,
+  "final_state": {
+    "host_monotonic": 1334585.9174197,
+    "phase": "closed",
+    "received": 1280,
+    "error": null,
+    "failure": {
+      "code": "source_error",
+      "detail": "wire device_1; ordinary=None; stop=None",
+      "operation": null,
+      "request_id": null,
+      "source_code": 1
+    },
+    "R": null,
+    "accepted": null,
+    "checkpoint": null,
+    "max_service_gap_ms": 18,
+    "peak_raw_items": 0
+  },
+  "traffic": {
+    "host_bytes": 136,
+    "device_bytes": 3337,
+    "chunks": 15,
+    "format": "<BdI + payload; 0=host,1=device; monotonic seconds",
+    "sha256": "b66cc938f3cf279dfd89a7638ced83a4713b86dbdecdf277a20189be58e3f464"
+  }
+}

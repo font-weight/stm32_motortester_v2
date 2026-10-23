@@ -1,0 +1,292 @@
+{
+  "status": "PASS_EVIDENCE_AND_ROLLBACK_CHECKS",
+  "physical_trial_status": "FAIL",
+  "evidence_sha256": "3b6a27aee06f811c4ae5fa354593ed4fd51afc6de058d920c6564e0ab721d10f",
+  "copy_pairs": 43,
+  "total_copy_bytes": 263602,
+  "all_copies_byte_equal_to_sources": true,
+  "new_readback_bytes": 36248,
+  "new_readback_sha256": "12cdc5ae3da7376d5486c5f4461df7b32de0f114e9f02423a7e66f20a20849fd",
+  "new_readback_byte_equal_exact_candidate": true,
+  "rollback_readback_bytes": 65536,
+  "rollback_readback_sha256": "95d3a11f8db843e362b2c59ed6fbf380dd630e067fa23f6ae5a9c7d2b11dff1e",
+  "rollback_readback_byte_equal_fresh_backup": true,
+  "rollback_ready_receipt": {
+    "status": "PASS",
+    "observed_build": 1446138676,
+    "observed_caps": [
+      1,
+      1,
+      0,
+      12,
+      50000,
+      1,
+      128,
+      1
+    ],
+    "no_source_started": true,
+    "owner_closed": true,
+    "final_validated_samples": 0
+  },
+  "files": [
+    {
+      "source": "build/v6-board-02/adc.bin",
+      "copy": "docs/verification/v2-200ksps-board2/attempt-02/adc.bin",
+      "bytes": 12,
+      "sha256": "b389a6884b289d4b53e9b36853b9a933c640fa7a5abe584f859a56c6768c01ba"
+    },
+    {
+      "source": "build/v6-board-02/adc.txt",
+      "copy": "docs/verification/v2-200ksps-board2/attempt-02/adc.txt",
+      "bytes": 844,
+      "sha256": "8c1d5ef56fec41d9531f02f7272ef1298001fa499310accff5248fa7e4dcaeaf"
+    },
+    {
+      "source": "build/v6-board-02/analyze_failure.py",
+      "copy": "docs/verification/v2-200ksps-board2/attempt-02/analyze_failure.py",
+      "bytes": 11518,
+      "sha256": "adb8b59addf0b69b93093bc358757315953a384d698f59381c25dc3474e41668"
+    },
+    {
+      "source": "build/v6-board-02/before-flash-64k.bin",
+      "copy": "docs/verification/v2-200ksps-board2/attempt-02/before-flash-64k.bin",
+      "bytes": 65536,
+      "sha256": "95d3a11f8db843e362b2c59ed6fbf380dd630e067fa23f6ae5a9c7d2b11dff1e"
+    },
+    {
+      "source": "build/v6-board-02/before-flash-read.txt",
+      "copy": "docs/verification/v2-200ksps-board2/attempt-02/before-flash-read.txt",
+      "bytes": 870,
+      "sha256": "77ed41240934db0803e8565c5bc5cda27bcfd3825331bb648afc6c6592fd1d60"
+    },
+    {
+      "source": "build/v6-board-02/check_ready.py",
+      "copy": "docs/verification/v2-200ksps-board2/attempt-02/check_ready.py",
+      "bytes": 5694,
+      "sha256": "17a2418ed631baca1565c27e539f3476e86316bf37ede273c3a807d25dd5cd8d"
+    },
+    {
+      "source": "build/v6-board-02/decode_diagnostics.py",
+      "copy": "docs/verification/v2-200ksps-board2/attempt-02/decode_diagnostics.py",
+      "bytes": 11824,
+      "sha256": "a107cba01190bdae2c30653868c4ae9eeb42de4272ef4f9a6885a00f275f4cd1"
+    },
+    {
+      "source": "build/v6-board-02/diagnostics-decoded.json",
+      "copy": "docs/verification/v2-200ksps-board2/attempt-02/diagnostics-decoded.json",
+      "bytes": 5908,
+      "sha256": "d3d7d439f80194b7a9d06e87ad5b803c103cb97a54d65ea459983d508c30a0bf"
+    },
+    {
+      "source": "build/v6-board-02/diagnostics-first.bin",
+      "copy": "docs/verification/v2-200ksps-board2/attempt-02/diagnostics-first.bin",
+      "bytes": 136,
+      "sha256": "2ed9623ba3c1792977445d35a9342b5b81757fe6de59cea06568cd82b4e3f41e"
+    },
+    {
+      "source": "build/v6-board-02/diagnostics-first.txt",
+      "copy": "docs/verification/v2-200ksps-board2/attempt-02/diagnostics-first.txt",
+      "bytes": 872,
+      "sha256": "053111794cdab6033056c520384d65e21fa0879cdf3f3a8356e1a60ee2af4407"
+    },
+    {
+      "source": "build/v6-board-02/diagnostics-second.bin",
+      "copy": "docs/verification/v2-200ksps-board2/attempt-02/diagnostics-second.bin",
+      "bytes": 136,
+      "sha256": "2ed9623ba3c1792977445d35a9342b5b81757fe6de59cea06568cd82b4e3f41e"
+    },
+    {
+      "source": "build/v6-board-02/diagnostics-second.txt",
+      "copy": "docs/verification/v2-200ksps-board2/attempt-02/diagnostics-second.txt",
+      "bytes": 874,
+      "sha256": "812c854ae00ea5ee5bdf7c4867330d554c8af31d13dabe0cdad6b468cda83db5"
+    },
+    {
+      "source": "build/v6-board-02/dma.bin",
+      "copy": "docs/verification/v2-200ksps-board2/attempt-02/dma.bin",
+      "bytes": 16,
+      "sha256": "67e3c27573eeb78249712008bf07a893a4e998af841ada0834a43b56617beece"
+    },
+    {
+      "source": "build/v6-board-02/dma.txt",
+      "copy": "docs/verification/v2-200ksps-board2/attempt-02/dma.txt",
+      "bytes": 844,
+      "sha256": "a38462ca7fbe2ee045bbe82c54536cf24fd5bf3db35196fb96dc7a6b5945dd3c"
+    },
+    {
+      "source": "build/v6-board-02/flash-verification.json",
+      "copy": "docs/verification/v2-200ksps-board2/attempt-02/flash-verification.json",
+      "bytes": 322,
+      "sha256": "fa0b6b7f6bf1d97fe26b88fa49fe8b57da718c75f43eeaa8e44cc0a72128f976"
+    },
+    {
+      "source": "build/v6-board-02/plan.json",
+      "copy": "docs/verification/v2-200ksps-board2/attempt-02/plan.json",
+      "bytes": 2112,
+      "sha256": "1551f752ff6496696932a50a4e4f04dca8f90cab9261302e05ee6ec180b4fdbb"
+    },
+    {
+      "source": "build/v6-board-02/ports-after-replug.json",
+      "copy": "docs/verification/v2-200ksps-board2/attempt-02/ports-after-replug.json",
+      "bytes": 135,
+      "sha256": "c8614e25240676a110cd0c9f9761ba2d2fc559f249875431289a7b08eedef67d"
+    },
+    {
+      "source": "build/v6-board-02/ports-after-rollback.json",
+      "copy": "docs/verification/v2-200ksps-board2/attempt-02/ports-after-rollback.json",
+      "bytes": 135,
+      "sha256": "c8614e25240676a110cd0c9f9761ba2d2fc559f249875431289a7b08eedef67d"
+    },
+    {
+      "source": "build/v6-board-02/ports-before.json",
+      "copy": "docs/verification/v2-200ksps-board2/attempt-02/ports-before.json",
+      "bytes": 135,
+      "sha256": "c8614e25240676a110cd0c9f9761ba2d2fc559f249875431289a7b08eedef67d"
+    },
+    {
+      "source": "build/v6-board-02/preflight.json",
+      "copy": "docs/verification/v2-200ksps-board2/attempt-02/preflight.json",
+      "bytes": 550,
+      "sha256": "5d24a89bd6921fb2f328c2ccc570d222d9739337a29667d47a8d1c376b46d48f"
+    },
+    {
+      "source": "build/v6-board-02/probe-list.txt",
+      "copy": "docs/verification/v2-200ksps-board2/attempt-02/probe-list.txt",
+      "bytes": 239,
+      "sha256": "b58c8ddae6534dd35b9a1498631f1ee20ba54017c8f3ccfa2b156244c92e72a3"
+    },
+    {
+      "source": "build/v6-board-02/probe-stdout.txt",
+      "copy": "docs/verification/v2-200ksps-board2/attempt-02/probe-stdout.txt",
+      "bytes": 834,
+      "sha256": "df28345efb2daa5c28d8e7eb6ac6b0d360c04091745b5d98240cbce9d613cc2a"
+    },
+    {
+      "source": "build/v6-board-02/program-verify.txt",
+      "copy": "docs/verification/v2-200ksps-board2/attempt-02/program-verify.txt",
+      "bytes": 953,
+      "sha256": "e7111d186c3b934e28978790002611049449bc7662abce0dd7369d9dc9e3d338"
+    },
+    {
+      "source": "build/v6-board-02/rcc.bin",
+      "copy": "docs/verification/v2-200ksps-board2/attempt-02/rcc.bin",
+      "bytes": 20,
+      "sha256": "1e24249e3619f46e4291c93fac339276c89ad2a136a324180aa83757fc71a367"
+    },
+    {
+      "source": "build/v6-board-02/rcc.txt",
+      "copy": "docs/verification/v2-200ksps-board2/attempt-02/rcc.txt",
+      "bytes": 844,
+      "sha256": "f137c46a7759372be34e0719baf398db73c4f66e6d178ac527070dde7f0088b3"
+    },
+    {
+      "source": "build/v6-board-02/readback.bin",
+      "copy": "docs/verification/v2-200ksps-board2/attempt-02/readback.bin",
+      "bytes": 36248,
+      "sha256": "12cdc5ae3da7376d5486c5f4461df7b32de0f114e9f02423a7e66f20a20849fd"
+    },
+    {
+      "source": "build/v6-board-02/readback.txt",
+      "copy": "docs/verification/v2-200ksps-board2/attempt-02/readback.txt",
+      "bytes": 854,
+      "sha256": "ceaaf074d59926dc6a59b3c60f77691ca5065177d414051680d7617eac80d55f"
+    },
+    {
+      "source": "build/v6-board-02/received-prefix.u16le",
+      "copy": "docs/verification/v2-200ksps-board2/attempt-02/received-prefix.u16le",
+      "bytes": 2560,
+      "sha256": "2ebb8567fe09090d36869605d2ba025ef2ef7c5cab056a4bc89004e83ef898ea"
+    },
+    {
+      "source": "build/v6-board-02/registers-decoded.json",
+      "copy": "docs/verification/v2-200ksps-board2/attempt-02/registers-decoded.json",
+      "bytes": 1046,
+      "sha256": "87bff87d4dc5f0dd4556403aece2477c52d5841f2d8c8f94da7f8fac231f050a"
+    },
+    {
+      "source": "build/v6-board-02/reset-run.txt",
+      "copy": "docs/verification/v2-200ksps-board2/attempt-02/reset-run.txt",
+      "bytes": 420,
+      "sha256": "f8596a56771eed9f6bf4ebfd453433d8b7e7796ae747d34ca0eea8f480d620c9"
+    },
+    {
+      "source": "build/v6-board-02/rollback-program-verify.txt",
+      "copy": "docs/verification/v2-200ksps-board2/attempt-02/rollback-program-verify.txt",
+      "bytes": 957,
+      "sha256": "15e8618f328069c9447a01c0e0c4e6efd467bd7356eadf1dfd681bbb422de841"
+    },
+    {
+      "source": "build/v6-board-02/rollback-readback.bin",
+      "copy": "docs/verification/v2-200ksps-board2/attempt-02/rollback-readback.bin",
+      "bytes": 65536,
+      "sha256": "95d3a11f8db843e362b2c59ed6fbf380dd630e067fa23f6ae5a9c7d2b11dff1e"
+    },
+    {
+      "source": "build/v6-board-02/rollback-readback.txt",
+      "copy": "docs/verification/v2-200ksps-board2/attempt-02/rollback-readback.txt",
+      "bytes": 872,
+      "sha256": "063825521d80e18d558e5da0bfc5f913afe2cfb194614a9fe1d10cd64e0bc769"
+    },
+    {
+      "source": "build/v6-board-02/rollback-ready.json",
+      "copy": "docs/verification/v2-200ksps-board2/attempt-02/rollback-ready.json",
+      "bytes": 6227,
+      "sha256": "1032bd539b1c251159cb999988054bce2caa443724c195dc6a1e223a6d741079"
+    },
+    {
+      "source": "build/v6-board-02/rollback-reset-run.txt",
+      "copy": "docs/verification/v2-200ksps-board2/attempt-02/rollback-reset-run.txt",
+      "bytes": 420,
+      "sha256": "f8596a56771eed9f6bf4ebfd453433d8b7e7796ae747d34ca0eea8f480d620c9"
+    },
+    {
+      "source": "build/v6-board-02/rollback-verification.json",
+      "copy": "docs/verification/v2-200ksps-board2/attempt-02/rollback-verification.json",
+      "bytes": 207,
+      "sha256": "bc2f362550b0816b3274228b13fc275a427f6bc1e6bd610d2018a332055311f9"
+    },
+    {
+      "source": "build/v6-board-02/run/result.json",
+      "copy": "docs/verification/v2-200ksps-board2/attempt-02/run/result.json",
+      "bytes": 2384,
+      "sha256": "1682e3e946055e1fa6d50ef2cbe6ef84a6e3bad21d588eaa23b421a6d4d6ea5f"
+    },
+    {
+      "source": "build/v6-board-02/run/traffic.bin",
+      "copy": "docs/verification/v2-200ksps-board2/attempt-02/run/traffic.bin",
+      "bytes": 3668,
+      "sha256": "b66cc938f3cf279dfd89a7638ced83a4713b86dbdecdf277a20189be58e3f464"
+    },
+    {
+      "source": "build/v6-board-02/sram-20k.bin",
+      "copy": "docs/verification/v2-200ksps-board2/attempt-02/sram-20k.bin",
+      "bytes": 20480,
+      "sha256": "3bc38e17437b0075a78977175fad30aaee482e223101ce81628d8fc29553ce98"
+    },
+    {
+      "source": "build/v6-board-02/sram-20k.txt",
+      "copy": "docs/verification/v2-200ksps-board2/attempt-02/sram-20k.txt",
+      "bytes": 854,
+      "sha256": "b9f48ca67b344e2c254df653a1f7f45991ee0c05c1ec730c07f9f148589e2786"
+    },
+    {
+      "source": "build/v6-board-02/tim3.bin",
+      "copy": "docs/verification/v2-200ksps-board2/attempt-02/tim3.bin",
+      "bytes": 48,
+      "sha256": "d4d2b0c31cbe4a070afed32a35889a8cd85fb4b085df436df49612a0ae853948"
+    },
+    {
+      "source": "build/v6-board-02/tim3.txt",
+      "copy": "docs/verification/v2-200ksps-board2/attempt-02/tim3.txt",
+      "bytes": 846,
+      "sha256": "36cb7ef69390118c49c190aaf1581e3ebc59a39329b8e472fde67e49238bf687"
+    },
+    {
+      "source": "build/v6-board-02/wire-failure-analysis.json",
+      "copy": "docs/verification/v2-200ksps-board2/attempt-02/wire-failure-analysis.json",
+      "bytes": 8612,
+      "sha256": "40a75708e1191a778117a9cab7ebd7ce5c753f103c9925cb04df6cd02a564d03"
+    }
+  ],
+  "limitations": "READY confirms reported connection and zero started source, not a new physical 50k recording. Critic did not touch hardware."
+}

@@ -1,0 +1,34 @@
+{
+  "scope": "Post-failure readback only; not normal-run timing or Fs calibration",
+  "registers": {
+    "TIM3_CR1": "0x0",
+    "TIM3_PSC": "0x47",
+    "TIM3_ARR": "0x4",
+    "ADC1_CR2": "0x0",
+    "ADC1_SMPR2": "0x4",
+    "DMA1_CH1_CCR": "0x25a0",
+    "RCC_APB2RSTR": "0x0",
+    "RCC_APB1RSTR": "0x0",
+    "RCC_AHBENR": "0x15",
+    "RCC_APB2ENR": "0x204",
+    "RCC_APB1ENR": "0x800003"
+  },
+  "checks": {
+    "tim3_stopped": true,
+    "tim3_psc71_arr4": true,
+    "adc_off": true,
+    "adc_sample_code4": true,
+    "dma_disabled": true,
+    "dma_clock": true,
+    "adc_gpio_clock": true,
+    "tim3_clock": true,
+    "adc_tim3_not_reset": true
+  },
+  "all_checks": true,
+  "blocks_sha256": {
+    "tim3": "d4d2b0c31cbe4a070afed32a35889a8cd85fb4b085df436df49612a0ae853948",
+    "adc": "b389a6884b289d4b53e9b36853b9a933c640fa7a5abe584f859a56c6768c01ba",
+    "dma": "67e3c27573eeb78249712008bf07a893a4e998af841ada0834a43b56617beece",
+    "rcc": "1e24249e3619f46e4291c93fac339276c89ad2a136a324180aa83757fc71a367"
+  }
+}
