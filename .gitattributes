@@ -28,6 +28,11 @@ docs/verification/v2-stream-profile/**/*.u16le binary
 docs/verification/v2-stream-profile/**/*.txt -whitespace
 docs/verification/v2-stream-profile/**/*.map -whitespace
 docs/verification/v2-stream-profile/**/*.log -whitespace
+docs/verification/v2-tx-prepare/** -text whitespace=cr-at-eol
+docs/verification/v2-tx-prepare/**/*.u16le binary
+docs/verification/v2-tx-prepare/**/*.txt -whitespace
+docs/verification/v2-tx-prepare/**/*.map -whitespace
+docs/verification/v2-tx-prepare/**/*.log -whitespace
 docs/verification/v2-200ksps-board2/attempt-02/*.txt -whitespace
 # V2 firmware overlays are applied only after an exact byte-hash check.
 firmware/v2-stream/overlays/*.patch -text whitespace=-blank-at-eol,-blank-at-eof

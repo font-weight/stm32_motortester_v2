@@ -1,5 +1,14 @@
 # Координация самостоятельного V2
 
+V2-06g: higher_fs_review — firmware/v2-stream/**, tests/v2-stream-firmware/**
+и build/v6g-*, кроме tests/v2-stream-firmware/tx_prepare_model.c и
+build/v6g-model-plan.* (только host_200k). Автор фиксирует API до модели,
+владеет runner/guard proof/ARM; host пишет одну actual-core модель.
+stream200_critic — docs/reviews/v2-06g*.md и
+docs/verification/v2-tx-prepare/critic*.json. Root — канонические документы,
+интеграция и аппаратные действия, которые в программном этапе не разрешены.
+Плата остаётся S4, приложение/Windows-пакет неизменны.
+
 V2-06f2: root единолично владеет COM/SWD, build/v6f-board-01 и каноническими
 документами. После F1 требуется отдельное ревью точного образа/плана от
 stream200_critic: docs/reviews/v2-06f-flash-review.md и последующий

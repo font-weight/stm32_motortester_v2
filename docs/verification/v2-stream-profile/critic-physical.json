@@ -1,0 +1,102 @@
+{
+  "schema": "v2-06f2-independent-diagnostic-review-1",
+  "status": "PASS",
+  "score": 9.57,
+  "scope": "Bounded first-failure diagnostic observation of exact S9 and executed rollback; not sustained100k/200k qualification",
+  "critic": "stream200_critic",
+  "independent": true,
+  "source_commit": "195fbcd2f9921acab1926f7940df9e446c02c392",
+  "base_commit": "49cf581f1e2f53f2c5f848138fbf5e63c0c2e271",
+  "candidate_bin_sha256": "a28db0890aaf971895286ccfc042c883563b73a6938751267f54ff262739cab1",
+  "plan_sha256": "f760bb7536618cc65cb91729e8e391faf5d2703fc76b0868dc31c4e8c3da4993",
+  "physical_evidence_sha256": "7d55c4930eed8df4ac437efa6fe2933faa8ade27c158fa18cbe3f934c170b58c",
+  "personal_checks_sha256": "375732ef52a1bd511198b233d5934317811ad81c3216a673c77cdfb67ff7dd01",
+  "physical_stream": {
+    "status": "FAIL",
+    "raised_rate_acceptance": "REWORK",
+    "score_reassigned": false,
+    "received_samples": 2944,
+    "selected_samples": 1280,
+    "record_seconds": 0.020128500182181597,
+    "reason": "device END reason1 queue full before host STOP",
+    "continuous100k_verified": false,
+    "continuous200k_verified": false,
+    "unknown_produced_tail": true
+  },
+  "diagnostic": {
+    "profile_sha256": "c95849db9c2e1eb9ed65f2a87275cef0d85764686ee1258478a337d8a8d56396",
+    "legacy_sha256": "02b958f0bf929a694015b63432654fcf0d7e6b18906356ebba3553ef88406615",
+    "identity": {
+      "build": "0x56325339",
+      "nonce": "98401a74a29ed72a",
+      "generation": 3,
+      "epoch": 3
+    },
+    "active_cycles": 2244730,
+    "active_ms_nominal": 31.176805555555553,
+    "first_kind": "FIRST_FAULT",
+    "primary_reason": 1,
+    "queue_slots": 8,
+    "committed_before_close": 1920,
+    "next_queued_index": 2944,
+    "ADC_index_snapshot": 3072,
+    "ADC_fault": 0,
+    "TX_zero_count": 14,
+    "TX_zero_ms_nominal": 7.131194444444445,
+    "residual_ms_nominal": 8.583569444444445,
+    "observer_indicator_ratio": 0.016044245855849033,
+    "observer_cost_bounded": false,
+    "causal_counterfactual_proven": false
+  },
+  "rollback": {
+    "whole64KiB_verified": true,
+    "ready50000_noSTART_closed": true,
+    "current_image": "S4",
+    "user_future_preference": "Future rollback only when concretely necessary; received after this already completed mandatory F2 rollback, not retroactive."
+  },
+  "open_findings_in_diagnostic_scope": [],
+  "open_project_issue": "Sustained physical100/200k remains unaccepted; previous A/C/D/E REWORK preserved.",
+  "rubric": [
+    {
+      "id": "C1",
+      "weight": 0.3,
+      "score": 9.6,
+      "basis": "Получен согласованный профиль первой причины до Stop/drain, identity и actual границы сохранены; цель не подменена приёмкой100k."
+    },
+    {
+      "id": "C2",
+      "weight": 0.2,
+      "score": 9.6,
+      "basis": "Ошибка и исходные данные сохранены, late snapshot отделён, закрытие владельца/регистры/полный возврат подтверждены."
+    },
+    {
+      "id": "C3",
+      "weight": 0.25,
+      "score": 9.5,
+      "basis": "Лично повторены offline raw/decoder/register/hash проверки; внешние no-halt/replug факты опираются на исполнителя и пользователя, время номинальное."
+    },
+    {
+      "id": "C4",
+      "weight": 0.15,
+      "score": 9.5,
+      "basis": "Чётко разделены факт queue-full, фазовые интервалы и ещё не доказанная причинная гипотеза; residual и observer ограничения явны."
+    },
+    {
+      "id": "C5",
+      "weight": 0.1,
+      "score": 9.7,
+      "basis": "57 побайтных архивных пар, точные программа/план/readback/сырьё/decoder и команды позволяют повторить offline разбор."
+    }
+  ],
+  "limitations": [
+    "DWT durations assume72MHz; no calibrated oscillator, WCET, high-water stack or ADC-lossless proof.",
+    "External no-SWD/debug-halt/replug facts supplied by root procedure/user; equal dumps alone do not establish them.",
+    "Raw-read observer1.6044% is heuristic and does not bound total observer perturbation; never subtracted.",
+    "TIME/ISR/STEP overlap phases; residual8.583569ms remains unattributed.",
+    "MaxINgap5.449125ms can include START_ACK to first512sample DMAhalf; not proof of host stall.",
+    "TX_ZERO bracket includes core/time work and does not distinguish new encoding versus cached TX; no proven encoding bottleneck.",
+    "Final wire2944 includes post-close drain1024; first-close committed1920 must not be replaced with final count.",
+    "No new image/Flash authorization granted by this report."
+  ],
+  "hardware_access_by_critic": false
+}

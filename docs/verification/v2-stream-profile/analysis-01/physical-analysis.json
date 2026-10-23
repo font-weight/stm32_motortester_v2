@@ -1,0 +1,164 @@
+{
+  "schema": "motortester-v2-s9-first-fault-causal-analysis-1",
+  "status": "ANALYSIS_ONLY_ONE_CORRECTION_PROPOSED",
+  "physical_trial_status": "FAIL",
+  "physical_100ksps_qualified": false,
+  "scope": "Offline analysis of one preserved S9 first-close profile and exact source; no code edit, test, COM, SWD or Flash",
+  "identity": {
+    "nonce_hex": "98401a74a29ed72a",
+    "generation": 3,
+    "epoch": 3,
+    "firmware_build": 1446138681
+  },
+  "profile_integrity": "VALID_FROZEN",
+  "external_procedural_assumptions": {
+    "no_SWD_halt_while_ACTIVE": "reported by root",
+    "less_than_DWT_wrap_seconds": 59.652323555555554,
+    "S4_restored_after_this_experiment": "reported by root, already done; no policy for future mandatory rollbacks inferred",
+    "root_tool_wall_seconds": 0.7414755,
+    "whole_process_time_summary": "about0.75s, certainly less than59.65s"
+  },
+  "observed": {
+    "active_cycles": 2244730,
+    "active_ms_nominal": 31.176805555555553,
+    "first_close": {
+      "kind_raw": 1,
+      "kind": "FIRST_FAULT",
+      "passed_primary_reason": 1,
+      "passed_reason_domain": "protocol_source_reason"
+    },
+    "queue_used": 8,
+    "head": 1920,
+    "next": 2944,
+    "prefix": 1920,
+    "adc_next_half_index": 3072,
+    "ADC_first_fault": 0,
+    "core_first_reason_before_terminate": 0,
+    "core_local_error": 0,
+    "tx_offset": 0,
+    "tx_length": 307,
+    "offered_samples": 2944,
+    "committed_samples_before_close": 1920,
+    "retained_at_close_samples": 1024,
+    "final_wire_samples_after_drain": 2944,
+    "selected_journal_range": [
+      1664,
+      2944
+    ],
+    "TX_zero_space_count": 14,
+    "TX_zero_wall_cycles": 513446,
+    "TX_zero_wall_ms_nominal": 7.131194444444445,
+    "TX_zero_mean_us_nominal": 509.37103174603175,
+    "TX_zero_max_us_nominal": 509.625,
+    "all_completed_TX_wall_cycles": 930300,
+    "all_completed_TX_wall_ms_nominal": 12.920833333333333,
+    "TIME_update_count": 572,
+    "TIME_update_wall_cycles_overlapping": 557758,
+    "USB_ISR_count": 91,
+    "USB_ISR_body_wall_cycles_overlapping": 179189,
+    "foreground_passes": 41,
+    "complete_STEP_count": 40,
+    "grant_allowed": 26,
+    "grant_denied": 15,
+    "IN_transfers_published": 16,
+    "IN_bytes_published": 4651,
+    "IN_packets_completed": 76,
+    "IN_bytes_completed": 4651,
+    "burst_resume": 59,
+    "hold_final": 16,
+    "hold_time": 1,
+    "hold_budget": 0,
+    "hold_other": 0,
+    "hold_lifecycle": 0,
+    "max_IN_completion_gap_us_nominal": 5449.125,
+    "nominal_first_DMA_half_latency_us": 5120,
+    "legacy_later_poll_max_us": 1519,
+    "legacy_later_copy_max_us": 179
+  },
+  "supported_mechanism": [
+    "The sixth DMA half enters with next_index2560 and head1920 (five occupied slots); three DATA128 chunks fill slots6..8 and the fourth, first_index2944, is rejected. This reconstruction uses exact single-foreground queue ownership and the frozen indices, not an inferred ADC fault.",
+    "The consumer committed only fifteen DATA128 blocks before first-close; eight more admitted blocks remained queued. Final wire2944 includes later drain and is not active committed1920.",
+    "Each observed ZERO_SPACE means the full remaining frame did not fit into the384-byte CDC FIFO at actual live_write. It is known zero acceptance, not an error or a500us wait loop.",
+    "The exact outer PRIMASK covers mt_live_device_step, including possible new frame build/encode and subsequent completion CRC/queue publication. Pure frame construction therefore delays already-admitted USB IRQ progress while it executes.",
+    "Final IN completion deliberately holds IRQ and queues an event; BUSY/CLAIMED is cleared by later foreground task dispatch before another transfer can be armed. This is a real dependency, not a measured timing decomposition."
+  ],
+  "not_established": [
+    "No per-call profile distinguishes newly built versus cached TX frames; the almost constant ZERO duration does not prove fourteen fresh encodes.",
+    "The profile does not isolate encoding cost, exact PRIMASK duration or a specific first/steady-state USB gap.",
+    "Maximum IN gap5.449ms may include the natural START_ACK-to-first-DATA wait for the5.12ms DMA half; it does not prove a host or USB scheduling stall.",
+    "Queue-full does not by itself prove insufficient long-run average CPU/USB capacity; the31ms window contains start boundaries and a single burst history.",
+    "Neither measured100k losslessness nor a maximum feasible Fs nor impossibility of200k follows."
+  ],
+  "observer_limits": {
+    "raw_DWT_reads": 2058,
+    "read_pair_min_cycles": 35,
+    "read_pair_max_cycles": 35,
+    "heuristic_cycles_using_pair_min": 36015.0,
+    "heuristic_cycles_using_pair_max": 36015.0,
+    "heuristic_min_to_window_ratio": 0.016044245855849033,
+    "covers_all_hooks": false,
+    "lower_or_upper_bound_claimed": false,
+    "subtracted_from_stats": false,
+    "note": "Only a heuristic indicator for raw-read probes. Max calibration is not WCET; low indicator does not bound actual observer perturbation."
+  },
+  "accounting": {
+    "complete_disjoint_phase_wall_cycles_with_partials": 1626713,
+    "unattributed_residual_cycles": 618017,
+    "TIME_ISR_STEP_GRANT_not_added": true,
+    "no_CPU_percentages_or_WCET": true,
+    "legacy_drain_not_substituted_for_active_profile": true
+  },
+  "one_next_correction": {
+    "name": "Separate pure TX frame preparation from the atomic write/commit transaction",
+    "classification": "bounded design proposal, not approved or implemented",
+    "target": "100k with the existing Fs/DMA/DATA128/queue8/FIFO384/6-packet guards",
+    "change": "Prepare only a missing frame in existing staging storage before the outer IRQ guard; perform the original validation, deadline observations, live_write and post-write/sequence/prefix/queue publication inside the transaction. Preparation must have no callbacks or core-state/queue/sequence commit; report preparation failure to the guarded path.",
+    "reason": "It removes a confirmed avoidable serialization of pure CPU encoding and already-admitted USB progress, without inventing a lower Fs or enlarging loss buffers. It may reduce deferred/zero retry interactions; it does not remove encoder CPU cost or prove sufficient throughput.",
+    "required_contract": [
+      "Sole foreground owns staged bytes and metadata; ISR never mutates queue head, payload or core session. No reentrant core/ADC callback is allowed during preparation. Prepare returns prepared/empty/error with a ticket covering epoch, nonce, generation, sequence, queue head/count; no second staging buffer.",
+      "Revalidate the entire prepared ticket (epoch, nonce, generation, sequence, queue head/count), soft lifecycle and deadline immediately before any write. Stale staging cannot be published and cannot advance sequence/pop/prefix.",
+      "Retain the guard from actual irreversible write through final timing observation and state publication; retain known-zero, partial/unknown acceptance, delimiter and first-cause semantics.",
+      "Never run Stop/quiesce/recovery as a side effect of an unguarded preparation; defer an encoding/preparation error to the original guarded error path.",
+      "Existing ADC service and all lifecycle/OUT/SETUP/time/error guards remain; pure preparation must remain bounded below the DMA obligation. No increased queue/FIFO or hidden losses.",
+      "Existing staging storage is reused; exact SRAM/stack must be rebuilt and reviewed before hardware.",
+      "Existing build_tx mutates tx_* and can call recover; do not merely move that function out of the lock. completed() rolling CRC/recovery stays inside the original post-write transaction."
+    ],
+    "minimal_future_evidence": "Targeted byte-equivalence and stale-epoch/known-zero/partial-unknown/time-boundary cases plus exact guard/source/ARM resource review, followed only if admitted by one bounded physical run. This analysis starts none of them.",
+    "rejected_as_immediate_actions": [
+      "Increase queue",
+      "Blindly reduce Fs again",
+      "Remove TIME checks",
+      "Allow final-transfer app callbacks in ISR",
+      "Attribute all ZERO wall time to a500us timeout"
+    ]
+  },
+  "source_hashes": {
+    "build/v6f-board-01/profile-first.bin": "c95849db9c2e1eb9ed65f2a87275cef0d85764686ee1258478a337d8a8d56396",
+    "build/v6f-board-01/profile-second.bin": "c95849db9c2e1eb9ed65f2a87275cef0d85764686ee1258478a337d8a8d56396",
+    "build/v6f-board-01/diagnostics-first.bin": "02b958f0bf929a694015b63432654fcf0d7e6b18906356ebba3553ef88406615",
+    "build/v6f-board-01/diagnostics-second.bin": "02b958f0bf929a694015b63432654fcf0d7e6b18906356ebba3553ef88406615",
+    "build/v6f-board-01/profile-decoded.json": "86835862916b8553ec9b1c3077c588757b7951621c7674f7156d6c3dcbbf40e0",
+    "build/v6f-board-01/profile-time-analysis.json": "dd0a0d2bf407250d211d070c111a922667399d47795b49e85c2da88d6ee0aef2",
+    "build/v6f-board-01/wire-failure-analysis.json": "3178169e8c9dde77e39179ba211f0de6e2fcb9aa9e807f1e72a10495da5d83a6",
+    "build/v6f-board-01/run/result.json": "1ba95baa91fd9ba35e3c92bcf1f78925974a6de56d8d414d859853585d798ac8",
+    "build/v6f-board-01/readback.bin": "a28db0890aaf971895286ccfc042c883563b73a6938751267f54ff262739cab1",
+    "build/v6f-fw-03/image.dis": "d2d0540b6af28c643c6325ff666714720dedfafa623106317a0276f08425de5a",
+    "build/v6f-fw-03/patched/v2/app/mt_live_runtime.c": "1627406baef4a413b513d8c9c96cc6a9d873099afe2a40f3d94638ce4e5bc35c",
+    "build/v6f-fw-03/patched/v2/protocol/mt_live_device.c": "7e9e1541d08feacdae8fd79daf3a9a15f68cd930f7395e1135d18fd2c2be31d2",
+    "build/v6f-fw-03/patched/v2/protocol/mt_wire.c": "db75cb70135ecde3c4f3aaefb032a55cb59808e7541fe232955d302043382d8d",
+    "build/v6f-fw-03/patched/dcd_stm32_fsdev.c": "73688367e16c425dc65214cf7625040212d8b41120d54e412579d83a2c7ae9ff",
+    "build/v6f-fw-03/patched/usbd.c": "f500d3477ef628c15e8ebb117570da64d34d4b6d638cfa47886422b9a04091fe",
+    "build/v6f-fw-03/source/firmware/platform/mt_irq_guard.c": "70953014ab17475b35131cb3c71741fba6c4e8099b670de1abf64bda844506f3",
+    "build/v6f-fw-03/source/firmware/third_party/usb/vendor/tinyusb/src/tusb.c": "b5f0e8ca00ba6e63914583f7b4711c540a125c261b261216f89e5136fda2ac6f",
+    "build/v6f-fw-03/source/firmware/third_party/usb/vendor/tinyusb/src/class/cdc/cdc_device.c": "2ca9f63f5812e6fd58405e52b1bb282aa0752d1110fa577aca6442c1f67f4840"
+  },
+  "operations": {
+    "new_hardware_access": false,
+    "production_edits": false,
+    "tests_run": false,
+    "only_written": [
+      "build/v6f-analysis/physical-analysis.md",
+      "build/v6f-analysis/physical-analysis.json"
+    ]
+  }
+}
