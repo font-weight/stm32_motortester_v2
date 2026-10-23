@@ -1,0 +1,96 @@
+{
+  "schema": "v2-06f1-critic-source-checkpoint-1",
+  "status": "BLOCKED_EVIDENCE",
+  "score": null,
+  "scope": "Early source review; not accepted implementation/image/flash",
+  "base_commit": "49cf581",
+  "reviewer": "stream200_critic",
+  "independent": true,
+  "design_copies_verified": [
+    {
+      "path": "docs/verification/v2-stream-profile/design-01/profiling-plan.md",
+      "sha256": "5ce59081c360b6cb110883e568a64e5c3471b9a6bd45d3690bc920d815bb8425",
+      "bytes": 26246
+    },
+    {
+      "path": "docs/verification/v2-stream-profile/design-01/profiling-plan.json",
+      "sha256": "b2e8037b0fba5af8d95d5a0a4b7384c89b88e1aba96ef27dbf0729e6d86e59a3",
+      "bytes": 6150
+    },
+    {
+      "path": "docs/verification/v2-stream-profile/design-01/critic-plan.md",
+      "sha256": "2b5bd021e676d1eb64a9eae62b1ac3711cd881dd76eb8343ab142700ee9d1023",
+      "bytes": 7781
+    },
+    {
+      "path": "docs/verification/v2-stream-profile/design-01/critic-plan.json",
+      "sha256": "e491178501fd38c4b7f1e95541ccb71696a83f3a1bf5187d1e19175d8783c9c1",
+      "bytes": 10435
+    },
+    {
+      "path": "docs/verification/v2-stream-profile/design-01/mt_stream_profile.h",
+      "sha256": "20d09d819acad32ff8b3e52b8757d98802ce9f620705e4cfe4065a2312aaa856",
+      "bytes": 6094
+    },
+    {
+      "path": "docs/verification/v2-stream-profile/design-01/ABI.md",
+      "sha256": "d58f3bfce989a7b98124591d369b6c2eada0884e21826e85ecb49c0b84ac185a",
+      "bytes": 5431
+    }
+  ],
+  "module_checkpoint_read": {
+    "path": "firmware/v2-stream/profile/mt_stream_profile.c",
+    "sha256": "1c20886292c99b10c7014953860ac7303a104f24f69caa57e74180ef617d0daf"
+  },
+  "findings": [
+    {
+      "id": "F1-01",
+      "priority": "P2",
+      "issue": "NO_START from ARMED used unstamped pre-active phase/step and could produce end-minus-zero active partials.",
+      "author_followup": "Fixed in later draft; final native evidence pending."
+    },
+    {
+      "id": "F1-02",
+      "priority": "P2",
+      "issue": "Impossible intermediate IN queued lengths were counted as64 bytes; metadata invalidation incomplete.",
+      "author_followup": "Fixed in later draft; final native evidence pending."
+    },
+    {
+      "id": "F1-03",
+      "priority": "P1",
+      "issue": "Driver fail invokes quiesce before adapter/core callback; first latch must precede this driver quiesce.",
+      "author_followup": "ADC-typed latch added in draft overlay; final order test pending."
+    },
+    {
+      "id": "F1-04",
+      "priority": "P1",
+      "issue": "Core source fault calls now/expire before terminate; a later clock/recovery could replace the observed first source cause in new profile.",
+      "author_followup": "Requested latch before now, preserving existing operations; final delta pending."
+    },
+    {
+      "id": "F1-05",
+      "priority": "P2",
+      "issue": "NO_START identity remains zero if generation/nonce/epoch are only set by successful begin.",
+      "author_followup": "Requested ARMED attempt identity without ACTIVE; final delta/native fixture pending."
+    },
+    {
+      "id": "F1-06",
+      "priority": "P2",
+      "issue": "Decoder typed reasons and snapshot enums should reject unknown values rather than label them valid.",
+      "author_followup": "Requested one extension of existing synthetic checks; final decoder pending."
+    }
+  ],
+  "necessary_final_evidence": [
+    "Exact frozen source/ARM binary/ELF and build receipts",
+    "Added static<=512,64KiB/20KiB and8192stack/callgraph bound",
+    "Targeted profile/order/native and unchanged guard comparison",
+    "One actual native C512-byte profile decoded independently",
+    "Final decoder pins and checks",
+    "Exact final source/evidence manifest"
+  ],
+  "unperformed": [
+    "No COM/SWD/Flash",
+    "No new test suite run by critic",
+    "No acceptance of100/200k physical throughput"
+  ]
+}

@@ -1,0 +1,92 @@
+{
+  "schema": "v2-06f2-independent-flash-admission-1",
+  "status": "PASS",
+  "score": 9.605,
+  "scope": "One bounded diagnostic S9 trial; requested Record1s, not hard1s total active time; mandatory S4 rollback",
+  "critic": "stream200_critic",
+  "independent": true,
+  "source_commit": "195fbcd2f9921acab1926f7940df9e446c02c392",
+  "base_commit": "49cf581f1e2f53f2c5f848138fbf5e63c0c2e271",
+  "source_review_sha256": "02cfe4a831e600124d5a9aa04c8f129cf3e975156ea019443ca295d54fe65eb3",
+  "source_result_sha256": "54dce3cc9ba67c5ccf52bf408d4237fe6df791486ac93bfc84125830cafead7b",
+  "plan_sha256": "f760bb7536618cc65cb91729e8e391faf5d2703fc76b0868dc31c4e8c3da4993",
+  "preflight_evidence_sha256": "30d822926e3fb2a11fbab6baa4a68fb4bab9cdf343e9fbf7a46cfbc534a37caa",
+  "candidate_sha256": "a28db0890aaf971895286ccfc042c883563b73a6938751267f54ff262739cab1",
+  "elf_sha256": "e27789b1bf312beab58d624d51a1fcd6182cbde189d24112ff894dac39c23ee9",
+  "candidate_bytes": 38924,
+  "profile_address": "0x20002C4C",
+  "profile_bytes": 512,
+  "legacy_address": "0x20002BC4",
+  "legacy_bytes": 136,
+  "personally_verified": {
+    "preflight_pairs": 11,
+    "preflight_bytes": 93808,
+    "backup_full_equal_previous_S4": true,
+    "backup_prefix_equal_exact_S4": true,
+    "backup_sha256": "95d3a11f8db843e362b2c59ed6fbf380dd630e067fa23f6ae5a9c7d2b11dff1e",
+    "cli_hash_equal": true,
+    "ready_original_helper_hash_equal": true,
+    "decoder_delta": "Only S8 to S9 docstring/build/BIN/ELF constants; profile decoder final ABI pins verified",
+    "register_ranges_without_ADC_DR": true,
+    "single_probe_old_SN_placeholder_resolved_by_connect": true,
+    "source_checks": "critic-source-checks.json"
+  },
+  "criteria": [
+    "Exact BIN program verify plus independent byte-equal readback before Reset/Run",
+    "Expected COM6, build and CAPS checked before the single START",
+    "Serial owner closed before all SWD reads",
+    "Two identical frozen512 records; exact build/nonce/generation/epoch and pinned ABI",
+    "Old136 records paired; DWT validity and first-cause metadata checked",
+    "Source fault remains physical trial failure; diagnostic integrity is independent",
+    "Observer estimate heuristic only; saturation or invalid metadata blocks attribution",
+    "250ms target may overshoot; use actual boundaries and exclude Stop/drain",
+    "TIME/USB ISR/STEP overlap; never add as independent CPU shares",
+    "Restore entire fresh64KiB S4, byte verify, Reset/Run, user replug and READY without START"
+  ],
+  "extra_conditions": [
+    "Only root uses COM/SWD; no SWD until serial owner closed, including failure cleanup.",
+    "Before START verify38924 independent readback equals exactBIN, Reset/Run and explicit user replug confirmation.",
+    "Maximum one START; mismatched CAPS/build abort before START, no hidden retry.",
+    "Record target1s includes bounded Preview/Record waits separately; actual timings retained.",
+    "For DWT attribution confirm no debug halt/full-wrap externally; two equal dumps alone insufficient.",
+    "After any outcome restore whole fresh64KiB S4, independent readback, Reset/Run, user replug, READY50k without START."
+  ],
+  "rubric": [
+    {
+      "id": "C1",
+      "weight": 0.3,
+      "score": 9.7,
+      "basis": "Exact admitted software/image and bounded diagnostic intent."
+    },
+    {
+      "id": "C2",
+      "weight": 0.2,
+      "score": 9.6,
+      "basis": "Fresh full64KiB backup, verify/readback, singleSTART and mandatory rollback."
+    },
+    {
+      "id": "C3",
+      "weight": 0.25,
+      "score": 9.5,
+      "basis": "Personal exact checks; wiring user-confirmed not independently inspected."
+    },
+    {
+      "id": "C4",
+      "weight": 0.15,
+      "score": 9.6,
+      "basis": "Owner separation, firstcause/overlap/observer caveats, no new analogue input."
+    },
+    {
+      "id": "C5",
+      "weight": 0.1,
+      "score": 9.6,
+      "basis": "Exact argv/pins/archives and original pinned S4 helper."
+    }
+  ],
+  "open_findings": [],
+  "physical_result": "BLOCKED_EVIDENCE",
+  "physical_score": null,
+  "hardware_actions_by_critic": false,
+  "physical_100k_accepted": false,
+  "physical_200k_accepted": false
+}

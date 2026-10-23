@@ -1,0 +1,103 @@
+{
+  "schema": "v2-06f1-independent-source-review-1",
+  "status": "PASS",
+  "score": 9.595,
+  "scope": "S9 diagnostic software/source/ARM image only; not flash admission or physical100/200k qualification",
+  "critic": "stream200_critic",
+  "independent_of_implementation": true,
+  "base_commit": "49cf581f1e2f53f2c5f848138fbf5e63c0c2e271",
+  "source_commit": "195fbcd2f9921acab1926f7940df9e446c02c392",
+  "freeze_sha256": "ef15775d2de9df33cb7670c0ce068a5314af778dae0e9065fb147462ce05292a",
+  "software_evidence_sha256": "f5947ba4dd370a4e8028abbfccbf5ded8a5666db2994ab816f65f617b31b711c",
+  "personal_checks_sha256": "e56888c34fb345552a4b93b7fb247b2ea064082e1dadf86c5e854e97198e77c9",
+  "candidate_bin_sha256": "a28db0890aaf971895286ccfc042c883563b73a6938751267f54ff262739cab1",
+  "candidate_elf_sha256": "e27789b1bf312beab58d624d51a1fcd6182cbde189d24112ff894dac39c23ee9",
+  "resolved_findings": [
+    {
+      "id": "F1-01",
+      "priority": "P2",
+      "subject": "NO_START без ложного active elapsed/partial",
+      "resolution": "Очистка ARMED tickets до CLOSING; actual C NO_START и decoder unavailable.",
+      "status": "CLOSED"
+    },
+    {
+      "id": "F1-02",
+      "priority": "P2",
+      "subject": "Невозможная промежуточная IN geometry",
+      "resolution": "Проверка кратности64/total<=384; native invalid packet и короткий final/ZLP.",
+      "status": "CLOSED"
+    },
+    {
+      "id": "F1-03",
+      "priority": "P1",
+      "subject": "Первая ADC причина до driver quiesce",
+      "resolution": "Typed ADC close после invalidate_history и до quiesce; лично прочитан hook, exact source-order witness.",
+      "status": "CLOSED"
+    },
+    {
+      "id": "F1-04",
+      "priority": "P1",
+      "subject": "Source cause до последующего now/recovery",
+      "resolution": "FAULT close после исходного cause и до now; исходные операции сохранены normalized comparison.",
+      "status": "CLOSED"
+    },
+    {
+      "id": "F1-05",
+      "priority": "P2",
+      "subject": "Identity неудачного start",
+      "resolution": "ARMED attempt сохраняет generation/nonce/epoch без ACTIVE; actual C fixture.",
+      "status": "CLOSED"
+    },
+    {
+      "id": "F1-06",
+      "priority": "P2",
+      "subject": "Decoder отвергает неизвестные reason/state",
+      "resolution": "Typed domain bounds и существующая отрицательная synthetic группа; отдельно NO_START и legacy DWT gating.",
+      "status": "CLOSED"
+    }
+  ],
+  "open_findings": [],
+  "rubric": [
+    {
+      "id": "C1",
+      "weight": 0.3,
+      "score": 9.6,
+      "basis": "512B ABI, отдельные владельцы, первичное закрытие и неизменённые рабочие операции подтверждены точными исходниками/моделью."
+    },
+    {
+      "id": "C2",
+      "weight": 0.2,
+      "score": 9.6,
+      "basis": "Поздние записи, частичные интервалы, wrap/cap, saturation и TX/IN ошибки проверены; stack остаётся условной границей, не измерением."
+    },
+    {
+      "id": "C3",
+      "weight": 0.25,
+      "score": 9.6,
+      "basis": "Exact ARM/ELF/static, адресная actual C модель, независимый decoder и лично повторённая сверка; физическое время вне области."
+    },
+    {
+      "id": "C4",
+      "weight": 0.15,
+      "score": 9.5,
+      "basis": "ABI и hooks отделены; сложность учёта времени требует сохранять описанные owner/partial ограничения."
+    },
+    {
+      "id": "C5",
+      "weight": 0.1,
+      "score": 9.7,
+      "basis": "Точные source/artifact pins, команды, byte-equal архив и сохранённые неудачные промежуточные сборки."
+    }
+  ],
+  "limits": [
+    "No COM/SWD/Flash by critic; no physical timing/100k qualification.",
+    "Exact C-token equivalence preserves operations, not timing; actual C native model tests profiler not full MCU IRQ/ADC.",
+    "5996 aligned6000 static stack bound is conditional; reserve8192 and436 bytes static slack, no measured stack/WCET.",
+    "Calibration and boundary policy are heuristic, no observer subtraction or guaranteed low perturbation.",
+    "TIME/ISR/STEP overlap; counters publication/completion not conservation invariant.",
+    "Decoder draft label historical; exact final ABI hashes bound by this report, not an automatic ELF-address assertion.",
+    "A/C/D/E physical failures remain REWORK; neither firmware nor application achieved accepted elevated rate."
+  ],
+  "hardware_verified": false,
+  "flash_approved": false
+}

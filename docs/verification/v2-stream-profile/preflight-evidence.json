@@ -1,0 +1,100 @@
+{
+  "schema": "v2-06f2-preflight-evidence-1",
+  "status": "ARCHIVED_BYTE_VERIFIED",
+  "source_commit": "195fbcd2f9921acab1926f7940df9e446c02c392",
+  "files": [
+    {
+      "source": "build/v6f-board-01/prepare_plan.py",
+      "copy": "docs/verification/v2-stream-profile/preflight-01/prepare_plan.py",
+      "bytes": 4751,
+      "sha256": "80aa6c5d0992745aa778ccd9f968b94b430f1af36c6cc361bdcf19e2ff3ecc0a",
+      "copy_sha256": "80aa6c5d0992745aa778ccd9f968b94b430f1af36c6cc361bdcf19e2ff3ecc0a",
+      "byte_equal": true
+    },
+    {
+      "source": "build/v6f-board-01/plan.json",
+      "copy": "docs/verification/v2-stream-profile/preflight-01/plan.json",
+      "bytes": 3966,
+      "sha256": "f760bb7536618cc65cb91729e8e391faf5d2703fc76b0868dc31c4e8c3da4993",
+      "copy_sha256": "f760bb7536618cc65cb91729e8e391faf5d2703fc76b0868dc31c4e8c3da4993",
+      "byte_equal": true
+    },
+    {
+      "source": "build/v6f-board-01/preflight.json",
+      "copy": "docs/verification/v2-stream-profile/preflight-01/preflight.json",
+      "bytes": 473,
+      "sha256": "4d5ce12dd7a85bee453b4d735e1977173daec37d0307247344df3ce0a59ac38c",
+      "copy_sha256": "4d5ce12dd7a85bee453b4d735e1977173daec37d0307247344df3ce0a59ac38c",
+      "byte_equal": true
+    },
+    {
+      "source": "build/v6f-board-01/decoder-inputs.json",
+      "copy": "docs/verification/v2-stream-profile/preflight-01/decoder-inputs.json",
+      "bytes": 453,
+      "sha256": "209df6d8722cccf7f43c90e8393c7f5cfd8d63e55efaf4b1f59e0e2c8256ca7d",
+      "copy_sha256": "209df6d8722cccf7f43c90e8393c7f5cfd8d63e55efaf4b1f59e0e2c8256ca7d",
+      "byte_equal": true
+    },
+    {
+      "source": "build/v6f-board-01/decode_diagnostics.py",
+      "copy": "docs/verification/v2-stream-profile/preflight-01/decode_diagnostics.py",
+      "bytes": 11824,
+      "sha256": "0cf73b4a1e656c86faaada0b084945144d21da7aff5fba98ad910b4fce5f8d8c",
+      "copy_sha256": "0cf73b4a1e656c86faaada0b084945144d21da7aff5fba98ad910b4fce5f8d8c",
+      "byte_equal": true
+    },
+    {
+      "source": "build/v6f-board-01/before-flash-64k.bin",
+      "copy": "docs/verification/v2-stream-profile/preflight-01/before-flash-64k.bin",
+      "bytes": 65536,
+      "sha256": "95d3a11f8db843e362b2c59ed6fbf380dd630e067fa23f6ae5a9c7d2b11dff1e",
+      "copy_sha256": "95d3a11f8db843e362b2c59ed6fbf380dd630e067fa23f6ae5a9c7d2b11dff1e",
+      "byte_equal": true
+    },
+    {
+      "source": "build/v6f-board-01/before-flash-read.txt",
+      "copy": "docs/verification/v2-stream-profile/preflight-01/before-flash-read.txt",
+      "bytes": 872,
+      "sha256": "a791d180003b26c1718a361c37f9303d839cf7f740769e829b4163b5211c2c13",
+      "copy_sha256": "a791d180003b26c1718a361c37f9303d839cf7f740769e829b4163b5211c2c13",
+      "byte_equal": true
+    },
+    {
+      "source": "build/v6f-board-01/ports-before.json",
+      "copy": "docs/verification/v2-stream-profile/preflight-01/ports-before.json",
+      "bytes": 135,
+      "sha256": "c8614e25240676a110cd0c9f9761ba2d2fc559f249875431289a7b08eedef67d",
+      "copy_sha256": "c8614e25240676a110cd0c9f9761ba2d2fc559f249875431289a7b08eedef67d",
+      "byte_equal": true
+    },
+    {
+      "source": "build/v6f-board-01/processes-before.json",
+      "copy": "docs/verification/v2-stream-profile/preflight-01/processes-before.json",
+      "bytes": 4,
+      "sha256": "a5338d955b09046ec0b16f3a9625b7955c763aae07dc722e474e6078745f932f",
+      "copy_sha256": "a5338d955b09046ec0b16f3a9625b7955c763aae07dc722e474e6078745f932f",
+      "byte_equal": true
+    },
+    {
+      "source": "build/v6f-board-01/probe-list.txt",
+      "copy": "docs/verification/v2-stream-profile/preflight-01/probe-list.txt",
+      "bytes": 239,
+      "sha256": "b58c8ddae6534dd35b9a1498631f1ee20ba54017c8f3ccfa2b156244c92e72a3",
+      "copy_sha256": "b58c8ddae6534dd35b9a1498631f1ee20ba54017c8f3ccfa2b156244c92e72a3",
+      "byte_equal": true
+    },
+    {
+      "source": "build/v5-board-stream-04/check_ready.py",
+      "copy": "docs/verification/v2-stream-profile/preflight-01/rollback-check-ready-reference.py",
+      "bytes": 5555,
+      "sha256": "7034811bb771781927228b5115e7446ef3ec9b059963cbc7963a07fbe48f7c34",
+      "copy_sha256": "7034811bb771781927228b5115e7446ef3ec9b059963cbc7963a07fbe48f7c34",
+      "byte_equal": true
+    }
+  ],
+  "file_count": 11,
+  "total_bytes": 93808,
+  "flash_performed": false,
+  "physical_trial_performed": false,
+  "rollback_helper_note": "Execute original path in plan. Archived copy is a reference only; its parent-derived repository root differs."
+}
