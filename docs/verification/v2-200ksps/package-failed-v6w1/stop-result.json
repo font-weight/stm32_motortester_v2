@@ -1,0 +1,244 @@
+{
+  "status": "FAIL",
+  "source": "injected synthetic wire 0.2",
+  "physical_stream_verified": false,
+  "real_serial_open_calls": 0,
+  "qt_platform": "windows",
+  "callback_errors": [],
+  "ready_close": {
+    "commands": [
+      1,
+      2
+    ],
+    "phase": "closed",
+    "endpoint_first_fault": null,
+    "emitted_errors": [],
+    "handle_closed": true,
+    "lease_released": true,
+    "samples": 0
+  },
+  "normal_stop": {
+    "phase": "stopped unknown tail",
+    "live_text": "Остановлено по команде · полнота хвоста неизвестна · Получено: 57 520 отсчётов · Принято в запись: 28 464 · Подтверждено в файле: 28 464",
+    "fresh_open_quality": "Остановлено по команде · полнота хвоста неизвестна. Потери по записи: неизвестны.",
+    "end": {
+      "generation": 3,
+      "config_id": 1,
+      "prefix_end": 57520,
+      "produced_end": null,
+      "last_data_sequence": 453,
+      "prefix_crc32": 711493584,
+      "reason": 0,
+      "flags": 3,
+      "stop_request_id": 4
+    },
+    "ack": {
+      "generation": 3,
+      "prefix_end": 57520,
+      "terminal_sequence": 454,
+      "flags": 3
+    },
+    "end_sequence": 454,
+    "ack_request_id": 4,
+    "terminal": {
+      "identity": {
+        "session_id": "wire-0.2:fb556362485c962b",
+        "generation": 3,
+        "config_id": 1,
+        "nominal_fs_hz": 50000,
+        "origin": "synthetic",
+        "protocol_revision": "0.2-draft-081721",
+        "firmware_version": "build:5632444d",
+        "application_version": "v2-serial-unknown-accounting:injected-test"
+      },
+      "end_sample_index": 57520,
+      "reason": "stopped",
+      "terminal_observed": true,
+      "device_generated_end_sample_index": null,
+      "device_transmitted_end_sample_index": 57520,
+      "loss_samples": null,
+      "boundary_evidence": "validated_wire_full_prefix_crc32",
+      "failure": null,
+      "stop_requested": true,
+      "stop_request_id": 4
+    },
+    "clean_stop_reported": false,
+    "range": [
+      29056,
+      57520
+    ],
+    "raw_samples_compared": 28464,
+    "raw_sha256": "4b30621682a03fa50cc434285c598e638b112bc1e3630a05727871fb3a93dd60",
+    "journal_sha256_unchanged": "9b9cd8bf99515b839aefa65f55565169fe1732287b88ece7fe6f9484a1313c18",
+    "emitted_errors": [],
+    "main_timer_active": true,
+    "csv": {
+      "rows": 28464,
+      "csv_sha256": "6bc46e4cb10d734765d0457b403100af7d6b66acccafd43e101fecf1585de93d",
+      "raw_sha256": "4b30621682a03fa50cc434285c598e638b112bc1e3630a05727871fb3a93dd60",
+      "export_complete": true,
+      "terminal_equal": true,
+      "clean_stop_reported": false,
+      "produced_end": null,
+      "loss_samples": null,
+      "origin": "synthetic",
+      "input_profile_state": "unconfigured"
+    },
+    "screenshots": [
+      {
+        "path": "stop-open-details.png",
+        "width": 1220,
+        "height": 870,
+        "logical_width": 1220,
+        "logical_height": 870
+      },
+      {
+        "path": "stop-open-compact.png",
+        "width": 850,
+        "height": 650,
+        "logical_width": 850,
+        "logical_height": 650
+      },
+      {
+        "path": "stop-open-compact-bottom.png",
+        "width": 850,
+        "height": 650,
+        "logical_width": 850,
+        "logical_height": 650
+      }
+    ],
+    "compact_bottom_geometry": {
+      "scope": "Widget rectangles only; visual/glyph assessment requires PNG review.",
+      "scroll_value": 453,
+      "scroll_maximum": 453,
+      "viewport_size": [
+        816,
+        278
+      ],
+      "content_size": [
+        816,
+        731
+      ],
+      "plot_content_rect": [
+        18,
+        176,
+        780,
+        300
+      ],
+      "details": {
+        "source_label": {
+          "content_rect": [
+            18,
+            57,
+            780,
+            68
+          ],
+          "viewport_rect": [
+            18,
+            -396,
+            780,
+            68
+          ],
+          "intersects_viewport": false,
+          "contained_in_viewport": false,
+          "plot_intersection": false
+        },
+        "range_label": {
+          "content_rect": [
+            18,
+            482,
+            780,
+            34
+          ],
+          "viewport_rect": [
+            18,
+            29,
+            780,
+            34
+          ],
+          "intersects_viewport": true,
+          "contained_in_viewport": true,
+          "plot_intersection": false
+        },
+        "storage_label": {
+          "content_rect": [
+            18,
+            522,
+            780,
+            105
+          ],
+          "viewport_rect": [
+            18,
+            69,
+            780,
+            105
+          ],
+          "intersects_viewport": true,
+          "contained_in_viewport": true,
+          "plot_intersection": false
+        },
+        "index_label": {
+          "content_rect": [
+            18,
+            633,
+            780,
+            34
+          ],
+          "viewport_rect": [
+            18,
+            180,
+            780,
+            34
+          ],
+          "intersects_viewport": true,
+          "contained_in_viewport": true,
+          "plot_intersection": false
+        },
+        "event_label": {
+          "content_rect": [
+            18,
+            673,
+            780,
+            17
+          ],
+          "viewport_rect": [
+            18,
+            220,
+            780,
+            17
+          ],
+          "intersects_viewport": true,
+          "contained_in_viewport": true,
+          "plot_intersection": false
+        },
+        "status_label": {
+          "content_rect": [
+            18,
+            696,
+            780,
+            17
+          ],
+          "viewport_rect": [
+            18,
+            243,
+            780,
+            17
+          ],
+          "intersects_viewport": true,
+          "contained_in_viewport": true,
+          "plot_intersection": false
+        }
+      }
+    }
+  },
+  "error": "Traceback (most recent call last):\n  File \"motortester\\v2\\stream_stop_smoke.py\", line 339, in exercise\nAssertionError\n",
+  "files": {
+    "stop-open-compact-bottom.png": "f3beed56ede1252671c08f5c430f098fbe26f0f43a78e140876ab1b31b0416a2",
+    "stop-open-compact.png": "37ed47333b214ce2fd817436e576fa79d488a5da933465e427591d19f636d400",
+    "stop-open-details.png": "8787ce41e084feb091dae290ea11d44a4447fce7ce19d132c7e8ca478d3f1141",
+    "stop-unknown-tail.csv": "6bc46e4cb10d734765d0457b403100af7d6b66acccafd43e101fecf1585de93d",
+    "stop-unknown-tail.csv.json": "009b494b87b3fbeca0060c4b4baafae3b9f06aebcdfc35eade6fbf3c7fde2bf6",
+    "stop-unknown-tail.mtstream": "9b9cd8bf99515b839aefa65f55565169fe1732287b88ece7fe6f9484a1313c18",
+    "stop-unknown-tail.mtstream.v2.json": "6c2c6a713b6524c237e2b3a613c84608ac39f3cb1ba6946a867ae38f971d932a"
+  }
+}

@@ -324,9 +324,17 @@ def exercise(app, output, flush=None):
             dialog.stop_button.click()
 
             def unconfirmed_fault():
-                assert dialog.bridge.state.phase != "stopped unknown tail"
+                state = dialog.bridge.state
+                assert state.phase != "stopped unknown tail"
                 assert STOP_TEXT not in dialog.state_label.text()
-                return dialog.bridge.state.phase == "fault"
+                if state.phase != "fault":
+                    return False
+                assert state.bridge.endpoint_first_fault is not None
+                assert state.bridge.endpoint_first_fault.code == "stop_timeout"
+                # The receiver publishes the fault independently of the Qt
+                # bridge's 20 ms poll. Wait for the same fault to reach both
+                # visible UI and error signal, within the existing deadline.
+                return bool(dialog.error_label.text() and emitted_errors)
 
             wait(unconfirmed_fault, "missing ACK fault", timeout=12)
             state = dialog.bridge.state
@@ -335,6 +343,7 @@ def exercise(app, output, flush=None):
             assert controls[0][1].reason == 0 and controls[0][1].flags == 3
             assert negative.peer.ack_attempts >= 1
             assert state.bridge.endpoint_first_fault is not None
+            assert state.bridge.endpoint_first_fault.code == "stop_timeout"
             assert STOP_TEXT not in dialog.state_label.text()
             assert dialog.error_label.text() and emitted_errors
             report["unconfirmed_stop"] = {

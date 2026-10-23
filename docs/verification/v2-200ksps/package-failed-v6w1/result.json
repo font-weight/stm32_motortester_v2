@@ -1,0 +1,182 @@
+{
+  "status": "FAIL",
+  "platform": "win32",
+  "windows": "Windows-10-10.0.19045-SP0",
+  "python": "3.14.7 (tags/v3.14.7:823f032, Aug  5 2026, 10:51:32) [MSC v.1944 64 bit (AMD64)]",
+  "frozen": true,
+  "executable": "C:\\Users\\Alexandr\\Desktop\\New folder\\универ\\мотортестер 2\\build\\v6w1\\Проверка переноса\\MotortesterV2\\MotortesterV2.exe",
+  "cwd": "C:\\Users\\Alexandr\\Desktop\\New folder\\универ\\мотортестер 2\\build\\v6w1\\Другая рабочая папка",
+  "checks": [
+    "packaged Windows pyserial; device panel with mocked enumeration; no COM open",
+    "native GUI; both DEMO profiles; V/mV keeps raw and physical values",
+    "single capture saved through GUI; pause-independent recording with a real data gap",
+    "GUI save/open keeps raw and input snapshot; CSV/JSON keeps gap and checksum",
+    "synthetic wire 0.1 window -> V2 unknown scale -> exact save/reopen",
+    "actual exit dialog: Esc retains partial; explicit discard closes without JSON"
+  ],
+  "callback_errors": [],
+  "qt_platform": "windows",
+  "qt": "6.12.0",
+  "numpy": "2.5.3",
+  "sample_count": 7500,
+  "session_id": "3ecf179c-4e78-4f80-983e-28d7ab0e138c",
+  "device_verification": {
+    "status": "PASS",
+    "serial_version": "3.5",
+    "serial_backend": "serial.serialwin32",
+    "enumeration_mocked": true,
+    "panel_created": true,
+    "serial_open_calls": 0,
+    "worker_running": false,
+    "wire_source": "demo",
+    "sample_count": 2048,
+    "session_id": "00000000-0000-0000-5349-4d0000000001",
+    "voltage_state": "unconfigured",
+    "time_basis": "nominal_unverified",
+    "physical_device_verified": false
+  },
+  "close_verification": {
+    "status": "PASS",
+    "source": "synthetic injected partial; no serial worker",
+    "fragment_samples": 250,
+    "default_and_escape": "cancel",
+    "decisions": [
+      "cancel",
+      "discard"
+    ],
+    "closed_without_json": true,
+    "saved_record_unchanged": true,
+    "serial_open_calls": 0
+  },
+  "error": "Traceback (most recent call last):\n  File \"package_smoke.py\", line 246, in run\n  File \"motortester\\v2\\stream_smoke.py\", line 164, in exercise\n  File \"motortester\\v2\\stream_stop_smoke.py\", line 339, in exercise\nAssertionError\n",
+  "files": {
+    "device-panel.png": {
+      "bytes": 27556,
+      "sha256": "4948d8b9c9a064a61bb9cc31e09615358caf29e5a360bdec82f04d110e52af12"
+    },
+    "device-window.mtv2": {
+      "bytes": 5678,
+      "sha256": "49b9405a78c861aa047cf72454f61e8fe424cd0f622494ada038e5ba5ae692cc"
+    },
+    "export.csv": {
+      "bytes": 351704,
+      "sha256": "15412527f9638f3fcb668f33502c00092c66d9e4606da1a460a980004c879674"
+    },
+    "export.csv.json": {
+      "bytes": 1996,
+      "sha256": "08cda62fabf09d8c9839d91544a7e541277e5905cbc0e8537b035b3f4f89ccab"
+    },
+    "ignition.png": {
+      "bytes": 105522,
+      "sha256": "1f04a709e14ece3d431a9c736998802779704bd7a83f36c42ab94aa56e3a79c3"
+    },
+    "incomplete-close.png": {
+      "bytes": 11232,
+      "sha256": "4ba859186b8f53becbec9f739fa5043b2926f2e544653974a43778a8d112bbd9"
+    },
+    "sample.mtv2": {
+      "bytes": 16757,
+      "sha256": "f749a3d661b5d9eb0d295349e2fb3fef70c7b4079db7bbb3502c5c9301251173"
+    },
+    "scope.png": {
+      "bytes": 124380,
+      "sha256": "22d13bcf5fc84c62bf9f069bce160c8c5eb67a40bca3e8ca732db91af3efcd7f"
+    },
+    "single.mtv2": {
+      "bytes": 2029,
+      "sha256": "70170f98b34cabacd26ee32a843eeefb33253d5b70f89c64119d4e03c2e8300c"
+    },
+    "stop-open-compact-bottom.png": {
+      "bytes": 63210,
+      "sha256": "f3beed56ede1252671c08f5c430f098fbe26f0f43a78e140876ab1b31b0416a2"
+    },
+    "stop-open-compact.png": {
+      "bytes": 53397,
+      "sha256": "37ed47333b214ce2fd817436e576fa79d488a5da933465e427591d19f636d400"
+    },
+    "stop-open-details.png": {
+      "bytes": 74772,
+      "sha256": "8787ce41e084feb091dae290ea11d44a4447fce7ce19d132c7e8ca478d3f1141"
+    },
+    "stop-result.json": {
+      "bytes": 7122,
+      "sha256": "560c63d3e9954dd6bbe31471f7fef5644ea2b1045807efb37949883b9c7a434d"
+    },
+    "stop-unknown-tail.csv": {
+      "bytes": 560299,
+      "sha256": "6bc46e4cb10d734765d0457b403100af7d6b66acccafd43e101fecf1585de93d"
+    },
+    "stop-unknown-tail.csv.json": {
+      "bytes": 2336,
+      "sha256": "009b494b87b3fbeca0060c4b4baafae3b9f06aebcdfc35eade6fbf3c7fde2bf6"
+    },
+    "stop-unknown-tail.mtstream": {
+      "bytes": 58227,
+      "sha256": "9b9cd8bf99515b839aefa65f55565169fe1732287b88ece7fe6f9484a1313c18"
+    },
+    "stop-unknown-tail.mtstream.v2.json": {
+      "bytes": 1918,
+      "sha256": "6c2c6a713b6524c237e2b3a613c84608ac39f3cb1ba6946a867ae38f971d932a"
+    },
+    "stream-existing-path-result.json": {
+      "bytes": 1717,
+      "sha256": "d953de20cf407fdec0e0bb245e4861a8b759ff704d0513ab6bdb20f901e3dec4"
+    },
+    "stream-existing-path.png": {
+      "bytes": 50965,
+      "sha256": "5f372cee2d9b0228a42a373da8a0720425c44c53352cabbeab165580cbe231b9"
+    },
+    "stream-export.csv": {
+      "bytes": 14239898,
+      "sha256": "bae559fad61f33df9b35a3e94fe7f2898bd8dc25a55319f690877adc47be358d"
+    },
+    "stream-export.csv.json": {
+      "bytes": 2304,
+      "sha256": "8578b71208860b415e9dab82c96ff4d0f7411ba484418a22c473c5a8c78c7c5f"
+    },
+    "stream-ignition.mtstream": {
+      "bytes": 96597,
+      "sha256": "81e6190c4c258718f66f22b1939aa01d7c23f37c967a0b82780b7ef9af14c57a"
+    },
+    "stream-ignition.mtstream.v2.json": {
+      "bytes": 1452,
+      "sha256": "4ddb63dfc0dacd655a07ff13e68f7abc3995a1ae452ccec67cb779ffb62f3e3d"
+    },
+    "stream-ignition.png": {
+      "bytes": 46653,
+      "sha256": "d8de55da2bd612634bf3fc433d1453cb4d5ea0055b109697f4aba207e5d6d892"
+    },
+    "stream-picker-result.json": {
+      "bytes": 9906,
+      "sha256": "1b020db16be5fd77a4aafa29a80e3ffd2dcfb8367a65c07027e9c09912bc9a7f"
+    },
+    "stream-record-picker.png": {
+      "bytes": 21289,
+      "sha256": "10cffc798949386f447d6c89724e872eaac7f27a25002c9734fa2be79fddd0fe"
+    },
+    "stream-scope.mtstream": {
+      "bytes": 1304692,
+      "sha256": "e7ca25349b320b51532e7cfe2f0aadb4c983f29228fe24ec8dd38e45d7f3532e"
+    },
+    "stream-scope.mtstream.v2.json": {
+      "bytes": 1466,
+      "sha256": "e634781dd8d5137fe26974bb1c1d97cbe46b0bd589db68cddfebef4a04b84a1e"
+    },
+    "stream-scope.png": {
+      "bytes": 49835,
+      "sha256": "55a0399b04aafebcc218066b2ffa61d3c3fa5a1286de5eeb27137729d3b870aa"
+    },
+    "stream-unknown-tail.mtstream": {
+      "bytes": 12582,
+      "sha256": "11dc3081bb4850e1aabbc7edc933361b836688f4674148f0adf75bb0a2951f39"
+    },
+    "stream-unknown-tail.mtstream.v2.json": {
+      "bytes": 1455,
+      "sha256": "e76a29d75c38030a09a503020fcc69cdc362844675fa24bcfc885dfb4069cdee"
+    },
+    "stream-unknown-tail.png": {
+      "bytes": 54973,
+      "sha256": "5f4e8aa0f366a78c8a238d028833aef6c1393b52e2bfab564ead4cc0f6b58c16"
+    }
+  }
+}
