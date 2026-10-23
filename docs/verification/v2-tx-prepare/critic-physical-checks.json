@@ -1,0 +1,34 @@
+{
+  "schema": "v2-06g2-independent-physical-checks-1",
+  "status": "PASS_EVIDENCE_CHECKS_ONLY",
+  "physical_trial_status": "FAIL",
+  "scope": "Read-only final evidence verification; no new tests or hardware",
+  "original_hashes_matched": 15,
+  "readback_37132_equal_image": true,
+  "raw_samples": 4992,
+  "raw_sha256": "bd35d964f6550a68c466bf436fd2d0382b7e7c2ee178cfa58c5b7bc072eea1bc",
+  "prefix_crc32": 695410843,
+  "selected_range": [
+    2304,
+    4992
+  ],
+  "selected_samples": 2688,
+  "selected_raw_sha256": "7d9854f88c06b212f5f84cc35f18be7e04fc891ba25e84296c82e952d13fc0aa",
+  "journal_equality_evidence": "Host offline freshOpen+companion result reviewed; critic independently hashes corresponding full wire raw slice, does not re-run parser/open",
+  "two_legacy136_equal": true,
+  "diagnostic_sha256": "a1128099fac303403abc9c1cd77fa700215bd385e98b08f1ce06e1938998ff4b",
+  "decoded_words_equal_saved_json": true,
+  "raw_stopped_register_checks_pass": true,
+  "one_START_recorded": true,
+  "cleanup_confirmed": true,
+  "rollback_performed": false,
+  "no_additional_START": true,
+  "retained_candidate": "V2SA/0x56325341",
+  "hardware_access": false,
+  "archive": {
+    "manifest_sha256": "ad602ca999c81f59f8d5bfe1b0a3407064296d523f3d6f088650cb7d5eb383a2",
+    "pairs": 40,
+    "bytes": 214514,
+    "all_source_copy_bytes_equal": true
+  }
+}
