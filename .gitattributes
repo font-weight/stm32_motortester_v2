@@ -5,6 +5,11 @@ docs/verification/v2-close/** -text
 docs/verification/v2-stream/** -text whitespace=cr-at-eol
 docs/verification/v2-stream-picker/** -text whitespace=cr-at-eol
 docs/verification/v2-200ksps/** -text whitespace=cr-at-eol
+docs/verification/v2-200ksps-board/** -text whitespace=cr-at-eol
+# Preserve the CLI's exact trailing spaces/newlines and raw ADC bytes.
+docs/verification/v2-200ksps-board/attempt-01/*.txt -whitespace
+docs/verification/v2-200ksps-board/**/*.u16le binary
+docs/verification/v2-200ksps-usb/** -text whitespace=cr-at-eol
 # V2 firmware overlays are applied only after an exact byte-hash check.
 firmware/v2-stream/overlays/*.patch -text whitespace=-blank-at-eol
 firmware/v2-stream/overlays/mt_v2_crc32.h -text

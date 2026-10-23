@@ -1,0 +1,279 @@
+{
+  "status": "FAIL_CONFIRMED",
+  "method": "Offline decode all physical traffic, consecutive sequence/index and END prefix CRC; direct frozen ABI unpack; no hardware access",
+  "traffic_sha256": "d86a6d70da43bfe3b8f293eef7c5d3c991c9721434632d1991aa6e63e311d502",
+  "parse": {
+    "chunks": 19,
+    "host_bytes": 136,
+    "device_bytes": 3030,
+    "empty_delimiters": 1,
+    "decode_errors": [],
+    "trailing_partial_bytes": [
+      0,
+      0
+    ],
+    "trailing_oversized_frame": [
+      false,
+      false
+    ]
+  },
+  "frames": [
+    {
+      "direction": "host",
+      "time": 1331999.8299898,
+      "kind": "HELLO",
+      "sequence": 1,
+      "request_id": 1,
+      "nonce": "0x0",
+      "payload": {
+        "nonce": 15176962193404504574
+      }
+    },
+    {
+      "direction": "device",
+      "time": 1331999.8342231,
+      "kind": "HELLO_ACK",
+      "sequence": 1,
+      "request_id": 1,
+      "nonce": "0xd29f66b43368a9fe",
+      "payload": {
+        "firmware_build": 1446138677
+      }
+    },
+    {
+      "direction": "host",
+      "time": 1331999.8362068,
+      "kind": "GET_CAPS",
+      "sequence": 2,
+      "request_id": 2,
+      "nonce": "0xd29f66b43368a9fe",
+      "payload": {
+        "value": null
+      }
+    },
+    {
+      "direction": "device",
+      "time": 1331999.8391626,
+      "kind": "CAPS",
+      "sequence": 2,
+      "request_id": 2,
+      "nonce": "0xd29f66b43368a9fe",
+      "payload": {
+        "config_id": 1,
+        "profile": 1,
+        "channel": 0,
+        "adc_bits": 12,
+        "fs_num": 200000,
+        "fs_den": 1,
+        "max_block": 128,
+        "flags": 1
+      }
+    },
+    {
+      "direction": "host",
+      "time": 1331999.8538383,
+      "kind": "START",
+      "sequence": 3,
+      "request_id": 3,
+      "nonce": "0xd29f66b43368a9fe",
+      "payload": {
+        "value": 1
+      }
+    },
+    {
+      "direction": "device",
+      "time": 1331999.857287,
+      "kind": "START_ACK",
+      "sequence": 3,
+      "request_id": 3,
+      "nonce": "0xd29f66b43368a9fe",
+      "payload": {
+        "generation": 3,
+        "config_id": 1,
+        "first_index": 0
+      }
+    },
+    {
+      "direction": "device",
+      "time": 1331999.8632548,
+      "kind": "DATA",
+      "sequence": 4,
+      "request_id": 0,
+      "nonce": "0xd29f66b43368a9fe",
+      "payload": {
+        "generation": 3,
+        "config_id": 1,
+        "first_index": 0,
+        "samples": "128 samples"
+      }
+    },
+    {
+      "direction": "device",
+      "time": 1331999.8682298,
+      "kind": "DATA",
+      "sequence": 5,
+      "request_id": 0,
+      "nonce": "0xd29f66b43368a9fe",
+      "payload": {
+        "generation": 3,
+        "config_id": 1,
+        "first_index": 128,
+        "samples": "128 samples"
+      }
+    },
+    {
+      "direction": "device",
+      "time": 1331999.8712517,
+      "kind": "DATA",
+      "sequence": 6,
+      "request_id": 0,
+      "nonce": "0xd29f66b43368a9fe",
+      "payload": {
+        "generation": 3,
+        "config_id": 1,
+        "first_index": 256,
+        "samples": "128 samples"
+      }
+    },
+    {
+      "direction": "device",
+      "time": 1331999.8732697,
+      "kind": "DATA",
+      "sequence": 7,
+      "request_id": 0,
+      "nonce": "0xd29f66b43368a9fe",
+      "payload": {
+        "generation": 3,
+        "config_id": 1,
+        "first_index": 384,
+        "samples": "128 samples"
+      }
+    },
+    {
+      "direction": "device",
+      "time": 1331999.875139,
+      "kind": "DATA",
+      "sequence": 8,
+      "request_id": 0,
+      "nonce": "0xd29f66b43368a9fe",
+      "payload": {
+        "generation": 3,
+        "config_id": 1,
+        "first_index": 512,
+        "samples": "128 samples"
+      }
+    },
+    {
+      "direction": "device",
+      "time": 1331999.8774299,
+      "kind": "DATA",
+      "sequence": 9,
+      "request_id": 0,
+      "nonce": "0xd29f66b43368a9fe",
+      "payload": {
+        "generation": 3,
+        "config_id": 1,
+        "first_index": 640,
+        "samples": "128 samples"
+      }
+    },
+    {
+      "direction": "device",
+      "time": 1331999.8801504,
+      "kind": "DATA",
+      "sequence": 10,
+      "request_id": 0,
+      "nonce": "0xd29f66b43368a9fe",
+      "payload": {
+        "generation": 3,
+        "config_id": 1,
+        "first_index": 768,
+        "samples": "128 samples"
+      }
+    },
+    {
+      "direction": "device",
+      "time": 1331999.8820809,
+      "kind": "DATA",
+      "sequence": 11,
+      "request_id": 0,
+      "nonce": "0xd29f66b43368a9fe",
+      "payload": {
+        "generation": 3,
+        "config_id": 1,
+        "first_index": 896,
+        "samples": "128 samples"
+      }
+    },
+    {
+      "direction": "device",
+      "time": 1331999.8857332,
+      "kind": "DATA",
+      "sequence": 12,
+      "request_id": 0,
+      "nonce": "0xd29f66b43368a9fe",
+      "payload": {
+        "generation": 3,
+        "config_id": 1,
+        "first_index": 1024,
+        "samples": "128 samples"
+      }
+    },
+    {
+      "direction": "device",
+      "time": 1331999.8857332,
+      "kind": "END",
+      "sequence": 13,
+      "request_id": 0,
+      "nonce": "0xd29f66b43368a9fe",
+      "payload": {
+        "generation": 3,
+        "config_id": 1,
+        "prefix_end": 1152,
+        "produced_end": null,
+        "last_data_sequence": 12,
+        "prefix_crc32": 153968650,
+        "reason": 1,
+        "flags": 3,
+        "stop_request_id": 0
+      }
+    },
+    {
+      "direction": "host",
+      "time": 1331999.8885919,
+      "kind": "STOP",
+      "sequence": 4,
+      "request_id": 4,
+      "nonce": "0xd29f66b43368a9fe",
+      "payload": {
+        "value": 3
+      }
+    },
+    {
+      "direction": "device",
+      "time": 1331999.8924004,
+      "kind": "STOP_ACK",
+      "sequence": 14,
+      "request_id": 4,
+      "nonce": "0xd29f66b43368a9fe",
+      "payload": {
+        "generation": 3,
+        "prefix_end": 1152,
+        "terminal_sequence": 13,
+        "flags": 3
+      }
+    }
+  ],
+  "raw_samples": 1152,
+  "raw_sha256": "691a8c95b2050300b92c4d4325fc661dc1e48aea4d9464e3eb906748e72e0d65",
+  "raw_crc32": 153968650,
+  "END_prefix_CRC_matches": true,
+  "journal_has_selected_recording": false,
+  "recovery_issue": null,
+  "trailing_journal_bytes": 0,
+  "diagnostic_dumps_equal": true,
+  "diagnostic_sha256": "c6255ffd827411b9efc317a6f10d1b6abdb45b92ea175600e4ce15b760a6adef",
+  "diagnostic_identity_matches_wire": true,
+  "reason": "Device END reason1; acquisition_reason1 and queue_high_water8, ADCfault0; no successful ten-second Record",
+  "analysis_note": "Initial read-only inspection snippets used wrong assumptions about decoded tuple samples and HELLO header nonce; corrected before this result."
+}

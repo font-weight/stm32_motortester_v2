@@ -1,5 +1,20 @@
 # Координация самостоятельного V2
 
+V2-06b: higher_fs_review владеет только firmware/v2-stream,
+tests/v2-stream-firmware и build/v6b-*; root — канонические документы
+и фиксация опыта V2-06a. host_200k пишет только offline файлы
+build/v6-board-01/analyze_failure.py, wire-failure-analysis.json и
+received-prefix.u16le. stream200_critic — независимое ревью V2-06a и
+docs/reviews/v2-06b-review.md, docs/verification/v2-200ksps-usb/critic*.json.
+COM/ST-Link не открывать никому кроме root; новый USB-кандидат не прошивать.
+
+V2-06a, база `2c281cc`: root единолично управляет COM/ST-Link,
+свежей резервной копией, опытом и каноническими документами.
+stream200_critic не открывает аппаратные интерфейсы; пишет только
+`docs/reviews/v2-06a-flash-review.md`, `docs/reviews/v2-06a-review.md`
+и `docs/verification/v2-200ksps-board/critic*.json`.
+Не менять проверенные V2-06 образ, исходники или старые свидетельства.
+
 V2-06, база `d8d1a27`, ветка `codex/stream-200ksps`:
 root — канонические документы, резервная копия, host/packaging/v2 и интеграция;
 higher_fs_review — firmware/v2-stream, tests/v2-stream-firmware и build/v6-fw-*;

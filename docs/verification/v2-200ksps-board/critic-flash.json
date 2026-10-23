@@ -1,0 +1,80 @@
+{
+  "schema": "v2-06a-flash-admission-1",
+  "date": "2026-10-23",
+  "status": "PASS",
+  "reviewer": "stream200_critic",
+  "independent_of_implementation": true,
+  "base_commit": "2c281ccdf0deff3444c24646e31afe9524f694f1",
+  "code_commit": "8b216c6b74894ebf4ae4ca5b99d8494b967a84e4",
+  "scope": "Conditional admission of exact V2S5 to one10second physical USB transport trial with PA0 unconnected; not trial-result acceptance",
+  "bin_sha256": "f5ffda9abe3bd311d0088f5a9642d7d538fe97b6d4b3c80eb1e728ebdddbbf60",
+  "bin_bytes": 35700,
+  "backup_sha256": "95d3a11f8db843e362b2c59ed6fbf380dd630e067fa23f6ae5a9c7d2b11dff1e",
+  "backup_bytes": 65536,
+  "backup_prefix_matches_v2s4": true,
+  "old_prefix_bytes": 35384,
+  "old_v2s4_sha256": "04ba2853b6a964cd812bf555a32da7fb019bcd60ba9fda0bd586d71112b3143d",
+  "probe_SN": "57005400120000393333574E",
+  "probe_selection": "ID0 only while single probe and successful identity agrees with SN",
+  "CLI_sha256": "7fb012b5e26abf45342caa05c6bc33936f8a379b67797cc55658ffb8bf15e95f",
+  "device_observations": {
+    "IDCODE": "0x0016a410",
+    "CPUID": "0x412fc231",
+    "flash_size_register": "0x0080",
+    "tool_target_voltage_V": 3.2,
+    "physical_MCU_authenticity_verified": false
+  },
+  "conditions": "Mandatory numbered conditions in docs/reviews/v2-06a-flash-review.md; user-reported USB-only power, no ST-Link3.3V, empty PA0, app closed; verify and exact readback before START; no SWD during trial; Stop/close before diagnostics; preserve failures and verified rollback",
+  "pre_START_expected": {
+    "build_id": "0x56325335",
+    "fs_num": 200000,
+    "fs_den": 1,
+    "data_samples": 128
+  },
+  "trial_seconds": 10,
+  "no_mass_erase": true,
+  "no_option_byte_changes": true,
+  "no_wiring_changes": true,
+  "flash_written_at_review": false,
+  "trial_executed_at_review": false,
+  "critic_hardware_actions": false,
+  "diagnostics": {
+    "address": "0x20002a7c",
+    "bytes": 136,
+    "two_frozen_reads_required": true,
+    "after_Stop_and_COM_close": true
+  },
+  "scores": {
+    "C1": 9.7,
+    "C2": 9.6,
+    "C3": 9.5,
+    "C4": 9.6,
+    "C5": 9.6
+  },
+  "weighted_score": 9.605,
+  "required_score": 9.5,
+  "open_P0": 0,
+  "open_P1": 0,
+  "checked_file_sha256": {
+    "build/v6-board-01/plan.json": "e18e9ff8195c8275fb84f9d2dadab9049afb5181af4baec4626b84d271f4f1c6",
+    "build/v6-board-01/preflight.json": "43a5155f7cfd2bcd0628ece668cf6face390eced38b222dc3bcc3b24001f4399",
+    "build/v6-board-01/before-flash-64k.bin": "95d3a11f8db843e362b2c59ed6fbf380dd630e067fa23f6ae5a9c7d2b11dff1e",
+    "build/v6-board-01/before-flash-read.txt": "29baf1466a8be6c126b606e4f4628b26cf532efd52773dabcaa975bdc8b40b5d",
+    "build/v6-board-01/identity-before-flash.txt": "48067a2d64fdc541ffcde408c932687ab52c19f89139226d0a23872eb3bcfa5b",
+    "build/v6-board-01/probe-list-before-read.txt": "b58c8ddae6534dd35b9a1498631f1ee20ba54017c8f3ccfa2b156244c92e72a3",
+    "build/v6-board-01/before-flash-read-sn-failed.txt": "a75686cfec94b0eae13195a13dc0598ebf40a5b2fe80a4f68dd95019323010de",
+    "task.md": "3cb166e64e34a7a408f11882a079555b7442a74564106444c89529089920cf4c",
+    "docs/coordination.md": "bf7853680c9874c24fd7c36a4d6ad048c4962a6de522a7684e5ba24e0a458be2",
+    "host/tools/v2_stream_probe.py": "0270c94da28b6f500856a1c09717c3aa8fe77c38d6c5c0da4281bbf4ab53f2c0",
+    "host/tools/verify_stream_trial.py": "30631ddfdd4364a38361f21305e5166a7b4314a4e34aa8ac79b8fbb83fa9a40e",
+    "docs/reviews/v2-06a-flash-review.md": "382e6c7937bc4c5bb42dcc3745c9f4e84348e8dd2bca0b3bb8c2674241e951bc",
+    "docs/verification/v2-200ksps-board/critic-image.json": "dbcf32ff25eb8d3cb32ef5ef36e8c2b4de6f42b1f8e44ab2d563409bc3e89700"
+  },
+  "not_established": [
+    "Success of physical200k trial",
+    "Physical GUI behavior",
+    "Time or voltage calibration",
+    "ADC settling/noise/analogue bandwidth",
+    "High-voltage ranges or ignition"
+  ]
+}

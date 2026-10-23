@@ -1,0 +1,235 @@
+{
+  "schema": "v2-06a-independent-result-1",
+  "date": "2026-10-23",
+  "status": "REWORK",
+  "scope": "Exact V2S5 first10second physical200k trial; failed before selected Record",
+  "reviewer": "stream200_critic",
+  "independent_of_implementation": true,
+  "critic_hardware_actions": false,
+  "base_commit": "2c281ccdf0deff3444c24646e31afe9524f694f1",
+  "code_commit": "8b216c6b74894ebf4ae4ca5b99d8494b967a84e4",
+  "image_sha256": "f5ffda9abe3bd311d0088f5a9642d7d538fe97b6d4b3c80eb1e728ebdddbbf60",
+  "report_sha256": "c28bc18130017fd7f01192d73526d1c9d815c02d9ab1a246cdbdd8b53e6d09d3",
+  "evidence_file_hashes": {
+    "build/v6-board-01/analyze_failure.py": {
+      "bytes": 10350,
+      "sha256": "f67336c00b8642e942a43d8d59bc2c2704b64a754f3a392f014134da48758adc"
+    },
+    "build/v6-board-01/before-flash-64k.bin": {
+      "bytes": 65536,
+      "sha256": "95d3a11f8db843e362b2c59ed6fbf380dd630e067fa23f6ae5a9c7d2b11dff1e"
+    },
+    "build/v6-board-01/before-flash-read-sn-failed.txt": {
+      "bytes": 117,
+      "sha256": "a75686cfec94b0eae13195a13dc0598ebf40a5b2fe80a4f68dd95019323010de"
+    },
+    "build/v6-board-01/before-flash-read.txt": {
+      "bytes": 870,
+      "sha256": "29baf1466a8be6c126b606e4f4628b26cf532efd52773dabcaa975bdc8b40b5d"
+    },
+    "build/v6-board-01/decode_diagnostics.py": {
+      "bytes": 11632,
+      "sha256": "584239ae42b1b34b374e075676e56f55da160909d8fb1dfaa2e3665ce614a6cd"
+    },
+    "build/v6-board-01/diagnostics-decoded.json": {
+      "bytes": 5906,
+      "sha256": "521f0d312cef37011775bd3977d779b93576feda6e2cfaac6a09af56c3f1c64b"
+    },
+    "build/v6-board-01/diagnostics-first.bin": {
+      "bytes": 136,
+      "sha256": "c6255ffd827411b9efc317a6f10d1b6abdb45b92ea175600e4ce15b760a6adef"
+    },
+    "build/v6-board-01/diagnostics-first.txt": {
+      "bytes": 872,
+      "sha256": "0d064635186a6cf1a0354d3ce6338e4fa75a4878aca2480d381fb109b1c7d459"
+    },
+    "build/v6-board-01/diagnostics-second-registers.txt": {
+      "bytes": 1052,
+      "sha256": "1d0f0b84959f490ffdcc5538f1594286cea626fd28aa3db78383c76b91349bb6"
+    },
+    "build/v6-board-01/diagnostics-second.bin": {
+      "bytes": 136,
+      "sha256": "c6255ffd827411b9efc317a6f10d1b6abdb45b92ea175600e4ce15b760a6adef"
+    },
+    "build/v6-board-01/identity-before-flash.txt": {
+      "bytes": 437,
+      "sha256": "48067a2d64fdc541ffcde408c932687ab52c19f89139226d0a23872eb3bcfa5b"
+    },
+    "build/v6-board-01/plan.json": {
+      "bytes": 1730,
+      "sha256": "e18e9ff8195c8275fb84f9d2dadab9049afb5181af4baec4626b84d271f4f1c6"
+    },
+    "build/v6-board-01/ports-after-replug.json": {
+      "bytes": 135,
+      "sha256": "c8614e25240676a110cd0c9f9761ba2d2fc559f249875431289a7b08eedef67d"
+    },
+    "build/v6-board-01/ports-after-rollback.json": {
+      "bytes": 135,
+      "sha256": "c8614e25240676a110cd0c9f9761ba2d2fc559f249875431289a7b08eedef67d"
+    },
+    "build/v6-board-01/ports-before.json": {
+      "bytes": 135,
+      "sha256": "c8614e25240676a110cd0c9f9761ba2d2fc559f249875431289a7b08eedef67d"
+    },
+    "build/v6-board-01/preflight.json": {
+      "bytes": 498,
+      "sha256": "43a5155f7cfd2bcd0628ece668cf6face390eced38b222dc3bcc3b24001f4399"
+    },
+    "build/v6-board-01/probe-list-before-read.txt": {
+      "bytes": 239,
+      "sha256": "b58c8ddae6534dd35b9a1498631f1ee20ba54017c8f3ccfa2b156244c92e72a3"
+    },
+    "build/v6-board-01/probe-list.txt": {
+      "bytes": 239,
+      "sha256": "b58c8ddae6534dd35b9a1498631f1ee20ba54017c8f3ccfa2b156244c92e72a3"
+    },
+    "build/v6-board-01/probe-run.txt": {
+      "bytes": 7251,
+      "sha256": "a0ab65719c07fedd67163371d1c27f45502c22f2950a06d586f52a89695702a4"
+    },
+    "build/v6-board-01/program-verify.txt": {
+      "bytes": 952,
+      "sha256": "06c71d72e96281f59d6e785fc2eed307ffef86f0f8ef1fe9a072184c38336d8e"
+    },
+    "build/v6-board-01/ram-after-failure.bin": {
+      "bytes": 20480,
+      "sha256": "6206f80e00c617656fc9e0c36dcf03292495cd54ae320eed9a2b2e138592f13d"
+    },
+    "build/v6-board-01/ram-after-failure.txt": {
+      "bytes": 872,
+      "sha256": "725da6cf96090dee574687d2ae309499e40cb74b6cd1be9511943d5e8750e969"
+    },
+    "build/v6-board-01/readback-comparison.json": {
+      "bytes": 135,
+      "sha256": "b19c487337abdd7321ec985eb1e33942eb074cf2209dd5ae00b33f9183fc7020"
+    },
+    "build/v6-board-01/readback.bin": {
+      "bytes": 35700,
+      "sha256": "f5ffda9abe3bd311d0088f5a9642d7d538fe97b6d4b3c80eb1e728ebdddbbf60"
+    },
+    "build/v6-board-01/readback.txt": {
+      "bytes": 854,
+      "sha256": "5f3833326e08aeca14d0581582ba3be5f91732c52bb909bf36d6b8d3026362ed"
+    },
+    "build/v6-board-01/received-prefix.u16le": {
+      "bytes": 2304,
+      "sha256": "691a8c95b2050300b92c4d4325fc661dc1e48aea4d9464e3eb906748e72e0d65"
+    },
+    "build/v6-board-01/reset-run.txt": {
+      "bytes": 420,
+      "sha256": "f8596a56771eed9f6bf4ebfd453433d8b7e7796ae747d34ca0eea8f480d620c9"
+    },
+    "build/v6-board-01/rollback-comparison.json": {
+      "bytes": 126,
+      "sha256": "a980aa8a9e83ccfd7b8c229f83b6310270b282696da8d19bb9a82636145b9954"
+    },
+    "build/v6-board-01/rollback-program-verify.txt": {
+      "bytes": 957,
+      "sha256": "5e16ef30cca62ae22ef5bdd986ca13ab1acf5ac04f0090cd214df2bcea296ebd"
+    },
+    "build/v6-board-01/rollback-readback.bin": {
+      "bytes": 65536,
+      "sha256": "95d3a11f8db843e362b2c59ed6fbf380dd630e067fa23f6ae5a9c7d2b11dff1e"
+    },
+    "build/v6-board-01/rollback-readback.txt": {
+      "bytes": 872,
+      "sha256": "18e9e81011e794e220080d5e527813b6e143b479092a7a2dc74c3a941afa439f"
+    },
+    "build/v6-board-01/rollback-ready-output.txt": {
+      "bytes": 6225,
+      "sha256": "f874270100bc91b2ae5aebdc21f9bf5aea392cc9ea7c73c1ffe81a3a2c55eca4"
+    },
+    "build/v6-board-01/rollback-ready.json": {
+      "bytes": 6225,
+      "sha256": "f874270100bc91b2ae5aebdc21f9bf5aea392cc9ea7c73c1ffe81a3a2c55eca4"
+    },
+    "build/v6-board-01/rollback-reset-run.txt": {
+      "bytes": 420,
+      "sha256": "f8596a56771eed9f6bf4ebfd453433d8b7e7796ae747d34ca0eea8f480d620c9"
+    },
+    "build/v6-board-01/run/physical.mtstream": {
+      "bytes": 879,
+      "sha256": "bbca3a60f19648f96320dcfa1e0e645c06971f5e32e94a85c9e56380db01f93e"
+    },
+    "build/v6-board-01/run/physical.mtstream.v2.json": {
+      "bytes": 1988,
+      "sha256": "efc43d65abe8fbdb3506d7d5ff5e8295600ff203dac3eadb14fdfcdd882d86a0"
+    },
+    "build/v6-board-01/run/result.json": {
+      "bytes": 8801,
+      "sha256": "7a43631e8e56d8394b560f7d2dd7f06e9886ca16c8d34d74388d93c8db23c481"
+    },
+    "build/v6-board-01/run/traffic.bin": {
+      "bytes": 3413,
+      "sha256": "d86a6d70da43bfe3b8f293eef7c5d3c991c9721434632d1991aa6e63e311d502"
+    },
+    "build/v6-board-01/wire-failure-analysis.json": {
+      "bytes": 7998,
+      "sha256": "fc003f25910fb5956530c5c184072a7a77c51804fc735437c4ee09830da03311"
+    }
+  },
+  "image_readback_equal_personally_checked": true,
+  "trial": {
+    "status": "FAIL",
+    "requested_record_seconds": 10,
+    "selected_record_started": false,
+    "raw_in_traffic": 1152,
+    "raw_in_selected_mtstream": null,
+    "single_START": true,
+    "wire_crc_and_sequence_errors": 0,
+    "source_END_precedes_host_STOP": true,
+    "END_reason": 1,
+    "produced_end": null,
+    "cause": "firmware queue full",
+    "queue_high_water": 8,
+    "queue_capacity": 8,
+    "ADC_fault": 0,
+    "diagnostic_flags": 4,
+    "driver_observed_poll_gap_us": 1123,
+    "copy_validation_max_us": 133,
+    "frozen_dumps_equal": true,
+    "nonce_generation_build_match_wire": true,
+    "primary_throughput_bottleneck_localized": false
+  },
+  "rollback": {
+    "byte_equal_64KiB_personally_checked": true,
+    "sha256": "95d3a11f8db843e362b2c59ed6fbf380dd630e067fa23f6ae5a9c7d2b11dff1e",
+    "READY_receipt_status": "PASS",
+    "observed_build": "0x56325334",
+    "nominal_fs": 50000,
+    "validated_samples": 0,
+    "owner_closed": true,
+    "new_50k_record_performed": false
+  },
+  "missing_register_observations": [
+    "TIM3_ARR",
+    "RCC_AHBENR",
+    "RCC_APB2ENR",
+    "RCC_APB1ENR"
+  ],
+  "scores": {
+    "C1": 4.0,
+    "C2": 7.0,
+    "C3": 9.5,
+    "C4": 9.5,
+    "C5": 9.5
+  },
+  "weights": {
+    "C1": 0.3,
+    "C2": 0.2,
+    "C3": 0.25,
+    "C4": 0.15,
+    "C5": 0.1
+  },
+  "weighted_score": 7.35,
+  "required_score": 9.5,
+  "open_P0": 0,
+  "open_P1": 1,
+  "open_P1_detail": "Exact V2S5 does not sustain first10second physical200k recording on this setup.",
+  "open_P2": [
+    "Register evidence lacks ARR/enable gates; do not assert full register-based off/configuration verification."
+  ],
+  "next_step": "Separate software candidate and independent exact-image review/admission before another physical trial; keep V2S4 available.",
+  "prior_admission_scope_unchanged": true,
+  "physical_200k_accepted": false
+}

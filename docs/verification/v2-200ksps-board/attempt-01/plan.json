@@ -1,0 +1,62 @@
+{
+  "base_commit": "2c281ccdf0deff3444c24646e31afe9524f694f1",
+  "cli_sha256": "7fb012b5e26abf45342caa05c6bc33936f8a379b67797cc55658ffb8bf15e95f",
+  "preflight_sha256": "43a5155f7cfd2bcd0628ece668cf6face390eced38b222dc3bcc3b24001f4399",
+  "program_argv": [
+    "C:/Program Files (x86)/STMicroelectronics/STM32 ST-LINK Utility/ST-LINK Utility/ST-LINK_CLI.exe",
+    "-c",
+    "ID=0",
+    "SWD",
+    "HOTPLUG",
+    "-P",
+    "build/v6-fw-07/MotortesterV2-stream-candidate.bin",
+    "0x08000000",
+    "-V"
+  ],
+  "readback_argv": [
+    "C:/Program Files (x86)/STMicroelectronics/STM32 ST-LINK Utility/ST-LINK Utility/ST-LINK_CLI.exe",
+    "-c",
+    "ID=0",
+    "SWD",
+    "HOTPLUG",
+    "-Dump",
+    "0x08000000",
+    "0x8B74",
+    "build/v6-board-01/readback.bin"
+  ],
+  "reset_argv": [
+    "C:/Program Files (x86)/STMicroelectronics/STM32 ST-LINK Utility/ST-LINK Utility/ST-LINK_CLI.exe",
+    "-c",
+    "ID=0",
+    "SWD",
+    "HOTPLUG",
+    "-Rst",
+    "-Run"
+  ],
+  "trial_argv": [
+    ".venv/Scripts/python.exe",
+    "-B",
+    "host/tools/v2_stream_probe.py",
+    "--port",
+    "COM6",
+    "--output",
+    "build/v6-board-01/run",
+    "--seconds",
+    "10",
+    "--build-id",
+    "0x56325335",
+    "--sample-rate",
+    "200000",
+    "--source-commit",
+    "8b216c6b74894ebf4ae4ca5b99d8494b967a84e4",
+    "--image-sha256",
+    "f5ffda9abe3bd311d0088f5a9642d7d538fe97b6d4b3c80eb1e728ebdddbbf60"
+  ],
+  "trial_env": {
+    "PYTHONPATH": "host"
+  },
+  "no_swd_during_trial": true,
+  "expected_unknown_produced_tail": true,
+  "rollback_image": "build/v6-board-01/before-flash-64k.bin",
+  "rollback_sha256": "95d3a11f8db843e362b2c59ed6fbf380dd630e067fa23f6ae5a9c7d2b11dff1e"
+}
