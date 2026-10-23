@@ -1,35 +1,56 @@
 {
-  "status": "BLOCKED_EVIDENCE",
-  "score": null,
-  "scope": "Overall V2-06e source plus required real100k10-second trial",
+  "status": "REWORK",
+  "score": 7.7,
+  "scope": "Overall V2-06e exact S4 schedule100k software candidate plus mandatory physical10-second trial",
   "critic": "stream200_critic",
   "independent": true,
   "hardware_touched_by_critic": false,
   "source_commit": "bab09184455a41ac9f552565c825ce83f029c40f",
+  "base_commit": "fb7a9c7a0c6f9dd1a64d1c68c610e50026b6570e",
+  "admission_commit": "0eb86f15634b14224ceb9179d246f6a6535135fd",
   "image_bin_sha256": "80a5ed8d064a2d0559f063d6650fb4edab078de4c233ea66ef2cb0e1ac62cf20",
   "image_elf_sha256": "65d477b3cfae09d3bc9c05fe7a2fa2c498445b22dac9f79a2c89b1b0e5e6330e",
-  "physical_trial_started": false,
+  "physical_manifest_sha256": "1f63994f6629089b1a4dae44e470158305d40c497f491ab63e3561909ab7c39a",
+  "physical_trial_started": true,
+  "physical_trial_status": "FAIL",
   "physical100k_accepted": false,
-  "flash_admission_issued": true,
   "whole_iteration_accepted": false,
-  "missing_mandatory_evidence": [
-    "One physical100k10-second normal Record/END/ACK/fresh Open/raw equality",
-    "Actual rate and frozen diagnostics/registers"
+  "flash_admission_issued": true,
+  "flash_admission_score": 9.605,
+  "full_wire_samples": 7552,
+  "selected_journal_samples": 5120,
+  "selected_journal_range": [
+    2432,
+    7552
   ],
+  "selected_raw_wire_byte_equal": true,
+  "failure": "firmware queue full; END reason1 before host STOP",
+  "underlying_bottleneck": "TBD; extra-checkpoint removal did not prevent failure",
+  "findings": [
+    {
+      "priority": "P1",
+      "title": "S8 does not sustain the required100k10-second Record",
+      "open": true
+    }
+  ],
+  "physical_copy_pairs_verified": 49,
+  "physical_copy_bytes": 331573,
+  "installed_after_rollback": "V2S4 50000 S/s;64KiB readback equal,READY noSTART,owner closed",
   "rubric": {
-    "C1": null,
-    "C2": null,
-    "C3": null,
-    "C4": null,
-    "C5": null
+    "C1": 5.0,
+    "C2": 7.0,
+    "C3": 9.7,
+    "C4": 9.5,
+    "C5": 9.5
   },
-  "report_sha256": "ee46017e84bcd8ef88936381eb0a6d46dc99921084cd80a89cf0536ad17d92b7",
+  "report_sha256": "00644d63ef71fd65c92f00f24e5d00450479f5f63e48df9f4eeaaed16687499e",
   "critic_evidence": {
     "critic-flash-image.json": "ed0d920dcd41e50b4a147daf3e4d311eda8fd945233bdb7b4375bbaa773d74c7",
     "critic-flash.json": "dd496c853367319c855481ba907fd1f814d5b03b1b3ae3fe85184d4cb7196f70",
     "critic-source.json": "12562952e1510f782e2e27ae09073b2072493ead35e5a332ef4cd682f4a10ca1",
-    "critic-static.json": "8482c9c15a7734d453b82155c1c8b1c3ed53a8c056455df0de5e3cc7ab4ec2fc"
+    "critic-static.json": "8482c9c15a7734d453b82155c1c8b1c3ed53a8c056455df0de5e3cc7ab4ec2fc",
+    "critic-trial.json": "eb71ee17937677ac11e64266110fdbc6050f955b7e92b74c2757e1c6c45ea8d0"
   },
   "previous_physical_A_C_D_REWORK_preserved": true,
-  "flash_admission_score": 9.605
+  "next_step": "Separate phase-profiling design; no new rate/image/physical trial approved"
 }

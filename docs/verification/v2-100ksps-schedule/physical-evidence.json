@@ -1,0 +1,305 @@
+{
+  "schema": "v2-06e-physical-evidence-1",
+  "source_commit": "bab09184455a41ac9f552565c825ce83f029c40f",
+  "admission_commit": "0eb86f1",
+  "physical_result": "FAIL",
+  "reason": "Source queue full before 10 second Record completed",
+  "installed_after_trial": "V2S4 0x56325334 nominal50000",
+  "restored_ready_no_START": true,
+  "files": [
+    {
+      "source": "build/v6e-board-01/adc.bin",
+      "copy": "docs/verification/v2-100ksps-schedule/physical-01/adc.bin",
+      "bytes": 12,
+      "sha256": "b389a6884b289d4b53e9b36853b9a933c640fa7a5abe584f859a56c6768c01ba"
+    },
+    {
+      "source": "build/v6e-board-01/adc.txt",
+      "copy": "docs/verification/v2-100ksps-schedule/physical-01/adc.txt",
+      "bytes": 846,
+      "sha256": "1dc0556ccd4380585a261a898f9cc58f5ee09d52648b7b05e6ffd3bdff54378d"
+    },
+    {
+      "source": "build/v6e-board-01/analyze_failure.py",
+      "copy": "docs/verification/v2-100ksps-schedule/physical-01/analyze_failure.py",
+      "bytes": 14669,
+      "sha256": "6ee9dc83f97ec1fe3d26160d885284472facc9bc10a9f40fb541df2de601bc7f"
+    },
+    {
+      "source": "build/v6e-board-01/before-flash-64k.bin",
+      "copy": "docs/verification/v2-100ksps-schedule/physical-01/before-flash-64k.bin",
+      "bytes": 65536,
+      "sha256": "95d3a11f8db843e362b2c59ed6fbf380dd630e067fa23f6ae5a9c7d2b11dff1e"
+    },
+    {
+      "source": "build/v6e-board-01/before-flash-read.txt",
+      "copy": "docs/verification/v2-100ksps-schedule/physical-01/before-flash-read.txt",
+      "bytes": 872,
+      "sha256": "1b9299840b819aba3cc9155979d6252f570cccedbcfc21f42913d9d4f1b8f5b8"
+    },
+    {
+      "source": "build/v6e-board-01/decode_diagnostics.py",
+      "copy": "docs/verification/v2-100ksps-schedule/physical-01/decode_diagnostics.py",
+      "bytes": 11824,
+      "sha256": "731cc09150bc5d4a9d34d1872f7a777878773d5ae082f3decb35c2082d63e711"
+    },
+    {
+      "source": "build/v6e-board-01/diagnostics-decoded.json",
+      "copy": "docs/verification/v2-100ksps-schedule/physical-01/diagnostics-decoded.json",
+      "bytes": 5932,
+      "sha256": "915614d35da050ba6971b60418ce69a93195a7320f245c03042f4b36b7fcb13a"
+    },
+    {
+      "source": "build/v6e-board-01/diagnostics-first.bin",
+      "copy": "docs/verification/v2-100ksps-schedule/physical-01/diagnostics-first.bin",
+      "bytes": 136,
+      "sha256": "9834e6bd4edccfb80625238a234340a5fc339fc178e414ec70e92ffece775277"
+    },
+    {
+      "source": "build/v6e-board-01/diagnostics-first.txt",
+      "copy": "docs/verification/v2-100ksps-schedule/physical-01/diagnostics-first.txt",
+      "bytes": 874,
+      "sha256": "03a2fb76f662c42fe5fdba096b1bc4afc3e25fe87e07fcc99c5ebefb5dd699da"
+    },
+    {
+      "source": "build/v6e-board-01/diagnostics-second.bin",
+      "copy": "docs/verification/v2-100ksps-schedule/physical-01/diagnostics-second.bin",
+      "bytes": 136,
+      "sha256": "9834e6bd4edccfb80625238a234340a5fc339fc178e414ec70e92ffece775277"
+    },
+    {
+      "source": "build/v6e-board-01/diagnostics-second.txt",
+      "copy": "docs/verification/v2-100ksps-schedule/physical-01/diagnostics-second.txt",
+      "bytes": 876,
+      "sha256": "b088c6bdaab5cae69fdf37fef250d27a4525ed561a147dd16149e62ecd0c91b7"
+    },
+    {
+      "source": "build/v6e-board-01/dma.bin",
+      "copy": "docs/verification/v2-100ksps-schedule/physical-01/dma.bin",
+      "bytes": 16,
+      "sha256": "a5ea990fd3de76a785f4f73b66a345be7a884cf86868a9cb020cd834f9739e0a"
+    },
+    {
+      "source": "build/v6e-board-01/dma.txt",
+      "copy": "docs/verification/v2-100ksps-schedule/physical-01/dma.txt",
+      "bytes": 846,
+      "sha256": "7c65bce2936531d42f73911fdb805f8a02be14b10403004edc16af62f6a43b2f"
+    },
+    {
+      "source": "build/v6e-board-01/flash-verification.json",
+      "copy": "docs/verification/v2-100ksps-schedule/physical-01/flash-verification.json",
+      "bytes": 322,
+      "sha256": "633f326670739fdd1183a8610cf12b2fc9e1dfeab810b636cb81dd9b12fe9796"
+    },
+    {
+      "source": "build/v6e-board-01/plan-before-rollback-argv.json",
+      "copy": "docs/verification/v2-100ksps-schedule/physical-01/plan-before-rollback-argv.json",
+      "bytes": 2433,
+      "sha256": "8773f2f3490a7b021045d5f5eb0cd5645582b231df4fdcadb6051d250af25682"
+    },
+    {
+      "source": "build/v6e-board-01/plan.json",
+      "copy": "docs/verification/v2-100ksps-schedule/physical-01/plan.json",
+      "bytes": 2653,
+      "sha256": "0949fe65b3bfa8e01fa988b55ab7d954df50f91603fe18f90d76e4f21eb81b41"
+    },
+    {
+      "source": "build/v6e-board-01/ports-after-replug.json",
+      "copy": "docs/verification/v2-100ksps-schedule/physical-01/ports-after-replug.json",
+      "bytes": 135,
+      "sha256": "c8614e25240676a110cd0c9f9761ba2d2fc559f249875431289a7b08eedef67d"
+    },
+    {
+      "source": "build/v6e-board-01/ports-after-rollback.json",
+      "copy": "docs/verification/v2-100ksps-schedule/physical-01/ports-after-rollback.json",
+      "bytes": 135,
+      "sha256": "c8614e25240676a110cd0c9f9761ba2d2fc559f249875431289a7b08eedef67d"
+    },
+    {
+      "source": "build/v6e-board-01/ports-before.json",
+      "copy": "docs/verification/v2-100ksps-schedule/physical-01/ports-before.json",
+      "bytes": 135,
+      "sha256": "c8614e25240676a110cd0c9f9761ba2d2fc559f249875431289a7b08eedef67d"
+    },
+    {
+      "source": "build/v6e-board-01/preflight.json",
+      "copy": "docs/verification/v2-100ksps-schedule/physical-01/preflight.json",
+      "bytes": 378,
+      "sha256": "98bbccedcd3af5d689cb2164975e67845416cdc0b1c47cd8cbfc94929c8d7395"
+    },
+    {
+      "source": "build/v6e-board-01/prepare_plan.py",
+      "copy": "docs/verification/v2-100ksps-schedule/physical-01/prepare_plan.py",
+      "bytes": 3151,
+      "sha256": "0832c89dd0456c16f9ea0b3fd8ec492169409a0357e99fc9c9feabd66384f096"
+    },
+    {
+      "source": "build/v6e-board-01/probe-list.txt",
+      "copy": "docs/verification/v2-100ksps-schedule/physical-01/probe-list.txt",
+      "bytes": 239,
+      "sha256": "b58c8ddae6534dd35b9a1498631f1ee20ba54017c8f3ccfa2b156244c92e72a3"
+    },
+    {
+      "source": "build/v6e-board-01/probe-stdout.txt",
+      "copy": "docs/verification/v2-100ksps-schedule/physical-01/probe-stdout.txt",
+      "bytes": 532,
+      "sha256": "72e541892902707ea256dca0115022cd860361fc7aedb3b707d679a4eabdb86e"
+    },
+    {
+      "source": "build/v6e-board-01/program-verify.txt",
+      "copy": "docs/verification/v2-100ksps-schedule/physical-01/program-verify.txt",
+      "bytes": 953,
+      "sha256": "cac661c1dbc39be35bca934c0c122c438b87e304da47a0b573d34565607a96ae"
+    },
+    {
+      "source": "build/v6e-board-01/rcc.bin",
+      "copy": "docs/verification/v2-100ksps-schedule/physical-01/rcc.bin",
+      "bytes": 20,
+      "sha256": "1e24249e3619f46e4291c93fac339276c89ad2a136a324180aa83757fc71a367"
+    },
+    {
+      "source": "build/v6e-board-01/rcc.txt",
+      "copy": "docs/verification/v2-100ksps-schedule/physical-01/rcc.txt",
+      "bytes": 846,
+      "sha256": "454b2341eb80f5516d80c1e64f9f6cfa9446e24c2141ea835ee2e24606888dd1"
+    },
+    {
+      "source": "build/v6e-board-01/readback.bin",
+      "copy": "docs/verification/v2-100ksps-schedule/physical-01/readback.bin",
+      "bytes": 36120,
+      "sha256": "80a5ed8d064a2d0559f063d6650fb4edab078de4c233ea66ef2cb0e1ac62cf20"
+    },
+    {
+      "source": "build/v6e-board-01/readback.txt",
+      "copy": "docs/verification/v2-100ksps-schedule/physical-01/readback.txt",
+      "bytes": 856,
+      "sha256": "edfe2d1ea04b1fe270b2f97e4fb7e1fd6c8ac3efebd3df75f0a15b600278cf00"
+    },
+    {
+      "source": "build/v6e-board-01/received-prefix.u16le",
+      "copy": "docs/verification/v2-100ksps-schedule/physical-01/received-prefix.u16le",
+      "bytes": 15104,
+      "sha256": "0bb639b76bcdb2301256a32bedf0b31af32e81a622400d5633f725cccb83a30c"
+    },
+    {
+      "source": "build/v6e-board-01/recorded-prefix-analysis.json",
+      "copy": "docs/verification/v2-100ksps-schedule/physical-01/recorded-prefix-analysis.json",
+      "bytes": 4817,
+      "sha256": "d108c37230744bc85c5120bd30cdfdb5c76c1a6e46043190b474923532834635"
+    },
+    {
+      "source": "build/v6e-board-01/registers-decoded.json",
+      "copy": "docs/verification/v2-100ksps-schedule/physical-01/registers-decoded.json",
+      "bytes": 699,
+      "sha256": "43bbbac37ec5acfe98f71e5ce333b00f8fdb1ce512b5af0d753cfe3a72a95c2a"
+    },
+    {
+      "source": "build/v6e-board-01/reset-run.txt",
+      "copy": "docs/verification/v2-100ksps-schedule/physical-01/reset-run.txt",
+      "bytes": 420,
+      "sha256": "f8596a56771eed9f6bf4ebfd453433d8b7e7796ae747d34ca0eea8f480d620c9"
+    },
+    {
+      "source": "build/v6e-board-01/rollback-program-verify.txt",
+      "copy": "docs/verification/v2-100ksps-schedule/physical-01/rollback-program-verify.txt",
+      "bytes": 958,
+      "sha256": "a414e8899759450539aec7c0fade7ef5713095f95c646491161d87f438e1e2d6"
+    },
+    {
+      "source": "build/v6e-board-01/rollback-readback.bin",
+      "copy": "docs/verification/v2-100ksps-schedule/physical-01/rollback-readback.bin",
+      "bytes": 65536,
+      "sha256": "95d3a11f8db843e362b2c59ed6fbf380dd630e067fa23f6ae5a9c7d2b11dff1e"
+    },
+    {
+      "source": "build/v6e-board-01/rollback-readback.txt",
+      "copy": "docs/verification/v2-100ksps-schedule/physical-01/rollback-readback.txt",
+      "bytes": 874,
+      "sha256": "e217ede08c25ce98d8c84c5839cf43bca989e1708c352d1ab51ca771f1f21490"
+    },
+    {
+      "source": "build/v6e-board-01/rollback-ready-invocation.json",
+      "copy": "docs/verification/v2-100ksps-schedule/physical-01/rollback-ready-invocation.json",
+      "bytes": 393,
+      "sha256": "58e79bd33ad8757bb9c4d60b9febc359c6439b7a593daf752eb69a3e83e226e6"
+    },
+    {
+      "source": "build/v6e-board-01/rollback-ready-stdout.txt",
+      "copy": "docs/verification/v2-100ksps-schedule/physical-01/rollback-ready-stdout.txt",
+      "bytes": 6223,
+      "sha256": "617557ea243458e098afe2ce4828506182d993567e86b1e23bedc751af01db0c"
+    },
+    {
+      "source": "build/v6e-board-01/rollback-ready.json",
+      "copy": "docs/verification/v2-100ksps-schedule/physical-01/rollback-ready.json",
+      "bytes": 6223,
+      "sha256": "617557ea243458e098afe2ce4828506182d993567e86b1e23bedc751af01db0c"
+    },
+    {
+      "source": "build/v6e-board-01/rollback-reset-run.txt",
+      "copy": "docs/verification/v2-100ksps-schedule/physical-01/rollback-reset-run.txt",
+      "bytes": 420,
+      "sha256": "f8596a56771eed9f6bf4ebfd453433d8b7e7796ae747d34ca0eea8f480d620c9"
+    },
+    {
+      "source": "build/v6e-board-01/rollback-verification.json",
+      "copy": "docs/verification/v2-100ksps-schedule/physical-01/rollback-verification.json",
+      "bytes": 248,
+      "sha256": "5868f0d3e2549940494bd2d64b535eee7112bf6748f54a8e0d8cbbc621a41128"
+    },
+    {
+      "source": "build/v6e-board-01/run/physical.mtstream",
+      "copy": "docs/verification/v2-100ksps-schedule/physical-01/run/physical.mtstream",
+      "bytes": 11495,
+      "sha256": "c28effed803c6884950ab9d9dfd63681796f1822985a9f92777d0691a9328619"
+    },
+    {
+      "source": "build/v6e-board-01/run/physical.mtstream.v2.json",
+      "copy": "docs/verification/v2-100ksps-schedule/physical-01/run/physical.mtstream.v2.json",
+      "bytes": 1990,
+      "sha256": "45e3685a04f6fe501b08b03084dc343df12c0144df90d9eba2c680cd1709f59a"
+    },
+    {
+      "source": "build/v6e-board-01/run/result.json",
+      "copy": "docs/verification/v2-100ksps-schedule/physical-01/run/result.json",
+      "bytes": 2869,
+      "sha256": "83839d3798397d3f3b1c293cda314b9e789f3118d22cbe55df2846ecf5c009d5"
+    },
+    {
+      "source": "build/v6e-board-01/run/traffic.bin",
+      "copy": "docs/verification/v2-100ksps-schedule/physical-01/run/traffic.bin",
+      "bytes": 19387,
+      "sha256": "879a179bedba7a41ab58bb7f0feb7557ce54dad04dd755f3e4afb6109c3c5544"
+    },
+    {
+      "source": "build/v6e-board-01/sram-20k.bin",
+      "copy": "docs/verification/v2-100ksps-schedule/physical-01/sram-20k.bin",
+      "bytes": 20480,
+      "sha256": "b8bef927b322cae96599bda4d54b1b9405e51eec70bf172d72a28abae45fabc0"
+    },
+    {
+      "source": "build/v6e-board-01/sram-20k.txt",
+      "copy": "docs/verification/v2-100ksps-schedule/physical-01/sram-20k.txt",
+      "bytes": 856,
+      "sha256": "e814c4a990ca0eb2a0866d200af752daa9d1f8d37cd9e56ad3a9d62e572501ea"
+    },
+    {
+      "source": "build/v6e-board-01/tim3.bin",
+      "copy": "docs/verification/v2-100ksps-schedule/physical-01/tim3.bin",
+      "bytes": 48,
+      "sha256": "9c3deb6015192ceafa49e37ecac8a86a06db1abe670fee7545e8b177bcaddb41"
+    },
+    {
+      "source": "build/v6e-board-01/tim3.txt",
+      "copy": "docs/verification/v2-100ksps-schedule/physical-01/tim3.txt",
+      "bytes": 848,
+      "sha256": "8598d380050ca04f9e8b3c35255ccc9ab6ceb0c5d45b4be8c463638a2a301cd9"
+    },
+    {
+      "source": "build/v6e-board-01/wire-failure-analysis.json",
+      "copy": "docs/verification/v2-100ksps-schedule/physical-01/wire-failure-analysis.json",
+      "bytes": 20202,
+      "sha256": "757a4059517d84831014a4a1974cdb63e03bec66542ac7bc7cba5122d25c9a36"
+    }
+  ]
+}
