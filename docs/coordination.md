@@ -1,5 +1,19 @@
 # Координация самостоятельного V2
 
+V2-06f1: разрешён черновик параллельно с исправлениями проекта. Автор
+higher_fs_review — firmware/v2-stream, tests/v2-stream-firmware,
+build/v6f-fw-*,build/v6f-native-*,build/v6f-freeze.json; root — канонические
+документы/интеграция. Критик stream200_critic — проект и независимые
+docs/reviews/v2-06f*.md, docs/verification/v2-stream-profile/critic*.json.
+Host/Windows-пакет прежние. COM/SWD никому не поручены; новый Flash
+допускается только отдельно после exact source/image review.
+
+V2-06f, проект диагностики: higher_fs_review пишет только
+build/v6f-analysis/profiling-plan.md/json; stream200_critic — только
+build/v6f-analysis/critic-plan.md/json; root — канонические документы.
+На этой стадии firmware/host/COM/SWD не меняются. Для реализации будет
+отдельно уточнён scope после разбора проекта; E остаётся REWORK.
+
 V2-06e: root — аппаратные действия, build/v6e-board-01, канонические документы;
 higher_fs_review — firmware/v2-stream, tests/v2-stream-firmware и build/v6e-*;
 host_200k — только порученный offline-разбор физических файлов;
