@@ -1,0 +1,24 @@
+{
+  "status": "PASS",
+  "method": "whole unchanged core/runtime token comparison plus exact changed-body normalization and byte-pinned ADC/USB sources",
+  "unchanged_files": [
+    "dcd_stm32_fsdev.c",
+    "usbd.c",
+    "fsdev_stm32.h",
+    "v2/app/mt_live_adc.c",
+    "v2/platform/adc_timer_dma.c",
+    "v2/platform/adc_timer_dma.h",
+    "v2/app/mt_live_adc.h",
+    "v2/acquisition/mt_sample_queue.c",
+    "v2/protocol/mt_wire.c",
+    "v2/transport/mt_usb_bridge.c",
+    "v2/boot/tusb_config.h"
+  ],
+  "original_step_calls_and_checks_restored_by_normalization": true,
+  "pure_build_only_error_deferral": true,
+  "completed_rolling_CRC_unchanged": true,
+  "runtime_submit_helper": "static int prepared_tx_step(mt_live_runtime *r,const mt_live_tx_ticket *ticket,\n                             uint32_t prepared_epoch,uint32_t prepared_soft_serial) {\n    if(r->epoch!=prepared_epoch || r->soft_serial!=prepared_soft_serial || !usable(r))return 1;\n    return mt_live_device_step_prepared(&r->device,ticket);\n}\n",
+  "new_ticket_error_branch": "    if(!now(d,&n) || !expire(d,n))return d->state!=MT_LIVE_FAULT;\n    if(ticket) {\n        /* Current identity is checked BEFORE a deferred error can recover. */\n        if(!ticket_matches(d,ticket))return d->state!=MT_LIVE_FAULT;\n        if(ticket->result==MT_LIVE_TX_ERROR) {\n            if(ticket->error!=MT_LIVE_ERR_PROTOCOL && ticket->error!=MT_LIVE_ERR_ARGUMENT)return 0;\n            recover(d,ticket->error); return 0;\n        }\n        if(ticket->error || ticket->result!=MT_LIVE_TX_PREPARED)return d->state!=MT_LIVE_FAULT;\n    } else if(!build_tx(d,&error)) {\n        if(error)recover(d,error);\n        return d->state!=MT_LIVE_FAULT;\n    }\n",
+  "prepare_runtime_block": "    /* Pure staging runs with the previous interrupt mask restored. The same\n     * foreground owner retains queue/core bytes; ISR may only change USB epoch.\n     * No new frame buffer, callbacks, or irreversible acceptance occurs here. */\n    prepared_epoch=r->epoch; prepared_soft_serial=r->soft_serial;\n    (void)mt_live_device_prepare_tx(&r->device,&ticket);\n    MT_DIAG_STAMP(diag_tx);\n    key=mt_usb_bridge_lock();\n    tx_ok=prepared_tx_step(r,&ticket,prepared_epoch,prepared_soft_serial);\n    mt_usb_bridge_unlock(key);\n",
+  "scope_limit": "Source proof is distinct from native API execution; no target WCET or physical USB claim."
+}

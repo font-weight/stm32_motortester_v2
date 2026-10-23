@@ -1,5 +1,41 @@
 # Прогресс Мотортестера V2
 
+## 24.10.2026 — V2-06g: программный кандидат с подготовкой TX до IRQ guard
+
+Реализованы prepare_tx и step_prepared: только существующие tx bytes/metadata
+готовятся до IRQ guard; ticket и транспортные epoch/soft_serial/usable
+проверяются перед write. Ошибки подготовки обрабатываются внутри прежнего
+защищённого участка; post-write timing, sequence/prefix/pop/CRC и исходные
+TIME/deadline/ADC/Stop проверки сохранены. Частота100k, DATA128, queue8,
+FIFO384 и USB burst не менялись. S9 profile явно выключен в новом образе,
+его исходники/результаты сохранены; legacy136 по0x20002BC4 остаётся.
+Метрика tx_max теперь исключает подготовку; её нельзя напрямую сравнивать
+с прежними S8/S9 TX maxima. Step/poll по-прежнему охватывают подготовку.
+
+Финальный `build/v6g-fw-02`, build0x56325341 (V2SA): BIN37132байта,
+SHA256 `8e8a5f2597a573ffaecfc054b01de726975ec5de07a33b06c4e56f5de75b3558`;
+ELF `e8a9574fa7374492bdbe258685005b45f7230faf64276755e39c732693359946`.
+text37004/data128/bss11212, с8192 резервом стека19532/20480, запас948байт.
+Условная граница6044/aligned6048, не физическое измерение стека/WCET.
+G01 иG02 дали одинаковые compiler dependencies/objects/ELF/BIN/static;
+G02 повторена из-за пояснения README до указания root не пересобирать
+образ ради документации. Обе сборки сохранены; дополнительных прогонов нет.
+
+Одна адресная actual-core модель `build/v6g-native-01` прошла с первого
+запуска: одинаковые2649байт S8/candidate, SHA256
+`6336b049ad72f348152b59382e6d70a3b55c1ac11ea8976d01674db7ce7a15d9`.
+Проверены pure/cached, stale core/epoch, Stop/HELLO, deferred error,
+zero/partial/unknown и TIME до/после write/final commit. Общий synthetic
+build0x56325338 использован только для сравнения байтов; физическая identity
+V2SA задана ARM recipe. Runtime admission helper фактический, usable/IRQ
+в native — логические seams; аппаратные тайминги модель не проверяет.
+
+[Программный архив G](verification/v2-tx-prepare/software-evidence.json):
+43byte-equal пары1616485байт, manifest SHA256
+`f76746591cab18b3c8bae9efe1cef9e2ebab0eaec79b272486df1a77fcb00d9a`.
+Независимый финальный software verdict ожидается; Flash G не выполнялся.
+**На плате остаётся S4/50k**, Windows-пакет v6dw2 не менялся.
+
 ## 23.10.2026 — V2-06f2: получен профиль первой ошибки; S4 восстановлена
 
 Один разрешённый START S9 после program/verify, независимого readback всех

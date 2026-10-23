@@ -1,0 +1,3 @@
+PASS actual S8/candidate transcript fixtures: HELLO/CAPS/START/DATA/END/ACK; zero and partial acceptance
+PASS TIME before/after write/final commit; late deadline retains known bytes; unknown acceptance fenced
+PASS narrow actual-core TX model; baseline byte comparison is performed by runner, no physical timing claim

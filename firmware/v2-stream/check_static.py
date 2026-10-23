@@ -65,6 +65,7 @@ CALLBACKS = {
     "quiesce_before_start": ["live_stop"],
     "quiesce_before_start.constprop": ["live_stop"],
     "mt_live_device_step": ["live_write"],
+    "step_tx": ["live_write"],
     "mt_stream_diag_cycle": ["mt_clock_mmio_read32"],
     "mt_stream_diag_init": ["mt_clock_mmio_read32", "mt_clock_mmio_write32"],
 }

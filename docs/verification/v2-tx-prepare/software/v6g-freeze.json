@@ -1,0 +1,381 @@
+{
+  "schema": "motortester-v2-06g-software-freeze-1",
+  "status": "FROZEN_SOFTWARE_CANDIDATE_PENDING_INDEPENDENT_REVIEW",
+  "build": "0x56325341",
+  "scope": "Pure TX staging before IRQ guard; same S8 100k/ADC/queue/transport, S9 observer explicitly off and legacy136 retained",
+  "final_image": "build/v6g-fw-02",
+  "native_image_basis": "build/v6g-fw-01; identical compiler dependencies/objects/ELF/BIN to final02 as recorded in final-image-equivalence.json",
+  "artifact_sha256": {
+    "MotortesterV2-stream-candidate.bin": "8e8a5f2597a573ffaecfc054b01de726975ec5de07a33b06c4e56f5de75b3558",
+    "MotortesterV2-stream-candidate.elf": "e8a9574fa7374492bdbe258685005b45f7230faf64276755e39c732693359946",
+    "MotortesterV2-stream-candidate.hex": "5cce56d32a91e14da748b20e96aa6954d8347260152a9e08e3695c8c89df47bb"
+  },
+  "static": {
+    "text": 37004,
+    "data": 128,
+    "bss": 11212,
+    "stack_reserve": 8192,
+    "ram_total_with_stack_reserve": 19532,
+    "ram_limit": 20480,
+    "ram_spare": 948,
+    "conditional_stack_bound": 6044,
+    "aligned_minimum": 6048,
+    "legacy_diagnostics_address": "0x20002bc4",
+    "legacy_diagnostics_bytes": 136,
+    "active_profile_symbol_absent": true,
+    "active_profile_enabled": false
+  },
+  "native": {
+    "result": "PASS",
+    "baseline": "exact S8 build/v6e-fw-01",
+    "groups": [
+      "deterministic normal/zero/partial HELLO/CAPS/START/DATA/END/ACK transcript",
+      "pure/cached prepare; stale core/actual runtime admission seam; Stop/HELLO replacement/deferred error",
+      "TIME pre/post/final write; unknown count and known-byte fencing"
+    ],
+    "transcript_bytes": 2649,
+    "transcript_sha256": "6336b049ad72f348152b59382e6d70a3b55c1ac11ea8976d01674db7ce7a15d9",
+    "synthetic_both_io_firmware_build": "0x56325338 for byte-comparison; actual V2SA identity is provided by exact ARM recipe",
+    "transport_limit": "Actual prepared_tx_step extracted with logical usable/guard seams; not execution of full USB IRQ runtime"
+  },
+  "legacy_metric_boundary": "tx_max_cycles now starts after prepare and excludes frame encoding; cannot directly compare with S8/S9 TX maxima; step/poll brackets still include preparation",
+  "source_proof": "Full unchanged core/runtime token equivalence; build only deferred-error normalization; original TX checks/order exact after removing ticket branch; completed CRC/queue publication unchanged; ADC/USB files byte-pinned to S8",
+  "preserved_attempts": {
+    "build/v6g-fw-01": "PASS first software checkpoint",
+    "build/v6g-fw-02": "PASS identical compiled image, README diagnostic-boundary update only; repeated ARM had completed before root advised no rebuild for doc-only change",
+    "build/v6g-native-01": "PASS first and only narrow native run; no failed G attempts"
+  },
+  "commands": {
+    "build": ".venv/Scripts/python.exe -I -B firmware/v2-stream/build_windows.py --output build/v6g-fw-02",
+    "native": ".venv/Scripts/python.exe -I -B tests/v2-stream-firmware/check_tx_prepare.py --image build/v6g-fw-01 --baseline build/v6e-fw-01 --zig build/v5-native-toolchain/zig-x86_64-windows-0.15.2/zig.exe --output build/v6g-native-01"
+  },
+  "inputs_and_evidence": {
+    "build/v6g-fw-02/receipt.json": {
+      "sha256": "60762a0c4c450d742d91d6544f8f64f03394f533f6de411b7de3b2d9ef55719f",
+      "bytes": 379903
+    },
+    "build/v6g-fw-02/static-bound.json": {
+      "sha256": "627e4d0cb7a2d1aec75cb85e8ca66d6475890b29003ec7fb92ea96f7ae8e7609",
+      "bytes": 181767
+    },
+    "build/v6g-fw-02/image.map": {
+      "sha256": "4b07f00ce5f83daddf4188ff1aee6d51b0ba43fef9eb77e828a7fb8d5affd7df",
+      "bytes": 76762
+    },
+    "build/v6g-fw-02/image.nm": {
+      "sha256": "0cac3eefcf388cae090cb2c29fd2b571eb7c78950538226713a2202980bf8a96",
+      "bytes": 18190
+    },
+    "build/v6g-fw-02/image.dis": {
+      "sha256": "6870acda6e611210234e02905cd74b510775f6ae6d2bd062e90112bc66314bc3",
+      "bytes": 616835
+    },
+    "build/v6g-fw-02/MotortesterV2-stream-candidate.bin": {
+      "sha256": "8e8a5f2597a573ffaecfc054b01de726975ec5de07a33b06c4e56f5de75b3558",
+      "bytes": 37132
+    },
+    "build/v6g-fw-02/MotortesterV2-stream-candidate.elf": {
+      "sha256": "e8a9574fa7374492bdbe258685005b45f7230faf64276755e39c732693359946",
+      "bytes": 72012
+    },
+    "build/v6g-native-01/result.json": {
+      "sha256": "4089797e9dd38822eeae1b93aca63f85692f239536f373f344b79b47c44a6c91",
+      "bytes": 16295
+    },
+    "build/v6g-native-01/source-equivalence.json": {
+      "sha256": "47cebdf4a2b24c6d930ae798697db0091d65f0ff5ad55b3a1f4a7c4ad9dffea4",
+      "bytes": 2411
+    },
+    "build/v6g-native-01/candidate/transcript.bin": {
+      "sha256": "6336b049ad72f348152b59382e6d70a3b55c1ac11ea8976d01674db7ce7a15d9",
+      "bytes": 2649
+    },
+    "build/v6g-native-01/candidate/model.exe": {
+      "sha256": "badbe6384c7da31c4a2e974258b551fe85b6e1a29b3160f1f9938b6903ad9247",
+      "bytes": 204800
+    },
+    "build/v6g-native-01/baseline/model.exe": {
+      "sha256": "8916ff7a42b3d20cba24f3806b6e73804037860a05a8cd202ff65b817ec9e862",
+      "bytes": 196608
+    },
+    "build/v6g-analysis/final-image-equivalence.json": {
+      "sha256": "69911d3aec558153fa2e5d66e6ce529da253e3d4f7a8a636fec857f07c468319",
+      "bytes": 923
+    },
+    "build/v6g-analysis/prepare-plan.md": {
+      "sha256": "3302a32ebcee0b36b8064a7396ca8231732be9c3707e684cd994112473a10824",
+      "bytes": 5632
+    },
+    "build/v6g-analysis/prepare-plan.json": {
+      "sha256": "6f94f693d729d26c3fea562fc441a0f03877692a599988423c7e67c744625233",
+      "bytes": 1021
+    },
+    "tests/v2-stream-firmware/check_tx_prepare.py": {
+      "sha256": "6216ecefa383e1c0336b5088842d681a1c1e06bfec08f34fdc930c33a2018a17",
+      "bytes": 10497
+    },
+    "tests/v2-stream-firmware/tx_prepare_model.c": {
+      "sha256": "fea8e0dcec0536e08d9f17141e165b1fc0262425dc05784484926021cad1eecd",
+      "bytes": 13252
+    },
+    "firmware/v2-stream/build_windows.py": {
+      "sha256": "d63e89036fcc484ae3c4ad93887a904214d2503fca1e37d2ca10e2defbf06d25",
+      "bytes": 24492
+    },
+    "firmware/v2-stream/check_static.py": {
+      "sha256": "1810437a79183f45f6437111623788e9a4c9c3366adb03909e175978517a9360",
+      "bytes": 18935
+    },
+    "firmware/v2-stream/config.json": {
+      "sha256": "0c9ebe99528d7e9c64762335f8ac3a83d8b071411fa39f79a97a35cb6c9860c1",
+      "bytes": 1004
+    },
+    "firmware/v2-stream/README.md": {
+      "sha256": "03befe99fb0a71f48be0e782a49299dbbfcd64bc557422aaf4e8c643685558b6",
+      "bytes": 40446
+    },
+    "firmware/v2-stream/toolchain-win.json": {
+      "sha256": "0f352d95bfc4eb844323c4ae07e9c1fbbfadbb729e54ccb54471f96bbbf9253d",
+      "bytes": 19766
+    },
+    "firmware/v2-stream/overlays/adc-cen.json": {
+      "sha256": "376924fb8d7de47bf14989eae29a9c26b3abc5c13f66d4fb099b62558da229e5",
+      "bytes": 2187
+    },
+    "firmware/v2-stream/overlays/board_inputs.py": {
+      "sha256": "58fe4b9a33f530e9937d5d08fb81681f11ac32e67d73f8b1cbb75bdf2d50be52",
+      "bytes": 4200
+    },
+    "firmware/v2-stream/overlays/crc32.json": {
+      "sha256": "a1e042d02a6899e676915f617f932d6e47340a613d68b3bb69c8dbde36fe43e9",
+      "bytes": 914
+    },
+    "firmware/v2-stream/overlays/mt_v2_crc32.h": {
+      "sha256": "48f29791e8b0595dabdc70ec06807f4dc064a56e66db514df24dd04ea9222a2f",
+      "bytes": 528
+    },
+    "firmware/v2-stream/overlays/rate-100k-whole-fit.json": {
+      "sha256": "4cffcee92aee6c4a9b61485ddf5c1d1d8206b2478ce8acaee2df762fe9f0e575",
+      "bytes": 2764
+    },
+    "firmware/v2-stream/overlays/rate-200k.json": {
+      "sha256": "6e2f7559dabc400ea9ef0551f66cf91877c75a9b8136640d3e8616020f95fb74",
+      "bytes": 4121
+    },
+    "firmware/v2-stream/overlays/schedule-s4.json": {
+      "sha256": "7a1af349e960931002e443e667bf8e93b70f8b9f62ab8de6d700d636966b5f67",
+      "bytes": 528
+    },
+    "firmware/v2-stream/overlays/stream-profile.json": {
+      "sha256": "cc097ed6c89272bcfd4299431bfe37cb795e94ee8ae6792e3ba6e00e6170d900",
+      "bytes": 2327
+    },
+    "firmware/v2-stream/overlays/tx-prepare.json": {
+      "sha256": "0dc24bd207a23c139151b873dafade067b409ff83fe6815e76a47a563017f92d",
+      "bytes": 1415
+    },
+    "firmware/v2-stream/overlays/usb-burst.json": {
+      "sha256": "2a5d1a60b4a42c80480d24cb24d783eea1937438fd5ad85f8ef98278573201bf",
+      "bytes": 2779
+    },
+    "firmware/v2-stream/overlays/usb-nvic.json": {
+      "sha256": "a20ba8e40676eeda40d5853a9583c67944010a69ecd1100cf93ead1cd0edb494",
+      "bytes": 2260
+    },
+    "firmware/v2-stream/overlays/v2-100k-app-mt_live_adc.h.patch": {
+      "sha256": "ab7d083fd31f89f4732daa8b742765c09888ad2cdbeebcdc2a70805aae5efc9c",
+      "bytes": 526
+    },
+    "firmware/v2-stream/overlays/v2-100k-app-mt_live_runtime.c.patch": {
+      "sha256": "00aee820932b937cc2e8005dbb7818e1bef516e2d49f4d91da771a1bf5992d19",
+      "bytes": 781
+    },
+    "firmware/v2-stream/overlays/v2-100k-platform-adc_timer_dma.c.patch": {
+      "sha256": "6625d7d60a6a0d7a8600cc81c150b0a19679af5b65484b06ccc17b3833dbb4e6",
+      "bytes": 797
+    },
+    "firmware/v2-stream/overlays/v2-100k-platform-adc_timer_dma.h.patch": {
+      "sha256": "482f1707b139a149e32b7ff048d83c5ecad92b5222d65100c0e9f40128b8e20e",
+      "bytes": 3457
+    },
+    "firmware/v2-stream/overlays/v2-100k-protocol-mt_live_device.c.patch": {
+      "sha256": "2e85b98c0ee7203d6e7d42d4ab732f7bb9c879a21f1341793da5d1cb68cd233e",
+      "bytes": 609
+    },
+    "firmware/v2-stream/overlays/v2-100k-protocol-mt_live_device.h.patch": {
+      "sha256": "463753d07c6d817d06278dc79b190f324387414b8c29582dbb2b55cd7ef71852",
+      "bytes": 556
+    },
+    "firmware/v2-stream/overlays/v2-burst-dcd_stm32_fsdev.c.patch": {
+      "sha256": "d06995fb5dc7caf71846dae05b670fb18ba0798b713f5e013284360c1c197900",
+      "bytes": 4601
+    },
+    "firmware/v2-stream/overlays/v2-burst-v2-app-mt_live_runtime.c.patch": {
+      "sha256": "b565825392fbd9997a741a714bdfe6174b03286b24f9b48e33ed5427c64395de",
+      "bytes": 565
+    },
+    "firmware/v2-stream/overlays/v2-burst-v2-boot-tusb_config.h.patch": {
+      "sha256": "380477aa9d82428665fc6456499d8427ad4787f82bd8a31ae11ba5d63a57758c",
+      "bytes": 475
+    },
+    "firmware/v2-stream/overlays/v2-burst-v2-protocol-mt_live_device.c.patch": {
+      "sha256": "fa94bc808b3d8e481a21e39f156bf357ee6b9c70638114261fab2e3c166542ae",
+      "bytes": 552
+    },
+    "firmware/v2-stream/overlays/v2-burst-v2-protocol-mt_live_device.h.patch": {
+      "sha256": "e0dae231844e3e56d70f5c331a15103176785f3df8459346a3ff1bf347d7c20f",
+      "bytes": 691
+    },
+    "firmware/v2-stream/overlays/v2-burst-v2-transport-mt_usb_descriptors.c.patch": {
+      "sha256": "b1b355e943b2a3df276dda700778f3a6cf28bef1cdc4a3b2a53b94d27b20d813",
+      "bytes": 575
+    },
+    "firmware/v2-stream/overlays/v2-cen-adapter-api.patch": {
+      "sha256": "0fbb06d57ef07f8a502ab0958df12e91850006c9cd3e843d174b52416b23cf23",
+      "bytes": 753
+    },
+    "firmware/v2-stream/overlays/v2-cen-adapter.patch": {
+      "sha256": "23aa292a36ec4d815b66460a81d71839f44120333e04a8ce8f5e0ed85ceb7ccf",
+      "bytes": 1325
+    },
+    "firmware/v2-stream/overlays/v2-cen-driver-api.patch": {
+      "sha256": "aff5f365c60fc58aa4ded7c43f6e64146765817627a6635689ec7181d6e1476d",
+      "bytes": 1459
+    },
+    "firmware/v2-stream/overlays/v2-cen-driver.patch": {
+      "sha256": "57c27e92dce222ee5180bd965117675bc4b405bad221425a295e839ae58dda55",
+      "bytes": 4417
+    },
+    "firmware/v2-stream/overlays/v2-cen-runtime.patch": {
+      "sha256": "1c15fab8a75cfd819697b3a20970a7b2858e6821a81fc6673e5da278d2e12668",
+      "bytes": 2580
+    },
+    "firmware/v2-stream/overlays/v2-crc-prefix.patch": {
+      "sha256": "3d469bfbdc81b60b25ee3d6a82eb589a93b35d15c4827e342ea4d580d24569cc",
+      "bytes": 673
+    },
+    "firmware/v2-stream/overlays/v2-crc-wire.patch": {
+      "sha256": "97644a4d9cd4bc22a56456f323a205d2c3b0b49c6ef2089edbf6dd893eb06b06",
+      "bytes": 7063
+    },
+    "firmware/v2-stream/overlays/v2-nvic-api.patch": {
+      "sha256": "d19b42cc047bb14ff1d5c621153f809f4c2d8946d692a489c3e56b4df30644f1",
+      "bytes": 1366
+    },
+    "firmware/v2-stream/overlays/v2-nvic-bridge.patch": {
+      "sha256": "839f558054e3942fcc07dc0f6269a3f39025373055694a9620e034b88eee2333",
+      "bytes": 1777
+    },
+    "firmware/v2-stream/overlays/v2-nvic-dcd.patch": {
+      "sha256": "d450b7bec8121567dc096b452de98476009b51f3b87605cc7183ef276810e3d7",
+      "bytes": 2693
+    },
+    "firmware/v2-stream/overlays/v2-nvic-enable.patch": {
+      "sha256": "e8747ab44e9a95a3aca9b247ebf7e3693bdc18021630d38aa4fd7a73c55961e0",
+      "bytes": 519
+    },
+    "firmware/v2-stream/overlays/v2-nvic-runtime.patch": {
+      "sha256": "5fc51ae4a25f180a65e84983d6cdd24dcceebf2b1a96f244ad85c9a7d663b886",
+      "bytes": 1811
+    },
+    "firmware/v2-stream/overlays/v2-prepare-mt_live_device.c.patch": {
+      "sha256": "8129e54819a8e176e2168257f267be7e88b0589dd753e51946449a9a00c2f6f4",
+      "bytes": 7626
+    },
+    "firmware/v2-stream/overlays/v2-prepare-mt_live_device.h.patch": {
+      "sha256": "f257193108a8f2d1c74efe15ff8e4639f0613603832f5f8e712179dcc835c635",
+      "bytes": 2235
+    },
+    "firmware/v2-stream/overlays/v2-prepare-mt_live_runtime.c.patch": {
+      "sha256": "0ed972f1a4adf3133938bf2eab117f7cd4f1b09cfc4552ca66195208bb044b25",
+      "bytes": 2299
+    },
+    "firmware/v2-stream/overlays/v2-profile-dcd_stm32_fsdev.c.patch": {
+      "sha256": "cab77af2b56f63e5996d9b5864f7b8b333d6c2ee8e0d7c1fb1f8c8cc0ddd299e",
+      "bytes": 4411
+    },
+    "firmware/v2-stream/overlays/v2-profile-platform-mt_timebase.c.patch": {
+      "sha256": "3a6a3f2dc4762b70f28717db263178d1aef5102cb04f3b0e3a9078b06b2c7912",
+      "bytes": 1010
+    },
+    "firmware/v2-stream/overlays/v2-profile-v2-app-mt_live_runtime.c.patch": {
+      "sha256": "d4ecb38bfa2711a53cde9cd733aaa2cd7ed736e5ff786bae4e731694a52d0a98",
+      "bytes": 8752
+    },
+    "firmware/v2-stream/overlays/v2-profile-v2-platform-adc_timer_dma.c.patch": {
+      "sha256": "7b3b623f146ade46d8b0d3450b338a66cb6234c0053a68571c111e167a02e5ee",
+      "bytes": 573
+    },
+    "firmware/v2-stream/overlays/v2-profile-v2-protocol-mt_live_device.c.patch": {
+      "sha256": "85df527b84eb554cabef2e2a5c16144c4f211a245c42a6a8e63c7dda39c92238",
+      "bytes": 3024
+    },
+    "firmware/v2-stream/overlays/v2-rate-acquisition-mt_sample_queue.c.patch": {
+      "sha256": "20dff6438ac9c096a9b5c49ae7978ba133236a401cfaf09055d5478550435339",
+      "bytes": 431
+    },
+    "firmware/v2-stream/overlays/v2-rate-acquisition-mt_sample_queue.h.patch": {
+      "sha256": "d236cd73db53295ad3841c7beeca280a7819bdf28a2cd6938a974594ab4fa152",
+      "bytes": 336
+    },
+    "firmware/v2-stream/overlays/v2-rate-app-mt_live_adc.c.patch": {
+      "sha256": "b74e93bfac18d6eb80bfe81f69f522106f3b45b07020c97dce3cd697ec2dccf9",
+      "bytes": 1546
+    },
+    "firmware/v2-stream/overlays/v2-rate-app-mt_live_adc.h.patch": {
+      "sha256": "5d9b60f805b3f2210d7bb552fb9e2004ff53ff7b299ced151371553b008af867",
+      "bytes": 1166
+    },
+    "firmware/v2-stream/overlays/v2-rate-app-mt_live_runtime.c.patch": {
+      "sha256": "d1b67929f8b15942b136a3262e7939cf3f6bbe4b9e31d3f1ab27abfc36b0a78d",
+      "bytes": 1638
+    },
+    "firmware/v2-stream/overlays/v2-rate-platform-adc_timer_dma.c.patch": {
+      "sha256": "c06e761f4926cc468480e94e99101a422619682553e9bc088cb7d610f058ba47",
+      "bytes": 2164
+    },
+    "firmware/v2-stream/overlays/v2-rate-platform-adc_timer_dma.h.patch": {
+      "sha256": "863f381c86136acee8d6e99c3ff58c15d212e2d57c68d00124444315600a4df3",
+      "bytes": 2985
+    },
+    "firmware/v2-stream/overlays/v2-rate-protocol-mt_live_device.c.patch": {
+      "sha256": "dce23d0cf9b9c63b1732e09edabf0923199b14b67719a6a8082f79b49825f47d",
+      "bytes": 2483
+    },
+    "firmware/v2-stream/overlays/v2-rate-protocol-mt_live_device.h.patch": {
+      "sha256": "d56916d9db1a5f4543493e25c1e0b04c4f4b300d1c610f8bf96e6deac2c4b310",
+      "bytes": 1959
+    },
+    "firmware/v2-stream/overlays/v2-s4-schedule-app-mt_live_runtime.c.patch": {
+      "sha256": "54970946519f087f882fdbbb93599116669c88a624114e1fe1839dc315464c99",
+      "bytes": 1638
+    },
+    "firmware/v2-stream/profile/ABI.md": {
+      "sha256": "6ca5f7df50bacb662836def10dc296d824c463c45c3b8b3357434a469b6e5cf6",
+      "bytes": 6633
+    },
+    "firmware/v2-stream/profile/mt_stream_profile.c": {
+      "sha256": "8b2ef3dad3ce272bb39fd189ee8e897de92b2b2ce0491b96c9fb8925bfd1e4b2",
+      "bytes": 12694
+    },
+    "firmware/v2-stream/profile/mt_stream_profile.h": {
+      "sha256": "786ccf29551bc2a56f6ccd380f2efa5a7506e812929756adda59aeef49a8c5c3",
+      "bytes": 6312
+    }
+  },
+  "unchanged_negative_physical_evidence": [
+    "S5",
+    "S6",
+    "S7",
+    "S8",
+    "S9"
+  ],
+  "limitations": [
+    "No COM/SWD/Flash in G software task",
+    "No measured target IRQ-off duration or WCET",
+    "No physical throughput/losslessness or100/200k qualification",
+    "No new analogue-input or voltage-calibration claim",
+    "Independent software review and a separate hardware plan are still required",
+    "Future rollback only for a concrete need, per latest user instruction"
+  ]
+}

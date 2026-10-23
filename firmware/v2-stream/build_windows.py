@@ -1,4 +1,4 @@
-"""Build the separate V2S9 100 kS/s profiling candidate; never flash hardware."""
+"""Build the separate V2SA 100 kS/s TX-prepare candidate; never flash hardware."""
 import argparse
 import hashlib
 import importlib.util
@@ -30,7 +30,6 @@ ADD = [
     "firmware/app/mt_live_adc.c", "firmware/platform/mt_live_clock.c",
     "firmware/protocol/mt_live_device.c", "firmware/acquisition/mt_sample_queue.c",
     "firmware/platform/mt_stream_diag.c",
-    "firmware/platform/mt_stream_profile.c",
 ]
 
 
@@ -127,7 +126,7 @@ def main():
         "local_head": None, "config": config, "inputs_before": inputs,
         "commands": [], "objects": [], "dependencies": {},
         "hardware_verified": False, "timing_qualified": False, "flash_approved": False,
-        "instrumentation_profile": "foreground-dwt-v1+active-profile-v1",
+        "instrumentation_profile": ("foreground-dwt-v1+active-profile-v1" if config["active_profile_enabled"] else "foreground-dwt-v1"),
         "scope": "V2 transport candidate; no-input experiment requires separate exact-image review",
         "unverified": ["Physical HSE frequency/mode and USB pull-up",
                        "ADC/USB service latency and 1 ms transaction bound",
@@ -262,21 +261,28 @@ def main():
             target = out / "patched" / row["target"]
             target.write_bytes(apply_patch((out / row["source"]).read_bytes(),
                 (here / "overlays" / row["patch"]).read_bytes(), row))
-        profile = json.loads((here / "overlays/stream-profile.json").read_text("utf-8"))
-        require(profile["schema"] == "motortester-v2-stream-profile-overlay-1", "Unexpected profiler overlay")
-        receipt["v2_overlays"].extend(profile["patches"])
-        for row in profile["patches"]:
+        # Preserve S9 overlays/module in the recipe. This candidate explicitly
+        # selects the uninstrumented S8 layer plus TX prepare instead.
+        name = "stream-profile.json" if config["active_profile_enabled"] else "tx-prepare.json"
+        schema = "motortester-v2-stream-profile-overlay-1" if config["active_profile_enabled"] else "motortester-v2-tx-prepare-overlay-1"
+        selected = json.loads((here / "overlays" / name).read_text("utf-8"))
+        require(selected["schema"] == schema, "Unexpected selected TX/profile overlay")
+        receipt["v2_overlays"].extend(selected["patches"])
+        for row in selected["patches"]:
             target = out / "patched" / row["target"]
             target.write_bytes(apply_patch((out / row["source"]).read_bytes(),
                 (here / "overlays" / row["patch"]).read_bytes(), row))
-        for name in ("mt_stream_profile.c", "mt_stream_profile.h"):
-            (out / "patched/v2/platform" / name).write_bytes((here / "profile" / name).read_bytes())
+        if config["active_profile_enabled"]:
+            for name in ("mt_stream_profile.c", "mt_stream_profile.h"):
+                (out / "patched/v2/platform" / name).write_bytes((here / "profile" / name).read_bytes())
         manifest = json.loads((source / "firmware/build/inputs.json").read_text("utf-8"))
         standard = next(r["flags"] for r in manifest["components"]
                         if r["source"] == "firmware/app/mt_runtime.c")
         entries = [r for r in manifest["components"] if r["source"] not in REMOVE]
         require(len(entries) == 20, "Unexpected retained component count")
         entries += [{"source": path, "flags": standard} for path in ADD]
+        if config["active_profile_enabled"]:
+            entries.append({"source":"firmware/platform/mt_stream_profile.c","flags":standard})
         includes = ["-Ipatched/v2/" + p for p in
                     ("boot", "platform", "app", "protocol", "transport", "acquisition")]
         includes += ["-Isource/firmware/" + p for p in
@@ -326,6 +332,8 @@ def main():
                 "source/firmware/transport/mt_usb_bridge.c": "patched/v2/transport/mt_usb_bridge.c",
                 "source/firmware/transport/mt_usb_descriptors.c": "patched/v2/transport/mt_usb_descriptors.c",
             }.get(path, path)
+            if not (out / path).is_file() and src=="firmware/platform/mt_timebase.c":
+                path="source/"+src
             compile_c(f"{index:02}-{Path(src).stem}", path, row["flags"])
         reset = "objects/reset.o"
         run("compile-reset", [tools["gcc"], "-mcpu=cortex-m3", "-mthumb", "-mfloat-abi=soft",
@@ -334,7 +342,7 @@ def main():
         objects.append(reset)
         compile_c("board", "generated/board.c", standard)
         compile_c("timing", "generated/timing.c", standard)
-        require(len(objects) == 31, "Unexpected link input count")
+        require(len(objects) == 30 + int(config["active_profile_enabled"]), "Unexpected link input count")
         checker = load(source / "tests/boot-link/tools/run_boot_link_tests.py")
         vectors_path = source / "tests/boot-link/vector_map.json"
         require(digest(vectors_path) == checker.VECTOR_SHA, "Vector map differs")

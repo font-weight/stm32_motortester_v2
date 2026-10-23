@@ -1,0 +1,16 @@
+{
+  "schema": "v2-06g-identical-compiled-image-1",
+  "status": "PASS",
+  "first_receipt_sha256": "6ef8aeafc5e5ec3c4c06d4a26455dbf167ffb5d7e3372a3024940e57f54f5c17",
+  "final_receipt_sha256": "60762a0c4c450d742d91d6544f8f64f03394f533f6de411b7de3b2d9ef55719f",
+  "same_artifacts": {
+    "MotortesterV2-stream-candidate.bin": "8e8a5f2597a573ffaecfc054b01de726975ec5de07a33b06c4e56f5de75b3558",
+    "MotortesterV2-stream-candidate.elf": "e8a9574fa7374492bdbe258685005b45f7230faf64276755e39c732693359946",
+    "MotortesterV2-stream-candidate.hex": "5cce56d32a91e14da748b20e96aa6954d8347260152a9e08e3695c8c89df47bb"
+  },
+  "same_compiler_dependencies": true,
+  "compiler_dependency_count": 112,
+  "same_objects": true,
+  "same_analysis_inputs": true,
+  "difference": "Recipe README only: explicit legacy TX diagnostic boundary; native execution reused for byte-identical final image. No additional native run."
+}

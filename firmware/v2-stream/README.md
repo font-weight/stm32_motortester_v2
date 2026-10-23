@@ -1,4 +1,39 @@
-# Диагностический кандидат V2S9: active-only профиль S8
+# Кандидат V2SA: подготовка TX перед атомарным write/commit
+
+V2-06g проверяет одну ограниченную гипотезу после сохранённого S9 queue-full.
+Build `0x56325341`, product `Motortester V2 100k USBA`;100k/ADC512half/
+DATA128/queue8/FIFO384/burst и wire S8 сохранены. Физические100k/200k ещё
+не приняты. Код не открывает COM/SWD и не прошивает плату.
+
+`mt_live_device_prepare_tx` строит отсутствующий кадр в существующем staging
+перед PRIMASK, без callbacks/clock/recovery/sequence/prefix/queue commit.
+Ticket проверяется под старым guard до deferred error и непосредственно
+перед write; runtime повторно проверяет epoch/soft lifecycle/usable.
+`mt_live_device_step_prepared` сохраняет исходные TIME/deadline и атомарность
+от irreversible write через final time до completed CRC/pop/state publication.
+Legacy `tx_max_cycles` теперь измеряет guarded submit после prepare и исключает
+кодирование. Он не сопоставим напрямую с TX maxima S8/S9; общий step/poll
+по-прежнему включает подготовку. Это измерительный смысл, не доказательство
+ускорения. Stale ticket ничего не отправляет. Cached/partial кадр сохраняет фактический
+accepted prefix и старые delimiter/unknown acceptance правила.
+
+`active_profile_enabled=false` в config явно исключает512-byte S9 observer и
+его hooks из нового образа. `diagnostics=true` сохраняет legacy136. Исходники,
+overlays, старые receipts/образы S9 сохранены; их firmware recipe воспроизводит
+S9 отдельно. Для другого режима нужен отдельно проверенный config/build.
+
+```powershell
+.\.venv\Scripts\python.exe -I -B firmware\v2-stream\build_windows.py --output build\v6g-fw-candidate
+```
+
+Адресная actual-core native модель сопоставляет wire с S8 и проверяет
+stale/epoch/zero/partial/unknown/TIME. Точные commands и результаты находятся
+в receipt/progress после выполнения. Неизменные GUI/host/USB suites не
+повторяются. Exact SRAM/stack и независимое ревью образа обязательны до
+отдельного аппаратного плана; runtime throughput этой сборкой не доказан.
+
+## Сохранённая диагностическая S9
+
 
 V2-06f1 добавляет измерение затрат к сохранённому S8/100k после его физического
 queue-full. **Это диагностический образ, а не приёмка устойчивых100k.**

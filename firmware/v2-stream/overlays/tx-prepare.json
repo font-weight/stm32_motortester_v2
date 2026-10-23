@@ -1,0 +1,29 @@
+{
+  "schema": "motortester-v2-tx-prepare-overlay-1",
+  "patches": [
+    {
+      "source": "patched/v2/protocol/mt_live_device.h",
+      "target": "v2/protocol/mt_live_device.h",
+      "patch": "v2-prepare-mt_live_device.h.patch",
+      "source_sha256": "715a75f4f0b436a6375b28c1dc83c4fc660385ac3c42e870452007eb7c80d511",
+      "patch_sha256": "f257193108a8f2d1c74efe15ff8e4639f0613603832f5f8e712179dcc835c635",
+      "result_sha256": "4576dcdf81aaabde281af9613de6ff1d296787afda60138c83f783a570a6f75f"
+    },
+    {
+      "source": "patched/v2/protocol/mt_live_device.c",
+      "target": "v2/protocol/mt_live_device.c",
+      "patch": "v2-prepare-mt_live_device.c.patch",
+      "source_sha256": "b10ddb2402fd20944b368208152aa22c63d441b8f2e46a342e0f677541528b9b",
+      "patch_sha256": "8129e54819a8e176e2168257f267be7e88b0589dd753e51946449a9a00c2f6f4",
+      "result_sha256": "9b952cd8e19eaa3ff4879429b1e925ca20ff7114c5a1d6d037afd1ed0baa3f33"
+    },
+    {
+      "source": "patched/v2/app/mt_live_runtime.c",
+      "target": "v2/app/mt_live_runtime.c",
+      "patch": "v2-prepare-mt_live_runtime.c.patch",
+      "source_sha256": "210a48d3e561a42ba7724bf236ff4bec61e2ebd3f40793dc8178aaa3756805b4",
+      "patch_sha256": "0ed972f1a4adf3133938bf2eab117f7cd4f1b09cfc4552ca66195208bb044b25",
+      "result_sha256": "3e8b4f78bc5a3f00a200ed367e25075f4db626f411b5c54d5163fc4986abebcd"
+    }
+  ]
+}

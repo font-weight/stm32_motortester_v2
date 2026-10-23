@@ -9,7 +9,7 @@ def generate(raw):
         "assumed_hse_hz", "assumed_hse_mode", "assumed_fixed_usb_pullup",
         "board_assumptions_verified", "clock_poll_budget", "usb_irq_priority",
         "require_dtr", "provisional_transaction_bound_ms",
-        "transaction_bound_measured", "diagnostics", "usb",
+        "transaction_bound_measured", "diagnostics", "active_profile_enabled", "usb",
         "nominal_sample_rate_hz", "adc_sample_cycles_x2", "dma_samples",
         "data_samples", "queue_slots",
         "cdc_tx_fifo_bytes", "cdc_tx_transfer_bytes", "usb_tx_burst_packets", "usb_tx_burst_limit_us",
@@ -17,7 +17,7 @@ def generate(raw):
     if set(config) != expected or config["schema"] != "motortester-v2-stream-build-1":
         raise ValueError("Unsupported V2 build configuration")
     fixed = {
-        "firmware_build": 0x56325339, "flash_bytes": 65536, "ram_bytes": 20480,
+        "firmware_build": 0x56325341, "flash_bytes": 65536, "ram_bytes": 20480,
         "cdc_tx_fifo_bytes": 384, "cdc_tx_transfer_bytes": 384,
         "usb_tx_burst_packets": 6, "usb_tx_burst_limit_us": 500,
         "nominal_sample_rate_hz": 100000, "adc_sample_cycles_x2": 83,
@@ -27,7 +27,7 @@ def generate(raw):
         "board_assumptions_verified": False, "clock_poll_budget": 1000000,
         "usb_irq_priority": 0, "require_dtr": True,
         "provisional_transaction_bound_ms": 1, "transaction_bound_measured": False,
-        "diagnostics": True,
+        "diagnostics": True, "active_profile_enabled": False,
     }
     for name, value in fixed.items():
         if type(config[name]) is not type(value) or config[name] != value:
@@ -60,7 +60,7 @@ def generate(raw):
         "const mt_board_inputs mt_board = {",
         " .verified_hse_hz = 8000000u, .hse_mode = MT_CLOCK_CRYSTAL,",
         " .clock_poll_budget = 1000000u, .usb_irq_priority = 0u,",
-        " .firmware_build = 0x56325339u, .require_dtr = 1u,",
+        " .firmware_build = 0x56325341u, .require_dtr = 1u,",
         " .verified_fixed_pullup = 1u,",
         " .usb = {.vid = 0x1209u, .pid = 1u, .bcd_device = 0x0200u,",
         " .bus_power_ma = 100u, .manufacturer = v2_manufacturer,",
