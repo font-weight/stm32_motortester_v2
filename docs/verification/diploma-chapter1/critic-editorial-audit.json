@@ -1,0 +1,360 @@
+{
+  "schema": "diploma-chapter1-editorial-independent-audit-v1",
+  "date": "2026-10-22",
+  "task": "DIP-V2-01b",
+  "base_sha": "6c5af6e52bd7aa3e273aed43e79d7213ed7cedd8",
+  "reviewer": "/root/chapter1_critic",
+  "independent": true,
+  "scope": "document editorial revision, content and full layout; no new hardware, firmware or GUI tests",
+  "artifact_sha256": "d22029024996636c4c2cc419b73eaa5e3e5a8cba080debb5a017772043fae1fb",
+  "previous_artifact_sha256": "97aacebe3a28b51a2fbea7dccfd1140a7a9b78eb141cf3394e14bd97056a19de",
+  "verdict": "PASS",
+  "score": "9.710",
+  "rubric": {
+    "C1": 9.7,
+    "C2": 9.8,
+    "C3": 9.7,
+    "C4": 9.7,
+    "C5": 9.6
+  },
+  "open_P0": 0,
+  "open_P1": 0,
+  "mandatory_changes": [],
+  "checks": {
+    "all_final_docx_paragraphs_and_tables_read": true,
+    "all_final_PNG_pages_personally_viewed": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17,
+      18,
+      19,
+      20
+    ],
+    "render_defects_observed": [],
+    "pages": 20,
+    "body_pages": 18,
+    "bibliography_pages": 2,
+    "bibliography_identical_to_version_03": true,
+    "bibliography_primary_sources_checked_in_previous_review": "docs/verification/diploma-chapter1/critic-audit.json",
+    "citation_first_occurrence": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15
+    ],
+    "source_count": 15,
+    "figures": 5,
+    "tables": 3,
+    "figure_and_table_mentions_precede_placement": true,
+    "comparison_table_1_1_unchanged": true,
+    "changed_existing_media_parts": [
+      "word/media/image7.png",
+      "word/media/image10.png",
+      "word/media/image11.png"
+    ],
+    "original_source_doc_unchanged": true,
+    "reference_unchanged": true,
+    "preserve_only_package_parts_identical": true,
+    "prohibited_working_note_scan_hits": [],
+    "body_font": "Times New Roman 14 pt",
+    "table_font": "Times New Roman 11 pt",
+    "line_spacing": "single",
+    "first_line_indent_cm": 1.25,
+    "page_size_mm": [
+      210.009,
+      297.004
+    ],
+    "margins_mm": {
+      "left": 34.996,
+      "right": 10.001,
+      "top": 20.003,
+      "bottom": 20.003
+    },
+    "PAGE_footer_fields": 1
+  },
+  "content_assessment": {
+    "work_notes_removed_without_return_request": true,
+    "technical_scales_and_raw_distinction_preserved": true,
+    "nominal_and_calibrated_coefficients_distinguished": true,
+    "window_and_stream_distinguished": true,
+    "stop_acknowledgment_and_data_completeness_distinguished": true,
+    "input_variants_distinguished": true,
+    "new_claims_of_performed_measurements_or_hardware_readiness": false,
+    "new_numeric_device_performance_claims": false,
+    "new_sources_added": false,
+    "figures_are_conceptual_not_measurement_records": true
+  },
+  "provided_by_author": [
+    "Microsoft Word export to chapter-04.pdf",
+    "render_docx.py rasterize adapter plus bundled Poppler images",
+    "render-04.json",
+    "word-stats-04.json",
+    "author-editorial-evidence.json (not substituted for critic checks)"
+  ],
+  "personally_performed": [
+    "complete content read",
+    "all 20 final page PNGs viewed",
+    "direct OOXML, section and style checks",
+    "citation numbering and caption cross-reference checks",
+    "bibliography equality against version 03",
+    "SHA and preserve-only package comparisons",
+    "figure payload diff",
+    "negative work-note scan"
+  ],
+  "check_execution_notes": [
+    {
+      "attempt": 1,
+      "result": "critic script assertion failed at footer query",
+      "reason": "query recognized complex w:instrText PAGE fields only; actual valid footer uses w:fldSimple w:instr=PAGE",
+      "artifact_defect": false,
+      "resolution": "footer XML inspected; query expanded to both field representations; complete assertions rerun successfully"
+    }
+  ],
+  "not_performed": [
+    "repeat Microsoft Word export by critic",
+    "new web retrieval of unchanged already checked source set",
+    "LibreOffice use",
+    "hardware or ignition measurements",
+    "COM/ST-Link communication",
+    "application/firmware/GUI testing",
+    "Git publication"
+  ],
+  "limitations": [
+    "verdict is bound to exact SHA and document-only scope",
+    "whole-thesis pagination and references remain an integration step",
+    "institutional primary methodology not supplied; user summary controls",
+    "stored source URLs and previous primary-source review retained; no new source assertions introduced"
+  ],
+  "files": [
+    {
+      "path": "готовые документы/Раздел 1_Мотортестер_V2.docx",
+      "sha256": "d22029024996636c4c2cc419b73eaa5e3e5a8cba080debb5a017772043fae1fb",
+      "bytes": 1045694
+    },
+    {
+      "path": "build/diploma-chapter1/before-editorial-20261022/Раздел 1_Мотортестер_V2.docx",
+      "sha256": "97aacebe3a28b51a2fbea7dccfd1140a7a9b78eb141cf3394e14bd97056a19de",
+      "bytes": 1064207
+    },
+    {
+      "path": "build/diploma-chapter1/chapter-04.pdf",
+      "sha256": "ccfa1f707381172a0522b95aeee37320f66f3bdb00c1fccd23a37b0e5cdd51d8",
+      "bytes": 496811
+    },
+    {
+      "path": "build/diploma-chapter1/manifest.json",
+      "sha256": "8b5dcba20f25f71a3729d34e715ac5ecb6c99e180083fb19d62b20d31188a802",
+      "bytes": 5402
+    },
+    {
+      "path": "build/diploma-chapter1/content_edited.py",
+      "sha256": "6d7ad781340f8363ff8e15063ba94aa37876c20cbae297016e618e7ba420deb7",
+      "bytes": 86527
+    },
+    {
+      "path": "build/diploma-chapter1/build.py",
+      "sha256": "b4647488f6b8c1129fbfcee69598a24969ba8827042aad296239b6bd2c8abecb",
+      "bytes": 16667
+    },
+    {
+      "path": "build/diploma-chapter1/artifact.md",
+      "sha256": "099430124c8a4751ab2e04f9cbebf21d6594dad9d5701fe9ceb302c86c919064",
+      "bytes": 3610
+    },
+    {
+      "path": "build/diploma-chapter1/chapter-text.txt",
+      "sha256": "ca37b328ae17d698a5093fe2a4264054fb355b1ebd6993dfe75ef117b99a2ab7",
+      "bytes": 74070
+    },
+    {
+      "path": "build/diploma-chapter1/render-04.json",
+      "sha256": "624fb2f998d580dfb4c84ca8682ecd0384802918a77fd75180612b1658637c13",
+      "bytes": 14161
+    },
+    {
+      "path": "build/diploma-chapter1/word-stats-04.json",
+      "sha256": "33a43ce67cd978690739a37d48731cc291c67d280020bb5ea7bb5aa5b5329e3d",
+      "bytes": 39
+    },
+    {
+      "path": "build/diploma-chapter1/reference.docx",
+      "sha256": "839402300249e9aa9cae12db8346dc20e99e1fba5056771b8618a80e1601f544",
+      "bytes": 759547
+    },
+    {
+      "path": "C:\\Users\\Alexandr\\Downloads\\Раздел 1_новый.doc",
+      "sha256": "8459a43fb7bf5fe480924ca75912763bc5582ede44c53570f780a06a6c262afd",
+      "bytes": 838215
+    },
+    {
+      "path": "C:\\Users\\Alexandr\\Desktop\\New folder\\универ\\Сводка_для_ИИ_Дипломная_работа_СКУ.md",
+      "sha256": "e0157ca2d8b22a054f6c46ef94d8cdecc18ce02555169c24f472ddbb7c877f99",
+      "bytes": 55672
+    },
+    {
+      "path": "docs/reviews/diploma-chapter1-review.md",
+      "sha256": "5af8391539389360046b795f0a0d47c56ec6805d1bb10a532113ac7d69282c18",
+      "bytes": 14337
+    },
+    {
+      "path": "docs/verification/diploma-chapter1/critic-audit.json",
+      "sha256": "646a6713ada9b99b7d0e58c0db791ef8a3a2c42e6ace4a4a4a9d043263027f88",
+      "bytes": 13902
+    },
+    {
+      "path": "docs/verification/diploma-chapter1/author-editorial-evidence.json",
+      "sha256": "b5dc215940961926ce1b125ab217543a59f754720495c767dea78165d7ec0f57",
+      "bytes": 2172
+    },
+    {
+      "path": "build/diploma-chapter1/render-04/page-1.png",
+      "sha256": "b0b2a9981bd67bdc77511a45c5813e42de3aa3cbd2f28f627b7980c0035ab6e4",
+      "bytes": 359892
+    },
+    {
+      "path": "build/diploma-chapter1/render-04/page-2.png",
+      "sha256": "a6f6432afaf6f0caf8417127832cc44a704872de3522eec5998daec930a3bb41",
+      "bytes": 490940
+    },
+    {
+      "path": "build/diploma-chapter1/render-04/page-3.png",
+      "sha256": "a70f7b83eb42c5e36331224e21c33ebea98e2ffadf75e3864a010f49ac788561",
+      "bytes": 409785
+    },
+    {
+      "path": "build/diploma-chapter1/render-04/page-4.png",
+      "sha256": "82765e6859d2110983b3284a403309f5c125bf6ea9f27b0aad9f8b8807a71a68",
+      "bytes": 473681
+    },
+    {
+      "path": "build/diploma-chapter1/render-04/page-5.png",
+      "sha256": "1c5d45b45605257a957882e01a3566fda0e933e0f23d541f824a0c524cc1ba98",
+      "bytes": 476744
+    },
+    {
+      "path": "build/diploma-chapter1/render-04/page-6.png",
+      "sha256": "52c26d112152fcf51fb003b0f0d449f4967694d07a76bc11d57fd0e540f51791",
+      "bytes": 318728
+    },
+    {
+      "path": "build/diploma-chapter1/render-04/page-7.png",
+      "sha256": "89750753275a6ffe05af791d5e9cf817c5724ac8af60607723903b91966588c8",
+      "bytes": 392001
+    },
+    {
+      "path": "build/diploma-chapter1/render-04/page-8.png",
+      "sha256": "bc5ca6dcc555f741fb3a28a90e4c39dcde1027e5d4b3f8457fe4410e6e4cab68",
+      "bytes": 480710
+    },
+    {
+      "path": "build/diploma-chapter1/render-04/page-9.png",
+      "sha256": "a991983b5b9f1d90571c5276c093311e103365924a12ddb8df1ca1ac900e11ce",
+      "bytes": 348849
+    },
+    {
+      "path": "build/diploma-chapter1/render-04/page-10.png",
+      "sha256": "25895e03a864f0a374178a4cfd47eefa83620bae57e1bbbb71f61a60e9a3fd09",
+      "bytes": 425416
+    },
+    {
+      "path": "build/diploma-chapter1/render-04/page-11.png",
+      "sha256": "179731228f4bf252aac39e769b9b7ff84ee1fd97a4336d60b3424f8267e8c0d8",
+      "bytes": 402582
+    },
+    {
+      "path": "build/diploma-chapter1/render-04/page-12.png",
+      "sha256": "ca123f53ebf5b2588afc4f99b49e5840eceabdecf3180bc788c6f3ac85a4aea9",
+      "bytes": 485667
+    },
+    {
+      "path": "build/diploma-chapter1/render-04/page-13.png",
+      "sha256": "09d5fedb5a38c9996f224ad0ce3e821966c9af59a1921c0ed7ce4563c987c9a8",
+      "bytes": 311909
+    },
+    {
+      "path": "build/diploma-chapter1/render-04/page-14.png",
+      "sha256": "259172a426b855597cec872af445fd543501f09011fbba06e1b9db2ce40077a4",
+      "bytes": 496481
+    },
+    {
+      "path": "build/diploma-chapter1/render-04/page-15.png",
+      "sha256": "ddcabc2f0c8f91d056f00751850a8f63c29ec073b5b294f4b81eb94b68744a8f",
+      "bytes": 523307
+    },
+    {
+      "path": "build/diploma-chapter1/render-04/page-16.png",
+      "sha256": "d6ada6c6e6652db86e90a82db40ccce8108a303f28fbf7d08b5b8e81b29cbd1f",
+      "bytes": 493281
+    },
+    {
+      "path": "build/diploma-chapter1/render-04/page-17.png",
+      "sha256": "fada32b30f858f9fc768d558aeb795b58ab24da581ce49bcdbbc3906cfb2dfc6",
+      "bytes": 496338
+    },
+    {
+      "path": "build/diploma-chapter1/render-04/page-18.png",
+      "sha256": "e470d02a6751eb909a73c196d6bda5a4174edb8cb651925752af13c9dc6fe54d",
+      "bytes": 416324
+    },
+    {
+      "path": "build/diploma-chapter1/render-04/page-19.png",
+      "sha256": "156869224c6b89f7ffffed1e43efc69d36e61ef60a2410f19643eecbce2a9b32",
+      "bytes": 408570
+    },
+    {
+      "path": "build/diploma-chapter1/render-04/page-20.png",
+      "sha256": "9070f0a10c1f82e3e373dca948d751111b32a9bf2b1c4c6e94a99beb5f5f9cab",
+      "bytes": 174555
+    },
+    {
+      "path": "task.md",
+      "sha256": "8b84272a1be5be21132acd5adb520f00bd213b3658a76b66161e1076a5f9440f",
+      "bytes": 55109
+    },
+    {
+      "path": "requirements.md",
+      "sha256": "b345a7ecbbb7faba385363684ac998c58fdda3358623f3e23a971df9dd59ce64",
+      "bytes": 50435
+    },
+    {
+      "path": "docs/decisions.md",
+      "sha256": "d8af88dd8ac2c9f14ec1560cd0710b5687535bff70a4c546dd4cf0d6f6d40857",
+      "bytes": 43784
+    },
+    {
+      "path": "docs/coordination.md",
+      "sha256": "b6730e500374688bfa6269ea07161f60af4e7763d81cdf94d83ba158bf98526c",
+      "bytes": 40187
+    },
+    {
+      "path": "docs/quality-gate.md",
+      "sha256": "be4e7de71777d247f1554c8bec4d001b6afaac3c6e50479e0aad2001e4ff1489",
+      "bytes": 23103
+    }
+  ]
+}

@@ -1,0 +1,414 @@
+{
+  "schema": "diploma-chapter1-independent-audit-v1",
+  "date": "2026-10-22",
+  "reviewer": "/root/chapter1_critic",
+  "independent": true,
+  "base_sha": "6c5af6e52bd7aa3e273aed43e79d7213ed7cedd8",
+  "task_id": "DIP-V2-01",
+  "level": "documentation; literary and structural-design chapter; no hardware or application acceptance",
+  "artifact_sha256": "97aacebe3a28b51a2fbea7dccfd1140a7a9b78eb141cf3394e14bd97056a19de",
+  "score": "9.680",
+  "verdict": "PASS",
+  "rubric": {
+    "C1": 9.7,
+    "C2": 9.8,
+    "C3": 9.7,
+    "C4": 9.5,
+    "C5": 9.6
+  },
+  "open_P0": 0,
+  "open_P1": 0,
+  "checks": {
+    "docx_sha_matches_author_manifest": true,
+    "source_doc_unchanged": true,
+    "reference_docx_unchanged": true,
+    "preserve_only_package_parts_identical": true,
+    "pdf_pages": 18,
+    "body_pages": 16,
+    "bibliography_pages": 2,
+    "figures": 5,
+    "tables": 3,
+    "citation_first_occurrence": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15
+    ],
+    "bibliography_count": 15,
+    "page_size_mm": [
+      210.009,
+      297.004
+    ],
+    "margins_mm": {
+      "left": 34.996,
+      "right": 10.001,
+      "top": 20.003,
+      "bottom": 20.003
+    },
+    "font_body": "Times New Roman 14 pt",
+    "font_tables": "Times New Roman 11 pt",
+    "line_spacing": "single",
+    "indent_first_line_cm": 1.25,
+    "footer": "one PAGE field; local pages 1–18"
+  },
+  "visual_coverage": {
+    "version_02_pages_viewed": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17,
+      18
+    ],
+    "version_03_pages_changed_and_personally_viewed": [
+      2,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      14,
+      15
+    ],
+    "version_03_unchanged_pages_confirmed_by_byte_hash": [
+      1,
+      3,
+      13,
+      16,
+      17,
+      18
+    ],
+    "all_final_pages_covered": true,
+    "defects_observed": []
+  },
+  "resolved_findings": [
+    {
+      "id": "R1",
+      "severity": "minor",
+      "place": "table 1.3",
+      "issue": "unexplained MCU abbreviation",
+      "resolution": "replaced with микроконтроллер",
+      "verified_in_version": "03"
+    },
+    {
+      "id": "R2",
+      "severity": "minor",
+      "place": "figure 1.5",
+      "issue": "sequence Приём → файл → просмотр could imply preview requires recording",
+      "resolution": "parallel functions Приём · запись · просмотр",
+      "verified_in_version": "03"
+    }
+  ],
+  "source_checks": [
+    {
+      "number": 1,
+      "url": "https://ngk.com.au/technical_info/ignition-coils-in-detail-2/",
+      "verification": "official primary page or PDF opened; relevant claim personally checked"
+    },
+    {
+      "number": 2,
+      "url": "https://autoditex.com/page/secondary-ignition-33-1.html",
+      "verification": "official primary page or PDF opened; relevant claim personally checked"
+    },
+    {
+      "number": 3,
+      "url": "https://www.ngkntk.com/uk/products/ignition-coils/",
+      "verification": "official primary page or PDF opened; relevant claim personally checked"
+    },
+    {
+      "number": 4,
+      "url": "https://www.ni.com/en/shop/electronic-test-instrumentation/oscilloscopes/using-a-digitizer-for-time-domain-measurements.html",
+      "verification": "official primary page or PDF opened; relevant claim personally checked"
+    },
+    {
+      "number": 5,
+      "url": "https://motor-master.ru/downloads/help/osc.htm",
+      "verification": "official primary page or PDF opened; relevant claim personally checked"
+    },
+    {
+      "number": 6,
+      "url": "https://diamag.ru/component/content/article/1-latest-news/119-diamag3",
+      "verification": "official primary page or PDF opened; relevant claim personally checked"
+    },
+    {
+      "number": 7,
+      "url": "https://www.picoauto.com/download/documents/datasheets/PicoScope-4225A-4425A-Datasheet-English.pdf",
+      "verification": "official primary page or PDF opened; relevant claim personally checked"
+    },
+    {
+      "number": 8,
+      "url": "https://www.picoauto.com/accessories/ignition-accessories/picobnc-secondary-ignition-pickup",
+      "verification": "official primary page or PDF opened; relevant claim personally checked"
+    },
+    {
+      "number": 9,
+      "url": "https://www.st.com/resource/en/datasheet/stm32f103c8.pdf",
+      "verification": "official primary page or PDF opened; relevant claim personally checked"
+    },
+    {
+      "number": 10,
+      "url": "https://www.st.com/resource/en/reference_manual/cd00171190.pdf",
+      "verification": "official ST product search confirms RM0008 Rev 21 dated 23 February 2021; full PDF not re-downloaded by critic"
+    },
+    {
+      "number": 11,
+      "url": "https://www.ti.com/lit/ds/symlink/opa140.pdf",
+      "verification": "official primary page or PDF opened; relevant claim personally checked"
+    },
+    {
+      "number": 12,
+      "url": "https://www.st.com/resource/en/application_note/cd00211314-how-to-optimize-the-adc-accuracy-in-the-stm32-mcus-stmicroelectronics.pdf",
+      "verification": "official primary page or PDF opened; relevant claim personally checked"
+    },
+    {
+      "number": 13,
+      "url": "https://www.ti.com/lit/an/sloa024b/sloa024b.pdf",
+      "verification": "official primary page or PDF opened; relevant claim personally checked"
+    },
+    {
+      "number": 14,
+      "url": "https://github.com/font-weight/stm32_motortester_v2/tree/6c5af6e52bd7aa3e273aed43e79d7213ed7cedd8",
+      "verification": "local exact-commit source and project documents"
+    },
+    {
+      "number": 15,
+      "url": "https://doc.qt.io/qtforpython-6/",
+      "verification": "official primary page or PDF opened; relevant claim personally checked"
+    }
+  ],
+  "personally_performed": [
+    "complete DOCX body and all tables read",
+    "all version-02 page PNGs viewed",
+    "all changed version-03 page PNGs viewed and remaining pages byte-compared",
+    "complete PDF text diff version-02 to version-03",
+    "hash and preserved OOXML package comparison",
+    "section/style/caption/citation consistency checks",
+    "primary source checks against claims",
+    "source and V2 requirements comparison"
+  ],
+  "provided_by_author": [
+    "read-only Microsoft Word DOC to DOCX/PDF conversion",
+    "native Microsoft Word final DOCX to PDF export",
+    "bundled render_docx.py rasterize adapter and Poppler PNGs",
+    "render-03.json receipt"
+  ],
+  "not_performed": [
+    "new Microsoft Word export by critic",
+    "application or firmware tests",
+    "COM/ST-Link communication",
+    "electrical or ignition measurements",
+    "ERC or PCB verification",
+    "Windows package acceptance",
+    "repository publication"
+  ],
+  "limitations": [
+    "review applies to exact DOCX SHA and documentation scope only",
+    "whole-thesis pagination and source numbering require integration",
+    "2021 primary institutional methodical file was not supplied; provided user summary controls this chapter",
+    "bibliography contains 15 chapter sources; total thesis source target remains a separate task"
+  ],
+  "files": [
+    {
+      "path": "готовые документы/Раздел 1_Мотортестер_V2.docx",
+      "sha256": "97aacebe3a28b51a2fbea7dccfd1140a7a9b78eb141cf3394e14bd97056a19de",
+      "bytes": 1064207
+    },
+    {
+      "path": "build/diploma-chapter1/chapter-03.pdf",
+      "sha256": "9c6a94ab9705ec0436ec4c44513a1778e835bfca8bb5697cc022fc083e08dff2",
+      "bytes": 504058
+    },
+    {
+      "path": "build/diploma-chapter1/reference.docx",
+      "sha256": "839402300249e9aa9cae12db8346dc20e99e1fba5056771b8618a80e1601f544",
+      "bytes": 759547
+    },
+    {
+      "path": "build/diploma-chapter1/artifact.md",
+      "sha256": "46e0396f9ba2e88d086bdc64fb497301d4cf505988f4979272d0356b9518059a",
+      "bytes": 3108
+    },
+    {
+      "path": "build/diploma-chapter1/manifest.json",
+      "sha256": "7d8a5d4aadfdde857b809f4302b76c44b7cdac6cd2383320a1a3d614b41dabad",
+      "bytes": 5402
+    },
+    {
+      "path": "build/diploma-chapter1/content.py",
+      "sha256": "b5a656cf3ad78c935e12bd1ead8955798ba763f629bcc5d6612e562c9270c232",
+      "bytes": 73218
+    },
+    {
+      "path": "build/diploma-chapter1/build.py",
+      "sha256": "61318f9df0a1a5ef582103b5744726e42d65b968f5e2778d1679637d2387d8d3",
+      "bytes": 16715
+    },
+    {
+      "path": "build/diploma-chapter1/chapter-text.txt",
+      "sha256": "6de89cf54dd55c5e596c967a54d8c08e775a61fd71229721aa122f90ba89b153",
+      "bytes": 65011
+    },
+    {
+      "path": "build/diploma-chapter1/render-03.json",
+      "sha256": "79b462ad6baf20f9cdc20592da3728c375f132b8a6b8ddf9a1acc35a3ef9b93a",
+      "bytes": 12743
+    },
+    {
+      "path": "C:\\Users\\Alexandr\\Downloads\\Раздел 1_новый.doc",
+      "sha256": "8459a43fb7bf5fe480924ca75912763bc5582ede44c53570f780a06a6c262afd",
+      "bytes": 838215
+    },
+    {
+      "path": "C:\\Users\\Alexandr\\Desktop\\New folder\\универ\\Сводка_для_ИИ_Дипломная_работа_СКУ.md",
+      "sha256": "e0157ca2d8b22a054f6c46ef94d8cdecc18ce02555169c24f472ddbb7c877f99",
+      "bytes": 55672
+    },
+    {
+      "path": "build/diploma-chapter1/render-03/page-1.png",
+      "sha256": "fd23c6c5647ee71b9546907a6863751c30959bf08f1ce7c114e0857ad579aa67",
+      "bytes": 341677
+    },
+    {
+      "path": "build/diploma-chapter1/render-03/page-2.png",
+      "sha256": "46532d1f7e9d8ea1f77aa03d33d52afbc1f9608b126df51956fa9d79a54e97a2",
+      "bytes": 444128
+    },
+    {
+      "path": "build/diploma-chapter1/render-03/page-3.png",
+      "sha256": "58a2215539a084d226bda277b1e7e0a389d44f19a6318c16c0c757f5b0484260",
+      "bytes": 414425
+    },
+    {
+      "path": "build/diploma-chapter1/render-03/page-4.png",
+      "sha256": "4a884080c5bd125d2c19a6e62ebfb263b566fbf06484d5d08d903e53b53f6ce5",
+      "bytes": 464765
+    },
+    {
+      "path": "build/diploma-chapter1/render-03/page-5.png",
+      "sha256": "717b8d8d9435f349686ea071c24b504e4d0280da705253f7bc9bd01f1078f230",
+      "bytes": 458201
+    },
+    {
+      "path": "build/diploma-chapter1/render-03/page-6.png",
+      "sha256": "77bb66c68c5319c16dc85ebf43311a8538b90a398acf8ebe1b8c931c3bebf319",
+      "bytes": 376671
+    },
+    {
+      "path": "build/diploma-chapter1/render-03/page-7.png",
+      "sha256": "b01cff10dca5c823ca76229b4389eaa54e64db142c061373b9b119dacdb6c80c",
+      "bytes": 477543
+    },
+    {
+      "path": "build/diploma-chapter1/render-03/page-8.png",
+      "sha256": "67d0cfbcf3d6a1f91733a22eca96320a6f63c01435d9f84f6aab5510a1ae4375",
+      "bytes": 350251
+    },
+    {
+      "path": "build/diploma-chapter1/render-03/page-9.png",
+      "sha256": "52fd824966852c4465936f73ccc3fb03b22236697d93f3bfd331561f08771682",
+      "bytes": 441954
+    },
+    {
+      "path": "build/diploma-chapter1/render-03/page-10.png",
+      "sha256": "19d4d1a6955db55bf015d11d50759d8fdacd380cc615af0c98a5d160a252777f",
+      "bytes": 405911
+    },
+    {
+      "path": "build/diploma-chapter1/render-03/page-11.png",
+      "sha256": "04ae71e9a6de4e5706fe25b45808bee253f5953ce489fd737b16956e08ccf8c5",
+      "bytes": 468706
+    },
+    {
+      "path": "build/diploma-chapter1/render-03/page-12.png",
+      "sha256": "c6cb39a6055f099ccd60f7001d48554561350cef741394542925ef617899a76f",
+      "bytes": 317060
+    },
+    {
+      "path": "build/diploma-chapter1/render-03/page-13.png",
+      "sha256": "3c686edbf39c83b8f794599c17d4832e2ac77a033aa158ea7a3ff3c931a5acbb",
+      "bytes": 503983
+    },
+    {
+      "path": "build/diploma-chapter1/render-03/page-14.png",
+      "sha256": "ada1ec5dfe59bab39150bf00fdb99551398846fd7ba44e3f7e2a28f6a29a2d83",
+      "bytes": 505487
+    },
+    {
+      "path": "build/diploma-chapter1/render-03/page-15.png",
+      "sha256": "6f7e8263c3c9cff06ca9d4f7399ec42b04f176b2b64e2380bf7aa84d7ce48579",
+      "bytes": 502249
+    },
+    {
+      "path": "build/diploma-chapter1/render-03/page-16.png",
+      "sha256": "2fbaf8d05298a952134184a5f9c6b2e3655ca7841e494f2d157bcdf0a7ea040b",
+      "bytes": 435167
+    },
+    {
+      "path": "build/diploma-chapter1/render-03/page-17.png",
+      "sha256": "64ff4cd4bf7d20807c70d807a0ff40e50a5bbc53a228e0080bc26d922d15610a",
+      "bytes": 408303
+    },
+    {
+      "path": "build/diploma-chapter1/render-03/page-18.png",
+      "sha256": "dec45586e835a8844e663ae9ddff49d7ef368ba40280d77a1aac2c5c5cb43fc6",
+      "bytes": 174337
+    },
+    {
+      "path": "task.md",
+      "sha256": "9775aecac9331bfb882e7dcd02daedd51df29bb5e447bff5297d5ded219e904d",
+      "bytes": 53746
+    },
+    {
+      "path": "requirements.md",
+      "sha256": "0dd890a95d3e609f70da8877541bdeeb20a5e82dd66defefe1b61dbba1d1aca4",
+      "bytes": 49632
+    },
+    {
+      "path": "docs/decisions.md",
+      "sha256": "73019c4e22af5b242560e13268a2dd652a0e6e223c3794ed901f7288b4a4d4ee",
+      "bytes": 42883
+    },
+    {
+      "path": "docs/quality-gate.md",
+      "sha256": "be4e7de71777d247f1554c8bec4d001b6afaac3c6e50479e0aad2001e4ff1489",
+      "bytes": 23103
+    },
+    {
+      "path": "docs/sources.md",
+      "sha256": "cee07953318eee58f58bc758ab669c01a9f97f519fb9ef4fa89badc35e52546b",
+      "bytes": 37915
+    },
+    {
+      "path": "docs/coordination.md",
+      "sha256": "bcb35fb2b8418b807a3f704cd7793f89257550b226f6f41ce68261bdf014ab83",
+      "bytes": 39596
+    }
+  ]
+}

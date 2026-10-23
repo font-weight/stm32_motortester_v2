@@ -1,5 +1,20 @@
 # Координация самостоятельного V2
 
+DIP-V2-01b: root редактирует ту же главу, её исходные авторские материалы
+и канонические документы. chapter1_critic пишет только
+`docs/reviews/diploma-chapter1-editorial-review.md` и
+`docs/verification/diploma-chapter1/critic-editorial*.json`.
+Критик оценивает финальный SHA/рендер после редакционных изменений;
+он не правит главу. Область — текст и иллюстрации, уровень документации.
+
+DIP-V2-01, база `6c5af6e52bd7aa3e273aed43e79d7213ed7cedd8`:
+root — первая глава в `готовые документы/`, task/requirements/decisions/
+sources/progress/coordination и авторские материалы `build/diploma-chapter1`;
+chapter1_critic — только `docs/reviews/diploma-chapter1-review.md` и
+`docs/verification/diploma-chapter1/critic*.json`. Критик не автор главы.
+Область — литературная/проектная глава и её вёрстка; без новых испытаний
+программы, COM/ST-Link, измерений, закупки или публикации Git.
+
 HW-V2-02e, база `50dcb5f4e0ff38a93e1ef718efbfd2fbb8133725`:
 root — netlist/materials/README/schematic P1 и общие канонические документы;
 p1_r3_model — model/JSON/plot/графики P1 и verification/hw-v2-02e/model-notes.md;
