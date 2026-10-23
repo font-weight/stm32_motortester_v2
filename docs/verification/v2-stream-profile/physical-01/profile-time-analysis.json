@@ -1,0 +1,467 @@
+{
+  "schema": "v2-06f-physical-profile-numeric-analysis-1",
+  "diagnostic_integrity": "VALID_FROZEN",
+  "physical_trial_status": "FAIL",
+  "physical_100ksps_qualified": false,
+  "scope": "Offline arithmetic and cross-correlation of one failed physical S9 run; no additional acquisition, no causal counterfactual experiment",
+  "identity": {
+    "nonce_hex": "98401a74a29ed72a",
+    "generation": 3,
+    "epoch": 3,
+    "firmware_build": 1446138681
+  },
+  "active_observation": {
+    "nominal_clock_hz": 72000000,
+    "elapsed_cycles_mod32": 2244730,
+    "elapsed_us_nominal": 31176.805555555555,
+    "start_bracket_cycles": 38,
+    "end_bracket_cycles": 62,
+    "boundary_brackets_sum_cycles": 100,
+    "boundary_to_window_ratio": 4.454878760474534e-05,
+    "nominal_cap_cycles": 18000000,
+    "cap_overshoot_cycles": 0,
+    "cap_overshoot_us_nominal": 0.0,
+    "cap_overshoot_flag": false,
+    "no_debug_halt_confirmed_externally": true,
+    "single_wrap_bound_confirmed_externally": true,
+    "full_wrap_seconds_nominal": 59.652323555555554,
+    "physical_CEN_timestamp_claimed": false
+  },
+  "first_close": {
+    "kind_raw": 1,
+    "kind": "FIRST_FAULT",
+    "passed_primary_reason": 1,
+    "passed_reason_domain": "protocol_source_reason"
+  },
+  "first_snapshot": {
+    "indices": {
+      "head": 1920,
+      "next": 2944,
+      "prefix": 1920,
+      "adc": 3072
+    },
+    "queue_used": 8,
+    "last_remaining": 1023,
+    "last_poll_us": 20912728,
+    "core_state": 4,
+    "core_first_reason": 0,
+    "adc_state": 1,
+    "adc_first_fault": 0,
+    "core_local_error": 0,
+    "tx_offset": 0,
+    "tx_length": 307,
+    "note": "RAM-only first-close snapshot before Stop/drain; passed primary reason is distinct from core.first_reason.",
+    "last_poll_us_meaning": "Absolute saved TIM2-extended driver timestamp, not a poll gap or duration."
+  },
+  "complete_disjoint_phase_wall": {
+    "TASK": {
+      "count": 41,
+      "sum_cycles": 76570,
+      "sum_ms_nominal": 1.0634722222222222,
+      "max_us_nominal": 47.69444444444444
+    },
+    "ADC_EMPTY": {
+      "count": 35,
+      "sum_cycles": 206260,
+      "sum_ms_nominal": 2.8647222222222224,
+      "max_us_nominal": 138.43055555555554
+    },
+    "ADC_BLOCK": {
+      "count": 5,
+      "sum_cycles": 205586,
+      "sum_ms_nominal": 2.8553611111111112,
+      "max_us_nominal": 599.2222222222222
+    },
+    "RX": {
+      "count": 40,
+      "sum_cycles": 16054,
+      "sum_ms_nominal": 0.2229722222222222,
+      "max_us_nominal": 5.597222222222222
+    },
+    "TX_ACCEPT": {
+      "count": 16,
+      "sum_cycles": 324339,
+      "sum_ms_nominal": 4.504708333333333,
+      "max_us_nominal": 674.75
+    },
+    "TX_ZERO": {
+      "count": 14,
+      "sum_cycles": 513446,
+      "sum_ms_nominal": 7.131194444444445,
+      "max_us_nominal": 509.625
+    },
+    "TX_OTHER": {
+      "count": 11,
+      "sum_cycles": 92515,
+      "sum_ms_nominal": 1.2849305555555555,
+      "max_us_nominal": 116.94444444444444
+    },
+    "FLUSH": {
+      "count": 41,
+      "sum_cycles": 51909,
+      "sum_ms_nominal": 0.7209583333333334,
+      "max_us_nominal": 37.56944444444444
+    },
+    "GRANT_CALL": {
+      "count": 41,
+      "sum_cycles": 77610,
+      "sum_ms_nominal": 1.0779166666666666,
+      "max_us_nominal": 52.72222222222222
+    }
+  },
+  "initial_partial_intervals": {
+    "phase": "RX",
+    "phase_cycles_raw": 21800,
+    "step_cycles_raw": 49044,
+    "phase_cycles": 21800,
+    "step_cycles": 49044,
+    "meaning": "Clipped first-call remainders after ACTIVE; excluded from complete-call statistics"
+  },
+  "partial_intervals_at_first_close": {
+    "phase": {
+      "open_ticket": 1,
+      "start_cycle_raw": 1505706991,
+      "cycles_to_close": 40624,
+      "expected_mod32_cycles": 40624,
+      "active_duration_available": true,
+      "us_nominal": 564.2222222222222,
+      "completed_call": false,
+      "phase": "ADC",
+      "write_kind": "ZERO_SPACE",
+      "known_accepted_bytes": 0
+    },
+    "step": {
+      "open_ticket": 1,
+      "start_cycle_raw": 1505698775,
+      "cycles_to_close": 48840,
+      "expected_mod32_cycles": 48840,
+      "active_duration_available": true,
+      "us_nominal": 678.3333333333334,
+      "completed_call": false
+    },
+    "time": {
+      "open_ticket": 0,
+      "start_cycle_raw": 1505744266,
+      "cycles_to_close": 0,
+      "expected_mod32_cycles": 0,
+      "active_duration_available": true,
+      "us_nominal": 0.0,
+      "completed_call": false
+    },
+    "grant": {
+      "open_ticket": 1,
+      "start_cycle_raw": 1505694661,
+      "cycles_to_close": 52954,
+      "expected_mod32_cycles": 52954,
+      "active_duration_available": true,
+      "us_nominal": 735.4722222222222,
+      "completed_call": false
+    }
+  },
+  "overlapping_metrics": {
+    "TIME_UPDATE": {
+      "count": 572,
+      "cycles_sum": 557758,
+      "cycles_max": 3726,
+      "cycles_mean": 975.1013986013986,
+      "sum_us_nominal": 7746.638888888889,
+      "max_us_nominal": 51.75,
+      "wall_to_window_ratio": 0.2484744267684755,
+      "CPU_percentage_claimed": false
+    },
+    "USB_ISR": {
+      "count": 91,
+      "cycles_sum": 179189,
+      "cycles_max": 2694,
+      "cycles_mean": 1969.10989010989,
+      "sum_us_nominal": 2488.7361111111113,
+      "max_us_nominal": 37.416666666666664,
+      "wall_to_window_ratio": 0.07982652702106713,
+      "CPU_percentage_claimed": false
+    },
+    "STEP": {
+      "count": 40,
+      "cycles_sum": 2132794,
+      "cycles_max": 103564,
+      "cycles_mean": 53319.85,
+      "sum_us_nominal": 29622.13888888889,
+      "max_us_nominal": 1438.388888888889,
+      "wall_to_window_ratio": 0.9501338691067522,
+      "CPU_percentage_claimed": false
+    },
+    "GRANT_INTERVAL": {
+      "count": 40,
+      "cycles_sum": 2143643,
+      "cycles_max": 101116,
+      "cycles_mean": 53591.075,
+      "sum_us_nominal": 29772.819444444445,
+      "max_us_nominal": 1404.388888888889,
+      "wall_to_window_ratio": 0.9549669670739911,
+      "CPU_percentage_claimed": false
+    },
+    "GRANT_FIRST_IN_DELAY": {
+      "count": 17,
+      "cycles_sum": 106028,
+      "cycles_max": 93640,
+      "cycles_mean": 6236.941176470588,
+      "sum_us_nominal": 1472.611111111111,
+      "max_us_nominal": 1300.5555555555557,
+      "wall_to_window_ratio": 0.04723418852155938,
+      "CPU_percentage_claimed": false
+    }
+  },
+  "foreground_accounting": {
+    "disjoint_phase_wall_cycles_with_partials": 1626713,
+    "window_minus_phase_wall_cycles": 618017,
+    "residual_is_unattributed": true,
+    "note": "This phase subtotal includes any interrupt overlap; TIME/STEP/ISR/grant intervals are not added. Residual is not automatically TIME or USB."
+  },
+  "USB_progress": {
+    "adc_samples_offered": 2944,
+    "data_samples_committed": 1920,
+    "write_zero_space": 14,
+    "write_zero_other": 0,
+    "write_unknown": 0,
+    "write_accepted_bytes": 4651,
+    "in_completion_gap_max_cycles": 392337,
+    "foreground_DWT_reads": 1800,
+    "grant_allowed": 26,
+    "grant_denied": 15,
+    "in_transfers_published": 16,
+    "in_transfer_bytes_published": 4651,
+    "in_ZLP_transfers": 0,
+    "in_packets_completed": 76,
+    "in_packet_bytes_completed": 4651,
+    "burst_resume": 59,
+    "hold_final": 16,
+    "hold_other": 0,
+    "hold_budget": 0,
+    "hold_time_timer": 1,
+    "hold_lifecycle_error": 0,
+    "ISR_DWT_reads": 258,
+    "max_IN_completion_gap_us_nominal": 5449.125
+  },
+  "observer": {
+    "raw_DWT_reads": 2058,
+    "read_pair_min_cycles": 35,
+    "read_pair_max_cycles": 35,
+    "heuristic_cycles_using_pair_min": 36015.0,
+    "heuristic_cycles_using_pair_max": 36015.0,
+    "heuristic_min_to_window_ratio": 0.016044245855849033,
+    "covers_all_hooks": false,
+    "lower_or_upper_bound_claimed": false,
+    "subtracted_from_stats": false,
+    "note": "Only a heuristic indicator for raw-read probes. Max calibration is not WCET; low indicator does not bound actual observer perturbation."
+  },
+  "first_snapshot_correlations": {
+    "queue_samples_from_indices": 1024,
+    "queue_slots": 8,
+    "samples_per_slot": 128,
+    "committed_equals_first_prefix": true,
+    "final_wire_prefix_exceeds_active_committed_by": 1024,
+    "note": "Final wire prefix includes later terminal drain; its count is not the number committed before first-close. Publication/completion equality in this run is observed, not a general conservation invariant."
+  },
+  "legacy_record": {
+    "schema": "stream-diag-v1-offline",
+    "accepted_frozen_record": true,
+    "physical_identity_verified": false,
+    "timing_qualified": false,
+    "errors": [],
+    "warnings": [
+      "first_fault"
+    ],
+    "raw": {
+      "magic": 1297368135,
+      "version": 1,
+      "bytes": 136,
+      "firmware_build": 1446138681,
+      "phase": 3,
+      "flags": 4,
+      "generation": 3,
+      "step_count": 74,
+      "step_body_max_cycles": 205897,
+      "step_gap_max_cycles": 207165,
+      "tx_count": 74,
+      "tx_max_cycles": 48291,
+      "poll_count": 41,
+      "driver_observed_poll_gap_us": 1519,
+      "poll_gap_max_cycles": 111274,
+      "copy_count": 6,
+      "copy_max_us": 179,
+      "queue_high_water": 8,
+      "first_runtime_result": 4294967295,
+      "first_local_error": 0,
+      "first_acquisition_reason": 1,
+      "first_adc_fault": 0,
+      "first_epoch": 3,
+      "final_runtime_result": 0,
+      "final_core_state": 7,
+      "final_epoch": 3,
+      "final_adc_state": 0,
+      "final_adc_owned": 0,
+      "final_hardware_off": 1,
+      "start_cycle": 1503443242,
+      "last_cycle": 1506981495,
+      "freeze_cycle": 1506981495,
+      "nonce_low": 2728318762,
+      "nonce_high": 2554337908
+    },
+    "first_sha256": "02b958f0bf929a694015b63432654fcf0d7e6b18906356ebba3553ef88406615",
+    "second_sha256": "02b958f0bf929a694015b63432654fcf0d7e6b18906356ebba3553ef88406615",
+    "exact_candidate": {
+      "image_bin_sha256": "a28db0890aaf971895286ccfc042c883563b73a6938751267f54ff262739cab1",
+      "elf_sha256": "e27789b1bf312beab58d624d51a1fcd6182cbde189d24112ff894dac39c23ee9",
+      "record_address": "0x20002bc4",
+      "record_bytes": 136,
+      "queue_slots": 8,
+      "dma_ring_samples": 1024,
+      "dma_half_samples": 512,
+      "nominal_sample_rate_hz": 100000,
+      "service_deadline_us_exclusive": 5120,
+      "warning": "These constants describe the reviewed image, not authenticated physical identity."
+    },
+    "field_offsets_bytes": {
+      "magic": 0,
+      "version": 4,
+      "bytes": 8,
+      "firmware_build": 12,
+      "phase": 16,
+      "flags": 20,
+      "generation": 24,
+      "step_count": 28,
+      "step_body_max_cycles": 32,
+      "step_gap_max_cycles": 36,
+      "tx_count": 40,
+      "tx_max_cycles": 44,
+      "poll_count": 48,
+      "driver_observed_poll_gap_us": 52,
+      "poll_gap_max_cycles": 56,
+      "copy_count": 60,
+      "copy_max_us": 64,
+      "queue_high_water": 68,
+      "first_runtime_result": 72,
+      "first_local_error": 76,
+      "first_acquisition_reason": 80,
+      "first_adc_fault": 84,
+      "first_epoch": 88,
+      "final_runtime_result": 92,
+      "final_core_state": 96,
+      "final_epoch": 100,
+      "final_adc_state": 104,
+      "final_adc_owned": 108,
+      "final_hardware_off": 112,
+      "start_cycle": 116,
+      "last_cycle": 120,
+      "freeze_cycle": 124,
+      "nonce_low": 128,
+      "nonce_high": 132
+    },
+    "decoded_states": {
+      "phase": "frozen",
+      "first_adc_fault": "none",
+      "first_local_error": "none",
+      "final_core_state": "needs_hello",
+      "final_adc_state": "stopped"
+    },
+    "metric_meaning": {
+      "driver_observed_poll_gap_us": "Maximum observed driver stamp minus previous service timestamp; not the latest timestamp or a WCET bound.",
+      "copy_max_us": "Maximum observed read/copy validation interval; not an ADC conversion or only memcpy duration.",
+      "poll_gap_max_cycles": "Maximum interval between DWT poll instrumentation points; differs from TIM2 service timestamps.",
+      "step_gap_max_cycles": "Maximum begin-step stamp spacing; includes inter-step work/interrupts, not only step body.",
+      "tx_max_cycles": "Observed wrapper bracket; not an exact IRQ-off duration or qualified transaction bound.",
+      "queue_high_water": "Maximum observed DATA128 queue use out of 8; no proof of zero ADC loss.",
+      "start_cycle_last_cycle_freeze_cycle": "Raw DWT modulo2^32 values; cannot directly subtract for sessions longer than one cycle-counter wrap.",
+      "first_runtime_result_0xffffffff": "Sentinel: cause observed before a runtime return; see first fault fields."
+    },
+    "nominal_cycles_to_us": {
+      "step_body_max_us_at_assumed_72MHz": 2859.6805555555557,
+      "step_gap_max_us_at_assumed_72MHz": 2877.2916666666665,
+      "tx_max_us_at_assumed_72MHz": 670.7083333333334,
+      "poll_gap_max_us_at_assumed_72MHz": 1545.4722222222222,
+      "qualification": "Arithmetic only; assumes72MHz, uninterrupted DWT and intervals shorter than one2^32-cycle wrap (~59.65s)."
+    },
+    "observed_service_headroom_arithmetic_us": 3601,
+    "minimal_stopped_register_checks": {
+      "TIM3_CR1_0x40000400": "CEN bit0 must be0; driver normally writes whole register0.",
+      "ADC1_CR2_0x40012408": "Whole register must be0.",
+      "DMA1_CH1_CCR_0x40020008": "EN bit0 must be0; remaining configuration normally0x25a0.",
+      "RCC_AHBENR_0x40021014": "DMA1 enable bit0 must remain1 for meaningful readback.",
+      "RCC_APB2ENR_0x40021018": "GPIOA bit2 and ADC1 bit9 must remain1.",
+      "RCC_APB1ENR_0x4002101c": "TIM3 bit1 must remain1.",
+      "RCC_APB2RSTR_0x4002100c": "ADC1 reset bit9 must be0.",
+      "RCC_APB1RSTR_0x40021010": "TIM3 reset bit1 must be0."
+    },
+    "nonce_hex": "98401a74a29ed72a",
+    "observed_metrics": {
+      "step_body_cycles": 205897,
+      "step_stamp_gap_cycles": 207165,
+      "tx_bracket_cycles": 48291,
+      "driver_poll_gap_us": 1519,
+      "poll_gap_cycles": 111274,
+      "copy_validation_us": 179
+    },
+    "normal_stop_record_shape": false,
+    "limits": [
+      "Local dumps and expected values do not prove flashed image identity.",
+      "HOST END/STOP_ACK and actual USB delivery require separate evidence.",
+      "Cycles are modulo uint32; no elapsed-time or calibrated clock inference.",
+      "Debugger halt and intervals below one cycle-counter wrap are external assumptions.",
+      "TX bracket is not the qualified transaction or exact IRQ-off duration.",
+      "A record with warnings remains evidence of a failed or limited observation."
+    ]
+  },
+  "saved_address_provenance": {
+    "symbols": {
+      "mt_stream_diagnostics": {
+        "address": "0x20002bc4",
+        "bytes": 136
+      },
+      "mt_stream_profile": {
+        "address": "0x20002c4c",
+        "bytes": 512
+      }
+    },
+    "pinned_artifacts": {
+      "build/v6f-fw-03/MotortesterV2-stream-candidate.bin": {
+        "bytes": 38924,
+        "sha256": "a28db0890aaf971895286ccfc042c883563b73a6938751267f54ff262739cab1"
+      },
+      "build/v6f-fw-03/MotortesterV2-stream-candidate.elf": {
+        "bytes": 75780,
+        "sha256": "e27789b1bf312beab58d624d51a1fcd6182cbde189d24112ff894dac39c23ee9"
+      },
+      "build/v6f-fw-03/image.nm": {
+        "bytes": 19347,
+        "sha256": "6d5b687aaa67fa3c9f3ee3eb756ef32c7e6d5f88a041f5ad6895b2d2198bbe8e"
+      }
+    },
+    "plan_elf_sha256": "e27789b1bf312beab58d624d51a1fcd6182cbde189d24112ff894dac39c23ee9",
+    "saved_readback_matches_candidate": true,
+    "basis": "Saved symbol-table and exact ELF hashes match software-freeze and plan. No new debugger access or independent re-extraction of ELF symbols in this analysis."
+  },
+  "limits": [
+    "All DWT-derived durations use nominal72MHz, not calibrated time or WCET.",
+    "TIME_UPDATE, USB_ISR, STEP and grant intervals overlap phase wall durations and are not added as independent CPU shares.",
+    "Full observer overhead is unknown; 1.6044% read-pair indicator is heuristic, not a lower/upper bound and is not subtracted.",
+    "Queue-full is the first observed failure; this run alone does not isolate a counterfactual root cause or prove that removing one phase restores throughput.",
+    "The partial phase is ADC; the saved write-kind describes the prior TX ticket and is not a new failed TX call at first-close.",
+    "Legacy counters freeze later than the first-close profile and can include Stop/drain. Do not substitute legacy maxima for active-only maxima.",
+    "IN gap is between completed IN packets, not an ADC poll gap; it does not imply an ADC deadline fault.",
+    "Only23 complete DATA blocks were delivered. Actual produced tail and lost samples remain unknown.",
+    "Short failed Record interval0.0201285s is not a sustained-rate qualification."
+  ],
+  "source_hashes": {
+    "profile-decoded.json": "86835862916b8553ec9b1c3077c588757b7951621c7674f7156d6c3dcbbf40e0",
+    "profile-decoder-invocation.json": "04df6dea67f9b7c5a28b07dce91a4cae1e809e1233c1f728390358d78dbd55ce",
+    "wire-failure-analysis.json": "3178169e8c9dde77e39179ba211f0de6e2fcb9aa9e807f1e72a10495da5d83a6",
+    "recorded-prefix-analysis.json": "3e234208297840e3828a7ba304d4919821058a88a8eff7294c105b52fa9d0464",
+    "decoder-inputs.json": "209df6d8722cccf7f43c90e8393c7f5cfd8d63e55efaf4b1f59e0e2c8256ca7d",
+    "decode_diagnostics.py": "0cf73b4a1e656c86faaada0b084945144d21da7aff5fba98ad910b4fce5f8d8c",
+    "diagnostics-first.bin": "02b958f0bf929a694015b63432654fcf0d7e6b18906356ebba3553ef88406615",
+    "diagnostics-second.bin": "02b958f0bf929a694015b63432654fcf0d7e6b18906356ebba3553ef88406615",
+    "plan.json": "f760bb7536618cc65cb91729e8e391faf5d2703fc76b0868dc31c4e8c3da4993",
+    "flash-verification.json": "3c30bd397d77352610395401c0b60870c70b0b32e365d97b241cca043d42999b",
+    "readback.bin": "a28db0890aaf971895286ccfc042c883563b73a6938751267f54ff262739cab1"
+  },
+  "originals_unchanged": true
+}

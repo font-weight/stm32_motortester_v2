@@ -1,5 +1,61 @@
 # Прогресс Мотортестера V2
 
+## 23.10.2026 — V2-06f2: получен профиль первой ошибки; S4 восстановлена
+
+Один разрешённый START S9 после program/verify, независимого readback всех
+38924байт и пользовательского USB-replug. COM6 сообщил build0x56325339 и
+CAPS100000/1 до START. Record начался с R1664, но завершился device_1 через
+0,0201285002с вместо целевой1с. Всего2944кода/23DATA, выбранная запись1280код
+`[1664,2944)`. **Непрерывные100k остаются FAIL**, повторного опыта не было.
+END27/reason1/flags3/stop_request_id0 пришёл до STOP4, ACK28 ссылается на27.
+Nonce98401a74a29ed72a, generation/epoch3; cleanup_finished=true, phase=closed,
+callback errors0. Неизвестный произведённый хвост не заменён нулём.
+
+Offline full wire CRC3120963445; raw SHA256
+`84b1ed56b65007751d10ea45e9cd0b3e1707eff12a0a7be1eb1b837804d05521`.
+Fresh Open и companion проверены; выбранные2560raw-байт совпали с wire,
+SHA256 `6b128110b81ce2b7583865c4ae23641f06e85c75dfb743780f1b9678f9943513`.
+Исходные файлы не изменены. Физическая запись —3815байт, не весь полученный
+wire-префикс: начало1664 было до команды Record.
+
+После закрытия COM отдельно прочитаны два512-байтных профиля; байты совпали,
+SHA256 `c95849db9c2e1eb9ed65f2a87275cef0d85764686ee1258478a337d8a8d56396`.
+Decoder: VALID_FROZEN, без issues; first-close=FAULT/primary1 до Stop/drain,
+fg56 — начальные/конечные partials, irq4 — HAVE_IN; invalid/saturation нет.
+При номинальных72МГц active2244730cycles=31,176806мс; границы38+62cycles.
+Первый snapshot: head/prefix1920,next2944,ADCindex3072,queue8, core state4,
+core first_reason0/local_error0, ADC state1/fault0. Переданный primary reason1
+сохранён до последующей публикации core.first_reason. Последующие1024кода
+из очереди дошли при завершении и входят в final wire2944.
+
+Измерены14 TX_ZERO из-за нехватки места в FIFO, суммарный wall7,131194мс,
+max509,625мкс. IN76пакетов/4651байт, max gap5,449125мс. TIME7,746639мс,
+USB ISR2,488736мс перекрываются с фазами, их нельзя прибавлять как отдельную
+нагрузку CPU. Read-pair indicator1,6044% — только эвристика, не полный overhead
+и не его граница. Это наблюдение инструментальной S9, не точное время S8.
+Полные цифры/ограничения — в `physical-01/profile-time-analysis.json`.
+
+Прежний136-байтный диагноз также дважды совпал, SHA256
+`02b958f0bf929a694015b63432654fcf0d7e6b18906356ebba3553ef88406615`:
+flags4/queue8/reason1/ADCfault0; poll1519мкс/copy179мкс. TIM3CEN0/PSC71/ARR9,
+ADC_CR2=0/SMPR2=4,DMAEN0 и RCC clocks/reset подтвердили остановку. ADC_DR
+не читался, SWD/debugger/halt во время активного опыта не использовались.
+
+По заранее принятому плану вся свежая S4 восстановлена; все65536байт
+совпали с backup95d3…ff1e. После пользовательского replug READY50k прошёл
+за0,0436028с без START/0samples,owner_closed=true. **На плате S4/50k**,
+обычный EXE: `build/v6dw2/dist/MotortesterV2/MotortesterV2.exe`.
+Пользователь затем уточнил: дальнейший возврат делать только при
+необходимости; это закреплено в requirements/decisions/task. Этот возврат
+уже был выполнен до уточнения.
+
+[Физический архив](verification/v2-stream-profile/physical-evidence.json):
+57byte-equal пар315354байта, manifest SHA256
+`7d55c4930eed8df4ac437efa6fe2933faa8ade27c158fa18cbe3f934c170b58c`.
+Независимый итог диагностического результата ожидается. Следующая работа —
+связать USB backpressure с точным участком кода и выбрать одно исправление;
+новое повышение Fs и повторный Flash сейчас не выполнялись.
+
 ## 23.10.2026 — V2-06f1: S9 собрана, программные свидетельства сохранены
 
 Инструментальная S9 сохраняет частоту100k и исходные операции S8, добавляя

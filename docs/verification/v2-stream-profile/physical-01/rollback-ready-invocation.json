@@ -1,0 +1,15 @@
+{
+  "argv": [
+    ".venv/Scripts/python.exe",
+    "-B",
+    "build/v5-board-stream-04/check_ready.py",
+    "--output",
+    "build/v6f-board-01/rollback-ready.json"
+  ],
+  "env": {
+    "PYTHONPATH": "host"
+  },
+  "stdout": "build/v6f-board-01/rollback-ready-stdout.txt",
+  "helper_sha256": "7034811bb771781927228b5115e7446ef3ec9b059963cbc7963a07fbe48f7c34",
+  "no_START": true
+}

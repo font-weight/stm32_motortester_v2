@@ -1,0 +1,69 @@
+{
+  "schema": "v2-06f-physical-profile-decoder-invocation-1",
+  "argv": [
+    "C:\\Users\\Alexandr\\Desktop\\New folder\\универ\\мотортестер 2\\.venv\\Scripts\\python.exe",
+    "-B",
+    "build\\v6f-decoder\\decode_profile.py",
+    "build\\v6f-board-01\\profile-first.bin",
+    "build\\v6f-board-01\\profile-second.bin",
+    "--build",
+    "0x56325339",
+    "--nonce",
+    "0x98401a74a29ed72a",
+    "--generation",
+    "3",
+    "--epoch",
+    "3",
+    "--trial-result",
+    "build\\v6f-board-01\\run\\result.json",
+    "--legacy-first",
+    "build\\v6f-board-01\\diagnostics-first.bin",
+    "--legacy-second",
+    "build\\v6f-board-01\\diagnostics-second.bin",
+    "--no-debug-halt-confirmed",
+    "--single-wrap-bound-confirmed",
+    "--output",
+    "build\\v6f-board-01\\profile-decoded.json"
+  ],
+  "exit_code": 0,
+  "stdout": "{\"diagnostic_integrity\": \"VALID_FROZEN\", \"physical_trial_status\": \"FAIL\", \"issues\": [], \"output\": \"build\\\\v6f-board-01\\\\profile-decoded.json\"}\n",
+  "stderr": "",
+  "decoder_sha256": "bb4cbc9ea28a2ab8d3681d42ca93ca1161eaf03514b537f081097db99cef03f1",
+  "expected_identity": {
+    "build": "0x56325339",
+    "nonce": "0x98401a74a29ed72a",
+    "generation": 3,
+    "epoch": 3
+  },
+  "external_timing_preconditions": {
+    "no_debug_halt_confirmed": true,
+    "single_wrap_bound_confirmed": true,
+    "basis": "Root procedural confirmation: no SWD/debugger/halt between START and cleanup_finished/final_state.closed; single probe process finished in 0.741 seconds wall time. Dumps read only after owner closure. These are external observations, not inferred from dump equality.",
+    "nominal_wrap_seconds": 59.652323555555554
+  },
+  "originals_before_and_after": {
+    "profile-first.bin": {
+      "bytes": 512,
+      "sha256": "c95849db9c2e1eb9ed65f2a87275cef0d85764686ee1258478a337d8a8d56396"
+    },
+    "profile-second.bin": {
+      "bytes": 512,
+      "sha256": "c95849db9c2e1eb9ed65f2a87275cef0d85764686ee1258478a337d8a8d56396"
+    },
+    "diagnostics-first.bin": {
+      "bytes": 136,
+      "sha256": "02b958f0bf929a694015b63432654fcf0d7e6b18906356ebba3553ef88406615"
+    },
+    "diagnostics-second.bin": {
+      "bytes": 136,
+      "sha256": "02b958f0bf929a694015b63432654fcf0d7e6b18906356ebba3553ef88406615"
+    },
+    "run/result.json": {
+      "bytes": 2867,
+      "sha256": "1ba95baa91fd9ba35e3c92bcf1f78925974a6de56d8d414d859853585d798ac8"
+    }
+  },
+  "originals_unchanged": true,
+  "physical_100ksps_qualified": false,
+  "profile_decoded_sha256": "86835862916b8553ec9b1c3077c588757b7951621c7674f7156d6c3dcbbf40e0"
+}
