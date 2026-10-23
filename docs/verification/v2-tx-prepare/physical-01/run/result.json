@@ -1,0 +1,96 @@
+{
+  "status": "FAIL",
+  "port": "COM6",
+  "source": "physical",
+  "seconds_requested": 10.0,
+  "expected_build": 1446138689,
+  "expected_sample_rate_hz": 100000,
+  "input_condition": "PA0 unconnected, as reported by user",
+  "voltage_calibration_verified": false,
+  "callback_errors": [],
+  "errors": [
+    "Приём остановлен: device_1. Сохранён проверенный префикс."
+  ],
+  "connection": {
+    "selection": {
+      "port": "COM6",
+      "declared_source_commit": "a7b45bccf54f3155de03389aa5e49b237905c994",
+      "declared_artifact_sha256": "8e8a5f2597a573ffaecfc054b01de726975ec5de07a33b06c4e56f5de75b3558"
+    },
+    "execution_kind": "physical",
+    "observed_build_id": 1446138689,
+    "observed_caps": [
+      1,
+      1,
+      0,
+      12,
+      100000,
+      1,
+      128,
+      1
+    ],
+    "dtr_requested": true,
+    "accounting_domain": "unknown",
+    "image_verified": false
+  },
+  "observations": [
+    {
+      "host_monotonic": 1345123.3539437,
+      "phase": "recording",
+      "received": 2560,
+      "error": null,
+      "failure": null,
+      "R": 2304,
+      "accepted": null,
+      "checkpoint": null,
+      "max_service_gap_ms": 17,
+      "peak_raw_items": 2
+    }
+  ],
+  "record_wall_seconds": 0.03585599991492927,
+  "before_stop": {
+    "host_monotonic": 1345123.3898146,
+    "phase": "fault",
+    "received": 4992,
+    "error": null,
+    "failure": {
+      "code": "source_error",
+      "detail": "wire device_1; ordinary=None; stop=None",
+      "operation": null,
+      "request_id": null,
+      "source_code": 1
+    },
+    "R": 2304,
+    "accepted": 4992,
+    "checkpoint": 4992,
+    "max_service_gap_ms": 17,
+    "peak_raw_items": 4
+  },
+  "exception": "Traceback (most recent call last):\n  File \"C:\\Users\\Alexandr\\Desktop\\New folder\\универ\\мотортестер 2\\host\\tools\\v2_stream_probe.py\", line 148, in run\n    assert bridge.state.phase == \"recording\", \"Physical stream stopped early\"\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: Physical stream stopped early\n",
+  "cleanup_finished": true,
+  "final_state": {
+    "host_monotonic": 1345123.4466718,
+    "phase": "closed",
+    "received": 4992,
+    "error": null,
+    "failure": {
+      "code": "source_error",
+      "detail": "wire device_1; ordinary=None; stop=None",
+      "operation": null,
+      "request_id": null,
+      "source_code": 1
+    },
+    "R": 2304,
+    "accepted": 4992,
+    "checkpoint": 4992,
+    "max_service_gap_ms": 17,
+    "peak_raw_items": 4
+  },
+  "traffic": {
+    "host_bytes": 136,
+    "device_bytes": 12240,
+    "chunks": 46,
+    "format": "<BdI + payload; 0=host,1=device; monotonic seconds",
+    "sha256": "9c2d994f3a884b61f262d99400e4071b4b3aca4a745c0e482097e6ff8e1e3693"
+  }
+}

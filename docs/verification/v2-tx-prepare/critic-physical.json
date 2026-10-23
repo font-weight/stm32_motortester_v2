@@ -1,0 +1,102 @@
+{
+  "schema": "v2-06g2-independent-physical-review-1",
+  "status": "REWORK",
+  "physical_trial_status": "FAIL",
+  "score": 7.385,
+  "threshold": 9.5,
+  "reviewer": "stream200_critic",
+  "independent": true,
+  "date": "2026-10-24",
+  "scope": "Final result of the single admitted physical100k trial; no new investigation",
+  "source_commit": "a7b45bccf54f3155de03389aa5e49b237905c994",
+  "source_base_commit": "ae2cf9c7f5653d9c258dcba5a89efcc16a64ed3a",
+  "plan_sha256": "b65c31afeb98d46463749184169cdd10b33f3fa73ea7b51538e7c212d20e3c95",
+  "physical_archive_sha256": "ad602ca999c81f59f8d5bfe1b0a3407064296d523f3d6f088650cb7d5eb383a2",
+  "candidate_sha256": "8e8a5f2597a573ffaecfc054b01de726975ec5de07a33b06c4e56f5de75b3558",
+  "candidate_readback_bytes": 37132,
+  "single_START": true,
+  "requested_record_seconds": 10,
+  "actual_record_seconds": 0.03585599991492927,
+  "received_raw_samples": 4992,
+  "selected_range": [
+    2304,
+    4992
+  ],
+  "selected_samples": 2688,
+  "nonce": "414093eee96a4607",
+  "generation": 3,
+  "END": {
+    "sequence": 43,
+    "reason": 1,
+    "flags": 3,
+    "before_host_STOP": true
+  },
+  "STOP_ACK": {
+    "sequence": 44,
+    "terminal_sequence": 43
+  },
+  "unknown_produced_tail": true,
+  "cleanup_closed": true,
+  "diagnostics": {
+    "copies_equal": true,
+    "sha256": "a1128099fac303403abc9c1cd77fa700215bd385e98b08f1ce06e1938998ff4b",
+    "flags": 4,
+    "queue_high_water": 8,
+    "first_acquisition_reason": 1,
+    "first_adc_fault": 0,
+    "driver_poll_gap_us": 1375,
+    "copy_max_us": 202
+  },
+  "stopped_registers_verified": true,
+  "retained_image": "V2SA/0x56325341",
+  "rollback_performed": false,
+  "additional_START_or_flash": false,
+  "open_findings": [
+    {
+      "id": "G2-P1-100K",
+      "priority": "P1",
+      "status": "OPEN",
+      "finding": "100000 samples/s continuous source is not sustained: queue-full/device_1 aborts before the target10s. Preserved prefix and normal cleanup do not satisfy streaming acceptance."
+    }
+  ],
+  "ratings": [
+    {
+      "criterion": "C1",
+      "weight": 0.3,
+      "score": 3.5,
+      "basis": "Exact boot/CAPS and raw receive work, but required10s continuous100k failed after0.035856s."
+    },
+    {
+      "criterion": "C2",
+      "weight": 0.2,
+      "score": 7.5,
+      "basis": "Queue-full interrupts the source; failure data retained and hardware stopped without an unnecessary rollback."
+    },
+    {
+      "criterion": "C3",
+      "weight": 0.25,
+      "score": 9.7,
+      "basis": "Exact image, wire/raw/freshOpen evidence, two diagnostics and stopped registers preserved; no success or timing inflation."
+    },
+    {
+      "criterion": "C4",
+      "weight": 0.15,
+      "score": 9.6,
+      "basis": "Result, unknown tail and retained candidate state explicit; user stop instruction respected."
+    },
+    {
+      "criterion": "C5",
+      "weight": 0.1,
+      "score": 9.7,
+      "basis": "Exact source/plan/archive pinned;40 pairs verified and failed attempt reproducible from saved evidence."
+    }
+  ],
+  "checks_sha256": "1933a491cdae9ee16de2813ed5ff60c71807f5cf776aa2abcc78254e3dab79d7",
+  "physical_100ksps_accepted": false,
+  "physical_200ksps_accepted": false,
+  "timing_or_analog_accuracy_qualified": false,
+  "implementation_or_new_tests_run_by_reviewer": false,
+  "hardware_access_by_reviewer": false,
+  "work_stopped_for_today": true,
+  "reason": "Explicit user instruction to finish today after another error; no further experiment, retry or implementation"
+}

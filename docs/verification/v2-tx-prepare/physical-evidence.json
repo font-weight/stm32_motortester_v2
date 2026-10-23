@@ -1,0 +1,254 @@
+{
+  "schema": "v2-06g2-physical-evidence-1",
+  "source_commit": "a7b45bccf54f3155de03389aa5e49b237905c994",
+  "physical_result": "FAIL",
+  "board_state": "V2SA retained, TIM3/ADC/DMA stopped, COM owner closed; no rollback",
+  "user_requested_stop_after_failure": true,
+  "additional_START_or_flash": false,
+  "files": [
+    {
+      "source": "build/v6g-board-01/adc.bin",
+      "archive": "docs/verification/v2-tx-prepare/physical-01/adc.bin",
+      "bytes": 12,
+      "sha256": "b389a6884b289d4b53e9b36853b9a933c640fa7a5abe584f859a56c6768c01ba"
+    },
+    {
+      "source": "build/v6g-board-01/adc.log",
+      "archive": "docs/verification/v2-tx-prepare/physical-01/adc.log",
+      "bytes": 846,
+      "sha256": "1c4a8a7deb18c54268d5183050e056e73fe9fffae64e82bf79624f9524111a71"
+    },
+    {
+      "source": "build/v6g-board-01/analyze_failure.py",
+      "archive": "docs/verification/v2-tx-prepare/physical-01/analyze_failure.py",
+      "bytes": 15036,
+      "sha256": "ec791ddfed21b235754daec8b70f2028fe1d0afdcd3c5dd8f9a4ee7106ffc434"
+    },
+    {
+      "source": "build/v6g-board-01/backup.log",
+      "archive": "docs/verification/v2-tx-prepare/physical-01/backup.log",
+      "bytes": 872,
+      "sha256": "09e3d2d65197970924ed898a39447a0e8e397efad808a618f5f4041e4d572617"
+    },
+    {
+      "source": "build/v6g-board-01/before-flash-64k.bin",
+      "archive": "docs/verification/v2-tx-prepare/physical-01/before-flash-64k.bin",
+      "bytes": 65536,
+      "sha256": "95d3a11f8db843e362b2c59ed6fbf380dd630e067fa23f6ae5a9c7d2b11dff1e"
+    },
+    {
+      "source": "build/v6g-board-01/decode_diagnostics.py",
+      "archive": "docs/verification/v2-tx-prepare/physical-01/decode_diagnostics.py",
+      "bytes": 12283,
+      "sha256": "c5d4eb3076380edc21c9319201b4eeb53dc0f5e649af9c6c0f9b4d6a8ea096cd"
+    },
+    {
+      "source": "build/v6g-board-01/diagnostics-decoded.json",
+      "archive": "docs/verification/v2-tx-prepare/physical-01/diagnostics-decoded.json",
+      "bytes": 6579,
+      "sha256": "81ebe5e27ba23a26ae448cbf2351d539b09ad71cefbeaab34b5a7824bd7c0020"
+    },
+    {
+      "source": "build/v6g-board-01/diagnostics-decoder-invocation.json",
+      "archive": "docs/verification/v2-tx-prepare/physical-01/diagnostics-decoder-invocation.json",
+      "bytes": 1250,
+      "sha256": "29dc3984f503fbc167b4daa741d2280d63bcf4d9543a37f3945f0952ab2e0de2"
+    },
+    {
+      "source": "build/v6g-board-01/diagnostics-first.bin",
+      "archive": "docs/verification/v2-tx-prepare/physical-01/diagnostics-first.bin",
+      "bytes": 136,
+      "sha256": "a1128099fac303403abc9c1cd77fa700215bd385e98b08f1ce06e1938998ff4b"
+    },
+    {
+      "source": "build/v6g-board-01/diagnostics-first.log",
+      "archive": "docs/verification/v2-tx-prepare/physical-01/diagnostics-first.log",
+      "bytes": 874,
+      "sha256": "043e8f84eaf1c13fd65c1335629c555fb121ce1d89185f37ac3c2b5b5540169e"
+    },
+    {
+      "source": "build/v6g-board-01/diagnostics-second.bin",
+      "archive": "docs/verification/v2-tx-prepare/physical-01/diagnostics-second.bin",
+      "bytes": 136,
+      "sha256": "a1128099fac303403abc9c1cd77fa700215bd385e98b08f1ce06e1938998ff4b"
+    },
+    {
+      "source": "build/v6g-board-01/diagnostics-second.log",
+      "archive": "docs/verification/v2-tx-prepare/physical-01/diagnostics-second.log",
+      "bytes": 876,
+      "sha256": "13c85645ddb3a8857b48a40540f74260ffe41b8262c1c237ee3f83f1588314df"
+    },
+    {
+      "source": "build/v6g-board-01/dma.bin",
+      "archive": "docs/verification/v2-tx-prepare/physical-01/dma.bin",
+      "bytes": 16,
+      "sha256": "3b59044f51df4730ded9eb3d7ee0bdb72baaa1040aa12ba6ac32000fc2677010"
+    },
+    {
+      "source": "build/v6g-board-01/dma.log",
+      "archive": "docs/verification/v2-tx-prepare/physical-01/dma.log",
+      "bytes": 846,
+      "sha256": "18277c371541642811634475e33bbbd675e8f35e3c5b124af33a0fba678ba882"
+    },
+    {
+      "source": "build/v6g-board-01/hardware-procedure-facts.json",
+      "archive": "docs/verification/v2-tx-prepare/physical-01/hardware-procedure-facts.json",
+      "bytes": 812,
+      "sha256": "4677e390ecd81325f98c3fdc0bd8095d5e6a270557618e96852786639b1ff265"
+    },
+    {
+      "source": "build/v6g-board-01/plan.json",
+      "archive": "docs/verification/v2-tx-prepare/physical-01/plan.json",
+      "bytes": 6002,
+      "sha256": "b65c31afeb98d46463749184169cdd10b33f3fa73ea7b51538e7c212d20e3c95"
+    },
+    {
+      "source": "build/v6g-board-01/ports-before.json",
+      "archive": "docs/verification/v2-tx-prepare/physical-01/ports-before.json",
+      "bytes": 135,
+      "sha256": "c8614e25240676a110cd0c9f9761ba2d2fc559f249875431289a7b08eedef67d"
+    },
+    {
+      "source": "build/v6g-board-01/preflight.json",
+      "archive": "docs/verification/v2-tx-prepare/physical-01/preflight.json",
+      "bytes": 849,
+      "sha256": "3297c7e0d50012c5a0192f939a2e140dcdeb16ffafed027ee1b9bf789f82e556"
+    },
+    {
+      "source": "build/v6g-board-01/probe-list.txt",
+      "archive": "docs/verification/v2-tx-prepare/physical-01/probe-list.txt",
+      "bytes": 239,
+      "sha256": "b58c8ddae6534dd35b9a1498631f1ee20ba54017c8f3ccfa2b156244c92e72a3"
+    },
+    {
+      "source": "build/v6g-board-01/processes-before.json",
+      "archive": "docs/verification/v2-tx-prepare/physical-01/processes-before.json",
+      "bytes": 4,
+      "sha256": "a5338d955b09046ec0b16f3a9625b7955c763aae07dc722e474e6078745f932f"
+    },
+    {
+      "source": "build/v6g-board-01/program.log",
+      "archive": "docs/verification/v2-tx-prepare/physical-01/program.log",
+      "bytes": 953,
+      "sha256": "c9444dbf0210cb36abefd351300d72059084ecbb031a330778638209b2609f0f"
+    },
+    {
+      "source": "build/v6g-board-01/rcc.bin",
+      "archive": "docs/verification/v2-tx-prepare/physical-01/rcc.bin",
+      "bytes": 20,
+      "sha256": "1e24249e3619f46e4291c93fac339276c89ad2a136a324180aa83757fc71a367"
+    },
+    {
+      "source": "build/v6g-board-01/rcc.log",
+      "archive": "docs/verification/v2-tx-prepare/physical-01/rcc.log",
+      "bytes": 846,
+      "sha256": "a9845d05ebebf981dd434398f5f68b33440d137bb8fdec8b206e3227f5afea6e"
+    },
+    {
+      "source": "build/v6g-board-01/readback-verified.json",
+      "archive": "docs/verification/v2-tx-prepare/physical-01/readback-verified.json",
+      "bytes": 128,
+      "sha256": "74b7858a17b234fa75c1e5d0e17d4a793580027a676bdc2bd5cbd72597cef2d2"
+    },
+    {
+      "source": "build/v6g-board-01/readback.bin",
+      "archive": "docs/verification/v2-tx-prepare/physical-01/readback.bin",
+      "bytes": 37132,
+      "sha256": "8e8a5f2597a573ffaecfc054b01de726975ec5de07a33b06c4e56f5de75b3558"
+    },
+    {
+      "source": "build/v6g-board-01/readback.log",
+      "archive": "docs/verification/v2-tx-prepare/physical-01/readback.log",
+      "bytes": 856,
+      "sha256": "fe67e1df89155b2d63e25fa54ede0a5e07d27738376ab127f8002346003d6228"
+    },
+    {
+      "source": "build/v6g-board-01/received-prefix.u16le",
+      "archive": "docs/verification/v2-tx-prepare/physical-01/received-prefix.u16le",
+      "bytes": 9984,
+      "sha256": "bd35d964f6550a68c466bf436fd2d0382b7e7c2ee178cfa58c5b7bc072eea1bc"
+    },
+    {
+      "source": "build/v6g-board-01/recorded-prefix-analysis.json",
+      "archive": "docs/verification/v2-tx-prepare/physical-01/recorded-prefix-analysis.json",
+      "bytes": 4815,
+      "sha256": "106382c637ad45957cfcf2c0d28ff62e39a15a044009135caac3c55638f3e1da"
+    },
+    {
+      "source": "build/v6g-board-01/registers-decoded.json",
+      "archive": "docs/verification/v2-tx-prepare/physical-01/registers-decoded.json",
+      "bytes": 702,
+      "sha256": "df0ab0781473851f3f87b2fe1b0fd9490bac9c7e9b25832b0bb9705ef46d4aac"
+    },
+    {
+      "source": "build/v6g-board-01/reset-run.log",
+      "archive": "docs/verification/v2-tx-prepare/physical-01/reset-run.log",
+      "bytes": 420,
+      "sha256": "f8596a56771eed9f6bf4ebfd453433d8b7e7796ae747d34ca0eea8f480d620c9"
+    },
+    {
+      "source": "build/v6g-board-01/run/physical.mtstream",
+      "archive": "docs/verification/v2-tx-prepare/physical-01/run/physical.mtstream",
+      "bytes": 6631,
+      "sha256": "3e428d819192e265d97d99a420ae5301520a62bd7a080b7567f104d44ea5716e"
+    },
+    {
+      "source": "build/v6g-board-01/run/physical.mtstream.v2.json",
+      "archive": "docs/verification/v2-tx-prepare/physical-01/run/physical.mtstream.v2.json",
+      "bytes": 1989,
+      "sha256": "47f424798cfbd48e5ed9e6d3bae5e7862299d03fc67edd7e46a405f9fd575a7a"
+    },
+    {
+      "source": "build/v6g-board-01/run/result.json",
+      "archive": "docs/verification/v2-tx-prepare/physical-01/run/result.json",
+      "bytes": 2869,
+      "sha256": "5367d23eaf42ff2014976d17d5057a98aa77936fd5864a3f41ace0d26523754d"
+    },
+    {
+      "source": "build/v6g-board-01/run/traffic.bin",
+      "archive": "docs/verification/v2-tx-prepare/physical-01/run/traffic.bin",
+      "bytes": 12974,
+      "sha256": "9c2d994f3a884b61f262d99400e4071b4b3aca4a745c0e482097e6ff8e1e3693"
+    },
+    {
+      "source": "build/v6g-board-01/save_stopped_state.py",
+      "archive": "docs/verification/v2-tx-prepare/physical-01/save_stopped_state.py",
+      "bytes": 2462,
+      "sha256": "dfdc018f36f2c540526697324544b6b1782e70f5a81173d566c79189b45955c0"
+    },
+    {
+      "source": "build/v6g-board-01/tim3.bin",
+      "archive": "docs/verification/v2-tx-prepare/physical-01/tim3.bin",
+      "bytes": 48,
+      "sha256": "b3a7eaf1224a6f2a2056a9919d92588620e767cf3c5599bf4cbeef8b60136986"
+    },
+    {
+      "source": "build/v6g-board-01/tim3.log",
+      "archive": "docs/verification/v2-tx-prepare/physical-01/tim3.log",
+      "bytes": 848,
+      "sha256": "a22ef6ead3dbb1d343998a4e0ce3fa3784b0e8a1bf3fa225fdb430f8b3436a42"
+    },
+    {
+      "source": "build/v6g-board-01/trial-console.log",
+      "archive": "docs/verification/v2-tx-prepare/physical-01/trial-console.log",
+      "bytes": 532,
+      "sha256": "5e3d25bfa0d274c3c5b131a115444f298d4372a9595c2adfe7431c6e30a2be43"
+    },
+    {
+      "source": "build/v6g-board-01/trial-invocation.json",
+      "archive": "docs/verification/v2-tx-prepare/physical-01/trial-invocation.json",
+      "bytes": 144,
+      "sha256": "1b4b08e4d9a0bfdfae238c6ce5ac2b26ee19eb6bea663a7c1b9fdc238c75431d"
+    },
+    {
+      "source": "build/v6g-board-01/wire-failure-analysis.json",
+      "archive": "docs/verification/v2-tx-prepare/physical-01/wire-failure-analysis.json",
+      "bytes": 16822,
+      "sha256": "271d9b1e91888ab9f28d2cf9a9da497692a5bf851981b492eef90ad6a50fa1c1"
+    }
+  ],
+  "file_count": 40,
+  "total_bytes": 214514,
+  "all_source_copy_bytes_equal": true,
+  "archiver_sha256": "f12a7283b1bce2327e1dd9bf44fbe812af3b89092d72ca0560459d2b02bb4279"
+}

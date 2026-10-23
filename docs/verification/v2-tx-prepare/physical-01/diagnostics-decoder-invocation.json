@@ -1,0 +1,37 @@
+{
+  "schema": "v2sa-legacy-decoder-invocation-1",
+  "argv": [
+    "C:\\Users\\Alexandr\\Desktop\\New folder\\универ\\мотортестер 2\\.venv\\Scripts\\python.exe",
+    "-B",
+    "build\\v6g-board-01\\decode_diagnostics.py",
+    "build\\v6g-board-01\\diagnostics-first.bin",
+    "build\\v6g-board-01\\diagnostics-second.bin",
+    "--build",
+    "0x56325341",
+    "--generation",
+    "3",
+    "--nonce",
+    "0x414093eee96a4607"
+  ],
+  "exit_code": 0,
+  "stderr": "",
+  "decoder_sha256": "c5d4eb3076380edc21c9319201b4eeb53dc0f5e649af9c6c0f9b4d6a8ea096cd",
+  "decoded_sha256": "81ebe5e27ba23a26ae448cbf2351d539b09ad71cefbeaab34b5a7824bd7c0020",
+  "originals": {
+    "diagnostics-first.bin": {
+      "bytes": 136,
+      "sha256": "a1128099fac303403abc9c1cd77fa700215bd385e98b08f1ce06e1938998ff4b"
+    },
+    "diagnostics-second.bin": {
+      "bytes": 136,
+      "sha256": "a1128099fac303403abc9c1cd77fa700215bd385e98b08f1ce06e1938998ff4b"
+    },
+    "run/result.json": {
+      "bytes": 2869,
+      "sha256": "5367d23eaf42ff2014976d17d5057a98aa77936fd5864a3f41ace0d26523754d"
+    }
+  },
+  "originals_unchanged": true,
+  "physical_trial_status": "FAIL",
+  "scope": "Archival offline decode only; no new investigation or hardware operation"
+}
