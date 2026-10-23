@@ -5,6 +5,7 @@ is separate; the invocation owns selection/intent checks, not these carriers.
 Existing generic/synthetic identity strings keep their previous meaning.
 """
 from dataclasses import asdict, dataclass, fields
+from .stream_wire import SUPPORTED_SAMPLE_RATES
 
 
 DMA_DOMAIN = "completed-dma-v1"
@@ -227,7 +228,7 @@ def profile_for_identity(identity):
             raise ProvenanceError("Missing observed device build") from exc
         origin, metadata = device_context_identity(context, build)
         if ((revision, artifact, producer) != metadata or identity.origin != origin or
-                identity.config_id != 1 or identity.nominal_fs_hz != 50000):
+                identity.config_id != 1 or identity.nominal_fs_hz not in SUPPORTED_SAMPLE_RATES):
             raise ProvenanceError("Mixed generic device identity")
         return None  # Deliberately preserves original, non-DMA counter semantics.
     marked = ("dma-sequence" in (revision or "") or

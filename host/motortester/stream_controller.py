@@ -813,6 +813,7 @@ class StreamController:
         override. Deterministic callers inject a clock even in manual mode.
         The sole receiver must call this method.
         """
+        self._read_saturated = False
         self._owner(now_ms)
         with self._lock:
             close, stop = self._close_requested, self._stop_requested
@@ -886,6 +887,7 @@ class StreamController:
                      else self._peer.read(wire.MAX_INPUT_BYTES)) if self._serial_io_ready() else b"")
             if type(data) is not bytes or len(data) > wire.MAX_INPUT_BYTES:
                 raise ValueError("Byte peer exceeded bounded read contract")
+            self._read_saturated = len(data) == wire.MAX_INPUT_BYTES
         except Exception:
             now = self._current_time()
             self._observe(bridge.transport_fault(now), now)
@@ -949,10 +951,23 @@ class StreamController:
 
     def _receive_loop(self):
         try:
+            burst = 0
             while not self._finished.is_set():
                 self._wake.clear()
                 self.service(self._clock())
-                self._wake.wait(OWNER_POLL_SECONDS)
+                # A full bounded read may leave bytes queued at 200 kS/s. Do
+                # another owner iteration without the 1 ms idle poll delay;
+                # commands, deadlines and disk completions still run each time.
+                # At most eight full reads (4352 wire bytes) are drained before
+                # yielding to disk/display owners. Yielding on every packet is
+                # too slow on Windows; never yielding can starve disk syscalls
+                # when those calls release and reacquire Python's GIL.
+                burst = burst + 1 if self._read_saturated else 0
+                if burst >= 8:
+                    time.sleep(0)
+                    burst = 0
+                elif not self._read_saturated:
+                    self._wake.wait(OWNER_POLL_SECONDS)
         except Exception as exc:
             self._error = "Receiver failed: " + type(exc).__name__
             self.close()

@@ -1,0 +1,91 @@
+{
+  "scope": "native Qt Windows, synthetic transport only",
+  "source_files": {
+    "source-gui/stream200-result.json": {
+      "source": "build/v6-host-200k-smoke-07/stream200-result.json",
+      "bytes": 3590,
+      "sha256": "a1b650a817d17cd320ac9077dfa101143fed3c377aa915b3117f71fa28313f40"
+    },
+    "source-gui/stream200-live.png": {
+      "source": "build/v6-host-200k-smoke-07/stream200-live.png",
+      "bytes": 59541,
+      "sha256": "856562e89adf59dcddfdff6fe27ef211bd32b97f50b505a7b3ca7f5f5da70c41"
+    },
+    "source-gui/stream200-open.png": {
+      "source": "build/v6-host-200k-smoke-07/stream200-open.png",
+      "bytes": 58944,
+      "sha256": "47542cdff56f0dca5a1d3d4825458571083e6bf33bfc10d63c8ed6881366c327"
+    },
+    "source-gui/synthetic200.mtstream": {
+      "source": "build/v6-host-200k-smoke-07/synthetic200.mtstream",
+      "bytes": 2324097,
+      "sha256": "9ff2d5053c5313a5bc4cf110434e315179b53c43b9aa23c1fc9d3f700042d171"
+    },
+    "source-gui/synthetic200.mtstream.v2.json": {
+      "source": "build/v6-host-200k-smoke-07/synthetic200.mtstream.v2.json",
+      "bytes": 1923,
+      "sha256": "bee0c7ed6c3b06cb88d0894add7de3a88a787203925bbc6c59a175c4f80fb053"
+    },
+    "source-gui/synthetic200.csv.json": {
+      "source": "build/v6-host-200k-smoke-07/synthetic200.csv.json",
+      "bytes": 2345,
+      "sha256": "0bd04909d8e1bf96156caa3d0d2ad8190ba5389311d57e8a3f1550326bf66816"
+    },
+    "source-gui/targeted-tests.log": {
+      "source": "build/v6-host-200k-smoke-07/targeted-tests.log",
+      "bytes": 158,
+      "sha256": "06125da927415d886241148fe6ea6dd6c59f7026ce870013e517a7e147b2161d"
+    },
+    "source-gui/baseline_methods.py": {
+      "source": "build/v6-host-200k-smoke-07/baseline_methods.py",
+      "bytes": 1588,
+      "sha256": "941ac7668803c86ef8b18d76e4e7f89529da199f931303c53b7a0b2d2d7c3c9a"
+    },
+    "source-gui/baseline-methods.log": {
+      "source": "build/v6-host-200k-smoke-07/baseline-methods.log",
+      "bytes": 1954,
+      "sha256": "830228bceb856b7ae9fd21e5e7c9a09ff4b48fe966f8482daf726d17878ef726"
+    }
+  },
+  "csv_local_only": {
+    "path": "build/v6-host-200k-smoke-07/synthetic200.csv",
+    "sha256": "d87980eee56fedd36a91fd6f1524f01abaeb098f4a1902cd3f69b037853ab2ec"
+  },
+  "preserved_intermediate_attempts": {
+    "01": {
+      "status": "FAIL",
+      "original_directory": "build/v6-host-200k-smoke-01",
+      "receipt_sha256": "a8d6cf26f861bf0a0b66d8a8185dda7ed5081ac5b9c0de791a706206dbf371fc"
+    },
+    "02": {
+      "status": "FAIL",
+      "original_directory": "build/v6-host-200k-smoke-02",
+      "receipt_sha256": "f898b8e6ca39e626a849b00a1bb356bdf485aaf3c958471749f42340d1140398"
+    },
+    "03": {
+      "status": "PASS",
+      "original_directory": "build/v6-host-200k-smoke-03",
+      "receipt_sha256": "96fa63e82411c57fece3a4044999673bdd939467393a064581efcbdd47266b9c"
+    },
+    "04": {
+      "status": "FAIL",
+      "original_directory": "build/v6-host-200k-smoke-04",
+      "receipt_sha256": "71c82ae23837721f2ea322dd17ef774ab1b79975844041de442c0fc959f98d7a"
+    },
+    "05": {
+      "status": "FAIL",
+      "original_directory": "build/v6-host-200k-smoke-05",
+      "receipt_sha256": "8b8d2b1223d8c0e042efb667d27a5f0374dcdad9f5bd2e46dea1900592104054"
+    },
+    "06": {
+      "status": "FAIL",
+      "original_directory": "build/v6-host-200k-smoke-06",
+      "receipt_sha256": "3bd575f70fa4b168c9e6f3f493c49b84eaff315e2aad16758ec913d1e3631392"
+    }
+  },
+  "commands": {
+    "tests": "PYTHONPATH=host;host/tests .venv/Scripts/python.exe -B -m unittest test_stream_wire test_v2_stream_serial test_stream_controller test_stream_session.CompletionTests.test_snapshot_mutation_cannot_change_session test_stream_session.CompletionTests.test_snapshot_nested_carrier_mutation_cannot_change_terminal_or_raw test_v2_stream_device.V2StreamDeviceTests.test_source_admission_rejects_queued_and_late_old_frames",
+    "gui": "PYTHONPATH=host .venv/Scripts/python.exe -B -m motortester.v2.stream200_smoke build/v6-host-200k-smoke-07",
+    "baseline": "PYTHONPATH=host;host/tests .venv/Scripts/python.exe -B build/v6-host-200k-smoke-07/baseline_methods.py"
+  }
+}

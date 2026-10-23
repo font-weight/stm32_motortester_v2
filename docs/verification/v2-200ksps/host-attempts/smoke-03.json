@@ -1,0 +1,85 @@
+{
+  "status": "PASS",
+  "source": "injected synthetic wire 0.2",
+  "execution_kind": "injected-test",
+  "physical_stream_verified": false,
+  "nominal_fs_hz": 200000,
+  "interval_us": 5,
+  "python": "3.14.7",
+  "platform": "Windows-10-10.0.19045-SP0",
+  "qt_platform": "windows",
+  "callback_errors": [],
+  "errors": [],
+  "screenshots": [
+    {
+      "path": "stream200-live.png",
+      "width": 1220,
+      "height": 870
+    },
+    {
+      "path": "stream200-open.png",
+      "width": 1220,
+      "height": 870
+    }
+  ],
+  "paced_observation": {
+    "seconds": 3.0902782999910414,
+    "samples_received": 618240,
+    "mean_samples_per_host_second": 200059.65158600514,
+    "meaning": "host synthetic scheduling observation, not ADC frequency measurement"
+  },
+  "limits": {
+    "peak_raw_items": 175,
+    "max_raw_items": 256,
+    "peak_raw_bytes": 44666,
+    "max_raw_bytes": 262144,
+    "max_service_gap_ms": 39,
+    "peak_synthetic_backlog_samples": 10118,
+    "max_synthetic_backlog_samples": 32768,
+    "saturated_reads": 3102
+  },
+  "roundtrip": {
+    "samples": 699069,
+    "raw_sha256": "38100a5adac79518d020159481238bb87af96e605aa3fdc1f829619c9818bec0",
+    "journal_sha256": "9ec685509ff324c2679bc48bda3766c7d5a1ef86de8c63332a3320e48d270f60",
+    "raw_matches_synthetic_period": true,
+    "csv_rows": 699069,
+    "csv_dt_seconds": 5e-06,
+    "identity": {
+      "session_id": "wire-0.2:ecf7c0d483969e95",
+      "generation": 3,
+      "config_id": 1,
+      "nominal_fs_hz": 200000,
+      "origin": "synthetic",
+      "protocol_revision": "0.2-draft-081721",
+      "firmware_version": "build:56325335",
+      "application_version": "v2-serial-unknown-accounting:injected-test"
+    },
+    "connection": {
+      "selection": {
+        "port": "V2_200K_SYNTHETIC",
+        "declared_source_commit": null,
+        "declared_artifact_sha256": null
+      },
+      "execution_kind": "injected-test",
+      "observed_build_id": 1446138677,
+      "observed_caps": [
+        1,
+        1,
+        0,
+        12,
+        200000,
+        1,
+        128,
+        1
+      ],
+      "dtr_requested": true,
+      "accounting_domain": "unknown",
+      "image_verified": false
+    },
+    "unknown_tail_preserved": true,
+    "minmax_x_end_seconds": 0.327675
+  },
+  "real_serial_open_calls": 0,
+  "owners_closed": true
+}

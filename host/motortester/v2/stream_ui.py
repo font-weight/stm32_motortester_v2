@@ -7,7 +7,7 @@ import pyqtgraph as pg
 from ..gui_stream import LiveEventIndex, LiveSnapshot, StreamViewerPanel
 from ..stream_controller import EVENT_CAPACITY
 from ..stream_recording import AttemptReport
-from .stream_device import StreamContext, StreamDeviceBridge
+from .stream_device import StreamContext, StreamDeviceBridge, default_event_config
 from .stream_files import open_stream, export_stream
 from .widgets import STYLE
 
@@ -362,7 +362,7 @@ class StreamDialog(QtWidgets.QDialog):
                 frequency = connection.observed_caps[4] / connection.observed_caps[5]
                 self._live_notice = (
                     f"STM32 · {self.selection.port} · CH1 · протокол 0.2 · "
-                    f"{frequency:g} отсчётов/с номинально\n"
+                    f"{frequency:g} отсчётов/с · шаг {1_000_000 / frequency:g} мкс номинально\n"
                     f"Плата сообщила сборку 0x{connection.observed_build_id:08X}. "
                     "Это не проверка файла прошивки или точности частоты.\n"
                     "Шкала напряжения не настроена. Полнота произведённых отсчётов неизвестна.")
@@ -536,6 +536,12 @@ class StreamDialog(QtWidgets.QDialog):
             if self._operation == "open":
                 self.verified_context, archive = result
                 self.archive = archive.recording if isinstance(archive, AttemptReport) and archive.recording else archive
+                identity = (self.archive.preparation.identity if isinstance(self.archive, AttemptReport)
+                            else self.archive.identity)
+                if self.bridge._default_event_config and identity.nominal_fs_hz in (50_000, 200_000):
+                    # File navigation is recomputed from raw; the journal does
+                    # not store host detector settings or change the raw data.
+                    self.viewer._config = default_event_config(identity.nominal_fs_hz)
                 self.viewer._accept_archive(archive)
                 rec = self.archive
                 if isinstance(rec, AttemptReport):
@@ -557,7 +563,9 @@ class StreamDialog(QtWidgets.QDialog):
                         self.error_label.setText(self._failure_message(terminal.failure, rec.path))
                 self._heading(self.verified_context.context)
                 self.notice.setText(
-                    "ОТКРЫТАЯ ПОТОКОВАЯ ЗАПИСЬ · происхождение указано над графиком.\n"
+                    "ОТКРЫТАЯ ПОТОКОВАЯ ЗАПИСЬ · "
+                    f"{identity.nominal_fs_hz} отсчётов/с · "
+                    f"шаг {1_000_000 / identity.nominal_fs_hz:g} мкс номинально.\n"
                     "Шкала напряжения не настроена. Отображаются только исходные коды; время номинальное.")
                 if not self.verified_context.companion_present:
                     self.error_label.setText(

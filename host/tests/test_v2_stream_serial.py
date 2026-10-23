@@ -1,5 +1,6 @@
 """V2 serial admission and ownership over encoded bytes; no real COM or GUI."""
 from dataclasses import replace
+import csv
 import json
 from pathlib import Path
 import struct
@@ -20,17 +21,23 @@ from motortester.v2.input import UNKNOWN_PROFILE
 from motortester.v2.stream_device import (
     SerialStreamSelection, StreamContext, StreamDeviceBridge, companion_path,
     open_verified_context)
+from motortester.v2.stream_files import export_stream
 from qt_test_support import pump_events
 from test_stream_controller import EncodedPeer, CONFIG, waveform
 
 
 class SelectedPeer(EncodedPeer):
     """Diagnostic-like unknown END and optional incompatible HELLO/CAPS."""
-    def __init__(self, incompatible=None):
+    def __init__(self, incompatible=None, sample_rate_hz=50_000):
         super().__init__()
         self.incompatible = incompatible
+        self.sample_rate_hz = sample_rate_hz
 
     def _rx(self, kind, payload, request=0):
+        if kind == 129 and self.sample_rate_hz == 200_000:
+            payload = struct.pack("<BBBBHHII", 0, 2, 1, 12, 512, 128, 0x56325335, 1)
+        if kind == 130:
+            payload = struct.pack("<IHBBIIHHI", 1, 1, 0, 12, self.sample_rate_hz, 1, 128, 0, 1)
         if kind == 129 and self.incompatible == "version":
             payload = payload[:1] + b"\x01" + payload[2:]
         if kind == 130 and self.incompatible == "caps":
@@ -47,7 +54,7 @@ class ClosedBackend:
     def __init__(self, factory, kwargs):
         self.factory, self.kwargs = factory, kwargs
         self.port, self.is_open, self._dtr = None, False, False
-        self.peer = SelectedPeer(factory.incompatible)
+        self.peer = SelectedPeer(factory.incompatible, factory.sample_rate_hz)
         self.fail_close = False
 
     @property
@@ -77,8 +84,9 @@ class ClosedBackend:
 
 
 class FakeSerialFactory:
-    def __init__(self, incompatible=None):
+    def __init__(self, incompatible=None, sample_rate_hz=50_000):
         self.incompatible = incompatible
+        self.sample_rate_hz = sample_rate_hz
         self.backends, self.calls = [], []
 
     def __call__(self, **kwargs):
@@ -122,8 +130,8 @@ class V2StreamSerialTests(unittest.TestCase):
         self.guard.stop()
         self.folder.cleanup()
 
-    def make(self, incompatible=None):
-        factory = FakeSerialFactory(incompatible)
+    def make(self, incompatible=None, sample_rate_hz=50_000):
+        factory = FakeSerialFactory(incompatible, sample_rate_hz)
         selection = SerialStreamSelection("EXPLICIT-TEST-PORT", "a" * 40, "b" * 64)
         bridge = StreamDeviceBridge(selection=selection, fake_backend_factory=factory,
                                     context=StreamContext("Сохранённый CH1", "ignition"))
@@ -135,8 +143,8 @@ class V2StreamSerialTests(unittest.TestCase):
         self.bridges.append((bridge, factory))
         return bridge, factory
 
-    def ready(self):
-        bridge, factory = self.make()
+    def ready(self, sample_rate_hz=50_000):
+        bridge, factory = self.make(sample_rate_hz=sample_rate_hz)
         self.assertTrue(bridge.connect_source())
         self.wait(lambda: bridge.state.ready and bridge.connection is not None)
         return bridge, factory
@@ -293,6 +301,44 @@ class V2StreamSerialTests(unittest.TestCase):
         self.assertFalse(backend.is_open)
         self.assertEqual(bridge.finished_events, [True])
         self.assertIsNone(bridge.state.bridge.endpoint_first_fault)
+
+    def test_200k_record_reopen_export_and_companion_rate_binding(self):
+        bridge, factory = self.ready(200_000)
+        self.assertEqual(bridge.connection.observed_caps[4], 200_000)
+        self.assertEqual(bridge.connection.observed_build_id, 0x56325335)
+        self.assertFalse(bridge.connection.image_verified)
+        path, _ = self.record_prefix(bridge, factory)
+        config = bridge.state.config
+        self.assertEqual((config.pre_samples, config.post_samples, config.baseline_samples,
+                          config.holdoff_samples, config.max_event_samples), (200, 600, 100, 400, 2000))
+        bridge.stop()
+        self.wait(lambda: bridge.saved)
+        recording = recover_attempt(path).recording
+        context = open_verified_context(path)
+        self.assertEqual(recording.identity.nominal_fs_hz, 200_000)
+        self.assertEqual(recording.identity.origin, "synthetic")
+        self.assertEqual(recording.read_raw(128, 256), waveform(2))
+        self.assertIsNone(profile_for_identity(recording.identity))
+        self.assertIsNone(recording.terminal.loss_samples)
+        self.assertEqual(context.connection.observed_caps[4], 200_000)
+        exported = self.root / "200k.csv"
+        export_stream(exported, recording, context)
+        with exported.open(newline="", encoding="utf-8") as source:
+            rows = list(csv.DictReader(source))
+        self.assertEqual(len(rows), 256)
+        self.assertEqual(float(rows[0]["time_from_recording_start_s"]), 0)
+        self.assertEqual(float(rows[1]["time_from_recording_start_s"]), 0.000005)
+        self.assertEqual(float(rows[-1]["time_from_recording_start_s"]), 255 / 200_000)
+        receipt = json.loads(exported.with_suffix(".csv.json").read_text("utf-8"))
+        self.assertEqual(receipt["identity"]["nominal_fs_hz"], 200_000)
+        # Reusing an old 50k connection next to 200k raw must be rejected,
+        # even though each rate is independently supported.
+        sidecar = companion_path(path)
+        value = json.loads(sidecar.read_text("utf-8"))
+        value["connection"]["observed_caps"][4] = 50_000
+        sidecar.write_text(json.dumps(value), encoding="utf-8")
+        with self.assertRaisesRegex(ValueError, "не соответствует журналу"):
+            open_verified_context(path)
 
     def test_companion_retry_keeps_exact_connection_and_raw_prefix(self):
         bridge, factory = self.ready()

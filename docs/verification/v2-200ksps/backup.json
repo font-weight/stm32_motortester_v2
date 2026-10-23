@@ -1,0 +1,65 @@
+{
+  "schema": "v2-200ksps-backup-evidence-1",
+  "backup_directory": "C:\\Users\\Alexandr\\Desktop\\New folder\\универ\\motortester-v2-backups\\20261023-before-200ksps",
+  "head_before_checkpoint": "6c5af6e52bd7aa3e273aed43e79d7213ed7cedd8",
+  "checkpoint_commit": "d8d1a27b8e42b8a508d68d9de8e3b5f8b5f91622",
+  "tag": "backup/20261023-50ksps",
+  "source_files": 2290,
+  "source_bytes": 73306555,
+  "manifest_sha256": "b2080f40d01dd64422e727714da38aee55410b245078a7c7734b253901d8d4c5",
+  "archives": {
+    "git-status-before.txt": {
+      "bytes": 385,
+      "sha256": "5f154ecf2dce1f06822864119b533f6a01e40ea8fa91402444cafcd2d717a4c5"
+    },
+    "history.bundle": {
+      "bytes": 28905059,
+      "sha256": "4b556be4a310aab0cbe3c2b0e926da5403617c9a7d25dbf2eee032fb50758c9b"
+    },
+    "working-tree.patch": {
+      "bytes": 21772,
+      "sha256": "68bc462aeff76ad44e890392745cf6f9ce11b95f2225140a13f02a29a80d17e9"
+    },
+    "working-tree.zip": {
+      "bytes": 31798912,
+      "sha256": "ff9c0198bcf4363e8500a525f37d412937f2df0efd5eb58982217cecf915f96d"
+    }
+  },
+  "artifacts": {
+    "build/v5-fw-10/MotortesterV2-stream-candidate.bin": {
+      "bytes": 35384,
+      "sha256": "04ba2853b6a964cd812bf555a32da7fb019bcd60ba9fda0bd586d71112b3143d"
+    },
+    "build/v5-fw-10/MotortesterV2-stream-candidate.elf": {
+      "bytes": 69776,
+      "sha256": "698895eb5a09fd801147db2a7d1dbbeded2e04d44388e1c880cb4c8d982b9de6"
+    },
+    "build/v5-fw-10/receipt.json": {
+      "bytes": 356395,
+      "sha256": "e43627a9934282c788d43c8b7cffbc936b4da67810abb52c06cbd39f75e0080f"
+    },
+    "build/v5-fw-10/static-bound.json": {
+      "bytes": 179559,
+      "sha256": "efce4e8563f0b6a1410396a4a5f2f4f480d98d7e086369cf5e1f9ea4cc0c3171"
+    },
+    "build/v5aw2/MotortesterV2-windows-x64.zip": {
+      "bytes": 61153396,
+      "sha256": "165c5b848791cb77ce32fccda3baba34609e78b72a40fe2a58942ed922a44411"
+    },
+    "build/v5aw2/source.zip": {
+      "bytes": 22861897,
+      "sha256": "9914d90c06c938a09c54b205fa5d2cd8983c6be6d4d8904512e35a85e1677686"
+    },
+    "build/v5aw2/build-report.json": {
+      "bytes": 45360,
+      "sha256": "61f10d3bca3b2647f7ea2b38527611dd66d73a6871df0d763f3eca08bf24e6f5"
+    },
+    "build/v5-board-backup-20261020/window-working-read1.bin": {
+      "bytes": 65536,
+      "sha256": "72520303cd27bac89b9cd11d93ef751f0ec30617c1a90dc0427c7ba6a7665d39"
+    }
+  },
+  "verification": "ZIP CRC and individual SHA256; copied binaries SHA256; git status identical throughout snapshot",
+  "board_read": false,
+  "flash_performed": false
+}

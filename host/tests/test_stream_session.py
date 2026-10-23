@@ -822,6 +822,23 @@ class CompletionTests(unittest.TestCase):
         self.assertEqual(s.snapshot().identity.generation, 7)
         self.assertEqual(s.snapshot().latest_display.first_sample_index, 0)
 
+    def test_snapshot_nested_carrier_mutation_cannot_change_terminal_or_raw(self):
+        s = ready_preview()
+        s.receive(block(0))
+        action = stopping(s)
+        end(s, 2, failure=FailureEvidence("source_error", "original source failure"))
+        ack(s, action, 2)
+        before = s.snapshot()
+        snap = s.snapshot()
+        object.__setattr__(snap.latest_display.identity, "generation", 999)
+        object.__setattr__(snap.latest_display, "raw_u16le", b"\xff\xff\xff\xff")
+        object.__setattr__(snap.first_failure, "detail", "mutated")
+        object.__setattr__(snap.source_end.terminal, "end_sample_index", 900)
+        object.__setattr__(snap.source_end.terminal.identity, "generation", 998)
+        object.__setattr__(snap.source_end.terminal.failure, "detail", "mutated terminal")
+        object.__setattr__(snap.stop_acknowledgement.identity, "generation", 997)
+        self.assertEqual(s.snapshot(), before)
+
     def test_scalar_bool_range_and_mutated_inputs_rejected_under_optimization(self):
         for limits in ((True, 2), (2, True), (0, 1), (2, 0), (1024 * 1024 + 1, 1), (2, 4097)):
             with self.subTest(limits=limits), self.assertRaises(StreamError):

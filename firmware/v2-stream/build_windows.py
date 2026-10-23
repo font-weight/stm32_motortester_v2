@@ -1,4 +1,4 @@
-"""Build the separately reviewed V2S4 transport candidate; never flash hardware."""
+"""Build the separate V2S5 200 kS/s software candidate; never flash hardware."""
 import argparse
 import hashlib
 import importlib.util
@@ -231,6 +231,15 @@ def main():
             copied = out / "patched" / target
             copied.parent.mkdir(parents=True, exist_ok=True)
             copied.write_bytes((source / original).read_bytes())
+        # Rate overlays consume the exact completed V2S4 source layer, including
+        # copied headers. The archived upstream and old overlays stay intact.
+        rate = json.loads((here / "overlays/rate-200k.json").read_text("utf-8"))
+        require(rate["schema"] == "motortester-v2-rate-overlay-1", "Unexpected rate overlay")
+        receipt["v2_overlays"].extend(rate["patches"])
+        for row in rate["patches"]:
+            target = out / "patched" / row["target"]
+            target.write_bytes(apply_patch((out / row["source"]).read_bytes(),
+                (here / "overlays" / row["patch"]).read_bytes(), row))
         manifest = json.loads((source / "firmware/build/inputs.json").read_text("utf-8"))
         standard = next(r["flags"] for r in manifest["components"]
                         if r["source"] == "firmware/app/mt_runtime.c")
@@ -280,6 +289,7 @@ def main():
                 "source/firmware/platform/adc_timer_dma.c": "patched/v2/platform/adc_timer_dma.c",
                 "source/firmware/protocol/mt_wire.c": "patched/v2/protocol/mt_wire.c",
                 "source/firmware/protocol/mt_live_device.c": "patched/v2/protocol/mt_live_device.c",
+                "source/firmware/acquisition/mt_sample_queue.c": "patched/v2/acquisition/mt_sample_queue.c",
                 "source/firmware/transport/mt_usb_bridge.c": "patched/v2/transport/mt_usb_bridge.c",
             }.get(path, path)
             compile_c(f"{index:02}-{Path(src).stem}", path, row["flags"])

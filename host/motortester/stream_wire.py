@@ -15,6 +15,17 @@ MAX_PAYLOAD, MAX_DECODED, MAX_ENCODED, MAX_FRAME = 512, 540, 543, 544
 MAX_BLOCK, U32_MAX, U64_MAX = 128, 0xffffffff, 0xffffffffffffffff
 COUNTER_RESERVE = 0xffffff00
 HEADER = struct.Struct("<BBBBHHQII")
+# V2S4 and V2S5 use the same wire framing and DATA block size. The CAPS
+# numerator selects the nominal timebase; it does not certify the ADC clock.
+SUPPORTED_SAMPLE_RATES = frozenset((50_000, 200_000))
+
+
+def supported_caps(values):
+    """Admit only the two fixed CH1 stream profiles, with exact integer fields."""
+    return (type(values) is tuple and len(values) == 8 and
+            all(type(value) is int for value in values) and
+            values[4] in SUPPORTED_SAMPLE_RATES and
+            values[:4] == (1, 1, 0, 12) and values[5:] == (1, 128, 1))
 
 
 class Kind(IntEnum):
@@ -239,9 +250,10 @@ def decode_payload(frame: Frame) -> object:
         config, profile, channel, bits, numerator, denominator, block, reserved, flags = _unpack("<IHBBIIHHI", p)
         if reserved:
             raise WireError("reserved")
-        if (config, profile, channel, bits, numerator, denominator, block, flags) != (1, 1, 0, 12, 50000, 1, 128, 1):
+        values = (config, profile, channel, bits, numerator, denominator, block, flags)
+        if not supported_caps(values):
             raise WireError("caps")
-        return Caps()
+        return Caps(*values)
     if k == Kind.START_ACK:
         generation, config, first = _unpack("<IIQ", p)
         if not generation:

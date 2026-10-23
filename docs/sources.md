@@ -1,5 +1,16 @@
 # Первичные источники
 
+## V2-06 — частота АЦП и транспорт
+
+Повторно проверено 23.10.2026: [ST DS5319 Rev 20, STM32F103x8/xB](https://www.st.com/resource/en/datasheet/stm32f103c8.pdf),
+июль 2025, таблица 47 «ADC characteristics»: время преобразования
+`tS + 12,5` такта ADC, доступные времена выборки и ограничения частоты.
+20 КиБ SRAM и USB Full Speed — свойства MCU; готовность потока 200 kS/s
+из них не следует. [ST RM0008](https://www.st.com/resource/en/reference_manual/rm0008-stm32f101xx-stm32f102xx-stm32f103xx-stm32f105xx-and-stm32f107xx-advanced-armbased-32bit-mcus-stmicroelectronics.pdf)
+задаёт ADC_SMPR2, TIM3 PSC/ARR/TRGO и DMA half/full semantics.
+Точные локальные настройки/контракт находятся в firmware/v2-stream;
+предыдущие наблюдения платы относятся только к V2S4/50 kS/s в progress.
+
 ## DIP-V2-01 — основания первой главы диплома
 
 Пользовательский образец: `Раздел 1_новый.doc`, SHA256

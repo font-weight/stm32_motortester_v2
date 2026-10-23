@@ -4,7 +4,7 @@ No I/O, threads, clocks, wire validation or acquisition occurs in this module.
 A single owner calls methods in event order and executes returned jobs elsewhere.
 """
 from collections import deque
-from copy import deepcopy
+from copy import copy, deepcopy
 from dataclasses import asdict, dataclass
 import hashlib
 import json
@@ -643,12 +643,23 @@ class StreamSession:
                  self._first_failure is None and self._end is not None and
                  self._ack is not None and self._ack.quiescence_reported and
                  self._terminal().clean_stop_reported)
-        return deepcopy(SessionSnapshot(
-            self._identity, self._source_first is not None, self._source_first,
+        # Copy mutable-by-reflection carrier objects, while sharing only their
+        # scalar/bytes leaves. Re-traversing the complete frozen snapshot graph
+        # on every receiver observation consumed the 200 kS/s processing budget.
+        # Terminal structures are rare; retain their full defensive copies.
+        identity = copy(self._identity)
+        latest = copy(self._latest)
+        if latest is not None:
+            # Only this new copy is assigned. Revalidating already-owned raw
+            # and provenance for every status read is unnecessary; admission
+            # and journal readers still validate all external inputs.
+            object.__setattr__(latest, "identity", identity)
+        return SessionSnapshot(
+            identity, self._source_first is not None, self._source_first,
             self._received_end, None if self._start is None else self._start.first_sample_index,
             self._queued_end, self._accepted_end, self._checkpointed_end, self._finalized_end,
             self._raw_bytes, len(self._queue), None if self._pending is None else self._pending.operation_id,
-            self._end, self._ack, self._first_failure, self._stop_action is not None,
+            deepcopy(self._end), deepcopy(self._ack), copy(self._first_failure), self._stop_action is not None,
             self._fenced, self._writer_fenced, self._finalized, self._finalization_started,
             self._finalization_started and self._writer_fenced and not self._finalized, clean,
-            self._unbound_reason, self._latest))
+            self._unbound_reason, latest)

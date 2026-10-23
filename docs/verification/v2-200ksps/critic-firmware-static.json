@@ -1,0 +1,19 @@
+{
+  "status": "CONDITIONAL_EXACT_IMAGE_STATIC_BOUND",
+  "elf_sha256": "f26aca57a5ba2d6e3b269617fa99134fdc12c5188c5d52e61bcf84f16f7210d8",
+  "analyzer_sha256": "d0cd6bc7464f02a0474de82e47ec05728ca61e194e0d81cb8e5f76f12e16bba9",
+  "firmware_build": "0x56325335",
+  "upper_bound_bytes": 5924,
+  "aligned_minimum_bytes": 5928,
+  "reserved_bytes": 8192,
+  "hardware_verified": false,
+  "timing_qualified": false,
+  "not_established": [
+    "Physical stack high-water mark",
+    "Worst-case execution or IRQ timing",
+    "Board identity, sample fidelity, no-loss or flash approval"
+  ],
+  "method": "independent rerun of exact linked-image analyzer",
+  "binary_sha256": "f5ffda9abe3bd311d0088f5a9642d7d538fe97b6d4b3c80eb1e728ebdddbbf60",
+  "image_path": "build/v6-fw-07"
+}

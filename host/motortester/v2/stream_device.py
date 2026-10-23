@@ -4,7 +4,7 @@ Serial selection is explicit and inert until Connect; HELLO/CAPS never starts
 acquisition. The journal keeps its MTSTREAM format and a hash-bound companion.
 """
 from concurrent.futures import ThreadPoolExecutor
-from dataclasses import asdict, dataclass
+from dataclasses import asdict, dataclass, replace
 import hashlib
 import hmac
 import json
@@ -17,15 +17,31 @@ from ..recording import atomic_write
 from ..stream_controller import StreamController
 from ..stream_provenance import DeviceStreamContext
 from ..stream_serial import SerialSettings, SerialStreamPeer
+from ..stream_session import SessionLimits
 from ..stream_recording import (ATTEMPT_MAGIC, MAX_ATTEMPT_FILE_BYTES, StreamLimits,
                                 recover, recover_attempt)
 from ..stream_view import EventConfig
+from ..stream_wire import supported_caps
 from .input import InputProfile, UNKNOWN_PROFILE, text
 from .stream_demo import PacedStreamPeer
 
 CONTEXT_FORMAT = "motortester-v2-stream-context"
 # Host-only navigation thresholds. They do not configure the ADC or volts.
 DEFAULT_EVENT_CONFIG = EventConfig(2600, 2200, "above", 50, 150, 25, 100, 500, 0, 4095)
+
+
+def default_event_config(sample_rate_hz):
+    """Keep default navigation durations at 1/3/0.5/2/10 ms for both rates.
+
+    Threshold codes are unchanged. These are host event windows, not an ADC
+    trigger or a claim that the whole physical ignition discharge was captured.
+    """
+    if sample_rate_hz not in (50_000, 200_000):
+        raise ValueError("Неподдерживаемая частота навигации")
+    scale = sample_rate_hz // 50_000
+    return replace(DEFAULT_EVENT_CONFIG, **{
+        field: getattr(DEFAULT_EVENT_CONFIG, field) * scale for field in
+        ("pre_samples", "post_samples", "baseline_samples", "holdoff_samples", "max_event_samples")})
 
 
 @dataclass(frozen=True, slots=True)
@@ -59,9 +75,7 @@ class StreamConnection:
         self.selection.__post_init__()
         if (self.execution_kind not in ("physical", "injected-test") or
                 type(self.observed_build_id) is not int or not 0 <= self.observed_build_id <= 0xffffffff or
-                type(self.observed_caps) is not tuple or
-                self.observed_caps != (1, 1, 0, 12, 50000, 1, 128, 1) or
-                any(type(v) is not int for v in self.observed_caps) or
+                not supported_caps(self.observed_caps) or
                 self.dtr_requested is not True or self.accounting_domain != "unknown" or
                 self.image_verified is not False):
             raise ValueError("Некорректное наблюдение wire 0.2; образ и домен учёта не подтверждены")
@@ -205,7 +219,7 @@ def _verify_connection(connection, identity):
             identity["application_version"] != "v2-serial-unknown-accounting:" + connection.execution_kind or
             identity["protocol_revision"] != "0.2-draft-081721" or
             identity["config_id"] != connection.observed_caps[0] or
-            identity["nominal_fs_hz"] != 50000):
+            identity["nominal_fs_hz"] != connection.observed_caps[4]):
         raise ValueError("Наблюдение соединения не соответствует журналу")
 
 
@@ -285,6 +299,7 @@ class StreamDeviceBridge(QtCore.QObject):
         if fake_backend_factory is not None and (selection is None or not callable(fake_backend_factory)):
             raise ValueError("Тестовый backend требует явного выбора COM")
         self.context = context
+        self._default_event_config = event_config == DEFAULT_EVENT_CONFIG
         self._selection = selection
         self.is_device = selection is not None
         self._execution_kind = "physical" if fake_backend_factory is None else "injected-test"
@@ -295,7 +310,11 @@ class StreamDeviceBridge(QtCore.QObject):
         self.controller = StreamController(
             PacedStreamPeer(context.ui_profile) if peer is None else peer,
             event_config=event_config, storage_limits=storage_limits,
-            **({"managed_peer": True, "device_context": DeviceStreamContext(self._execution_kind)}
+            # 1024 full wire blocks still fit the existing 256 KiB byte cap.
+            # At 200k this allows the same 655 ms disk stall budget as 256
+            # blocks at 50k. Exhaustion remains an explicit incomplete stop.
+            **({"managed_peer": True, "device_context": DeviceStreamContext(self._execution_kind),
+                "session_limits": SessionLimits(max_raw_items=1024)}
                if self.is_device else {}))
         self._display_lock = threading.Lock()
         self._latest = None
@@ -360,7 +379,11 @@ class StreamDeviceBridge(QtCore.QObject):
         previous = self.controller.snapshot()
         if self.is_device and not previous.ready:
             return False
-        if not self.controller.preview():
+        # Select sample counts only after accepted CAPS, before a new source.
+        # Explicit custom sample configurations retain their caller's meaning.
+        config = (default_event_config(self.connection.observed_caps[4])
+                  if self._default_event_config and self.connection is not None else None)
+        if not self.controller.preview(**({"event_config": config} if config is not None else {})):
             return False
         if not previous.ready:
             self._fence_new_source(previous.revision)

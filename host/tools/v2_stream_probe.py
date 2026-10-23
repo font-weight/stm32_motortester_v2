@@ -26,6 +26,7 @@ def run(args):
     output.mkdir(parents=True, exist_ok=False)
     report = {"status": "FAIL", "port": args.port, "source": "physical",
               "seconds_requested": args.seconds, "expected_build": args.build_id,
+              "expected_sample_rate_hz": args.sample_rate,
               "input_condition": "PA0 unconnected, as reported by user",
               "voltage_calibration_verified": False, "callback_errors": [], "errors": []}
     app = QtCore.QCoreApplication.instance() or QtCore.QCoreApplication([])
@@ -117,6 +118,8 @@ def run(args):
             report["connection"] = asdict(connection)
             assert connection.execution_kind == "physical"
             assert connection.observed_build_id == args.build_id, "Unexpected build; START not sent"
+            if args.sample_rate is not None:
+                assert connection.observed_caps[4] == args.sample_rate, "Unexpected Fs; START not sent"
             assert bridge.state.validated_samples == 0, "Connect unexpectedly started ADC"
             assert bridge.start_live(), "Preview rejected"
             wait(lambda: bridge.state.validated_samples > 1000 or
@@ -199,6 +202,8 @@ if __name__ == "__main__":
     parser.add_argument("--output", type=Path, required=True)
     parser.add_argument("--seconds", type=float, default=15)
     parser.add_argument("--build-id", type=lambda s: int(s, 0), required=True)
+    parser.add_argument("--sample-rate", type=int, choices=(50_000, 200_000),
+                        help="Require this nominal CAPS rate before START")
     parser.add_argument("--source-commit", required=True)
     parser.add_argument("--image-sha256", required=True)
     parser.add_argument("--expect-disconnect", action="store_true")

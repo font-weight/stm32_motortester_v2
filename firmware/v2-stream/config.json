@@ -1,6 +1,11 @@
 {
   "schema": "motortester-v2-stream-build-1",
-  "firmware_build": 1446138676,
+  "firmware_build": 1446138677,
+  "nominal_sample_rate_hz": 200000,
+  "adc_sample_cycles_x2": 83,
+  "dma_samples": 1024,
+  "data_samples": 128,
+  "queue_slots": 8,
   "flash_bytes": 65536,
   "ram_bytes": 20480,
   "stack_reserve_bytes": 8192,
@@ -20,7 +25,7 @@
     "bcd_device": 512,
     "bus_power_ma": 100,
     "manufacturer": "font-weight",
-    "product": "Motortester V2 transport trial",
+    "product": "Motortester V2 200k trial",
     "serial": "AH20261017001"
   }
 }

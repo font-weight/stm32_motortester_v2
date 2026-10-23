@@ -10,11 +10,15 @@ def generate(raw):
         "board_assumptions_verified", "clock_poll_budget", "usb_irq_priority",
         "require_dtr", "provisional_transaction_bound_ms",
         "transaction_bound_measured", "diagnostics", "usb",
+        "nominal_sample_rate_hz", "adc_sample_cycles_x2", "dma_samples",
+        "data_samples", "queue_slots",
     }
     if set(config) != expected or config["schema"] != "motortester-v2-stream-build-1":
         raise ValueError("Unsupported V2 build configuration")
     fixed = {
-        "firmware_build": 0x56325334, "flash_bytes": 65536, "ram_bytes": 20480,
+        "firmware_build": 0x56325335, "flash_bytes": 65536, "ram_bytes": 20480,
+        "nominal_sample_rate_hz": 200000, "adc_sample_cycles_x2": 83,
+        "dma_samples": 1024, "data_samples": 128, "queue_slots": 8,
         "stack_reserve_bytes": 8192, "assumed_hse_hz": 8000000,
         "assumed_hse_mode": "crystal", "assumed_fixed_usb_pullup": True,
         "board_assumptions_verified": False, "clock_poll_budget": 1000000,
@@ -53,7 +57,7 @@ def generate(raw):
         "const mt_board_inputs mt_board = {",
         " .verified_hse_hz = 8000000u, .hse_mode = MT_CLOCK_CRYSTAL,",
         " .clock_poll_budget = 1000000u, .usb_irq_priority = 0u,",
-        " .firmware_build = 0x56325334u, .require_dtr = 1u,",
+        " .firmware_build = 0x56325335u, .require_dtr = 1u,",
         " .verified_fixed_pullup = 1u,",
         " .usb = {.vid = 0x1209u, .pid = 1u, .bcd_device = 0x0200u,",
         " .bus_power_ma = 100u, .manufacturer = v2_manufacturer,",

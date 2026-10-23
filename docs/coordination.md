@@ -1,5 +1,14 @@
 # Координация самостоятельного V2
 
+V2-06, база `d8d1a27`, ветка `codex/stream-200ksps`:
+root — канонические документы, резервная копия, host/packaging/v2 и интеграция;
+higher_fs_review — firmware/v2-stream, tests/v2-stream-firmware и build/v6-fw-*;
+host_200k — host/motortester, host/tests, host/tools и build/v6-host-*;
+stream200_critic — только docs/reviews/v2-06-review.md и
+docs/verification/v2-200ksps/critic*.json, без авторства реализации.
+Уровень — software/firmware candidate, native Qt и Windows-пакет;
+без COM/ST-Link/flash. Прежние материалы и неудачные сборки сохраняются.
+
 DIP-V2-01b: root редактирует ту же главу, её исходные авторские материалы
 и канонические документы. chapter1_critic пишет только
 `docs/reviews/diploma-chapter1-editorial-review.md` и

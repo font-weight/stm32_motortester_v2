@@ -1,0 +1,16 @@
+{
+  "status": "PASS",
+  "method": "independent native binary rerun + every recorded source/tool input hash",
+  "input_count": 21,
+  "result_sha256": "846afbb6112a82059ec8d8a01dee48b0624b4440911a5865a3af5ccff7160551",
+  "native_binary_sha256": "8af96de11d9d12986e4249f83e9e6d41d18f50f834fad4e110306501191a616d",
+  "image_bin_sha256": "f5ffda9abe3bd311d0088f5a9642d7d538fe97b6d4b3c80eb1e728ebdddbbf60",
+  "stdout": "PASS expensive full guards / one-period CEN / old path rejects\nPASS period+1us rejection / original PRIMASK restored / verified quiesce\nPASS post-CEN TIME / lifecycle / original actor / counter-order denial\nPASS 200k config / ADC41.5 / DMA1024 / ordered two halves to DATA128\nPASS frozen Stop tail1023 / eight DATA chunks / both circular halves / unknown produced\nPASS real core Stop validation / serialization / raw order / END unknown tail\nPASS queue full at each of four split chunks / no offer across a gap\nPASS missed DMA boundary and late service reject without invented samples\nPASS exact 200000/1 CAPS with unchanged DATA128 wire envelope\n",
+  "not_verified": [
+    "ARM execution time",
+    "USB PHY/host throughput",
+    "Physical sample fidelity",
+    "ADC settling or analogue input",
+    "Flash approval"
+  ]
+}

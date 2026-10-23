@@ -22,8 +22,8 @@ HOST = PACKAGING.parent.parent
 REPOSITORY = HOST.parent
 EXPECTED_PYTHON = (3, 14, 7)
 # The existing 70 s picker + 12 s writer regression is followed by the short
-# injected-serial GUI flow (Connect/Record/Stop/Open/close retry).
-FROZEN_TIMEOUT = 150
+# injected-serial GUI flow and short 200 kS/s recording/CSV roundtrip.
+FROZEN_TIMEOUT = 180
 APP_NAME = "MotortesterV2"
 
 # The existing runner records commands, exit codes and bounded-child cleanup.
@@ -419,6 +419,30 @@ def main(argv=None):
                          "stream-record-picker.png", "stream-existing-path.png")}
     pngs.update(verify_serial_smoke(smoke_output, smoke.get("serial_stream_verification")))
     pngs.update(verify_stop_smoke(smoke_output, stream_check.get("stop_verification")))
+    high_rate = smoke.get("stream200_verification", {})
+    high_roundtrip = high_rate.get("roundtrip", {})
+    if (high_rate.get("status") != "PASS"
+            or high_rate.get("execution_kind") != "injected-test"
+            or high_rate.get("physical_stream_verified") is not False
+            or high_rate.get("real_serial_open_calls") != 0
+            or high_rate.get("owners_closed") is not True
+            or high_rate.get("callback_errors") != [] or high_rate.get("errors") != []
+            or high_rate.get("qt_platform") != "windows"
+            or high_rate.get("nominal_fs_hz") != 200_000 or high_rate.get("interval_us") != 5
+            or high_roundtrip.get("samples", 0) < 500_000
+            or high_roundtrip.get("csv_rows") != high_roundtrip.get("samples")
+            or high_roundtrip.get("csv_dt_seconds") != .000005
+            or high_roundtrip.get("raw_matches_synthetic_period") is not True
+            or high_roundtrip.get("unknown_tail_preserved") is not True
+            or high_roundtrip.get("journal_sha256") != sha256(smoke_output / "synthetic200.mtstream")
+            or read_json(smoke_output / "stream200-result.json") != high_rate):
+        raise RuntimeError("Packaged 200 kS/s stream/time/raw roundtrip did not pass")
+    high_export = read_json(smoke_output / "synthetic200.csv.json")
+    if (high_export.get("identity", {}).get("nominal_fs_hz") != 200_000
+            or high_export.get("csv_sha256") != sha256(smoke_output / "synthetic200.csv")):
+        raise RuntimeError("Packaged 200 kS/s CSV checksum/timebase mismatch")
+    pngs.update({name: png_info(smoke_output / name)
+                 for name in ("stream200-live.png", "stream200-open.png")})
     for name in ("sample.mtv2", "export.csv", "export.csv.json", "device-window.mtv2"):
         path = smoke_output / name
         if not path.is_file() or path.stat().st_size == 0:

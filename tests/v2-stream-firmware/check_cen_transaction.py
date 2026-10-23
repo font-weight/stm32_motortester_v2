@@ -88,7 +88,7 @@ def main():
         "inputs": inputs, "commands": commands, "compiler_version": version, "stdout": stdout,
         "generated": {path.name: sha(path) for path in out.iterdir()
                       if path.is_file() and path.suffix in (".c", ".h", ".exe")},
-        "negative_control": "Old validated-timestamp path rejected by unchanged20us gate",
+        "negative_control": "Old validated-timestamp path rejected by one-sample-period CEN gate",
         "not_verified": ["ARM/bus/CPU timing", "USB PHY and full lifecycle implementation",
                          "ADC conversion latency", "Physical sampling or voltage"],
     }

@@ -38,6 +38,16 @@ def fixture(name):
 
 
 class WireTests(unittest.TestCase):
+    def test_v2_fixed_rates_retain_the_negotiated_timebase(self):
+        for rate in (50_000, 200_000):
+            payload = struct.pack("<IHBBIIHHI", 1, 1, 0, 12, rate, 1, 128, 0, 1)
+            caps = w.decode_payload(w.decode_frame(frame(130, payload)))
+            self.assertEqual((caps.fs_num, caps.fs_den, caps.max_block), (rate, 1, 128))
+        for rate in (0, 25_000, 50_001, 100_000, 199_999, 200_001, 1_000_000):
+            payload = struct.pack("<IHBBIIHHI", 1, 1, 0, 12, rate, 1, 128, 0, 1)
+            with self.subTest(rate=rate), self.assertRaises(w.WireError):
+                w.decode_payload(w.decode_frame(frame(130, payload)))
+
     def test_actual_positive_frames_round_trip(self):
         for name in POSITIVES:
             with self.subTest(name=name):

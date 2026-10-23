@@ -125,29 +125,32 @@ static void is_off(void) {
     CHECK(mask==initial_mask && quiesced);
 }
 int main(void) {
-    setup(20);
+    setup(MT_ADC_DMA_SAMPLE_US);
     CHECK(mt_adc_dma_start_transaction(&driver,&guard,transaction)==MT_ADC_DMA_OK);
     CHECK(driver.state==MT_ADC_DMA_RUNNING && driver.stream_history_valid);
-    CHECK(driver.start_after_us-driver.start_before_us==20u);
-    CHECK(raw_before<65536u && raw_after>=65536u);
+    CHECK(driver.start_after_us-driver.start_before_us==MT_ADC_DMA_SAMPLE_US);
     CHECK(driver.start_before_us>UINT32_MAX-100u && driver.start_after_us<100u);
-    CHECK(outer_end-outer_start>20u && mask==0 && cen_seen==1u);
+    CHECK(outer_end-outer_start>MT_ADC_DMA_SAMPLE_US && mask==0 && cen_seen==1u);
+    uint32_t wrap_counter=65534u-(raw_before-initial_counter);
+    setup(MT_ADC_DMA_SAMPLE_US);initial_counter=wrap_counter;
+    CHECK(mt_adc_dma_start_transaction(&driver,&guard,transaction)==MT_ADC_DMA_OK);
+    CHECK(raw_before<65536u && raw_after>=65536u);
     /* Negative control: the old full-validation timestamp path includes the
-     * same deliberately expensive work and must fail its unchanged20us gate. */
-    setup(20);
+     * same deliberately expensive work and must fail its one-period gate. */
+    setup(MT_ADC_DMA_SAMPLE_US);
     CHECK(mt_adc_dma_start_guarded(&driver,&guard)==MT_ADC_DMA_ERROR);
     CHECK(driver.first_fault==MT_ADC_DMA_FAULT_TIMEBASE);
-    CHECK(driver.start_after_us-driver.start_before_us>20u);
+    CHECK(driver.start_after_us-driver.start_before_us>MT_ADC_DMA_SAMPLE_US);
     is_off();
-    puts("PASS expensive full guards / 20us / CNT16 and us32 wrap; old path rejects");
+    puts("PASS expensive full guards / one-period CEN / old path rejects");
 
-    setup(21);initial_mask=mask=1;
+    setup(MT_ADC_DMA_SAMPLE_US+1u);initial_mask=mask=1;
     CHECK(mt_adc_dma_start_transaction(&driver,&guard,transaction)==MT_ADC_DMA_ERROR);
     CHECK(driver.first_fault==MT_ADC_DMA_FAULT_TIMEBASE);
-    CHECK(observed_after-observed_before==21u);
+    CHECK(observed_after-observed_before==MT_ADC_DMA_SAMPLE_US+1u);
     CHECK(driver.start_before_us==0x1234u && driver.start_after_us==0x5678u);
     is_off();
-    puts("PASS 21us rejection / original PRIMASK restored / verified quiesce");
+    puts("PASS period+1us rejection / original PRIMASK restored / verified quiesce");
 
     for(unsigned fault=0;fault<4;fault++) {
         setup(4);

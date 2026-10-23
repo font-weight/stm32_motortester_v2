@@ -1,0 +1,17 @@
+{
+  "status": "FAIL",
+  "source": "injected synthetic wire 0.2",
+  "execution_kind": "injected-test",
+  "physical_stream_verified": false,
+  "nominal_fs_hz": 200000,
+  "interval_us": 5,
+  "python": "3.14.7",
+  "platform": "Windows-10-10.0.19045-SP0",
+  "qt_platform": "windows",
+  "callback_errors": [],
+  "errors": [
+    "Приём остановлен: capacity. Сохранён проверенный префикс."
+  ],
+  "screenshots": [],
+  "exception": "Traceback (most recent call last):\n  File \"C:\\Users\\Alexandr\\Desktop\\New folder\\универ\\мотортестер 2\\host\\motortester\\v2\\stream200_smoke.py\", line 146, in exercise\n    assert dialog.bridge.state.phase == \"recording\", dialog.error_label.text()\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: Запись остановлена: достигнут предел очереди или объёма данных.\nПричина: Исчерпана очередь raw bytes\nФайл: C:/Users/Alexandr/Desktop/New folder/универ/мотортестер 2/build/v6-host-200k-smoke-06/synthetic200.mtstream\nДля новой попытки закройте это окно непрерывного приёма и откройте его заново.\n"
+}

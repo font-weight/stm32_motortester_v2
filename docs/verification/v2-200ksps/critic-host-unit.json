@@ -1,0 +1,17 @@
+{
+  "status": "PASS",
+  "tests_run": 3,
+  "tests": [
+    "test_stream_session.CompletionTests.test_snapshot_mutation_cannot_change_session",
+    "test_stream_session.CompletionTests.test_snapshot_nested_carrier_mutation_cannot_change_terminal_or_raw",
+    "test_stream_wire.WireTests.test_v2_fixed_rates_retain_the_negotiated_timebase"
+  ],
+  "output": "test_snapshot_mutation_cannot_change_session (test_stream_session.CompletionTests.test_snapshot_mutation_cannot_change_session) ... ok\ntest_snapshot_nested_carrier_mutation_cannot_change_terminal_or_raw (test_stream_session.CompletionTests.test_snapshot_nested_carrier_mutation_cannot_change_terminal_or_raw) ... ok\ntest_v2_fixed_rates_retain_the_negotiated_timebase (test_stream_wire.WireTests.test_v2_fixed_rates_retain_the_negotiated_timebase) ... ok\n\n----------------------------------------------------------------------\nRan 3 tests in 0.002s\n\nOK\n",
+  "python": "3.14.7",
+  "source_sha256": {
+    "host\\motortester\\stream_session.py": "84d4a5138348e35a7b68a392eed756fec8daaf58d3a8fcfddd2aa9d0569e00aa",
+    "host\\motortester\\stream_wire.py": "7ba4ba2beb0726cf8037517743c4545243b00315206f7773dcc702b7b7a26cfd",
+    "host\\tests\\test_stream_session.py": "856a10d712e7aeade5bdb83b1f0da16fbadcca8075084a63344f2c6dcab51914",
+    "host\\tests\\test_stream_wire.py": "9d0f3dfcdb94420657445408834ef6877ebc10f45fbc924b5f77f768ba9e2b8e"
+  }
+}
