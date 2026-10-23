@@ -1,0 +1,50 @@
+{
+  "status": "PASS_EXACT_IMAGE_PLAN_BACKUP",
+  "scope": "Offline only; one proposed physical100k trial, no outcome acceptance",
+  "plan_sha256": "47b9e96388635f1f9cfc27fe8401cda5e0180c4d9adbda8ad90df1e62f7230d1",
+  "bin_sha256": "f3d5563139d4e5892273312996bd8b8486f222196e6cf3c25042d5c37c6a290b",
+  "elf_sha256": "5bc0eb99bf0490c3ef98ecea28e6d0dd3b006782d6719f02e59e3f858346aa25",
+  "bin_bytes": 36260,
+  "elf_loads": [
+    {
+      "address": "0x8000000",
+      "bytes": 36132
+    },
+    {
+      "address": "0x8008d24",
+      "bytes": 128
+    }
+  ],
+  "elf_reconstructed_bin_byte_equal": true,
+  "msp": "0x20005000",
+  "reset_vector": "0x80087e5",
+  "flash_end": "0x8008da4",
+  "backup_bytes": 65536,
+  "backup_sha256": "95d3a11f8db843e362b2c59ed6fbf380dd630e067fa23f6ae5a9c7d2b11dff1e",
+  "backup_full_equal_last_working_rollback": true,
+  "backup_prefix_matches_s4": true,
+  "decoder_sha256": "8866897367ee812e76585eb88e7def4efd1fefc32ec332ad770c5953b26ace7f",
+  "decoder_only_s7_hash_build_rate_deadline_constants_changed": true,
+  "decoder_fields_match_exact_header": true,
+  "diagnostic_address": "0x20002bc4",
+  "diagnostic_bytes": 136,
+  "no_adc_dr_read": true,
+  "register_blocks": {
+    "tim3": [
+      1073742848,
+      48
+    ],
+    "adc": [
+      1073816584,
+      12
+    ],
+    "dma": [
+      1073872904,
+      16
+    ],
+    "rcc": [
+      1073877004,
+      20
+    ]
+  }
+}

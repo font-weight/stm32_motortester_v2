@@ -1,0 +1,46 @@
+{
+  "status": "PASS",
+  "score": 9.605,
+  "scope": "Exact V2S7 flash and one10-second100k trial admission only; not overall V2-06d acceptance",
+  "base_commit": "3665be41e80c8168ad97c61d64cb79b232091d03",
+  "production_commit": "7e4b318164082c90e0b2c0e982936f6f0c786528",
+  "critic": "stream200_critic",
+  "independent": true,
+  "hardware_touched_by_critic": false,
+  "physical100k_accepted": false,
+  "windows_package_accepted": false,
+  "whole_iteration_accepted": false,
+  "input_hashes": {
+    "task.md": "c8fb646039a11533337af59e91e52174b154f2a4bf19f2b8be89ca0980f25b8a",
+    "docs/coordination.md": "ce626049dfc3de112b0cb568057d1424da2907e015f78c7526f1bf2069e9bf66",
+    "docs/quality-gate.md": "be4e7de71777d247f1554c8bec4d001b6afaac3c6e50479e0aad2001e4ff1489",
+    "build/v6d-board-01/plan.json": "47b9e96388635f1f9cfc27fe8401cda5e0180c4d9adbda8ad90df1e62f7230d1",
+    "build/v6d-board-01/preflight.json": "c93469a9ff6d0e9a57775105ecd1e80b9d3e5a510c7f96931febaa49bd870d69",
+    "build/v6d-board-01/before-flash-64k.bin": "95d3a11f8db843e362b2c59ed6fbf380dd630e067fa23f6ae5a9c7d2b11dff1e",
+    "build/v6d-board-01/before-flash-read.txt": "b2ddf32c28d7ecd9ee8f60419fafd422c84456bf14864c8c0668223c9aa9bd2e",
+    "build/v6d-board-01/probe-list.txt": "b58c8ddae6534dd35b9a1498631f1ee20ba54017c8f3ccfa2b156244c92e72a3",
+    "build/v6d-board-01/ports-before.json": "c8614e25240676a110cd0c9f9761ba2d2fc559f249875431289a7b08eedef67d",
+    "build/v6d-board-01/decode_diagnostics.py": "8866897367ee812e76585eb88e7def4efd1fefc32ec332ad770c5953b26ace7f",
+    "build/v6d-fw-01/MotortesterV2-stream-candidate.bin": "f3d5563139d4e5892273312996bd8b8486f222196e6cf3c25042d5c37c6a290b",
+    "build/v6d-fw-01/MotortesterV2-stream-candidate.elf": "5bc0eb99bf0490c3ef98ecea28e6d0dd3b006782d6719f02e59e3f858346aa25",
+    "build/v6d-fw-01/receipt.json": "5f65e08a0b4b4be773761ad07c1bbc1776ee6dd359ae9e1257c375cceec52a08",
+    "build/v6d-host-tests-01/host-verification.json": "78f8bbd78b9948e1362b4dee7b0d56213a63fa990914259af95f8c0e16c9ea27",
+    "host/tools/v2_stream_probe.py": "14de99c546586e5f9fd89b03622861e1865c65f448ceb7224c49cb17ab79cb35",
+    "host/tools/verify_stream_trial.py": "30631ddfdd4364a38361f21305e5166a7b4314a4e34aa8ac79b8fbb83fa9a40e"
+  },
+  "critic_evidence": {
+    "critic-source.json": "3b6d4924efc2dc5ff4799c0ace5c35d1beac5120abe10a6907ce620f307d5715",
+    "critic-static.json": "3564c463381ba2dbebb3648762503a62777547b9df15e65e06dde28a39df43ad",
+    "critic-flash-image.json": "8b77c8603131d00ed0305db4bb487f92fb028e7f4ecdbcfc7bfe188878a64855"
+  },
+  "report_sha256": "de0437adf13b4c795b3d51936e2163bea9b23c9e9e9d1c80942761546aef7c7b",
+  "rubric": {
+    "C1": 9.7,
+    "C2": 9.6,
+    "C3": 9.5,
+    "C4": 9.6,
+    "C5": 9.6
+  },
+  "open_p0_p1_in_admission_scope": [],
+  "preserved_prior_findings": "V2S5/S6 physical200k failures remain unchanged"
+}

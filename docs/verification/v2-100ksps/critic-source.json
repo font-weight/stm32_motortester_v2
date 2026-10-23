@@ -60,5 +60,14 @@
     "rate": "100000 supported with50/200k; navigation durations and negotiated identity timebase retained"
   },
   "physical_verified": false,
-  "flash_approved": false
+  "flash_approved": false,
+  "source_gui_visual_review": {
+    "reviewed_personally": true,
+    "screenshots": {
+      "build/v6d-host-gui-01/stream100-live.png": "4b8a0bfe8e0b42f089501f4fdbbd6971e35e5fc12d9ae1c6a127c4896afc383e",
+      "build/v6d-host-gui-01/stream100-open.png": "d9bf72d004856f3e209af54ef957fff999ed4668f724738c118b25e4d6c6e96f"
+    },
+    "findings": "100000 samples/s and10us readable in live and reopened view; synthetic origin and unknown tail explicit; no text overlap at1220x870",
+    "limits": "Source Qt only; frozen package pending"
+  }
 }
