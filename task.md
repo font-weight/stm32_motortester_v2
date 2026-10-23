@@ -2,6 +2,9 @@
 
 ## V2-06f1 — черновик инструментальной S9
 
+Основание — [проект диагностики](docs/verification/v2-stream-profile/design-01/profiling-plan.md)
+и его [независимый разбор](docs/verification/v2-stream-profile/design-01/critic-plan.md).
+
 Параллельно с исправлениями проекта разрешена обратимая программная
 реализация, без аппаратного действия. Отдельный build0x56325339 сохраняет
 100k/transport/ADC/wire S8 и старый diagnostic ABI136. Новый единый профиль

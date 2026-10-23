@@ -1,0 +1,173 @@
+{
+  "schema": "v2-06f-profiling-plan-1",
+  "status": "DESIGN_ONLY_NO_IMPLEMENTATION_OR_FLASH_ADMISSION",
+  "baseline_image": "build/v6e-fw-01",
+  "baseline_bin_sha256": "80a5ed8d064a2d0559f063d6650fb4edab078de4c233ea66ef2cb0e1ac62cf20",
+  "unchanged": [
+    "100000/1",
+    "DATA128",
+    "DMA1024/half512",
+    "deadline5120us",
+    "queue8",
+    "whole-fit",
+    "FIFO384",
+    "USBburst6/<500us",
+    "wire",
+    "host",
+    "legacy_diag_v1_136bytes"
+  ],
+  "capture": {
+    "one_attempt_per_boot": true,
+    "start": "After successful real ADC start transaction and final clock_ok; not physical CEN timestamp",
+    "main_freeze": "First queue push FULL before terminate/raw_barrier/quiesce",
+    "other_freeze": [
+      "first source fault",
+      "runtime TIME fault",
+      "transport/epoch loss",
+      "normal Stop",
+      "capture limit"
+    ],
+    "nominal_limit_cycles": 18000000,
+    "nominal_limit_ms_at_72MHz": 250,
+    "limit_effect": "Target foreground checkpoint only; actual elapsed and overshoot from recorded end; freeze observation only, no source Stop",
+    "partial_intervals": [
+      "foreground phase",
+      "STEP",
+      "grant interval"
+    ],
+    "exclude": [
+      "post-close tail",
+      "post-close Stop/drain",
+      "later HELLO or START"
+    ],
+    "close_kinds": [
+      "FIRST_FAULT",
+      "NORMAL_STOP",
+      "CAPTURE_LIMIT",
+      "NO_ACTIVE_START"
+    ]
+  },
+  "stats_count_sum_max_cycles": [
+    "TASK",
+    "ADC_EMPTY",
+    "ADC_BLOCK",
+    "RX",
+    "TX_ACCEPT",
+    "TX_ZERO",
+    "TX_OTHER",
+    "FLUSH",
+    "GRANT_CALL",
+    "TIME_UPDATE",
+    "USB_ISR",
+    "GRANT_INTERVAL",
+    "GRANT_FIRST_IN_DELAY",
+    "STEP"
+  ],
+  "counter_limit": 22,
+  "counter_groups": {
+    "foreground": [
+      "adc_samples_offered",
+      "data_samples_committed",
+      "write_zero_space",
+      "write_zero_other",
+      "write_unknown",
+      "write_accepted_bytes",
+      "foreground_raw_DWT_reads"
+    ],
+    "foreground_existing_IRQ_guard": [
+      "grant_ctr_allowed",
+      "grant_ctr_denied",
+      "in_transfers",
+      "in_transfer_total_len_sum",
+      "in_ZLP_transfers"
+    ],
+    "USB_ISR": [
+      "in_packets",
+      "in_payload_bytes",
+      "burst_resume",
+      "hold_final",
+      "hold_OUT_SETUP_other",
+      "hold_budget",
+      "hold_time_timer",
+      "hold_lifecycle_error",
+      "ISR_raw_DWT_reads",
+      "IN_completion_gap_max_cycles"
+    ]
+  },
+  "memory": {
+    "baseline_data_bytes": 128,
+    "baseline_bss_bytes": 11212,
+    "stack_reserve_bytes": 8192,
+    "ram_bytes": 20480,
+    "available_before_profile": 948,
+    "proposed_header_bytes": 64,
+    "proposed_stats_bytes": 168,
+    "proposed_counters_bytes": 88,
+    "proposed_first_event_bytes": 80,
+    "proposed_start_indices_bytes": 32,
+    "proposed_private_max_bytes": 80,
+    "proposed_total_max_bytes": 512,
+    "hard_new_static_ceiling_bytes": 512,
+    "remaining_at_ceiling_bytes": 436,
+    "proof_required": "Exact new ELF/map/static; no new stack snapshot; all added globals included",
+    "exact_abi": "firmware/v2-stream/profile/mt_stream_profile.h and profile/ABI.md;512 bytes incl separate FG/ISR flags and every private field"
+  },
+  "concurrency": {
+    "no_added_IRQ_mask": true,
+    "no_shared_counter_writers": true,
+    "IRQ_priority_assumption": "Existing USB19/20 same priority0, no nesting between them",
+    "raw_reader": "One direct aligned volatile CYCCNT read; no TIME/clock validation or legacy mt_stream_diag_cycle call",
+    "guard_outcome": "Record first actually evaluated false short-circuit term without a repeated MMIO read",
+    "freeze_protocol": "end_before raw read; ACTIVE->CLOSING aligned volatile32 store; end_after raw read; one RAM-only snapshot/partial intervals; compiler memory barrier+DMB; FROZEN; no late writer may change even private open flags",
+    "boundary_uncertainty": "Start/end marker brackets explicitly bound attribution ambiguity; no pretend atomic CPU boundary",
+    "publication_vs_completion": "Different instants and owners; boundary transfers prevent treating these counters as a conservation invariant"
+  },
+  "validity": {
+    "counter_arithmetic": "uint32 saturation + flag",
+    "cycle_arithmetic": "uint32 modulo; each interval <2^32; single zero crossing allowed",
+    "DWT_full_wrap_s_at_nominal_72MHz": 59.65232355555556,
+    "forbidden": [
+      "debugger halt/live watch during capture",
+      "CDC logging",
+      "dynamic allocation",
+      "atomic64",
+      "new timer/IRQ",
+      "changing working guard semantics"
+    ],
+    "overlap": "TIME/STEP/USB ISR/GRANT_INTERVAL overlap other wall intervals; never sum all as CPU percentages",
+    "boundary_uncertainty_limit_percent": 1,
+    "limits_are": "Diagnostic-quality policy, not instrument acceptance or proof of an overhead upper bound",
+    "observer_pair_heuristic_review_percent": 5,
+    "observer_pair_indicator": "min cycles per raw-read pair * raw-read-count / 2; heuristic for part of observer cost, not a proven lower/upper CPU bound; never subtracted"
+  },
+  "implementation_prerequisites": [
+    "Independent plan review",
+    "Separate root implementation instruction",
+    "New exact build ID/image",
+    "Narrow freeze/partial/window/wrap/saturation/race checks",
+    "Unchanged working guard comparison",
+    "Exact ARM SRAM/stack static review",
+    "Separate physical admission"
+  ],
+  "physical_plan_proposal": {
+    "owner": "root only",
+    "input": "PA0 unconnected; existing USB/ST-Link/power configuration",
+    "attempts": 1,
+    "nominal_rate_hz": 100000,
+    "example_probe_seconds": 1,
+    "save": [
+      "wire/raw/journal",
+      "exact readback",
+      "two frozen profile dumps",
+      "legacy136 diagnostics",
+      "post-Stop peripheral registers"
+    ],
+    "on_failure": "Preserve evidence and restore S4 by verified procedure",
+    "does_not_qualify": [
+      "sustained100k",
+      "200k possibility or impossibility",
+      "analogue voltage/bandwidth",
+      "ignition"
+    ]
+  }
+}

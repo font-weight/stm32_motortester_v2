@@ -1,0 +1,189 @@
+{
+  "schema": "v2-06f-critic-plan-2",
+  "reviewer": "stream200_critic",
+  "independent_of_author": true,
+  "review_date": "2026-10-23",
+  "scope": "Документация/расчёт проекта ограниченного профилирования F1; не реализация, BIN, Flash или физическая приёмка",
+  "base_commit": "e7d946736d8d2fd2ceefafc9bae2b762c0e6a55b",
+  "status": "PASS",
+  "score": 9.565,
+  "implementation_accepted": false,
+  "flash_admitted": false,
+  "physical_accepted": false,
+  "inputs": [
+    {
+      "path": "build/v6f-analysis/profiling-plan.md",
+      "sha256": "5ce59081c360b6cb110883e568a64e5c3471b9a6bd45d3690bc920d815bb8425",
+      "size": 26246
+    },
+    {
+      "path": "build/v6f-analysis/profiling-plan.json",
+      "sha256": "b2e8037b0fba5af8d95d5a0a4b7384c89b88e1aba96ef27dbf0729e6d86e59a3",
+      "size": 6150
+    },
+    {
+      "path": "firmware/v2-stream/profile/mt_stream_profile.h",
+      "sha256": "20d09d819acad32ff8b3e52b8757d98802ce9f620705e4cfe4065a2312aaa856",
+      "size": 6094
+    },
+    {
+      "path": "firmware/v2-stream/profile/ABI.md",
+      "sha256": "d58f3bfce989a7b98124591d369b6c2eada0884e21826e85ecb49c0b84ac185a",
+      "size": 5431
+    }
+  ],
+  "baseline_source_read": [
+    {
+      "path": "build/v6e-fw-01/patched/dcd_stm32_fsdev.c",
+      "sha256": "b763cceef6be395782aa621a65d9cbbdfe9d5fe61bddcc3d44dc143254c30356"
+    },
+    {
+      "path": "build/v6e-fw-01/patched/v2/app/mt_live_adc.c",
+      "sha256": "5995b7d664e4b9446e9e29400f34b5dd9a2e4c33acb50f32a35db802c55c930a"
+    },
+    {
+      "path": "build/v6e-fw-01/patched/v2/app/mt_live_runtime.c",
+      "sha256": "210a48d3e561a42ba7724bf236ff4bec61e2ebd3f40793dc8178aaa3756805b4"
+    },
+    {
+      "path": "build/v6e-fw-01/patched/v2/protocol/mt_live_device.c",
+      "sha256": "b10ddb2402fd20944b368208152aa22c63d441b8f2e46a342e0f677541528b9b"
+    },
+    {
+      "path": "build/v6e-fw-01/source/firmware/platform/mt_timebase.c",
+      "sha256": "e9adfde14df828040bd665781ecbd737a3a27e8b3d396e8639d5e93a500ca774"
+    },
+    {
+      "path": "build/v6e-fw-01/source/firmware/third_party/usb/vendor/tinyusb/src/tusb.c",
+      "sha256": "b5f0e8ca00ba6e63914583f7b4711c540a125c261b261216f89e5136fda2ac6f"
+    },
+    {
+      "path": "build/v6e-fw-01/patched/usbd.c",
+      "sha256": "f500d3477ef628c15e8ebb117570da64d34d4b6d638cfa47886422b9a04091fe"
+    }
+  ],
+  "rubric": [
+    {
+      "id": "C1",
+      "weight": 0.3,
+      "score": 9.6,
+      "basis": "Определены активное окно/первая причина/accepted-vs-committed и partial intervals;100/200k не объявлены достигнутыми."
+    },
+    {
+      "id": "C2",
+      "weight": 0.2,
+      "score": 9.5,
+      "basis": "Конкретный512B layout, owners, CLOSING/FROZEN, wrap/saturation и полная неизменность после close; фактические early exits/стек ещё должны проверяться на реализации."
+    },
+    {
+      "id": "C3",
+      "weight": 0.25,
+      "score": 9.6,
+      "basis": "Лично сверены точные S8 hook/call paths и независимая uint32 арифметика layout; overlap, observer uncertainty и пределы host/PHY вывода явны. Нового ELF или физического успеха не приписано."
+    },
+    {
+      "id": "C4",
+      "weight": 0.15,
+      "score": 9.5,
+      "basis": "Один512B блок без CDC/API расширения;14 stats22 counters отвечают конкретным диагностическим вопросам. Небольшая сложность nested/ticket accounting оправдана явными границами."
+    },
+    {
+      "id": "C5",
+      "weight": 0.1,
+      "score": 9.6,
+      "basis": "Точные4 входных SHA, нормативные enum/offsetof/owner, freeze hooks и последующие gates позволяют продолжить без истории чата."
+    }
+  ],
+  "findings": [
+    {
+      "id": "F-P01",
+      "priority": "P1",
+      "status": "closed",
+      "issue": "Агрегаты header16/first-event20/private20 дают ровно512байт, но exact word/owner layout и владение общими validity/saturation flags ещё TBD. Нельзя подтвердить отсутствие гонок и вместимость одновременно открытых интервалов.",
+      "required": "Таблица полей/слов/owner; раздельные FG/ISR flags и их merge после CLOSING; tickets начального RX/STEP, partial intervals и все helper globals внутри512.",
+      "resolution": "Header/ABI задают все128 uint32 слов и offsets64/232/320/352/432, раздельные FG/ISR flags, grant seen-IN под прежним IRQ guard,20 private слов с tickets и калибровкой; один банк512."
+    },
+    {
+      "id": "F-P02",
+      "priority": "P2",
+      "status": "closed",
+      "issue": "Фраза «не более250мс» сильнее исполнения cap только на foreground checkpoint.",
+      "required": "Назвать250мс целевым порогом, сохранить actual end и выводить overshoot; не усекать накопленные суммы искусственно.",
+      "resolution": "250мс назван целевым checkpoint; actual elapsed/overshoot вычисляются по записанным end_before/start_after, суммы не обрезаются."
+    },
+    {
+      "id": "F-P03",
+      "priority": "P2",
+      "status": "closed",
+      "issue": "32 минимальных raw-read пары и число reads не дают доказанную нижнюю границу CPU стоимости всех profiler hooks.",
+      "required": "Определить единицы pairs/reads и трактовать оценку как эвристику части затрат, не доказанную bound/поправку.",
+      "resolution": "min pair cycles × reads /2 назван heuristic indicator части затрат, не доказанной lower/upper bound и не вычитаемой поправкой."
+    },
+    {
+      "id": "F-P04",
+      "priority": "P2",
+      "status": "closed",
+      "issue": "В hook после queue FULL до terminate снимок core.first_reason может оставаться0; ACTIVE начинается внутри RX/STEP.",
+      "required": "Сохранить первичную переданную причину независимо от снимка и задать точную семантику частичных начальных интервалов.",
+      "resolution": "close_kind_reason low16 хранит переданную первичную причину отдельно от core.first_reason; ACTIVE внутри RX/STEP создаёт synthetic partial ticket2 и сохраняет clipped remainder отдельно."
+    }
+  ],
+  "open_P0_P1": [],
+  "prior_intermediate_review": {
+    "status": "BLOCKED_EVIDENCE",
+    "score": null,
+    "inputs": [
+      {
+        "path": "build/v6f-analysis/profiling-plan.md",
+        "sha256": "1e36d6c3955327f224677f9e225c38b51338e22948a31cc8b968cf3203b19910",
+        "size": 25373
+      },
+      {
+        "path": "build/v6f-analysis/profiling-plan.json",
+        "sha256": "92d955759521ea8dbc45ea31adef38b58558b2e7ddbf98a4d4860975718724a9",
+        "size": 4922
+      }
+    ],
+    "reason": "Exact word/owner layout отсутствовал; новые4фиксированных входа закрывают замечания."
+  },
+  "personally_checked": {
+    "environment": "Windows PowerShell, Python3.14.7 .venv; read-only source checks and calculation",
+    "methods": [
+      "Read current README/task/requirements/decisions/progress/quality-gate/coordination",
+      "Read exact S8 runtime/ADC/core/DCD/TinyUSB FIFO/ZLP paths against proposed hooks",
+      "Read final plan JSON/Markdown and normative ABI header/table, verified four SHA256",
+      "Independent ctypes uint32 field layout calculation; no ARM compile or execution claimed"
+    ],
+    "stats": 14,
+    "counter_slots": 22,
+    "size": 512,
+    "alignment": 4,
+    "offsets": {
+      "stats": 64,
+      "counters": 232,
+      "initial": 320,
+      "first": 352,
+      "private_words": 432
+    },
+    "remaining_after_baseline_data_bss_stack_and_profile": 436,
+    "new_test_suites": 0,
+    "hardware_actions": 0,
+    "production_edits_by_critic": 0
+  },
+  "decision": "Проект достаточен для реализации диагностического кандидата по отдельному scope root; вывод о причине допускается только после получения валидного профиля.",
+  "remaining_gates": [
+    "Exact hooks for every early return preserve original guard evaluation/order and accepted-prefix semantics",
+    "One targeted profile lifecycle/partial/wrap/saturation/race check plus changed guard comparison; no broad unchanged host/USB suite",
+    "Exact new ELF/map: all added static state<=512B,64KiB Flash/20KiB RAM,8192 stack reserve and foreground/ISR call graph bound",
+    "Offline decoder validates both flag banks, partials, start/end uncertainty, actual overshoot and artifact/build/nonce/generation",
+    "Separate exact image/backup/plan flash admission; root alone hardware; preserve old failed trials and S4 rollback"
+  ],
+  "limitations": [
+    "512-byte ABI arithmetic is not proof of a new linked image or stack usage.",
+    "Raw-read-pair indicator is heuristic; no observer cost upper bound, subtraction or WCET proof.",
+    "TIME,STEP,ISR and grant-wall stats overlap; not independent CPU shares.",
+    "Transfer publication/completion counters do not form raw/wire conservation equality across active boundaries.",
+    "One MCU profile may leave host/NAK/PHY cause unestablished; then report unknown, not change Fs blindly.",
+    "E/D/C/A remain failed physical trials;100/200k are not qualified by this document."
+  ]
+}
