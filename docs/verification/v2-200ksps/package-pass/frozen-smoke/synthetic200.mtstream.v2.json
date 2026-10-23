@@ -1,0 +1,74 @@
+{
+  "format": "motortester-v2-stream-context",
+  "format_version": 2,
+  "context": {
+    "channel_name": "Канал 1",
+    "ui_profile": "oscilloscope",
+    "input_profile": {
+      "a": null,
+      "b": null,
+      "state": "unconfigured",
+      "profile_id": "unknown",
+      "adc_bits": 12,
+      "channel_id": "CH1",
+      "device_id": null,
+      "frontend_id": null,
+      "frontend_revision": null,
+      "range_id": null,
+      "coupling": "unknown",
+      "coefficient_source": null,
+      "calibration_id": null,
+      "calibration_version": null,
+      "calibration_date": null,
+      "measurement_point": null,
+      "ground_reference": null,
+      "sensor": null,
+      "vref_v": null,
+      "bandwidth_hz": null,
+      "linear_min_v": null,
+      "linear_max_v": null,
+      "conditions": null
+    },
+    "channel_id": "CH1"
+  },
+  "time_basis": "nominal_unverified",
+  "journal_sha256": "52863a3ff301a209cfe4ab873796bd591ac047cd48d7e76816fac563823a2b4b",
+  "journal_bytes": 2514371,
+  "journal": {
+    "identity": {
+      "session_id": "wire-0.2:fc1f9c3b95fec03a",
+      "generation": 3,
+      "config_id": 1,
+      "nominal_fs_hz": 200000,
+      "origin": "synthetic",
+      "protocol_revision": "0.2-draft-081721",
+      "firmware_version": "build:56325335",
+      "application_version": "v2-serial-unknown-accounting:injected-test"
+    },
+    "recording_id": "77134b8d2d5444e2a51ec190658221bd",
+    "first_sample_index": 258176,
+    "end_sample_index": 1510981
+  },
+  "connection": {
+    "selection": {
+      "port": "V2_200K_SYNTHETIC",
+      "declared_source_commit": null,
+      "declared_artifact_sha256": null
+    },
+    "execution_kind": "injected-test",
+    "observed_build_id": 1446138677,
+    "observed_caps": [
+      1,
+      1,
+      0,
+      12,
+      200000,
+      1,
+      128,
+      1
+    ],
+    "dtr_requested": true,
+    "accounting_domain": "unknown",
+    "image_verified": false
+  }
+}

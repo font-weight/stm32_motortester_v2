@@ -1,0 +1,97 @@
+{
+  "schema": "v2-06-independent-review-1",
+  "date": "2026-10-23",
+  "reviewer": "stream200_critic",
+  "independent_of_implementation": true,
+  "status": "PASS",
+  "scope": "Firmware/software 200 kS/s candidate, native Windows GUI and exact portable package; no board or physical qualification",
+  "base_commit": "d8d1a27b8e42b8a508d68d9de8e3b5f8b5f91622",
+  "code_and_package_source_commit": "8b216c6b74894ebf4ae4ca5b99d8494b967a84e4",
+  "manifest_sha256": "e3672ca90ac71bc24aabbf5c51be892dbf3750be21ca640c3597f369e401cc59",
+  "review_sha256": "540d047a769838efec1f8bced75be60e4c665e715e700a6e09780b42fbfdbdc3",
+  "manifest_files_verified": 124,
+  "manifest_mismatches": [],
+  "changed_production_files_outside_manifest": [],
+  "package_verification": {
+    "method": "Read-only SHA of every evidence copy and original large file; ZIP CRC; SHA of both executables inside final ZIP",
+    "copied_evidence_verified": 49,
+    "large_files_verified": 6,
+    "zip_entries_crc_verified": 684,
+    "mismatches": [],
+    "zip_sha256": "98dc918941241b71b34a30cd6dee043abac7d74e4188c41fb002aadf7bee7624",
+    "source_zip_sha256": "ba5a8d386964dde9dd365540309a9ccc6d7ab2d1fda96b39a8dc3109c6e368e5",
+    "executable_sha256": {
+      "MotortesterV2.exe": "79348bc16d88e4d3a6204353493e1fdf1a5d40291c139143ce67004c1f8c3ab2",
+      "MotortesterV2Inspect.exe": "5027ee0957199355ab01f5d481e54b02deec2309c1575279d84209a001dc5715"
+    },
+    "final_build_report_sha256": "c2c4e8b9d457bc31aa30f362246e3e24a9806fa347bb48d72722f8ec6cab3819",
+    "final_stream_result_sha256": "a01539a4fc98ed9724f991ee6682012d47ce324473a2ffc84016c62dd6f59710"
+  },
+  "visual_review": {
+    "performed_personally": true,
+    "significant_overlap_or_unreadable_rate": false,
+    "files": {
+      "build/v6-host-200k-smoke-07/stream200-live.png": "856562e89adf59dcddfdff6fe27ef211bd32b97f50b505a7b3ca7f5f5da70c41",
+      "build/v6-host-200k-smoke-07/stream200-open.png": "47542cdff56f0dca5a1d3d4825458571083e6bf33bfc10d63c8ed6881366c327",
+      "build/v6w2/frozen-smoke/stream200-live.png": "fe93d258611a4db346c2d3312180c5a9faef594777c55058fd174e66f3d47898",
+      "build/v6w2/frozen-smoke/stream200-open.png": "32cb6cf1cfb5c54f0fd0caeffce3e75afafe80c244065fa4ca3c568f36184064"
+    }
+  },
+  "frozen_synthetic_observation": {
+    "seconds": 5.258314399980009,
+    "interval_received": 1051776,
+    "full_raw_samples_compared": 1252805,
+    "csv_rows": 1252805,
+    "csv_start_dt_seconds": 5e-06,
+    "csv_every_code_compared": false,
+    "limits": {
+      "peak_raw_items": 281,
+      "max_raw_items": 1024,
+      "peak_raw_bytes": 71936,
+      "max_raw_bytes": 262144,
+      "max_service_gap_ms": 25,
+      "peak_synthetic_backlog_samples": 6305,
+      "max_synthetic_backlog_samples": 32768,
+      "saturated_reads": 5886
+    },
+    "real_serial_open_calls": 0,
+    "owners_closed": true,
+    "meaning": "Synthetic host scheduling, not measured ADC frequency"
+  },
+  "prior_independent_evidence": {
+    "critic-backup.json": "f61a424efc9ff4fe52d10548599f880e93e6274e9bf1d18408d7ad9a2769bb8e",
+    "critic-firmware-static.json": "de7a85d9e848d5db69d04d1092938b47a8b260b480113722da5d74dee12aa127",
+    "critic-firmware-native.json": "1971f1bf1a2e87237fcb28dbea63ae43af400f2e891fa34567679551bbf89150",
+    "critic-host-unit.json": "cd665f78d7296079ae7a7a071591b3a9d31d179652e78fb52438214b07caef6b"
+  },
+  "scores": {
+    "C1": 9.8,
+    "C2": 9.6,
+    "C3": 9.6,
+    "C4": 9.6,
+    "C5": 9.7
+  },
+  "weights": {
+    "C1": 0.3,
+    "C2": 0.2,
+    "C3": 0.25,
+    "C4": 0.15,
+    "C5": 0.1
+  },
+  "weighted_score": 9.67,
+  "required_score": 9.5,
+  "open_P0": 0,
+  "open_P1": 0,
+  "open_P2": [
+    "Two pre-existing inconsistent test expectations remain documented; method-level baseline comparison is not a full old-checkout run."
+  ],
+  "not_established": [
+    "Physical V2S5 execution and USB 200 kS/s throughput",
+    "Long-duration stream stability",
+    "Actual Fs accuracy and ADC settling/noise",
+    "Analogue bandwidth and voltage ranges",
+    "Clean-machine Windows execution",
+    "Board flash approval"
+  ],
+  "report": "docs/reviews/v2-06-review.md"
+}
