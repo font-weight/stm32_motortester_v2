@@ -10,6 +10,7 @@ docs/verification/v2-200ksps-board/** -text whitespace=cr-at-eol
 docs/verification/v2-200ksps-board/attempt-01/*.txt -whitespace
 docs/verification/v2-200ksps-board/**/*.u16le binary
 docs/verification/v2-200ksps-usb/** -text whitespace=cr-at-eol
+docs/verification/v2-200ksps-usb/firmware/*.map -whitespace
 # V2 firmware overlays are applied only after an exact byte-hash check.
-firmware/v2-stream/overlays/*.patch -text whitespace=-blank-at-eol
+firmware/v2-stream/overlays/*.patch -text whitespace=-blank-at-eol,-blank-at-eof
 firmware/v2-stream/overlays/mt_v2_crc32.h -text

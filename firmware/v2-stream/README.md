@@ -1,4 +1,49 @@
-# Кандидат V2S5: непрерывный транспорт 200 kS/s
+# Кандидат V2S6: ограниченная пакетная передача USB
+
+V2-06b сохраняет Fs200000/1, DMA1024/half512 и DATA128, но передаёт целый
+DATA-кадр одной foreground-операцией до384 байт. Это отдельный программный
+кандидат после физического переполнения очереди V2S5; аппаратного допуска
+и утверждения об устойчивых200kS/s по этой сборке нет. На плате остаётся
+возвращённый V2S4; его источник и исходный V2S5 не переписываются.
+
+- Build `0x56325336` (V2S6), CAPS/wire и неизвестный produced-end прежние.
+  Очередь не увеличена. Дополнительный `usb-burst.json` закрепляет шесть
+  точных патчей поверх сохранённого слоя V2S5.
+- CDC FIFO384, параметр TX_EPSIZE384, descriptor maxpacket64. На STM32F103
+  `CFG_TUD_EDPT_DEDICATED_HWFIFO=1`: отдельный384-байтный RAM EP-buffer
+  не выделяется, передача идёт через `xfer->ff`. Её total_len фиксируется
+  при публикации; последующие FIFO append не расширяют текущий transfer.
+- Один core offer/live_write — до384 байт; partial/zero/SIZE_MAX сохраняют
+  прежние правила accepted-prefix, sequence, fencing и неизвестного хвоста.
+- Только промежуточные IN0x82 уже опубликованного transfer до384 байт
+  могут продолжаться без полного foreground. Буфер либо FIFO должны быть
+  единственным неизменным источником; total_len и шаг queued_len проверяются.
+  Не более6 пакетов между foreground grants; final/OUT/SETUP/другой endpoint,
+  lifecycle, USB error или непредвиденный прогресс оставляют NVIC held.
+- Перед продолжением проверяется elapsed TIM2 <500мкс от foreground grant,
+  gate/reset/CR1/PSC71/ARR65535, а также повторно аппаратные lifecycle-флаги.
+  Это условие разрешить следующий IRQ после пакета, не жёсткий предел
+  длительности последнего handler, не доказанный IRQ-off/WCET/1ms TX bound.
+  Модульная арифметика не обнаруживает пропущенные полные обороты TIM2;
+  отсутствие debugger halt и обслуживание основной TIME обязательны.
+
+Узкие проверки нового кандидата (Zig только для нативной модели):
+
+```powershell
+.\.venv\Scripts\python.exe -I -B tests\v2-stream-firmware\check_usb_burst.py --image build\v6b-fw-candidate --zig PATH_TO_LOCAL_ZIG_EXE --output build\v6b-native-burst
+.\.venv\Scripts\python.exe -I -B tests\v2-stream-firmware\check_rate_200k.py --bulk --image build\v6b-fw-candidate --zig PATH_TO_LOCAL_ZIG_EXE --output build\v6b-native-core
+```
+
+Первая исполняет извлечённые gate/ISR/handle_ctr_tx/bridge тела с логическими
+NVIC/MMIO/PMA-progress: оба источника buffer/FIFO, final/short/ZLP,384/385,
+счёт6, время499/500мкс и переполнение16бит, lifecycle/OUT/SETUP/error,
+сохранённый отрицательный контроль отсутствия ISR hold. PMA payload и PHY
+не исполняются. Вторая дополнительно проверяет реальный core/live_write
+bulk/partial/zero/unknown-accept и точные TinyUSB FIFO/stream-write функции
+с depth384, опубликованной границей transfer, short/full/ZLP. Нативный CPU
+и модель очереди не измеряют пропускную способность STM32/USB.
+
+## Сохранённая частотная основа V2S5
 
 V2-06 меняет номинальную частоту одного PA0 на **200 000 отсчётов/с**
 (шаг 5 мкс). Это программный кандидат; физически проверенный прежний V2S4
@@ -63,7 +108,7 @@ V2-06 меняет номинальную частоту одного PA0 на *
 Из корня V2, Python из существующей среды:
 
 ```powershell
-.\.venv\Scripts\python.exe -I -B firmware\v2-stream\build_windows.py --output build\v6-fw-candidate
+.\.venv\Scripts\python.exe -I -B firmware\v2-stream\build_windows.py --output build\v6b-fw-candidate
 ```
 
 Каталог вывода должен быть новым. Ошибочный вывод сохраняется. По умолчанию используется
@@ -87,7 +132,7 @@ Windows GCC 12.3.1 из CubeIDE 1.15.0; `--toolchain` допускает дру�
 V2 генерирует собственные board/timing definitions и накладывает отдельный
 NVIC-патч `overlays/usb-nvic.json`, CEN-патч `overlays/adc-cen.json`
 и CRC-патч `overlays/crc32.json`;
-build ID `0x56325335` (`V2S5`), USB product `Motortester V2 200k trial`.
+build ID `0x56325336` (`V2S6`), USB product `Motortester V2 200k USB6`.
 Это декларация прошивки,
 не способ аутентификации платы. Старые STR1 ELF/BIN/attestations не экспортируются.
 

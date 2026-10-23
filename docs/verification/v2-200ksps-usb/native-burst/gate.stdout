@@ -1,0 +1,6 @@
+PASS pending CTR / one IRQ / OSAL and ep_write enable hold
+PASS RESET dominates stale CTR / PMAOVR quarantines before publication
+PASS SUSP/WKUP with held task work / no hidden CTR consumption
+PASS ZLP / short / full64 / DATA307 / transfer384 / 385 boundary / bounded budget
+PASS dedicated FIFO source / preserved published transfer / TIM2 modulo65536 wrap
+PASS 499/500us / invalid timer / progress failure / endpoint / OUT / SETUP / lifecycle arrival / USB error

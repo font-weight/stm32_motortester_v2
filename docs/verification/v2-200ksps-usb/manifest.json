@@ -1,0 +1,328 @@
+{
+  "schema": "v2-06b-reviewed-snapshot-1",
+  "base_commit": "ab87abc1b48eac58078e8442252c2e06900fc35f",
+  "scope": "V2S6 software firmware candidate only; physical 200k P1 remains open",
+  "image_bin_sha256": "12cdc5ae3da7376d5486c5f4461df7b32de0f114e9f02423a7e66f20a20849fd",
+  "files": {
+    ".gitattributes": {
+      "sha256": "516971b3e41d822d3ded57b2049ab2bf6dbaa6020391afb9931eb9b95b6e33de",
+      "hash_mode": "LF-normalized",
+      "bytes": 951
+    },
+    "docs/architecture.md": {
+      "sha256": "917cb84c86c307fb5947365cff9fbfcccd464009207329bc9b89617f0a9988c1",
+      "hash_mode": "LF-normalized",
+      "bytes": 56548
+    },
+    "docs/coordination.md": {
+      "sha256": "2a7b25906fa37219ad68a16b4f5d022cf4e87963f1d6a2694a7d52e83a567cb2",
+      "hash_mode": "LF-normalized",
+      "bytes": 42094
+    },
+    "docs/decisions.md": {
+      "sha256": "5293da73c092b23622d6064d72affcf87c28c79618713c191b572671a6e3ac6a",
+      "hash_mode": "LF-normalized",
+      "bytes": 47474
+    },
+    "docs/progress.md": {
+      "sha256": "9e1bceb4b9d16f1153f76b953226b58dc4c8a328d4cd6662877fbedaf76a8c88",
+      "hash_mode": "LF-normalized",
+      "bytes": 252456
+    },
+    "docs/verification/v2-200ksps-usb/evidence.json": {
+      "sha256": "b0916a87217db4eb2a9be0b4f0b636864bd9cdde9252306d6b1fb82a9b928644",
+      "hash_mode": "exact-bytes",
+      "bytes": 10598
+    },
+    "docs/verification/v2-200ksps-usb/firmware/MotortesterV2-stream-candidate.bin": {
+      "sha256": "12cdc5ae3da7376d5486c5f4461df7b32de0f114e9f02423a7e66f20a20849fd",
+      "hash_mode": "exact-bytes",
+      "bytes": 36248
+    },
+    "docs/verification/v2-200ksps-usb/firmware/MotortesterV2-stream-candidate.elf": {
+      "sha256": "72ba32c5816e0c483877de685e3f60d28117e0a4ca9bdba32e8df1b97bca1768",
+      "hash_mode": "exact-bytes",
+      "bytes": 70936
+    },
+    "docs/verification/v2-200ksps-usb/firmware/MotortesterV2-stream-candidate.hex": {
+      "sha256": "d29d8e8dc0fad6d8328d33b158da763e557d0931791f9fc2afd40d0ff0caeb60",
+      "hash_mode": "exact-bytes",
+      "bytes": 102005
+    },
+    "docs/verification/v2-200ksps-usb/firmware/config.json": {
+      "sha256": "8fc9d7499ea13e493d6254c1d823268731a96e5adb959faf25107c2e44543abf",
+      "hash_mode": "exact-bytes",
+      "bytes": 933
+    },
+    "docs/verification/v2-200ksps-usb/firmware/image.map": {
+      "sha256": "03ab931ed8a932efc0cd78023493c846c50751c90aab221f7b32cc0c28ea2262",
+      "hash_mode": "exact-bytes",
+      "bytes": 76184
+    },
+    "docs/verification/v2-200ksps-usb/firmware/receipt.json": {
+      "sha256": "ef2d06f8d037e089d418e4e9a38d598a01d40edffa6fd2c639edf15b0330bb52",
+      "hash_mode": "exact-bytes",
+      "bytes": 369496
+    },
+    "docs/verification/v2-200ksps-usb/firmware/static-bound.json": {
+      "sha256": "371b3cdefc83469f2ffd6f0d05161fd41b4a3901653e9bba5a93aa0f1c3117ff",
+      "hash_mode": "exact-bytes",
+      "bytes": 180981
+    },
+    "docs/verification/v2-200ksps-usb/intermediate-failures/burst01.stderr": {
+      "sha256": "d364e87656684b26b31825750a43a794a5b17e722dbeb8f8c9ed006cf617752f",
+      "hash_mode": "exact-bytes",
+      "bytes": 77
+    },
+    "docs/verification/v2-200ksps-usb/intermediate-failures/core01.stderr": {
+      "sha256": "862025a0f5277a0265d0f04cb7358f20b94da87d4308e0c21a8f563950a11385",
+      "hash_mode": "exact-bytes",
+      "bytes": 3081
+    },
+    "docs/verification/v2-200ksps-usb/intermediate-failures/fw01-receipt.json": {
+      "sha256": "2227963e0a048e9849bed45372150d87f85485eb1b5ea1405af6f3ea9c401050",
+      "hash_mode": "exact-bytes",
+      "bytes": 221260
+    },
+    "docs/verification/v2-200ksps-usb/intermediate-failures/fw01.stderr": {
+      "sha256": "031a69e52444f310cb0058ce2630247328b2ab4af406746c1ef16c71b723b014",
+      "hash_mode": "exact-bytes",
+      "bytes": 2080
+    },
+    "docs/verification/v2-200ksps-usb/native-burst/compile-mutant.stderr": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "hash_mode": "exact-bytes",
+      "bytes": 0
+    },
+    "docs/verification/v2-200ksps-usb/native-burst/compile-mutant.stdout": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "hash_mode": "exact-bytes",
+      "bytes": 0
+    },
+    "docs/verification/v2-200ksps-usb/native-burst/compile.stderr": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "hash_mode": "exact-bytes",
+      "bytes": 0
+    },
+    "docs/verification/v2-200ksps-usb/native-burst/compile.stdout": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "hash_mode": "exact-bytes",
+      "bytes": 0
+    },
+    "docs/verification/v2-200ksps-usb/native-burst/gate.c": {
+      "sha256": "24cc13d2d5957bce449436decb874d13cd363391b464a5af856af8278a4d76e2",
+      "hash_mode": "exact-bytes",
+      "bytes": 28223
+    },
+    "docs/verification/v2-200ksps-usb/native-burst/gate.exe": {
+      "sha256": "3ed21c09bdea84088c0011bf57fb7edcc894e08114a80182d74cf3d71adf44a8",
+      "hash_mode": "exact-bytes",
+      "bytes": 190464
+    },
+    "docs/verification/v2-200ksps-usb/native-burst/gate.stderr": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "hash_mode": "exact-bytes",
+      "bytes": 0
+    },
+    "docs/verification/v2-200ksps-usb/native-burst/gate.stdout": {
+      "sha256": "7c4e31405887668b822d0548df08326b91bf0c4a7d243ca4fd7ded5457fc6732",
+      "hash_mode": "exact-bytes",
+      "bytes": 470
+    },
+    "docs/verification/v2-200ksps-usb/native-burst/mt_usb_epoch.c": {
+      "sha256": "627f37638b30ba77a2ab4560d8a5d28bf9a2f7e89bec1c75b013108af1d20596",
+      "hash_mode": "exact-bytes",
+      "bytes": 3545
+    },
+    "docs/verification/v2-200ksps-usb/native-burst/mt_usb_epoch.h": {
+      "sha256": "c27244dab6fcb5222e3e8b1c008d47105a89d6a5eccdaec748e601f69f7e5070",
+      "hash_mode": "exact-bytes",
+      "bytes": 3007
+    },
+    "docs/verification/v2-200ksps-usb/native-burst/mutant.c": {
+      "sha256": "67eb0704f45fedfbe190bb1b9e0cb07fde780f65976a829d38d179952bb95f4b",
+      "hash_mode": "exact-bytes",
+      "bytes": 28221
+    },
+    "docs/verification/v2-200ksps-usb/native-burst/mutant.exe": {
+      "sha256": "8d6472bd09ff85a209d9ff2cfce19a1e947d9e6979612a14e2af39666823c208",
+      "hash_mode": "exact-bytes",
+      "bytes": 189952
+    },
+    "docs/verification/v2-200ksps-usb/native-burst/mutant.stderr": {
+      "sha256": "57d0353cb9d6aaedf7e60d1c2d3c6dafa4818e483286cdd6dfc8c204e1435e45",
+      "hash_mode": "exact-bytes",
+      "bytes": 64
+    },
+    "docs/verification/v2-200ksps-usb/native-burst/mutant.stdout": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "hash_mode": "exact-bytes",
+      "bytes": 0
+    },
+    "docs/verification/v2-200ksps-usb/native-burst/result.json": {
+      "sha256": "6450fabae5fd71a5ffb61154667720e6f5d0ec56a8bd8a48dd099d343abf2d96",
+      "hash_mode": "exact-bytes",
+      "bytes": 6950
+    },
+    "docs/verification/v2-200ksps-usb/native-core/bulk_write_model.c": {
+      "sha256": "d0f497279e34c42548420e34d0ebd7ac9af363d8b1f819d7bf5897cb3377998c",
+      "hash_mode": "exact-bytes",
+      "bytes": 2391
+    },
+    "docs/verification/v2-200ksps-usb/native-core/compile.stderr": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "hash_mode": "exact-bytes",
+      "bytes": 0
+    },
+    "docs/verification/v2-200ksps-usb/native-core/compile.stdout": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "hash_mode": "exact-bytes",
+      "bytes": 0
+    },
+    "docs/verification/v2-200ksps-usb/native-core/model.c": {
+      "sha256": "03933510df2d624900b3e46bf114d753e17d195d0eedab6094334b500ad0fb77",
+      "hash_mode": "exact-bytes",
+      "bytes": 19704
+    },
+    "docs/verification/v2-200ksps-usb/native-core/model.exe": {
+      "sha256": "d785b261f120398eac5c9028485888722e11fe905c79c5fb732af4fdf3e09424",
+      "hash_mode": "exact-bytes",
+      "bytes": 223744
+    },
+    "docs/verification/v2-200ksps-usb/native-core/model.stderr": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "hash_mode": "exact-bytes",
+      "bytes": 0
+    },
+    "docs/verification/v2-200ksps-usb/native-core/model.stdout": {
+      "sha256": "0304756faa5af4eed3a33cbd27d99207f9b9598327a2cab6587ded488394ea83",
+      "hash_mode": "exact-bytes",
+      "bytes": 1014
+    },
+    "docs/verification/v2-200ksps-usb/native-core/result.json": {
+      "sha256": "6a968b8ac7bdb51747afcb29fca787c97d47ab2d1c0984322a480d11ec36b14f",
+      "hash_mode": "exact-bytes",
+      "bytes": 13761
+    },
+    "docs/verification/v2-200ksps-usb/native-core/tusb_config.h": {
+      "sha256": "3bdba16d0556c7e41d763150e02b100325b8bbe7d97bdbf6ac483c874cb15bc2",
+      "hash_mode": "exact-bytes",
+      "bytes": 148
+    },
+    "docs/verification/v2-200ksps-usb/native-core/tusb_option.h": {
+      "sha256": "452216f8caa674e6987f7565186dc100d02a177f3a655c7cb6e506e68e0ee67f",
+      "hash_mode": "exact-bytes",
+      "bytes": 30475
+    },
+    "docs/verification/v2-200ksps-usb/native-core/usb_fifo_model.c": {
+      "sha256": "d93b73478e9e9df6c1c26fccc96f8837a4a15ae6f0070c2c56d779f7de155a38",
+      "hash_mode": "exact-bytes",
+      "bytes": 3753
+    },
+    "docs/verification/v2-200ksps-usb/native-core/version.stderr": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "hash_mode": "exact-bytes",
+      "bytes": 0
+    },
+    "docs/verification/v2-200ksps-usb/native-core/version.stdout": {
+      "sha256": "355a2e14f6a7f2cb387d9d3b75a3550980d020ee1d005b139b62290c1645068a",
+      "hash_mode": "exact-bytes",
+      "bytes": 7
+    },
+    "docs/verification/v2-200ksps-usb/source-equivalence.json": {
+      "sha256": "4af8f4a7c185ff096995be11c37f7fee1c31e5c4bae75835ba14d399a94908a4",
+      "hash_mode": "exact-bytes",
+      "bytes": 8513
+    },
+    "firmware/v2-stream/README.md": {
+      "sha256": "a51c5d3c3434a3cd8b5ac4380b47eb866b4fdc8df14521112d6b7e9be7adfc10",
+      "hash_mode": "LF-normalized",
+      "bytes": 27915
+    },
+    "firmware/v2-stream/build_windows.py": {
+      "sha256": "84ede58055b0a958fbc458b99688f85444ee4a2da82b372f39e2e4eb5ff11b29",
+      "hash_mode": "LF-normalized",
+      "bytes": 21418
+    },
+    "firmware/v2-stream/config.json": {
+      "sha256": "8fc9d7499ea13e493d6254c1d823268731a96e5adb959faf25107c2e44543abf",
+      "hash_mode": "LF-normalized",
+      "bytes": 933
+    },
+    "firmware/v2-stream/overlays/board_inputs.py": {
+      "sha256": "0ffe6dd3c27eff64c8d2ffc87184e2b38cdf202408342954fdf7045d8619cd52",
+      "hash_mode": "LF-normalized",
+      "bytes": 4066
+    },
+    "firmware/v2-stream/overlays/usb-burst.json": {
+      "sha256": "e5c4aba854d061a34a876dfb5526e8a08d371d493f0d3b534d9503827bc7a74f",
+      "hash_mode": "LF-normalized",
+      "bytes": 2779
+    },
+    "firmware/v2-stream/overlays/v2-burst-dcd_stm32_fsdev.c.patch": {
+      "sha256": "d06995fb5dc7caf71846dae05b670fb18ba0798b713f5e013284360c1c197900",
+      "hash_mode": "exact-bytes",
+      "bytes": 4601
+    },
+    "firmware/v2-stream/overlays/v2-burst-v2-app-mt_live_runtime.c.patch": {
+      "sha256": "b565825392fbd9997a741a714bdfe6174b03286b24f9b48e33ed5427c64395de",
+      "hash_mode": "exact-bytes",
+      "bytes": 565
+    },
+    "firmware/v2-stream/overlays/v2-burst-v2-boot-tusb_config.h.patch": {
+      "sha256": "380477aa9d82428665fc6456499d8427ad4787f82bd8a31ae11ba5d63a57758c",
+      "hash_mode": "exact-bytes",
+      "bytes": 475
+    },
+    "firmware/v2-stream/overlays/v2-burst-v2-protocol-mt_live_device.c.patch": {
+      "sha256": "fa94bc808b3d8e481a21e39f156bf357ee6b9c70638114261fab2e3c166542ae",
+      "hash_mode": "exact-bytes",
+      "bytes": 552
+    },
+    "firmware/v2-stream/overlays/v2-burst-v2-protocol-mt_live_device.h.patch": {
+      "sha256": "e0dae231844e3e56d70f5c331a15103176785f3df8459346a3ff1bf347d7c20f",
+      "hash_mode": "exact-bytes",
+      "bytes": 691
+    },
+    "firmware/v2-stream/overlays/v2-burst-v2-transport-mt_usb_descriptors.c.patch": {
+      "sha256": "b1b355e943b2a3df276dda700778f3a6cf28bef1cdc4a3b2a53b94d27b20d813",
+      "hash_mode": "exact-bytes",
+      "bytes": 575
+    },
+    "task.md": {
+      "sha256": "519856ef65d6ba463814e979231c47e63ba5bdc6bc550445f01e6842c0466d42",
+      "hash_mode": "LF-normalized",
+      "bytes": 61626
+    },
+    "tests/v2-stream-firmware/bulk_write_model.c": {
+      "sha256": "f16feab6620603995335868715b2d8ee26ef1abc3b1dec3b263009e0c7bc9cbd",
+      "hash_mode": "LF-normalized",
+      "bytes": 1772
+    },
+    "tests/v2-stream-firmware/check_rate_200k.py": {
+      "sha256": "73387f6085c85124fa78d04d4199e5ee06f895bf8ee5208a0dbb21af5b16e9bd",
+      "hash_mode": "LF-normalized",
+      "bytes": 5847
+    },
+    "tests/v2-stream-firmware/check_usb_burst.py": {
+      "sha256": "0b2f76bca0b3206d4b1d63b6ec6e3ea679e421efdff912704799252ba8a5e171",
+      "hash_mode": "LF-normalized",
+      "bytes": 8382
+    },
+    "tests/v2-stream-firmware/rate_200k_model.c": {
+      "sha256": "50e7c09afbf2cd307e4ce39965cdc0195064e173115efbe77dd6239df648aacf",
+      "hash_mode": "LF-normalized",
+      "bytes": 10004
+    },
+    "tests/v2-stream-firmware/usb_burst_model.c": {
+      "sha256": "d458443af29f02b23557afd4a45ab5a707ef8d21b5f18f8084e946fafd4ecbdb",
+      "hash_mode": "LF-normalized",
+      "bytes": 12183
+    },
+    "tests/v2-stream-firmware/usb_fifo_model.c": {
+      "sha256": "e1c5acf27afd97423926b84ee0f0fed00d450fd25e6708ba5354c9b84b802002",
+      "hash_mode": "LF-normalized",
+      "bytes": 2270
+    }
+  }
+}

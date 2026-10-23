@@ -1,0 +1,22 @@
+{
+  "status": "PASS",
+  "manifest_sha256": "a0d865a0cc787401635c5998498950deecdd6a7a814f97a0998668495768adb1",
+  "base_commit": "ab87abc1b48eac58078e8442252c2e06900fc35f",
+  "manifest_file_count": 64,
+  "all_manifest_hashes_and_raw_lengths_matched": true,
+  "evidence_sha256": "b0916a87217db4eb2a9be0b4f0b636864bd9cdde9252306d6b1fb82a9b928644",
+  "copy_pairs_checked": 40,
+  "all_copies_byte_equal_to_sources": true,
+  "initial_msp": "0x20005000",
+  "reset_vector": "0x80087d9",
+  "bin_size": 36248,
+  "diagnostic_symbol": {
+    "address": "0x20002bc4",
+    "bytes": 136,
+    "source": "build/v6b-fw-04/image.nm"
+  },
+  "critic_check_correction": "Initial length comparator used normalized length; manifest bytes field is raw file size. Six CRLF text entries matched all normalized hashes from the start. Corrected verifier checked raw size separately. No production change.",
+  "boundaries": "Only software evidence; old physical V2S5 REWORK unchanged. Not permission to flash.",
+  "previous_manifest_sha256": "09ee72c1d64efadc529d78bc5bf683cb743569c0f76a1713c16df40ddb45217c",
+  "final_delta": "Only .gitattributes diagnostic whitespace exceptions changed after 09ee72c1. All 64 entries rechecked. Production/native hashes unchanged."
+}

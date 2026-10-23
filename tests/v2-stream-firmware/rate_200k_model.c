@@ -6,13 +6,18 @@ static mt_live_device device;
 static unsigned stop_calls;
 static unsigned char wire_bytes[16384];
 static size_t wire_used;
+static size_t write_limit,write_calls,maximum_offer;
+static bool write_unknown;
 static uint64_t core_clock(void *p) { (void)p; return 1; }
 static int core_start(void *p,uint32_t generation) { (void)p;(void)generation;return 1; }
 static void core_stop(void *p,mt_live_snapshot *out) {
     (void)p;++stop_calls;mt_live_adc_quiesce(&binding,out);
 }
 static size_t core_write(void *p,const uint8_t *bytes,size_t n) {
-    (void)p;CHECK(wire_used+n<=sizeof wire_bytes);
+    (void)p;++write_calls;if(n>maximum_offer)maximum_offer=n;
+    if(write_unknown)return SIZE_MAX;
+    if(n>write_limit)n=write_limit;
+    CHECK(wire_used+n<=sizeof wire_bytes);
     memcpy(wire_bytes+wire_used,bytes,n);wire_used+=n;return n;
 }
 static int core_isolate(void *p) { (void)p;return 1; }
@@ -33,11 +38,18 @@ static void active(void) {
     binding.initialized=1;
     mt_live_io io={.clock_ms=core_clock,.start=core_start,.quiesce=core_stop,
         .write=core_write,.isolate_tx=core_isolate,.transaction_bound_ms=1,
-        .firmware_build=0x56325335u};
+        .firmware_build=
+#ifdef MT_TEST_FIRMWARE_BUILD
+          MT_TEST_FIRMWARE_BUILD
+#else
+          0x56325335u
+#endif
+        };
     CHECK(mt_live_device_init(&device,&io));
     device.state=MT_LIVE_STREAMING;device.generation=1;device.nonce=7;
     device.hardware_off=0;device.tx_next=1;device.rx_next=1;
-    stop_calls=0;wire_used=0;
+    stop_calls=0;wire_used=0;write_calls=maximum_offer=0;
+    write_limit=SIZE_MAX;write_unknown=false;
 }
 static void first_half(unsigned remaining) {
     *reg(0x40020000u)=4u; /* HT */
@@ -156,5 +168,32 @@ int main(void) {
         ((uint32_t)caps.payload[10]<<16)|((uint32_t)caps.payload[11]<<24);
     CHECK(rate==200000 && caps.payload[16]==128 && caps.payload[17]==0);
     puts("PASS exact 200000/1 CAPS with unchanged DATA128 wire envelope");
+#ifdef MT_TEST_BULK_OFFER
+    active();first_half(500);CHECK(mt_live_adc_service(&binding)==1);
+    CHECK(mt_live_device_step(&device));
+    CHECK(write_calls==1 && maximum_offer>=306 && maximum_offer<=307);
+    CHECK(device.prefix_end==128 && device.queue.used==3 && device.tx_next==2);
+    CHECK(mt_wire_decode_revision(wire_bytes,wire_used-1,0,2,&caps)==MT_WIRE_OK);
+    CHECK(caps.type==152 && caps.sequence==1);
+    puts("PASS exact core DATA128 serializes/commits in one bulk write");
+    active();first_half(500);CHECK(mt_live_adc_service(&binding)==1);
+    write_limit=17;CHECK(mt_live_device_step(&device));
+    CHECK(device.tx_offset==17 && device.tx_next==2 && device.prefix_end==0 && device.queue.used==4);
+    write_limit=0;CHECK(mt_live_device_step(&device));
+    CHECK(device.tx_offset==17 && device.tx_next==2 && device.prefix_end==0 && device.queue.used==4);
+    write_limit=SIZE_MAX;CHECK(mt_live_device_step(&device));
+    CHECK(device.prefix_end==128 && device.queue.used==3 && device.tx_next==2);
+    CHECK(mt_wire_decode_revision(wire_bytes,wire_used-1,0,2,&caps)==MT_WIRE_OK);
+    CHECK(caps.type==152 && caps.sequence==1);
+    active();first_half(500);CHECK(mt_live_adc_service(&binding)==1);
+    write_unknown=true;CHECK(!mt_live_device_step(&device));
+    CHECK(device.prefix_end==0 && device.local_error==MT_LIVE_ERR_TRANSPORT);
+    CHECK(device.queue.sealed && device.needs_delimiter && device.hardware_off);
+    puts("PASS partial/zero acceptance keeps sequence/prefix; unknown acceptance fences source");
+    extern void check_bulk_live_write(void);
+    check_bulk_live_write();
+    extern void check_fifo_payload(void);
+    check_fifo_payload();
+#endif
     return 0;
 }

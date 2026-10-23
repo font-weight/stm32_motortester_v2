@@ -1,0 +1,103 @@
+{
+  "status": "PASS",
+  "scope": "Native exact V2S6 bounded CDC-IN continuation and gate/ISR/bridge C bodies.\n\nThe logical MMIO/NVIC model deliberately asserts a pending endpoint IRQ even\nwith CTRM=0 (RM0008). No timing, ARM ABI, USB PHY or complete TinyUSB claim.\n",
+  "compiler": {
+    "path": "C:\\Users\\Alexandr\\Desktop\\New folder\\\u0443\u043d\u0438\u0432\u0435\u0440\\\u043c\u043e\u0442\u043e\u0440\u0442\u0435\u0441\u0442\u0435\u0440 2\\build\\v5-native-toolchain\\zig-x86_64-windows-0.15.2\\zig.exe",
+    "version": "0.15.2"
+  },
+  "image": "C:\\Users\\Alexandr\\Desktop\\New folder\\\u0443\u043d\u0438\u0432\u0435\u0440\\\u043c\u043e\u0442\u043e\u0440\u0442\u0435\u0441\u0442\u0435\u0440 2\\build\\v6b-fw-04",
+  "inputs": {
+    "C:\\Users\\Alexandr\\Desktop\\New folder\\\u0443\u043d\u0438\u0432\u0435\u0440\\\u043c\u043e\u0442\u043e\u0440\u0442\u0435\u0441\u0442\u0435\u0440 2\\tests\\v2-stream-firmware\\check_usb_burst.py": "0b2f76bca0b3206d4b1d63b6ec6e3ea679e421efdff912704799252ba8a5e171",
+    "C:\\Users\\Alexandr\\Desktop\\New folder\\\u0443\u043d\u0438\u0432\u0435\u0440\\\u043c\u043e\u0442\u043e\u0440\u0442\u0435\u0441\u0442\u0435\u0440 2\\build\\v6b-fw-04\\patched\\dcd_stm32_fsdev.c": "b763cceef6be395782aa621a65d9cbbdfe9d5fe61bddcc3d44dc143254c30356",
+    "C:\\Users\\Alexandr\\Desktop\\New folder\\\u0443\u043d\u0438\u0432\u0435\u0440\\\u043c\u043e\u0442\u043e\u0440\u0442\u0435\u0441\u0442\u0435\u0440 2\\build\\v6b-fw-04\\receipt.json": "ef2d06f8d037e089d418e4e9a38d598a01d40edffa6fd2c639edf15b0330bb52",
+    "C:\\Users\\Alexandr\\Desktop\\New folder\\\u0443\u043d\u0438\u0432\u0435\u0440\\\u043c\u043e\u0442\u043e\u0440\u0442\u0435\u0441\u0442\u0435\u0440 2\\build\\v6b-fw-04\\patched\\fsdev_stm32.h": "d4a32d1b7c5ec2c7698c1b0c2e175ecb0ff00bdb96314b007d0d6a866de391a0",
+    "C:\\Users\\Alexandr\\Desktop\\New folder\\\u0443\u043d\u0438\u0432\u0435\u0440\\\u043c\u043e\u0442\u043e\u0440\u0442\u0435\u0441\u0442\u0435\u0440 2\\build\\v6b-fw-04\\patched\\fsdev_common.h": "83bd242c95387e0ba2158d9d4525ffd3bc3304533ea8d3ba3b78186dc57da3cb",
+    "C:\\Users\\Alexandr\\Desktop\\New folder\\\u0443\u043d\u0438\u0432\u0435\u0440\\\u043c\u043e\u0442\u043e\u0440\u0442\u0435\u0441\u0442\u0435\u0440 2\\build\\v6b-fw-04\\patched\\v2\\transport\\mt_usb_bridge.c": "dad3783c3497f601a55d9d9d02c54500856b84beb3a2c99628ca7146b98eea10",
+    "C:\\Users\\Alexandr\\Desktop\\New folder\\\u0443\u043d\u0438\u0432\u0435\u0440\\\u043c\u043e\u0442\u043e\u0440\u0442\u0435\u0441\u0442\u0435\u0440 2\\build\\v6b-fw-04\\source\\firmware\\transport\\mt_usb_epoch.h": "21498b42c3cfa3f03fe78e6567cf996d4b1892a0d3d23ef90e097a6e858f9954",
+    "C:\\Users\\Alexandr\\Desktop\\New folder\\\u0443\u043d\u0438\u0432\u0435\u0440\\\u043c\u043e\u0442\u043e\u0440\u0442\u0435\u0441\u0442\u0435\u0440 2\\build\\v6b-fw-04\\source\\firmware\\transport\\mt_usb_epoch.c": "ee7f7aab84cc13f79b9f95430229584457bec9800116d8c2b0768fc11ccf633e",
+    "C:\\Users\\Alexandr\\Desktop\\New folder\\\u0443\u043d\u0438\u0432\u0435\u0440\\\u043c\u043e\u0442\u043e\u0440\u0442\u0435\u0441\u0442\u0435\u0440 2\\tests\\v2-stream-firmware\\usb_burst_model.c": "d458443af29f02b23557afd4a45ab5a707ef8d21b5f18f8084e946fafd4ecbdb",
+    "C:\\Users\\Alexandr\\Desktop\\New folder\\\u0443\u043d\u0438\u0432\u0435\u0440\\\u043c\u043e\u0442\u043e\u0440\u0442\u0435\u0441\u0442\u0435\u0440 2\\build\\v5-native-toolchain\\zig-x86_64-windows-0.15.2\\zig.exe": "d408dd38eed3e5204af841bcebf70502a4dbbb8399a3a3262be55059370bc018"
+  },
+  "commands": [
+    {
+      "name": "compile",
+      "argv": [
+        "C:\\Users\\Alexandr\\Desktop\\New folder\\\u0443\u043d\u0438\u0432\u0435\u0440\\\u043c\u043e\u0442\u043e\u0440\u0442\u0435\u0441\u0442\u0435\u0440 2\\build\\v5-native-toolchain\\zig-x86_64-windows-0.15.2\\zig.exe",
+        "cc",
+        "-std=c11",
+        "-O1",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-Wno-unused-function",
+        "-Wno-unused-parameter",
+        "gate.c",
+        "mt_usb_epoch.c",
+        "-o",
+        "gate.exe"
+      ],
+      "exit_code": 0
+    },
+    {
+      "name": "gate",
+      "argv": [
+        "C:\\Users\\Alexandr\\Desktop\\New folder\\\u0443\u043d\u0438\u0432\u0435\u0440\\\u043c\u043e\u0442\u043e\u0440\u0442\u0435\u0441\u0442\u0435\u0440 2\\build\\v6b-native-burst-03\\gate.exe"
+      ],
+      "exit_code": 0
+    },
+    {
+      "name": "compile-mutant",
+      "argv": [
+        "C:\\Users\\Alexandr\\Desktop\\New folder\\\u0443\u043d\u0438\u0432\u0435\u0440\\\u043c\u043e\u0442\u043e\u0440\u0442\u0435\u0441\u0442\u0435\u0440 2\\build\\v5-native-toolchain\\zig-x86_64-windows-0.15.2\\zig.exe",
+        "cc",
+        "-std=c11",
+        "-O1",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-Wno-unused-function",
+        "-Wno-unused-parameter",
+        "mutant.c",
+        "mt_usb_epoch.c",
+        "-o",
+        "mutant.exe"
+      ],
+      "exit_code": 0
+    },
+    {
+      "name": "mutant",
+      "argv": [
+        "C:\\Users\\Alexandr\\Desktop\\New folder\\\u0443\u043d\u0438\u0432\u0435\u0440\\\u043c\u043e\u0442\u043e\u0440\u0442\u0435\u0441\u0442\u0435\u0440 2\\build\\v6b-native-burst-03\\mutant.exe"
+      ],
+      "exit_code": 1
+    }
+  ],
+  "image_bin_sha256": "12cdc5ae3da7376d5486c5f4461df7b32de0f114e9f02423a7e66f20a20849fd",
+  "timer_mmio_seam": "Exact aligned32 volatile read mapped to logical TIM2 registers",
+  "istr_instrumentation": {
+    "rc_w0_writes": 8,
+    "reads": 6
+  },
+  "stdout": "PASS pending CTR / one IRQ / OSAL and ep_write enable hold\r\nPASS RESET dominates stale CTR / PMAOVR quarantines before publication\r\nPASS SUSP/WKUP with held task work / no hidden CTR consumption\r\nPASS ZLP / short / full64 / DATA307 / transfer384 / 385 boundary / bounded budget\r\nPASS dedicated FIFO source / preserved published transfer / TIM2 modulo65536 wrap\r\nPASS 499/500us / invalid timer / progress failure / endpoint / OUT / SETUP / lifecycle arrival / USB error\r\n",
+  "missing_irq_hold_control": "REJECTED",
+  "scope_excludes": [
+    "PMA payload copy and complete CDC implementation",
+    "USB PHY timing or throughput",
+    "ADC no-loss guarantee"
+  ],
+  "generated": {
+    "gate.c": "24cc13d2d5957bce449436decb874d13cd363391b464a5af856af8278a4d76e2",
+    "mt_usb_epoch.c": "627f37638b30ba77a2ab4560d8a5d28bf9a2f7e89bec1c75b013108af1d20596",
+    "mt_usb_epoch.h": "c27244dab6fcb5222e3e8b1c008d47105a89d6a5eccdaec748e601f69f7e5070",
+    "mutant.c": "67eb0704f45fedfbe190bb1b9e0cb07fde780f65976a829d38d179952bb95f4b",
+    "gate.exe": "3ed21c09bdea84088c0011bf57fb7edcc894e08114a80182d74cf3d71adf44a8",
+    "mutant.exe": "8d6472bd09ff85a209d9ff2cfce19a1e947d9e6979612a14e2af39666823c208"
+  },
+  "not_verified": [
+    "Hardware interrupt routing/latency",
+    "Complete TinyUSB control transfers",
+    "USB enumeration",
+    "ADC service timing",
+    "Physical losslessness"
+  ]
+}

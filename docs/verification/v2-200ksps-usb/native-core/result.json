@@ -1,0 +1,103 @@
+{
+  "status": "PASS",
+  "scope": "Narrow exact-source 200 kS/s DMA/adapter/core model; no hardware timing claim.",
+  "image_bin_sha256": "12cdc5ae3da7376d5486c5f4461df7b32de0f114e9f02423a7e66f20a20849fd",
+  "inputs": {
+    "C:\\Users\\Alexandr\\Desktop\\New folder\\\u0443\u043d\u0438\u0432\u0435\u0440\\\u043c\u043e\u0442\u043e\u0440\u0442\u0435\u0441\u0442\u0435\u0440 2\\tests\\v2-stream-firmware\\check_rate_200k.py": "73387f6085c85124fa78d04d4199e5ee06f895bf8ee5208a0dbb21af5b16e9bd",
+    "C:\\Users\\Alexandr\\Desktop\\New folder\\\u0443\u043d\u0438\u0432\u0435\u0440\\\u043c\u043e\u0442\u043e\u0440\u0442\u0435\u0441\u0442\u0435\u0440 2\\build\\v5-native-toolchain\\zig-x86_64-windows-0.15.2\\zig.exe": "d408dd38eed3e5204af841bcebf70502a4dbbb8399a3a3262be55059370bc018",
+    "C:\\Users\\Alexandr\\Desktop\\New folder\\\u0443\u043d\u0438\u0432\u0435\u0440\\\u043c\u043e\u0442\u043e\u0440\u0442\u0435\u0441\u0442\u0435\u0440 2\\build\\v6b-fw-03\\receipt.json": "1d5cff9e3d040739b280f10c8fd41beb0d12579438a7ecca43577e33da89d0dc",
+    "C:\\Users\\Alexandr\\Desktop\\New folder\\\u0443\u043d\u0438\u0432\u0435\u0440\\\u043c\u043e\u0442\u043e\u0440\u0442\u0435\u0441\u0442\u0435\u0440 2\\tests\\v2-stream-firmware\\check_usb_gate.py": "067de6afbaa2faa1c60828b4fdc46d1e5bd8f1344f78efba9ca70c87181f9ad7",
+    "C:\\Users\\Alexandr\\Desktop\\New folder\\\u0443\u043d\u0438\u0432\u0435\u0440\\\u043c\u043e\u0442\u043e\u0440\u0442\u0435\u0441\u0442\u0435\u0440 2\\build\\v6b-fw-03\\patched\\v2\\app\\mt_live_runtime.c": "373aca3c30184148e59612f453112e56a50d9e42ade4e23a1c6bf38e8d501205",
+    "C:\\Users\\Alexandr\\Desktop\\New folder\\\u0443\u043d\u0438\u0432\u0435\u0440\\\u043c\u043e\u0442\u043e\u0440\u0442\u0435\u0441\u0442\u0435\u0440 2\\tests\\v2-stream-firmware\\cen_transaction_model.c": "5da630a35cc67b6cc67eb0b8bcce672a042e31e103fcf8783ef1a5eccff29daa",
+    "C:\\Users\\Alexandr\\Desktop\\New folder\\\u0443\u043d\u0438\u0432\u0435\u0440\\\u043c\u043e\u0442\u043e\u0440\u0442\u0435\u0441\u0442\u0435\u0440 2\\tests\\v2-stream-firmware\\rate_200k_model.c": "50e7c09afbf2cd307e4ce39965cdc0195064e173115efbe77dd6239df648aacf",
+    "C:\\Users\\Alexandr\\Desktop\\New folder\\\u0443\u043d\u0438\u0432\u0435\u0440\\\u043c\u043e\u0442\u043e\u0440\u0442\u0435\u0441\u0442\u0435\u0440 2\\tests\\v2-stream-firmware\\bulk_write_model.c": "f16feab6620603995335868715b2d8ee26ef1abc3b1dec3b263009e0c7bc9cbd",
+    "C:\\Users\\Alexandr\\Desktop\\New folder\\\u0443\u043d\u0438\u0432\u0435\u0440\\\u043c\u043e\u0442\u043e\u0440\u0442\u0435\u0441\u0442\u0435\u0440 2\\build\\v6b-fw-03\\source\\firmware\\third_party\\usb\\vendor\\tinyusb\\src\\tusb.c": "b5f0e8ca00ba6e63914583f7b4711c540a125c261b261216f89e5136fda2ac6f",
+    "C:\\Users\\Alexandr\\Desktop\\New folder\\\u0443\u043d\u0438\u0432\u0435\u0440\\\u043c\u043e\u0442\u043e\u0440\u0442\u0435\u0441\u0442\u0435\u0440 2\\tests\\v2-stream-firmware\\usb_fifo_model.c": "e1c5acf27afd97423926b84ee0f0fed00d450fd25e6708ba5354c9b84b802002",
+    "C:\\Users\\Alexandr\\Desktop\\New folder\\\u0443\u043d\u0438\u0432\u0435\u0440\\\u043c\u043e\u0442\u043e\u0440\u0442\u0435\u0441\u0442\u0435\u0440 2\\build\\v6b-fw-03\\source\\firmware\\third_party\\usb\\vendor\\tinyusb\\src\\common\\tusb_common.h": "a664fab5d2c3c635f64eca7a379e76934cb3ba6969b99260064946573e5396b1",
+    "C:\\Users\\Alexandr\\Desktop\\New folder\\\u0443\u043d\u0438\u0432\u0435\u0440\\\u043c\u043e\u0442\u043e\u0440\u0442\u0435\u0441\u0442\u0435\u0440 2\\build\\v6b-fw-03\\source\\firmware\\third_party\\usb\\vendor\\tinyusb\\src\\common\\tusb_compiler.h": "7f726abb8a3de111f55d95de60d6f9607d3464eb52b7780f37b1e10dae19ecfc",
+    "C:\\Users\\Alexandr\\Desktop\\New folder\\\u0443\u043d\u0438\u0432\u0435\u0440\\\u043c\u043e\u0442\u043e\u0440\u0442\u0435\u0441\u0442\u0435\u0440 2\\build\\v6b-fw-03\\source\\firmware\\third_party\\usb\\vendor\\tinyusb\\src\\common\\tusb_debug.h": "25c5e7f4ca87daa1619b0dc7042de641092a8f5970b6138f31a4d090b47a25be",
+    "C:\\Users\\Alexandr\\Desktop\\New folder\\\u0443\u043d\u0438\u0432\u0435\u0440\\\u043c\u043e\u0442\u043e\u0440\u0442\u0435\u0441\u0442\u0435\u0440 2\\build\\v6b-fw-03\\source\\firmware\\third_party\\usb\\vendor\\tinyusb\\src\\common\\tusb_fifo.h": "6d4af6262d85a13a38d7e211419c0491e78bc076e6d7c5bba38613c011bf8166",
+    "C:\\Users\\Alexandr\\Desktop\\New folder\\\u0443\u043d\u0438\u0432\u0435\u0440\\\u043c\u043e\u0442\u043e\u0440\u0442\u0435\u0441\u0442\u0435\u0440 2\\build\\v6b-fw-03\\source\\firmware\\third_party\\usb\\vendor\\tinyusb\\src\\common\\tusb_mcu.h": "ef584be007e78926dac89863b87e1e2bdd0358d9a89ed68c433f9f57ab1dd953",
+    "C:\\Users\\Alexandr\\Desktop\\New folder\\\u0443\u043d\u0438\u0432\u0435\u0440\\\u043c\u043e\u0442\u043e\u0440\u0442\u0435\u0441\u0442\u0435\u0440 2\\build\\v6b-fw-03\\source\\firmware\\third_party\\usb\\vendor\\tinyusb\\src\\common\\tusb_private.h": "6216aa425618d3c88ff57c0d2d29caace1b59bad1c361627a9a7401e4994fa97",
+    "C:\\Users\\Alexandr\\Desktop\\New folder\\\u0443\u043d\u0438\u0432\u0435\u0440\\\u043c\u043e\u0442\u043e\u0440\u0442\u0435\u0441\u0442\u0435\u0440 2\\build\\v6b-fw-03\\source\\firmware\\third_party\\usb\\vendor\\tinyusb\\src\\common\\tusb_types.h": "cb6f1d329629fe7a91a2509d991878298070d203d804eab7f90a260de1c977a4",
+    "C:\\Users\\Alexandr\\Desktop\\New folder\\\u0443\u043d\u0438\u0432\u0435\u0440\\\u043c\u043e\u0442\u043e\u0440\u0442\u0435\u0441\u0442\u0435\u0440 2\\build\\v6b-fw-03\\source\\firmware\\third_party\\usb\\vendor\\tinyusb\\src\\common\\tusb_verify.h": "061205bd8a55fd7134436bef64147100769a4ee4f15cef123f3b513c62b57514",
+    "C:\\Users\\Alexandr\\Desktop\\New folder\\\u0443\u043d\u0438\u0432\u0435\u0440\\\u043c\u043e\u0442\u043e\u0440\u0442\u0435\u0441\u0442\u0435\u0440 2\\build\\v6b-fw-03\\source\\firmware\\third_party\\usb\\vendor\\tinyusb\\src\\osal\\osal.h": "c9bd3d35f7436c47287bc481041f9af6aeec605f1e0291e3a76bd95bfc04f4d9",
+    "C:\\Users\\Alexandr\\Desktop\\New folder\\\u0443\u043d\u0438\u0432\u0435\u0440\\\u043c\u043e\u0442\u043e\u0440\u0442\u0435\u0441\u0442\u0435\u0440 2\\build\\v6b-fw-03\\source\\firmware\\third_party\\usb\\vendor\\tinyusb\\src\\osal\\osal_none.h": "d6eed8e3a3c7a25fc7d57bdded71ce2f56aa82564d7a1dd07cba525239bc1b8f",
+    "C:\\Users\\Alexandr\\Desktop\\New folder\\\u0443\u043d\u0438\u0432\u0435\u0440\\\u043c\u043e\u0442\u043e\u0440\u0442\u0435\u0441\u0442\u0435\u0440 2\\build\\v6b-fw-03\\source\\firmware\\third_party\\usb\\vendor\\tinyusb\\src\\tusb_option.h": "452216f8caa674e6987f7565186dc100d02a177f3a655c7cb6e506e68e0ee67f",
+    "C:\\Users\\Alexandr\\Desktop\\New folder\\\u0443\u043d\u0438\u0432\u0435\u0440\\\u043c\u043e\u0442\u043e\u0440\u0442\u0435\u0441\u0442\u0435\u0440 2\\build\\v6b-fw-03\\source\\firmware\\third_party\\usb\\vendor\\tinyusb\\src\\common\\tusb_fifo.c": "d87e25d3329244226f3b794882e89898ac5fe20e04568a7750f4aff154f871ac",
+    "C:\\Users\\Alexandr\\Desktop\\New folder\\\u0443\u043d\u0438\u0432\u0435\u0440\\\u043c\u043e\u0442\u043e\u0440\u0442\u0435\u0441\u0442\u0435\u0440 2\\build\\v6b-fw-03\\patched\\v2\\platform\\adc_timer_dma.c": "90e46c2a5480b5a100ac27033c37c3613fff778eda234c17edf28064895ab0ba",
+    "C:\\Users\\Alexandr\\Desktop\\New folder\\\u0443\u043d\u0438\u0432\u0435\u0440\\\u043c\u043e\u0442\u043e\u0440\u0442\u0435\u0441\u0442\u0435\u0440 2\\build\\v6b-fw-03\\patched\\v2\\platform\\adc_timer_dma.h": "c9330db5341f79ea1495ba42211252fa70e432d66ea527f7427fc0f391d6c1cf",
+    "C:\\Users\\Alexandr\\Desktop\\New folder\\\u0443\u043d\u0438\u0432\u0435\u0440\\\u043c\u043e\u0442\u043e\u0440\u0442\u0435\u0441\u0442\u0435\u0440 2\\build\\v6b-fw-03\\source\\firmware\\platform\\mt_timebase.c": "e9adfde14df828040bd665781ecbd737a3a27e8b3d396e8639d5e93a500ca774",
+    "C:\\Users\\Alexandr\\Desktop\\New folder\\\u0443\u043d\u0438\u0432\u0435\u0440\\\u043c\u043e\u0442\u043e\u0440\u0442\u0435\u0441\u0442\u0435\u0440 2\\build\\v6b-fw-03\\patched\\v2\\platform\\mt_timebase.h": "b41cc0a080ddae68bffd5a1b7f4af31da7900bb29f3939c2bd2c2e690026ad39",
+    "C:\\Users\\Alexandr\\Desktop\\New folder\\\u0443\u043d\u0438\u0432\u0435\u0440\\\u043c\u043e\u0442\u043e\u0440\u0442\u0435\u0441\u0442\u0435\u0440 2\\build\\v6b-fw-03\\patched\\v2\\platform\\mt_stream_diag.h": "a2dc9c01d5a1ca9168e776e33c719ec727f0e0e301aad755d12b3280931774e5",
+    "C:\\Users\\Alexandr\\Desktop\\New folder\\\u0443\u043d\u0438\u0432\u0435\u0440\\\u043c\u043e\u0442\u043e\u0440\u0442\u0435\u0441\u0442\u0435\u0440 2\\build\\v6b-fw-03\\patched\\v2\\app\\mt_live_adc.c": "5995b7d664e4b9446e9e29400f34b5dd9a2e4c33acb50f32a35db802c55c930a",
+    "C:\\Users\\Alexandr\\Desktop\\New folder\\\u0443\u043d\u0438\u0432\u0435\u0440\\\u043c\u043e\u0442\u043e\u0440\u0442\u0435\u0441\u0442\u0435\u0440 2\\build\\v6b-fw-03\\patched\\v2\\app\\mt_live_adc.h": "9056a9520560586673b1a9fb3fde7dda379e29433aff3e3f35075c13ec926afc",
+    "C:\\Users\\Alexandr\\Desktop\\New folder\\\u0443\u043d\u0438\u0432\u0435\u0440\\\u043c\u043e\u0442\u043e\u0440\u0442\u0435\u0441\u0442\u0435\u0440 2\\build\\v6b-fw-03\\patched\\v2\\protocol\\mt_live_device.c": "9eca593152eb91f65cc35af6e78c73a5d1a1c02bafb737ca6e8542c234095868",
+    "C:\\Users\\Alexandr\\Desktop\\New folder\\\u0443\u043d\u0438\u0432\u0435\u0440\\\u043c\u043e\u0442\u043e\u0440\u0442\u0435\u0441\u0442\u0435\u0440 2\\build\\v6b-fw-03\\patched\\v2\\protocol\\mt_live_device.h": "a700783d31b7a52ef6408705d24ac9ce1a34c3693a1bad6a9287c8050922d93a",
+    "C:\\Users\\Alexandr\\Desktop\\New folder\\\u0443\u043d\u0438\u0432\u0435\u0440\\\u043c\u043e\u0442\u043e\u0440\u0442\u0435\u0441\u0442\u0435\u0440 2\\build\\v6b-fw-03\\patched\\v2\\protocol\\mt_wire.c": "db75cb70135ecde3c4f3aaefb032a55cb59808e7541fe232955d302043382d8d",
+    "C:\\Users\\Alexandr\\Desktop\\New folder\\\u0443\u043d\u0438\u0432\u0435\u0440\\\u043c\u043e\u0442\u043e\u0440\u0442\u0435\u0441\u0442\u0435\u0440 2\\build\\v6b-fw-03\\patched\\v2\\protocol\\mt_wire.h": "e8edcb0aea5cdc946106db3146d358ff9061970313efaf67102b216653c0273d",
+    "C:\\Users\\Alexandr\\Desktop\\New folder\\\u0443\u043d\u0438\u0432\u0435\u0440\\\u043c\u043e\u0442\u043e\u0440\u0442\u0435\u0441\u0442\u0435\u0440 2\\build\\v6b-fw-03\\patched\\v2\\protocol\\mt_v2_crc32.h": "48f29791e8b0595dabdc70ec06807f4dc064a56e66db514df24dd04ea9222a2f",
+    "C:\\Users\\Alexandr\\Desktop\\New folder\\\u0443\u043d\u0438\u0432\u0435\u0440\\\u043c\u043e\u0442\u043e\u0440\u0442\u0435\u0441\u0442\u0435\u0440 2\\build\\v6b-fw-03\\patched\\v2\\acquisition\\mt_sample_queue.c": "49a1232056101f57423947e266d6bd398eab6b9cae86f3e1d9babf0eb311dc7f",
+    "C:\\Users\\Alexandr\\Desktop\\New folder\\\u0443\u043d\u0438\u0432\u0435\u0440\\\u043c\u043e\u0442\u043e\u0440\u0442\u0435\u0441\u0442\u0435\u0440 2\\build\\v6b-fw-03\\patched\\v2\\acquisition\\mt_sample_queue.h": "929eedaaff900286fc07b8bbffa6794fc5d044e12a4ce25dee3fb1297180b393"
+  },
+  "commands": [
+    {
+      "name": "version",
+      "argv": [
+        "C:\\Users\\Alexandr\\Desktop\\New folder\\\u0443\u043d\u0438\u0432\u0435\u0440\\\u043c\u043e\u0442\u043e\u0440\u0442\u0435\u0441\u0442\u0435\u0440 2\\build\\v5-native-toolchain\\zig-x86_64-windows-0.15.2\\zig.exe",
+        "version"
+      ],
+      "exit_code": 0
+    },
+    {
+      "name": "compile",
+      "argv": [
+        "C:\\Users\\Alexandr\\Desktop\\New folder\\\u0443\u043d\u0438\u0432\u0435\u0440\\\u043c\u043e\u0442\u043e\u0440\u0442\u0435\u0441\u0442\u0435\u0440 2\\build\\v5-native-toolchain\\zig-x86_64-windows-0.15.2\\zig.exe",
+        "cc",
+        "-std=c11",
+        "-O1",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-Wno-unused-function",
+        "-Wno-unused-parameter",
+        "-DMT_TEST_BULK_OFFER=1",
+        "-DMT_TEST_FIRMWARE_BUILD=1446138678",
+        "-I.",
+        "-Iplatform",
+        "-Iapp",
+        "-Iprotocol",
+        "-Iacquisition",
+        "model.c",
+        "bulk_write_model.c",
+        "usb_fifo_model.c",
+        "common/tusb_fifo.c",
+        "platform/adc_timer_dma.c",
+        "platform/mt_timebase.c",
+        "app/mt_live_adc.c",
+        "protocol/mt_live_device.c",
+        "protocol/mt_wire.c",
+        "acquisition/mt_sample_queue.c",
+        "-o",
+        "model.exe"
+      ],
+      "exit_code": 0
+    },
+    {
+      "name": "model",
+      "argv": [
+        "C:\\Users\\Alexandr\\Desktop\\New folder\\\u0443\u043d\u0438\u0432\u0435\u0440\\\u043c\u043e\u0442\u043e\u0440\u0442\u0435\u0441\u0442\u0435\u0440 2\\build\\v6b-native-core-02\\model.exe"
+      ],
+      "exit_code": 0
+    }
+  ],
+  "compiler_version": "0.15.2",
+  "stdout": "PASS expensive full guards / one-period CEN / old path rejects\r\nPASS period+1us rejection / original PRIMASK restored / verified quiesce\r\nPASS post-CEN TIME / lifecycle / original actor / counter-order denial\r\nPASS 200k config / ADC41.5 / DMA1024 / ordered two halves to DATA128\r\nPASS frozen Stop tail1023 / eight DATA chunks / both circular halves / unknown produced\r\nPASS real core Stop validation / serialization / raw order / END unknown tail\r\nPASS queue full at each of four split chunks / no offer across a gap\r\nPASS missed DMA boundary and late service reject without invented samples\r\nPASS exact 200000/1 CAPS with unchanged DATA128 wire envelope\r\nPASS exact core DATA128 serializes/commits in one bulk write\r\nPASS partial/zero acceptance keeps sequence/prefix; unknown acceptance fences source\r\nPASS actual live_write384/385 / partial / zero / post-copy epoch loss preserves accepted prefix\r\nPASS actual FIFO384 / dedicated-FIFO transfer snapshot / partial77 / full / short / ZLP / 384-overflow boundary\r\n",
+  "not_verified": [
+    "ARM execution time",
+    "USB PHY/host throughput",
+    "Physical sample fidelity",
+    "ADC settling or analogue input",
+    "Flash approval"
+  ]
+}

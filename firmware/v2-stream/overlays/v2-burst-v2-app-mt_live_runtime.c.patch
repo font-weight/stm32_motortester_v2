@@ -1,0 +1,11 @@
+--- a/v2/app/mt_live_runtime.c
++++ b/v2/app/mt_live_runtime.c
+@@ -100,7 +100,7 @@
+ static size_t live_write(void *context,const uint8_t *bytes,size_t length) {
+     mt_live_runtime *r=context; mt_usb_scope scope; size_t accepted;
+     if(!r || !r->initialized || !r->in_step || r->writer_active ||
+-       (!bytes && length) || length>64u)return SIZE_MAX;
++       (!bytes && length) || length>384u)return SIZE_MAX;
+     if(!length || !mt_usb_bridge_app_enter(&scope))return 0;
+     if(!usable(r)) { mt_usb_bridge_leave(&scope); return 0; }
+     r->writer_active=1;

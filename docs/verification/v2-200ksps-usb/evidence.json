@@ -1,0 +1,248 @@
+{
+  "schema": "v2-06b-evidence-1",
+  "scope": "software firmware candidate; no hardware qualification",
+  "build_id": "0x56325336",
+  "firmware_bin_sha256": "12cdc5ae3da7376d5486c5f4461df7b32de0f114e9f02423a7e66f20a20849fd",
+  "files": [
+    {
+      "source": "build/v6b-fw-04/MotortesterV2-stream-candidate.bin",
+      "copy": "docs/verification/v2-200ksps-usb/firmware/MotortesterV2-stream-candidate.bin",
+      "bytes": 36248,
+      "sha256": "12cdc5ae3da7376d5486c5f4461df7b32de0f114e9f02423a7e66f20a20849fd"
+    },
+    {
+      "source": "build/v6b-fw-04/MotortesterV2-stream-candidate.elf",
+      "copy": "docs/verification/v2-200ksps-usb/firmware/MotortesterV2-stream-candidate.elf",
+      "bytes": 70936,
+      "sha256": "72ba32c5816e0c483877de685e3f60d28117e0a4ca9bdba32e8df1b97bca1768"
+    },
+    {
+      "source": "build/v6b-fw-04/MotortesterV2-stream-candidate.hex",
+      "copy": "docs/verification/v2-200ksps-usb/firmware/MotortesterV2-stream-candidate.hex",
+      "bytes": 102005,
+      "sha256": "d29d8e8dc0fad6d8328d33b158da763e557d0931791f9fc2afd40d0ff0caeb60"
+    },
+    {
+      "source": "build/v6b-fw-04/image.map",
+      "copy": "docs/verification/v2-200ksps-usb/firmware/image.map",
+      "bytes": 76184,
+      "sha256": "03ab931ed8a932efc0cd78023493c846c50751c90aab221f7b32cc0c28ea2262"
+    },
+    {
+      "source": "build/v6b-fw-04/config.json",
+      "copy": "docs/verification/v2-200ksps-usb/firmware/config.json",
+      "bytes": 933,
+      "sha256": "8fc9d7499ea13e493d6254c1d823268731a96e5adb959faf25107c2e44543abf"
+    },
+    {
+      "source": "build/v6b-fw-04/receipt.json",
+      "copy": "docs/verification/v2-200ksps-usb/firmware/receipt.json",
+      "bytes": 369496,
+      "sha256": "ef2d06f8d037e089d418e4e9a38d598a01d40edffa6fd2c639edf15b0330bb52"
+    },
+    {
+      "source": "build/v6b-fw-04/static-bound.json",
+      "copy": "docs/verification/v2-200ksps-usb/firmware/static-bound.json",
+      "bytes": 180981,
+      "sha256": "371b3cdefc83469f2ffd6f0d05161fd41b4a3901653e9bba5a93aa0f1c3117ff"
+    },
+    {
+      "source": "build/v6b-native-burst-03/compile-mutant.stderr",
+      "copy": "docs/verification/v2-200ksps-usb/native-burst/compile-mutant.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "source": "build/v6b-native-burst-03/compile-mutant.stdout",
+      "copy": "docs/verification/v2-200ksps-usb/native-burst/compile-mutant.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "source": "build/v6b-native-burst-03/compile.stderr",
+      "copy": "docs/verification/v2-200ksps-usb/native-burst/compile.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "source": "build/v6b-native-burst-03/compile.stdout",
+      "copy": "docs/verification/v2-200ksps-usb/native-burst/compile.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "source": "build/v6b-native-burst-03/gate.c",
+      "copy": "docs/verification/v2-200ksps-usb/native-burst/gate.c",
+      "bytes": 28223,
+      "sha256": "24cc13d2d5957bce449436decb874d13cd363391b464a5af856af8278a4d76e2"
+    },
+    {
+      "source": "build/v6b-native-burst-03/gate.exe",
+      "copy": "docs/verification/v2-200ksps-usb/native-burst/gate.exe",
+      "bytes": 190464,
+      "sha256": "3ed21c09bdea84088c0011bf57fb7edcc894e08114a80182d74cf3d71adf44a8"
+    },
+    {
+      "source": "build/v6b-native-burst-03/gate.stderr",
+      "copy": "docs/verification/v2-200ksps-usb/native-burst/gate.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "source": "build/v6b-native-burst-03/gate.stdout",
+      "copy": "docs/verification/v2-200ksps-usb/native-burst/gate.stdout",
+      "bytes": 470,
+      "sha256": "7c4e31405887668b822d0548df08326b91bf0c4a7d243ca4fd7ded5457fc6732"
+    },
+    {
+      "source": "build/v6b-native-burst-03/mt_usb_epoch.c",
+      "copy": "docs/verification/v2-200ksps-usb/native-burst/mt_usb_epoch.c",
+      "bytes": 3545,
+      "sha256": "627f37638b30ba77a2ab4560d8a5d28bf9a2f7e89bec1c75b013108af1d20596"
+    },
+    {
+      "source": "build/v6b-native-burst-03/mt_usb_epoch.h",
+      "copy": "docs/verification/v2-200ksps-usb/native-burst/mt_usb_epoch.h",
+      "bytes": 3007,
+      "sha256": "c27244dab6fcb5222e3e8b1c008d47105a89d6a5eccdaec748e601f69f7e5070"
+    },
+    {
+      "source": "build/v6b-native-burst-03/mutant.c",
+      "copy": "docs/verification/v2-200ksps-usb/native-burst/mutant.c",
+      "bytes": 28221,
+      "sha256": "67eb0704f45fedfbe190bb1b9e0cb07fde780f65976a829d38d179952bb95f4b"
+    },
+    {
+      "source": "build/v6b-native-burst-03/mutant.exe",
+      "copy": "docs/verification/v2-200ksps-usb/native-burst/mutant.exe",
+      "bytes": 189952,
+      "sha256": "8d6472bd09ff85a209d9ff2cfce19a1e947d9e6979612a14e2af39666823c208"
+    },
+    {
+      "source": "build/v6b-native-burst-03/mutant.stderr",
+      "copy": "docs/verification/v2-200ksps-usb/native-burst/mutant.stderr",
+      "bytes": 64,
+      "sha256": "57d0353cb9d6aaedf7e60d1c2d3c6dafa4818e483286cdd6dfc8c204e1435e45"
+    },
+    {
+      "source": "build/v6b-native-burst-03/mutant.stdout",
+      "copy": "docs/verification/v2-200ksps-usb/native-burst/mutant.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "source": "build/v6b-native-burst-03/result.json",
+      "copy": "docs/verification/v2-200ksps-usb/native-burst/result.json",
+      "bytes": 6950,
+      "sha256": "6450fabae5fd71a5ffb61154667720e6f5d0ec56a8bd8a48dd099d343abf2d96"
+    },
+    {
+      "source": "build/v6b-native-core-02/bulk_write_model.c",
+      "copy": "docs/verification/v2-200ksps-usb/native-core/bulk_write_model.c",
+      "bytes": 2391,
+      "sha256": "d0f497279e34c42548420e34d0ebd7ac9af363d8b1f819d7bf5897cb3377998c"
+    },
+    {
+      "source": "build/v6b-native-core-02/compile.stderr",
+      "copy": "docs/verification/v2-200ksps-usb/native-core/compile.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "source": "build/v6b-native-core-02/compile.stdout",
+      "copy": "docs/verification/v2-200ksps-usb/native-core/compile.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "source": "build/v6b-native-core-02/model.c",
+      "copy": "docs/verification/v2-200ksps-usb/native-core/model.c",
+      "bytes": 19704,
+      "sha256": "03933510df2d624900b3e46bf114d753e17d195d0eedab6094334b500ad0fb77"
+    },
+    {
+      "source": "build/v6b-native-core-02/model.exe",
+      "copy": "docs/verification/v2-200ksps-usb/native-core/model.exe",
+      "bytes": 223744,
+      "sha256": "d785b261f120398eac5c9028485888722e11fe905c79c5fb732af4fdf3e09424"
+    },
+    {
+      "source": "build/v6b-native-core-02/model.stderr",
+      "copy": "docs/verification/v2-200ksps-usb/native-core/model.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "source": "build/v6b-native-core-02/model.stdout",
+      "copy": "docs/verification/v2-200ksps-usb/native-core/model.stdout",
+      "bytes": 1014,
+      "sha256": "0304756faa5af4eed3a33cbd27d99207f9b9598327a2cab6587ded488394ea83"
+    },
+    {
+      "source": "build/v6b-native-core-02/result.json",
+      "copy": "docs/verification/v2-200ksps-usb/native-core/result.json",
+      "bytes": 13761,
+      "sha256": "6a968b8ac7bdb51747afcb29fca787c97d47ab2d1c0984322a480d11ec36b14f"
+    },
+    {
+      "source": "build/v6b-native-core-02/tusb_config.h",
+      "copy": "docs/verification/v2-200ksps-usb/native-core/tusb_config.h",
+      "bytes": 148,
+      "sha256": "3bdba16d0556c7e41d763150e02b100325b8bbe7d97bdbf6ac483c874cb15bc2"
+    },
+    {
+      "source": "build/v6b-native-core-02/tusb_option.h",
+      "copy": "docs/verification/v2-200ksps-usb/native-core/tusb_option.h",
+      "bytes": 30475,
+      "sha256": "452216f8caa674e6987f7565186dc100d02a177f3a655c7cb6e506e68e0ee67f"
+    },
+    {
+      "source": "build/v6b-native-core-02/usb_fifo_model.c",
+      "copy": "docs/verification/v2-200ksps-usb/native-core/usb_fifo_model.c",
+      "bytes": 3753,
+      "sha256": "d93b73478e9e9df6c1c26fccc96f8837a4a15ae6f0070c2c56d779f7de155a38"
+    },
+    {
+      "source": "build/v6b-native-core-02/version.stderr",
+      "copy": "docs/verification/v2-200ksps-usb/native-core/version.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "source": "build/v6b-native-core-02/version.stdout",
+      "copy": "docs/verification/v2-200ksps-usb/native-core/version.stdout",
+      "bytes": 7,
+      "sha256": "355a2e14f6a7f2cb387d9d3b75a3550980d020ee1d005b139b62290c1645068a"
+    },
+    {
+      "source": "build/v6b-source-equivalence.json",
+      "copy": "docs/verification/v2-200ksps-usb/source-equivalence.json",
+      "bytes": 8513,
+      "sha256": "4af8f4a7c185ff096995be11c37f7fee1c31e5c4bae75835ba14d399a94908a4"
+    },
+    {
+      "source": "build/v6b-fw-01/compile-13-dcd_stm32_fsdev.stderr",
+      "copy": "docs/verification/v2-200ksps-usb/intermediate-failures/fw01.stderr",
+      "bytes": 2080,
+      "sha256": "031a69e52444f310cb0058ce2630247328b2ab4af406746c1ef16c71b723b014"
+    },
+    {
+      "source": "build/v6b-fw-01/receipt.json",
+      "copy": "docs/verification/v2-200ksps-usb/intermediate-failures/fw01-receipt.json",
+      "bytes": 221260,
+      "sha256": "2227963e0a048e9849bed45372150d87f85485eb1b5ea1405af6f3ea9c401050"
+    },
+    {
+      "source": "build/v6b-native-burst-01/gate.stderr",
+      "copy": "docs/verification/v2-200ksps-usb/intermediate-failures/burst01.stderr",
+      "bytes": 77,
+      "sha256": "d364e87656684b26b31825750a43a794a5b17e722dbeb8f8c9ed006cf617752f"
+    },
+    {
+      "source": "build/v6b-native-core-01/compile.stderr",
+      "copy": "docs/verification/v2-200ksps-usb/intermediate-failures/core01.stderr",
+      "bytes": 3081,
+      "sha256": "862025a0f5277a0265d0f04cb7358f20b94da87d4308e0c21a8f563950a11385"
+    }
+  ]
+}

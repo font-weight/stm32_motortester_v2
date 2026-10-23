@@ -1,0 +1,95 @@
+{
+  "status": "PASS_NARROW_INDEPENDENT_REPLAY",
+  "scope": "Software only; no COM/ST-Link/flash/physical test",
+  "platform": "Windows-10-10.0.19045-SP0",
+  "python": "3.14.7 (tags/v3.14.7:823f032, Aug  5 2026, 10:51:32) [MSC v.1944 64 bit (AMD64)]",
+  "image": "build\\v6b-fw-04",
+  "bin_sha256": "12cdc5ae3da7376d5486c5f4461df7b32de0f114e9f02423a7e66f20a20849fd",
+  "elf_sha256": "72ba32c5816e0c483877de685e3f60d28117e0a4ca9bdba32e8df1b97bca1768",
+  "receipt_sha256": "ef2d06f8d037e089d418e4e9a38d598a01d40edffa6fd2c639edf15b0330bb52",
+  "hash_checks": [
+    {
+      "name": "firmware_inputs_before",
+      "count": 499,
+      "mismatches": []
+    },
+    {
+      "name": "firmware_dependencies",
+      "count": 112,
+      "mismatches": []
+    },
+    {
+      "name": "firmware_artifacts",
+      "count": 3,
+      "mismatches": []
+    },
+    {
+      "name": "firmware_analysis_inputs",
+      "count": 32,
+      "mismatches": []
+    },
+    {
+      "name": "v6b-native-burst-03_inputs",
+      "count": 10,
+      "mismatches": []
+    },
+    {
+      "name": "v6b-native-burst-03_generated",
+      "count": 6,
+      "mismatches": []
+    },
+    {
+      "name": "v6b-native-core-02_inputs",
+      "count": 36,
+      "mismatches": []
+    }
+  ],
+  "equivalence_sha256": "4af8f4a7c185ff096995be11c37f7fee1c31e5c4bae75835ba14d399a94908a4",
+  "equal_image_source_count": 28,
+  "executions": [
+    {
+      "path": "build/v6b-native-burst-03/gate.exe",
+      "sha256": "3ed21c09bdea84088c0011bf57fb7edcc894e08114a80182d74cf3d71adf44a8",
+      "observed_exit": 0,
+      "expected_exit": 0,
+      "source": "Independently executed twice by critic; observed in tool output. Second run isolated static comparator mismatch."
+    },
+    {
+      "path": "build/v6b-native-burst-03/mutant.exe",
+      "sha256": "8d6472bd09ff85a209d9ff2cfce19a1e947d9e6979612a14e2af39666823c208",
+      "observed_exit": 1,
+      "expected_exit": 1,
+      "source": "Independently executed twice by critic; observed in tool output. Second run isolated static comparator mismatch."
+    },
+    {
+      "path": "build/v6b-native-core-02/model.exe",
+      "sha256": "d785b261f120398eac5c9028485888722e11fe905c79c5fb732af4fdf3e09424",
+      "observed_exit": 0,
+      "expected_exit": 0,
+      "source": "Independently executed twice by critic; observed in tool output. Second run isolated static comparator mismatch."
+    }
+  ],
+  "static_matches_author_after_json_normalization": true,
+  "static_sha256": "371b3cdefc83469f2ffd6f0d05161fd41b4a3901653e9bba5a93aa0f1c3117ff",
+  "critic_check_failure_preserved": {
+    "initial_exception": "AssertionError comparing in-memory static result with deserialized author JSON",
+    "difference": "Only call_edges: Python tuples versus JSON lists",
+    "resolution": "Isolated diff then canonical JSON normalization, full equality; no production change"
+  },
+  "native_scope_limits": {
+    "v6b-native-burst-03": [
+      "Hardware interrupt routing/latency",
+      "Complete TinyUSB control transfers",
+      "USB enumeration",
+      "ADC service timing",
+      "Physical losslessness"
+    ],
+    "v6b-native-core-02": [
+      "ARM execution time",
+      "USB PHY/host throughput",
+      "Physical sample fidelity",
+      "ADC settling or analogue input",
+      "Flash approval"
+    ]
+  }
+}

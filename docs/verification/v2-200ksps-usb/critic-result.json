@@ -1,0 +1,33 @@
+{
+  "status": "PASS",
+  "score": 9.63,
+  "scope": "V2-06b software firmware candidate only",
+  "base_commit": "ab87abc1b48eac58078e8442252c2e06900fc35f",
+  "manifest_sha256": "a0d865a0cc787401635c5998498950deecdd6a7a814f97a0998668495768adb1",
+  "manifest_file_count": 64,
+  "image_bin_sha256": "12cdc5ae3da7376d5486c5f4461df7b32de0f114e9f02423a7e66f20a20849fd",
+  "image_elf_sha256": "72ba32c5816e0c483877de685e3f60d28117e0a4ca9bdba32e8df1b97bca1768",
+  "critic": "stream200_critic",
+  "not_implementation_author": true,
+  "no_hardware_access": true,
+  "flash_approved": false,
+  "physical_200k_verified": false,
+  "open_in_scope_p0_p1": [],
+  "external_open_p1": "V2-06a physical 200k record failed; V2S4 restored; new V2S6 trial required",
+  "rubric": {
+    "C1": 9.7,
+    "C2": 9.6,
+    "C3": 9.6,
+    "C4": 9.6,
+    "C5": 9.6
+  },
+  "report": "docs/reviews/v2-06b-review.md",
+  "report_sha256": "ebc4ff2ed465dbb8d37e4c890ca94d518a3654aeba9fd67da2af1bcbe890ab80",
+  "evidence": {
+    "critic-replay.json": "ac396487253a46ecbc6974a799c910edce26fff1728fe772e359c9cbb4998c79",
+    "critic-static.json": "371b3cdefc83469f2ffd6f0d05161fd41b4a3901653e9bba5a93aa0f1c3117ff",
+    "critic-manifest.json": "79c0c992cc675e28bef89ff9b37fdb2653e2d4f1ebd109db94b016c4093e1e85"
+  },
+  "diagnostic_symbol_address": "0x20002bc4",
+  "diagnostic_bytes": 136
+}

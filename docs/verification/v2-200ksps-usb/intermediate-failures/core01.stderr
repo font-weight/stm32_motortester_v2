@@ -1,0 +1,47 @@
+In file included from usb_fifo_model.c:2:
+In file included from ./common/tusb_fifo.h:36:
+In file included from ./osal/osal.h:55:
+./osal/osal_none.h:183:3: error: unknown type name 'tu_fifo_t'
+  183 |   tu_fifo_t ff;
+      |   ^
+./osal/osal_none.h:196:3: error: call to undeclared function 'tu_fifo_clear'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
+  196 |   tu_fifo_clear(&qdef->ff);
+      |   ^
+./osal/osal_none.h:209:25: error: call to undeclared function 'tu_fifo_read_n'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
+  209 |   const bool success = (tu_fifo_read_n(&qhdl->ff, data, qhdl->item_size) > 0);
+      |                         ^
+./osal/osal_none.h:220:25: error: call to undeclared function 'tu_fifo_write_n'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
+  220 |   const bool success = (tu_fifo_write_n(&qhdl->ff, data, qhdl->item_size) > 0);
+      |                         ^
+./osal/osal_none.h:232:10: error: call to undeclared function 'tu_fifo_empty'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
+  232 |   return tu_fifo_empty(&qhdl->ff);
+      |          ^
+In file included from usb_fifo_model.c:2:
+./common/tusb_fifo.h:168:6: error: conflicting types for 'tu_fifo_clear'
+  168 | void tu_fifo_clear(tu_fifo_t *f);
+      |      ^
+./osal/osal_none.h:196:3: note: previous implicit declaration is here
+  196 |   tu_fifo_clear(&qdef->ff);
+      |   ^
+In file included from usb_fifo_model.c:2:
+./common/tusb_fifo.h:211:46: error: static declaration of 'tu_fifo_read_n' follows non-static declaration
+  211 | TU_ATTR_ALWAYS_INLINE static inline uint16_t tu_fifo_read_n(tu_fifo_t *f, void *buffer, uint16_t n) {
+      |                                              ^
+./osal/osal_none.h:209:25: note: previous implicit declaration is here
+  209 |   const bool success = (tu_fifo_read_n(&qhdl->ff, data, qhdl->item_size) > 0);
+      |                         ^
+In file included from usb_fifo_model.c:2:
+./common/tusb_fifo.h:224:46: error: static declaration of 'tu_fifo_write_n' follows non-static declaration
+  224 | TU_ATTR_ALWAYS_INLINE static inline uint16_t tu_fifo_write_n(tu_fifo_t *f, const void *data, uint16_t n) {
+      |                                              ^
+./osal/osal_none.h:220:25: note: previous implicit declaration is here
+  220 |   const bool success = (tu_fifo_write_n(&qhdl->ff, data, qhdl->item_size) > 0);
+      |                         ^
+In file included from usb_fifo_model.c:2:
+./common/tusb_fifo.h:286:42: error: static declaration of 'tu_fifo_empty' follows non-static declaration
+  286 | TU_ATTR_ALWAYS_INLINE static inline bool tu_fifo_empty(const tu_fifo_t *f) {
+      |                                          ^
+./osal/osal_none.h:232:10: note: previous implicit declaration is here
+  232 |   return tu_fifo_empty(&qhdl->ff);
+      |          ^
+9 errors generated.

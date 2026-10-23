@@ -1,0 +1,13 @@
+PASS expensive full guards / one-period CEN / old path rejects
+PASS period+1us rejection / original PRIMASK restored / verified quiesce
+PASS post-CEN TIME / lifecycle / original actor / counter-order denial
+PASS 200k config / ADC41.5 / DMA1024 / ordered two halves to DATA128
+PASS frozen Stop tail1023 / eight DATA chunks / both circular halves / unknown produced
+PASS real core Stop validation / serialization / raw order / END unknown tail
+PASS queue full at each of four split chunks / no offer across a gap
+PASS missed DMA boundary and late service reject without invented samples
+PASS exact 200000/1 CAPS with unchanged DATA128 wire envelope
+PASS exact core DATA128 serializes/commits in one bulk write
+PASS partial/zero acceptance keeps sequence/prefix; unknown acceptance fences source
+PASS actual live_write384/385 / partial / zero / post-copy epoch loss preserves accepted prefix
+PASS actual FIFO384 / dedicated-FIFO transfer snapshot / partial77 / full / short / ZLP / 384-overflow boundary

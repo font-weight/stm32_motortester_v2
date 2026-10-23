@@ -1,4 +1,4 @@
-"""Build the separate V2S5 200 kS/s software candidate; never flash hardware."""
+"""Build the separate V2S6 bounded-USB software candidate; never flash hardware."""
 import argparse
 import hashlib
 import importlib.util
@@ -240,6 +240,13 @@ def main():
             target = out / "patched" / row["target"]
             target.write_bytes(apply_patch((out / row["source"]).read_bytes(),
                 (here / "overlays" / row["patch"]).read_bytes(), row))
+        burst = json.loads((here / "overlays/usb-burst.json").read_text("utf-8"))
+        require(burst["schema"] == "motortester-v2-usb-burst-overlay-1", "Unexpected USB burst overlay")
+        receipt["v2_overlays"].extend(burst["patches"])
+        for row in burst["patches"]:
+            target = out / "patched" / row["target"]
+            target.write_bytes(apply_patch((out / row["source"]).read_bytes(),
+                (here / "overlays" / row["patch"]).read_bytes(), row))
         manifest = json.loads((source / "firmware/build/inputs.json").read_text("utf-8"))
         standard = next(r["flags"] for r in manifest["components"]
                         if r["source"] == "firmware/app/mt_runtime.c")
@@ -291,6 +298,7 @@ def main():
                 "source/firmware/protocol/mt_live_device.c": "patched/v2/protocol/mt_live_device.c",
                 "source/firmware/acquisition/mt_sample_queue.c": "patched/v2/acquisition/mt_sample_queue.c",
                 "source/firmware/transport/mt_usb_bridge.c": "patched/v2/transport/mt_usb_bridge.c",
+                "source/firmware/transport/mt_usb_descriptors.c": "patched/v2/transport/mt_usb_descriptors.c",
             }.get(path, path)
             compile_c(f"{index:02}-{Path(src).stem}", path, row["flags"])
         reset = "objects/reset.o"

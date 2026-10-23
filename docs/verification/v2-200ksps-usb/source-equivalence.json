@@ -1,0 +1,154 @@
+{
+  "status": "PASS_IDENTICAL_NATIVE_INPUTS_AND_BIN",
+  "native_result": "build/v6b-native-core-02/result.json",
+  "native_result_sha256": "6a968b8ac7bdb51747afcb29fca787c97d47ab2d1c0984322a480d11ec36b14f",
+  "native_image": "build/v6b-fw-03",
+  "final_image": "build/v6b-fw-04",
+  "bin_sha256": "12cdc5ae3da7376d5486c5f4461df7b32de0f114e9f02423a7e66f20a20849fd",
+  "elf_same": true,
+  "checked_source_count": 28,
+  "sources": [
+    {
+      "relative": "patched/v2/app/mt_live_runtime.c",
+      "native_input_sha256": "373aca3c30184148e59612f453112e56a50d9e42ade4e23a1c6bf38e8d501205",
+      "final_source_sha256": "373aca3c30184148e59612f453112e56a50d9e42ade4e23a1c6bf38e8d501205"
+    },
+    {
+      "relative": "source/firmware/third_party/usb/vendor/tinyusb/src/tusb.c",
+      "native_input_sha256": "b5f0e8ca00ba6e63914583f7b4711c540a125c261b261216f89e5136fda2ac6f",
+      "final_source_sha256": "b5f0e8ca00ba6e63914583f7b4711c540a125c261b261216f89e5136fda2ac6f"
+    },
+    {
+      "relative": "source/firmware/third_party/usb/vendor/tinyusb/src/common/tusb_common.h",
+      "native_input_sha256": "a664fab5d2c3c635f64eca7a379e76934cb3ba6969b99260064946573e5396b1",
+      "final_source_sha256": "a664fab5d2c3c635f64eca7a379e76934cb3ba6969b99260064946573e5396b1"
+    },
+    {
+      "relative": "source/firmware/third_party/usb/vendor/tinyusb/src/common/tusb_compiler.h",
+      "native_input_sha256": "7f726abb8a3de111f55d95de60d6f9607d3464eb52b7780f37b1e10dae19ecfc",
+      "final_source_sha256": "7f726abb8a3de111f55d95de60d6f9607d3464eb52b7780f37b1e10dae19ecfc"
+    },
+    {
+      "relative": "source/firmware/third_party/usb/vendor/tinyusb/src/common/tusb_debug.h",
+      "native_input_sha256": "25c5e7f4ca87daa1619b0dc7042de641092a8f5970b6138f31a4d090b47a25be",
+      "final_source_sha256": "25c5e7f4ca87daa1619b0dc7042de641092a8f5970b6138f31a4d090b47a25be"
+    },
+    {
+      "relative": "source/firmware/third_party/usb/vendor/tinyusb/src/common/tusb_fifo.h",
+      "native_input_sha256": "6d4af6262d85a13a38d7e211419c0491e78bc076e6d7c5bba38613c011bf8166",
+      "final_source_sha256": "6d4af6262d85a13a38d7e211419c0491e78bc076e6d7c5bba38613c011bf8166"
+    },
+    {
+      "relative": "source/firmware/third_party/usb/vendor/tinyusb/src/common/tusb_mcu.h",
+      "native_input_sha256": "ef584be007e78926dac89863b87e1e2bdd0358d9a89ed68c433f9f57ab1dd953",
+      "final_source_sha256": "ef584be007e78926dac89863b87e1e2bdd0358d9a89ed68c433f9f57ab1dd953"
+    },
+    {
+      "relative": "source/firmware/third_party/usb/vendor/tinyusb/src/common/tusb_private.h",
+      "native_input_sha256": "6216aa425618d3c88ff57c0d2d29caace1b59bad1c361627a9a7401e4994fa97",
+      "final_source_sha256": "6216aa425618d3c88ff57c0d2d29caace1b59bad1c361627a9a7401e4994fa97"
+    },
+    {
+      "relative": "source/firmware/third_party/usb/vendor/tinyusb/src/common/tusb_types.h",
+      "native_input_sha256": "cb6f1d329629fe7a91a2509d991878298070d203d804eab7f90a260de1c977a4",
+      "final_source_sha256": "cb6f1d329629fe7a91a2509d991878298070d203d804eab7f90a260de1c977a4"
+    },
+    {
+      "relative": "source/firmware/third_party/usb/vendor/tinyusb/src/common/tusb_verify.h",
+      "native_input_sha256": "061205bd8a55fd7134436bef64147100769a4ee4f15cef123f3b513c62b57514",
+      "final_source_sha256": "061205bd8a55fd7134436bef64147100769a4ee4f15cef123f3b513c62b57514"
+    },
+    {
+      "relative": "source/firmware/third_party/usb/vendor/tinyusb/src/osal/osal.h",
+      "native_input_sha256": "c9bd3d35f7436c47287bc481041f9af6aeec605f1e0291e3a76bd95bfc04f4d9",
+      "final_source_sha256": "c9bd3d35f7436c47287bc481041f9af6aeec605f1e0291e3a76bd95bfc04f4d9"
+    },
+    {
+      "relative": "source/firmware/third_party/usb/vendor/tinyusb/src/osal/osal_none.h",
+      "native_input_sha256": "d6eed8e3a3c7a25fc7d57bdded71ce2f56aa82564d7a1dd07cba525239bc1b8f",
+      "final_source_sha256": "d6eed8e3a3c7a25fc7d57bdded71ce2f56aa82564d7a1dd07cba525239bc1b8f"
+    },
+    {
+      "relative": "source/firmware/third_party/usb/vendor/tinyusb/src/tusb_option.h",
+      "native_input_sha256": "452216f8caa674e6987f7565186dc100d02a177f3a655c7cb6e506e68e0ee67f",
+      "final_source_sha256": "452216f8caa674e6987f7565186dc100d02a177f3a655c7cb6e506e68e0ee67f"
+    },
+    {
+      "relative": "source/firmware/third_party/usb/vendor/tinyusb/src/common/tusb_fifo.c",
+      "native_input_sha256": "d87e25d3329244226f3b794882e89898ac5fe20e04568a7750f4aff154f871ac",
+      "final_source_sha256": "d87e25d3329244226f3b794882e89898ac5fe20e04568a7750f4aff154f871ac"
+    },
+    {
+      "relative": "patched/v2/platform/adc_timer_dma.c",
+      "native_input_sha256": "90e46c2a5480b5a100ac27033c37c3613fff778eda234c17edf28064895ab0ba",
+      "final_source_sha256": "90e46c2a5480b5a100ac27033c37c3613fff778eda234c17edf28064895ab0ba"
+    },
+    {
+      "relative": "patched/v2/platform/adc_timer_dma.h",
+      "native_input_sha256": "c9330db5341f79ea1495ba42211252fa70e432d66ea527f7427fc0f391d6c1cf",
+      "final_source_sha256": "c9330db5341f79ea1495ba42211252fa70e432d66ea527f7427fc0f391d6c1cf"
+    },
+    {
+      "relative": "source/firmware/platform/mt_timebase.c",
+      "native_input_sha256": "e9adfde14df828040bd665781ecbd737a3a27e8b3d396e8639d5e93a500ca774",
+      "final_source_sha256": "e9adfde14df828040bd665781ecbd737a3a27e8b3d396e8639d5e93a500ca774"
+    },
+    {
+      "relative": "patched/v2/platform/mt_timebase.h",
+      "native_input_sha256": "b41cc0a080ddae68bffd5a1b7f4af31da7900bb29f3939c2bd2c2e690026ad39",
+      "final_source_sha256": "b41cc0a080ddae68bffd5a1b7f4af31da7900bb29f3939c2bd2c2e690026ad39"
+    },
+    {
+      "relative": "patched/v2/platform/mt_stream_diag.h",
+      "native_input_sha256": "a2dc9c01d5a1ca9168e776e33c719ec727f0e0e301aad755d12b3280931774e5",
+      "final_source_sha256": "a2dc9c01d5a1ca9168e776e33c719ec727f0e0e301aad755d12b3280931774e5"
+    },
+    {
+      "relative": "patched/v2/app/mt_live_adc.c",
+      "native_input_sha256": "5995b7d664e4b9446e9e29400f34b5dd9a2e4c33acb50f32a35db802c55c930a",
+      "final_source_sha256": "5995b7d664e4b9446e9e29400f34b5dd9a2e4c33acb50f32a35db802c55c930a"
+    },
+    {
+      "relative": "patched/v2/app/mt_live_adc.h",
+      "native_input_sha256": "9056a9520560586673b1a9fb3fde7dda379e29433aff3e3f35075c13ec926afc",
+      "final_source_sha256": "9056a9520560586673b1a9fb3fde7dda379e29433aff3e3f35075c13ec926afc"
+    },
+    {
+      "relative": "patched/v2/protocol/mt_live_device.c",
+      "native_input_sha256": "9eca593152eb91f65cc35af6e78c73a5d1a1c02bafb737ca6e8542c234095868",
+      "final_source_sha256": "9eca593152eb91f65cc35af6e78c73a5d1a1c02bafb737ca6e8542c234095868"
+    },
+    {
+      "relative": "patched/v2/protocol/mt_live_device.h",
+      "native_input_sha256": "a700783d31b7a52ef6408705d24ac9ce1a34c3693a1bad6a9287c8050922d93a",
+      "final_source_sha256": "a700783d31b7a52ef6408705d24ac9ce1a34c3693a1bad6a9287c8050922d93a"
+    },
+    {
+      "relative": "patched/v2/protocol/mt_wire.c",
+      "native_input_sha256": "db75cb70135ecde3c4f3aaefb032a55cb59808e7541fe232955d302043382d8d",
+      "final_source_sha256": "db75cb70135ecde3c4f3aaefb032a55cb59808e7541fe232955d302043382d8d"
+    },
+    {
+      "relative": "patched/v2/protocol/mt_wire.h",
+      "native_input_sha256": "e8edcb0aea5cdc946106db3146d358ff9061970313efaf67102b216653c0273d",
+      "final_source_sha256": "e8edcb0aea5cdc946106db3146d358ff9061970313efaf67102b216653c0273d"
+    },
+    {
+      "relative": "patched/v2/protocol/mt_v2_crc32.h",
+      "native_input_sha256": "48f29791e8b0595dabdc70ec06807f4dc064a56e66db514df24dd04ea9222a2f",
+      "final_source_sha256": "48f29791e8b0595dabdc70ec06807f4dc064a56e66db514df24dd04ea9222a2f"
+    },
+    {
+      "relative": "patched/v2/acquisition/mt_sample_queue.c",
+      "native_input_sha256": "49a1232056101f57423947e266d6bd398eab6b9cae86f3e1d9babf0eb311dc7f",
+      "final_source_sha256": "49a1232056101f57423947e266d6bd398eab6b9cae86f3e1d9babf0eb311dc7f"
+    },
+    {
+      "relative": "patched/v2/acquisition/mt_sample_queue.h",
+      "native_input_sha256": "929eedaaff900286fc07b8bbffa6794fc5d044e12a4ce25dee3fb1297180b393",
+      "final_source_sha256": "929eedaaff900286fc07b8bbffa6794fc5d044e12a4ce25dee3fb1297180b393"
+    }
+  ],
+  "input_drift": [],
+  "scope": "Reuse the exact same C/native inputs and identical ARM BIN; no additional ADC/CEN execution or physical inference."
+}

@@ -1,6 +1,10 @@
 {
   "schema": "motortester-v2-stream-build-1",
-  "firmware_build": 1446138677,
+  "firmware_build": 1446138678,
+  "cdc_tx_fifo_bytes": 384,
+  "cdc_tx_transfer_bytes": 384,
+  "usb_tx_burst_packets": 6,
+  "usb_tx_burst_limit_us": 500,
   "nominal_sample_rate_hz": 200000,
   "adc_sample_cycles_x2": 83,
   "dma_samples": 1024,
@@ -25,7 +29,7 @@
     "bcd_device": 512,
     "bus_power_ma": 100,
     "manufacturer": "font-weight",
-    "product": "Motortester V2 200k trial",
+    "product": "Motortester V2 200k USB6",
     "serial": "AH20261017001"
   }
 }
