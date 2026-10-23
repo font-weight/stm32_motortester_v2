@@ -33,7 +33,13 @@ V2SA задана ARM recipe. Runtime admission helper фактический, u
 [Программный архив G](verification/v2-tx-prepare/software-evidence.json):
 43byte-equal пары1616485байт, manifest SHA256
 `f76746591cab18b3c8bae9efe1cef9e2ebab0eaec79b272486df1a77fcb00d9a`.
-Независимый финальный software verdict ожидается; Flash G не выполнялся.
+Независимое [software-ревью](reviews/v2-06g-review.md): **PASS 9,595/10**,
+source `a7b45bccf54f3155de03389aa5e49b237905c994`, без открытых P0/P1.
+Это не приёмка физических 100k и не допуск Flash. Для отдельного G2
+подготовлен точный десятисекундный план. Свежая копия64КиБ из платы
+побайтно совпала с проверенной S4, SHA256
+`95d3a11f8db843e362b2c59ed6fbf380dd630e067fa23f6ae5a9c7d2b11dff1e`.
+Flash G пока не выполнялся; отдельный допуск плана ожидается.
 **На плате остаётся S4/50k**, Windows-пакет v6dw2 не менялся.
 
 ## 23.10.2026 — V2-06f2: получен профиль первой ошибки; S4 восстановлена

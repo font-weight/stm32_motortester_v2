@@ -1,0 +1,83 @@
+{
+  "schema": "v2-06g-independent-software-review-1",
+  "reviewer": "stream200_critic",
+  "independent_of_implementation": true,
+  "date": "2026-10-24",
+  "status": "PASS",
+  "scope": "V2-06g exact TX prepare software/ARM/native candidate only",
+  "score": 9.595,
+  "threshold": 9.5,
+  "source_commit": "a7b45bccf54f3155de03389aa5e49b237905c994",
+  "base_commit": "ae2cf9c7f5653d9c258dcba5a89efcc16a64ed3a",
+  "functional_baseline": "S8 build/v6e-fw-01 (100000 samples/s)",
+  "build_id": "0x56325341",
+  "freeze_sha256": "63734e85f0bc27032955f0f4863b1946a2b5ee228a228e12b1f565af6db3100c",
+  "software_archive_sha256": "f76746591cab18b3c8bae9efe1cef9e2ebab0eaec79b272486df1a77fcb00d9a",
+  "bin_bytes": 37132,
+  "bin_sha256": "8e8a5f2597a573ffaecfc054b01de726975ec5de07a33b06c4e56f5de75b3558",
+  "elf_sha256": "e8a9574fa7374492bdbe258685005b45f7230faf64276755e39c732693359946",
+  "ratings": [
+    {
+      "criterion": "C1",
+      "weight": 0.3,
+      "score": 9.6,
+      "basis": "Prepare only changes existing staging/ticket; before-write state/epoch gates and deferred recovery preserve original commit and wire semantics; native S8 equality and edge cases verified."
+    },
+    {
+      "criterion": "C2",
+      "weight": 0.2,
+      "score": 9.6,
+      "basis": "Stale/error/known-zero/partial/unknown/TIME paths covered; exact static RAM and conditional stack fit; physical IRQ timing remains outside scope."
+    },
+    {
+      "criterion": "C3",
+      "weight": 0.25,
+      "score": 9.6,
+      "basis": "Exact source, compiler inputs, objects, ELF/BIN, native fixture and transcripts checked; candidate executable independently replayed; logical runtime seams and synthetic build identity are explicit."
+    },
+    {
+      "criterion": "C4",
+      "weight": 0.15,
+      "score": 9.5,
+      "basis": "Single staging and explicit fieldwise ticket avoid extra queues; compatibility entry remains; ticket/state list adds real maintenance cost and requires future synchronization."
+    },
+    {
+      "criterion": "C5",
+      "weight": 0.1,
+      "score": 9.7,
+      "basis": "Full source/base SHA, freeze and archived receipts are pinned and byte-verified; changed diagnostic meaning and separate hardware gate documented."
+    }
+  ],
+  "open_findings": [],
+  "resolved_review_points": [
+    "Explicit fieldwise ticket and non-aliasing sole-foreground precondition",
+    "Stale actual Stop/HELLO and stale deferred error do not write or recover a replacement session; fresh path resumes",
+    "Elapsed preparation is included in original deadline checks",
+    "Earlier concern about ERROR return difference resolved by reading recover: it always enters FAULT; no patch needed",
+    "Legacy tx_max excludes preparation, now explicitly documented"
+  ],
+  "checks": {
+    "exact": {
+      "path": "docs/verification/v2-tx-prepare/critic-exact-checks.json",
+      "sha256": "ac85ea364118d42fe69a9621141d5040988c6c895fba9b779a1099328e060ec9"
+    },
+    "archive": {
+      "path": "docs/verification/v2-tx-prepare/critic-archive-checks.json",
+      "sha256": "b391c204d29bd2bfc1ecd6588ff01a838c008a21284e05b0b7bdd8f1a6801c17"
+    }
+  },
+  "limitations": [
+    "No physical 100k/200k acceptance, no WCET or throughput claim",
+    "Actual core/wire/queue and runtime admission helper; usable/IRQ callbacks are logical native seams, not an MCU interrupt simulation",
+    "Common synthetic S8 firmware-build value used only for byte comparison; V2SA actual identity comes from exact ARM recipe",
+    "Conditional stack analysis is not measured hardware stack consumption",
+    "Prepare permits already allowed IRQ service, does not issue a new IRQ grant or remove encoding CPU cost",
+    "Changed legacy tx_max cannot directly compare with S8/S9 TX maxima",
+    "Earlier physical failures remain unchanged and open at system level"
+  ],
+  "hardware_access": false,
+  "flash_approved": false,
+  "physical_100ksps_accepted": false,
+  "physical_200ksps_accepted": false,
+  "next_gate": "Separate exact image/preflight/one-trial plan and independent admission before Flash; rollback only for a concrete need under current user instruction"
+}

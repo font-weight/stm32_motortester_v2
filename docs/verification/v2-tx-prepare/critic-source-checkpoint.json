@@ -1,0 +1,41 @@
+{
+  "schema": "v2-06g-independent-source-checkpoint-1",
+  "status": "BLOCKED_EVIDENCE",
+  "score": null,
+  "scope": "Early read-only review of proposed prepare API and first source checkpoint, not final acceptance/Flash",
+  "critic": "stream200_critic",
+  "independent": true,
+  "pins": {
+    "build/v6g-analysis/prepare-plan.md": "4db1dccbb0fc9ec5395e570ae7ba275516b5ceae0b23fa0ea76e385b47967f56",
+    "build/v6g-analysis/prepare-plan.json": "6f94f693d729d26c3fea562fc441a0f03877692a599988423c7e67c744625233",
+    "build/v6g-prep/v2/protocol/mt_live_device.c": "9b952cd8e19eaa3ff4879429b1e925ca20ff7114c5a1d6d037afd1ed0baa3f33",
+    "build/v6g-prep/v2/protocol/mt_live_device.h": "4576dcdf81aaabde281af9613de6ff1d296787afda60138c83f783a570a6f75f",
+    "build/v6g-prep/v2/app/mt_live_runtime.c": "3e8b4f78bc5a3f00a200ed367e25075f4db626f411b5c54d5163fc4986abebcd",
+    "firmware/v2-stream/overlays/tx-prepare.json": "0dc24bd207a23c139151b873dafade067b409ff83fe6815e76a47a563017f92d"
+  },
+  "personally_read": [
+    "exact S8 core/runtime/queue contract",
+    "draft prepare plan and whole new ticket/capture/match/build/step/runtime insertion"
+  ],
+  "observed": [
+    "Prepare writes existing tx bytes/metadata and caller-owned fieldwise ticket; no new static byte buffer in checkpoint.",
+    "build_tx defers sequence/encode errors without callbacks.",
+    "step_tx matches ticket before ERROR recovery and again immediately before write; completion body unchanged.",
+    "Runtime stores epoch/soft_serial and invokes usable under original guard; post-write core remains guarded.",
+    "Cached staging preserved on stale ticket; multi-pass actual Stop/HELLO test required before acceptance."
+  ],
+  "author_feedback": [
+    "Document changed legacy TX bracket, which now excludes prepare/encode; do not compare maxima as identical scopes.",
+    "Cover deadline expiry during prepare and stale ERROR in existing narrow actual-core model.",
+    "Prepared ERROR return0 versus compatibility state!=FAULT after successful recover is a conservative return-code difference; verify/document."
+  ],
+  "open_functional_blockers_found": [],
+  "mandatory_pending": [
+    "final exact source/overlay/build-option freeze",
+    "actual-core S8 vs candidate transcript/edge native evidence and runtime epoch seam",
+    "exact ARM/BIN/ELF/static stack/RAM bound",
+    "final source/evidence archive and independent verdict"
+  ],
+  "hardware_access": false,
+  "physical_rate_accepted": false
+}

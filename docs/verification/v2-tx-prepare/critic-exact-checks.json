@@ -1,0 +1,63 @@
+{
+  "schema": "v2-06g-critic-exact-checks-1",
+  "status": "PASS",
+  "scope": "Software source/ARM/native only",
+  "freeze_sha256": "63734e85f0bc27032955f0f4863b1946a2b5ee228a228e12b1f565af6db3100c",
+  "counts": {
+    "freeze_pins": 78,
+    "inputs_before": 521,
+    "dependencies": 112,
+    "analysis_inputs": 32,
+    "objects": 30,
+    "native_inputs": 42
+  },
+  "final02_vs_native01_image_objects_dependencies_equal": true,
+  "static_recomputed_equal": true,
+  "ELF_PT_LOAD_matches_BIN": true,
+  "bin_bytes": 37132,
+  "bin_sha256": "8e8a5f2597a573ffaecfc054b01de726975ec5de07a33b06c4e56f5de75b3558",
+  "elf_sha256": "e8a9574fa7374492bdbe258685005b45f7230faf64276755e39c732693359946",
+  "vectors": [
+    "0x20005000",
+    "0x8008b4d"
+  ],
+  "legacy_symbols": [
+    "20002bc4 00000088 B mt_stream_diagnostics"
+  ],
+  "active_profile_absent": true,
+  "RAM": {
+    "text": 37004,
+    "data": 128,
+    "bss": 11212,
+    "stack_reserve": 8192,
+    "ram_total_with_stack_reserve": 19532,
+    "ram_limit": 20480,
+    "ram_spare": 948,
+    "conditional_stack_bound": 6044,
+    "aligned_minimum": 6048,
+    "legacy_diagnostics_address": "0x20002bc4",
+    "legacy_diagnostics_bytes": 136,
+    "active_profile_symbol_absent": true,
+    "active_profile_enabled": false
+  },
+  "native_model_and_exact_source_copies_verified": true,
+  "S8_candidate_saved_transcripts_equal": true,
+  "transcript_bytes": 2649,
+  "transcript_sha256": "6336b049ad72f348152b59382e6d70a3b55c1ac11ea8976d01674db7ce7a15d9",
+  "candidate_native_replay": {
+    "argv": [
+      "build/v6g-native-01/candidate/model.exe",
+      "NUL"
+    ],
+    "returncode": 0,
+    "stdout": "PASS actual S8/candidate transcript fixtures: HELLO/CAPS/START/DATA/END/ACK; zero and partial acceptance\nPASS pure/cached prepare; stale core/epoch tickets; actual Stop and partial HELLO replacement; deferred error\nPASS TIME before/after write/final commit; late deadline retains known bytes; unknown acceptance fenced\nPASS narrow actual-core TX model; baseline byte comparison is performed by runner, no physical timing claim\n",
+    "stderr": "",
+    "original_transcript_not_written": true
+  },
+  "environment": {
+    "python": "3.14.7 (tags/v3.14.7:823f032, Aug  5 2026, 10:51:32) [MSC v.1944 64 bit (AMD64)]",
+    "platform": "Windows-10-10.0.19045-SP0"
+  },
+  "hardware_access": false,
+  "flash_approval": false
+}

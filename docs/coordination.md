@@ -1,5 +1,13 @@
 # Координация самостоятельного V2
 
+V2-06g2: root единолично COM/SWD, build/v6g-board-01 и канонические
+документы. Host_200k — только offline decode_diagnostics.py, затем явно
+порученный разбор сохранённых данных. Stream200_critic — отдельный
+docs/reviews/v2-06g-flash-review.md и v2-06g2-review.md,
+docs/verification/v2-tx-prepare/critic*.json. Firmware source G заморожен;
+один аппаратный опыт только после отдельного допуска. Автовозврата S4
+после любого отказа больше нет: действует новое указание пользователя.
+
 V2-06g: higher_fs_review — firmware/v2-stream/**, tests/v2-stream-firmware/**
 и build/v6g-*, кроме tests/v2-stream-firmware/tx_prepare_model.c и
 build/v6g-model-plan.* (только host_200k). Автор фиксирует API до модели,

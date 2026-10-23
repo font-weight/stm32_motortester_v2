@@ -1,0 +1,152 @@
+{
+  "base_commit": "a7b45bccf54f3155de03389aa5e49b237905c994",
+  "cli_sha256": "7fb012b5e26abf45342caa05c6bc33936f8a379b67797cc55658ffb8bf15e95f",
+  "preflight_sha256": "3297c7e0d50012c5a0192f939a2e140dcdeb16ffafed027ee1b9bf789f82e556",
+  "program_argv": [
+    "C:/Program Files (x86)/STMicroelectronics/STM32 ST-LINK Utility/ST-LINK Utility/ST-LINK_CLI.exe",
+    "-c",
+    "ID=0",
+    "SWD",
+    "HOTPLUG",
+    "-P",
+    "build/v6g-fw-02/MotortesterV2-stream-candidate.bin",
+    "0x08000000",
+    "-V"
+  ],
+  "readback_argv": [
+    "C:/Program Files (x86)/STMicroelectronics/STM32 ST-LINK Utility/ST-LINK Utility/ST-LINK_CLI.exe",
+    "-c",
+    "ID=0",
+    "SWD",
+    "HOTPLUG",
+    "-Dump",
+    "0x08000000",
+    "0x910c",
+    "build/v6g-board-01/readback.bin"
+  ],
+  "reset_argv": [
+    "C:/Program Files (x86)/STMicroelectronics/STM32 ST-LINK Utility/ST-LINK Utility/ST-LINK_CLI.exe",
+    "-c",
+    "ID=0",
+    "SWD",
+    "HOTPLUG",
+    "-Rst",
+    "-Run"
+  ],
+  "trial_argv": [
+    ".venv/Scripts/python.exe",
+    "-B",
+    "host/tools/v2_stream_probe.py",
+    "--port",
+    "COM6",
+    "--output",
+    "build/v6g-board-01/run",
+    "--seconds",
+    "10",
+    "--build-id",
+    "0x56325341",
+    "--sample-rate",
+    "100000",
+    "--source-commit",
+    "a7b45bccf54f3155de03389aa5e49b237905c994",
+    "--image-sha256",
+    "8e8a5f2597a573ffaecfc054b01de726975ec5de07a33b06c4e56f5de75b3558"
+  ],
+  "trial_env": {
+    "PYTHONPATH": "host"
+  },
+  "no_swd_during_trial": true,
+  "diagnostic_address": "0x20002BC4",
+  "diagnostic_bytes": 136,
+  "register_dumps_after_owner_close": {
+    "tim3": [
+      1073742848,
+      48
+    ],
+    "adc": [
+      1073816584,
+      12
+    ],
+    "dma": [
+      1073872904,
+      16
+    ],
+    "rcc": [
+      1073877004,
+      20
+    ]
+  },
+  "expected_unknown_produced_tail": true,
+  "observed_rate_tolerance": [
+    90000,
+    110000
+  ],
+  "rollback_image": "build/v6g-board-01/before-flash-64k.bin",
+  "rollback_sha256": "95d3a11f8db843e362b2c59ed6fbf380dd630e067fa23f6ae5a9c7d2b11dff1e",
+  "candidate_bytes": 37132,
+  "deadline_us_exclusive": 5120,
+  "expected_tim3_psc_arr": [
+    71,
+    9
+  ],
+  "rollback_ready_helper": "build/v5-board-stream-04/check_ready.py",
+  "rollback_ready_helper_sha256": "7034811bb771781927228b5115e7446ef3ec9b059963cbc7963a07fbe48f7c34",
+  "rollback_ready_argv": [
+    ".venv/Scripts/python.exe",
+    "-B",
+    "build/v5-board-stream-04/check_ready.py",
+    "--output",
+    "build/v6g-board-01/rollback-ready.json"
+  ],
+  "rollback_ready_env": {
+    "PYTHONPATH": "host"
+  },
+  "iteration": "V2-06g2",
+  "purpose": "One physical 100 kS/s trial of the independently reviewed TX preparation change",
+  "source_commit": "a7b45bccf54f3155de03389aa5e49b237905c994",
+  "candidate_sha256": "8e8a5f2597a573ffaecfc054b01de726975ec5de07a33b06c4e56f5de75b3558",
+  "candidate_elf_sha256": "e8a9574fa7374492bdbe258685005b45f7230faf64276755e39c732693359946",
+  "software_review_sha256": "4e79e84e0a9709d4484042ecc857598d50b816431c6b7909ea147ce6ec01ae9d",
+  "trial_tool_sha256": "14de99c546586e5f9fd89b03622861e1865c65f448ceb7224c49cb17ab79cb35",
+  "single_START_only": true,
+  "target_record_seconds_after_preview": 10,
+  "physical_setup": "Previously confirmed: PA0 empty; board USB powered, ST-Link 3.3V disconnected; no wiring change requested",
+  "readback_must_equal_before_reset_run": true,
+  "post_flash_replug": "User board USB unplug/replug; ST-Link unchanged; app closed. Wait for actual ready reply.",
+  "admission_before_START": {
+    "build_id": "0x56325341",
+    "sample_rate_hz": 100000,
+    "channels": 1,
+    "adc_bits": 12,
+    "data_block_samples": 128
+  },
+  "diagnostic_reads": 2,
+  "profile_512_present": false,
+  "diagnostic_decoder": "build/v6g-board-01/decode_diagnostics.py",
+  "diagnostic_decoder_sha256": "c5d4eb3076380edc21c9319201b4eeb53dc0f5e649af9c6c0f9b4d6a8ea096cd",
+  "diagnostic_metric_change": "tx_max excludes prepare/encode; step/poll still include it. Never directly compare TX maxima with S8/S9 as total TX cost.",
+  "acceptance": [
+    "Program verify and independent byte-equal readback of all 37132 bytes",
+    "Exact build/CAPS before one START; target Record 10 seconds after Preview; actual duration and overshoot preserved",
+    "No source/host failure; record delta/host elapsed 90000..110000 samples/s is only a rough pacing check, not oscillator calibration",
+    "Normal END reason0 and matching STOP ACK; unknown produced tail retained, not zero",
+    "Fresh Open plus companion and exact selected raw compared to preserved wire, CRC/prefix/sequence validation",
+    "COM owner closed before any SWD; two legacy136 dumps equal, expected build/nonce/generation, frozen, flags0, poll and copy below5120us",
+    "TIM3 CEN0 PSC71 ARR9; ADC CR2=0 SMPR2 low3bits4; DMA EN0; relevant RCC clocks on/resets off; ADC_DR not read",
+    "Independent physical review against these unchanged acceptance criteria; a failed trial stays failed"
+  ],
+  "failure_policy": "Preserve all traffic, prefix and diagnostics; no automatic second START or changed-Fs retry",
+  "rollback_policy": {
+    "automatic_after_failed_trial": false,
+    "retain_candidate_if": "Board boots, communicates and acquisition is confirmed stopped, including a retained queue-full failure",
+    "restore_only_if": [
+      "Programming/readback cannot be completed correctly",
+      "Candidate does not boot or USB communication remains unavailable after the planned replug",
+      "Source stopping cannot be confirmed",
+      "User needs ordinary verified 50 kS/s operation"
+    ],
+    "record_reason_before_restore": true,
+    "procedure": "Program fresh full64KiB backup with verify; independent whole readback byte comparison; reset/run then user replug; original READY helper without START",
+    "user_instruction": "Do not restore old firmware every time if unnecessary"
+  }
+}

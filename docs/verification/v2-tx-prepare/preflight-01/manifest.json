@@ -1,0 +1,73 @@
+{
+  "purpose": "V2-06g2 preflight only, no Flash or START",
+  "files": [
+    {
+      "source": "build/v6g-board-01/plan.json",
+      "archive": "docs/verification/v2-tx-prepare/preflight-01/plan.json",
+      "bytes": 6002,
+      "sha256": "b65c31afeb98d46463749184169cdd10b33f3fa73ea7b51538e7c212d20e3c95"
+    },
+    {
+      "source": "build/v6g-board-01/preflight.json",
+      "archive": "docs/verification/v2-tx-prepare/preflight-01/preflight.json",
+      "bytes": 849,
+      "sha256": "3297c7e0d50012c5a0192f939a2e140dcdeb16ffafed027ee1b9bf789f82e556"
+    },
+    {
+      "source": "build/v6g-board-01/processes-before.json",
+      "archive": "docs/verification/v2-tx-prepare/preflight-01/processes-before.json",
+      "bytes": 4,
+      "sha256": "a5338d955b09046ec0b16f3a9625b7955c763aae07dc722e474e6078745f932f"
+    },
+    {
+      "source": "build/v6g-board-01/ports-before.json",
+      "archive": "docs/verification/v2-tx-prepare/preflight-01/ports-before.json",
+      "bytes": 135,
+      "sha256": "c8614e25240676a110cd0c9f9761ba2d2fc559f249875431289a7b08eedef67d"
+    },
+    {
+      "source": "build/v6g-board-01/probe-list.txt",
+      "archive": "docs/verification/v2-tx-prepare/preflight-01/probe-list.txt",
+      "bytes": 239,
+      "sha256": "b58c8ddae6534dd35b9a1498631f1ee20ba54017c8f3ccfa2b156244c92e72a3"
+    },
+    {
+      "source": "build/v6g-board-01/backup.log",
+      "archive": "docs/verification/v2-tx-prepare/preflight-01/backup.log",
+      "bytes": 872,
+      "sha256": "09e3d2d65197970924ed898a39447a0e8e397efad808a618f5f4041e4d572617"
+    },
+    {
+      "source": "build/v6g-board-01/before-flash-64k.bin",
+      "archive": "docs/verification/v2-tx-prepare/preflight-01/before-flash-64k.bin",
+      "bytes": 65536,
+      "sha256": "95d3a11f8db843e362b2c59ed6fbf380dd630e067fa23f6ae5a9c7d2b11dff1e"
+    },
+    {
+      "source": "build/v6g-board-01/decode_diagnostics.py",
+      "archive": "docs/verification/v2-tx-prepare/preflight-01/decode_diagnostics.py",
+      "bytes": 12283,
+      "sha256": "c5d4eb3076380edc21c9319201b4eeb53dc0f5e649af9c6c0f9b4d6a8ea096cd"
+    },
+    {
+      "source": "build/v6g-plan.py",
+      "archive": "docs/verification/v2-tx-prepare/preflight-01/v6g-plan.py",
+      "bytes": 5900,
+      "sha256": "2380aa97530160496af2bb4a2ac95a6aeb90fd444a6f3943e1f3cac27b5b4c89"
+    },
+    {
+      "source": "host/tools/v2_stream_probe.py",
+      "archive": "docs/verification/v2-tx-prepare/preflight-01/v2_stream_probe.py",
+      "bytes": 10445,
+      "sha256": "14de99c546586e5f9fd89b03622861e1865c65f448ceb7224c49cb17ab79cb35"
+    },
+    {
+      "source": "build/v5-board-stream-04/check_ready.py",
+      "archive": "docs/verification/v2-tx-prepare/preflight-01/check_ready.py",
+      "bytes": 5555,
+      "sha256": "7034811bb771781927228b5115e7446ef3ec9b059963cbc7963a07fbe48f7c34"
+    }
+  ],
+  "byte_equal": true,
+  "total_bytes": 107820
+}
