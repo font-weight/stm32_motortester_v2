@@ -1,0 +1,20 @@
+{
+  "purpose": "Exact helper used for rollback READY; not the unused prepared S7 helper",
+  "source": "build/v5-board-stream-04/check_ready.py",
+  "copy": "docs/verification/v2-100ksps/rollback-ready-repro/check_ready_s4.py",
+  "bytes": 5555,
+  "sha256": "7034811bb771781927228b5115e7446ef3ec9b059963cbc7963a07fbe48f7c34",
+  "argv": [
+    ".venv/Scripts/python.exe",
+    "-B",
+    "build/v5-board-stream-04/check_ready.py",
+    "--output",
+    "build/v6d-board-01/rollback-ready.json"
+  ],
+  "env": {
+    "PYTHONPATH": "host"
+  },
+  "stdout_redirect": "build/v6d-board-01/rollback-ready-stdout.txt",
+  "result_sha256": "ef4df4735d76f3d62d3be3e1866f14fd6b9d244b400880e6a8f5995e44dab0f0",
+  "no_start": true
+}

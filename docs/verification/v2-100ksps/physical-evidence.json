@@ -1,0 +1,290 @@
+{
+  "schema": "v2-06d-physical-evidence-1",
+  "base_commit": "d67be662bdac8f0a046e6da6e72fa92a70d4e057",
+  "physical_trial": "FAIL;2944 wire raw received,896 journal raw;queue-full before10seconds",
+  "installed_after_rollback": "V2S4 50000 S/s; full64KiB readback verified; READY and owner close, no new START",
+  "files": [
+    {
+      "source": "build/v6d-board-01/adc.bin",
+      "copy": "docs/verification/v2-100ksps/physical-01/adc.bin",
+      "bytes": 12,
+      "sha256": "b389a6884b289d4b53e9b36853b9a933c640fa7a5abe584f859a56c6768c01ba"
+    },
+    {
+      "source": "build/v6d-board-01/adc.txt",
+      "copy": "docs/verification/v2-100ksps/physical-01/adc.txt",
+      "bytes": 846,
+      "sha256": "57ed250cf84377cb0878e8840dd2400b70bce325943a3e95b2cdb03211abb387"
+    },
+    {
+      "source": "build/v6d-board-01/analyze_failure.py",
+      "copy": "docs/verification/v2-100ksps/physical-01/analyze_failure.py",
+      "bytes": 14666,
+      "sha256": "f6a7cd7f771d2fca39e76a7301df2022be0cb5c7f016a1b2ed4e104b0bd53ab3"
+    },
+    {
+      "source": "build/v6d-board-01/before-flash-64k.bin",
+      "copy": "docs/verification/v2-100ksps/physical-01/before-flash-64k.bin",
+      "bytes": 65536,
+      "sha256": "95d3a11f8db843e362b2c59ed6fbf380dd630e067fa23f6ae5a9c7d2b11dff1e"
+    },
+    {
+      "source": "build/v6d-board-01/before-flash-read.txt",
+      "copy": "docs/verification/v2-100ksps/physical-01/before-flash-read.txt",
+      "bytes": 872,
+      "sha256": "b2ddf32c28d7ecd9ee8f60419fafd422c84456bf14864c8c0668223c9aa9bd2e"
+    },
+    {
+      "source": "build/v6d-board-01/check_ready.py",
+      "copy": "docs/verification/v2-100ksps/physical-01/check_ready.py",
+      "bytes": 5694,
+      "sha256": "c6bf0107cfeb6e368f9cf27340c56f743b0e5f1a50929710d911d6cdbbdfed72"
+    },
+    {
+      "source": "build/v6d-board-01/decode_diagnostics.py",
+      "copy": "docs/verification/v2-100ksps/physical-01/decode_diagnostics.py",
+      "bytes": 11824,
+      "sha256": "8866897367ee812e76585eb88e7def4efd1fefc32ec332ad770c5953b26ace7f"
+    },
+    {
+      "source": "build/v6d-board-01/diagnostics-decoded.json",
+      "copy": "docs/verification/v2-100ksps/physical-01/diagnostics-decoded.json",
+      "bytes": 5919,
+      "sha256": "8e6f6ee9fba1a34ddaf51cf9543086ecb0c5bef664670c385c640f6f94805802"
+    },
+    {
+      "source": "build/v6d-board-01/diagnostics-first.bin",
+      "copy": "docs/verification/v2-100ksps/physical-01/diagnostics-first.bin",
+      "bytes": 136,
+      "sha256": "b645134cb0763f85cd77045c68c7aecaac28d750c7de737f4ef3cef1fc39a496"
+    },
+    {
+      "source": "build/v6d-board-01/diagnostics-first.txt",
+      "copy": "docs/verification/v2-100ksps/physical-01/diagnostics-first.txt",
+      "bytes": 874,
+      "sha256": "b6c4af6dbedf4ddcb3de6d88588a3a2560c8b3f62b1a6d1a47f656780ae3e88e"
+    },
+    {
+      "source": "build/v6d-board-01/diagnostics-second.bin",
+      "copy": "docs/verification/v2-100ksps/physical-01/diagnostics-second.bin",
+      "bytes": 136,
+      "sha256": "b645134cb0763f85cd77045c68c7aecaac28d750c7de737f4ef3cef1fc39a496"
+    },
+    {
+      "source": "build/v6d-board-01/diagnostics-second.txt",
+      "copy": "docs/verification/v2-100ksps/physical-01/diagnostics-second.txt",
+      "bytes": 876,
+      "sha256": "494256061e17155a1409d07d759ac261fefb4c72bf93648d07cf6c1c9b833522"
+    },
+    {
+      "source": "build/v6d-board-01/dma.bin",
+      "copy": "docs/verification/v2-100ksps/physical-01/dma.bin",
+      "bytes": 16,
+      "sha256": "b2b26ebc551c5cb444b06314b2c3ef8769c90e87ec7713072f973244bbd81327"
+    },
+    {
+      "source": "build/v6d-board-01/dma.txt",
+      "copy": "docs/verification/v2-100ksps/physical-01/dma.txt",
+      "bytes": 846,
+      "sha256": "7f5d1c30bfb46f79769d9fbff223f53e05cc75f0254e341704c41825919d6d87"
+    },
+    {
+      "source": "build/v6d-board-01/flash-verification.json",
+      "copy": "docs/verification/v2-100ksps/physical-01/flash-verification.json",
+      "bytes": 235,
+      "sha256": "6c8e1bd71642b1526547b40e6d9a0f363af336d2ce3c72b32809200c7b600301"
+    },
+    {
+      "source": "build/v6d-board-01/plan.json",
+      "copy": "docs/verification/v2-100ksps/physical-01/plan.json",
+      "bytes": 2231,
+      "sha256": "47b9e96388635f1f9cfc27fe8401cda5e0180c4d9adbda8ad90df1e62f7230d1"
+    },
+    {
+      "source": "build/v6d-board-01/ports-after-replug.json",
+      "copy": "docs/verification/v2-100ksps/physical-01/ports-after-replug.json",
+      "bytes": 135,
+      "sha256": "c8614e25240676a110cd0c9f9761ba2d2fc559f249875431289a7b08eedef67d"
+    },
+    {
+      "source": "build/v6d-board-01/ports-after-rollback.json",
+      "copy": "docs/verification/v2-100ksps/physical-01/ports-after-rollback.json",
+      "bytes": 135,
+      "sha256": "c8614e25240676a110cd0c9f9761ba2d2fc559f249875431289a7b08eedef67d"
+    },
+    {
+      "source": "build/v6d-board-01/ports-before.json",
+      "copy": "docs/verification/v2-100ksps/physical-01/ports-before.json",
+      "bytes": 135,
+      "sha256": "c8614e25240676a110cd0c9f9761ba2d2fc559f249875431289a7b08eedef67d"
+    },
+    {
+      "source": "build/v6d-board-01/preflight.json",
+      "copy": "docs/verification/v2-100ksps/physical-01/preflight.json",
+      "bytes": 378,
+      "sha256": "c93469a9ff6d0e9a57775105ecd1e80b9d3e5a510c7f96931febaa49bd870d69"
+    },
+    {
+      "source": "build/v6d-board-01/probe-list.txt",
+      "copy": "docs/verification/v2-100ksps/physical-01/probe-list.txt",
+      "bytes": 239,
+      "sha256": "b58c8ddae6534dd35b9a1498631f1ee20ba54017c8f3ccfa2b156244c92e72a3"
+    },
+    {
+      "source": "build/v6d-board-01/probe-stdout.txt",
+      "copy": "docs/verification/v2-100ksps/physical-01/probe-stdout.txt",
+      "bytes": 532,
+      "sha256": "c04d11f65a6b49c68cfd33dc759bf8a7d55bfc548699a97366edc0a8205834de"
+    },
+    {
+      "source": "build/v6d-board-01/program-verify.txt",
+      "copy": "docs/verification/v2-100ksps/physical-01/program-verify.txt",
+      "bytes": 953,
+      "sha256": "064cce746ac99824a2e44faec3108196d61d3789cfef9daa3f5c7c6fa2c91c76"
+    },
+    {
+      "source": "build/v6d-board-01/rcc.bin",
+      "copy": "docs/verification/v2-100ksps/physical-01/rcc.bin",
+      "bytes": 20,
+      "sha256": "1e24249e3619f46e4291c93fac339276c89ad2a136a324180aa83757fc71a367"
+    },
+    {
+      "source": "build/v6d-board-01/rcc.txt",
+      "copy": "docs/verification/v2-100ksps/physical-01/rcc.txt",
+      "bytes": 846,
+      "sha256": "e29910f25770279d9043d6d33325bde8d71a58612ea6ed77cb54083e88e33ef0"
+    },
+    {
+      "source": "build/v6d-board-01/readback.bin",
+      "copy": "docs/verification/v2-100ksps/physical-01/readback.bin",
+      "bytes": 36260,
+      "sha256": "f3d5563139d4e5892273312996bd8b8486f222196e6cf3c25042d5c37c6a290b"
+    },
+    {
+      "source": "build/v6d-board-01/readback.txt",
+      "copy": "docs/verification/v2-100ksps/physical-01/readback.txt",
+      "bytes": 856,
+      "sha256": "4e299d9e2681c9f31e6d41f1c4fb92d26fcad10ef5ebb14f27ef83e576ed3174"
+    },
+    {
+      "source": "build/v6d-board-01/received-prefix.u16le",
+      "copy": "docs/verification/v2-100ksps/physical-01/received-prefix.u16le",
+      "bytes": 5888,
+      "sha256": "c1bc00a6441e51f9f06c9f4b821976ea1d760ba7b1bcdc822611edfa24a71d8a"
+    },
+    {
+      "source": "build/v6d-board-01/recorded-prefix-analysis.json",
+      "copy": "docs/verification/v2-100ksps/physical-01/recorded-prefix-analysis.json",
+      "bytes": 4814,
+      "sha256": "d2ecc4c55e7e243bc5620007f01b85166065622e1b0d24b42eb2e0e68b6141c9"
+    },
+    {
+      "source": "build/v6d-board-01/registers-decoded.json",
+      "copy": "docs/verification/v2-100ksps/physical-01/registers-decoded.json",
+      "bytes": 1046,
+      "sha256": "be3fbfe21dcc8249331a02477747886184159555bd8c1c434365e2d9e93045ff"
+    },
+    {
+      "source": "build/v6d-board-01/reset-run.txt",
+      "copy": "docs/verification/v2-100ksps/physical-01/reset-run.txt",
+      "bytes": 420,
+      "sha256": "f8596a56771eed9f6bf4ebfd453433d8b7e7796ae747d34ca0eea8f480d620c9"
+    },
+    {
+      "source": "build/v6d-board-01/rollback-program-verify.txt",
+      "copy": "docs/verification/v2-100ksps/physical-01/rollback-program-verify.txt",
+      "bytes": 958,
+      "sha256": "4aff457498dc681e3ba3b5cdc47f95be74cf515738fb435ce3d272595141ad3d"
+    },
+    {
+      "source": "build/v6d-board-01/rollback-readback.bin",
+      "copy": "docs/verification/v2-100ksps/physical-01/rollback-readback.bin",
+      "bytes": 65536,
+      "sha256": "95d3a11f8db843e362b2c59ed6fbf380dd630e067fa23f6ae5a9c7d2b11dff1e"
+    },
+    {
+      "source": "build/v6d-board-01/rollback-readback.txt",
+      "copy": "docs/verification/v2-100ksps/physical-01/rollback-readback.txt",
+      "bytes": 874,
+      "sha256": "d82ab8ad3804530dd21beb54d7e8462f9daa8f955b3028ae347cfbb0b01c689e"
+    },
+    {
+      "source": "build/v6d-board-01/rollback-ready-stdout.txt",
+      "copy": "docs/verification/v2-100ksps/physical-01/rollback-ready-stdout.txt",
+      "bytes": 6225,
+      "sha256": "ef4df4735d76f3d62d3be3e1866f14fd6b9d244b400880e6a8f5995e44dab0f0"
+    },
+    {
+      "source": "build/v6d-board-01/rollback-ready.json",
+      "copy": "docs/verification/v2-100ksps/physical-01/rollback-ready.json",
+      "bytes": 6225,
+      "sha256": "ef4df4735d76f3d62d3be3e1866f14fd6b9d244b400880e6a8f5995e44dab0f0"
+    },
+    {
+      "source": "build/v6d-board-01/rollback-reset-run.txt",
+      "copy": "docs/verification/v2-100ksps/physical-01/rollback-reset-run.txt",
+      "bytes": 420,
+      "sha256": "f8596a56771eed9f6bf4ebfd453433d8b7e7796ae747d34ca0eea8f480d620c9"
+    },
+    {
+      "source": "build/v6d-board-01/rollback-verification.json",
+      "copy": "docs/verification/v2-100ksps/physical-01/rollback-verification.json",
+      "bytes": 207,
+      "sha256": "e2a35650a6670e6cd3c587b10a196f96c396d7bbc7f72dbe73d9564518e88701"
+    },
+    {
+      "source": "build/v6d-board-01/run/physical.mtstream",
+      "copy": "docs/verification/v2-100ksps/physical-01/run/physical.mtstream",
+      "bytes": 3047,
+      "sha256": "6aa2fbf2e5702a10b8d9e51f640f2b4be90a77cc892f08cabac40c329d06dd47"
+    },
+    {
+      "source": "build/v6d-board-01/run/physical.mtstream.v2.json",
+      "copy": "docs/verification/v2-100ksps/physical-01/run/physical.mtstream.v2.json",
+      "bytes": 1989,
+      "sha256": "cf3401ac292c66890a754a280aac602e046c888ffbd3de1acd078ab93ee216d0"
+    },
+    {
+      "source": "build/v6d-board-01/run/result.json",
+      "copy": "docs/verification/v2-100ksps/physical-01/run/result.json",
+      "bytes": 2869,
+      "sha256": "1218622ec8cfb4dd601a76e457a44b21e06ecca746192a9953b24812de18482b"
+    },
+    {
+      "source": "build/v6d-board-01/run/traffic.bin",
+      "copy": "docs/verification/v2-100ksps/physical-01/run/traffic.bin",
+      "bytes": 7867,
+      "sha256": "dec8ab9ba1b6b8264716d6bf7a121ebdc41e1ee93200e9c8d8569b259dd012f9"
+    },
+    {
+      "source": "build/v6d-board-01/sram-20k.bin",
+      "copy": "docs/verification/v2-100ksps/physical-01/sram-20k.bin",
+      "bytes": 20480,
+      "sha256": "dd94e8030f2c035b9cf7631b3563f0fb1eaf131377e18c1120b0822240f64631"
+    },
+    {
+      "source": "build/v6d-board-01/sram-20k.txt",
+      "copy": "docs/verification/v2-100ksps/physical-01/sram-20k.txt",
+      "bytes": 856,
+      "sha256": "288b20701d5a94d64c11d8046b94bbf09eb6e284802924c6621ac0f0ab193b2d"
+    },
+    {
+      "source": "build/v6d-board-01/tim3.bin",
+      "copy": "docs/verification/v2-100ksps/physical-01/tim3.bin",
+      "bytes": 48,
+      "sha256": "3aedfa625b49e6ef397d1e3bb6738177fe327d6a38b40181d0b536c2d2ad2d59"
+    },
+    {
+      "source": "build/v6d-board-01/tim3.txt",
+      "copy": "docs/verification/v2-100ksps/physical-01/tim3.txt",
+      "bytes": 848,
+      "sha256": "3923ddbc73113cc6164007177e230f095777309c31eea84cdf1aef8602748dba"
+    },
+    {
+      "source": "build/v6d-board-01/wire-failure-analysis.json",
+      "copy": "docs/verification/v2-100ksps/physical-01/wire-failure-analysis.json",
+      "bytes": 12248,
+      "sha256": "66a3bc9360a6d373fa9761b1542c7b70cfdea2fd2c75521662b13cd3fcf0a9c7"
+    }
+  ]
+}

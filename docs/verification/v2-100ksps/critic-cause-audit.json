@@ -1,0 +1,34 @@
+{
+  "status": "SUPPORTED_HYPOTHESIS_ONLY",
+  "critic": "stream200_critic",
+  "independent": true,
+  "implementation_written": false,
+  "hardware_access": false,
+  "author_analysis_sha256": "fe881c8fe22f3c1c0e44171c974dc6aab5de91f2c97b5dd10990266700110c1f",
+  "source_pins_verified": 18,
+  "unchanged_runtime_bodies_verified": 21,
+  "proposed_step_exactly_S4_by_removing_two_added_blocks": true,
+  "healthy_TIME_MMIO_per_update": 27,
+  "healthy_DATA_or_known_zero_EMPTY_DMA": {
+    "S7_TIME_updates": 22,
+    "proposed_TIME_updates": 14,
+    "S7_TIME_MMIO": 594,
+    "proposed_TIME_MMIO": 378
+  },
+  "healthy_one_DMA_half_DATA": {
+    "S7_TIME_updates": 27,
+    "proposed_TIME_updates": 19,
+    "S7_TIME_MMIO": 729,
+    "proposed_TIME_MMIO": 513
+  },
+  "TIME_MMIO_reduction_in_both_named_cases": 216,
+  "cpu_fraction_or_speedup_proved": false,
+  "primary_cause_beyond_queue_full_proved": false,
+  "design_conditions": [
+    "Exact restored S4 step, S7 whole-fit/live_write and USB continuation unchanged",
+    "Keep driver deadline5120/clock/gates/ownership/sticky flags/first-fault and all retained TIME/epoch/lifecycle barriers",
+    "Do not equate source MMIO count or measured maximum spanning failure with active CPU time or achieved USB throughput",
+    "New image/native schedule checks/static SRAM/stack and separate exact flash admission required",
+    "Any new physical trial must retain original100k10s criteria and preserve failure/rollback; do not reinterpret S7 failure"
+  ]
+}

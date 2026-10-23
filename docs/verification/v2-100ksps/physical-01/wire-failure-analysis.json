@@ -1,0 +1,446 @@
+{
+  "schema": "motortester-v2-failed-wire-prefix-analysis-1",
+  "offline_validation_status": "PASS",
+  "physical_trial_status": "FAIL",
+  "scope": "Offline verification and extraction of a received wire prefix; no new hardware operation",
+  "tool_sha256": "f6a7cd7f771d2fca39e76a7301df2022be0cb5c7f016a1b2ed4e104b0bd53ab3",
+  "parser_sha256": "30631ddfdd4364a38361f21305e5166a7b4314a4e34aa8ac79b8fbb83fa9a40e",
+  "traffic_sha256": "dec8ab9ba1b6b8264716d6bf7a121ebdc41e1ee93200e9c8d8569b259dd012f9",
+  "trial_receipt_sha256": "1218622ec8cfb4dd601a76e457a44b21e06ecca746192a9953b24812de18482b",
+  "nonce_hex": "5efeb3e2848af430",
+  "observed_build_id": 1446138679,
+  "observed_caps": {
+    "config_id": 1,
+    "profile": 1,
+    "channel": 0,
+    "adc_bits": 12,
+    "fs_num": 100000,
+    "fs_den": 1,
+    "max_block": 128,
+    "flags": 1
+  },
+  "wire": {
+    "chunks": 31,
+    "host_bytes": 136,
+    "device_bytes": 7328,
+    "empty_delimiters": 1,
+    "decode_errors": [],
+    "trailing_partial_bytes": [
+      0,
+      0
+    ],
+    "trailing_oversized_frame": [
+      false,
+      false
+    ]
+  },
+  "original_files_sha256": {
+    "traffic.bin": "dec8ab9ba1b6b8264716d6bf7a121ebdc41e1ee93200e9c8d8569b259dd012f9",
+    "result.json": "1218622ec8cfb4dd601a76e457a44b21e06ecca746192a9953b24812de18482b",
+    "physical.mtstream": "6aa2fbf2e5702a10b8d9e51f640f2b4be90a77cc892f08cabac40c329d06dd47",
+    "physical.mtstream.v2.json": "cf3401ac292c66890a754a280aac602e046c888ffbd3de1acd078ab93ee216d0"
+  },
+  "selected_journal_analysis": "recorded-prefix-analysis.json",
+  "selected_samples": 896,
+  "selected_raw_sha256": "1835fc9d947d7468ee3ef7833e6579890182f3a3b50ac2bc2e42f45b33f833cc",
+  "record_wall_seconds": 0.015479599824175239,
+  "observation_interval_qualified_for_sustained_rate": false,
+  "generation": 3,
+  "start": {
+    "generation": 3,
+    "config_id": 1,
+    "first_index": 0
+  },
+  "plan_sha256": "47b9e96388635f1f9cfc27fe8401cda5e0180c4d9adbda8ad90df1e62f7230d1",
+  "declared_source_commit": "3665be41e80c8168ad97c61d64cb79b232091d03",
+  "selected_candidate_sha256": "f3d5563139d4e5892273312996bd8b8486f222196e6cf3c25042d5c37c6a290b",
+  "host_sequence_range": [
+    1,
+    4
+  ],
+  "device_sequence_range": [
+    1,
+    28
+  ],
+  "sequence_gaps_or_duplicates": 0,
+  "reply_correlation_verified": true,
+  "timeline": [
+    {
+      "direction": "host",
+      "kind": "HELLO",
+      "sequence": 1,
+      "request_id": 1,
+      "host_relative_seconds": 0.0,
+      "payload": {
+        "nonce": 6845106269117412400
+      }
+    },
+    {
+      "direction": "device",
+      "kind": "HELLO_ACK",
+      "sequence": 1,
+      "request_id": 1,
+      "host_relative_seconds": 0.004772900138050318,
+      "payload": {
+        "firmware_build": 1446138679
+      }
+    },
+    {
+      "direction": "host",
+      "kind": "GET_CAPS",
+      "sequence": 2,
+      "request_id": 2,
+      "host_relative_seconds": 0.006780999945476651
+    },
+    {
+      "direction": "device",
+      "kind": "CAPS",
+      "sequence": 2,
+      "request_id": 2,
+      "host_relative_seconds": 0.00949300010688603,
+      "payload": {
+        "config_id": 1,
+        "profile": 1,
+        "channel": 0,
+        "adc_bits": 12,
+        "fs_num": 100000,
+        "fs_den": 1,
+        "max_block": 128,
+        "flags": 1
+      }
+    },
+    {
+      "direction": "host",
+      "kind": "START",
+      "sequence": 3,
+      "request_id": 3,
+      "host_relative_seconds": 0.025608900003135204,
+      "payload": 1
+    },
+    {
+      "direction": "device",
+      "kind": "START_ACK",
+      "sequence": 3,
+      "request_id": 3,
+      "host_relative_seconds": 0.02991949999704957,
+      "payload": {
+        "generation": 3,
+        "config_id": 1,
+        "first_index": 0
+      }
+    },
+    {
+      "direction": "device",
+      "kind": "DATA",
+      "sequence": 4,
+      "request_id": 0,
+      "host_relative_seconds": 0.035905699944123626,
+      "first_sample_index": 0,
+      "sample_count": 128
+    },
+    {
+      "direction": "device",
+      "kind": "DATA",
+      "sequence": 5,
+      "request_id": 0,
+      "host_relative_seconds": 0.03808080009184778,
+      "first_sample_index": 128,
+      "sample_count": 128
+    },
+    {
+      "direction": "device",
+      "kind": "DATA",
+      "sequence": 6,
+      "request_id": 0,
+      "host_relative_seconds": 0.040229500038549304,
+      "first_sample_index": 256,
+      "sample_count": 128
+    },
+    {
+      "direction": "device",
+      "kind": "DATA",
+      "sequence": 7,
+      "request_id": 0,
+      "host_relative_seconds": 0.041113900020718575,
+      "first_sample_index": 384,
+      "sample_count": 128
+    },
+    {
+      "direction": "device",
+      "kind": "DATA",
+      "sequence": 8,
+      "request_id": 0,
+      "host_relative_seconds": 0.04263329994864762,
+      "first_sample_index": 512,
+      "sample_count": 128
+    },
+    {
+      "direction": "device",
+      "kind": "DATA",
+      "sequence": 9,
+      "request_id": 0,
+      "host_relative_seconds": 0.046099199913442135,
+      "first_sample_index": 640,
+      "sample_count": 128
+    },
+    {
+      "direction": "device",
+      "kind": "DATA",
+      "sequence": 10,
+      "request_id": 0,
+      "host_relative_seconds": 0.04714299994520843,
+      "first_sample_index": 768,
+      "sample_count": 128
+    },
+    {
+      "direction": "device",
+      "kind": "DATA",
+      "sequence": 11,
+      "request_id": 0,
+      "host_relative_seconds": 0.049154300009831786,
+      "first_sample_index": 896,
+      "sample_count": 128
+    },
+    {
+      "direction": "device",
+      "kind": "DATA",
+      "sequence": 12,
+      "request_id": 0,
+      "host_relative_seconds": 0.05109960003755987,
+      "first_sample_index": 1024,
+      "sample_count": 128
+    },
+    {
+      "direction": "device",
+      "kind": "DATA",
+      "sequence": 13,
+      "request_id": 0,
+      "host_relative_seconds": 0.0521768000908196,
+      "first_sample_index": 1152,
+      "sample_count": 128
+    },
+    {
+      "direction": "device",
+      "kind": "DATA",
+      "sequence": 14,
+      "request_id": 0,
+      "host_relative_seconds": 0.05317019997164607,
+      "first_sample_index": 1280,
+      "sample_count": 128
+    },
+    {
+      "direction": "device",
+      "kind": "DATA",
+      "sequence": 15,
+      "request_id": 0,
+      "host_relative_seconds": 0.05639129993505776,
+      "first_sample_index": 1408,
+      "sample_count": 128
+    },
+    {
+      "direction": "device",
+      "kind": "DATA",
+      "sequence": 16,
+      "request_id": 0,
+      "host_relative_seconds": 0.05856329994276166,
+      "first_sample_index": 1536,
+      "sample_count": 128
+    },
+    {
+      "direction": "device",
+      "kind": "DATA",
+      "sequence": 17,
+      "request_id": 0,
+      "host_relative_seconds": 0.060207000002264977,
+      "first_sample_index": 1664,
+      "sample_count": 128
+    },
+    {
+      "direction": "device",
+      "kind": "DATA",
+      "sequence": 18,
+      "request_id": 0,
+      "host_relative_seconds": 0.0622662000823766,
+      "first_sample_index": 1792,
+      "sample_count": 128
+    },
+    {
+      "direction": "device",
+      "kind": "DATA",
+      "sequence": 19,
+      "request_id": 0,
+      "host_relative_seconds": 0.06449260003864765,
+      "first_sample_index": 1920,
+      "sample_count": 128
+    },
+    {
+      "direction": "device",
+      "kind": "DATA",
+      "sequence": 20,
+      "request_id": 0,
+      "host_relative_seconds": 0.06557850004173815,
+      "first_sample_index": 2048,
+      "sample_count": 128
+    },
+    {
+      "direction": "device",
+      "kind": "DATA",
+      "sequence": 21,
+      "request_id": 0,
+      "host_relative_seconds": 0.06735150003805757,
+      "first_sample_index": 2176,
+      "sample_count": 128
+    },
+    {
+      "direction": "device",
+      "kind": "DATA",
+      "sequence": 22,
+      "request_id": 0,
+      "host_relative_seconds": 0.06824030005373061,
+      "first_sample_index": 2304,
+      "sample_count": 128
+    },
+    {
+      "direction": "device",
+      "kind": "DATA",
+      "sequence": 23,
+      "request_id": 0,
+      "host_relative_seconds": 0.0691168000921607,
+      "first_sample_index": 2432,
+      "sample_count": 128
+    },
+    {
+      "direction": "device",
+      "kind": "DATA",
+      "sequence": 24,
+      "request_id": 0,
+      "host_relative_seconds": 0.07052549999207258,
+      "first_sample_index": 2560,
+      "sample_count": 128
+    },
+    {
+      "direction": "device",
+      "kind": "DATA",
+      "sequence": 25,
+      "request_id": 0,
+      "host_relative_seconds": 0.07213860005140305,
+      "first_sample_index": 2688,
+      "sample_count": 128
+    },
+    {
+      "direction": "device",
+      "kind": "DATA",
+      "sequence": 26,
+      "request_id": 0,
+      "host_relative_seconds": 0.0744457000400871,
+      "first_sample_index": 2816,
+      "sample_count": 128
+    },
+    {
+      "direction": "device",
+      "kind": "END",
+      "sequence": 27,
+      "request_id": 0,
+      "host_relative_seconds": 0.0744457000400871,
+      "payload": {
+        "generation": 3,
+        "config_id": 1,
+        "prefix_end": 2944,
+        "produced_end": null,
+        "last_data_sequence": 26,
+        "prefix_crc32": 1737545042,
+        "reason": 1,
+        "flags": 3,
+        "stop_request_id": 0
+      }
+    },
+    {
+      "direction": "host",
+      "kind": "STOP",
+      "sequence": 4,
+      "request_id": 4,
+      "host_relative_seconds": 0.07734489999711514,
+      "payload": 3
+    },
+    {
+      "direction": "device",
+      "kind": "STOP_ACK",
+      "sequence": 28,
+      "request_id": 4,
+      "host_relative_seconds": 0.07938609994016588,
+      "payload": {
+        "generation": 3,
+        "prefix_end": 2944,
+        "terminal_sequence": 27,
+        "flags": 3
+      }
+    }
+  ],
+  "timeline_units": "host I/O monotonic seconds, not ADC timestamps",
+  "received_prefix": {
+    "file": "received-prefix.u16le",
+    "sha256": "c1bc00a6441e51f9f06c9f4b821976ea1d760ba7b1bcdc822611edfa24a71d8a",
+    "crc32": 1737545042,
+    "crc32_matches_END": true,
+    "format": "unsigned uint16 little endian, raw 12-bit ADC codes",
+    "first_sample_index": 0,
+    "end_sample_index_exclusive": 2944,
+    "samples": 2944,
+    "bytes": 5888,
+    "DATA_blocks": 23,
+    "nominal_index_interval_seconds": 0.02944,
+    "nominal_last_sample_seconds": 0.02943,
+    "nominal_sample_period_seconds": 1e-05,
+    "selected_mtstream_recording": false
+  },
+  "terminal": {
+    "generation": 3,
+    "config_id": 1,
+    "prefix_end": 2944,
+    "produced_end": null,
+    "last_data_sequence": 26,
+    "prefix_crc32": 1737545042,
+    "reason": 1,
+    "flags": 3,
+    "stop_request_id": 0,
+    "sequence": 27
+  },
+  "stop": {
+    "sent_after_source_END": true,
+    "request_id": 4,
+    "acknowledgement": {
+      "generation": 3,
+      "prefix_end": 2944,
+      "terminal_sequence": 27,
+      "flags": 3,
+      "sequence": 28
+    }
+  },
+  "recording_selection": {
+    "R": 2048,
+    "accepted": 2944,
+    "checkpoint": 2944,
+    "state": "source_failure_with_saved_selected_prefix",
+    "journal_created": true
+  },
+  "cause": {
+    "wire_fact": "Device reported END reason 1 before any host STOP, after a valid 2944-sample prefix",
+    "selected_source_interpretation": "reason 1 maps to a full firmware sample queue; it is not a normal requested Stop",
+    "source_path": "build/v6d-fw-01/patched/v2/protocol/mt_live_device.c",
+    "source_sha256": "b10ddb2402fd20944b368208152aa22c63d441b8f2e46a342e0f677541528b9b",
+    "source_mapping_line": 452,
+    "source_mapping": "terminate(d,q==MT_SAMPLE_QUEUE_FULL?1u:2u,n)",
+    "root_cause_below_queue_full": "TBD: wire does not measure producer scheduling, USB service, or exact queue occupancy"
+  },
+  "limits": {
+    "actual_produced_samples": null,
+    "lost_samples": null,
+    "continuous_100ksps_verified": false,
+    "actual_ADC_frequency_measured": false,
+    "voltage_calibration_verified": false,
+    "image_authenticated_by_wire": false,
+    "selected_journal_raw_equality_claimed": true,
+    "input_condition": "PA0 unconnected, as reported by user",
+    "note": "Valid transmitted prefix does not establish lossless acquisition. CAPS is a nominal rate declaration. The trial failed shortly after Record; only selected [2048,2944) is retained in the original journal."
+  }
+}

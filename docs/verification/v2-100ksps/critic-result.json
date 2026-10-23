@@ -1,41 +1,58 @@
 {
-  "status": "BLOCKED_EVIDENCE",
-  "score": null,
-  "scope": "Overall V2-06d software/package plus one physical100k trial",
+  "status": "REWORK",
+  "score": 7.7,
+  "scope": "Overall V2-06d: software/package and one physical100k ten-second Record trial",
   "critic": "stream200_critic",
   "independent": true,
   "hardware_touched_by_critic": false,
   "production_commit": "7e4b318164082c90e0b2c0e982936f6f0c786528",
   "plan_base_commit": "3665be41e80c8168ad97c61d64cb79b232091d03",
   "package_source_commit": "419b75d9a7ea7fa9219da924ca7ba4c00a065e27",
+  "physical_evidence_base_commit": "d67be662bdac8f0a046e6da6e72fa92a70d4e057",
   "software_evidence_sha256": "5c0408d69b390fd45fe55de293d94e218fd10a41d83599931b609386ebc6fa58",
+  "physical_evidence_sha256": "8d81f7c92626777a8bb9136fc2898e0a2647fd6b03a77bc65435e69aea781612",
   "software_copy_pairs_verified": 46,
-  "software_copy_bytes": 1646971,
-  "all_software_copies_byte_equal_to_sources": true,
-  "flash_readback_bytes": 36260,
-  "flash_readback_byte_equal_exact_s7": true,
-  "physical_trial_started": false,
+  "physical_copy_pairs_verified": 47,
+  "physical_copy_bytes": 294073,
+  "all_evidence_copies_byte_equal": true,
+  "physical_trial_started": true,
+  "physical_trial_status": "FAIL",
   "physical100k_accepted": false,
   "whole_iteration_accepted": false,
-  "missing_mandatory_evidence": [
-    "Actual100k ten-second Record",
-    "Normal END/STOP_ACK and fresh Open/raw-wire equality",
-    "Observed physical receiver rate and frozen diagnostics/registers after trial"
+  "installed_after_rollback": "V2S4 50000 S/s;64KiB readback equal and READY noSTART owner closed",
+  "full_wire_samples": 2944,
+  "selected_journal_samples": 896,
+  "selected_journal_range": [
+    2048,
+    2944
   ],
-  "preserved_prior_findings": "V2-06a/c physical200k REWORK unchanged",
+  "selected_raw_wire_byte_equal": true,
+  "failure": "firmware queue full; END reason1 before host STOP",
+  "underlying_bottleneck": "TBD; supported schedule-overhead hypothesis is not physical proof",
+  "findings": [
+    {
+      "priority": "P1",
+      "title": "S7 does not sustain the required100k ten-second Record",
+      "open": true
+    }
+  ],
   "rubric": {
-    "C1": null,
-    "C2": null,
-    "C3": null,
-    "C4": null,
-    "C5": null
+    "C1": 5.0,
+    "C2": 7.0,
+    "C3": 9.7,
+    "C4": 9.5,
+    "C5": 9.5
   },
-  "report_sha256": "c57a2ded1066949f9dc912a2e34822cb1afb66481a6a97d75881194914a7d05e",
+  "report_sha256": "13a6f74d5ad1a077fe074e1ebc00f09287022bf5b2f2fdfc77e96bf6ae84dcc0",
   "critic_evidence": {
+    "critic-cause-audit.json": "2b30c31d8a5e2c4c00acdef0361f79dc77e9362b9fd6ddf74256120454869625",
+    "critic-flash-image.json": "8b77c8603131d00ed0305db4bb487f92fb028e7f4ecdbcfc7bfe188878a64855",
+    "critic-flash.json": "1f0f94fc869af559e4f89877acc9e75f8ee7169d0a8e25a5646168c743e4ac5f",
+    "critic-package.json": "bdb17eb528c88970f858b872ad6aac4ad6d032c4034029e114c3cb68ed6414ff",
     "critic-source.json": "3b6d4924efc2dc5ff4799c0ace5c35d1beac5120abe10a6907ce620f307d5715",
     "critic-static.json": "3564c463381ba2dbebb3648762503a62777547b9df15e65e06dde28a39df43ad",
-    "critic-package.json": "bdb17eb528c88970f858b872ad6aac4ad6d032c4034029e114c3cb68ed6414ff",
-    "critic-flash-image.json": "8b77c8603131d00ed0305db4bb487f92fb028e7f4ecdbcfc7bfe188878a64855",
-    "critic-flash.json": "1f0f94fc869af559e4f89877acc9e75f8ee7169d0a8e25a5646168c743e4ac5f"
-  }
+    "critic-trial.json": "349f8cb0a540231e1e06d8d254bf6370a7c250ff2d6acf5b18482dbb3cd2f022"
+  },
+  "preserved_prior_findings": "V2-06a/c physical200k REWORK unchanged",
+  "future_candidate_flash_approved": false
 }
