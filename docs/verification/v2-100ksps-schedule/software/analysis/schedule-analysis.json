@@ -1,0 +1,388 @@
+{
+  "schema": "v2s7-schedule-causal-review-1",
+  "source_pins": {
+    "build\\v5-fw-10\\patched\\v2\\app\\mt_live_runtime.c": "e9d5c7703a2252d683ebbf269d354cf2700952cc2afb49a8fa11879b00c34919",
+    "build\\v5-fw-10\\patched\\v2\\app\\mt_live_adc.c": "94bc97ab4fb993fcc8536fa4bde85d4fb5afbb78dc8a52c0094dbdbbe3302548",
+    "build\\v5-fw-10\\patched\\v2\\platform\\adc_timer_dma.c": "b8c6c4301a1c4e72ae0a3a4f9353a1bab109ccd1a96095d4684d899d5e34ce2b",
+    "build\\v5-fw-10\\patched\\v2\\protocol\\mt_live_device.c": "b74801c3ecaab6ae1627f4812326c71cfd821bc47eb8e458613e6c8d3c00bdc5",
+    "build\\v5-fw-10\\source\\firmware\\platform\\mt_timebase.c": "e9adfde14df828040bd665781ecbd737a3a27e8b3d396e8639d5e93a500ca774",
+    "build\\v5-fw-10\\source\\firmware\\platform\\mt_live_clock.c": "625ff34655620306b1d23dbcdc861e0233fc74e472d98b71ad08b03abebab22b",
+    "build\\v5-fw-10\\MotortesterV2-stream-candidate.elf": "698895eb5a09fd801147db2a7d1dbbeded2e04d44388e1c880cb4c8d982b9de6",
+    "build\\v5-fw-10\\MotortesterV2-stream-candidate.bin": "04ba2853b6a964cd812bf555a32da7fb019bcd60ba9fda0bd586d71112b3143d",
+    "build\\v6d-fw-01\\patched\\v2\\app\\mt_live_runtime.c": "e6e7959fda16be23c74ff66305d109c0ae12d65d353d1c9a10a543a30526667e",
+    "build\\v6d-fw-01\\patched\\v2\\app\\mt_live_adc.c": "5995b7d664e4b9446e9e29400f34b5dd9a2e4c33acb50f32a35db802c55c930a",
+    "build\\v6d-fw-01\\patched\\v2\\platform\\adc_timer_dma.c": "2fdd4c15116ba2840e647d4111c76747cec1f217543a60c01582a8c5ae0f503d",
+    "build\\v6d-fw-01\\patched\\v2\\protocol\\mt_live_device.c": "b10ddb2402fd20944b368208152aa22c63d441b8f2e46a342e0f677541528b9b",
+    "build\\v6d-fw-01\\source\\firmware\\platform\\mt_timebase.c": "e9adfde14df828040bd665781ecbd737a3a27e8b3d396e8639d5e93a500ca774",
+    "build\\v6d-fw-01\\source\\firmware\\platform\\mt_live_clock.c": "625ff34655620306b1d23dbcdc861e0233fc74e472d98b71ad08b03abebab22b",
+    "build\\v6d-fw-01\\MotortesterV2-stream-candidate.elf": "5bc0eb99bf0490c3ef98ecea28e6d0dd3b006782d6719f02e59e3f858346aa25",
+    "build\\v6d-fw-01\\MotortesterV2-stream-candidate.bin": "f3d5563139d4e5892273312996bd8b8486f222196e6cf3c25042d5c37c6a290b",
+    "build\\v5-board-stream-04\\diagnostics-first.bin": "a1bfb5ad6637ab4279be04e1cb2bc8e8f69bd65bd7324d13073d738642f479c8",
+    "build\\v6d-board-01\\diagnostics-first.bin": "b645134cb0763f85cd77045c68c7aecaac28d750c7de737f4ef3cef1fc39a496"
+  },
+  "exact_S4_schedule_reconstruction_from_S7": true,
+  "unchanged_runtime_functions": {
+    "adc_read": {
+      "identical": true,
+      "S4_sha256": "6f1247598d8f1f3e74e914266a1b00c734f1246de9382278700884aa11575322",
+      "S7_sha256": "6f1247598d8f1f3e74e914266a1b00c734f1246de9382278700884aa11575322"
+    },
+    "adc_write": {
+      "identical": true,
+      "S4_sha256": "a34d95d4dd1f331f2825707012aa570a5c21af6e3cb2c83472917a4b65203d3a",
+      "S7_sha256": "a34d95d4dd1f331f2825707012aa570a5c21af6e3cb2c83472917a4b65203d3a"
+    },
+    "adc_time": {
+      "identical": true,
+      "S4_sha256": "865728d69ec37bbb9b90968b958de4d498e51872aae5bed93485dae789d19d1e",
+      "S7_sha256": "865728d69ec37bbb9b90968b958de4d498e51872aae5bed93485dae789d19d1e"
+    },
+    "live_time": {
+      "identical": true,
+      "S4_sha256": "0d87288483b7980fac66eb73c2839f302e39127e772c898d22035a0f337a985f",
+      "S7_sha256": "0d87288483b7980fac66eb73c2839f302e39127e772c898d22035a0f337a985f"
+    },
+    "stable": {
+      "identical": true,
+      "S4_sha256": "81c44360ddc83948ad133ecd2792bd8df8d17442d8f530d24fb6e34d20bce86c",
+      "S7_sha256": "81c44360ddc83948ad133ecd2792bd8df8d17442d8f530d24fb6e34d20bce86c"
+    },
+    "usable": {
+      "identical": true,
+      "S4_sha256": "f9970d71dea5b1e0e062803e5beabc161865617fafa4c6c0e85faa61aa38e0af",
+      "S7_sha256": "f9970d71dea5b1e0e062803e5beabc161865617fafa4c6c0e85faa61aa38e0af"
+    },
+    "commit_enter": {
+      "identical": true,
+      "S4_sha256": "baac8512c94b89731cdedb2ecd11ce7167e9713bb4c85837bbb8738dc966ced1",
+      "S7_sha256": "baac8512c94b89731cdedb2ecd11ce7167e9713bb4c85837bbb8738dc966ced1"
+    },
+    "commit_leave": {
+      "identical": true,
+      "S4_sha256": "39a7c4cc0bca3c13bf6cb3ad89350edfccb276f13584fdd1ae136379d60356b6",
+      "S7_sha256": "39a7c4cc0bca3c13bf6cb3ad89350edfccb276f13584fdd1ae136379d60356b6"
+    },
+    "commit_allowed": {
+      "identical": true,
+      "S4_sha256": "20d2040dc0d5636ee8fa29defba49e9c697e698c5c18cf5ec950de70fad11ffc",
+      "S7_sha256": "20d2040dc0d5636ee8fa29defba49e9c697e698c5c18cf5ec950de70fad11ffc"
+    },
+    "commit_timed": {
+      "identical": true,
+      "S4_sha256": "d44ebb48f6890723203dbb194a6c6e467e2deecdbce8dbdbd6c7e43a91eb751d",
+      "S7_sha256": "d44ebb48f6890723203dbb194a6c6e467e2deecdbce8dbdbd6c7e43a91eb751d"
+    },
+    "commit_timer": {
+      "identical": true,
+      "S4_sha256": "4cdd19f2d44d90593c2779390875acc39e6494a256a3495232b24aef5c2efa1f",
+      "S7_sha256": "4cdd19f2d44d90593c2779390875acc39e6494a256a3495232b24aef5c2efa1f"
+    },
+    "live_start": {
+      "identical": true,
+      "S4_sha256": "4262905bbed89605799b3e56f20a5544e50193711430907d0839a326d15c2d69",
+      "S7_sha256": "4262905bbed89605799b3e56f20a5544e50193711430907d0839a326d15c2d69"
+    },
+    "live_stop": {
+      "identical": true,
+      "S4_sha256": "018f82dbefef74afd73cfccc871b0ff5a290c25abb5e7f16578f0c539c1fb6ce",
+      "S7_sha256": "018f82dbefef74afd73cfccc871b0ff5a290c25abb5e7f16578f0c539c1fb6ce"
+    },
+    "live_isolate": {
+      "identical": true,
+      "S4_sha256": "4f439365ea4d0e07d24d80b7aba420374f6f01efb27d9420fd7095a17bb4f970",
+      "S7_sha256": "4f439365ea4d0e07d24d80b7aba420374f6f01efb27d9420fd7095a17bb4f970"
+    },
+    "prepare_adc": {
+      "identical": true,
+      "S4_sha256": "bf4c7f222700ecb6a76e7c4ba339e97283fd0f16268be8df11c2ce7bfd357bba",
+      "S7_sha256": "bf4c7f222700ecb6a76e7c4ba339e97283fd0f16268be8df11c2ce7bfd357bba"
+    },
+    "mt_live_runtime_init": {
+      "identical": true,
+      "S4_sha256": "810877545e52b2457cdf6079a1670a283edc7e9f42f602f23b577ec83f28ca9b",
+      "S7_sha256": "810877545e52b2457cdf6079a1670a283edc7e9f42f602f23b577ec83f28ca9b"
+    },
+    "quiescent": {
+      "identical": true,
+      "S4_sha256": "19bb01759e1712c5689b69bc0008089078c04ad285c0408e3cfe00f74bb45bf9",
+      "S7_sha256": "19bb01759e1712c5689b69bc0008089078c04ad285c0408e3cfe00f74bb45bf9"
+    },
+    "loss_result": {
+      "identical": true,
+      "S4_sha256": "258b9fef3ffc025beb34505806de9ff5e5d69f7276e700b48f91ff1443a570f5",
+      "S7_sha256": "258b9fef3ffc025beb34505806de9ff5e5d69f7276e700b48f91ff1443a570f5"
+    },
+    "synchronize_loss": {
+      "identical": true,
+      "S4_sha256": "2cd1f50d6dda6fb2ecadaf607c3c777f6865fa6d8441a150c5ce1a3217a2c1ed",
+      "S7_sha256": "2cd1f50d6dda6fb2ecadaf607c3c777f6865fa6d8441a150c5ce1a3217a2c1ed"
+    },
+    "time_fault": {
+      "identical": true,
+      "S4_sha256": "419140d7a2eec89162b659896a35b67ec849113ad8140b98a57bc7aeec7e834f",
+      "S7_sha256": "419140d7a2eec89162b659896a35b67ec849113ad8140b98a57bc7aeec7e834f"
+    },
+    "mt_live_runtime_step": {
+      "identical": true,
+      "S4_sha256": "0cf26714d0ae7fbea1f5a45f3650424e27bd6a9e7d31acb97a8fa95b109cd08c",
+      "S7_sha256": "0cf26714d0ae7fbea1f5a45f3650424e27bd6a9e7d31acb97a8fa95b109cd08c"
+    }
+  },
+  "full_TIME_update": {
+    "clock_matches_before_after": 8,
+    "timer_matches_before_after": 18,
+    "counter": 1,
+    "MMIO_reads": 27,
+    "healthy_cached_predicate_MMIO": 0
+  },
+  "healthy_loop_accounting": [
+    {
+      "case": "empty_DMA_with_DATA_offer_or_known_zero",
+      "profile": "S4_50k",
+      "runtime_live_time_snapshots": 6,
+      "core_now_snapshots": 5,
+      "offer_now_snapshots": 0,
+      "adapter_clock_ok_updates": 2,
+      "driver_now_us_updates": 1,
+      "total_full_TIME_updates": 14,
+      "TIME_MMIO_reads": 378,
+      "direct_driver_MMIO_reads": 10,
+      "direct_driver_MMIO_writes": 0,
+      "scope": "Healthy streaming, open actor, no RX, no ISR/task callback additional work; not CPU timing."
+    },
+    {
+      "case": "empty_DMA_with_DATA_offer_or_known_zero",
+      "profile": "S7_100k",
+      "runtime_live_time_snapshots": 8,
+      "core_now_snapshots": 5,
+      "offer_now_snapshots": 0,
+      "adapter_clock_ok_updates": 6,
+      "driver_now_us_updates": 3,
+      "total_full_TIME_updates": 22,
+      "TIME_MMIO_reads": 594,
+      "direct_driver_MMIO_reads": 30,
+      "direct_driver_MMIO_writes": 0,
+      "scope": "Healthy streaming, open actor, no RX, no ISR/task callback additional work; not CPU timing."
+    },
+    {
+      "case": "empty_DMA_with_DATA_offer_or_known_zero",
+      "profile": "proposed_S8_100k_S4_schedule",
+      "runtime_live_time_snapshots": 6,
+      "core_now_snapshots": 5,
+      "offer_now_snapshots": 0,
+      "adapter_clock_ok_updates": 2,
+      "driver_now_us_updates": 1,
+      "total_full_TIME_updates": 14,
+      "TIME_MMIO_reads": 378,
+      "direct_driver_MMIO_reads": 10,
+      "direct_driver_MMIO_writes": 0,
+      "scope": "Healthy streaming, open actor, no RX, no ISR/task callback additional work; not CPU timing."
+    },
+    {
+      "case": "one_ready_DMA_half_with_DATA_offer",
+      "profile": "S4_50k",
+      "runtime_live_time_snapshots": 6,
+      "core_now_snapshots": 5,
+      "offer_now_snapshots": 1,
+      "adapter_clock_ok_updates": 2,
+      "driver_now_us_updates": 2,
+      "total_full_TIME_updates": 16,
+      "TIME_MMIO_reads": 432,
+      "direct_driver_MMIO_reads": 12,
+      "direct_driver_MMIO_writes": 1,
+      "scope": "Healthy streaming, open actor, no RX, no ISR/task callback additional work; not CPU timing."
+    },
+    {
+      "case": "one_ready_DMA_half_with_DATA_offer",
+      "profile": "S7_100k",
+      "runtime_live_time_snapshots": 8,
+      "core_now_snapshots": 5,
+      "offer_now_snapshots": 4,
+      "adapter_clock_ok_updates": 6,
+      "driver_now_us_updates": 4,
+      "total_full_TIME_updates": 27,
+      "TIME_MMIO_reads": 729,
+      "direct_driver_MMIO_reads": 32,
+      "direct_driver_MMIO_writes": 1,
+      "scope": "Healthy streaming, open actor, no RX, no ISR/task callback additional work; not CPU timing."
+    },
+    {
+      "case": "one_ready_DMA_half_with_DATA_offer",
+      "profile": "proposed_S8_100k_S4_schedule",
+      "runtime_live_time_snapshots": 6,
+      "core_now_snapshots": 5,
+      "offer_now_snapshots": 4,
+      "adapter_clock_ok_updates": 2,
+      "driver_now_us_updates": 2,
+      "total_full_TIME_updates": 19,
+      "TIME_MMIO_reads": 513,
+      "direct_driver_MMIO_reads": 12,
+      "direct_driver_MMIO_writes": 1,
+      "scope": "Healthy streaming, open actor, no RX, no ISR/task callback additional work; not CPU timing."
+    },
+    {
+      "case": "empty_DMA_no_TX_pending",
+      "profile": "S4_50k",
+      "runtime_live_time_snapshots": 6,
+      "core_now_snapshots": 2,
+      "offer_now_snapshots": 0,
+      "adapter_clock_ok_updates": 2,
+      "driver_now_us_updates": 1,
+      "total_full_TIME_updates": 11,
+      "TIME_MMIO_reads": 297,
+      "direct_driver_MMIO_reads": 10,
+      "direct_driver_MMIO_writes": 0,
+      "scope": "Healthy streaming, open actor, no RX, no ISR/task callback additional work; not CPU timing."
+    },
+    {
+      "case": "empty_DMA_no_TX_pending",
+      "profile": "S7_100k",
+      "runtime_live_time_snapshots": 8,
+      "core_now_snapshots": 2,
+      "offer_now_snapshots": 0,
+      "adapter_clock_ok_updates": 6,
+      "driver_now_us_updates": 3,
+      "total_full_TIME_updates": 19,
+      "TIME_MMIO_reads": 513,
+      "direct_driver_MMIO_reads": 30,
+      "direct_driver_MMIO_writes": 0,
+      "scope": "Healthy streaming, open actor, no RX, no ISR/task callback additional work; not CPU timing."
+    },
+    {
+      "case": "empty_DMA_no_TX_pending",
+      "profile": "proposed_S8_100k_S4_schedule",
+      "runtime_live_time_snapshots": 6,
+      "core_now_snapshots": 2,
+      "offer_now_snapshots": 0,
+      "adapter_clock_ok_updates": 2,
+      "driver_now_us_updates": 1,
+      "total_full_TIME_updates": 11,
+      "TIME_MMIO_reads": 297,
+      "direct_driver_MMIO_reads": 10,
+      "direct_driver_MMIO_writes": 0,
+      "scope": "Healthy streaming, open actor, no RX, no ISR/task callback additional work; not CPU timing."
+    }
+  ],
+  "physical_comparison": {
+    "S4": {
+      "diagnostics": {
+        "magic": 1297368135,
+        "version": 1,
+        "bytes": 136,
+        "firmware_build": 1446138676,
+        "phase": 3,
+        "flags": 0,
+        "generation": 3,
+        "step_count": 30540,
+        "step_body_max_cycles": 191509,
+        "step_gap_max_cycles": 191887,
+        "tx_count": 30540,
+        "tx_max_cycles": 37968,
+        "poll_count": 30527,
+        "driver_observed_poll_gap_us": 1213,
+        "poll_gap_max_cycles": 65913,
+        "copy_count": 5875,
+        "copy_max_us": 70,
+        "queue_high_water": 3,
+        "first_runtime_result": 0,
+        "first_local_error": 0,
+        "first_acquisition_reason": 0,
+        "first_adc_fault": 0,
+        "first_epoch": 0,
+        "final_runtime_result": 0,
+        "final_core_state": 7,
+        "final_epoch": 3,
+        "final_adc_state": 0,
+        "final_adc_owned": 0,
+        "final_hardware_off": 1,
+        "start_cycle": 1578348851,
+        "last_cycle": 2661926076,
+        "freeze_cycle": 2661926076,
+        "nonce_low": 3506061451,
+        "nonce_high": 528174409
+      },
+      "whole_protocol_interval_us_at_nominal_72MHz": 15049683.680555556,
+      "whole_protocol_mean_step_us_not_active_only": 492.7859751327949,
+      "tx_max_us_at_nominal_72MHz": 527.3333333333334,
+      "scope": "Includes START, source-stop and queued-data drain; not steady throughput or WCET."
+    },
+    "S7": {
+      "diagnostics": {
+        "magic": 1297368135,
+        "version": 1,
+        "bytes": 136,
+        "firmware_build": 1446138679,
+        "phase": 3,
+        "flags": 4,
+        "generation": 3,
+        "step_count": 71,
+        "step_body_max_cycles": 231939,
+        "step_gap_max_cycles": 232315,
+        "tx_count": 71,
+        "tx_max_cycles": 45989,
+        "poll_count": 113,
+        "driver_observed_poll_gap_us": 1069,
+        "poll_gap_max_cycles": 76970,
+        "copy_count": 6,
+        "copy_max_us": 133,
+        "queue_high_water": 8,
+        "first_runtime_result": 4294967295,
+        "first_local_error": 0,
+        "first_acquisition_reason": 1,
+        "first_adc_fault": 0,
+        "first_epoch": 3,
+        "final_runtime_result": 0,
+        "final_core_state": 7,
+        "final_epoch": 3,
+        "final_adc_state": 0,
+        "final_adc_owned": 0,
+        "final_hardware_off": 1,
+        "start_cycle": 3045521723,
+        "last_cycle": 3049242907,
+        "freeze_cycle": 3049242907,
+        "nonce_low": 2223698992,
+        "nonce_high": 1593750498
+      },
+      "whole_protocol_interval_us_at_nominal_72MHz": 51683.11111111111,
+      "whole_protocol_mean_step_us_not_active_only": 727.9311424100156,
+      "tx_max_us_at_nominal_72MHz": 638.7361111111111,
+      "scope": "Includes START, source-stop and queued-data drain; not steady throughput or WCET."
+    }
+  },
+  "S7_first_queue_full_inference": {
+    "successfully_copied_DMA_halves": 6,
+    "copied_samples": 3072,
+    "retained_samples_after_drain": 2944,
+    "retained_DATA_blocks": 23,
+    "queue_slots_at_rejected_push": 8,
+    "DATA_blocks_popped_before_rejected_push": 15,
+    "samples_popped_before_rejected_push": 1920,
+    "derivation": "23 successful pushes - 8 still queued at first full = 15 full DATA commits before fault; later drain preserves the queued prefix.",
+    "limit": "Full DATA commit means accepted by device transport, not necessarily already received by PC. Frozen diagnostics do not timestamp first full."
+  },
+  "removed_in_S4_schedule": [
+    "Two extra ADC opportunities (before tud_task, after TX).",
+    "Two additional live_time+synchronize_loss barriers paired with those opportunities.",
+    "Earlier observation at those two sites; detection can move to the next retained barrier."
+  ],
+  "preserved_in_S4_schedule": [
+    "Complete original S4 step function; time_fault/synchronize_loss/stable/usable functions are unchanged.",
+    "TIME/loss before and after tud_task, after RX, after TX, after flush; ADC service+clock checks before RX/TX.",
+    "ADC deadline/clock/gates/sticky DMA flags/ownership before and after copy; S7 5120us deadline remains.",
+    "Stop input handling before TX, lifecycle/epoch checks for app and FIFO operations, final IRQ fairness gate.",
+    "Core full transaction IRQ guard and all five timing observations, irreversible accepted-prefix semantics.",
+    "S7 whole-fit, FIFO384, bounded USB IN continuation, Stop tail and fail-closed source stop are unchanged."
+  ],
+  "judgment": {
+    "result": "Evidence supports testing exact S4 schedule with S7 transport at 100k; not a guarantee of 100k throughput.",
+    "reason": "Removes measured-by-source redundant ADC/TIME work instead of a fourth rate reduction. Existing physical failure is queue-full, not ADC deadline or transport CRC loss.",
+    "counter_evidence": "S7 TX max638.7us and whole-step max3221.4us cannot establish active-only execution cost or WCET. IRQ grant expiry frequency remains unknown.",
+    "if_new_candidate_fails": "Do not lower rate again blindly. First add active phase/zero-write/first-full/IRQ hold-cause counters and freeze onset, then choose a measured optimization.",
+    "not_proved": [
+      "fraction of CPU spent in TIME versus CRC/COBS/USB",
+      "active-only mean DATA service rate",
+      "historical IN burst grant expiry",
+      "physical 100k qualification"
+    ]
+  }
+}

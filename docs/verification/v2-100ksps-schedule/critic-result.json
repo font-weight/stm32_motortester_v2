@@ -1,0 +1,35 @@
+{
+  "status": "BLOCKED_EVIDENCE",
+  "score": null,
+  "scope": "Overall V2-06e source plus required real100k10-second trial",
+  "critic": "stream200_critic",
+  "independent": true,
+  "hardware_touched_by_critic": false,
+  "source_commit": "bab09184455a41ac9f552565c825ce83f029c40f",
+  "image_bin_sha256": "80a5ed8d064a2d0559f063d6650fb4edab078de4c233ea66ef2cb0e1ac62cf20",
+  "image_elf_sha256": "65d477b3cfae09d3bc9c05fe7a2fa2c498445b22dac9f79a2c89b1b0e5e6330e",
+  "physical_trial_started": false,
+  "physical100k_accepted": false,
+  "flash_admission_issued": true,
+  "whole_iteration_accepted": false,
+  "missing_mandatory_evidence": [
+    "One physical100k10-second normal Record/END/ACK/fresh Open/raw equality",
+    "Actual rate and frozen diagnostics/registers"
+  ],
+  "rubric": {
+    "C1": null,
+    "C2": null,
+    "C3": null,
+    "C4": null,
+    "C5": null
+  },
+  "report_sha256": "ee46017e84bcd8ef88936381eb0a6d46dc99921084cd80a89cf0536ad17d92b7",
+  "critic_evidence": {
+    "critic-flash-image.json": "ed0d920dcd41e50b4a147daf3e4d311eda8fd945233bdb7b4375bbaa773d74c7",
+    "critic-flash.json": "dd496c853367319c855481ba907fd1f814d5b03b1b3ae3fe85184d4cb7196f70",
+    "critic-source.json": "12562952e1510f782e2e27ae09073b2072493ead35e5a332ef4cd682f4a10ca1",
+    "critic-static.json": "8482c9c15a7734d453b82155c1c8b1c3ed53a8c056455df0de5e3cc7ab4ec2fc"
+  },
+  "previous_physical_A_C_D_REWORK_preserved": true,
+  "flash_admission_score": 9.605
+}

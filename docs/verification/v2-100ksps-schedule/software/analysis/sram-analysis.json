@@ -1,0 +1,209 @@
+{
+  "schema": "v2s7-offline-sram-1",
+  "scope": "Post-stop snapshot only; not a historical trace or throughput qualification.",
+  "addresses": {
+    "runtime": "0x200005d0",
+    "adc": "0x200005d0",
+    "device": "0x20001258",
+    "queue": "0x20001278",
+    "cdcd": "0x20000194",
+    "tx_stream": "0x200001a0",
+    "tx_fifo": "0x200001ac"
+  },
+  "runtime": {
+    "epoch": 3,
+    "pending": 0,
+    "open": 0,
+    "in_step": 1,
+    "clock_fault": 0
+  },
+  "adc": {
+    "start_before_us": 42299934,
+    "start_after_us": 42299935,
+    "last_poll_us": 42330664,
+    "last_progress_us": 42330664,
+    "first_sample_index": 3072,
+    "last_remaining": 1022,
+    "state": 0,
+    "fault": 0,
+    "next_half": 0,
+    "owns_peripherals": 0,
+    "stream_history_valid": 1,
+    "stop_dma_known": 1,
+    "stop_count": 158,
+    "stop_offset": 0,
+    "stop_first_index": 3072,
+    "stop_dma_end": 3230,
+    "first_fault": 0
+  },
+  "device": {
+    "state": 8,
+    "last_time": 42371,
+    "nonce": 6845106269117412400,
+    "generation": 3,
+    "hardware_off": 1,
+    "local_error": 3,
+    "first_reason": 1,
+    "prefix_end": 2944,
+    "tx_length": 0,
+    "tx_offset": 0,
+    "tx_type": 133,
+    "tx_first_index": 2816,
+    "tx_count": 128,
+    "tx_sequence": 28,
+    "last_write_accepted": 50,
+    "last_write_known": 1
+  },
+  "queue": {
+    "head_index": 2944,
+    "next_index": 2944,
+    "head": 7,
+    "used": 0,
+    "sealed": 1,
+    "first_fault": 7
+  },
+  "tx_stream": {
+    "ep_addr": 130,
+    "mps": 64,
+    "xfer_len": 384,
+    "ep_buf": 0
+  },
+  "tx_fifo": {
+    "buffer": 536871376,
+    "depth": 384,
+    "overwritable": 0,
+    "wr_idx": 416,
+    "rd_idx": 416
+  },
+  "xfers": {
+    "0_0": {
+      "buffer": 0,
+      "ff": 0,
+      "total_len": 0,
+      "queued_len": 0,
+      "max_packet_size": 64,
+      "ep_idx": 0
+    },
+    "0_1": {
+      "buffer": 0,
+      "ff": 0,
+      "total_len": 0,
+      "queued_len": 0,
+      "max_packet_size": 64,
+      "ep_idx": 0
+    },
+    "1_0": {
+      "buffer": 0,
+      "ff": 0,
+      "total_len": 0,
+      "queued_len": 0,
+      "max_packet_size": 0,
+      "ep_idx": 0
+    },
+    "1_1": {
+      "buffer": 0,
+      "ff": 0,
+      "total_len": 0,
+      "queued_len": 0,
+      "max_packet_size": 8,
+      "ep_idx": 1
+    },
+    "2_0": {
+      "buffer": 0,
+      "ff": 536871364,
+      "total_len": 64,
+      "queued_len": 0,
+      "max_packet_size": 64,
+      "ep_idx": 2
+    },
+    "2_1": {
+      "buffer": 0,
+      "ff": 536871340,
+      "total_len": 50,
+      "queued_len": 50,
+      "max_packet_size": 64,
+      "ep_idx": 2
+    }
+  },
+  "burst_state": {
+    "mt_tx_burst_counter": 49365,
+    "mt_tx_burst_left": 6,
+    "mt_irq_held": 0,
+    "mt_ctr_deferred": 0
+  },
+  "inputs": {
+    "build\\v6d-fw-01\\MotortesterV2-stream-candidate.elf": "5bc0eb99bf0490c3ef98ecea28e6d0dd3b006782d6719f02e59e3f858346aa25",
+    "build\\v6d-board-01\\sram-20k.bin": "dd94e8030f2c035b9cf7631b3563f0fb1eaf131377e18c1120b0822240f64631",
+    "build\\v6d-analysis\\layout.c": "7cbb10f5270e183b03a944db8164d31aea49bfbc169a6ffd3c6c953a3be76539",
+    "build\\v6d-analysis\\layout.o": "2edea6d7215fe02ac6d0fc887dc5e54c6aeb03bd8a7fe28af0ad9f9d0c75faff"
+  },
+  "layout_compile": [
+    "C:\\ST\\STM32CubeIDE_1.15.0\\STM32CubeIDE\\plugins\\com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.12.3.rel1.win32_1.0.100.202403111256\\tools\\bin\\arm-none-eabi-gcc.exe",
+    "-std=c11",
+    "-mcpu=cortex-m3",
+    "-mthumb",
+    "-mfloat-abi=soft",
+    "-ffreestanding",
+    "-fno-common",
+    "-fno-short-enums",
+    "-Wa,--noexecstack",
+    "-ffunction-sections",
+    "-fdata-sections",
+    "-fstack-usage",
+    "-Wall",
+    "-Wextra",
+    "-Wpedantic",
+    "-Wconversion",
+    "-Wsign-conversion",
+    "-DSTM32F103xB",
+    "-Os",
+    "-Werror",
+    "-pedantic-errors",
+    "-fno-unwind-tables",
+    "-fno-asynchronous-unwind-tables",
+    "-fno-stack-protector",
+    "-fno-lto",
+    "-fno-pic",
+    "-fno-pie",
+    "-fno-jump-tables",
+    "-fno-tree-switch-conversion",
+    "-DCFG_MT_USB_CTR_FAIRNESS=1",
+    "-DCFG_MT_STREAM_DIAGNOSTICS=1",
+    "-Ipatched/v2/boot",
+    "-Ipatched/v2/platform",
+    "-Ipatched/v2/app",
+    "-Ipatched/v2/protocol",
+    "-Ipatched/v2/transport",
+    "-Ipatched/v2/acquisition",
+    "-Isource/firmware/boot",
+    "-Isource/firmware/platform",
+    "-Isource/firmware/app",
+    "-Isource/firmware/protocol",
+    "-Isource/firmware/transport",
+    "-Isource/firmware/acquisition",
+    "-isystem",
+    "source/firmware/third_party/usb/vendor/tinyusb/src",
+    "-isystem",
+    "source/firmware/third_party/usb/vendor/cmsis-device-f1/Include",
+    "-isystem",
+    "source/firmware/third_party/usb/vendor/cmsis-core/CMSIS/Core/Include",
+    "-isystem",
+    "source/firmware/third_party/usb/vendor/tinyusb/src/portable/st/stm32_fsdev",
+    "-c",
+    "../v6d-analysis/layout.c",
+    "-o",
+    "../v6d-analysis/layout.o"
+  ],
+  "limits": [
+    "RAM was saved after source stop; former FIFO peaks and IRQ hold causes are not recorded.",
+    "Live non-diagnostic fields can change between SWD reads.",
+    "Layout uses exact ARM headers/config/compiler; synthetic constants do not execute firmware."
+  ],
+  "interpretation": {
+    "stop_dma_completed_end": 3230,
+    "stream_delivered_prefix_end": 2944,
+    "known_completed_DMA_transfers_after_retained_prefix": 286,
+    "produced_ADC_end": "unknown; stopped DMA counter is not produced_end",
+    "snapshot_limit": "Post-stop/current state does not identify historical transfer sizes, IRQ hold causes, or exact onset cycles."
+  }
+}

@@ -1,0 +1,5 @@
+PASS exact runtime order: task/one ready ADC/RX Stop/TX/flush/IRQ; six TIME barriers
+PASS known-zero preserves prefix; ADC -1 then pending Stop retains first reason/no new DATA
+PASS epoch loss during ADC/task/TX/flush; failed Stop blocks cleanup/CTR; accepted bytes retained
+PASS TIME failure at all six barriers is sticky/no IRQ grant; pending task and lifecycle gate retained
+PASS narrow S4 schedule runtime model; logical callbacks, no physical timing claim

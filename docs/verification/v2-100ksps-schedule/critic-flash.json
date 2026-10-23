@@ -1,0 +1,34 @@
+{
+  "status": "PASS",
+  "score": 9.605,
+  "scope": "Admission of exact V2S8 BIN to one100k10-second no-input physical trial only",
+  "critic": "stream200_critic",
+  "independent": true,
+  "hardware_access_by_critic": false,
+  "source_commit": "bab09184455a41ac9f552565c825ce83f029c40f",
+  "base_commit": "fb7a9c7a0c6f9dd1a64d1c68c610e50026b6570e",
+  "image_bin_sha256": "80a5ed8d064a2d0559f063d6650fb4edab078de4c233ea66ef2cb0e1ac62cf20",
+  "image_elf_sha256": "65d477b3cfae09d3bc9c05fe7a2fa2c498445b22dac9f79a2c89b1b0e5e6330e",
+  "plan_sha256": "0949fe65b3bfa8e01fa988b55ab7d954df50f91603fe18f90d76e4f21eb81b41",
+  "software_evidence_sha256": "a4210ffc549ea224b67cd92bbff59e0446f8783072cd4cde773a3fe6d4d8b210",
+  "preflight_evidence_sha256": "18cc7b188f222eac79887658d49157b7bdfebe543f0c5310e3fe9e7c4871f524",
+  "image_bytes": 36120,
+  "physical100k_accepted": false,
+  "whole_iteration_accepted": false,
+  "rubric": {
+    "C1": 9.7,
+    "C2": 9.6,
+    "C3": 9.5,
+    "C4": 9.6,
+    "C5": 9.6
+  },
+  "open_P0_P1_in_flash_admission_scope": [],
+  "prior_physical_failures_still_REWORK": true,
+  "required_conditions": "All seven numbered conditions in v2-06e-flash-review.md; exact one trial, readback/replug, fail preservation and rollback",
+  "report_sha256": "08b88df0faea7207b6169f0af0e08b29b348dedf137b98f1a9425bb7af97daf4",
+  "evidence": {
+    "critic-flash-image.json": "ed0d920dcd41e50b4a147daf3e4d311eda8fd945233bdb7b4375bbaa773d74c7",
+    "critic-source.json": "12562952e1510f782e2e27ae09073b2072493ead35e5a332ef4cd682f4a10ca1",
+    "critic-static.json": "8482c9c15a7734d453b82155c1c8b1c3ed53a8c056455df0de5e3cc7ab4ec2fc"
+  }
+}

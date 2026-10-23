@@ -1,0 +1,36 @@
+{
+  "status": "PASS_EXACT_IMAGE_AND_PLAN_OFFLINE_CHECKS",
+  "independent": true,
+  "hardware_access": false,
+  "source_commit": "bab09184455a41ac9f552565c825ce83f029c40f",
+  "plan_sha256": "0949fe65b3bfa8e01fa988b55ab7d954df50f91603fe18f90d76e4f21eb81b41",
+  "decoder_sha256": "731cc09150bc5d4a9d34d1872f7a777878773d5ae082f3decb35c2082d63e711",
+  "decoder_diff_from_S7": "only version/build/BIN/ELF constants",
+  "decoder_34_fields_match_exact_header": true,
+  "CLI_sha256_verified": "7fb012b5e26abf45342caa05c6bc33936f8a379b67797cc55658ffb8bf15e95f",
+  "backup_bytes": 65536,
+  "backup_sha256": "95d3a11f8db843e362b2c59ed6fbf380dd630e067fa23f6ae5a9c7d2b11dff1e",
+  "backup_equals_full_D_rollback": true,
+  "backup_prefix_equals_S4_BIN": true,
+  "new_output_absent_before_trial": true,
+  "argv_and_no_mass_erase_option_bytes_checked": true,
+  "register_ranges_exclude_ADC_DR": true,
+  "no_SWD_during_trial": true,
+  "same_probe_SN_from_fresh_dump": "57005400120000393333574E",
+  "observed_target_voltage": 3.2,
+  "observed_device_id": "0x410",
+  "declared_extra_Flash_does_not_expand_64KiB_scope": true,
+  "rollback_ready_helper_location_issue_resolved": true,
+  "copied_evidence": {
+    "software-evidence.json": {
+      "sha256": "a4210ffc549ea224b67cd92bbff59e0446f8783072cd4cde773a3fe6d4d8b210",
+      "file_pairs": 26,
+      "bytes": 981284
+    },
+    "preflight-evidence.json": {
+      "sha256": "18cc7b188f222eac79887658d49157b7bdfebe543f0c5310e3fe9e7c4871f524",
+      "file_pairs": 8,
+      "bytes": 84788
+    }
+  }
+}

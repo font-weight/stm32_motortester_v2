@@ -1,0 +1,55 @@
+{
+  "schema": "v2-06e-preflight-evidence-1",
+  "source_commit": "bab09184455a41ac9f552565c825ce83f029c40f",
+  "candidate_flashed": false,
+  "files": [
+    {
+      "source": "build/v6e-board-01/plan.json",
+      "copy": "docs/verification/v2-100ksps-schedule/preflight/plan.json",
+      "bytes": 2653,
+      "sha256": "0949fe65b3bfa8e01fa988b55ab7d954df50f91603fe18f90d76e4f21eb81b41"
+    },
+    {
+      "source": "build/v6e-board-01/preflight.json",
+      "copy": "docs/verification/v2-100ksps-schedule/preflight/preflight.json",
+      "bytes": 378,
+      "sha256": "98bbccedcd3af5d689cb2164975e67845416cdc0b1c47cd8cbfc94929c8d7395"
+    },
+    {
+      "source": "build/v6e-board-01/prepare_plan.py",
+      "copy": "docs/verification/v2-100ksps-schedule/preflight/prepare_plan.py",
+      "bytes": 3151,
+      "sha256": "0832c89dd0456c16f9ea0b3fd8ec492169409a0357e99fc9c9feabd66384f096"
+    },
+    {
+      "source": "build/v6e-board-01/decode_diagnostics.py",
+      "copy": "docs/verification/v2-100ksps-schedule/preflight/decode_diagnostics.py",
+      "bytes": 11824,
+      "sha256": "731cc09150bc5d4a9d34d1872f7a777878773d5ae082f3decb35c2082d63e711"
+    },
+    {
+      "source": "build/v6e-board-01/before-flash-64k.bin",
+      "copy": "docs/verification/v2-100ksps-schedule/preflight/before-flash-64k.bin",
+      "bytes": 65536,
+      "sha256": "95d3a11f8db843e362b2c59ed6fbf380dd630e067fa23f6ae5a9c7d2b11dff1e"
+    },
+    {
+      "source": "build/v6e-board-01/before-flash-read.txt",
+      "copy": "docs/verification/v2-100ksps-schedule/preflight/before-flash-read.txt",
+      "bytes": 872,
+      "sha256": "1b9299840b819aba3cc9155979d6252f570cccedbcfc21f42913d9d4f1b8f5b8"
+    },
+    {
+      "source": "build/v6e-board-01/probe-list.txt",
+      "copy": "docs/verification/v2-100ksps-schedule/preflight/probe-list.txt",
+      "bytes": 239,
+      "sha256": "b58c8ddae6534dd35b9a1498631f1ee20ba54017c8f3ccfa2b156244c92e72a3"
+    },
+    {
+      "source": "build/v6e-board-01/ports-before.json",
+      "copy": "docs/verification/v2-100ksps-schedule/preflight/ports-before.json",
+      "bytes": 135,
+      "sha256": "c8614e25240676a110cd0c9f9761ba2d2fc559f249875431289a7b08eedef67d"
+    }
+  ]
+}

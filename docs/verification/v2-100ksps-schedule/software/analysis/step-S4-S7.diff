@@ -1,0 +1,22 @@
+--- S4 exact step
++++ S7 exact step
+@@ -1,6 +1,9 @@
+ {
+     mt_usb_scope scope; uint32_t key; int serviced,tx_ok;
+     if(live_time(r)==UINT64_MAX || r->clock_fault)return time_fault(r);
++    if(!synchronize_loss(r))return loss_result(r);
++    if(adc_checkpoint(r)==-2)return MT_LIVE_RUNTIME_ARGUMENT;
++    if(live_time(r)==UINT64_MAX)return time_fault(r);
+     if(!synchronize_loss(r))return loss_result(r);
+     tud_task_ext(0,false);
+     if(live_time(r)==UINT64_MAX)return time_fault(r);
+@@ -50,6 +53,9 @@
+     MT_DIAG_TX_END(diag_tx);
+     if(live_time(r)==UINT64_MAX)return time_fault(r);
+     if(!synchronize_loss(r))return loss_result(r);
++    if(adc_checkpoint(r)==-2)return MT_LIVE_RUNTIME_ARGUMENT;
++    if(live_time(r)==UINT64_MAX)return time_fault(r);
++    if(!synchronize_loss(r))return loss_result(r);
+     if(mt_usb_bridge_app_enter(&scope)) {
+         if(usable(r))(void)tud_cdc_n_write_flush(0);
+         mt_usb_bridge_leave(&scope);

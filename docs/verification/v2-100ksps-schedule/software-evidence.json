@@ -1,0 +1,227 @@
+{
+  "schema": "v2-06e-software-evidence-1",
+  "status": "ARCHIVED_BYTE_VERIFIED",
+  "base_commit": "fb7a9c7a0c6f9dd1a64d1c68c610e50026b6570e",
+  "scope": "V2-06e software candidate evidence only; no physical trial or hardware PASS",
+  "archiver": "build/v6e-archive.py",
+  "archiver_sha256": "61d2956183ed36cd034624d65feb4f1247954b150362d9a7e95a229bcb20cddc",
+  "files": [
+    {
+      "source": "build/v6e-freeze.json",
+      "copy": "docs/verification/v2-100ksps-schedule/software/v6e-freeze.json",
+      "bytes": 10986,
+      "sha256": "ef42b87ef2f951e752815d2f744662b429b75c3bdc69d8be4dc41fb0595c88af",
+      "copy_sha256": "ef42b87ef2f951e752815d2f744662b429b75c3bdc69d8be4dc41fb0595c88af",
+      "byte_equal": true
+    },
+    {
+      "source": "build/v6e-fw-01/config.json",
+      "copy": "docs/verification/v2-100ksps-schedule/software/firmware/config.json",
+      "bytes": 933,
+      "sha256": "27c282c3d15d451bce1924415f7779e9a9fc52e6164e9301d10ea1799484785a",
+      "copy_sha256": "27c282c3d15d451bce1924415f7779e9a9fc52e6164e9301d10ea1799484785a",
+      "byte_equal": true
+    },
+    {
+      "source": "build/v6e-fw-01/receipt.json",
+      "copy": "docs/verification/v2-100ksps-schedule/software/firmware/receipt.json",
+      "bytes": 374956,
+      "sha256": "3896a0b58d34a41286abfda881a95266ec98628223ec4d736a4cd4ebe2d0cd20",
+      "copy_sha256": "3896a0b58d34a41286abfda881a95266ec98628223ec4d736a4cd4ebe2d0cd20",
+      "byte_equal": true
+    },
+    {
+      "source": "build/v6e-fw-01/static-bound.json",
+      "copy": "docs/verification/v2-100ksps-schedule/software/firmware/static-bound.json",
+      "bytes": 180084,
+      "sha256": "8482c9c15a7734d453b82155c1c8b1c3ed53a8c056455df0de5e3cc7ab4ec2fc",
+      "copy_sha256": "8482c9c15a7734d453b82155c1c8b1c3ed53a8c056455df0de5e3cc7ab4ec2fc",
+      "byte_equal": true
+    },
+    {
+      "source": "build/v6e-fw-01/image.map",
+      "copy": "docs/verification/v2-100ksps-schedule/software/firmware/image.map",
+      "bytes": 76133,
+      "sha256": "6370b80e1244d110f6c976ab710f3e75db86a615f81a610845fd459d24d9a100",
+      "copy_sha256": "6370b80e1244d110f6c976ab710f3e75db86a615f81a610845fd459d24d9a100",
+      "byte_equal": true
+    },
+    {
+      "source": "build/v6e-fw-01/image.nm",
+      "copy": "docs/verification/v2-100ksps-schedule/software/firmware/image.nm",
+      "bytes": 17996,
+      "sha256": "01e107c778e20715c73e7c5b0241caae63c86821a5ac219f5da2c79ecce76a64",
+      "copy_sha256": "01e107c778e20715c73e7c5b0241caae63c86821a5ac219f5da2c79ecce76a64",
+      "byte_equal": true
+    },
+    {
+      "source": "build/v6e-fw-01/size.stdout",
+      "copy": "docs/verification/v2-100ksps-schedule/software/firmware/size.stdout",
+      "bytes": 126,
+      "sha256": "7bbe135cfa595f69ab3d2e16e179c8452743cb0e710772066ed8c8212a6cddf0",
+      "copy_sha256": "7bbe135cfa595f69ab3d2e16e179c8452743cb0e710772066ed8c8212a6cddf0",
+      "byte_equal": true
+    },
+    {
+      "source": "build/v6e-fw-01/MotortesterV2-stream-candidate.bin",
+      "copy": "docs/verification/v2-100ksps-schedule/software/firmware/MotortesterV2-stream-candidate.bin",
+      "bytes": 36120,
+      "sha256": "80a5ed8d064a2d0559f063d6650fb4edab078de4c233ea66ef2cb0e1ac62cf20",
+      "copy_sha256": "80a5ed8d064a2d0559f063d6650fb4edab078de4c233ea66ef2cb0e1ac62cf20",
+      "byte_equal": true
+    },
+    {
+      "source": "build/v6e-fw-01/MotortesterV2-stream-candidate.elf",
+      "copy": "docs/verification/v2-100ksps-schedule/software/firmware/MotortesterV2-stream-candidate.elf",
+      "bytes": 70760,
+      "sha256": "65d477b3cfae09d3bc9c05fe7a2fa2c498445b22dac9f79a2c89b1b0e5e6330e",
+      "copy_sha256": "65d477b3cfae09d3bc9c05fe7a2fa2c498445b22dac9f79a2c89b1b0e5e6330e",
+      "byte_equal": true
+    },
+    {
+      "source": "build/v6e-fw-01/MotortesterV2-stream-candidate.hex",
+      "copy": "docs/verification/v2-100ksps-schedule/software/firmware/MotortesterV2-stream-candidate.hex",
+      "bytes": 101645,
+      "sha256": "fc0a300189cd9552f061bfca71f5c8055c037d1f18e88f7831b3cef954f4aeeb",
+      "copy_sha256": "fc0a300189cd9552f061bfca71f5c8055c037d1f18e88f7831b3cef954f4aeeb",
+      "byte_equal": true
+    },
+    {
+      "source": "build/v6e-native-schedule-02/result.json",
+      "copy": "docs/verification/v2-100ksps-schedule/software/native-schedule-02/result.json",
+      "bytes": 42051,
+      "sha256": "49bf28230de615b34ae9823aefd4fb0ac130d7f70c16e6c79309abe385a2005f",
+      "copy_sha256": "49bf28230de615b34ae9823aefd4fb0ac130d7f70c16e6c79309abe385a2005f",
+      "byte_equal": true
+    },
+    {
+      "source": "build/v6e-native-schedule-02/model.c",
+      "copy": "docs/verification/v2-100ksps-schedule/software/native-schedule-02/model.c",
+      "bytes": 18347,
+      "sha256": "80dfbd881878fb15ab0b5461cd57b371c5a452f7f0c024fd0bcd7ba8fd8711d3",
+      "copy_sha256": "80dfbd881878fb15ab0b5461cd57b371c5a452f7f0c024fd0bcd7ba8fd8711d3",
+      "byte_equal": true
+    },
+    {
+      "source": "build/v6e-native-schedule-02/model.stdout",
+      "copy": "docs/verification/v2-100ksps-schedule/software/native-schedule-02/model.stdout",
+      "bytes": 466,
+      "sha256": "590098087e44a860e58b4be643ece85c55eedc3420622076062133b6d0a2e2db",
+      "copy_sha256": "590098087e44a860e58b4be643ece85c55eedc3420622076062133b6d0a2e2db",
+      "byte_equal": true
+    },
+    {
+      "source": "build/v6e-native-schedule-02/model.stderr",
+      "copy": "docs/verification/v2-100ksps-schedule/software/native-schedule-02/model.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "copy_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "byte_equal": true
+    },
+    {
+      "source": "build/v6e-native-schedule-02/compile.stdout",
+      "copy": "docs/verification/v2-100ksps-schedule/software/native-schedule-02/compile.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "copy_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "byte_equal": true
+    },
+    {
+      "source": "build/v6e-native-schedule-02/compile.stderr",
+      "copy": "docs/verification/v2-100ksps-schedule/software/native-schedule-02/compile.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "copy_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "byte_equal": true
+    },
+    {
+      "source": "build/v6e-native-schedule-02/version.stdout",
+      "copy": "docs/verification/v2-100ksps-schedule/software/native-schedule-02/version.stdout",
+      "bytes": 7,
+      "sha256": "355a2e14f6a7f2cb387d9d3b75a3550980d020ee1d005b139b62290c1645068a",
+      "copy_sha256": "355a2e14f6a7f2cb387d9d3b75a3550980d020ee1d005b139b62290c1645068a",
+      "byte_equal": true
+    },
+    {
+      "source": "build/v6e-native-schedule-02/version.stderr",
+      "copy": "docs/verification/v2-100ksps-schedule/software/native-schedule-02/version.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "copy_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "byte_equal": true
+    },
+    {
+      "source": "build/v6e-native-schedule-01/failure.json",
+      "copy": "docs/verification/v2-100ksps-schedule/software/native-schedule-01/failure.json",
+      "bytes": 319,
+      "sha256": "06cbb7c079da4e0ac9859db7612012427507daafed974dca886c9580e1ed2b5f",
+      "copy_sha256": "06cbb7c079da4e0ac9859db7612012427507daafed974dca886c9580e1ed2b5f",
+      "byte_equal": true
+    },
+    {
+      "source": "build/v6d-analysis/analyze_schedule.py",
+      "copy": "docs/verification/v2-100ksps-schedule/software/analysis/analyze_schedule.py",
+      "bytes": 9003,
+      "sha256": "f349d82b9fa3b5f03c80fd61b8139238ff5cc8a6103d71f9dec0d7c893201604",
+      "copy_sha256": "f349d82b9fa3b5f03c80fd61b8139238ff5cc8a6103d71f9dec0d7c893201604",
+      "byte_equal": true
+    },
+    {
+      "source": "build/v6d-analysis/schedule-analysis.json",
+      "copy": "docs/verification/v2-100ksps-schedule/software/analysis/schedule-analysis.json",
+      "bytes": 17929,
+      "sha256": "fe881c8fe22f3c1c0e44171c974dc6aab5de91f2c97b5dd10990266700110c1f",
+      "copy_sha256": "fe881c8fe22f3c1c0e44171c974dc6aab5de91f2c97b5dd10990266700110c1f",
+      "byte_equal": true
+    },
+    {
+      "source": "build/v6d-analysis/step-S4-S7.diff",
+      "copy": "docs/verification/v2-100ksps-schedule/software/analysis/step-S4-S7.diff",
+      "bytes": 974,
+      "sha256": "9e1a67a283b47a5461e7b63b25609e02cb290e47a5b491abdee47480a4bae05e",
+      "copy_sha256": "9e1a67a283b47a5461e7b63b25609e02cb290e47a5b491abdee47480a4bae05e",
+      "byte_equal": true
+    },
+    {
+      "source": "build/v6d-analysis/analyze_sram.py",
+      "copy": "docs/verification/v2-100ksps-schedule/software/analysis/analyze_sram.py",
+      "bytes": 6599,
+      "sha256": "c68f2fe1ecce92b87c8284793d7b8fbddc64a5e86866faf59676245a7d9c7f26",
+      "copy_sha256": "c68f2fe1ecce92b87c8284793d7b8fbddc64a5e86866faf59676245a7d9c7f26",
+      "byte_equal": true
+    },
+    {
+      "source": "build/v6d-analysis/sram-analysis.json",
+      "copy": "docs/verification/v2-100ksps-schedule/software/analysis/sram-analysis.json",
+      "bytes": 5722,
+      "sha256": "acbffdaeddc9893ac4a3ede732175365d741c01624fc8ce8d95725fa41a0ff66",
+      "copy_sha256": "acbffdaeddc9893ac4a3ede732175365d741c01624fc8ce8d95725fa41a0ff66",
+      "byte_equal": true
+    },
+    {
+      "source": "build/v6d-analysis/layout.c",
+      "copy": "docs/verification/v2-100ksps-schedule/software/analysis/layout.c",
+      "bytes": 6999,
+      "sha256": "7cbb10f5270e183b03a944db8164d31aea49bfbc169a6ffd3c6c953a3be76539",
+      "copy_sha256": "7cbb10f5270e183b03a944db8164d31aea49bfbc169a6ffd3c6c953a3be76539",
+      "byte_equal": true
+    },
+    {
+      "source": "build/v6d-analysis/layout.json",
+      "copy": "docs/verification/v2-100ksps-schedule/software/analysis/layout.json",
+      "bytes": 3129,
+      "sha256": "1b9a700a17c451eef1cf631e7dddf41e0f792c2d1e9c29d701235ce37b1d768b",
+      "copy_sha256": "1b9a700a17c451eef1cf631e7dddf41e0f792c2d1e9c29d701235ce37b1d768b",
+      "byte_equal": true
+    }
+  ],
+  "file_count": 26,
+  "total_bytes": 981284,
+  "all_source_copy_bytes_equal": true,
+  "sources_unchanged_after_copy": true,
+  "freeze_image_and_static_report_hashes_match": true,
+  "physical_trial_included": false,
+  "hardware_pass_claimed": false,
+  "implementation_tests_run_by_archiver": false,
+  "note": "Original success and failure reports are preserved verbatim; copying does not change their conclusions."
+}
