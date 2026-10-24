@@ -1,0 +1,41 @@
+{
+  "schema": "v2-06k2-independent-physical-review-1",
+  "reviewer": "stream200_critic",
+  "independent": true,
+  "date": "2026-10-24",
+  "status": "REWORK",
+  "score": 7.895,
+  "scope": "One admitted SD mode4 150k30s target after user limited scope; physical transport/storage only",
+  "source_commit": "cb4757940b3ee9968f953becfbc3ca8caea102d7",
+  "base_commit": "dfc89131f2be5481428217206c59dc0cbaeee08d",
+  "requirements": ["V2-STR16"],
+  "candidate_build": "0x56325344",
+  "candidate_sha256": "244c3af19647ffa24d43973c1d55d24e3b5ce70c494bf781067e13aa60a2daa5",
+  "limited_plan_sha256": "19f68253dc3e342abaa9d1035eff3656f50fa6db7fc699f1da9b8fcd6c9f610d",
+  "archive": {"manifest_sha256": "d85640a6df25646981691e6e2cf9d1363e09664925199cf248d342a1b3367b06", "pairs": 54, "bytes": 10953328, "personally_byte_hash_checked": true, "mismatches": []},
+  "evidence_sha256": {
+    "probe_result": "69a00a7727961ef821b2f00f9b47a0cdef5b8827b8f00c6858b48f9a1beae68f",
+    "traffic": "c5771c9b9c9ad20e2eac300f1527bab4e08055a0491fbbac9c5b53aace57384c",
+    "physical_analysis": "03c948a18dee3251d475fbd739b6e22bfc80cc486aa2d21273a268ed7413db6c",
+    "diagnostics_decoded": "6992f61f7a1645aa4914608361f156918a67ba2182baa13e68560175013b944c",
+    "registers_decoded": "becaefe4a4c0b51b34b84bcd3a3fb9f4fd92c09f47f8a3e2398016df73cc44f7"
+  },
+  "actual_trial": {"attempts": 1, "mode": 4, "target_record_seconds": 30, "actual_record_seconds": 20.60201570019126, "whole_command_seconds": 21.47324899979867, "exit_code": 1, "probe_status": "FAIL", "source_error": "device_1", "nonce": "c81ff6a7fd783b8e", "generation": 3, "received_samples": 3077376, "DATA256_frames": 12021, "END_sequence": 12025, "END_reason": 1, "END_flags": 3, "prefix_CRC32": 2948996275, "END_before_STOP": true, "STOP_request": 4, "ACK_sequence": 12026, "ACK_matches_END": true, "normal_stop": false, "unknown_produced_tail": true, "cleanup_finished": true, "final_phase": "closed"},
+  "retained_evidence": {"offline_status": "PASS", "meaning": "Saved retained prefix integrity only, not physical sustained-rate acceptance", "received_raw_sha256": "45d6f96ce6b6f46fb5a50b634601cd298ff1163771d2af86ccaf17fc38b90141", "selected_start": 3840, "selected_end": 3077376, "selected_samples": 3073536, "selected_raw_sha256": "dee51b3b3bbec9b00416d6ad5302f2fb40b03692f26d081531d6555420a248b2", "selected_wire_byte_equal": true, "fresh_Open_companion_verified": true, "journal_SHA256": "4ad2b82a7e78e6c16093bec4a9cf5b4c55093b4156338f48b3a3bd9c933b1714", "recovery_issue": null, "discarded_journal_tail_bytes": 0, "observed_gaps_overlaps_CRC_issues": [], "retained_bits": 10, "source_adc_bits": 12, "discarded_lsb": 2},
+  "diagnostics": {"address": "0x20002BE4", "bytes": 136, "two_copies_equal": true, "sha256": "288c567b03e1983ccab28867d4f32983d0e6d12121a42c240379abb53b967ef2", "current_build_nonce_generation": true, "flags": 4, "queue_high_water": 8, "queue_capacity": 8, "first_acquisition_reason": 1, "first_ADC_fault": 0, "observed_poll_us": 1572, "observed_copy_us": 156, "deadline_us": 3413, "deadline_comparison_does_not_cancel_queue_failure": true},
+  "stopped": {"TIM3_CEN": 0, "TIM3_PSC": 47, "TIM3_ARR": 9, "ADC_CR2": 0, "DMA_EN": 0, "clock_reset_gates": true, "ADC_DR_read": false, "owner_closed_before_reads": true},
+  "procedure": {"programs": 1, "independent_readback_bytes": 39448, "readback_exact": true, "resets": 1, "actual_user_replug": "Recorded by root with latest direct user reply", "wrapper_reset_assertion": "Saved string-check mismatch after successful CLI; no reset retry", "no_SWD_halt_while_active": "Root actual chronology, not inferred from equal dumps", "rollback": false, "retained_image": "V2SD/0x56325344", "50k_SD": "NOT_RUN_UNVERIFIED", "100k_SD": "NOT_RUN_UNVERIFIED", "today": "Stop after evidence/report preservation; no more code/tests/Flash/Reset/START"},
+  "reviewer_actions": {"read_logs_receipts_and_helpers": true, "archive_pins_checked": true, "raw136_identity_fields_checked": true, "saved_SWD_invocations_checked": 6, "original_inputs_unchanged": true, "wire_replay_repeated": false, "new_tests_builds_or_hardware": false},
+  "ratings": [
+    {"criterion": "C1", "weight": 0.3, "score": 6.0, "basis": "Required30s and normal END not reached."},
+    {"criterion": "C2", "weight": 0.2, "score": 6.5, "basis": "Queue-full remains; controlled failure retained prefix and closed owner."},
+    {"criterion": "C3", "weight": 0.25, "score": 9.6, "basis": "Exact negative trial, raw integrity and current diagnostics preserved without false PASS."},
+    {"criterion": "C4", "weight": 0.15, "score": 9.5, "basis": "Bounded packet mode and clear failure state; software scope reviewed separately."},
+    {"criterion": "C5", "weight": 0.1, "score": 9.7, "basis": "Exact image, commands, archive, stopped state and handoff limits."}
+  ],
+  "open_findings": [{"priority": "P1", "finding": "Device queue fills before the required30-second mode4 trial finishes", "acceptance_impact": "Physical150k sustained criterion failed", "work_today": "No further investigation or implementation per user request"}],
+  "physical_150ksps_accepted": false,
+  "full_SD_physical_qualification": false,
+  "software_package_acceptance_unchanged": true,
+  "limitations": ["PA0 empty: no voltage/bandwidth/calibration/ignition qualification", "Raw equality does not prove unknown ADC tail or zero loss", "Observed poll/copy limits do not identify the full queue-overflow cause", "Longer received prefix than prior firmware is not evidence of reliable operation", "50/100 modes remain unverified on SD"]
+}

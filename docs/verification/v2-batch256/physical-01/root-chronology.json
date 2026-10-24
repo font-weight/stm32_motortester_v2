@@ -1,0 +1,23 @@
+{
+  "schema": "v2-06k2-root-actual-chronology-1",
+  "recorded_utc": "2026-10-24T05:40:38.939879+00:00",
+  "limited_plan_sha256": "19f68253dc3e342abaa9d1035eff3656f50fa6db7fc699f1da9b8fcd6c9f610d",
+  "actual_user_request": "готово. Проверь данную прошивку и на сегодня все, завершаем, лимит кончается",
+  "program_attempts": 1,
+  "readback_equal_bytes": 39448,
+  "reset_attempts": 1,
+  "reset_logs_location_note": "50000 contains only generic pre-session Reset/Run logs, recorded before user limited scope. No50k START; same fresh boot and actual replug used for sole150k trial as admitted.",
+  "new_user_replug_after_reset_before_START": true,
+  "starts": 1,
+  "tested_sample_rate_hz": 150000,
+  "mode": 4,
+  "SWD_or_halt_while_COM_owner_active": false,
+  "postclosed_reads_only_after_offline_END_STOP_ACK_and_closed_proof": true,
+  "ADC_DR_read": false,
+  "physical_result": "FAIL_QUEUE_FULL_AFTER_20.6020157S",
+  "diagnostics_and_stopped_registers_confirmed": true,
+  "rollback_performed": false,
+  "retained_firmware": "V2SD/0x56325344",
+  "50k_and_100k_SD": "NOT_RUN_UNVERIFIED",
+  "further_action_today": "Stop after preserving/reviewing evidence; no new code, tests, Reset, Flash or START."
+}

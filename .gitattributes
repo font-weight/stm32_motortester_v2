@@ -40,6 +40,14 @@ docs/verification/v2-selectable-profiles/**/*.txt -whitespace
 docs/verification/v2-selectable-profiles/**/*.map -whitespace
 docs/verification/v2-selectable-profiles/**/*.log -whitespace
 docs/streaming-selectable-profiles.md -text
+docs/verification/v2-batch256/** -text whitespace=cr-at-eol
+docs/verification/v2-batch256/**/*.u16le binary
+docs/verification/v2-batch256/**/*.bin binary
+docs/verification/v2-batch256/**/*.txt -whitespace
+docs/verification/v2-batch256/**/*.map -whitespace
+docs/verification/v2-batch256/**/*.log -whitespace
+docs/streaming-batch256.md -text
+docs/reviews/v2-06k*.md -text
 host/docs/stream-modes.md -text
 firmware/v2-stream/selectable/* -text
 docs/verification/v2-tx-prepare/**/*.u16le binary

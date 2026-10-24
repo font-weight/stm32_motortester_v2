@@ -1,0 +1,35 @@
+{
+  "schema": "v2-06k2-limited-session-amendment-1",
+  "date_utc": "2026-10-24T05:37:11.243393+00:00",
+  "reason": "Latest user: check this firmware and finish for today, usage limit ending. Root narrows to one150k30s batch256 attempt; 50/100 regressions remain unverified on SD, not waived for complete firmware acceptance.",
+  "base_plan": "build/v6k-board-01/plan.json",
+  "base_plan_sha256": "59509978633ce9f89b1af3d7155de1e60b4194ea8f184370a11284e690acbfe9",
+  "candidate_sha256": "244c3af19647ffa24d43973c1d55d24e3b5ce70c494bf781067e13aa60a2daa5",
+  "source_commit": "cb4757940b3ee9968f953becfbc3ca8caea102d7",
+  "only_session": 150000,
+  "record_seconds": 30,
+  "mode": 4,
+  "starts_limit": 1,
+  "session_directory": "build/v6k-board-01/150000",
+  "changes": [
+    "Execute original session3 as the only session; do not execute50/100 tonight.",
+    "Existing single Reset/Run happened before any START and selects no sample rate. Its logs live under50000 because that was the earlier planned first mode; reuse this actual fresh boot and new user replug for sole150k session, do not reset again.",
+    "Original prior-session PASS ordering is inapplicable because there are no prior sessions; all individual150k evidence/failure/owner-close/diagnostic criteria and exact helpers remain mandatory."
+  ],
+  "reset_log": "build/v6k-board-01/50000/reset.log",
+  "reset_log_sha256": "f8596a56771eed9f6bf4ebfd453433d8b7e7796ae747d34ca0eea8f480d620c9",
+  "actual_user_reply": {
+    "question": "V2SD с пакетами по256отсчётов записана, readback39448; отключить/подключить USB самой платы, ST-Link оставить, PA0 пуст, приложение закрыто.",
+    "answer": "готово. Проверь данную прошивку и на сегодня все, завершаем, лимит кончается",
+    "received_before_START": true
+  },
+  "root_actual_chronology": {
+    "program_attempts": 1,
+    "independent_readback_equal": true,
+    "reset_attempts": 1,
+    "START_since_reset": 0,
+    "COM_open_since_reset": false,
+    "new_user_replug_confirmed": true
+  },
+  "after_trial": "Preserve successful or failed evidence and stopped-state diagnostic; independent bounded review then stop today. No new code/build/flash/retry/rate switch/automatic rollback."
+}

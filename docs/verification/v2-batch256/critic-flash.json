@@ -1,0 +1,53 @@
+{
+  "schema": "v2-06k2-independent-exact-plan-admission-1",
+  "reviewer": "stream200_critic",
+  "independent": true,
+  "date": "2026-10-24",
+  "status": "PASS",
+  "score": 9.60,
+  "scope": "One exact V2SD Flash with readback, then per-boot 50k5s/100k5s/150k30s trials; conditional fresh-SC recovery. Admission only, not successful execution.",
+  "source_commit": "cb4757940b3ee9968f953becfbc3ca8caea102d7",
+  "base_commit": "dfc89131f2be5481428217206c59dc0cbaeee08d",
+  "requirements": ["V2-STR16", "V2-STR14", "V2-STR15"],
+  "plan_path": "build/v6k-board-01/plan.json",
+  "plan_sha256": "59509978633ce9f89b1af3d7155de1e60b4194ea8f184370a11284e690acbfe9",
+  "archive": {"manifest_sha256": "dc519f6663aca42a16be9a90a118f403d0b5149251be6a8a246e5eaae8dfafbf", "pairs": 14, "bytes": 176125, "byte_equal_verified": true},
+  "software_review_sha256": "dc00ada4b3e0fde33cf1bc32d83ee415e125548e42438cf59f18440940d51318",
+  "package_review_sha256": "29a1a97ff24ce8abddd1fe70a9217dd5a8a19a7dff091928dc4a7947e0c40cb6",
+  "package_sha256": "ac89c3005086571f061547d691f5944a4fa079d1a2977848b02de7952784af81",
+  "candidate": {"build": "0x56325344", "bytes": 39448, "sha256": "244c3af19647ffa24d43973c1d55d24e3b5ce70c494bf781067e13aa60a2daa5", "ELF_sha256": "95f201f615b6eae9ce356246acd43e70564a00b46331be10e428a9b01d9dfc80", "readback_address": "0x08000000", "readback_length": "0x9A18", "independent_byte_equal_before_reset": true},
+  "backup": {"bytes": 65536, "sha256": "6276ba75ebd80e5cc2f9239767ee7b74a3cdf7bd163ccfea8efd7be7f0c7c69b", "prefix_bytes": 38188, "prefix_sha256": "a36f72a772c03c5cbfd85767e5f07f0abc3ad2f2ffd7d1ee1c43143d20ca1c90", "prefix_equal_exact_SC": true, "log_sha256": "2390a2d7ad3bf34bbbb767f9e610912eb76c2dbd57ffb76966796344371799c5"},
+  "saved_inventory": {"port": "COM6", "probe_ID": 0, "probe_SN": "57005400120000393333574E", "CLI": "3.6.0.0", "CLI_sha256": "7fb012b5e26abf45342caa05c6bc33936f8a379b67797cc55658ffb8bf15e95f", "voltage_reported": 3.2, "root_must_recheck_no_owner_and_pins_before_program": true},
+  "sessions": [
+    {"sample_rate": 50000, "mode": 1, "record_seconds_after_preview": 5, "max_DATA": 128, "PSC_ARR": [71,19], "poll_copy_less_than_us": 10240, "starts": 1},
+    {"sample_rate": 100000, "mode": 2, "record_seconds_after_preview": 5, "max_DATA": 128, "PSC_ARR": [71,9], "poll_copy_less_than_us": 5120, "starts": 1},
+    {"sample_rate": 150000, "mode": 4, "record_seconds_after_preview": 30, "max_DATA": 256, "PSC_ARR": [47,9], "poll_copy_less_than_us": 3413, "starts": 1}
+  ],
+  "mandatory_conditions": [
+    "One exact program/verify then complete independent readback before Reset/Run",
+    "New successful MCU Reset/Run and actual new user USB-replug reply BEFORE EACH session; no inherited reply",
+    "No START since fresh boot; strict discovery7/global256 and fresh mode nonce/selected ACK/CAPS/build before sole START",
+    "All prior gates PASS before proceeding; stop remaining sessions on any failure",
+    "No SWD/halt during active owner; PASS owners_closed or FAIL cleanup_finished plus closed phase before any diagnostic reads",
+    "Two equal frozen136 at0x20002BE4 with current build/nonce/generation; flags0 and observed timing limits; no stale-record override",
+    "Normal END0 and matching STOP_ACK, preserved wire/raw/Fresh Open/companion and stopped TIM3/ADC/DMA/clocks/reset gates",
+    "No ADC_DR or disabled512-profile reads",
+    "Retain SD after throughput failure if boot/communication/stopped confirmed; no automatic retry/rate switch/rollback",
+    "Concrete recovery reason only, then fresh SC64KiB verify/readback/reset/new user replug and no-START SC100k READY",
+    "Generated helper facts need actual operator chronology and user replies; code constants are not physical evidence"
+  ],
+  "diagnostics": {"address": "0x20002BE4", "bytes": 136, "nm_symbol_size": "0x88", "one_attempt_per_boot": true, "profile512": false},
+  "reviewer_actions": {"pinned_files_checked": 38, "mismatches": [], "helpers_read": 6, "tests_or_builds_repeated": false, "helpers_executed": false, "COM_or_SWD": false, "methods": ["Read exact plan/task/helpers and saved inventory/backup log", "SHA/size/byte-copy audit", "Read exact nm symbol and independent backup prefix", "Check argv lengths, mode/timer/deadline/owner/recovery gates"]},
+  "ratings": [
+    {"criterion": "C1", "weight": 0.3, "score": 9.6, "basis": "Exact image and negotiated modes/criteria match accepted contract."},
+    {"criterion": "C2", "weight": 0.2, "score": 9.55, "basis": "Fresh full backup, owner-close gates, per-session boot, fail-stop and conditional recovery."},
+    {"criterion": "C3", "weight": 0.25, "score": 9.6, "basis": "Exact pins and helper review; future measurements remain unavailable rather than invented."},
+    {"criterion": "C4", "weight": 0.15, "score": 9.6, "basis": "Bounded single plan without repeated software suites or implementation changes."},
+    {"criterion": "C5", "weight": 0.1, "score": 9.7, "basis": "Pinned argv, archives, new diagnostic address and recovery instructions."}
+  ],
+  "open_P0_P1": [],
+  "flash_admitted": true,
+  "physical_execution_verified": false,
+  "physical_150ksps_accepted": false,
+  "limitations": ["Admission does not guarantee 150k success", "I3 physical150 FAIL preserved", "PA0 empty tests transport/storage, not voltages or analogue bandwidth", "Unknown produced tail is not zero loss", "16MiB audit cap depends on actual read fragmentation", "Record duration is not full DWT wall interval; no WCET/clock calibration", "No ignition or automotive qualification"]
+}

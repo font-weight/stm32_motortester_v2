@@ -1,0 +1,57 @@
+{
+  "schema": "v2-06k-independent-index-archive-addendum-1",
+  "reviewer": "stream200_critic",
+  "independent": true,
+  "date": "2026-10-24",
+  "status": "PASS",
+  "score": 9.60,
+  "scope": "Git index archive byte preservation only; prior software/package/Flash reviews unchanged",
+  "source_commit": "cb4757940b3ee9968f953becfbc3ca8caea102d7",
+  "HEAD_at_index_audit": "bfe9d19764d6336d293f9c4e6106a4e8c3860f18",
+  "attributes_git_blob_sha1": "d7bc61901b367039adfa5e3accbe893adcea3316",
+  "attributes_sha256": "62ab031851d979d2e97799fadbc4c93bd1079a0c7ca18fbdee0e1f2c988fdeca",
+  "index_audit": {
+    "files_including_attributes": 96,
+    "K_files": 95,
+    "batch256_subtree_files": 90,
+    "all_index_worktree_byte_equal": true,
+    "manifest_pairs": 79,
+    "manifest_pair_bytes": 26448037,
+    "all_index_archive_source_pin_equal": true,
+    "index_path_sha256_digest": "9a9a058d9d9bbd06828af01992f92862518b73d842b8de265c2daeff6c51edea",
+    "digest_definition": "SHA256 of UTF-8 concatenation of sorted path + NUL + index_blob_SHA256 + LF",
+    "paths": ["docs/verification/v2-batch256", "docs/streaming-batch256.md", "docs/reviews/v2-06k*.md", ".gitattributes"],
+    "snapshot_before_this_addendum": true,
+    "issues": []
+  },
+  "manifest_sha256": {
+    "analysis-01": "d60daa46d381e252dbec1b8517df8f5e04cce12bcb9cd404c06989c34c8b7cad",
+    "firmware-01": "5e5e275cf100574d4ebef49464f97f8a9ad18e599a4b2a3a7d9d6b10252485cf",
+    "gui-01": "0169d18baa8a585fec308b68dcd7cc52e3c10f50bea8fa1da70b918743d924e9",
+    "host-01": "2b5e88ac3b643f0a67927bcb0b0d3f2feec607c564b88fa09c184fdc410f7ce3",
+    "j-analysis-preserved": "5a9a4f54a523a90031e3f37c04086bdf12c682427948c10e4a839b8785b40afd",
+    "package-01": "62f463ff93c53a5ecddf59bd1d4559e969e456201bb09c6b1174dcee6bf090d9",
+    "preflash-01": "dc519f6663aca42a16be9a90a118f403d0b5149251be6a8a246e5eaae8dfafbf"
+  },
+  "unchanged_pins": {
+    "plan": "59509978633ce9f89b1af3d7155de1e60b4194ea8f184370a11284e690acbfe9",
+    "BIN": "244c3af19647ffa24d43973c1d55d24e3b5ce70c494bf781067e13aa60a2daa5",
+    "software_review_MD": "385f6107497399a9c208d13a7ce0659a9f263cc05070a14bbb57de604fbcf8d2",
+    "package_review_MD": "053cfdd52602dd27331295353e091258eefecb49b28dac9122f83302f1f98b8e",
+    "flash_review_MD": "2c1f0be351f4f6977c8e1c48788f802ab91b4171064aee86ba76be9309f59902"
+  },
+  "methods": ["git ls-files -s -z", "git cat-file --batch", "Read local source/archive bytes and manifests with bytes or size_bytes", "SHA256 comparisons; no index mutation"],
+  "tests_repeated": false,
+  "builds_repeated": false,
+  "COM_or_SWD": false,
+  "prior_verdicts_unchanged": true,
+  "physical_success_asserted": false,
+  "ratings": [
+    {"criterion": "C1", "weight": 0.3, "score": 9.6, "basis": "Exact pinned archive data preserved."},
+    {"criterion": "C2", "weight": 0.2, "score": 9.55, "basis": "Explicit byte-preserving attributes avoid checkout normalization."},
+    {"criterion": "C3", "weight": 0.25, "score": 9.6, "basis": "Independent direct index-blob and manifest comparisons."},
+    {"criterion": "C4", "weight": 0.15, "score": 9.6, "basis": "Narrow declarative archival change only."},
+    {"criterion": "C5", "weight": 0.1, "score": 9.7, "basis": "Pinned snapshot digest, hashes and precise reproduction scope."}
+  ],
+  "open_P0_P1": []
+}

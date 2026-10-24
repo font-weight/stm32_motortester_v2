@@ -1,0 +1,30 @@
+{
+  "argv": [
+    ".venv/Scripts/python.exe",
+    "-B",
+    "host/tools/v2_stream_probe.py",
+    "--port",
+    "COM6",
+    "--output",
+    "build/v6k-board-01/150000/run",
+    "--seconds",
+    "30",
+    "--build-id",
+    "0x56325344",
+    "--sample-rate",
+    "150000",
+    "--source-commit",
+    "cb4757940b3ee9968f953becfbc3ca8caea102d7",
+    "--image-sha256",
+    "244c3af19647ffa24d43973c1d55d24e3b5ce70c494bf781067e13aa60a2daa5"
+  ],
+  "started_utc": "2026-10-24T05:38:50.216026+00:00",
+  "finished_utc": "2026-10-24T05:39:11.689261+00:00",
+  "wall_seconds": 21.47324899979867,
+  "exit_code": 1,
+  "console_sha256": "b8300f1190fbd9e58e093ffa12a78abb719ac47e2c3aed3ba51f1c8e98c640c2",
+  "root_observed_no_SWD_or_halt_during_trial": true,
+  "attempt_count": 1,
+  "limited_plan_sha256": "19f68253dc3e342abaa9d1035eff3656f50fa6db7fc699f1da9b8fcd6c9f610d",
+  "actual_user_replug_reply_before_START": "готово. Проверь данную прошивку и на сегодня все, завершаем, лимит кончается"
+}
