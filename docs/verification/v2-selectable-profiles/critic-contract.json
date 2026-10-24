@@ -1,0 +1,86 @@
+{
+  "schema": "v2-06i-independent-contract-review-1",
+  "reviewer": "stream200_critic",
+  "independent": true,
+  "date": "2026-10-24",
+  "status": "PASS",
+  "score": 9.6,
+  "scope": "Protocol/acquisition/file contract only; no implementation, package, Flash or physical150k admission",
+  "base_commit": "c3407c1bbc2bd152a2e9ae193eb0628aa421ec0a",
+  "preserved_SB_source_commit": "8243fb3224a1e24980848a8ce02431ec41f5bd9c",
+  "preserved_SB_BIN_sha256": "e7f6f07fc6a43e6b109af6e5c652db1322a0e5023e328007b2c50d303f12536e",
+  "requirements": [
+    "V2-STR14",
+    "V2-STR15"
+  ],
+  "candidate_build_planned": "0x56325343",
+  "canonical_path": "docs/streaming-selectable-profiles.md",
+  "canonical_sha256": "eb84ef5fea2c36da9de397f7a17a0c4d3671a4da8748834a4b09b5b6e14b62f1",
+  "contract_manifest_sha256": "51d6262a0f9c82a22478edb753cf15e0249c8325612acc6b7582094e14f10bb1",
+  "host_schema_sha256": "b322c4ec09174bd2b8e7cf7ae20a450c2ab77f96072c5edb077f3fb3b184838c",
+  "checks_sha256": "b4c070270a0f195ac69e524852c20617c2f83ba3e270613688df977a9e4047d9",
+  "ratings": [
+    {
+      "criterion": "C1",
+      "weight": 0.3,
+      "score": 9.6,
+      "basis": "Exact3mode wire/revision/selection and intrinsic quantization semantics preserve old files and known100k scope."
+    },
+    {
+      "criterion": "C2",
+      "weight": 0.2,
+      "score": 9.55,
+      "basis": "Explicit immutable mode, pending/current ticket checks, conservative150k timing, unchanged failclosed/Stop rules; resource and physical adequacy still require implementation evidence."
+    },
+    {
+      "criterion": "C3",
+      "weight": 0.25,
+      "score": 9.6,
+      "basis": "Exact archived drafts/schema and canonical document checked; format sizes/timing/packing/bandwidth arithmetic verified, no simulated or physical results claimed."
+    },
+    {
+      "criterion": "C4",
+      "weight": 0.15,
+      "score": 9.6,
+      "basis": "One descriptor table, one loss-of-LSB point, explicit legacy discovery and file migration avoid hidden alternate formats."
+    },
+    {
+      "criterion": "C5",
+      "weight": 0.1,
+      "score": 9.7,
+      "basis": "Unique requirement IDs14/15, exact protocol/file fields and small necessary evidence plan are pinned for later independent review."
+    }
+  ],
+  "open_P0_P1": [],
+  "closed_findings": [
+    "Duplicate requirement IDs resolved to14/15, earlier12/13 preserved.",
+    "Legacy requestedFs mismatch rejectsConnect/START until explicit selection; no timeout downgrade.",
+    "Canonical10 domain0..4092 multiples4 mandatory in intrinsic journal read/write, even withoutcompanion.",
+    "Strict exact magic3/4, companion3 and nine added intrinsic identity fields pinned; metadata enum names synchronized.",
+    "Bounded framing/CRC/header precedes stale nonce ignore; current nonce wrong revision failclosed; pending/current/TX identity separate.",
+    "150k CEN bracket bound5 observed ticks, not6; rational20/3us timing separate.",
+    "IN-packet estimate qualified as per-full-DATA separate-transfer arithmetic, not actual CDC/ISR maximum."
+  ],
+  "planned_checks": [
+    "One targeted actualcore/queue/driver native model: discovery0.2/selection0.3, pending/current partialHELLO/stale tickets, knownzero/partial/unknown/writecommit and STOPtail CRC.",
+    "Packing128 plus1/2/3/4 independent vectors, lengths/padding, originalADC>4095 rejection and canonical ENDCRC; no exhaustive128N sweep required.",
+    "Descriptor50/100/150 timers, rational150period20/3, deadline3412accepted/3413rejected, CEN5/6 includingwrap; equality of unaffected H runtime/DCD/guards.",
+    "Few host fixtures: legacy discovery/mismatch/revision, one packedjournal+CSV/freshopen withoutcompanion and invalid/missing quantization, legacy50/100/200 reads.",
+    "One targeted injected WindowsGUI/profile selection/Record/Open run and exact Windowspackage path; one finalARM/static RAM+stack receipt.",
+    "Physical modes, including changed100k, each need later exact image/plan/admission; no automatic inheritance of H2."
+  ],
+  "software_accepted": false,
+  "windows_package_accepted": false,
+  "flash_approved": false,
+  "physical_150ksps_accepted": false,
+  "hardware_access_by_reviewer": false,
+  "implementation_tests_run": false,
+  "limitations": [
+    "STM32 remainsADC12, retained10 truncates2LSB irreversibly; not ENOB/voltageaccuracy/ADC acceleration.",
+    "Canonicalc12=q10<<2 preservesreceived information, not discardedrawbits; physical input staysunconfigured.",
+    "Nominal timing/USB arithmetic doesnot prove sustainable150k, analogsettling or calibratedFs.",
+    "NewframeCPU rate+50percent and shorterDMAdeadline matter despite only+2.606percentDATAwirebytes.",
+    "ExistingSB exactimage and H2limited30strial stayseparate; oldnegativeevidence preserved.",
+    "Draftimplementation maycontinue but isnot evaluated bythis contractverdict."
+  ]
+}

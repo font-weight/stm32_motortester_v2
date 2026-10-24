@@ -1,0 +1,65 @@
+# Выбираемые режимы потока, wire 0.3
+
+Черновик реализации V2-06i, 24.10.2026. Режим выбирается до Connect:
+50 000/12, 100 000/12 или 150 000/10 сохранённых бит. Последний режим
+передаёт старшие 10 бит физического ADC12; исходные два младших бита утрачены.
+Wire-контракт — `build/v6i-analysis/firmware-contract.md`.
+
+Сначала HELLO0.2: ACK capability1 означает прежнюю fixed-Fs прошивку;
+capability3 требует нового HELLO0.3 с другим nonce и выбранным mode.
+Несовпадение выбранной Fs с legacy CAPS отклоняет подключение до START.
+Сообщение показывает фактическую Fs; пользователь явно выбирает её и
+подключается снова. Нет timeout downgrade или автоматического START.
+После ограниченной проверки framing, CRC и заголовка кадр с иной nonce
+игнорируется; неподходящая revision текущей nonce — отказ.
+
+## Неизменяемая идентичность записи
+
+К прежним восьми полям StreamIdentity добавляются следующие поля:
+
+| Поле | Legacy 0.2 | 0.3 mode1/2 | 0.3 mode3 |
+|---|---|---|---|
+| acquisition_mode | 0 | 1/2 | 3 |
+| source_adc_bits | 12 | 12 | 12 |
+| retained_bits | 12 | 12 | 10 |
+| discarded_lsb | 0 | 0 | 2 |
+| wire_sample_encoding | u16le | u16le | u10packed_le |
+| normalization | identity | identity | left_shift_2 |
+| quantization | none | none | truncate_lsb |
+| stored_sample_encoding | u16le | u16le | u16le |
+| stored_code_domain | adc12 | adc12 | adc12 |
+
+Wire0.3 identity.protocol_revision=`0.3-modes-20261024`, config_id=mode.
+Fs — точное целое nominal_fs_hz, denominator1. Время отсчёта вычисляется
+как index/Fs; шаг150k не округляется до целого числа микросекунд.
+Сочетания полей принимаются только из трёх таблиц согласованных режимов.
+Для mode3 каждый сохранённый код обязан лежать в0…4092 и быть кратным4;
+это проверяется при записи и открытии, без зависимости от companion.
+Сохранённый код равен `(ADC12 >> 2) << 2`. END CRC считается по этим u16le.
+
+## Версии файлов
+
+Новые writers используют `MTSTRM\x03\x00` для прямого журнала и
+`MTSTRM\x04\x00` для журнала с подготовкой попытки. Обязателен полный набор
+полей identity; отсутствующие/лишние поля отклоняются. Повреждение не
+превращает mode3 в12-битную запись.
+
+Прежние magic1/2 читает отдельная строгая ветка: только прежние восемь
+полей identity, затем эквивалентные значения первого столбца добавляются
+в памяти. Прежний файл/хеш не меняется. Прежние50/100/200k читаются.
+
+Companion `motortester-v2-stream-context`, format_version3 содержит прежние
+context/time_basis/journal_sha256/journal_bytes/journal и поле connection
+(объект для serial либо null). journal.identity — полный новый набор.
+Connection добавляет protocol_revision (`0.2`/`0.3`); selection добавляет
+requested_sample_rate_hz (null означает старое программное API без выбора).
+Для0.3 observed_caps содержит десять полей config,mode,channel,adc_bits,
+Fs_num,Fs_den,max_block,flags,retained_bits,encoding. Для0.2 — прежние восемь.
+Старые companion1/2 проверяются с прежней формой binding перед миграцией;
+новые файлы нельзя связывать со старым companion, скрывающим квантование.
+
+JSON-экспорт включает полный identity. CSV хранит канонический code12,
+а его metadata/header явно указывает retained_bits/quantization; это не
+полные исходные12-битные измерения. Без companion эти сведения сохраняются.
+Коды0/4092 в mode3 — крайние корзины квантования (исходные0…3/4092…4095),
+по ним нельзя установить точное достижение аппаратного ADC rail.

@@ -1,5 +1,15 @@
 # Координация самостоятельного V2
 
+V2-06i реализация после согласования контракта: higher_fs_review пишет
+firmware/v2-stream/** и tests/v2-stream-firmware/** кроме замороженного
+usb_turnover_model.c, новые build/v6i-* кроме host/board. Host_200k пишет
+host/motortester/**, host/tests/**, host/tools/**, host/docs/** и новые
+build/v6i-host-*. Root — канонические документы, host/packaging/v2/**,
+итоговая Windows-сборка, архивы и единолично будущий COM/SWD. Критик —
+build/v6i-analysis/critic-source-findings.md и docs/reviews/v2-06i*.md,
+docs/verification/v2-selectable-profiles/critic*.json. H/SB неизменна.
+Черновая реализация не является принятой; Flash SC пока не назначен.
+
 V2-06i контракт: root — task/requirements/decisions/progress/coordination,
 интеграция и единолично COM/SWD. Higher_fs_review — только
 build/v6i-analysis/firmware-contract.md; host_200k — host-contract.md там же.

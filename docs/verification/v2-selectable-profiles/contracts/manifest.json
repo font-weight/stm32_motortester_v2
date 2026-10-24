@@ -1,0 +1,31 @@
+{
+  "schema": "v2-06i-contract-1",
+  "base_commit": "c3407c1",
+  "scope": "Contract only; implementation and board qualification separate",
+  "files": [
+    {
+      "source": "build/v6i-analysis/firmware-contract.md",
+      "archive": "docs/verification/v2-selectable-profiles/contracts/firmware-contract.md",
+      "bytes": 21027,
+      "sha256": "02b04b6c8e14abe422f495de0cc2191f882eb51a3d311614934524f68ef208b5"
+    },
+    {
+      "source": "build/v6i-analysis/host-contract.md",
+      "archive": "docs/verification/v2-selectable-profiles/contracts/host-contract.md",
+      "bytes": 16405,
+      "sha256": "ac2ecb2b13b29e7452959d04f55fca0ee5f33d6287a529e42bf25be06849088a"
+    },
+    {
+      "source": "host/docs/stream-modes.md",
+      "archive": "docs/verification/v2-selectable-profiles/contracts/stream-modes.md",
+      "bytes": 4929,
+      "sha256": "b322c4ec09174bd2b8e7cf7ae20a450c2ab77f96072c5edb077f3fb3b184838c"
+    }
+  ],
+  "canonical": {
+    "path": "docs/streaming-selectable-profiles.md",
+    "bytes": 21523,
+    "sha256": "eb84ef5fea2c36da9de397f7a17a0c4d3671a4da8748834a4b09b5b6e14b62f1"
+  },
+  "canonical_edits": "Header clarifies candidate scope; build ID assigned; host schema reference hash updated after bounded CRC/stale-nonce clarification. Protocol/ADC/file requirements preserved. IN packets/s explicitly conditional on separate full-DATA transfers; CDC packetization is not an absolute ISR bound."
+}

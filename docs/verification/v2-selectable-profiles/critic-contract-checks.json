@@ -1,0 +1,119 @@
+{
+  "schema": "v2-06i-independent-contract-checks-1",
+  "scope": "Document consistency and exact arithmetic only, no implementation test",
+  "base_commit": "c3407c1bbc2bd152a2e9ae193eb0628aa421ec0a",
+  "archived_files": [
+    {
+      "source": "build/v6i-analysis/firmware-contract.md",
+      "archive": "docs/verification/v2-selectable-profiles/contracts/firmware-contract.md",
+      "bytes": 21027,
+      "sha256": "02b04b6c8e14abe422f495de0cc2191f882eb51a3d311614934524f68ef208b5"
+    },
+    {
+      "source": "build/v6i-analysis/host-contract.md",
+      "archive": "docs/verification/v2-selectable-profiles/contracts/host-contract.md",
+      "bytes": 16405,
+      "sha256": "ac2ecb2b13b29e7452959d04f55fca0ee5f33d6287a529e42bf25be06849088a"
+    },
+    {
+      "source": "host/docs/stream-modes.md",
+      "archive": "docs/verification/v2-selectable-profiles/contracts/stream-modes.md",
+      "bytes": 4929,
+      "sha256": "b322c4ec09174bd2b8e7cf7ae20a450c2ab77f96072c5edb077f3fb3b184838c"
+    }
+  ],
+  "archive_bytes": 42361,
+  "archive_byte_equality": true,
+  "struct_sizes": {
+    "<BBBBHHII": 16,
+    "<QHH": 12,
+    "<IHBBIIHBBI": 24,
+    "<IIQHH": 20,
+    "<IIQ": 16
+  },
+  "profiles": [
+    {
+      "mode": 1,
+      "nominal_fs_hz": 50000,
+      "psc": 71,
+      "arr": 19,
+      "period_us": "20",
+      "half512_us": "10240",
+      "reject_delta_us_ge": 10240,
+      "start_bracket_max_observed_ticks": 20,
+      "canonical_raw_bytes_per_second": 100000,
+      "DATA128_max_framed_bytes": 307,
+      "DATA128_frames_per_second": "3125/8",
+      "DATA_only_wire_bytes_per_second": "959375/8",
+      "IN_packets_per_second_if_each_full_DATA_transfer_is_separate": "15625/8"
+    },
+    {
+      "mode": 2,
+      "nominal_fs_hz": 100000,
+      "psc": 71,
+      "arr": 9,
+      "period_us": "10",
+      "half512_us": "5120",
+      "reject_delta_us_ge": 5120,
+      "start_bracket_max_observed_ticks": 10,
+      "canonical_raw_bytes_per_second": 200000,
+      "DATA128_max_framed_bytes": 307,
+      "DATA128_frames_per_second": "3125/4",
+      "DATA_only_wire_bytes_per_second": "959375/4",
+      "IN_packets_per_second_if_each_full_DATA_transfer_is_separate": "15625/4"
+    },
+    {
+      "mode": 3,
+      "nominal_fs_hz": 150000,
+      "psc": 47,
+      "arr": 9,
+      "period_us": "20/3",
+      "half512_us": "10240/3",
+      "reject_delta_us_ge": 3413,
+      "start_bracket_max_observed_ticks": 5,
+      "canonical_raw_bytes_per_second": 300000,
+      "DATA128_max_framed_bytes": 210,
+      "DATA128_frames_per_second": "9375/8",
+      "DATA_only_wire_bytes_per_second": "984375/4",
+      "IN_packets_per_second_if_each_full_DATA_transfer_is_separate": "9375/2"
+    }
+  ],
+  "partial10_payload_shapes": [
+    {
+      "samples": 1,
+      "bytes": 2,
+      "required_zero_padding_bits": 6
+    },
+    {
+      "samples": 2,
+      "bytes": 3,
+      "required_zero_padding_bits": 4
+    },
+    {
+      "samples": 3,
+      "bytes": 4,
+      "required_zero_padding_bits": 2
+    },
+    {
+      "samples": 4,
+      "bytes": 5,
+      "required_zero_padding_bits": 0
+    },
+    {
+      "samples": 128,
+      "bytes": 160,
+      "required_zero_padding_bits": 0
+    }
+  ],
+  "wire_rate_increase_percent": 2.6058631921824102,
+  "canonical10_max": 4092,
+  "unknown_original_low_bits": 2,
+  "strict_legacy_ACK_marker1_confirmed_from_base": true,
+  "old_200k_file_read_required": true,
+  "no_hardware_access": true,
+  "no_implementation_tests": true,
+  "open_items": [],
+  "status": "PASS",
+  "canonical_sha256": "eb84ef5fea2c36da9de397f7a17a0c4d3671a4da8748834a4b09b5b6e14b62f1",
+  "contract_manifest_sha256": "51d6262a0f9c82a22478edb753cf15e0249c8325612acc6b7582094e14f10bb1"
+}
