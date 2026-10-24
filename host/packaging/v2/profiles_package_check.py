@@ -32,7 +32,9 @@ def verify_profiles_package(*, output, gui_exe, relocated, foreign_cwd,
     # status string or a screenshot into evidence of a recording roundtrip.
     checks = smoke.get("checks", {})
     required = ("selector_modes", "selection_locked", "packed_record_roundtrip",
-                "intrinsic_quantization", "csv_timebase", "legacy_mismatch_before_start")
+                "intrinsic_quantization", "csv_timebase", "legacy_mismatch_before_start",
+                "batch_mode4_negotiated", "batch256_wire_evidence",
+                "sc150_batch_required_before_start")
     if not isinstance(checks, dict) or any(checks.get(key) is not True for key in required):
         raise RuntimeError("Frozen profile-flow evidence is incomplete")
     pngs = {}
@@ -53,6 +55,9 @@ def verify_profiles_package(*, output, gui_exe, relocated, foreign_cwd,
     roundtrip = smoke.get("roundtrip", {})
     identity = roundtrip.get("identity", {})
     if (identity.get("origin") != "synthetic"
+            or identity.get("protocol_revision") != "0.3-batch256-20261024"
+            or identity.get("acquisition_mode") != 4
+            or identity.get("config_id") != 4
             or identity.get("nominal_fs_hz") != 150_000
             or identity.get("source_adc_bits") != 12
             or identity.get("retained_bits") != 10
@@ -62,6 +67,30 @@ def verify_profiles_package(*, output, gui_exe, relocated, foreign_cwd,
             or type(roundtrip.get("samples")) is not int or roundtrip["samples"] <= 0
             or roundtrip.get("journal_sha256") != sha256(smoke_output / "packed150.mtstream")):
         raise RuntimeError("Frozen packed recording identity/hash mismatch")
+    if roundtrip.get("connection", {}).get("observed_caps") != [
+            4, 4, 0, 12, 150_000, 1, 256, 1, 10, 2]:
+        raise RuntimeError("Frozen batch selected CAPS mismatch")
+    # These observations come from decoding the synthetic wire bytes, not
+    # from inferring packetization from the 150 kS/s selector or journal chunks.
+    batch = smoke.get("batch", {})
+    expected = {"mode": 4, "max_block": 256, "discovery_capabilities": 7,
+                "discovery_max_block": 256, "selected_ack_max_block": 256,
+                "first_full_data_samples": 256}
+    if (not isinstance(batch, dict)
+            or any(type(batch.get(key)) is not int or batch[key] != value
+                   for key, value in expected.items())
+            or batch.get("data_count_sequence_validation") is not True
+            or type(batch.get("full_data_frames")) is not int
+            or batch["full_data_frames"] < 1
+            or type(batch.get("largest_data_frame_bytes")) is not int
+            or not 1 <= batch["largest_data_frame_bytes"] <= 371
+            or type(batch.get("short_tail_frames")) is not int
+            or batch["short_tail_frames"] not in (0, 1)
+            or (batch["short_tail_frames"] == 0 and batch.get("short_tail_samples") is not None)
+            or (batch["short_tail_frames"] == 1 and (
+                type(batch.get("short_tail_samples")) is not int
+                or not 1 <= batch["short_tail_samples"] < 256))):
+        raise RuntimeError("Frozen DATA256 wire witness is incomplete")
     exported = read_json(smoke_output / "packed150.csv.json")
     if (exported.get("complete") is not True or exported.get("identity") != identity
             or exported.get("csv_sha256") != sha256(smoke_output / "packed150.csv")
@@ -82,7 +111,7 @@ def verify_profiles_package(*, output, gui_exe, relocated, foreign_cwd,
     if file_tree(relocated) != expected_tree or sha256(portable) != portable_hash:
         raise RuntimeError("Profile check modified the sealed program")
     report = {
-        "status": "PASS", "verification_scope": "selectable-profiles",
+        "status": "PASS", "verification_scope": "selectable-profiles-batch256",
         "scope": "Frozen Windows profile selector and injected wire/file/CSV path; "
                  "no physical COM, clean-machine or unchanged legacy-suite qualification",
         "source_commit": revision, "portable_zip": portable.name,

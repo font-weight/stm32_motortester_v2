@@ -1,4 +1,42 @@
-# Кандидат V2SC: выбираемые50/100/150k до START
+# Кандидат V2SD: непрерывные DATA256 для 150k
+
+V2-06k/build `0x56325344`, product `Motortester V2 Batch SD`, реализует
+[контракт batch256](../../docs/streaming-batch256.md). Новый mode4/config4
+сохраняет 150k/ADC12/retained10, но объединяет два существующих блока по128
+в один DATA256. ADC/DMA продолжают работать непрерывно; пауз между окнами нет.
+Режимы1/2/3 и их DATA128 остаются прежними. TIME-оптимизация J не включена.
+
+Discovery HELLO0.2 объявляет capability7/global256. После fresh nonce
+HELLO0.3 полный ACK/CAPS объявляет выбранные128 или256. Mode3 не меняет
+значение. Старые приложения отвергают новый discovery до START.
+В STREAMING mode4 ждёт оба блока128. Только после Stop/fault, синхронного
+снимка хвоста и seal очереди допускается последний DATA1..255; остаток257
+передаётся как256+1. Неизвестный потерянный хвост остаётся неизвестным.
+
+Два borrowed view проверяются до любого изменения prefixCRC/head. Один
+atomic pop_span фиксирует оба блока только после полного принятия кадра;
+known-zero, partial, unknown acceptance, TIME/epoch и cached partial через
+HELLO_PENDING сохраняют прежние ограничения. Дополнительного буфера256
+отсчётов нет: два вызова прежнего packer128 заполняют существующий staging.
+Полный packed DATA256 занимает не более371 байта с COBS/delimiter и помещается
+в прежний FIFO384. END CRC считается по canonical u16le, как в mode3.
+
+Runtime H, FIFO384/MPS64/burst6/<500мкс, DMA1024/half512, queue8, ADC и TIME
+не изменены. Guarded CRC512 и старение раннего IRQ grant во время prepare
+остаются затратами; расчёт размера пакета не доказывает физическую скорость.
+Legacy136 по-прежнему требует нового boot между независимо проверяемыми
+сеансами. `tx_max_cycles` исключает prepare и не измеряет всю стоимость TX.
+
+```powershell
+.\.venv\Scripts\python.exe -I -B firmware\v2-stream\build_windows.py --output build\v6k-fw-candidate
+```
+
+До отдельного аппаратного плана нужны одна адресная actual-core/queue модель,
+source guard proof, exact ARM/static64KiB/20KiB с8192 stack reserve и независимый
+critic≥9,5. Сборка не открывает COM/SWD. Фактические результаты — в progress
+и ревью; этот текст не подтверждает устойчивые150k.
+
+## Сохранённая V2SC: выбираемые50/100/150k до START
 
 V2-06i/build `0x56325343`, product `Motortester V2 Modes SC`. Это новый
 software-кандидат по [контракту профилей](../../docs/streaming-selectable-profiles.md).

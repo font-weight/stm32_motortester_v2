@@ -3,7 +3,7 @@ from dataclasses import dataclass
 import struct
 
 from .stream_provenance import ProvenanceError, profile_for_identity
-from .stream_wire import MODE_REVISION, MODE_TABLE
+from .stream_wire import MODE_REVISION, MODE_TABLE, MODE_REVISIONS, mode_revision
 
 U64_MAX = (1 << 64) - 1
 MAX_BLOCK_SAMPLES = 8192
@@ -67,12 +67,13 @@ class StreamIdentity:
         for value in (self.acquisition_mode, self.source_adc_bits, self.retained_bits, self.discarded_lsb):
             uint(value, 12)
         mode = self.acquisition_mode
-        if self.protocol_revision == MODE_REVISION:
+        if self.protocol_revision in MODE_REVISIONS:
             require(mode in MODE_TABLE and self.config_id == mode and
-                    self.nominal_fs_hz == MODE_TABLE[mode][0], "Несогласованный режим wire0.3")
+                    self.nominal_fs_hz == MODE_TABLE[mode][0] and
+                    self.protocol_revision == mode_revision(mode), "Несогласованный режим wire0.3")
         else:
             require(mode == 0, "Режим захвата требует версии wire0.3")
-        expected = ((12, 10, 2, "u10packed_le", "left_shift_2", "truncate_lsb") if mode == 3
+        expected = ((12, 10, 2, "u10packed_le", "left_shift_2", "truncate_lsb") if mode in (3, 4)
                     else (12, 12, 0, "u16le", "identity", "none"))
         require((self.source_adc_bits, self.retained_bits, self.discarded_lsb,
                  self.wire_sample_encoding, self.normalization, self.quantization) == expected and
@@ -113,7 +114,7 @@ class StreamBlock:
                 2 <= len(self.raw_u16le) <= 2 * MAX_BLOCK_SAMPLES and
                 len(self.raw_u16le) % 2 == 0, "Ожидаются ограниченные uint16-le bytes")
         uint(self.end_sample_index)
-        if self.identity.protocol_revision == MODE_REVISION:
+        if self.identity.protocol_revision in MODE_REVISIONS:
             require(all(code <= 4095 and (self.identity.retained_bits == 12 or code % 4 == 0)
                         for (code,) in struct.iter_unpack("<H", self.raw_u16le)),
                     "Коды не соответствуют сохранённому режиму ADC/квантования")

@@ -22,7 +22,7 @@ from ..stream_recording import (ATTEMPT_MAGICS, MAX_ATTEMPT_FILE_BYTES, StreamLi
                                 recover, recover_attempt)
 from ..stream_model import LEGACY_IDENTITY_FIELDS
 from ..stream_view import EventConfig
-from ..stream_wire import SUPPORTED_SAMPLE_RATES, supported_caps, supported_mode_caps, MODE_REVISION
+from ..stream_wire import SUPPORTED_SAMPLE_RATES, supported_caps, supported_mode_caps, mode_revision
 from .input import InputProfile, UNKNOWN_PROFILE, text
 from .stream_demo import PacedStreamPeer
 
@@ -234,7 +234,7 @@ def _verify_connection(connection, identity):
     if (identity["origin"] != origin or
             identity["firmware_version"] != f"build:{connection.observed_build_id:08x}" or
             identity["application_version"] != "v2-serial-unknown-accounting:" + connection.execution_kind or
-            identity["protocol_revision"] != (MODE_REVISION if connection.protocol_revision == "0.3" else "0.2-draft-081721") or
+            identity["protocol_revision"] != (mode_revision(connection.observed_caps[0]) if connection.protocol_revision == "0.3" else "0.2-draft-081721") or
             identity["config_id"] != connection.observed_caps[0] or
             identity["nominal_fs_hz"] != connection.observed_caps[4]):
         raise ValueError("Наблюдение соединения не соответствует журналу")
@@ -549,6 +549,11 @@ class StreamDeviceBridge(QtCore.QObject):
                 message = (f"Эта прошивка имеет фиксированную частоту {rate} отсчётов/с. "
                            "Приём не запущен. Закройте окно приёма, откройте его снова, "
                            "выберите эту частоту и подключитесь.")
+            elif code == "batch256_firmware_required":
+                message = ("Для 150000 отсчётов/с нужна прошивка с пакетами по 256 отсчётов. "
+                           "Эта прошивка передаёт по 128; приём не запущен. "
+                           "Можно закрыть окно приёма и выбрать 50000 или 100000, "
+                           "либо обновить прошивку после проверки совместимости.")
         if message:
             self._report_error(message)
         if self._record_path is not None and not self._metadata_started and status.can_open:

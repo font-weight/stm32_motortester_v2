@@ -1,8 +1,10 @@
-"""Isolated HOST codec for the unaccepted wire 0.2 stream draft.
+"""Isolated host codec for negotiated wire 0.2 and 0.3 stream frames.
 
-Pinned prose: PR192 08172114403273ecfac2fb1e8e49d92f9c68756f;
+Current contracts: docs/streaming-selectable-profiles.md and
+docs/streaming-batch256.md. Transport/session and storage use this codec,
+but remain separate modules. Historical wire 0.2 prose pin:
+PR192 08172114403273ecfac2fb1e8e49d92f9c68756f;
 SHA256 174aed3c570a204d865c1a446c7878c628a972222d00ef8f60d33ad9c92c998a.
-No transport, firmware, application or storage integration is provided.
 """
 from dataclasses import dataclass
 from enum import IntEnum
@@ -19,8 +21,19 @@ HEADER = struct.Struct("<BBBBHHQII")
 # numerator selects the nominal timebase; it does not certify the ADC clock.
 LEGACY_SAMPLE_RATES = frozenset((50_000, 100_000, 200_000))
 SUPPORTED_SAMPLE_RATES = LEGACY_SAMPLE_RATES | {150_000}
-MODE_TABLE = {1: (50_000, 12, 1), 2: (100_000, 12, 1), 3: (150_000, 10, 2)}
+MODE_TABLE = {1: (50_000, 12, 1), 2: (100_000, 12, 1),
+              3: (150_000, 10, 2), 4: (150_000, 10, 2)}
+MODE_MAX_BLOCK = {1: 128, 2: 128, 3: 128, 4: 256}
 MODE_REVISION = "0.3-modes-20261024"
+BATCH_REVISION = "0.3-batch256-20261024"
+MODE_REVISIONS = frozenset((MODE_REVISION, BATCH_REVISION))
+
+
+def mode_revision(mode):
+    """Durable closed registry: mode3 stays DATA128; only mode4 is DATA256."""
+    if mode not in MODE_TABLE:
+        raise ValueError("Unknown acquisition mode")
+    return BATCH_REVISION if mode == 4 else MODE_REVISION
 
 
 def supported_caps(values):
@@ -39,7 +52,7 @@ def supported_mode_caps(values):
     if mode not in MODE_TABLE:
         return False
     rate, retained, encoding = MODE_TABLE[mode]
-    return values == (mode, mode, 0, 12, rate, 1, 128, 1, retained, encoding)
+    return values == (mode, mode, 0, 12, rate, 1, MODE_MAX_BLOCK[mode], 1, retained, encoding)
 
 
 def caps_values(caps):
@@ -50,6 +63,8 @@ def caps_values(caps):
 
 def unpack10(packed, count):
     """Decode the transmitted bits into ADC12 code units, never restore lost LSBs."""
+    if type(count) is not int or not 1 <= count <= 256:
+        raise WireError("count")
     if len(packed) != (10 * count + 7) // 8:
         raise WireError("payload_length")
     bits = int.from_bytes(packed, "little")
@@ -59,7 +74,7 @@ def unpack10(packed, count):
 
 
 def pack10(canonical):
-    if not 1 <= len(canonical) <= MAX_BLOCK or any(
+    if not 1 <= len(canonical) <= 256 or any(
             type(c) is not int or not 0 <= c <= 4092 or c % 4 for c in canonical):
         raise WireError("code")
     bits = sum((c >> 2) << (10 * n) for n, c in enumerate(canonical))
@@ -186,6 +201,7 @@ class Hello:
 class HelloAck:
     firmware_build: int
     capabilities: int = 1
+    max_block: int = 128
 
 
 @dataclass(frozen=True, slots=True)
@@ -301,9 +317,10 @@ def decode_payload(frame: Frame) -> object:
         major, minor, channels, bits, maximum, block, build, caps = _unpack("<BBBBHHII", p)
         if (major, minor) != (0, 3 if modes else 2):
             raise WireError("version")
-        if (channels, bits, maximum, block) != (1, 12, 512, 128) or caps not in ((1,) if modes else (1, 3)):
+        allowed = ((1, 128), (1, 256)) if modes else ((1, 128), (3, 128), (7, 256))
+        if (channels, bits, maximum) != (1, 12, 512) or (caps, block) not in allowed:
             raise WireError("caps")
-        return HelloAck(build, caps)
+        return HelloAck(build, caps, block)
     if k == Kind.CAPS:
         if modes:
             config, profile, channel, bits, numerator, denominator, block, retained, encoding, flags = _unpack("<IHBBIIHBBI", p)
@@ -331,17 +348,17 @@ def decode_payload(frame: Frame) -> object:
         if len(p) < 20:
             raise WireError("payload_length")
         generation, config, first, count, reserved = struct.unpack_from("<IIQHH", p)
-        if not 1 <= count <= MAX_BLOCK:
-            raise WireError("count")
         if reserved:
             raise WireError("reserved")
         if not generation:
             raise WireError("generation")
         if config not in (MODE_TABLE if modes else (1,)):
             raise WireError("config")
+        if not 1 <= count <= (MODE_MAX_BLOCK[config] if modes else MAX_BLOCK):
+            raise WireError("count")
         if first + count > U64_MAX:
             raise WireError("overflow")
-        if modes and config == 3:
+        if modes and MODE_TABLE[config][2] == 2:
             samples = unpack10(p[20:], count)
         else:
             if len(p) != 20 + 2 * count:

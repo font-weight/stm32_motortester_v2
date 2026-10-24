@@ -538,9 +538,9 @@ class StreamBridge:
         if self._physical_diagnostic_context is not None:
             origin, metadata = physical_context_identity(self._physical_diagnostic_context)
         if self._device_context is not None:
-            origin, metadata = device_context_identity(self._device_context, self._build, caps.revision)
+            origin, metadata = device_context_identity(self._device_context, self._build, caps.revision, caps.profile)
         if caps.revision == "0.3":
-            metadata = (wire.MODE_REVISION, metadata[1], metadata[2])
+            metadata = (wire.mode_revision(caps.profile), metadata[1], metadata[2])
         quantization = (dict(acquisition_mode=caps.profile) if caps.revision == "0.3" else {})
         if caps.revision == "0.3" and caps.retained_bits == 10:
             quantization.update(retained_bits=10, discarded_lsb=2, wire_sample_encoding="u10packed_le",

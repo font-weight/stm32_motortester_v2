@@ -380,7 +380,8 @@ class StreamDialog(QtWidgets.QDialog):
                 frequency = connection.observed_caps[4] / connection.observed_caps[5]
                 self._live_notice = (
                     f"STM32 · {self.selection.port} · CH1 · протокол {connection.protocol_revision} · "
-                    f"{frequency:g} отсчётов/с · шаг {1_000_000 / frequency:g} мкс номинально\n"
+                    f"{frequency:g} отсчётов/с · шаг {1_000_000 / frequency:g} мкс номинально · "
+                    f"до {connection.observed_caps[6]} отсчётов в пакете\n"
                     + ("Сохранены 10 старших бит ADC12; младшие 2 отброшены. Коды0/4092 — крайние корзины, точное насыщение неизвестно.\n"
                        if connection.protocol_revision == "0.3" and connection.observed_caps[8] == 10 else
                        "Сохранены 12 бит АЦП.\n") +

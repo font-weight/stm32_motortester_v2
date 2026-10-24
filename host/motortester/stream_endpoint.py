@@ -9,10 +9,11 @@ from enum import Enum
 import struct
 import zlib
 
-from .stream_wire import (COUNTER_RESERVE, MAX_BLOCK, MAX_ENCODED, MAX_FRAME,
+from .stream_wire import (COUNTER_RESERVE, MAX_ENCODED, MAX_FRAME,
                           U32_MAX, U64_MAX, Caps, Data, End, Error, Frame, HelloAck,
                           Kind, StartAck, StopAck, WireError, decode_frame,
                           decode_payload, encode_frame, uint, MODE_TABLE, MODE_REVISION,
+                          MODE_MAX_BLOCK, mode_revision,
                           SUPPORTED_SAMPLE_RATES, caps_values)
 
 REQUEST_MS, DATA_MS, PARTIAL_MS, CLEANUP_MS = 2000, 1000, 1000, 2000
@@ -198,6 +199,8 @@ class Endpoint:
         self.requested_sample_rate_hz = requested_sample_rate_hz
         self.revision = "0.2"
         self.mode = 0
+        self._discovery_capabilities = 0
+        self._ack_max_block = None
         self.state = State.NO_SESSION
         self.nonce = None
         self.generation = None
@@ -369,6 +372,9 @@ class Endpoint:
         self._last_data = 0
         self._short_seen = self._stop_used = False
         self._caps = self._build = None
+        self._ack_max_block = None
+        if self.revision == "0.2":
+            self._discovery_capabilities = 0
         self._plan = None
         self._next_tx = self._next_rx = 1
         self._next_request = 2
@@ -394,10 +400,12 @@ class Endpoint:
         if self.state != State.MODE_REQUIRED or nonce == self.nonce:
             return (Refused("mode_handshake_required"),)
         requested = self.requested_sample_rate_hz or 100_000
-        modes = [mode for mode, values in MODE_TABLE.items() if values[0] == requested]
-        if not modes:
+        mode = {50_000: 1, 100_000: 2, 150_000: 4}.get(requested)
+        if mode is None:
             return tuple(self._recover("requested_mode_unsupported", now_ms))
-        self.revision, self.mode = "0.3", modes[0]
+        if mode == 4 and self._discovery_capabilities != 7:
+            return tuple(self._recover("batch256_firmware_required", now_ms))
+        self.revision, self.mode = "0.3", mode
         return tuple(self._hello(nonce, now_ms, False))
 
     def hello(self, nonce: int, now_ms: int) -> tuple:
@@ -699,9 +707,15 @@ class Endpoint:
                 raise WireError("state")
             self._build = payload.firmware_build
             self._ordinary = None
-            if payload.capabilities == 3:
+            self._ack_max_block = payload.max_block
+            if payload.capabilities in (3, 7):
+                self._discovery_capabilities = payload.capabilities
+                if self.requested_sample_rate_hz == 150_000 and payload.capabilities != 7:
+                    raise WireError("batch256_firmware_required")
                 self.state = State.MODE_REQUIRED
                 return [ModeRequired(self.nonce, self._build)]
+            if self.revision == "0.3" and payload.max_block != MODE_MAX_BLOCK[self.mode]:
+                raise WireError("selected_block_mismatch")
             self.state = State.STOPPED
             return [Negotiated(self.nonce, self._build, None)]
         if k == Kind.CAPS:
@@ -709,6 +723,8 @@ class Endpoint:
                 raise WireError("state")
             if self.revision == "0.3" and payload.profile != self.mode:
                 raise WireError("selected_mode")
+            if payload.max_block != self._ack_max_block:
+                raise WireError("selected_block_mismatch")
             if (self.requested_sample_rate_hz is not None and
                     payload.fs_num != self.requested_sample_rate_hz * payload.fs_den):
                 raise WireError("selected_rate_mismatch_fixed_" + str(payload.fs_num))
@@ -738,12 +754,14 @@ class Endpoint:
                 raise WireError("data_after_short")
             if payload.first_index != self.received_end:
                 raise WireError("sample_gap")
+            if len(payload.samples) > self._caps.max_block:
+                raise WireError("count")
             if now_ms > MAX_TIME_MS - DATA_MS:
                 raise WireError("clock_limit")
             crc = zlib.crc32(payload.raw_samples, self.received_crc32)
             self.received_end, self.received_crc32 = payload.end_index, crc
             self._last_data = frame.sequence
-            self._short_seen = len(payload.samples) < MAX_BLOCK
+            self._short_seen = len(payload.samples) < self._caps.max_block
             self._data_deadline = now_ms + DATA_MS
             events = [ValidatedData(self.nonce, frame.sequence, payload, crc)]
             if frame.sequence >= COUNTER_RESERVE - 1 and not self._counter_notice:

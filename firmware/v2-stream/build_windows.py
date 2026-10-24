@@ -1,4 +1,4 @@
-"""Build the separate V2SC selectable50/100/150 kS/s candidate; never flash hardware."""
+"""Build the separate V2SD DATA256 batch150k candidate; never flash hardware."""
 import argparse
 import hashlib
 import importlib.util
@@ -290,6 +290,13 @@ def main():
                 (here / "overlays" / row["patch"]).read_bytes(), row))
         for name in ("mt_acquisition_profile.c", "mt_acquisition_profile.h"):
             (out / "patched/v2/acquisition" / name).write_bytes((here / "selectable" / name).read_bytes())
+        batch = json.loads((here / "overlays/batch256.json").read_text("utf-8"))
+        require(batch["schema"] == "motortester-v2-batch256-overlay-1", "Unexpected DATA256 overlay")
+        receipt["v2_overlays"].extend(batch["patches"])
+        for row in batch["patches"]:
+            target = out / "patched" / row["target"]
+            target.write_bytes(apply_patch((out / row["source"]).read_bytes(),
+                (here / "overlays" / row["patch"]).read_bytes(), row))
         if config["active_profile_enabled"]:
             for name in ("mt_stream_profile.c", "mt_stream_profile.h"):
                 (out / "patched/v2/platform" / name).write_bytes((here / "profile" / name).read_bytes())

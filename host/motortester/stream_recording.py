@@ -13,6 +13,7 @@ from pathlib import Path
 import stat
 import struct
 from uuid import uuid4
+from .stream_wire import MODE_REVISIONS
 
 from .stream_model import (MAX_BLOCK_SAMPLES, MAX_READ_SAMPLES, StreamBlock,
                            StreamError, StreamIdentity, StreamStart,
@@ -93,7 +94,7 @@ def _construct(cls, obj, *, legacy=False):
     if cls in (StreamStart, StreamTerminal, StreamPreparation):
         values["identity"] = _construct(StreamIdentity, values["identity"], legacy=legacy)
     if legacy and cls is StreamIdentity:
-        require(values["protocol_revision"] != "0.3-modes-20261024",
+        require(values["protocol_revision"] not in MODE_REVISIONS,
                 "Старая версия файла не содержит обязательного описания wire0.3")
     if cls in (StreamTerminal, UnboundOutcome) and values["failure"] is not None:
         values["failure"] = _construct(FailureEvidence, values["failure"])

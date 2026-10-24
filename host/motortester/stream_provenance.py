@@ -5,7 +5,8 @@ is separate; the invocation owns selection/intent checks, not these carriers.
 Existing generic/synthetic identity strings keep their previous meaning.
 """
 from dataclasses import asdict, dataclass, fields
-from .stream_wire import LEGACY_SAMPLE_RATES, MODE_REVISION, MODE_TABLE, SUPPORTED_SAMPLE_RATES
+from .stream_wire import (LEGACY_SAMPLE_RATES, MODE_REVISION, MODE_TABLE, SUPPORTED_SAMPLE_RATES,
+                         MODE_REVISIONS, mode_revision)
 
 
 DMA_DOMAIN = "completed-dma-v1"
@@ -40,14 +41,14 @@ def validate_device_context(context):
     return context
 
 
-def device_context_identity(context, observed_build, revision="0.2"):
+def device_context_identity(context, observed_build, revision="0.2", mode=1):
     context = validate_device_context(context)
     if type(observed_build) is not int or not 0 <= observed_build <= 0xffffffff:
         raise ProvenanceError("Validated HELLO build observation required")
     origin = "device" if context.execution_kind == "physical" else "synthetic"
     if revision not in ("0.2", "0.3"):
         raise ProvenanceError("Unsupported observed wire revision")
-    return origin, (MODE_REVISION if revision == "0.3" else "0.2-draft-081721", f"build:{observed_build:08x}",
+    return origin, (mode_revision(mode) if revision == "0.3" else "0.2-draft-081721", f"build:{observed_build:08x}",
                     "v2-serial-unknown-accounting:" + context.execution_kind)
 
 
@@ -233,8 +234,11 @@ def profile_for_identity(identity):
             build = int(artifact.removeprefix("build:"), 16)
         except (AttributeError, TypeError, ValueError) as exc:
             raise ProvenanceError("Missing observed device build") from exc
-        modes = revision == MODE_REVISION
-        origin, metadata = device_context_identity(context, build, "0.3" if modes else "0.2")
+        modes = revision in MODE_REVISIONS
+        if modes and identity.config_id not in MODE_TABLE:
+            raise ProvenanceError("Unknown saved acquisition mode")
+        origin, metadata = device_context_identity(context, build, "0.3" if modes else "0.2",
+                                                   identity.config_id if modes else 1)
         if ((revision, artifact, producer) != metadata or identity.origin != origin or
                 (not modes and (identity.config_id != 1 or identity.nominal_fs_hz not in LEGACY_SAMPLE_RATES)) or
                 (modes and (identity.config_id not in MODE_TABLE or

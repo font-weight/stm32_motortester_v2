@@ -193,7 +193,7 @@ def verify(folder):
                 continue
             if short_seen:
                 issues.append({"code": "data_after_short", "sequence": frame.sequence})
-            short_seen = len(decoded.samples) < 128
+            short_seen = len(decoded.samples) < report["observed_caps"]["max_block"]
             if decoded.first_index > previous_end:
                 gaps.append([previous_end, decoded.first_index])
                 full_contiguous = False
