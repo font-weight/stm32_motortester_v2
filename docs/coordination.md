@@ -1,5 +1,11 @@
 # Координация самостоятельного V2
 
+V2-06h2: root — build/v6h-board-01, COM/SWD, план/архивы/канонические
+документы. Host_200k — только порученный offline-декодер и последующий
+разбор файлов опыта; никаких аппаратных интерфейсов. Stream200_critic —
+docs/reviews/v2-06h-flash-review.md, v2-06h2-review.md и
+docs/verification/v2-usb-turnover/critic*.json. Software source H заморожен.
+
 V2-06h, анализ: root — канонические документы, TIME/runtime и единолично
 COM/SWD. Higher_fs_review пишет только build/v6h-analysis/firmware-findings.md/json;
 host_200k — host-findings.md/json и вспомогательный offline-скрипт в этой

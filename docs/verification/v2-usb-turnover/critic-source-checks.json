@@ -1,0 +1,65 @@
+{
+  "schema": "v2-06h-critic-exact-checks-1",
+  "status": "PASS",
+  "scope": "Exact source/ARM/native/software archive only",
+  "source_commit": "8243fb3224a1e24980848a8ce02431ec41f5bd9c",
+  "base_commit": "4c8c14727bae8715279130b05c11f7e518fd8d9a",
+  "freeze_sha256": "7928fb9d9b436faeb00b0b1ac3d772d93d8865b797fec017d4a126eaf7b2e715",
+  "archive_sha256": "160ef0446afb0a30af31b4db1b802e4606b6b9855a56c2923d27d80b2b3ae9c6",
+  "counts": {
+    "freeze_pins": 81,
+    "receipt_inputs": 523,
+    "compiler_dependencies": 112,
+    "analysis_inputs": 32,
+    "objects": 30,
+    "native_inputs": 106,
+    "unchanged_patched_files": 46,
+    "archive_pairs": 59,
+    "archive_bytes": 1065380
+  },
+  "all_hashes_sizes_and_archive_bytes_match": true,
+  "all_nonruntime_patched_bytes_match_SA": true,
+  "TIME_source_bytes_match_SA": true,
+  "static_recomputed_equal": true,
+  "ELF_PT_LOAD_matches_BIN": true,
+  "bin_bytes": 37224,
+  "bin_sha256": "e7f6f07fc6a43e6b109af6e5c652db1322a0e5023e328007b2c50d303f12536e",
+  "elf_sha256": "f129421a4dfb3baf3d30dbefc0923dcdfcf6ec4ddb0e02293c0ece78fb6d14ed",
+  "vectors": [
+    "0x20005000",
+    "0x8008ba9"
+  ],
+  "resources": {
+    "text": 37096,
+    "data": 128,
+    "bss": 11212,
+    "stack_reserve": 8192,
+    "RAM_total_with_reserve": 19532,
+    "RAM_limit": 20480,
+    "RAM_spare": 948,
+    "conditional_stack_bound": 6044,
+    "aligned_stack_minimum": 6048,
+    "legacy_diagnostics_address": "0x20002bc4",
+    "legacy_diagnostics_bytes": 136,
+    "active_profile_enabled": false,
+    "new_static_storage": 0
+  },
+  "actual_runtime_extraction_matches_native_model": true,
+  "actual_epoch_source_in_native_matches": true,
+  "native_replay": {
+    "argv": [
+      "build/v6h-native-01/model.exe"
+    ],
+    "returncode": 0,
+    "stdout": "PASS task/ADC/TIME/grant/fresh TIME/RX/prepare/TX/flush order; final events before/after task or grant; one attempt per step\nPASS epoch/TIME/raw lifecycle at early-grant unlock blocks stale RX read/rearm/core/TX and restores scope; no second grant\nPASS refused/denied grant consumes marker; prior early returns retain one fallback; TIME/ADC cause and whole-fit known-zero unchanged\nPASS narrow actual-runtime turnover model; logical seams only, no physical USB/DMA/timing claim\n",
+    "stderr": "",
+    "original_author_files_unmodified": true
+  },
+  "environment": {
+    "platform": "Windows-10-10.0.19045-SP0",
+    "python": "3.14.7 (tags/v3.14.7:823f032, Aug  5 2026, 10:51:32) [MSC v.1944 64 bit (AMD64)]"
+  },
+  "hardware_access": false,
+  "flash_approval": false,
+  "physical_100ksps_accepted": false
+}

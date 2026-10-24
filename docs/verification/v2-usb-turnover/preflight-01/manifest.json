@@ -1,0 +1,85 @@
+{
+  "scope": "V2-06h2 preflight only; no SB Flash/START",
+  "files": [
+    {
+      "source": "build/v6h-board-01/plan.json",
+      "archive": "docs/verification/v2-usb-turnover/preflight-01/plan.json",
+      "bytes": 7210,
+      "sha256": "03c49dcd130733fb11fd4b68baeb65dd0e8533b3626443a18d2b6eb417e3f715"
+    },
+    {
+      "source": "build/v6h-board-01/preflight.json",
+      "archive": "docs/verification/v2-usb-turnover/preflight-01/preflight.json",
+      "bytes": 731,
+      "sha256": "fdb74d1f7692bcdcbf12130a4bdb18d4c9fd83f4f2f16518466223a3d7f8c758"
+    },
+    {
+      "source": "build/v6h-board-01/backup-verified.json",
+      "archive": "docs/verification/v2-usb-turnover/preflight-01/backup-verified.json",
+      "bytes": 581,
+      "sha256": "14e139637859f3246fd9ec91dcbccb0793a829341e0636dda326b91d4ac0ec19"
+    },
+    {
+      "source": "build/v6h-board-01/processes-before.json",
+      "archive": "docs/verification/v2-usb-turnover/preflight-01/processes-before.json",
+      "bytes": 4,
+      "sha256": "a5338d955b09046ec0b16f3a9625b7955c763aae07dc722e474e6078745f932f"
+    },
+    {
+      "source": "build/v6h-board-01/ports-before.json",
+      "archive": "docs/verification/v2-usb-turnover/preflight-01/ports-before.json",
+      "bytes": 135,
+      "sha256": "c8614e25240676a110cd0c9f9761ba2d2fc559f249875431289a7b08eedef67d"
+    },
+    {
+      "source": "build/v6h-board-01/probe-list.txt",
+      "archive": "docs/verification/v2-usb-turnover/preflight-01/probe-list.txt",
+      "bytes": 239,
+      "sha256": "b58c8ddae6534dd35b9a1498631f1ee20ba54017c8f3ccfa2b156244c92e72a3"
+    },
+    {
+      "source": "build/v6h-board-01/backup.log",
+      "archive": "docs/verification/v2-usb-turnover/preflight-01/backup.log",
+      "bytes": 872,
+      "sha256": "8b0891728ca93ca2b1098eec3d02e56cfa2e4a7b4d8369ccadd608675e8f3d33"
+    },
+    {
+      "source": "build/v6h-board-01/before-flash-64k.bin",
+      "archive": "docs/verification/v2-usb-turnover/preflight-01/before-flash-64k.bin",
+      "bytes": 65536,
+      "sha256": "4a1060f0062620580d8ac1e74aba001a2935bd58dcc6cccbb5fcbef957826f4a"
+    },
+    {
+      "source": "build/v6h-board-01/decode_diagnostics.py",
+      "archive": "docs/verification/v2-usb-turnover/preflight-01/decode_diagnostics.py",
+      "bytes": 12800,
+      "sha256": "ba9bea4ae0845c695eb4d70234b19a0476904113456c3d4322ab255a5db96033"
+    },
+    {
+      "source": "build/v6h-board-01/check_sa_ready.py",
+      "archive": "docs/verification/v2-usb-turnover/preflight-01/check_sa_ready.py",
+      "bytes": 5643,
+      "sha256": "8e97bc4de87bb57d6247e0f94ae911c8048225ff00348b5361f3452fa54f3edf"
+    },
+    {
+      "source": "build/v6h-plan.py",
+      "archive": "docs/verification/v2-usb-turnover/preflight-01/v6h-plan.py",
+      "bytes": 5861,
+      "sha256": "8a71df26d401789312536e1a16b9e4d99e759b8d5f083c1d51fa4e5fd1a26b39"
+    },
+    {
+      "source": "build/v6h-recovery-helper.py",
+      "archive": "docs/verification/v2-usb-turnover/preflight-01/v6h-recovery-helper.py",
+      "bytes": 1148,
+      "sha256": "d843e9dd01367ff3e64bd82b494554e1546a50b92771f6051c089584a0cbebf6"
+    },
+    {
+      "source": "host/tools/v2_stream_probe.py",
+      "archive": "docs/verification/v2-usb-turnover/preflight-01/v2_stream_probe.py",
+      "bytes": 10445,
+      "sha256": "14de99c546586e5f9fd89b03622861e1865c65f448ceb7224c49cb17ab79cb35"
+    }
+  ],
+  "byte_equal": true,
+  "total_bytes": 111205
+}

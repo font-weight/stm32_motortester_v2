@@ -1,0 +1,76 @@
+{
+  "schema": "v2-06h-independent-software-review-1",
+  "status": "PASS",
+  "score": 9.61,
+  "threshold": 9.5,
+  "reviewer": "stream200_critic",
+  "independent_of_implementation": true,
+  "date": "2026-10-24",
+  "scope": "Exact V2SB software candidate: early ordinary USB grant; not Flash or physical100k acceptance",
+  "source_commit": "8243fb3224a1e24980848a8ce02431ec41f5bd9c",
+  "base_commit": "4c8c14727bae8715279130b05c11f7e518fd8d9a",
+  "functional_baseline": "V2SA build/v6g-fw-02",
+  "build_id": "0x56325342",
+  "freeze_sha256": "7928fb9d9b436faeb00b0b1ac3d772d93d8865b797fec017d4a126eaf7b2e715",
+  "software_archive_sha256": "160ef0446afb0a30af31b4db1b802e4606b6b9855a56c2923d27d80b2b3ae9c6",
+  "bin_bytes": 37224,
+  "bin_sha256": "e7f6f07fc6a43e6b109af6e5c652db1322a0e5023e328007b2c50d303f12536e",
+  "elf_sha256": "f129421a4dfb3baf3d30dbefc0923dcdfcf6ec4ddb0e02293c0ece78fb6d14ed",
+  "actual_runtime_sha256": "efadedb84e304f0c31b5c5e9bf130753d8296ac14d462f65a2d5eea1a178cc46",
+  "native_result_sha256": "ca06c0fc1b263d59728a94603f33af68876f50dce3f216385efe58f6a0ed2e84",
+  "checks_sha256": "b8dbbb5177b5bf28fa8d902e4231d5047b469fa8097fc7b0c9742176b2c4adfa",
+  "ratings": [
+    {
+      "criterion": "C1",
+      "weight": 0.3,
+      "score": 9.6,
+      "basis": "Single grant relocation, exact original gating, fresh postIRQ TIME/stable boundary; wire/ADC/commit contracts unchanged."
+    },
+    {
+      "criterion": "C2",
+      "weight": 0.2,
+      "score": 9.6,
+      "basis": "Marker prevents second quantum even after refusal; lifecycle/RX/Stop/ADC failure paths covered and SRAM/stack fit. Timing remains a hardware question."
+    },
+    {
+      "criterion": "C3",
+      "weight": 0.25,
+      "score": 9.6,
+      "basis": "Exact source/ELF/receipt/archive checked, actual runtime/epoch model replayed once. Logical hardware/core seams and diagnostics-disabled native compilation are explicit."
+    },
+    {
+      "criterion": "C4",
+      "weight": 0.15,
+      "score": 9.6,
+      "basis": "Small runtime delta, one helper/local marker, no new static storage. Early quantum aging and added TIME observation documented."
+    },
+    {
+      "criterion": "C5",
+      "weight": 0.1,
+      "score": 9.7,
+      "basis": "Exact source/base/freeze/commands and saved draft findings; archival bytes and model/ARM pins verified."
+    }
+  ],
+  "open_findings_in_software_scope": [],
+  "closed_early_findings": [
+    "Local key declaration restored after helper extraction before any compile",
+    "Raw prep newline/pin mismatch corrected before any compile; final bytes independently checked",
+    "PostIRQ TIME/stable/loss guard before RX made explicit and tested",
+    "One attempt marker placed before helper even when grant refused; no second6/500 reset",
+    "Early grant budget can age before first/new transfer publication; performance limitation recorded"
+  ],
+  "system_requirement_still_open": "Sustained physical100k; earlier failed attempts and unknown produced tails are not reclassified",
+  "limitations": [
+    "Actual runtime and epoch functions; USB/ADC/core/time callbacks are logical order seams, not target timing",
+    "Native uses CFG_MT_STREAM_DIAGNOSTICS=0; unchanged legacy diagnostic hooks are verified through pinned source and ARM compilation",
+    "Core write/partial/unknown acceptance logic is unchanged from reviewed SA and not rerun as an unrelated suite",
+    "Early6/<500us quantum may age during RX/encode/TX when no transfer existed at task; no extra reset and no speed guarantee",
+    "Conditional stack bound is not measured target stack usage or WCET",
+    "Source turnover dependency is established; fraction of prior delay and sufficiency for100k remain unmeasured"
+  ],
+  "hardware_access": false,
+  "flash_approved": false,
+  "physical_100ksps_accepted": false,
+  "physical_200ksps_accepted": false,
+  "next_gate": "Separate exact physical plan/admission after source acceptance; no automatic S4 rollback"
+}
