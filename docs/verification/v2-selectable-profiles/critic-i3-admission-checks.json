@@ -1,0 +1,26 @@
+{
+  "schema": "v2-06i3-independent-admission-checks-1",
+  "critic": "stream200_critic",
+  "scope": "Procedure delta only; no software tests or hardware calls",
+  "status": "PASS",
+  "plan_sha256": "55d87c2aca6c49007b369983db7ff39086683a625c8e31e9a8eb1d2e7334641b",
+  "archive_manifest_sha256": "09eca0192978ab0087741630159fea743b65b1f093272bbe75e3ba5362d070f5",
+  "archive_pairs": 6,
+  "archive_bytes": 70844,
+  "archive_byte_equal": true,
+  "rejected_draft_sha256": "ecb0ea8f1a4fa9a8d7724dca6c8fef8e75c4d3142d562ac6f50992eabc111ad8",
+  "draft_corrections": [
+    "no_USB_replug_between_successful_sessions_planned",
+    "between_sessions",
+    "acceptance",
+    "audit_limits"
+  ],
+  "input_pins_verified": 6,
+  "four_helper_copies_identical_to_reviewed_I2": true,
+  "readback_same_exact_SC": true,
+  "program_limit": 0,
+  "new_hardware_accesses": 0,
+  "new_software_tests": 0,
+  "session_parameters_verified": true,
+  "prior_stopped_state_source": "build/v6i-board-01/100000/registers-decoded.json"
+}

@@ -1,0 +1,82 @@
+{
+  "schema": "v2-06i3-independent-procedure-admission-1",
+  "date": "2026-10-24",
+  "critic": "stream200_critic",
+  "independent_of_implementation": true,
+  "source_commit": "310d53b10c79a48ddc45357ff65d88c686aef883",
+  "candidate_build": "0x56325343",
+  "candidate_sha256": "a36f72a772c03c5cbfd85767e5f07f0abc3ad2f2ffd7d1ee1c43143d20ca1c90",
+  "plan_sha256": "55d87c2aca6c49007b369983db7ff39086683a625c8e31e9a8eb1d2e7334641b",
+  "archive_manifest_sha256": "09eca0192978ab0087741630159fea743b65b1f093272bbe75e3ba5362d070f5",
+  "checks_sha256": "82cee7e861084ed6ae42313f46dfcbb4d918173b5ff4e6ab19904e3a5b35b1df",
+  "scope": "Procedure delta only: same SC, no Flash, explicit MCU ResetRun plus actual user USB replug before each100k5s/150k30s session; no repeat50k",
+  "status": "PASS",
+  "score": 9.605,
+  "threshold": 9.5,
+  "rubric": [
+    {
+      "criterion": "C1",
+      "weight": 0.3,
+      "score": 9.6
+    },
+    {
+      "criterion": "C2",
+      "weight": 0.2,
+      "score": 9.65
+    },
+    {
+      "criterion": "C3",
+      "weight": 0.25,
+      "score": 9.6
+    },
+    {
+      "criterion": "C4",
+      "weight": 0.15,
+      "score": 9.5
+    },
+    {
+      "criterion": "C5",
+      "weight": 0.1,
+      "score": 9.7
+    }
+  ],
+  "open_p0": [],
+  "open_p1": [],
+  "program_limit": 0,
+  "sessions": [
+    {
+      "sample_rate_hz": 100000,
+      "record_seconds": 5,
+      "START_limit": 1,
+      "reset_run_limit": 1,
+      "actual_user_replug_required": true
+    },
+    {
+      "sample_rate_hz": 150000,
+      "record_seconds": 30,
+      "START_limit": 1,
+      "reset_run_limit": 1,
+      "actual_user_replug_required": true
+    }
+  ],
+  "conditions": [
+    "Previous owners closed and stopped before reset. Same confirmed board/wiring/PA0 empty/application closed.",
+    "Each session first follows successful pinned ResetRun with expected SN and actual user USB replug answer; no other START since reset.",
+    "Exact build and selected mode/CAPS before one START; normal wire/raw/Open/END/ACK and own nonce-bound diagnostic required.",
+    "Two frozen136 flags0 and selected deadlines, stopped peripheral registers and noADC_DR after confirmed owner closure.",
+    "Stop sequence on any failure; no automatic retries, downgrade or rollback.",
+    "Retain SC if boot/communication/stopped confirmed; conditional emergency fullSB recovery only for documented necessity in pinned plan.",
+    "Preserve allI2 evidence and unknown produced tail; no timing/analogue accuracy claims."
+  ],
+  "reviewed_changes": [
+    "Explicit oneboot per remaining attempted run; no image/code change.",
+    "Corrected contradictory replug flag, between-session text and stale5/5/30 strings; olddraft preserved."
+  ],
+  "new_hardware_accesses": 0,
+  "new_software_tests": 0,
+  "physical_verdict": {
+    "status": "NOT_REVIEWED",
+    "score": null
+  },
+  "prior_I2_verdict_unchanged": "BLOCKED_EVIDENCE"
+}
