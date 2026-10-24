@@ -1,5 +1,11 @@
 # Координация самостоятельного V2
 
+V2-06k анализ: higher_fs_review пишет только build/v6k-analysis/firmware-batch-proposal.md;
+host_200k — host-batch-proposal.md в той же папке. Root — канонические документы,
+интеграция, единолично будущие COM/SWD. Критик — независимое ревью контракта
+и точного результата; области записи реализации назначаются отдельно.
+J TIME-оптимизация не внедрялась, её анализ сохраняется. I/SC и пакет заморожены.
+
 V2-06i2: root единолично COM/SWD/Flash, канонические документы и архивы;
 higher_fs_review — только offline plan-draft/register decoder/SB READY helper
 в build/v6i-board-01; host_200k — offline physical analyzer там же. Критик —

@@ -1,0 +1,37 @@
+{
+  "iteration": "V2-06i3",
+  "status": "PARTIAL_100K_PASS_150K_FAIL_PENDING_INDEPENDENT_REVIEW",
+  "flashes": 0,
+  "existing_SC_image_readback": "build/v6i-board-01/readback-verified.json",
+  "reset_run_before_each_mode": true,
+  "user_confirmed_replug_after_each_reset": true,
+  "starts_by_rate": {
+    "100000": 1,
+    "150000": 1
+  },
+  "SWD_or_halt_during_any_acquisition": false,
+  "rollback_performed": false,
+  "board": "V2SC remains stopped",
+  "rate100000": {
+    "probe": "PASS",
+    "wire_Open": "PASS",
+    "diag_flags": 0,
+    "poll_us": 1416,
+    "copy_us": 130,
+    "queue_max": 6
+  },
+  "rate150000": {
+    "probe": "FAIL",
+    "wire_Open_prefix": "PASS",
+    "diag_flags": 4,
+    "first_acquisition_reason": 1,
+    "ADC_fault": 0,
+    "poll_us": 1370,
+    "copy_us": 112,
+    "queue_max": 8,
+    "received": 3456,
+    "selected_samples": 1280
+  },
+  "no_new_START_after_failure": true,
+  "next_step": "Read-only throughput analysis; no automatic image restore or retry"
+}

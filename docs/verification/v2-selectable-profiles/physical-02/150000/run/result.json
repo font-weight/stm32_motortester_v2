@@ -1,0 +1,100 @@
+{
+  "status": "FAIL",
+  "port": "COM6",
+  "source": "physical",
+  "seconds_requested": 30.0,
+  "expected_build": 1446138691,
+  "expected_sample_rate_hz": 150000,
+  "input_condition": "PA0 unconnected, as reported by user",
+  "voltage_calibration_verified": false,
+  "callback_errors": [],
+  "errors": [
+    "Приём остановлен: device_1. Сохранён проверенный префикс."
+  ],
+  "connection": {
+    "selection": {
+      "port": "COM6",
+      "declared_source_commit": "310d53b10c79a48ddc45357ff65d88c686aef883",
+      "declared_artifact_sha256": "a36f72a772c03c5cbfd85767e5f07f0abc3ad2f2ffd7d1ee1c43143d20ca1c90",
+      "requested_sample_rate_hz": 150000
+    },
+    "execution_kind": "physical",
+    "observed_build_id": 1446138691,
+    "observed_caps": [
+      3,
+      3,
+      0,
+      12,
+      150000,
+      1,
+      128,
+      1,
+      10,
+      2
+    ],
+    "dtr_requested": true,
+    "accounting_domain": "unknown",
+    "image_verified": false,
+    "protocol_revision": "0.3"
+  },
+  "observations": [
+    {
+      "host_monotonic": 1378677.7869507,
+      "phase": "recording",
+      "received": 3072,
+      "error": null,
+      "failure": null,
+      "R": 2176,
+      "accepted": 2560,
+      "checkpoint": 2176,
+      "max_service_gap_ms": 16,
+      "peak_raw_items": 4
+    }
+  ],
+  "record_wall_seconds": 0.015485800104215741,
+  "before_stop": {
+    "host_monotonic": 1378677.8024081,
+    "phase": "fault",
+    "received": 3456,
+    "error": null,
+    "failure": {
+      "code": "source_error",
+      "detail": "wire device_1; ordinary=None; stop=None",
+      "operation": null,
+      "request_id": null,
+      "source_code": 1
+    },
+    "R": 2176,
+    "accepted": 3456,
+    "checkpoint": 3456,
+    "max_service_gap_ms": 16,
+    "peak_raw_items": 4
+  },
+  "exception": "Traceback (most recent call last):\n  File \"C:\\Users\\Alexandr\\Desktop\\New folder\\универ\\мотортестер 2\\host\\tools\\v2_stream_probe.py\", line 149, in run\n    assert bridge.state.phase == \"recording\", \"Physical stream stopped early\"\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: Physical stream stopped early\n",
+  "cleanup_finished": true,
+  "final_state": {
+    "host_monotonic": 1378677.8365291,
+    "phase": "closed",
+    "received": 3456,
+    "error": null,
+    "failure": {
+      "code": "source_error",
+      "detail": "wire device_1; ordinary=None; stop=None",
+      "operation": null,
+      "request_id": null,
+      "source_code": 1
+    },
+    "R": 2176,
+    "accepted": 3456,
+    "checkpoint": 3456,
+    "max_service_gap_ms": 16,
+    "peak_raw_items": 4
+  },
+  "traffic": {
+    "host_bytes": 178,
+    "device_bytes": 5983,
+    "chunks": 28,
+    "format": "<BdI + payload; 0=host,1=device; monotonic seconds",
+    "sha256": "528822e5818dd731d4fe0c76374052c1f4bb14aea8ff8035ec93526f9eaf392e"
+  }
+}

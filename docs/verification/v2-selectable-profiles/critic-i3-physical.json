@@ -1,0 +1,165 @@
+{
+  "schema": "v2-06i3-independent-physical-review-1",
+  "date": "2026-10-24",
+  "critic": "stream200_critic",
+  "independent_of_implementation": true,
+  "source_commit": "310d53b10c79a48ddc45357ff65d88c686aef883",
+  "candidate_build": "0x56325343",
+  "candidate_sha256": "a36f72a772c03c5cbfd85767e5f07f0abc3ad2f2ffd7d1ee1c43143d20ca1c90",
+  "plan_sha256": "55d87c2aca6c49007b369983db7ff39086683a625c8e31e9a8eb1d2e7334641b",
+  "archive_manifest_sha256": "18be069309679bc2e73097df31c50e53ed5aa329eca5bb28bfafe027a213cd6a",
+  "checks_sha256": "1f1c62fd32d6ebb0456fc9181738e23cf0eda934533bd94821c4b0c8cd74ccdc",
+  "scope": "Same SC, fresh MCU boot and user replug before each100k5s and150k30s; PA0 empty",
+  "status": "REWORK",
+  "score": 7.835,
+  "threshold": 9.5,
+  "rubric": [
+    {
+      "criterion": "C1",
+      "weight": 0.3,
+      "score": 5.0
+    },
+    {
+      "criterion": "C2",
+      "weight": 0.2,
+      "score": 7.5
+    },
+    {
+      "criterion": "C3",
+      "weight": 0.25,
+      "score": 9.7
+    },
+    {
+      "criterion": "C4",
+      "weight": 0.15,
+      "score": 9.6
+    },
+    {
+      "criterion": "C5",
+      "weight": 0.1,
+      "score": 9.7
+    }
+  ],
+  "100000_review": {
+    "status": "PASS",
+    "score": 9.59,
+    "scope": "One5-second record with currentnonce diagnostics and normalStop; not indefinite stability or analogue accuracy",
+    "rubric": [
+      {
+        "criterion": "C1",
+        "weight": 0.3,
+        "score": 9.6
+      },
+      {
+        "criterion": "C2",
+        "weight": 0.2,
+        "score": 9.5
+      },
+      {
+        "criterion": "C3",
+        "weight": 0.25,
+        "score": 9.6
+      },
+      {
+        "criterion": "C4",
+        "weight": 0.15,
+        "score": 9.6
+      },
+      {
+        "criterion": "C5",
+        "weight": 0.1,
+        "score": 9.7
+      }
+    ],
+    "facts": {
+      "probe_status": "PASS",
+      "nonce": "d02ea31003c0218b",
+      "generation": 3,
+      "record_seconds": 5.000430400017649,
+      "whole_invocation_seconds": 5.8561258,
+      "received": 503636,
+      "selected": 501460,
+      "R": 2176,
+      "end": 503636,
+      "selected_sha256": "321369fb2c7c99f9b29f2267d9a78745ca1c26d95537b0db154d9a60e956718a",
+      "normal_stop": true,
+      "END_before_STOP": false,
+      "END_sequence": 3939,
+      "END_reason": 0,
+      "ACK_sequence": 3940,
+      "diagnostics_sha256": "afeed0355c5f01f5224dfc53329734e1a3d86c15af1c4268af5b214faf8adf14",
+      "flags": 0,
+      "queue": 6,
+      "acquisition_reason": 0,
+      "ADC_fault": 0,
+      "poll_us": 1416,
+      "copy_us": 130,
+      "stopped_registers": true,
+      "unknown_tail": true,
+      "user_replug_and_no_active_SWD_reported": true,
+      "fresh_reset_log": true
+    }
+  },
+  "150000_result": {
+    "status": "FAIL",
+    "criterion": "Record30s with normalEND/ACK and flags0 not met; queuefull before hostSTOP",
+    "facts": {
+      "probe_status": "FAIL",
+      "nonce": "6835b316355659f4",
+      "generation": 3,
+      "record_seconds": 0.015485800104215741,
+      "whole_invocation_seconds": 0.5095442,
+      "received": 3456,
+      "selected": 1280,
+      "R": 2176,
+      "end": 3456,
+      "selected_sha256": "2b57f4769a26296e1599675cd5f6e4a5351ff29829ccbff4b7a53d51cf3cafab",
+      "normal_stop": false,
+      "END_before_STOP": true,
+      "END_sequence": 31,
+      "END_reason": 1,
+      "ACK_sequence": 32,
+      "diagnostics_sha256": "52e61f708069e7e7e5d9cc70f7433c1769508f2dbd767dbfeafb46d8da708610",
+      "flags": 4,
+      "queue": 8,
+      "acquisition_reason": 1,
+      "ADC_fault": 0,
+      "poll_us": 1370,
+      "copy_us": 112,
+      "stopped_registers": true,
+      "unknown_tail": true,
+      "user_replug_and_no_active_SWD_reported": true,
+      "fresh_reset_log": true
+    }
+  },
+  "open_p0": [],
+  "open_p1": [
+    {
+      "id": "I3-P1-150K",
+      "finding": "Physical150k stops with device reason1/queue8 before target30-second Record.",
+      "evidence": "END31 reason1 beforeSTOP4, ACK32; own frozen flags4/first acquisition reason1/ADCfault0.",
+      "required_resolution": "Separate bounded correction and independently admitted new physical evidence; preserved prefix integrity does not satisfy sustained reception."
+    }
+  ],
+  "no_flash_during_I3": true,
+  "starts": 2,
+  "explicit_reset_run_before_each": true,
+  "actual_user_replug_before_each_reported": true,
+  "owner_closure_and_stopped_registers_confirmed": true,
+  "retained_image": "V2SC",
+  "rollback_performed": false,
+  "prior_I2_result_unchanged": true,
+  "personal_actions": {
+    "read_only_archive_pairs": 86,
+    "bytes": 2459053,
+    "new_tests": 0,
+    "hardware_accesses": 0
+  },
+  "limitations": [
+    "Unknown produced ADC tail remains unknown in both sessions.",
+    "150k loses2LSB by design; correct canonical samples do not restore them.",
+    "Short failure interval not a sustained-rate measurement.",
+    "Queuefull is observed; exact CPU/USB/packing contribution not established.",
+    "This report does not authorize another START or firmware change."
+  ]
+}

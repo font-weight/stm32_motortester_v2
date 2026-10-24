@@ -1,0 +1,87 @@
+{
+  "format": "motortester-v2-stream-context",
+  "format_version": 3,
+  "context": {
+    "channel_name": "Канал 1",
+    "ui_profile": "oscilloscope",
+    "input_profile": {
+      "a": null,
+      "b": null,
+      "state": "unconfigured",
+      "profile_id": "unknown",
+      "adc_bits": 12,
+      "channel_id": "CH1",
+      "device_id": null,
+      "frontend_id": null,
+      "frontend_revision": null,
+      "range_id": null,
+      "coupling": "unknown",
+      "coefficient_source": null,
+      "calibration_id": null,
+      "calibration_version": null,
+      "calibration_date": null,
+      "measurement_point": null,
+      "ground_reference": null,
+      "sensor": null,
+      "vref_v": null,
+      "bandwidth_hz": null,
+      "linear_min_v": null,
+      "linear_max_v": null,
+      "conditions": null
+    },
+    "channel_id": "CH1"
+  },
+  "time_basis": "nominal_unverified",
+  "journal_sha256": "c99521604033c5bd0550365b93b646adbd41fc6edd5faf01d5f35118a3e77313",
+  "journal_bytes": 1007495,
+  "journal": {
+    "identity": {
+      "session_id": "wire-0.3:d02ea31003c0218b",
+      "generation": 3,
+      "config_id": 2,
+      "nominal_fs_hz": 100000,
+      "origin": "device",
+      "protocol_revision": "0.3-modes-20261024",
+      "firmware_version": "build:56325343",
+      "application_version": "v2-serial-unknown-accounting:physical",
+      "acquisition_mode": 2,
+      "source_adc_bits": 12,
+      "retained_bits": 12,
+      "discarded_lsb": 0,
+      "wire_sample_encoding": "u16le",
+      "normalization": "identity",
+      "quantization": "none",
+      "stored_sample_encoding": "u16le",
+      "stored_code_domain": "adc12"
+    },
+    "recording_id": "225145ca2fa1400181b93e7cc613db0e",
+    "first_sample_index": 2176,
+    "end_sample_index": 503636
+  },
+  "connection": {
+    "selection": {
+      "port": "COM6",
+      "declared_source_commit": "310d53b10c79a48ddc45357ff65d88c686aef883",
+      "declared_artifact_sha256": "a36f72a772c03c5cbfd85767e5f07f0abc3ad2f2ffd7d1ee1c43143d20ca1c90",
+      "requested_sample_rate_hz": 100000
+    },
+    "execution_kind": "physical",
+    "observed_build_id": 1446138691,
+    "observed_caps": [
+      2,
+      2,
+      0,
+      12,
+      100000,
+      1,
+      128,
+      1,
+      12,
+      1
+    ],
+    "dtr_requested": true,
+    "accounting_domain": "unknown",
+    "image_verified": false,
+    "protocol_revision": "0.3"
+  }
+}

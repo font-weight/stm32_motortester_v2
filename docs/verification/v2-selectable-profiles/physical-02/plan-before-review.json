@@ -1,0 +1,374 @@
+{
+  "schema": "motortester-v2-selectable-physical-plan-2",
+  "status": "ROOT_REVIEWED_AWAITING_INDEPENDENT_PROCEDURE_ADMISSION",
+  "iteration": "V2-06i3",
+  "purpose": "Complete missing100k diagnostic qualification and first150k trial with a fresh MCU boot before each; no Flash, no code/image change, no repeat50k.",
+  "source_commit": "310d53b10c79a48ddc45357ff65d88c686aef883",
+  "base_accepted_SB_source": "8243fb3224a1e24980848a8ce02431ec41f5bd9c",
+  "candidate_path": "build/v6i-fw-01/MotortesterV2-stream-candidate.bin",
+  "candidate_bytes": 38188,
+  "candidate_sha256": "a36f72a772c03c5cbfd85767e5f07f0abc3ad2f2ffd7d1ee1c43143d20ca1c90",
+  "candidate_elf_sha256": "c050b68d4ffff5d30ba741d7d38f23401f584e26e2500078346aac99e0b8e308",
+  "firmware_build": "0x56325343",
+  "software_review": {
+    "path": "docs/reviews/v2-06i-review.md",
+    "sha256": "742228e4faaaf71a7c6bc07f1689189c9e21135594d04300ee5091ffe52c2eae",
+    "software_grade": 9.6,
+    "package_grade": 9.59,
+    "status": "PASS per root; not Flash admission",
+    "state_commit": "3c58bd7",
+    "image_and_probe_declared_source": "310d53b10c79a48ddc45357ff65d88c686aef883"
+  },
+  "board_inputs_from_root": {
+    "user_confirmed_app_closed_PA0_empty": true,
+    "port": "COM6",
+    "probe_SN_expected": "57005400120000393333574E",
+    "one_probe_and_no_app_python_owner_reported": true,
+    "evidence": "build/v6i-board-01/backup-verified.json",
+    "evidence_sha256": "1a07401c867ead14c3d644d4c958685365c9199ccfe79ac6f723673446dab69d",
+    "not_independently_measured_by_plan_author": true
+  },
+  "rollback_image": "build/v6i-board-01/before-flash-64k.bin",
+  "rollback_bytes": 65536,
+  "rollback_sha256": "1e33d567a6681b00102384af551fae4ab9723199b08941fa46844f8347b6157c",
+  "rollback_prefix_equal_SB_bytes": 37224,
+  "rollback_prefix_expected_sha256": "e7f6f07fc6a43e6b109af6e5c652db1322a0e5023e328007b2c50d303f12536e",
+  "cli_path": "C:/Program Files (x86)/STMicroelectronics/STM32 ST-LINK Utility/ST-LINK Utility/ST-LINK_CLI.exe",
+  "cli_sha256_from_H_template": "7fb012b5e26abf45342caa05c6bc33936f8a379b67797cc55658ffb8bf15e95f",
+  "reset_argv": [
+    "C:/Program Files (x86)/STMicroelectronics/STM32 ST-LINK Utility/ST-LINK Utility/ST-LINK_CLI.exe",
+    "-c",
+    "ID=0",
+    "SWD",
+    "HOTPLUG",
+    "-Rst",
+    "-Run"
+  ],
+  "program_limit": 0,
+  "sessions": [
+    {
+      "order": 1,
+      "session_directory": "build/v6i-board-02/100000",
+      "sample_rate_hz": 100000,
+      "acquisition_mode": 2,
+      "target_record_seconds_after_preview": 5,
+      "START_limit": 1,
+      "expected_wire_revision": "0.3",
+      "expected_observed_caps": [
+        2,
+        2,
+        0,
+        12,
+        100000,
+        1,
+        128,
+        1,
+        12,
+        1
+      ],
+      "expected_retained_bits": 12,
+      "canonical_sample_domain": "adc12_u16le",
+      "nominal_period_us_rational": [
+        10,
+        1
+      ],
+      "deadline_us_exclusive": 5120,
+      "expected_tim3_psc_arr": [
+        71,
+        9
+      ],
+      "observed_rate_tolerance": [
+        90000,
+        110000
+      ],
+      "trial_argv": [
+        ".venv/Scripts/python.exe",
+        "-B",
+        "host/tools/v2_stream_probe.py",
+        "--port",
+        "COM6",
+        "--output",
+        "build/v6i-board-02/100000/run",
+        "--seconds",
+        "5",
+        "--build-id",
+        "0x56325343",
+        "--sample-rate",
+        "100000",
+        "--source-commit",
+        "310d53b10c79a48ddc45357ff65d88c686aef883",
+        "--image-sha256",
+        "a36f72a772c03c5cbfd85767e5f07f0abc3ad2f2ffd7d1ee1c43143d20ca1c90"
+      ],
+      "trial_env": {
+        "PYTHONPATH": "host"
+      },
+      "after_trial_owner_close_gate": "PASS: owners_closed=true; FAIL: cleanup_finished=true and final_state.phase=closed; if gate not confirmed no SWD and stop sequence",
+      "diagnostic_reads": 2,
+      "diagnostic_names": [
+        "diagnostics-first.bin",
+        "diagnostics-second.bin"
+      ],
+      "diagnostic_decode_argv": [
+        ".venv/Scripts/python.exe",
+        "-I",
+        "-B",
+        "build/v6i-board-02/decode_diagnostics.py",
+        "build/v6i-board-02/100000/diagnostics-first.bin",
+        "build/v6i-board-02/100000/diagnostics-second.bin",
+        "--sample-rate",
+        "100000",
+        "--generation",
+        "TBD_ACTUAL_SESSION_GENERATION",
+        "--nonce",
+        "TBD_ACTUAL_SESSION_NONCE"
+      ],
+      "register_check_argv": [
+        ".venv/Scripts/python.exe",
+        "-I",
+        "-B",
+        "build/v6i-board-02/save_stopped_state.py",
+        "--session-dir",
+        "build/v6i-board-02/100000",
+        "--sample-rate",
+        "100000"
+      ],
+      "progress_to_next_session_only_if": "All saved wire/raw/fresh-open/END-ACK/diagnostic/stopped-register criteria pass; do not send next START after any failure.",
+      "offline_analysis_argv": [
+        ".venv/Scripts/python.exe",
+        "-B",
+        "build/v6i-board-02/analyze_physical.py",
+        "--sample-rate",
+        "100000",
+        "--seconds",
+        "5"
+      ],
+      "before_session": [
+        "Only after previous owner closed and stopped registers confirmed",
+        "Root MCU Reset/Run through pinned ST-Link; preserve log, success and SN",
+        "Ask user to unplug/replug board USB, ST-Link unchanged; await actual ready answer",
+        "No other START since reset; fresh HELLO/CAPS and one START for this mode"
+      ],
+      "reset_run_limit": 1
+    },
+    {
+      "order": 2,
+      "session_directory": "build/v6i-board-02/150000",
+      "sample_rate_hz": 150000,
+      "acquisition_mode": 3,
+      "target_record_seconds_after_preview": 30,
+      "START_limit": 1,
+      "expected_wire_revision": "0.3",
+      "expected_observed_caps": [
+        3,
+        3,
+        0,
+        12,
+        150000,
+        1,
+        128,
+        1,
+        10,
+        2
+      ],
+      "expected_retained_bits": 10,
+      "canonical_sample_domain": "adc12_u16le_low2zero",
+      "nominal_period_us_rational": [
+        20,
+        3
+      ],
+      "deadline_us_exclusive": 3413,
+      "expected_tim3_psc_arr": [
+        47,
+        9
+      ],
+      "observed_rate_tolerance": [
+        135000,
+        165000
+      ],
+      "trial_argv": [
+        ".venv/Scripts/python.exe",
+        "-B",
+        "host/tools/v2_stream_probe.py",
+        "--port",
+        "COM6",
+        "--output",
+        "build/v6i-board-02/150000/run",
+        "--seconds",
+        "30",
+        "--build-id",
+        "0x56325343",
+        "--sample-rate",
+        "150000",
+        "--source-commit",
+        "310d53b10c79a48ddc45357ff65d88c686aef883",
+        "--image-sha256",
+        "a36f72a772c03c5cbfd85767e5f07f0abc3ad2f2ffd7d1ee1c43143d20ca1c90"
+      ],
+      "trial_env": {
+        "PYTHONPATH": "host"
+      },
+      "after_trial_owner_close_gate": "PASS: owners_closed=true; FAIL: cleanup_finished=true and final_state.phase=closed; if gate not confirmed no SWD and stop sequence",
+      "diagnostic_reads": 2,
+      "diagnostic_names": [
+        "diagnostics-first.bin",
+        "diagnostics-second.bin"
+      ],
+      "diagnostic_decode_argv": [
+        ".venv/Scripts/python.exe",
+        "-I",
+        "-B",
+        "build/v6i-board-02/decode_diagnostics.py",
+        "build/v6i-board-02/150000/diagnostics-first.bin",
+        "build/v6i-board-02/150000/diagnostics-second.bin",
+        "--sample-rate",
+        "150000",
+        "--generation",
+        "TBD_ACTUAL_SESSION_GENERATION",
+        "--nonce",
+        "TBD_ACTUAL_SESSION_NONCE"
+      ],
+      "register_check_argv": [
+        ".venv/Scripts/python.exe",
+        "-I",
+        "-B",
+        "build/v6i-board-02/save_stopped_state.py",
+        "--session-dir",
+        "build/v6i-board-02/150000",
+        "--sample-rate",
+        "150000"
+      ],
+      "progress_to_next_session_only_if": "All saved wire/raw/fresh-open/END-ACK/diagnostic/stopped-register criteria pass; do not send next START after any failure.",
+      "offline_analysis_argv": [
+        ".venv/Scripts/python.exe",
+        "-B",
+        "build/v6i-board-02/analyze_physical.py",
+        "--sample-rate",
+        "150000",
+        "--seconds",
+        "30"
+      ],
+      "before_session": [
+        "Only after previous owner closed and stopped registers confirmed",
+        "Root MCU Reset/Run through pinned ST-Link; preserve log, success and SN",
+        "Ask user to unplug/replug board USB, ST-Link unchanged; await actual ready answer",
+        "No other START since reset; fresh HELLO/CAPS and one START for this mode"
+      ],
+      "reset_run_limit": 1
+    }
+  ],
+  "no_swd_during_trial": true,
+  "no_debug_halt_during_acquisition": true,
+  "no_USB_replug_between_successful_sessions_planned": true,
+  "between_sessions": "After explicit Stop/END/ACK and settled writer, close COM owner; save two136-byte diagnostics and stopped registers, run offline checks; next profile uses a new connection/discoveryHELLO0.2 -> freshnonceHELLO0.3(mode), never active reconfiguration.",
+  "diagnostic_address": "0x20002BD4",
+  "diagnostic_bytes": 136,
+  "profile_512_present": false,
+  "register_dumps_after_owner_close": {
+    "tim3": [
+      1073742848,
+      48
+    ],
+    "adc": [
+      1073816584,
+      12
+    ],
+    "dma": [
+      1073872904,
+      16
+    ],
+    "rcc": [
+      1073877004,
+      20
+    ]
+  },
+  "ADC_DR_read": false,
+  "helper_pins": {
+    "decode_diagnostics.py": "585490799868459521d186dddcd919ec8e634c3e51f74d7dd9389163298600f5",
+    "save_stopped_state.py": "490c9f3297f45f138fbc888a9a5e2c2778a885e36132fc135c49b8383cbb9f70",
+    "check_sb_ready.py": "b4592bd2cd43a4196c3ef65b0a297121b6e2068e640b4744d750d013af1f671c",
+    "analyze_physical.py": "b8a7ded07a3a72f9105b17b1402b5a3b2ca5b53bdeffe9c95a09a3bfe25416e2"
+  },
+  "trial_tool_path": "host/tools/v2_stream_probe.py",
+  "trial_tool_sha256": "ee3fe6a3909c6e20939de654e8bc441b59d556002f39ea86ceaf925889b7a56b",
+  "expected_unknown_produced_tail": true,
+  "acceptance": [
+    "Existing SC38188-byte independent readback stays exact; no firmware changes. Each qualification session begins with explicit Reset/Run plus actual user USB replug, preserving one attempt per boot.",
+    "For each session exact SC build and selected mode/Fs/ADC12/retained/encoding CAPS before its sole START; no silent mode fallback.",
+    "Record duration at least planned5/5/30s after Preview; preserve actual wall/overshoot and rough host pacing within nominal90..110percent.",
+    "No source/host/logging/writer failure; normal END reason0 and matching STOP_ACK; unknown produced tail remains unknown.",
+    "Sequence/index continuity and frame/prefix CRC; fresh Open plus companion and canonical selected raw equal preserved wire. Mode150 codes0..4092 divisible4, retained10 metadata and20/3us rational time.",
+    "COM owner closed before SWD. Per-session equal frozen136 with exact build/currentnonce/generation, flags0, observed poll/copy below selected deadline.",
+    "TIM3 CEN0 and selected PSC/ARR;ADC CR2=0,SMPR2 low3bits4;DMA EN0;relevant clocks on/reset bits off;noADC_DR.",
+    "Separate independent physical review>=9.5 using unchanged per-session criteria; short passes are bounded observations, not oscillator/voltage calibration."
+  ],
+  "failure_policy": {
+    "stop_remaining_sessions_on_any_failure": true,
+    "no_automatic_second_START": true,
+    "no_changed_rate_retry": true,
+    "preserve_failed_traffic_prefix_and_diagnostics": true,
+    "do_not_SWD_before_owner_close_gate": true,
+    "diagnostics_after_failure_only_if": "Owner closed and root confirms stopped/nonactive state; failure output is evidence, never a pass substitution."
+  },
+  "rollback_policy": {
+    "automatic_after_failed_trial": false,
+    "retain_candidate_if": "Boot/communication and stopped acquisition are confirmed even if a session failed.",
+    "restore_only_if": [
+      "Programming/readback cannot be completed correctly",
+      "Candidate cannot boot or communicate after the planned user replug",
+      "Stopping cannot be confirmed"
+    ],
+    "record_concrete_reason_before_restore": true,
+    "recovery_target": "Fresh complete SB64KiB snapshot pinned above; no automatic S4 restore.",
+    "procedure_if_needed": "Root records reason, programs pinned SB snapshot with verify, full65536-byte independent readback equal, Reset/Run and user replug. Then SB-only READY helper, without START.",
+    "ready_helper": "build/v6i-board-02/check_sb_ready.py",
+    "ready_helper_argv": [
+      ".venv/Scripts/python.exe",
+      "-B",
+      "build/v6i-board-02/check_sb_ready.py",
+      "--output",
+      "build/v6i-board-02/rollback-ready.json"
+    ],
+    "ready_helper_env": {
+      "PYTHONPATH": "host"
+    },
+    "ready_helper_expected_build": "0x56325342",
+    "ready_helper_requested_sample_rate_hz": 100000,
+    "user_instruction": "Do not return old firmware automatically when not necessary."
+  },
+  "audit_limits": {
+    "traffic_log_cap_bytes_per_session": 16777216,
+    "nominal_DATA_wire_bytes_per_target_record": {
+      "100000x5": 1199218.75,
+      "150000x30": 7382812.5
+    },
+    "cap_is_not_guaranteed_by_nominal_bytes": "Every nonempty chunk adds13bytes plus controls; actual fragmentation/logging overhead remains independent. Audit overflow is host logging failure, not device queue-full.",
+    "DWT_wrap": "Record5/5/30s is not total procedure wall. Preserve actual wall and external no-halt claim per session; do not infer elapsed time by subtracting rawDWT beyond one2^32 wrap (~59.65s)."
+  },
+  "procedure_fact_policy": "This is an unexecuted plan. Actual replug, starts, invocation wall, SWD timing, restore decisions and owner-close chronology are supplied by root after execution; offline helpers never invent them.",
+  "remaining_before_execution": [
+    "Independent admission of this new exact no-Flash procedure",
+    "Root explicit Reset/Run and actual user replug before100k, then again before150k after100k allcriteria pass"
+  ],
+  "input_pins": {
+    "build\\v6i-board-01\\readback-verified.json": "69650b688794730d28700b1fd90351452dd4574da5b8573d0679610d26b94663",
+    "build\\v6i-board-01\\100000\\run\\result.json": "d301223add26c3a10997eacf4c3fee785ed86c8e24f2749d4858364a1036410d",
+    "build\\v6i-board-01\\100000\\physical-analysis.json": "1e729ed83fbf2507dd36eb72d003cb37028b70f2e6973e5a433fc7bd6276a022",
+    "build\\v6i-board-01\\100000\\registers-decoded.json": "119ce6dca453b96b10eda7da5f3375ec8d37f5c75df92db5dc58a3ab6a5f69b0",
+    "build\\v6i-board-02\\diag-rearm-findings.md": "9db460f9c025e708ae91d586643be0c3d73cf7f299f11dad711635448da2c62c",
+    "task.md": "1c3419a72561ffd4189b9b7a48104442f6e227c12c61f809d933a651331559c3"
+  },
+  "root_review": "Contract rates, deadlines, program/readback length, fixed source/image/backup, helper caps and stopped-register expectations checked; helpers not run on hardware.",
+  "superseded_plan_sha256": "b9ac0577f70ca52457f4b1fad3c375bf6e3c25bcfcb36fb9c69f587c57d0810a",
+  "superseded_observation_manifest_sha256": "36155c980e10c9268a9ed6840143001b266438b836190d303dfab67c16cf706c",
+  "reason": "Legacy136 deliberately records one attempt per boot. Prior100k stream passed but diagnostic stayed bound to50k. Previous sequence stopped; this is a new exact procedure, not a reinterpretation of stale metrics.",
+  "existing_image_readback": {
+    "path": "build/v6i-board-01/readback.bin",
+    "sha256": "a36f72a772c03c5cbfd85767e5f07f0abc3ad2f2ffd7d1ee1c43143d20ca1c90",
+    "bytes": 38188,
+    "receipt": "build/v6i-board-01/readback-verified.json",
+    "receipt_sha256": "69650b688794730d28700b1fd90351452dd4574da5b8573d0679610d26b94663",
+    "no_programming_since": true
+  },
+  "post_reset_replug": "Root requests board USB unplug/replug, ST-Link unchanged; app remains closed. Wait for actual user ready reply; no automatic reset/replug assumption."
+}
