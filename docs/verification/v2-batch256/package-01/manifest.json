@@ -1,0 +1,106 @@
+{
+  "schema": "v2-06k-package-evidence-1",
+  "scope": "First build and first frozen Windows10 batch256 changed-flow verification; synthetic only, no rerun or physical COM.",
+  "source_commit": "cb4757940b3ee9968f953becfbc3ca8caea102d7",
+  "root_visual_review": "All four frozen PNGs viewed: live/Open and both mismatch instructions readable, no overlaps.",
+  "files": [
+    {
+      "source": "build/v6kw1/build.log",
+      "archive": "docs/verification/v2-batch256/package-01/receipts/build.log",
+      "bytes": 34860,
+      "sha256": "a7b516800328335062cd9ac5bdb76dd2c748457a0c0b2f6fa887ec27e6a5edb9"
+    },
+    {
+      "source": "build/v6kw1/build-report.json",
+      "archive": "docs/verification/v2-batch256/package-01/receipts/build-report.json",
+      "bytes": 8805,
+      "sha256": "05fb2797b8a3787f7946d34cf7997b441e6840d830747ad439c93c6cf143ab4a"
+    },
+    {
+      "source": "build/v6kw1/SHA256SUMS.txt",
+      "archive": "docs/verification/v2-batch256/package-01/receipts/SHA256SUMS.txt",
+      "bytes": 1375,
+      "sha256": "0d15a7d82aecbea27fda0d51fd4d160bcb73458ab82bd58f13ab83e24a07e7fc"
+    },
+    {
+      "source": "build/v6kw1/dist/MotortesterV2/build-manifest.json",
+      "archive": "docs/verification/v2-batch256/package-01/receipts/build-manifest.json",
+      "bytes": 87571,
+      "sha256": "6af7139edd5b53459c7cf2943203aceb1f582d1174fb01cae81b41efab00b75c"
+    },
+    {
+      "source": "build/v6kw1/frozen-profiles/intrinsic-only.mtstream",
+      "archive": "docs/verification/v2-batch256/package-01/frozen-profiles/intrinsic-only.mtstream",
+      "bytes": 767238,
+      "sha256": "0cea106ffb902cb8ad0955c429afa059cf4174f3fce905e76b09fe1d55a0329c"
+    },
+    {
+      "source": "build/v6kw1/frozen-profiles/packed150.csv",
+      "archive": "docs/verification/v2-batch256/package-01/frozen-profiles/packed150.csv",
+      "bytes": 10733524,
+      "sha256": "10af7089d5510b2cfed5954b9249e6216e701193e1aad583b424aa11a9bb72a0"
+    },
+    {
+      "source": "build/v6kw1/frozen-profiles/packed150.csv.json",
+      "archive": "docs/verification/v2-batch256/package-01/frozen-profiles/packed150.csv.json",
+      "bytes": 2975,
+      "sha256": "091796644bf8be2f375b1cc3ab9148a7871627be511e7fbda7a4ab467cf011c2"
+    },
+    {
+      "source": "build/v6kw1/frozen-profiles/packed150.mtstream",
+      "archive": "docs/verification/v2-batch256/package-01/frozen-profiles/packed150.mtstream",
+      "bytes": 767238,
+      "sha256": "0cea106ffb902cb8ad0955c429afa059cf4174f3fce905e76b09fe1d55a0329c"
+    },
+    {
+      "source": "build/v6kw1/frozen-profiles/packed150.mtstream.v2.json",
+      "archive": "docs/verification/v2-batch256/package-01/frozen-profiles/packed150.mtstream.v2.json",
+      "bytes": 2334,
+      "sha256": "18ce9e519425ec183a976e021ecd0c3fc6580b6ebd2e007f06d7e04d831b6f66"
+    },
+    {
+      "source": "build/v6kw1/frozen-profiles/profiles-legacy-mismatch.png",
+      "archive": "docs/verification/v2-batch256/package-01/frozen-profiles/profiles-legacy-mismatch.png",
+      "bytes": 42505,
+      "sha256": "1acbcac541d46ed5cdb3a666d47bb132952bca2d6db135c2b20243f280d6efd8"
+    },
+    {
+      "source": "build/v6kw1/frozen-profiles/profiles-live.png",
+      "archive": "docs/verification/v2-batch256/package-01/frozen-profiles/profiles-live.png",
+      "bytes": 67211,
+      "sha256": "1c14e4da309a9accd877c950fb4366c0c43e6d2d92c2feb3e4d77e0abb1e7a21"
+    },
+    {
+      "source": "build/v6kw1/frozen-profiles/profiles-open.png",
+      "archive": "docs/verification/v2-batch256/package-01/frozen-profiles/profiles-open.png",
+      "bytes": 66592,
+      "sha256": "3f7c7f2302ecd1b8527a522a89154e68a4782df9555806a03c745caf6d074ecd"
+    },
+    {
+      "source": "build/v6kw1/frozen-profiles/profiles-sc150-mismatch.png",
+      "archive": "docs/verification/v2-batch256/package-01/frozen-profiles/profiles-sc150-mismatch.png",
+      "bytes": 43785,
+      "sha256": "873d64dac29e9d1a02cd9415bf485c30f3792fb17970ace63d7c53de98ef0079"
+    },
+    {
+      "source": "build/v6kw1/frozen-profiles/result.json",
+      "archive": "docs/verification/v2-batch256/package-01/frozen-profiles/result.json",
+      "bytes": 5266,
+      "sha256": "3507d3d19f8ddebd0933ce1f985ac3ab23b6bf301e8114a24b82b2c67402ad6b"
+    }
+  ],
+  "file_count": 14,
+  "total_bytes": 12631279,
+  "local_large_artifacts": [
+    {
+      "path": "build/v6kw1/MotortesterV2-windows-x64.zip",
+      "bytes": 61199826,
+      "sha256": "ac89c3005086571f061547d691f5944a4fa079d1a2977848b02de7952784af81"
+    },
+    {
+      "path": "build/v6kw1/source.zip",
+      "bytes": 43747773,
+      "sha256": "e5892ddc8f32c1e7b0d2cf0d4ffe00d32d22741dff5e24fab14c3e06b233b90c"
+    }
+  ]
+}

@@ -1,0 +1,203 @@
+{
+  "status": "PASS",
+  "verification_scope": "selectable-profiles-batch256",
+  "scope": "Frozen Windows profile selector and injected wire/file/CSV path; no physical COM, clean-machine or unchanged legacy-suite qualification",
+  "source_commit": "cb4757940b3ee9968f953becfbc3ca8caea102d7",
+  "portable_zip": "MotortesterV2-windows-x64.zip",
+  "portable_sha256": "ac89c3005086571f061547d691f5944a4fa079d1a2977848b02de7952784af81",
+  "source_sha256": "e5892ddc8f32c1e7b0d2cf0d4ffe00d32d22741dff5e24fab14c3e06b233b90c",
+  "executable_sha256": {
+    "MotortesterV2.exe": "0302b408692a9d424749349c51251a1958c88fa985741d0a23dd8db1bfece224",
+    "MotortesterV2Inspect.exe": "8245faba120c6152371a6dfaf3412accfc49b267579b9c59b636d6e7b5ec84e3"
+  },
+  "extracted_bundle": "C:\\Users\\Alexandr\\Desktop\\New folder\\универ\\мотортестер 2\\build\\v6kw1\\Проверка переноса\\MotortesterV2",
+  "working_directory": "C:\\Users\\Alexandr\\Desktop\\New folder\\универ\\мотортестер 2\\build\\v6kw1\\Другая рабочая папка",
+  "isolated_path": "C:\\Windows\\System32",
+  "frozen_smoke": {
+    "status": "PASS",
+    "errors": [],
+    "callback_errors": [],
+    "frozen": true,
+    "platform": "win32",
+    "windows_host": "Windows-10-10.0.19045-SP0",
+    "qt_platform": "windows",
+    "executable": "C:\\Users\\Alexandr\\Desktop\\New folder\\универ\\мотортестер 2\\build\\v6kw1\\Проверка переноса\\MotortesterV2\\MotortesterV2.exe",
+    "owners_closed": true,
+    "real_serial_open_calls": 0,
+    "checks": {
+      "selector_modes": true,
+      "batch_mode4_negotiated": true,
+      "selection_locked": true,
+      "batch256_wire_evidence": true,
+      "packed_record_roundtrip": true,
+      "intrinsic_quantization": true,
+      "csv_timebase": true,
+      "legacy_mismatch_before_start": true,
+      "sc150_batch_required_before_start": true
+    },
+    "files": {
+      "intrinsic-only.mtstream": {
+        "bytes": 767238,
+        "sha256": "0cea106ffb902cb8ad0955c429afa059cf4174f3fce905e76b09fe1d55a0329c"
+      },
+      "packed150.csv": {
+        "bytes": 10733524,
+        "sha256": "10af7089d5510b2cfed5954b9249e6216e701193e1aad583b424aa11a9bb72a0"
+      },
+      "packed150.csv.json": {
+        "bytes": 2975,
+        "sha256": "091796644bf8be2f375b1cc3ab9148a7871627be511e7fbda7a4ab467cf011c2"
+      },
+      "packed150.mtstream": {
+        "bytes": 767238,
+        "sha256": "0cea106ffb902cb8ad0955c429afa059cf4174f3fce905e76b09fe1d55a0329c"
+      },
+      "packed150.mtstream.v2.json": {
+        "bytes": 2334,
+        "sha256": "18ce9e519425ec183a976e021ecd0c3fc6580b6ebd2e007f06d7e04d831b6f66"
+      },
+      "profiles-legacy-mismatch.png": {
+        "bytes": 42505,
+        "sha256": "1acbcac541d46ed5cdb3a666d47bb132952bca2d6db135c2b20243f280d6efd8"
+      },
+      "profiles-live.png": {
+        "bytes": 67211,
+        "sha256": "1c14e4da309a9accd877c950fb4366c0c43e6d2d92c2feb3e4d77e0abb1e7a21"
+      },
+      "profiles-open.png": {
+        "bytes": 66592,
+        "sha256": "3f7c7f2302ecd1b8527a522a89154e68a4782df9555806a03c745caf6d074ecd"
+      },
+      "profiles-sc150-mismatch.png": {
+        "bytes": 43785,
+        "sha256": "873d64dac29e9d1a02cd9415bf485c30f3792fb17970ace63d7c53de98ef0079"
+      }
+    },
+    "execution_kind": "injected-test",
+    "physical_stream_verified": false,
+    "paced_observation": {
+      "host_seconds": 2.0756775999907404,
+      "received": 311552,
+      "samples_per_host_second": 150096.5275153472,
+      "meaning": "synthetic host scheduling only; not ADC/USB performance"
+    },
+    "batch": {
+      "mode": 4,
+      "max_block": 256,
+      "discovery_capabilities": 7,
+      "discovery_max_block": 256,
+      "selected_ack_max_block": 256,
+      "full_data_frames": 1696,
+      "first_full_data_samples": 256,
+      "short_tail_frames": 1,
+      "short_tail_samples": 229,
+      "largest_data_frame_bytes": 370,
+      "data_count_sequence_validation": true
+    },
+    "limits": {
+      "peak_raw_items": 54,
+      "peak_raw_bytes": 27594,
+      "max_service_gap_ms": 34,
+      "peak_synthetic_backlog_samples": 5178,
+      "synthetic_backlog_limit": 32768
+    },
+    "roundtrip": {
+      "samples": 381669,
+      "raw_sha256": "a31cc0904192fe4214cde3aefd96bab1e58cbdfafc4b493ac6743c475d6ed19b",
+      "identity": {
+        "session_id": "wire-0.3:30b59e95cb8808f8",
+        "generation": 3,
+        "config_id": 4,
+        "nominal_fs_hz": 150000,
+        "origin": "synthetic",
+        "protocol_revision": "0.3-batch256-20261024",
+        "firmware_version": "build:56325344",
+        "application_version": "v2-serial-unknown-accounting:injected-test",
+        "acquisition_mode": 4,
+        "source_adc_bits": 12,
+        "retained_bits": 10,
+        "discarded_lsb": 2,
+        "wire_sample_encoding": "u10packed_le",
+        "normalization": "left_shift_2",
+        "quantization": "truncate_lsb",
+        "stored_sample_encoding": "u16le",
+        "stored_code_domain": "adc12"
+      },
+      "connection": {
+        "selection": {
+          "port": "V2_PROFILES_SYNTHETIC",
+          "declared_source_commit": null,
+          "declared_artifact_sha256": null,
+          "requested_sample_rate_hz": 150000
+        },
+        "execution_kind": "injected-test",
+        "observed_build_id": 1446138692,
+        "observed_caps": [
+          4,
+          4,
+          0,
+          12,
+          150000,
+          1,
+          256,
+          1,
+          10,
+          2
+        ],
+        "dtr_requested": true,
+        "accounting_domain": "unknown",
+        "image_verified": false,
+        "protocol_revision": "0.3"
+      },
+      "csv_dt_seconds": 6.666666666666667e-06,
+      "journal_sha256": "0cea106ffb902cb8ad0955c429afa059cf4174f3fce905e76b09fe1d55a0329c"
+    },
+    "expected_legacy_error": "Эта прошивка имеет фиксированную частоту 100000 отсчётов/с. Приём не запущен. Закройте окно приёма, откройте его снова, выберите эту частоту и подключитесь.",
+    "expected_sc150_error": "Для 150000 отсчётов/с нужна прошивка с пакетами по 256 отсчётов. Эта прошивка передаёт по 128; приём не запущен. Можно закрыть окно приёма и выбрать 50000 или 100000, либо обновить прошивку после проверки совместимости."
+  },
+  "png_files": {
+    "profiles-legacy-mismatch.png": {
+      "sha256": "1acbcac541d46ed5cdb3a666d47bb132952bca2d6db135c2b20243f280d6efd8",
+      "bytes": 42505,
+      "width": 1220,
+      "height": 870,
+      "validation": "PNG IHDR/CRC and SHA-256"
+    },
+    "profiles-live.png": {
+      "sha256": "1c14e4da309a9accd877c950fb4366c0c43e6d2d92c2feb3e4d77e0abb1e7a21",
+      "bytes": 67211,
+      "width": 1220,
+      "height": 870,
+      "validation": "PNG IHDR/CRC and SHA-256"
+    },
+    "profiles-open.png": {
+      "sha256": "3f7c7f2302ecd1b8527a522a89154e68a4782df9555806a03c745caf6d074ecd",
+      "bytes": 66592,
+      "width": 1220,
+      "height": 870,
+      "validation": "PNG IHDR/CRC and SHA-256"
+    },
+    "profiles-sc150-mismatch.png": {
+      "sha256": "873d64dac29e9d1a02cd9415bf485c30f3792fb17970ace63d7c53de98ef0079",
+      "bytes": 43785,
+      "width": 1220,
+      "height": 870,
+      "validation": "PNG IHDR/CRC and SHA-256"
+    }
+  },
+  "smoke_files": {
+    "intrinsic-only.mtstream": "0cea106ffb902cb8ad0955c429afa059cf4174f3fce905e76b09fe1d55a0329c",
+    "packed150.csv": "10af7089d5510b2cfed5954b9249e6216e701193e1aad583b424aa11a9bb72a0",
+    "packed150.csv.json": "091796644bf8be2f375b1cc3ab9148a7871627be511e7fbda7a4ab467cf011c2",
+    "packed150.mtstream": "0cea106ffb902cb8ad0955c429afa059cf4174f3fce905e76b09fe1d55a0329c",
+    "packed150.mtstream.v2.json": "18ce9e519425ec183a976e021ecd0c3fc6580b6ebd2e007f06d7e04d831b6f66",
+    "profiles-legacy-mismatch.png": "1acbcac541d46ed5cdb3a666d47bb132952bca2d6db135c2b20243f280d6efd8",
+    "profiles-live.png": "1c14e4da309a9accd877c950fb4366c0c43e6d2d92c2feb3e4d77e0abb1e7a21",
+    "profiles-open.png": "3f7c7f2302ecd1b8527a522a89154e68a4782df9555806a03c745caf6d074ecd",
+    "profiles-sc150-mismatch.png": "873d64dac29e9d1a02cd9415bf485c30f3792fb17970ace63d7c53de98ef0079",
+    "result.json": "3507d3d19f8ddebd0933ce1f985ac3ab23b6bf301e8114a24b82b2c67402ad6b"
+  },
+  "windows_host": "Windows-10-10.0.19045-SP0",
+  "physical_device_verified": false,
+  "public_release_approved": false
+}

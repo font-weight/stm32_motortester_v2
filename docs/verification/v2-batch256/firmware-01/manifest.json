@@ -1,0 +1,177 @@
+{
+  "schema": "v2-06k-evidence-1",
+  "source_commit": "cb4757940b3ee9968f953becfbc3ca8caea102d7",
+  "scope": "First exact SD ARM/static and actual-core pair model; no physical qualification",
+  "files": [
+    {
+      "source": "build/v6k-freeze.json",
+      "archive": "docs/verification/v2-batch256/firmware-01/v6k-freeze.json",
+      "bytes": 7663,
+      "sha256": "469cf4e3e50caf263259f9092de0d4f27f6b80442e4dfd65a63c7a4bbe358459"
+    },
+    {
+      "source": "build/v6k-fw-01/MotortesterV2-stream-candidate.bin",
+      "archive": "docs/verification/v2-batch256/firmware-01/v6k-fw-01/MotortesterV2-stream-candidate.bin",
+      "bytes": 39448,
+      "sha256": "244c3af19647ffa24d43973c1d55d24e3b5ce70c494bf781067e13aa60a2daa5"
+    },
+    {
+      "source": "build/v6k-fw-01/MotortesterV2-stream-candidate.elf",
+      "archive": "docs/verification/v2-batch256/firmware-01/v6k-fw-01/MotortesterV2-stream-candidate.elf",
+      "bytes": 74828,
+      "sha256": "95f201f615b6eae9ce356246acd43e70564a00b46331be10e428a9b01d9dfc80"
+    },
+    {
+      "source": "build/v6k-fw-01/MotortesterV2-stream-candidate.hex",
+      "archive": "docs/verification/v2-batch256/firmware-01/v6k-fw-01/MotortesterV2-stream-candidate.hex",
+      "bytes": 111005,
+      "sha256": "dc137945ee371396688b8a26d2b4258d182fd739b841e8b2413284f488f39943"
+    },
+    {
+      "source": "build/v6k-fw-01/image.map",
+      "archive": "docs/verification/v2-batch256/firmware-01/v6k-fw-01/image.map",
+      "bytes": 78495,
+      "sha256": "53715a6e8973357df4ff8a29f0a140178a19cda3d63807ffa2c55ffe989ebb05"
+    },
+    {
+      "source": "build/v6k-fw-01/image.nm",
+      "archive": "docs/verification/v2-batch256/firmware-01/v6k-fw-01/image.nm",
+      "bytes": 18566,
+      "sha256": "76a2825e8894d3eaa9029162311aa02d3866272186b1f379e9317c346fd6ab81"
+    },
+    {
+      "source": "build/v6k-fw-01/receipt.json",
+      "archive": "docs/verification/v2-batch256/firmware-01/v6k-fw-01/receipt.json",
+      "bytes": 399121,
+      "sha256": "a08eb248185e90365f2025d6f1bb88a89447bb2f1ea9adbcbe5da9e2423b98ed"
+    },
+    {
+      "source": "build/v6k-fw-01/static-bound.json",
+      "archive": "docs/verification/v2-batch256/firmware-01/v6k-fw-01/static-bound.json",
+      "bytes": 185679,
+      "sha256": "1b72c79d9576508b921d6042053a45a3766278bd5412aed28e842cf49b146cad"
+    },
+    {
+      "source": "build/v6k-native-01/acquisition/mt_acquisition_profile.c",
+      "archive": "docs/verification/v2-batch256/firmware-01/v6k-native-01/acquisition/mt_acquisition_profile.c",
+      "bytes": 1374,
+      "sha256": "f196d24da85a80b6f58a6bdbd2a12f5f513dc7e733bd4dd1a82fed71ba4eba43"
+    },
+    {
+      "source": "build/v6k-native-01/acquisition/mt_acquisition_profile.h",
+      "archive": "docs/verification/v2-batch256/firmware-01/v6k-native-01/acquisition/mt_acquisition_profile.h",
+      "bytes": 1181,
+      "sha256": "0241c4f990852d8dbe466070599c109bba20a566f32a182b06be5ca5907e9eb1"
+    },
+    {
+      "source": "build/v6k-native-01/acquisition/mt_sample_queue.c",
+      "archive": "docs/verification/v2-batch256/firmware-01/v6k-native-01/acquisition/mt_sample_queue.c",
+      "bytes": 4883,
+      "sha256": "d54355f863ae9ff5812944bdb935810e9b57f4f698c7098c32b01b04961bc981"
+    },
+    {
+      "source": "build/v6k-native-01/acquisition/mt_sample_queue.h",
+      "archive": "docs/verification/v2-batch256/firmware-01/v6k-native-01/acquisition/mt_sample_queue.h",
+      "bytes": 5072,
+      "sha256": "177597c2291c9893fce54d5a78761c5f188a39d09e0aae2a2f48b9d5c9934d3a"
+    },
+    {
+      "source": "build/v6k-native-01/batch385-transcript.bin",
+      "archive": "docs/verification/v2-batch256/firmware-01/v6k-native-01/batch385-transcript.bin",
+      "bytes": 652,
+      "sha256": "8c5fc12a70ee3ad3bf9dccbe6212705dd683bd6fb2b77b4d069d21b6e146c5b1"
+    },
+    {
+      "source": "build/v6k-native-01/compile.stderr",
+      "archive": "docs/verification/v2-batch256/firmware-01/v6k-native-01/compile.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "source": "build/v6k-native-01/compile.stdout",
+      "archive": "docs/verification/v2-batch256/firmware-01/v6k-native-01/compile.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "source": "build/v6k-native-01/model.c",
+      "archive": "docs/verification/v2-batch256/firmware-01/v6k-native-01/model.c",
+      "bytes": 12204,
+      "sha256": "53d8a3b8b95da7208ee2f41eb0d12ede9d00800b67bf912c3ac1a8aa5425b81e"
+    },
+    {
+      "source": "build/v6k-native-01/model.stderr",
+      "archive": "docs/verification/v2-batch256/firmware-01/v6k-native-01/model.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "source": "build/v6k-native-01/model.stdout",
+      "archive": "docs/verification/v2-batch256/firmware-01/v6k-native-01/model.stdout",
+      "bytes": 335,
+      "sha256": "da5cd643348597afbad24d57588b268c181729e3975d23be94cddcbb25a61e35"
+    },
+    {
+      "source": "build/v6k-native-01/protocol/mt_live_device.c",
+      "archive": "docs/verification/v2-batch256/firmware-01/v6k-native-01/protocol/mt_live_device.c",
+      "bytes": 33486,
+      "sha256": "8d3eb0a816e56bb95c7ec5fd7a11fca2a934a6f6fd7ce3103587ee14931ff7a4"
+    },
+    {
+      "source": "build/v6k-native-01/protocol/mt_live_device.h",
+      "archive": "docs/verification/v2-batch256/firmware-01/v6k-native-01/protocol/mt_live_device.h",
+      "bytes": 9387,
+      "sha256": "93f338b4284bb808a6331df1ef5a91003472d6893a248d18116439fbf9791b8d"
+    },
+    {
+      "source": "build/v6k-native-01/protocol/mt_v2_crc32.h",
+      "archive": "docs/verification/v2-batch256/firmware-01/v6k-native-01/protocol/mt_v2_crc32.h",
+      "bytes": 528,
+      "sha256": "48f29791e8b0595dabdc70ec06807f4dc064a56e66db514df24dd04ea9222a2f"
+    },
+    {
+      "source": "build/v6k-native-01/protocol/mt_wire.c",
+      "archive": "docs/verification/v2-batch256/firmware-01/v6k-native-01/protocol/mt_wire.c",
+      "bytes": 11344,
+      "sha256": "f8bf4f55f2e4fc769aae0cb57b826dc116486ebefd78279ec130e133cb520fbf"
+    },
+    {
+      "source": "build/v6k-native-01/protocol/mt_wire.h",
+      "archive": "docs/verification/v2-batch256/firmware-01/v6k-native-01/protocol/mt_wire.h",
+      "bytes": 3072,
+      "sha256": "d806649d10360398e031b84e830071fb9b62728feae9fe1c44264aa8d0237f38"
+    },
+    {
+      "source": "build/v6k-native-01/result.json",
+      "archive": "docs/verification/v2-batch256/firmware-01/v6k-native-01/result.json",
+      "bytes": 32652,
+      "sha256": "4e3b9a13f42c7334da480180a16009e21b8dc8d5a2c346fe5176ea76ac94260d"
+    },
+    {
+      "source": "build/v6k-native-01/source-equivalence.json",
+      "archive": "docs/verification/v2-batch256/firmware-01/v6k-native-01/source-equivalence.json",
+      "bytes": 8686,
+      "sha256": "759d2e7e852edd01ba04f29fdd6bcb0ad9fe77299828bca8193438b1e9c59a3d"
+    },
+    {
+      "source": "build/v6k-native-01/version.stderr",
+      "archive": "docs/verification/v2-batch256/firmware-01/v6k-native-01/version.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "source": "build/v6k-native-01/version.stdout",
+      "archive": "docs/verification/v2-batch256/firmware-01/v6k-native-01/version.stdout",
+      "bytes": 7,
+      "sha256": "355a2e14f6a7f2cb387d9d3b75a3550980d020ee1d005b139b62290c1645068a"
+    },
+    {
+      "source": "build/v6k-native-01/whole-fit.c",
+      "archive": "docs/verification/v2-batch256/firmware-01/v6k-native-01/whole-fit.c",
+      "bytes": 3234,
+      "sha256": "e627c235b6ee9d0b1e2bc7ddea51edf481aa2d0dde70f96adb43ccfd4bd67168"
+    }
+  ],
+  "file_count": 28,
+  "total_bytes": 1042902
+}

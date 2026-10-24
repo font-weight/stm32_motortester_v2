@@ -1,0 +1,157 @@
+{
+  "schema": "v2-06k-host-candidate-1",
+  "status": "SOFTWARE_CANDIDATE_PENDING_REVIEW_AND_PACKAGE",
+  "base_commit": "dfc89131f2be5481428217206c59dc0cbaeee08d",
+  "host_implementation_baseline_commit": "310d53b10c79a48ddc45357ff65d88c686aef883",
+  "scope": "150k mode4 DATA256, strict negotiation and intrinsic identity; no COM/SWD",
+  "contract": {
+    "path": "docs/streaming-batch256.md",
+    "bytes": 13312,
+    "sha256": "e62983a12054f427c6eaa83aad7cadbef9aaf65a216cf8abb0d65aa318904595"
+  },
+  "source_files": {
+    "host/motortester/stream_wire.py": {
+      "bytes": 15163,
+      "sha256": "8b4d5ad42644738c7c03c06f51cf492775548027fb78d948194716c1ebf08912"
+    },
+    "host/motortester/stream_endpoint.py": {
+      "bytes": 35133,
+      "sha256": "5105fb99c2f6ea0810e982dffdee2a502aced5c1882e6144875752c2aecdc416"
+    },
+    "host/motortester/stream_model.py": {
+      "bytes": 12151,
+      "sha256": "73bfb3dec0aa2ecefd192627a462ac439c67b98d8bc881897e2e884557a7c209"
+    },
+    "host/motortester/stream_provenance.py": {
+      "bytes": 18997,
+      "sha256": "77a2752e767d1ee6b78d0bd2e3cf4373f629fea76b283337bac1bdeb5d28c954"
+    },
+    "host/motortester/stream_bridge.py": {
+      "bytes": 36021,
+      "sha256": "dea1d555e0653ad8a1ada1c24677b8ec67c76e02f6c475b752581ed939e56a39"
+    },
+    "host/motortester/stream_controller.py": {
+      "bytes": 51967,
+      "sha256": "7af92930afc4ff57c4bb120c773926595f534cfabe084b15d53aca9fad1d0f0e"
+    },
+    "host/motortester/stream_recording.py": {
+      "bytes": 35932,
+      "sha256": "107b2d59b71dcbb99599e1199c4a0f17c978cae517f2c198ac68d742f8265589"
+    },
+    "host/motortester/stream_view.py": {
+      "bytes": 24085,
+      "sha256": "48ff45aea692e3a3e4447152c0721b231d8bacf53082041557f28433bf027262"
+    },
+    "host/motortester/gui_stream.py": {
+      "bytes": 62747,
+      "sha256": "f3790e4a82fc3b29dd4fa38e63c8e4744d0f8d69169c7664a94a1796e4aa4462"
+    },
+    "host/motortester/v2/stream_device.py": {
+      "bytes": 28711,
+      "sha256": "aaaa6658c19c42b4f9f1beea3057dd568b03b8e0c7e7e98f0e690f95ff7b7f72"
+    },
+    "host/motortester/v2/stream_files.py": {
+      "bytes": 3239,
+      "sha256": "278e71f8a4df456bdd431bedf2925441c7275aca3ca0f13196aaa98a640fa735"
+    },
+    "host/motortester/v2/stream_ui.py": {
+      "bytes": 38092,
+      "sha256": "8f10fe0373fa12d80ae3a05dcd1145149fee85befec0ff1cf6d345b60d6a613e"
+    },
+    "host/motortester/v2/stream_profiles_smoke.py": {
+      "bytes": 22830,
+      "sha256": "9e4d0ca46e8cef06ace69bb3bbbaeb5a9b775bcd08c00ee31c0206c7fdd774f7"
+    },
+    "host/tests/test_stream_modes.py": {
+      "bytes": 18547,
+      "sha256": "e090cc5f3c2a360095f9f72f2f4b7c4659129fd704c384a9e3e4c90b7e039779"
+    },
+    "host/tools/v2_stream_probe.py": {
+      "bytes": 10534,
+      "sha256": "ee3fe6a3909c6e20939de654e8bc441b59d556002f39ea86ceaf925889b7a56b"
+    },
+    "host/tools/verify_stream_trial.py": {
+      "bytes": 16124,
+      "sha256": "b32552a3283fb6043cfcc0b207f66bfaedb2a8978b4f0edb69a51c30295caf67"
+    },
+    "host/docs/stream-modes.md": {
+      "bytes": 7011,
+      "sha256": "3e94e88f1e8ad4851d39239c6a6f1a3bbe20d31672655a465617ac3ed20a0ea1"
+    },
+    "host/README.md": {
+      "bytes": 41846,
+      "sha256": "28d6025c338de73f19657c1889650b0bac9f73faf5c922f149763654f67f2e71"
+    }
+  },
+  "evidence": {
+    "build/v6k-host-unit-01/tests.log": {
+      "bytes": 733,
+      "sha256": "434857a28b58dd372383a740e7f870288bca6d82fe307c668476ececdaa571e2"
+    },
+    "build/v6k-host-unit-01/exit-code.txt": {
+      "bytes": 3,
+      "sha256": "13bf7b3039c63bf5a50491fa3cfd8eb4e699d1ba1436315aef9cbe5711530354"
+    },
+    "build/v6k-host-unit-01/c-producer-crosscheck.json": {
+      "bytes": 903,
+      "sha256": "a666df9172164bfbd22b15d6755d1268e31b860ac3644bd42785715cffe9b265"
+    },
+    "build/v6k-host-gui-01/result.json": {
+      "bytes": 5212,
+      "sha256": "1a32e02efd140f61458aeafc8dff27cdfd9bdd8ebafffcab9b8496e90cbde37c"
+    },
+    "build/v6k-host-crosscheck.py": {
+      "bytes": 2647,
+      "sha256": "40b7815eaa899f04854296a948cfa197c7890093cd011f150dc49452f60f9abb"
+    }
+  },
+  "checks": {
+    "focused_groups": 4,
+    "unit_pass": true,
+    "native_windows_gui_pass": true,
+    "c_producer_decode_pass": true,
+    "physical_device_verified": false
+  },
+  "history": [
+    "unit01 four existing groups PASS first attempt; no full inherited suite",
+    "GUI01 PASS first attempt on Windows10 native windows platform; owners closed, real COM0",
+    "actual C DATA256+tail129/END fixture decoded;385 canonical raw codes and CRC equal"
+  ],
+  "changes_after_source_gui": [],
+  "commands": {
+    "unit": ".venv/Scripts/python.exe -I -B -c \"import sys,unittest;sys.path[:0]=['host','host/tests'];suite=unittest.defaultTestLoader.loadTestsFromName('test_stream_modes');r=unittest.TextTestRunner(verbosity=2).run(suite);sys.exit(not r.wasSuccessful())\"",
+    "gui": ".venv/Scripts/python.exe -I -B -c \"import sys;sys.path.insert(0,'host');from motortester.v2.stream_profiles_smoke import run;sys.exit(run('build/v6k-host-gui-01'))\"",
+    "c_crosscheck": ".venv/Scripts/python.exe -I -B build/v6k-host-crosscheck.py build\\v6k-native-01\\batch385-transcript.bin 8c5fc12a70ee3ad3bf9dccbe6212705dd683bd6fb2b77b4d069d21b6e146c5b1 build/v6k-host-unit-01"
+  },
+  "gui_observation": {
+    "recorded_samples": 380911,
+    "batch": {
+      "mode": 4,
+      "max_block": 256,
+      "discovery_capabilities": 7,
+      "discovery_max_block": 256,
+      "selected_ack_max_block": 256,
+      "full_data_frames": 1693,
+      "first_full_data_samples": 256,
+      "short_tail_frames": 1,
+      "short_tail_samples": 239,
+      "largest_data_frame_bytes": 370,
+      "data_count_sequence_validation": true
+    },
+    "limits": {
+      "peak_raw_items": 53,
+      "peak_raw_bytes": 27102,
+      "max_service_gap_ms": 25,
+      "peak_synthetic_backlog_samples": 3920,
+      "synthetic_backlog_limit": 32768
+    },
+    "physical_stream_verified": false
+  },
+  "not_verified": [
+    "Exact frozen Windows executable (root pending)",
+    "V2SD physical 150k stability",
+    "ADC frequency accuracy",
+    "analog input/ignition",
+    "unobserved produced tail"
+  ]
+}

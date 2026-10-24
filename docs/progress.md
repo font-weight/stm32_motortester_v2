@@ -1,5 +1,48 @@
 # Прогресс Мотортестера V2
 
+## 24.10.2026 — K: DATA256 реализован, первые проверки прошли
+
+Точный source `cb4757940b3ee9968f953becfbc3ca8caea102d7`, кандидат SD
+`0x56325344`. Режим150k теперь mode4/DATA256,50/100 и исторический mode3
+сохраняют DATA128. Непрерывный ADC и исходные runtime/TIME/DCD/FIFO сохранены
+побайтно. Принятый I/SC и неудачный150k опыт не переписывались.
+
+Первая ARM/static сборка: BIN39448байт SHA256
+244c3af19647ffa24d43973c1d55d24e3b5ce70c494bf781067e13aa60a2daa5.
+Data128+bss11244+8192резерв=19564/20480байт, запас916;
+условная граница стека6116байт (aligned6120), не измеренный пик стека.
+Legacy136 теперь0x20002BE4, по-прежнему один attempt/boot.
+Одна actual-core модель/три компактные группы PASS: atomic pair/wrap,
+полный256 и конечные хвосты, stale/partial/TIME и whole-fit371.
+[Архив прошивки](verification/v2-batch256/firmware-01/manifest.json) сохраняет
+точный образ, рецепт, модель и сравнение исходников.
+
+Четыре адресные host-группы PASS0,114с; actual C→Python fixture DATA256+
+tail129+END:385кодов/652wireбайта, canonical CRC3917915003 совпал.
+[Host](verification/v2-batch256/host-01/manifest.json),
+[source GUI](verification/v2-batch256/gui-01/manifest.json): Windows10/Qt windows,
+9checks,1693fullDATA256+tail239,380911кодов после freshOpen равны исходным;
+режим сохранён без companion. COMcalls0, ownersclosed, ошибок нет.
+
+Первый отдельный Windows-пакет `build/v6kw1/MotortesterV2-windows-x64.zip`,
+61199826байт, SHA256 ac89c3005086571f061547d691f5944a4fa079d1a2977848b02de7952784af81.
+После упаковки/переноса frozen flow прошёл первым запуском:9checks,
+1696fullDATA256+tail229,381669кодов совпали после Open. CSV проверен по
+count/header/metadata/hash и шагу времени, не по каждому коду CSV.
+Root просмотрел4PNG: подписи и обе инструкции несовместимости читаемы.
+[Архив пакета](verification/v2-batch256/package-01/manifest.json),14файлов12631279байт.
+Команда: `.venv/Scripts/python.exe -u -B host/packaging/v2/build_windows.py --output build/v6kw1 --verification profiles`.
+Повторных K сборок/тестов, полного legacy suite или физических START пока нет.
+Программная логика/ARM/source GUI приняты: [независимый PASS9,60](reviews/v2-06k-review.md).
+Отдельный вердикт готового Windows-пакета ожидается; физические режимы SD не проверены.
+
+Перед будущей прошивкой считана свежая SC64КиБ: SHA256
+6276ba75ebd80e5cc2f9239767ee7b74a3cdf7bd163ccfea8efd7be7f0c7c69b,
+первые38188байт равны принятому SC образу. COM6/один ST-Link обнаружены;
+процессов приложения/захвата не было. Плата остаётся SC, Flash/Reset/START
+в этой подготовке не выполнялись. Следующий этап — точный план SD и
+его допуск, затем один ограниченный опыт на каждый выбранный режим.
+
 ## 24.10.2026 — K: контракт DATA256 принят, реализация начата
 
 [Контракт K](streaming-batch256.md) SHA256

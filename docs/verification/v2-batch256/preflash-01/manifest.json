@@ -1,0 +1,92 @@
+{
+  "schema": "v2-06k2-preflash-evidence-1",
+  "scope": "Fresh SC backup, exact SD unexecuted plan and helper sources; no new Flash/START yet",
+  "files": [
+    {
+      "source": "build/v6k-board-01/analyze_physical.py",
+      "archive": "docs/verification/v2-batch256/preflash-01/analyze_physical.py",
+      "bytes": 22991,
+      "sha256": "b379b24710307b2af10b45fb65f7d81b024bf25710f66c43c3d0d68d7205a19e"
+    },
+    {
+      "source": "build/v6k-board-01/backup-verified.json",
+      "archive": "docs/verification/v2-batch256/preflash-01/backup-verified.json",
+      "bytes": 872,
+      "sha256": "cfbaa19442241f50530bebf234d3b4b448481618f910f432d38799feb71648e0"
+    },
+    {
+      "source": "build/v6k-board-01/backup.log",
+      "archive": "docs/verification/v2-batch256/preflash-01/backup.log",
+      "bytes": 872,
+      "sha256": "2390a2d7ad3bf34bbbb767f9e610912eb76c2dbd57ffb76966796344371799c5"
+    },
+    {
+      "source": "build/v6k-board-01/before-flash-64k.bin",
+      "archive": "docs/verification/v2-batch256/preflash-01/before-flash-64k.bin",
+      "bytes": 65536,
+      "sha256": "6276ba75ebd80e5cc2f9239767ee7b74a3cdf7bd163ccfea8efd7be7f0c7c69b"
+    },
+    {
+      "source": "build/v6k-board-01/check_sc_ready.py",
+      "archive": "docs/verification/v2-batch256/preflash-01/check_sc_ready.py",
+      "bytes": 6382,
+      "sha256": "ec22df477e1254d262b8e46f8ff36aa92cbabf83f0ed25fbd3b19148876c48a1"
+    },
+    {
+      "source": "build/v6k-board-01/decode_diagnostics.py",
+      "archive": "docs/verification/v2-batch256/preflash-01/decode_diagnostics.py",
+      "bytes": 15444,
+      "sha256": "2e470280fda56d62eb2b05041e8c8ad8cebc97d9bbfa43758ce9829082d66155"
+    },
+    {
+      "source": "build/v6k-board-01/plan-draft.json",
+      "archive": "docs/verification/v2-batch256/preflash-01/plan-draft.json",
+      "bytes": 24202,
+      "sha256": "7b81afc2aad206f9c0f8656ebbb79a5f77dd3aafdfde76d4dcfef9757f05cfa6"
+    },
+    {
+      "source": "build/v6k-board-01/plan.json",
+      "archive": "docs/verification/v2-batch256/preflash-01/plan.json",
+      "bytes": 26030,
+      "sha256": "59509978633ce9f89b1af3d7155de1e60b4194ea8f184370a11284e690acbfe9"
+    },
+    {
+      "source": "build/v6k-board-01/ports-before.json",
+      "archive": "docs/verification/v2-batch256/preflash-01/ports-before.json",
+      "bytes": 135,
+      "sha256": "c8614e25240676a110cd0c9f9761ba2d2fc559f249875431289a7b08eedef67d"
+    },
+    {
+      "source": "build/v6k-board-01/probe-list.txt",
+      "archive": "docs/verification/v2-batch256/preflash-01/probe-list.txt",
+      "bytes": 239,
+      "sha256": "b58c8ddae6534dd35b9a1498631f1ee20ba54017c8f3ccfa2b156244c92e72a3"
+    },
+    {
+      "source": "build/v6k-board-01/processes-before.json",
+      "archive": "docs/verification/v2-batch256/preflash-01/processes-before.json",
+      "bytes": 772,
+      "sha256": "b778c02f93ff859e07a812c0f5035f9aa58ae97e114a9cd5d1f4b2a1857c7624"
+    },
+    {
+      "source": "build/v6k-board-01/root_read_fault.py",
+      "archive": "docs/verification/v2-batch256/preflash-01/root_read_fault.py",
+      "bytes": 3719,
+      "sha256": "61dfef966ad1af40be2cb5a0611d79fb1fa2773c9c43c95c808d823fb5a13970"
+    },
+    {
+      "source": "build/v6k-board-01/root_read_stopped.py",
+      "archive": "docs/verification/v2-batch256/preflash-01/root_read_stopped.py",
+      "bytes": 3584,
+      "sha256": "58c61ac3c029e14e453638c3ba1e98f2c6d05cc35e649cc39b75f84049f2f08c"
+    },
+    {
+      "source": "build/v6k-board-01/save_stopped_state.py",
+      "archive": "docs/verification/v2-batch256/preflash-01/save_stopped_state.py",
+      "bytes": 5347,
+      "sha256": "9626538ce99be65bf5be272b449f325a27371a2ee2f87e1360c67236b0a1d5af"
+    }
+  ],
+  "file_count": 14,
+  "total_bytes": 176125
+}

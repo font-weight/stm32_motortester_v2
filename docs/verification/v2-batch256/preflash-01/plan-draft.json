@@ -1,0 +1,626 @@
+{
+  "schema": "motortester-v2-batch256-physical-plan-draft-1",
+  "status": "DRAFT_AWAITING_ROOT_FINALIZATION_AND_INDEPENDENT_EXACT_PROCEDURE_ADMISSION",
+  "iteration": "V2-06k2",
+  "purpose": "One exact SD flash, then independent50k5s/100k5s regressions and150k30s batch256 trial; no continuous reliability/analogue qualification claim.",
+  "source_commit": "cb4757940b3ee9968f953becfbc3ca8caea102d7",
+  "candidate_path": "build/v6k-fw-01/MotortesterV2-stream-candidate.bin",
+  "candidate_bytes": 39448,
+  "candidate_sha256": "244c3af19647ffa24d43973c1d55d24e3b5ce70c494bf781067e13aa60a2daa5",
+  "candidate_elf_sha256": "95f201f615b6eae9ce356246acd43e70564a00b46331be10e428a9b01d9dfc80",
+  "candidate_nm_sha256": "76a2825e8894d3eaa9029162311aa02d3866272186b1f379e9317c346fd6ab81",
+  "firmware_build": "0x56325344",
+  "software_freeze": {
+    "path": "build/v6k-freeze.json",
+    "bytes": 7663,
+    "sha256": "469cf4e3e50caf263259f9092de0d4f27f6b80442e4dfd65a63c7a4bbe358459"
+  },
+  "contract": {
+    "path": "docs/streaming-batch256.md",
+    "bytes": 13312,
+    "sha256": "e62983a12054f427c6eaa83aad7cadbef9aaf65a216cf8abb0d65aa318904595"
+  },
+  "software_review": {
+    "path": "TBD_ROOT_FINAL_SOFTWARE_REVIEW",
+    "sha256": "TBD",
+    "software_grade": "TBD",
+    "package_grade": "TBD",
+    "status": "Not assigned by plan author; must PASS>=9.5 before execution."
+  },
+  "physical_procedure_review": {
+    "path": "TBD_ROOT_INDEPENDENT_ADMISSION",
+    "sha256": "TBD",
+    "grade": "TBD",
+    "status": "Required before Flash or START."
+  },
+  "board_inputs_from_root": {
+    "user_confirmed_app_closed_PA0_empty": true,
+    "port": "COM6",
+    "probe_SN_expected": "57005400120000393333574E",
+    "one_probe_and_no_app_capture_owner_reported": true,
+    "evidence": {
+      "path": "build/v6k-board-01/backup-verified.json",
+      "bytes": 872,
+      "sha256": "cfbaa19442241f50530bebf234d3b4b448481618f910f432d38799feb71648e0"
+    },
+    "inventory_note": "probe-list shows index0 but not readable SN; require pinned expected SN in each actual CLI log. Observed Python entries were ARM builder, not app/capture.",
+    "not_independently_measured_by_plan_author": true
+  },
+  "rollback_image": "build/v6k-board-01/before-flash-64k.bin",
+  "rollback_bytes": 65536,
+  "rollback_sha256": "6276ba75ebd80e5cc2f9239767ee7b74a3cdf7bd163ccfea8efd7be7f0c7c69b",
+  "rollback_prefix_equal_SC_bytes": 38188,
+  "rollback_prefix_expected_sha256": "a36f72a772c03c5cbfd85767e5f07f0abc3ad2f2ffd7d1ee1c43143d20ca1c90",
+  "older_SB_snapshot_preserved_untouched": "build/v6i-board-01/before-flash-64k.bin",
+  "cli_path": "C:/Program Files (x86)/STMicroelectronics/STM32 ST-LINK Utility/ST-LINK Utility/ST-LINK_CLI.exe",
+  "cli_sha256_from_H_template": "7fb012b5e26abf45342caa05c6bc33936f8a379b67797cc55658ffb8bf15e95f",
+  "program_argv": [
+    "C:/Program Files (x86)/STMicroelectronics/STM32 ST-LINK Utility/ST-LINK Utility/ST-LINK_CLI.exe",
+    "-c",
+    "ID=0",
+    "SWD",
+    "HOTPLUG",
+    "-P",
+    "build/v6k-fw-01/MotortesterV2-stream-candidate.bin",
+    "0x08000000",
+    "-V"
+  ],
+  "readback_argv": [
+    "C:/Program Files (x86)/STMicroelectronics/STM32 ST-LINK Utility/ST-LINK Utility/ST-LINK_CLI.exe",
+    "-c",
+    "ID=0",
+    "SWD",
+    "HOTPLUG",
+    "-Dump",
+    "0x08000000",
+    "0x9a18",
+    "build/v6k-board-01/readback.bin"
+  ],
+  "reset_argv": [
+    "C:/Program Files (x86)/STMicroelectronics/STM32 ST-LINK Utility/ST-LINK Utility/ST-LINK_CLI.exe",
+    "-c",
+    "ID=0",
+    "SWD",
+    "HOTPLUG",
+    "-Rst",
+    "-Run"
+  ],
+  "program_limit": 1,
+  "readback_must_equal_before_reset_run": true,
+  "readback_scope": "All39448 candidate bytes, independent Dump; verify exact bytes/SHA before first Reset/Run. Fresh recovery snapshot contains full64KiB.",
+  "post_flash_replug": "First session Reset/Run followed by root-requested actual user USB unplug/replug; not a substitute for the separate replug before sessions2 and3.",
+  "sessions": [
+    {
+      "order": 1,
+      "session_directory": "build/v6k-board-01/50000",
+      "sample_rate_hz": 50000,
+      "acquisition_mode": 1,
+      "target_record_seconds_after_preview": 5,
+      "START_limit": 1,
+      "reset_run_limit": 1,
+      "before_session": [
+        "Require previous session COM owner closed and all wire/raw/diagnostic/stopped gates PASS; first session instead requires exact candidate readback.",
+        "Root performs pinned MCU Reset/Run and preserves successful log with expected ST-Link SN.",
+        "Root asks user to unplug/replug board USB, keeping ST-Link unchanged and PA0 empty; wait for an actual new ready reply before this session.",
+        "No START since that boot; fresh discovery0.2 and different-nonce modeHELLO0.3, exact selected CAPS, then the sole START."
+      ],
+      "actual_user_replug_required": true,
+      "legacy136_fresh_boot_required": true,
+      "expected_wire_revision": "0.3",
+      "expected_discovery_caps_mask": 7,
+      "expected_discovery_max_block": 256,
+      "expected_observed_caps": [
+        1,
+        1,
+        0,
+        12,
+        50000,
+        1,
+        128,
+        1,
+        12,
+        1
+      ],
+      "expected_retained_bits": 12,
+      "expected_max_DATA_samples": 128,
+      "canonical_sample_domain": "adc12",
+      "nominal_period_us_rational": [
+        20,
+        1
+      ],
+      "deadline_us_exclusive": 10240,
+      "expected_tim3_psc_arr": [
+        71,
+        19
+      ],
+      "observed_rate_tolerance": [
+        45000.0,
+        55000.00000000001
+      ],
+      "trial_argv": [
+        ".venv/Scripts/python.exe",
+        "-B",
+        "host/tools/v2_stream_probe.py",
+        "--port",
+        "COM6",
+        "--output",
+        "build/v6k-board-01/50000/run",
+        "--seconds",
+        "5",
+        "--build-id",
+        "0x56325344",
+        "--sample-rate",
+        "50000",
+        "--source-commit",
+        "cb4757940b3ee9968f953becfbc3ca8caea102d7",
+        "--image-sha256",
+        "244c3af19647ffa24d43973c1d55d24e3b5ce70c494bf781067e13aa60a2daa5"
+      ],
+      "trial_env": {
+        "PYTHONPATH": "host"
+      },
+      "after_trial_owner_close_gate": "PASS requires owners_closed=true; FAIL requires cleanup_finished=true and final_state.phase=closed. Without confirmed closure, no SWD and no next session.",
+      "offline_analysis_argv": [
+        ".venv/Scripts/python.exe",
+        "-B",
+        "build/v6k-board-01/analyze_physical.py",
+        "--sample-rate",
+        "50000",
+        "--seconds",
+        "5"
+      ],
+      "postclosed_stopped_read_helper_argv": [
+        ".venv/Scripts/python.exe",
+        "-B",
+        "build/v6k-board-01/root_read_stopped.py",
+        "--sample-rate",
+        "50000"
+      ],
+      "fault_read_helper_argv": [
+        ".venv/Scripts/python.exe",
+        "-B",
+        "build/v6k-board-01/root_read_fault.py",
+        "--sample-rate",
+        "50000"
+      ],
+      "fault_helper_limit": "Only its exact saved queue-full reason1 END plus matching STOP_ACK and confirmed owner-close predicates; other failures require a separate root assessment, never bypass predicates.",
+      "diagnostic_reads": 2,
+      "diagnostic_names": [
+        "diagnostics-first.bin",
+        "diagnostics-second.bin"
+      ],
+      "diagnostic_decode_argv": [
+        ".venv/Scripts/python.exe",
+        "-I",
+        "-B",
+        "build/v6k-board-01/decode_diagnostics.py",
+        "build/v6k-board-01/50000/diagnostics-first.bin",
+        "build/v6k-board-01/50000/diagnostics-second.bin",
+        "--sample-rate",
+        "50000",
+        "--generation",
+        "TBD_ACTUAL_SESSION_GENERATION",
+        "--nonce",
+        "TBD_ACTUAL_SESSION_NONCE"
+      ],
+      "register_check_argv": [
+        ".venv/Scripts/python.exe",
+        "-I",
+        "-B",
+        "build/v6k-board-01/save_stopped_state.py",
+        "--session-dir",
+        "build/v6k-board-01/50000",
+        "--sample-rate",
+        "50000"
+      ],
+      "progress_to_next_session_only_if": "Every planned criterion PASS, owner closure and stopped registers confirmed. Then a NEW Reset/Run plus actual user USB replug; never inherit previous replug.",
+      "stored_sample_encoding": "u16le"
+    },
+    {
+      "order": 2,
+      "session_directory": "build/v6k-board-01/100000",
+      "sample_rate_hz": 100000,
+      "acquisition_mode": 2,
+      "target_record_seconds_after_preview": 5,
+      "START_limit": 1,
+      "reset_run_limit": 1,
+      "before_session": [
+        "Require previous session COM owner closed and all wire/raw/diagnostic/stopped gates PASS; first session instead requires exact candidate readback.",
+        "Root performs pinned MCU Reset/Run and preserves successful log with expected ST-Link SN.",
+        "Root asks user to unplug/replug board USB, keeping ST-Link unchanged and PA0 empty; wait for an actual new ready reply before this session.",
+        "No START since that boot; fresh discovery0.2 and different-nonce modeHELLO0.3, exact selected CAPS, then the sole START."
+      ],
+      "actual_user_replug_required": true,
+      "legacy136_fresh_boot_required": true,
+      "expected_wire_revision": "0.3",
+      "expected_discovery_caps_mask": 7,
+      "expected_discovery_max_block": 256,
+      "expected_observed_caps": [
+        2,
+        2,
+        0,
+        12,
+        100000,
+        1,
+        128,
+        1,
+        12,
+        1
+      ],
+      "expected_retained_bits": 12,
+      "expected_max_DATA_samples": 128,
+      "canonical_sample_domain": "adc12",
+      "nominal_period_us_rational": [
+        10,
+        1
+      ],
+      "deadline_us_exclusive": 5120,
+      "expected_tim3_psc_arr": [
+        71,
+        9
+      ],
+      "observed_rate_tolerance": [
+        90000.0,
+        110000.00000000001
+      ],
+      "trial_argv": [
+        ".venv/Scripts/python.exe",
+        "-B",
+        "host/tools/v2_stream_probe.py",
+        "--port",
+        "COM6",
+        "--output",
+        "build/v6k-board-01/100000/run",
+        "--seconds",
+        "5",
+        "--build-id",
+        "0x56325344",
+        "--sample-rate",
+        "100000",
+        "--source-commit",
+        "cb4757940b3ee9968f953becfbc3ca8caea102d7",
+        "--image-sha256",
+        "244c3af19647ffa24d43973c1d55d24e3b5ce70c494bf781067e13aa60a2daa5"
+      ],
+      "trial_env": {
+        "PYTHONPATH": "host"
+      },
+      "after_trial_owner_close_gate": "PASS requires owners_closed=true; FAIL requires cleanup_finished=true and final_state.phase=closed. Without confirmed closure, no SWD and no next session.",
+      "offline_analysis_argv": [
+        ".venv/Scripts/python.exe",
+        "-B",
+        "build/v6k-board-01/analyze_physical.py",
+        "--sample-rate",
+        "100000",
+        "--seconds",
+        "5"
+      ],
+      "postclosed_stopped_read_helper_argv": [
+        ".venv/Scripts/python.exe",
+        "-B",
+        "build/v6k-board-01/root_read_stopped.py",
+        "--sample-rate",
+        "100000"
+      ],
+      "fault_read_helper_argv": [
+        ".venv/Scripts/python.exe",
+        "-B",
+        "build/v6k-board-01/root_read_fault.py",
+        "--sample-rate",
+        "100000"
+      ],
+      "fault_helper_limit": "Only its exact saved queue-full reason1 END plus matching STOP_ACK and confirmed owner-close predicates; other failures require a separate root assessment, never bypass predicates.",
+      "diagnostic_reads": 2,
+      "diagnostic_names": [
+        "diagnostics-first.bin",
+        "diagnostics-second.bin"
+      ],
+      "diagnostic_decode_argv": [
+        ".venv/Scripts/python.exe",
+        "-I",
+        "-B",
+        "build/v6k-board-01/decode_diagnostics.py",
+        "build/v6k-board-01/100000/diagnostics-first.bin",
+        "build/v6k-board-01/100000/diagnostics-second.bin",
+        "--sample-rate",
+        "100000",
+        "--generation",
+        "TBD_ACTUAL_SESSION_GENERATION",
+        "--nonce",
+        "TBD_ACTUAL_SESSION_NONCE"
+      ],
+      "register_check_argv": [
+        ".venv/Scripts/python.exe",
+        "-I",
+        "-B",
+        "build/v6k-board-01/save_stopped_state.py",
+        "--session-dir",
+        "build/v6k-board-01/100000",
+        "--sample-rate",
+        "100000"
+      ],
+      "progress_to_next_session_only_if": "Every planned criterion PASS, owner closure and stopped registers confirmed. Then a NEW Reset/Run plus actual user USB replug; never inherit previous replug.",
+      "stored_sample_encoding": "u16le"
+    },
+    {
+      "order": 3,
+      "session_directory": "build/v6k-board-01/150000",
+      "sample_rate_hz": 150000,
+      "acquisition_mode": 4,
+      "target_record_seconds_after_preview": 30,
+      "START_limit": 1,
+      "reset_run_limit": 1,
+      "before_session": [
+        "Require previous session COM owner closed and all wire/raw/diagnostic/stopped gates PASS; first session instead requires exact candidate readback.",
+        "Root performs pinned MCU Reset/Run and preserves successful log with expected ST-Link SN.",
+        "Root asks user to unplug/replug board USB, keeping ST-Link unchanged and PA0 empty; wait for an actual new ready reply before this session.",
+        "No START since that boot; fresh discovery0.2 and different-nonce modeHELLO0.3, exact selected CAPS, then the sole START."
+      ],
+      "actual_user_replug_required": true,
+      "legacy136_fresh_boot_required": true,
+      "expected_wire_revision": "0.3",
+      "expected_discovery_caps_mask": 7,
+      "expected_discovery_max_block": 256,
+      "expected_observed_caps": [
+        4,
+        4,
+        0,
+        12,
+        150000,
+        1,
+        256,
+        1,
+        10,
+        2
+      ],
+      "expected_retained_bits": 10,
+      "expected_max_DATA_samples": 256,
+      "canonical_sample_domain": "adc12",
+      "nominal_period_us_rational": [
+        20,
+        3
+      ],
+      "deadline_us_exclusive": 3413,
+      "expected_tim3_psc_arr": [
+        47,
+        9
+      ],
+      "observed_rate_tolerance": [
+        135000.0,
+        165000.0
+      ],
+      "trial_argv": [
+        ".venv/Scripts/python.exe",
+        "-B",
+        "host/tools/v2_stream_probe.py",
+        "--port",
+        "COM6",
+        "--output",
+        "build/v6k-board-01/150000/run",
+        "--seconds",
+        "30",
+        "--build-id",
+        "0x56325344",
+        "--sample-rate",
+        "150000",
+        "--source-commit",
+        "cb4757940b3ee9968f953becfbc3ca8caea102d7",
+        "--image-sha256",
+        "244c3af19647ffa24d43973c1d55d24e3b5ce70c494bf781067e13aa60a2daa5"
+      ],
+      "trial_env": {
+        "PYTHONPATH": "host"
+      },
+      "after_trial_owner_close_gate": "PASS requires owners_closed=true; FAIL requires cleanup_finished=true and final_state.phase=closed. Without confirmed closure, no SWD and no next session.",
+      "offline_analysis_argv": [
+        ".venv/Scripts/python.exe",
+        "-B",
+        "build/v6k-board-01/analyze_physical.py",
+        "--sample-rate",
+        "150000",
+        "--seconds",
+        "30"
+      ],
+      "postclosed_stopped_read_helper_argv": [
+        ".venv/Scripts/python.exe",
+        "-B",
+        "build/v6k-board-01/root_read_stopped.py",
+        "--sample-rate",
+        "150000"
+      ],
+      "fault_read_helper_argv": [
+        ".venv/Scripts/python.exe",
+        "-B",
+        "build/v6k-board-01/root_read_fault.py",
+        "--sample-rate",
+        "150000"
+      ],
+      "fault_helper_limit": "Only its exact saved queue-full reason1 END plus matching STOP_ACK and confirmed owner-close predicates; other failures require a separate root assessment, never bypass predicates.",
+      "diagnostic_reads": 2,
+      "diagnostic_names": [
+        "diagnostics-first.bin",
+        "diagnostics-second.bin"
+      ],
+      "diagnostic_decode_argv": [
+        ".venv/Scripts/python.exe",
+        "-I",
+        "-B",
+        "build/v6k-board-01/decode_diagnostics.py",
+        "build/v6k-board-01/150000/diagnostics-first.bin",
+        "build/v6k-board-01/150000/diagnostics-second.bin",
+        "--sample-rate",
+        "150000",
+        "--generation",
+        "TBD_ACTUAL_SESSION_GENERATION",
+        "--nonce",
+        "TBD_ACTUAL_SESSION_NONCE"
+      ],
+      "register_check_argv": [
+        ".venv/Scripts/python.exe",
+        "-I",
+        "-B",
+        "build/v6k-board-01/save_stopped_state.py",
+        "--session-dir",
+        "build/v6k-board-01/150000",
+        "--sample-rate",
+        "150000"
+      ],
+      "progress_to_next_session_only_if": "Every planned criterion PASS, owner closure and stopped registers confirmed. Then a NEW Reset/Run plus actual user USB replug; never inherit previous replug.",
+      "stored_sample_encoding": "u16le"
+    }
+  ],
+  "no_swd_during_trial": true,
+  "no_debug_halt_during_acquisition": true,
+  "no_USB_replug_between_successful_sessions_planned": false,
+  "between_sessions": "Close sole COM owner; preserve wire/raw/fresh Open/normal Stop and current136/stopped registers. Only after all PASS, explicit new Reset/Run and actual new user USB replug before next mode.",
+  "diagnostic_address": "0x20002BE4",
+  "diagnostic_bytes": 136,
+  "profile_512_present": false,
+  "register_dumps_after_owner_close": {
+    "tim3": [
+      1073742848,
+      48
+    ],
+    "adc": [
+      1073816584,
+      12
+    ],
+    "dma": [
+      1073872904,
+      16
+    ],
+    "rcc": [
+      1073877004,
+      20
+    ]
+  },
+  "ADC_DR_read": false,
+  "helper_pins": {
+    "decode_diagnostics.py": "2e470280fda56d62eb2b05041e8c8ad8cebc97d9bbfa43758ce9829082d66155",
+    "save_stopped_state.py": "9626538ce99be65bf5be272b449f325a27371a2ee2f87e1360c67236b0a1d5af",
+    "root_read_stopped.py": "58c61ac3c029e14e453638c3ba1e98f2c6d05cc35e649cc39b75f84049f2f08c",
+    "root_read_fault.py": "61dfef966ad1af40be2cb5a0611d79fb1fa2773c9c43c95c808d823fb5a13970",
+    "analyze_physical.py": "b379b24710307b2af10b45fb65f7d81b024bf25710f66c43c3d0d68d7205a19e",
+    "check_sc_ready.py": "ec22df477e1254d262b8e46f8ff36aa92cbabf83f0ed25fbd3b19148876c48a1"
+  },
+  "trial_tool_path": "host/tools/v2_stream_probe.py",
+  "trial_tool_sha256": "ee3fe6a3909c6e20939de654e8bc441b59d556002f39ea86ceaf925889b7a56b",
+  "expected_unknown_produced_tail": true,
+  "acceptance": [
+    "Program/verify and independent complete39448-byte readback exact before Reset/Run. Each session has own fresh boot and actual user replug, sole START.",
+    "Exact build0x56325344, discovery7/global256 then fresh-nonce0.3; selected mode1/2 max128 or mode4 max256 and exact CAPS before START; no silent fallback.",
+    "Record wall at least5/5/30s after Preview, no source/host/writer/logging failure, rough host pacing nominal90..110percent only as consistency, not sample-clock calibration.",
+    "Wire sequence/index/frame and canonical prefix CRC continuity; normal END reason0 plus matching STOP_ACK; unknown produced tail stays unknown.",
+    "Fresh Open/companion/canonical raw exactly matches preserved wire selection. Mode4 full256 while active, final short1..255 onlyterminal, noDATAaftershort; retained10/truncate2 metadata, code0..4092 divisible4,20/3us rational nominal time.",
+    "COM closed before SWD; two identical frozen136 exact current build/nonce/generation, flags0 and observed poll/copy strictly below10240/5120/3413us. Stale previous-session136 is failure, never decoder override.",
+    "Stopped registers:TIM3_CEN0 and PSC/ARR selected;ADC_CR2=0,SMPR2low3=4;DMA_EN0;relevant clocks on/reset released. NoADC_DR.",
+    "Independent physical review>=9.5 per evidence layer; PA0empty means transport/storage only, not voltage/bandwidth/calibration/ignition."
+  ],
+  "failure_policy": {
+    "stop_remaining_sessions_on_any_failure": true,
+    "no_automatic_second_START": true,
+    "no_changed_rate_retry": true,
+    "preserve_failed_traffic_raw_prefix_and_diagnostics": true,
+    "do_not_SWD_before_owner_close_gate": true,
+    "diagnostics_after_failure_only_if": "Confirmed owner closed and independent saved terminal/stopped evidence permits postclosed read; do not call fault helper for unhandled reason. If stopping unconfirmed, record concrete condition and assess recovery."
+  },
+  "rollback_policy": {
+    "automatic_after_failed_trial": false,
+    "retain_candidate_if": "Boot, communication and stopped acquisition confirmed, even if throughput trial fails.",
+    "restore_only_if": [
+      "Programming/readback cannot be completed correctly",
+      "Candidate cannot boot/communicate after planned user replug",
+      "Stopping cannot be confirmed"
+    ],
+    "record_concrete_reason_before_restore": true,
+    "recovery_target": "Fresh complete SC64KiB snapshot pinned above; old SB remains additional untouched fallback, no automatic SB/S4 restore.",
+    "recovery_program_argv": [
+      "C:/Program Files (x86)/STMicroelectronics/STM32 ST-LINK Utility/ST-LINK Utility/ST-LINK_CLI.exe",
+      "-c",
+      "ID=0",
+      "SWD",
+      "HOTPLUG",
+      "-P",
+      "build/v6k-board-01/before-flash-64k.bin",
+      "0x08000000",
+      "-V"
+    ],
+    "recovery_readback_argv": [
+      "C:/Program Files (x86)/STMicroelectronics/STM32 ST-LINK Utility/ST-LINK Utility/ST-LINK_CLI.exe",
+      "-c",
+      "ID=0",
+      "SWD",
+      "HOTPLUG",
+      "-Dump",
+      "0x08000000",
+      "0x10000",
+      "build/v6k-board-01/recovery-readback-64k.bin"
+    ],
+    "procedure_if_needed": "Root records concrete reason, writes pinned SC64KiB snapshot with verify, independent full65536-byte readback equal pinned SHA, Reset/Run and actual user replug; then SC-only100k READY helper without START.",
+    "ready_helper": "build/v6k-board-01/check_sc_ready.py",
+    "ready_helper_argv": [
+      ".venv/Scripts/python.exe",
+      "-B",
+      "build/v6k-board-01/check_sc_ready.py",
+      "--output",
+      "build/v6k-board-01/recovery-ready.json"
+    ],
+    "ready_helper_env": {
+      "PYTHONPATH": "host"
+    },
+    "ready_helper_expected_build": "0x56325343",
+    "ready_helper_requested_sample_rate_hz": 100000,
+    "ready_helper_expected_caps": [
+      2,
+      2,
+      0,
+      12,
+      100000,
+      1,
+      128,
+      1,
+      12,
+      1
+    ],
+    "user_instruction": "Do not return working firmware automatically when unnecessary."
+  },
+  "audit_limits": {
+    "traffic_log_cap_bytes_per_session": 16777216,
+    "nominal_full_DATA_wire_max_bytes_per_target_record": {
+      "50000x5": 599609.375,
+      "100000x5": 1199218.75,
+      "150000x30": 6521484.375
+    },
+    "cap_not_guaranteed_by_nominal_bytes": "Logged read fragmentation adds13bytes per nonempty chunk plus controls; actual cap overflow is a host audit failure, not automatically device queue-full.",
+    "DWT_wrap": "5/30s record is not entire boot/procedure wall. Preserve external no-halt and actual timing; do not subtract rawDWT over more than one2^32 wrap (~59.65s)."
+  },
+  "procedure_fact_policy": "Unexecuted offline draft. Root records actual CLI/SN/readback/reset/user-replug/START/owner-close/SWD chronology and recovery decisions. Generated helper statements do not establish physical facts without operator evidence.",
+  "remaining_before_execution": [
+    "Root final software/package review pins and grades>=9.5",
+    "Root final exact plan and separate independent procedure admission>=9.5",
+    "Recheck no app/COM owner and exact probe/image/helper pins before programming"
+  ],
+  "input_pins": {
+    "backup-verified.json": {
+      "path": "build/v6k-board-01/backup-verified.json",
+      "bytes": 872,
+      "sha256": "cfbaa19442241f50530bebf234d3b4b448481618f910f432d38799feb71648e0"
+    },
+    "ports-before.json": {
+      "path": "build/v6k-board-01/ports-before.json",
+      "bytes": 135,
+      "sha256": "c8614e25240676a110cd0c9f9761ba2d2fc559f249875431289a7b08eedef67d"
+    },
+    "processes-before.json": {
+      "path": "build/v6k-board-01/processes-before.json",
+      "bytes": 772,
+      "sha256": "b778c02f93ff859e07a812c0f5035f9aa58ae97e114a9cd5d1f4b2a1857c7624"
+    },
+    "probe-list.txt": {
+      "path": "build/v6k-board-01/probe-list.txt",
+      "bytes": 239,
+      "sha256": "b58c8ddae6534dd35b9a1498631f1ee20ba54017c8f3ccfa2b156244c92e72a3"
+    }
+  },
+  "plan_author_validation": "Read-only inventory and hashes plus AST parse of new recovery helper. No helper execution, COM/SWD/Flash/reset/START performed by author."
+}
