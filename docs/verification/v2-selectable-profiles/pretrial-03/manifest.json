@@ -1,0 +1,45 @@
+{
+  "schema": "v2-06i3-pretrial-evidence-2",
+  "scope": "Corrected inherited replug/duration text after critic review; no code or hardware changes",
+  "supersedes_manifest": "pretrial-02/manifest.json",
+  "files": [
+    {
+      "source": "build/v6i-board-02/analyze_physical.py",
+      "archive": "docs/verification/v2-selectable-profiles/pretrial-03/analyze_physical.py",
+      "bytes": 22520,
+      "sha256": "b8a7ded07a3a72f9105b17b1402b5a3b2ca5b53bdeffe9c95a09a3bfe25416e2"
+    },
+    {
+      "source": "build/v6i-board-02/check_sb_ready.py",
+      "archive": "docs/verification/v2-selectable-profiles/pretrial-03/check_sb_ready.py",
+      "bytes": 5741,
+      "sha256": "b4592bd2cd43a4196c3ef65b0a297121b6e2068e640b4744d750d013af1f671c"
+    },
+    {
+      "source": "build/v6i-board-02/decode_diagnostics.py",
+      "archive": "docs/verification/v2-selectable-profiles/pretrial-03/decode_diagnostics.py",
+      "bytes": 15207,
+      "sha256": "585490799868459521d186dddcd919ec8e634c3e51f74d7dd9389163298600f5"
+    },
+    {
+      "source": "build/v6i-board-02/diag-rearm-findings.md",
+      "archive": "docs/verification/v2-selectable-profiles/pretrial-03/diag-rearm-findings.md",
+      "bytes": 6006,
+      "sha256": "9db460f9c025e708ae91d586643be0c3d73cf7f299f11dad711635448da2c62c"
+    },
+    {
+      "source": "build/v6i-board-02/plan.json",
+      "archive": "docs/verification/v2-selectable-profiles/pretrial-03/plan.json",
+      "bytes": 16120,
+      "sha256": "55d87c2aca6c49007b369983db7ff39086683a625c8e31e9a8eb1d2e7334641b"
+    },
+    {
+      "source": "build/v6i-board-02/save_stopped_state.py",
+      "archive": "docs/verification/v2-selectable-profiles/pretrial-03/save_stopped_state.py",
+      "bytes": 5250,
+      "sha256": "490c9f3297f45f138fbc888a9a5e2c2778a885e36132fc135c49b8383cbb9f70"
+    }
+  ],
+  "file_count": 6,
+  "total_bytes": 70844
+}

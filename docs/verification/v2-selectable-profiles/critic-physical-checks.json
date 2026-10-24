@@ -1,0 +1,69 @@
+{
+  "schema": "v2-06i2-independent-physical-checks-1",
+  "critic": "stream200_critic",
+  "read_only": true,
+  "new_hardware_or_dynamic_tests": 0,
+  "archive_manifest_sha256": "36155c980e10c9268a9ed6840143001b266438b836190d303dfab67c16cf706c",
+  "archive_pairs": 93,
+  "archive_bytes": 3683237,
+  "all_archive_pairs_equal": true,
+  "flash_readback_byte_equal": true,
+  "readback_bytes": 38188,
+  "candidate_sha256": "a36f72a772c03c5cbfd85767e5f07f0abc3ad2f2ffd7d1ee1c43143d20ca1c90",
+  "sessions": {
+    "50000": {
+      "wire_nonce": "efa84ac39bfa0e52",
+      "generation": 3,
+      "record_seconds": 5.000484199961647,
+      "whole_invocation_seconds": 5.7406585,
+      "rough_rate": 49915.16621568655,
+      "received_samples": 252542,
+      "selected_samples": 251006,
+      "R": 1536,
+      "end": 252542,
+      "selected_sha256": "02aa8c00689a83e65a16e082db3facfed32ff4c683b2b721f708f1b369ac8eef",
+      "normal_END_sequence": 1977,
+      "STOP_ACK_sequence": 1978,
+      "unknown_produced_tail": true,
+      "diagnostic_nonce": "efa84ac39bfa0e52",
+      "diagnostic_accepted": true,
+      "diagnostic_errors": [],
+      "diagnostic_sha256": "b50707343a7b0bdf9dabf643d8b002f27a436451da81aa364a5a97cbafb0091c",
+      "stopped_registers": true,
+      "owner_closed": true
+    },
+    "100000": {
+      "wire_nonce": "8a9bedb9515e7bf0",
+      "generation": 3,
+      "record_seconds": 5.004454599926248,
+      "whole_invocation_seconds": 5.8781768,
+      "rough_rate": 99827.86136322677,
+      "received_samples": 504230,
+      "selected_samples": 501670,
+      "R": 2560,
+      "end": 504230,
+      "selected_sha256": "89edbd908e3239a134db77a4b1be4e302202ba38bab37da35a5ab1f9335befc3",
+      "normal_END_sequence": 3944,
+      "STOP_ACK_sequence": 3945,
+      "unknown_produced_tail": true,
+      "diagnostic_nonce": "efa84ac39bfa0e52",
+      "diagnostic_accepted": false,
+      "diagnostic_errors": [
+        "nonce_mismatch"
+      ],
+      "diagnostic_sha256": "b50707343a7b0bdf9dabf643d8b002f27a436451da81aa364a5a97cbafb0091c",
+      "stopped_registers": true,
+      "owner_closed": true
+    }
+  },
+  "150000": "NOT_RUN",
+  "same_frozen136_across_two_sessions": true,
+  "source_cause": {
+    "path": "build/v6i-fw-01/source/firmware/platform/mt_stream_diag.c",
+    "sha256": "8ead5517425c540a7876eaa540edca7205af5c904970e5688aec17b1718251c3",
+    "freeze_line": 21,
+    "frozen_cycle_line": 33,
+    "begin_requires_armed_line": 65,
+    "meaning": "One attempted run per boot; phase3 not rearmed by new HELLO/START. Stale diagnostics are not new-session evidence."
+  }
+}

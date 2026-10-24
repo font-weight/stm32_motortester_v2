@@ -1,0 +1,142 @@
+{
+  "schema": "v2-06i2-independent-physical-review-1",
+  "critic": "stream200_critic",
+  "date": "2026-10-24",
+  "independent_of_implementation": true,
+  "source_commit": "310d53b10c79a48ddc45357ff65d88c686aef883",
+  "candidate_build": "0x56325343",
+  "candidate_sha256": "a36f72a772c03c5cbfd85767e5f07f0abc3ad2f2ffd7d1ee1c43143d20ca1c90",
+  "plan_sha256": "b9ac0577f70ca52457f4b1fad3c375bf6e3c25bcfcb36fb9c69f587c57d0810a",
+  "physical_archive_manifest_sha256": "36155c980e10c9268a9ed6840143001b266438b836190d303dfab67c16cf706c",
+  "checks_sha256": "e67eba298e808f779258733230a1b2d79c6b2a47bb7ece1a60e22555395498d8",
+  "status": "BLOCKED_EVIDENCE",
+  "score": null,
+  "scope": "I2 exactSC flash and sequential50/100/150k physical plan; sequence stopped after stale second-session diagnostic",
+  "sessions": {
+    "50000": {
+      "status": "PASS",
+      "score": 9.59,
+      "scope": "One5-second Record with PA0 empty; transport/storage/normalStop/currentdiagnostic, not analogue or indefinite stability",
+      "rubric": [
+        {
+          "criterion": "C1",
+          "weight": 0.3,
+          "score": 9.6
+        },
+        {
+          "criterion": "C2",
+          "weight": 0.2,
+          "score": 9.5
+        },
+        {
+          "criterion": "C3",
+          "weight": 0.25,
+          "score": 9.6
+        },
+        {
+          "criterion": "C4",
+          "weight": 0.15,
+          "score": 9.6
+        },
+        {
+          "criterion": "C5",
+          "weight": 0.1,
+          "score": 9.7
+        }
+      ],
+      "facts": {
+        "wire_nonce": "efa84ac39bfa0e52",
+        "generation": 3,
+        "record_seconds": 5.000484199961647,
+        "whole_invocation_seconds": 5.7406585,
+        "rough_rate": 49915.16621568655,
+        "received_samples": 252542,
+        "selected_samples": 251006,
+        "R": 1536,
+        "end": 252542,
+        "selected_sha256": "02aa8c00689a83e65a16e082db3facfed32ff4c683b2b721f708f1b369ac8eef",
+        "normal_END_sequence": 1977,
+        "STOP_ACK_sequence": 1978,
+        "unknown_produced_tail": true,
+        "diagnostic_nonce": "efa84ac39bfa0e52",
+        "diagnostic_accepted": true,
+        "diagnostic_errors": [],
+        "diagnostic_sha256": "b50707343a7b0bdf9dabf643d8b002f27a436451da81aa364a5a97cbafb0091c",
+        "stopped_registers": true,
+        "owner_closed": true
+      }
+    },
+    "100000": {
+      "status": "BLOCKED_EVIDENCE",
+      "score": null,
+      "wire_record_open_status": "PASS",
+      "stopped_registers_status": "PASS",
+      "session_bound_diagnostic_status": "FAIL nonce_mismatch; stale50k frozen136",
+      "facts": {
+        "wire_nonce": "8a9bedb9515e7bf0",
+        "generation": 3,
+        "record_seconds": 5.004454599926248,
+        "whole_invocation_seconds": 5.8781768,
+        "rough_rate": 99827.86136322677,
+        "received_samples": 504230,
+        "selected_samples": 501670,
+        "R": 2560,
+        "end": 504230,
+        "selected_sha256": "89edbd908e3239a134db77a4b1be4e302202ba38bab37da35a5ab1f9335befc3",
+        "normal_END_sequence": 3944,
+        "STOP_ACK_sequence": 3945,
+        "unknown_produced_tail": true,
+        "diagnostic_nonce": "efa84ac39bfa0e52",
+        "diagnostic_accepted": false,
+        "diagnostic_errors": [
+          "nonce_mismatch"
+        ],
+        "diagnostic_sha256": "b50707343a7b0bdf9dabf643d8b002f27a436451da81aa364a5a97cbafb0091c",
+        "stopped_registers": true,
+        "owner_closed": true
+      }
+    },
+    "150000": {
+      "status": "NOT_RUN",
+      "score": null
+    }
+  },
+  "open_p0": [],
+  "open_p1": [
+    {
+      "id": "I2-DIAG-ONESHOT",
+      "scope": "Physical procedure/evidence",
+      "finding": "I2 did not account for unchanged legacy diagnostic one attempted run per boot. Frozen50k record remained after100k; mandatory currentnonce flags/poll/copy evidence unavailable.",
+      "not_a_claim": "No observed100k devicequeuefull or transport failure; normal wire/Open evidence remains valid.",
+      "required_resolution": "Separate reviewed plan respecting one-run-per-boot and actual fresh evidence; do not weaken nonce check or relabel old dumps."
+    }
+  ],
+  "procedure": {
+    "programs": 1,
+    "starts": 2,
+    "rate_order": [
+      50000,
+      100000
+    ],
+    "user_replug_confirmed": true,
+    "stop_before150000": true,
+    "no_SWD_or_halt_during_active_reported_by_root": true,
+    "owners_closed": true,
+    "retained_image": "V2SC",
+    "rollback_performed": false,
+    "old_admission_exhausted": true
+  },
+  "personal_actions": {
+    "read_only_archived_pairs": 93,
+    "bytes": 3683237,
+    "new_tests": 0,
+    "hardware_accesses": 0
+  },
+  "limits": [
+    "Unknown produced tail preserved in both sessions.",
+    "Host-derived rate is not calibrated timing.",
+    "50k pass is bounded5s and PA0 empty.",
+    "No physical150k or fullI2 pass.",
+    "Prior software verdicts and old negative trials are historical, not substitutes for missing current diagnostics."
+  ]
+}

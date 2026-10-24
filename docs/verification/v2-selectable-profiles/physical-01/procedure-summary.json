@@ -1,0 +1,18 @@
+{
+  "iteration": "V2-06i2",
+  "status": "BLOCKED_EVIDENCE",
+  "flashes": 1,
+  "readback_all_38188_equal": true,
+  "SC_replug_user_confirmed": true,
+  "starts_by_rate": {
+    "50000": 1,
+    "100000": 1,
+    "150000": 0
+  },
+  "power_reset_between_50_and_100": false,
+  "SWD_or_halt_during_any_acquisition": false,
+  "rollback_performed": false,
+  "board": "V2SC remains stopped",
+  "reason": "100k wire/storage/STOP successful but one-shot diagnostic still bound to50k;150knotrun",
+  "next_step": "Separate amended plan: reset/replug before every diagnostic trial; no code or image change"
+}
