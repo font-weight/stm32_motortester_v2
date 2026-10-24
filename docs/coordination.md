@@ -1,5 +1,14 @@
 # Координация самостоятельного V2
 
+V2-06k реализация после contract PASS: higher_fs_review — firmware/v2-stream/**,
+tests/v2-stream-firmware/** (одна новая pair-модель/runner, прежние evidence
+не переписывать), build/v6k-fw-*, v6k-native-*, v6k-freeze.json. Host_200k —
+host/motortester/**, host/tests/**, host/tools/**, host/docs/**,
+build/v6k-host-*. Root — host/packaging/v2/**, канонические документы,
+архивы/интеграция/Windows-пакет и единолично COM/SWD. Stream200_critic —
+docs/reviews/v2-06k*.md, verification/v2-batch256/critic*.json и свой
+build/v6k-analysis/critic*. До отдельного exact-plan допуска аппаратуры нет.
+
 V2-06k анализ: higher_fs_review пишет только build/v6k-analysis/firmware-batch-proposal.md;
 host_200k — host-batch-proposal.md в той же папке. Root — канонические документы,
 интеграция, единолично будущие COM/SWD. Критик — независимое ревью контракта

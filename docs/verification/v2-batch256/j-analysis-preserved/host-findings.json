@@ -1,0 +1,799 @@
+{
+  "schema": "v2-06j-host-offline-findings-1",
+  "status": "analysis_complete",
+  "implementation_or_hardware_acceptance": false,
+  "scope": "Existing I3 physical SC delivery timestamps plus I2 SC100 delivery reference; no COM/SWD, no new test, no CRC/raw/journal roundtrip rerun",
+  "source_commit": "310d53b10c79a48ddc45357ff65d88c686aef883",
+  "firmware_build": "0x56325343",
+  "image_sha256": "a36f72a772c03c5cbfd85767e5f07f0abc3ad2f2ffd7d1ee1c43143d20ca1c90",
+  "hypothesis": {
+    "statement": "The remaining150k bottleneck is plausibly fixed foreground work per DATA128 and the associated CDC completion/publication turnover, not primarily the small increase in payload byte rate.",
+    "classification": "One plausible engineering hypothesis, not a proven attribution to TIME/CPU/USB",
+    "support": [
+      "150k has observed first acquisition reason1 and queue high water8, without ADC/time/local fault; matching legacy136.",
+      "150k requires50% more DATA128 frames/s while observed full-frame wire bytes/s rise only2.606% relative to100k.",
+      "Runtime attempts one prepared TX operation per pass; preparation, ticket checks, clock observations and final commit accompany each frame.",
+      "Both307B and210B frames require whole remaining frame space; two210B frames still exceed FIFO384.",
+      "Successful100k tolerated larger observed host read gaps and a larger host raw queue; the failed150k does not show host disk overflow."
+    ],
+    "limits": [
+      "No first-fault timestamp or per-phase sums in legacy136; step/tx maxima include different boundaries and are not mean CPU time.",
+      "The150k prefix includes post-fault draining; its slope is not sustained acquisition throughput.",
+      "CDC IN/NAK/URB timings and FIFO occupancy are absent. Cannot isolate MCU computation from host USB scheduling.",
+      "TIME indirect-MMIO cost reduction is a candidate implementation question for the firmware author; these files do not measure its share or guarantee success."
+    ],
+    "useful_next_scope": "Consider reducing already-required fixed foreground TIME/MMIO dispatch cost while preserving every observation/barrier and error behavior; no host queue/polling change is justified by this evidence."
+  },
+  "nominal_arithmetic": {
+    "data_block_samples": 128,
+    "modes": {
+      "100000": {
+        "frame_interval_us": 1280,
+        "frames_per_second": 781.25,
+        "observed_full_frame_bytes": 307,
+        "wire_bytes_per_second": 239843.75,
+        "dma_half_interval_us": 5120,
+        "queue8_sample_time_us": 10240,
+        "isolated_frame_min_64byte_packets": 5,
+        "isolated_frame_packet_rate": 3906.25
+      },
+      "150000": {
+        "frame_interval_us": 853.3333333333334,
+        "frames_per_second": 1171.875,
+        "observed_full_frame_bytes": 210,
+        "wire_bytes_per_second": 246093.75,
+        "dma_half_interval_us": 3413.3333333333335,
+        "queue8_sample_time_us": 6826.666666666667,
+        "isolated_frame_min_64byte_packets": 4,
+        "isolated_frame_packet_rate": 4687.5
+      }
+    },
+    "frame_rate_multiplier": 1.5,
+    "wire_byte_rate_multiplier": 1.0260586319218241,
+    "isolated_frame_packet_rate_multiplier": 1.2,
+    "qualifications": [
+      "Arithmetic assumes nominal Fs and observed full-frame lengths. COBS length can vary with content; I2 had117 full frames of306B.",
+      "One frame per USB transfer is a conditional reference, not observed transfer boundaries or packet counts.",
+      "Wire frames and pyserial reads are not USB packets. A 544B read is application batching.",
+      "Queue sample-time arithmetic excludes staging/CDC/DMA and is not guaranteed stall tolerance."
+    ]
+  },
+  "trials": {
+    "I3_100k": {
+      "probe_status": "PASS",
+      "nonce": "d02ea31003c0218b",
+      "nominal_fs_hz": 100000,
+      "record_host_seconds": 5.000430400017649,
+      "delivered_samples": 503636,
+      "DATA_frames": 3935,
+      "frame_lengths_bytes": {
+        "218": 1,
+        "307": 3934
+      },
+      "frame_sample_counts": {
+        "84": 1,
+        "128": 3934
+      },
+      "read_window": "first DATA completion read through END completion read, includes draining",
+      "read_sizes_bytes": {
+        "5": 1,
+        "43": 2,
+        "70": 193,
+        "86": 1,
+        "102": 1,
+        "140": 3,
+        "172": 2,
+        "210": 3,
+        "226": 1,
+        "242": 1,
+        "253": 1,
+        "269": 1,
+        "280": 1,
+        "307": 1652,
+        "312": 3,
+        "323": 5,
+        "339": 2,
+        "350": 2,
+        "366": 3,
+        "377": 62,
+        "382": 1,
+        "393": 1,
+        "409": 11,
+        "420": 9,
+        "436": 2,
+        "447": 13,
+        "452": 1,
+        "463": 1,
+        "479": 1,
+        "506": 2,
+        "517": 7,
+        "522": 2,
+        "533": 1,
+        "544": 1163
+      },
+      "read_gaps_ms": {
+        "n": 3154,
+        "min": 0.4680999554693699,
+        "median": 1.1427500285208225,
+        "p95": 4.45852514822036,
+        "max": 27.37580006942153,
+        "mean": 1.5989981610747261
+      },
+      "DATA_completion_gaps_ms": {
+        "n": 3934,
+        "min": 0,
+        "median": 1.0327000636607409,
+        "p95": 3.0501100933179255,
+        "max": 27.37580006942153,
+        "mean": 1.28196243010414
+      },
+      "nonzero_DATA_completion_gaps_ms": {
+        "n": 3154,
+        "min": 0.4680999554693699,
+        "median": 1.1427500285208225,
+        "p95": 4.45852514822036,
+        "max": 27.37580006942153,
+        "mean": 1.5989981610747261
+      },
+      "same_read_adjacent_DATA": 780,
+      "DATA_per_nonempty_read": {
+        "1": 2375,
+        "2": 780
+      },
+      "first_DATA_after_START_ACK_ms": 5.975800100713968,
+      "first_DATA_to_last_DATA_ms": 5043.240200029686,
+      "first_DATA_to_END_ms": 5043.240200029686,
+      "first27_DATA_completion_span_ms": 34.28829996846616,
+      "first27_DATA_positive_gaps_ms": {
+        "n": 21,
+        "min": 0.53759990260005,
+        "median": 1.5100999735295773,
+        "p95": 2.756499918177724,
+        "max": 3.426500130444765,
+        "mean": 1.632776188974579
+      },
+      "end_before_STOP": false,
+      "unknown_produced_tail": true,
+      "host_peak_raw_items": 47,
+      "host_max_service_gap_ms": 23,
+      "host_callback_errors": [],
+      "offline_equality_already_verified": true,
+      "diagnostics": {
+        "flags": 0,
+        "step_count": 5358,
+        "tx_count": 5358,
+        "poll_count": 5350,
+        "copy_count": 983,
+        "queue_high_water": 6,
+        "driver_observed_poll_gap_us": 1416,
+        "copy_max_us": 130,
+        "step_body_max_cycles": 252245,
+        "step_gap_max_cycles": 252630,
+        "tx_max_cycles": 20693,
+        "first_acquisition_reason": 0,
+        "first_adc_fault": 0,
+        "first_local_error": 0,
+        "matching_nonce": true
+      }
+    },
+    "I3_150k": {
+      "probe_status": "FAIL",
+      "nonce": "6835b316355659f4",
+      "nominal_fs_hz": 150000,
+      "record_host_seconds": 0.015485800104215741,
+      "delivered_samples": 3456,
+      "DATA_frames": 27,
+      "frame_lengths_bytes": {
+        "210": 27
+      },
+      "frame_sample_counts": {
+        "128": 27
+      },
+      "read_window": "first DATA completion read through END completion read, includes draining",
+      "read_sizes_bytes": {
+        "156": 1,
+        "210": 8,
+        "296": 2,
+        "420": 4,
+        "544": 3
+      },
+      "read_gaps_ms": {
+        "n": 17,
+        "min": 0.8632000535726547,
+        "median": 1.6916999593377113,
+        "p95": 2.601960068568587,
+        "max": 3.0602000188082457,
+        "mean": 1.6384294037433231
+      },
+      "DATA_completion_gaps_ms": {
+        "n": 26,
+        "min": 0,
+        "median": 1.0309000499546528,
+        "p95": 2.4537500576116145,
+        "max": 3.0602000188082457,
+        "mean": 1.071280763986019
+      },
+      "nonzero_DATA_completion_gaps_ms": {
+        "n": 17,
+        "min": 0.8632000535726547,
+        "median": 1.6916999593377113,
+        "p95": 2.601960068568587,
+        "max": 3.0602000188082457,
+        "mean": 1.6384294037433231
+      },
+      "same_read_adjacent_DATA": 9,
+      "DATA_per_nonempty_read": {
+        "1": 9,
+        "2": 9
+      },
+      "first_DATA_after_START_ACK_ms": 4.048699978739023,
+      "first_DATA_to_last_DATA_ms": 27.853299863636494,
+      "first_DATA_to_END_ms": 27.853299863636494,
+      "first27_DATA_completion_span_ms": 27.853299863636494,
+      "first27_DATA_positive_gaps_ms": {
+        "n": 17,
+        "min": 0.8632000535726547,
+        "median": 1.6916999593377113,
+        "p95": 2.601960068568587,
+        "max": 3.0602000188082457,
+        "mean": 1.6384294037433231
+      },
+      "end_before_STOP": true,
+      "unknown_produced_tail": true,
+      "host_peak_raw_items": 4,
+      "host_max_service_gap_ms": 16,
+      "host_callback_errors": [],
+      "offline_equality_already_verified": true,
+      "diagnostics": {
+        "flags": 4,
+        "step_count": 51,
+        "tx_count": 51,
+        "poll_count": 28,
+        "copy_count": 7,
+        "queue_high_water": 8,
+        "driver_observed_poll_gap_us": 1370,
+        "copy_max_us": 112,
+        "step_body_max_cycles": 200028,
+        "step_gap_max_cycles": 200407,
+        "tx_max_cycles": 18308,
+        "first_acquisition_reason": 1,
+        "first_adc_fault": 0,
+        "first_local_error": 0,
+        "matching_nonce": true
+      },
+      "DATA_completion_rows": [
+        {
+          "first_index": 0,
+          "samples": 128,
+          "sequence": 4,
+          "wire_bytes": 210,
+          "host_since_START_ACK_ms": 4.048699978739023,
+          "read_bytes": 210,
+          "read_chunk": 8
+        },
+        {
+          "first_index": 128,
+          "samples": 128,
+          "sequence": 5,
+          "wire_bytes": 210,
+          "host_since_START_ACK_ms": 5.982999922707677,
+          "read_bytes": 420,
+          "read_chunk": 9
+        },
+        {
+          "first_index": 256,
+          "samples": 128,
+          "sequence": 6,
+          "wire_bytes": 210,
+          "host_since_START_ACK_ms": 5.982999922707677,
+          "read_bytes": 420,
+          "read_chunk": 9
+        },
+        {
+          "first_index": 384,
+          "samples": 128,
+          "sequence": 7,
+          "wire_bytes": 210,
+          "host_since_START_ACK_ms": 9.043199941515923,
+          "read_bytes": 544,
+          "read_chunk": 10
+        },
+        {
+          "first_index": 512,
+          "samples": 128,
+          "sequence": 8,
+          "wire_bytes": 210,
+          "host_since_START_ACK_ms": 9.043199941515923,
+          "read_bytes": 544,
+          "read_chunk": 10
+        },
+        {
+          "first_index": 640,
+          "samples": 128,
+          "sequence": 9,
+          "wire_bytes": 210,
+          "host_since_START_ACK_ms": 9.906399995088577,
+          "read_bytes": 296,
+          "read_chunk": 11
+        },
+        {
+          "first_index": 768,
+          "samples": 128,
+          "sequence": 10,
+          "wire_bytes": 210,
+          "host_since_START_ACK_ms": 9.906399995088577,
+          "read_bytes": 296,
+          "read_chunk": 11
+        },
+        {
+          "first_index": 896,
+          "samples": 128,
+          "sequence": 11,
+          "wire_bytes": 210,
+          "host_since_START_ACK_ms": 11.018099961802363,
+          "read_bytes": 210,
+          "read_chunk": 12
+        },
+        {
+          "first_index": 1024,
+          "samples": 128,
+          "sequence": 12,
+          "wire_bytes": 210,
+          "host_since_START_ACK_ms": 12.709799921140075,
+          "read_bytes": 210,
+          "read_chunk": 13
+        },
+        {
+          "first_index": 1152,
+          "samples": 128,
+          "sequence": 13,
+          "wire_bytes": 210,
+          "host_since_START_ACK_ms": 13.962999917566776,
+          "read_bytes": 420,
+          "read_chunk": 14
+        },
+        {
+          "first_index": 1280,
+          "samples": 128,
+          "sequence": 14,
+          "wire_bytes": 210,
+          "host_since_START_ACK_ms": 13.962999917566776,
+          "read_bytes": 420,
+          "read_chunk": 14
+        },
+        {
+          "first_index": 1408,
+          "samples": 128,
+          "sequence": 15,
+          "wire_bytes": 210,
+          "host_since_START_ACK_ms": 15.114899957552552,
+          "read_bytes": 210,
+          "read_chunk": 15
+        },
+        {
+          "first_index": 1536,
+          "samples": 128,
+          "sequence": 16,
+          "wire_bytes": 210,
+          "host_since_START_ACK_ms": 17.214399995282292,
+          "read_bytes": 420,
+          "read_chunk": 16
+        },
+        {
+          "first_index": 1664,
+          "samples": 128,
+          "sequence": 17,
+          "wire_bytes": 210,
+          "host_since_START_ACK_ms": 17.214399995282292,
+          "read_bytes": 420,
+          "read_chunk": 16
+        },
+        {
+          "first_index": 1792,
+          "samples": 128,
+          "sequence": 18,
+          "wire_bytes": 210,
+          "host_since_START_ACK_ms": 19.08709993585944,
+          "read_bytes": 210,
+          "read_chunk": 17
+        },
+        {
+          "first_index": 1920,
+          "samples": 128,
+          "sequence": 19,
+          "wire_bytes": 210,
+          "host_since_START_ACK_ms": 19.995099864900112,
+          "read_bytes": 210,
+          "read_chunk": 18
+        },
+        {
+          "first_index": 2048,
+          "samples": 128,
+          "sequence": 20,
+          "wire_bytes": 210,
+          "host_since_START_ACK_ms": 20.996299805119634,
+          "read_bytes": 210,
+          "read_chunk": 19
+        },
+        {
+          "first_index": 2176,
+          "samples": 128,
+          "sequence": 21,
+          "wire_bytes": 210,
+          "host_since_START_ACK_ms": 23.349099792540073,
+          "read_bytes": 210,
+          "read_chunk": 20
+        },
+        {
+          "first_index": 2304,
+          "samples": 128,
+          "sequence": 22,
+          "wire_bytes": 210,
+          "host_since_START_ACK_ms": 25.679299840703607,
+          "read_bytes": 544,
+          "read_chunk": 21
+        },
+        {
+          "first_index": 2432,
+          "samples": 128,
+          "sequence": 23,
+          "wire_bytes": 210,
+          "host_since_START_ACK_ms": 25.679299840703607,
+          "read_bytes": 544,
+          "read_chunk": 21
+        },
+        {
+          "first_index": 2560,
+          "samples": 128,
+          "sequence": 24,
+          "wire_bytes": 210,
+          "host_since_START_ACK_ms": 26.73990000039339,
+          "read_bytes": 296,
+          "read_chunk": 22
+        },
+        {
+          "first_index": 2688,
+          "samples": 128,
+          "sequence": 25,
+          "wire_bytes": 210,
+          "host_since_START_ACK_ms": 26.73990000039339,
+          "read_bytes": 296,
+          "read_chunk": 22
+        },
+        {
+          "first_index": 2816,
+          "samples": 128,
+          "sequence": 26,
+          "wire_bytes": 210,
+          "host_since_START_ACK_ms": 28.441599803045392,
+          "read_bytes": 420,
+          "read_chunk": 23
+        },
+        {
+          "first_index": 2944,
+          "samples": 128,
+          "sequence": 27,
+          "wire_bytes": 210,
+          "host_since_START_ACK_ms": 28.441599803045392,
+          "read_bytes": 420,
+          "read_chunk": 23
+        },
+        {
+          "first_index": 3072,
+          "samples": 128,
+          "sequence": 28,
+          "wire_bytes": 210,
+          "host_since_START_ACK_ms": 30.928999884054065,
+          "read_bytes": 544,
+          "read_chunk": 24
+        },
+        {
+          "first_index": 3200,
+          "samples": 128,
+          "sequence": 29,
+          "wire_bytes": 210,
+          "host_since_START_ACK_ms": 30.928999884054065,
+          "read_bytes": 544,
+          "read_chunk": 24
+        },
+        {
+          "first_index": 3328,
+          "samples": 128,
+          "sequence": 30,
+          "wire_bytes": 210,
+          "host_since_START_ACK_ms": 31.901999842375517,
+          "read_bytes": 156,
+          "read_chunk": 25
+        }
+      ]
+    },
+    "I2_100k_delivery_only": {
+      "probe_status": "PASS",
+      "nonce": "8a9bedb9515e7bf0",
+      "nominal_fs_hz": 100000,
+      "record_host_seconds": 5.004454599926248,
+      "delivered_samples": 504230,
+      "DATA_frames": 3940,
+      "frame_lengths_bytes": {
+        "126": 1,
+        "306": 117,
+        "307": 3822
+      },
+      "frame_sample_counts": {
+        "38": 1,
+        "128": 3939
+      },
+      "read_window": "first DATA completion read through END completion read, includes draining",
+      "read_sizes_bytes": {
+        "5": 1,
+        "15": 1,
+        "16": 1,
+        "29": 1,
+        "31": 1,
+        "68": 1,
+        "69": 10,
+        "70": 194,
+        "84": 1,
+        "85": 1,
+        "86": 1,
+        "100": 1,
+        "112": 1,
+        "113": 1,
+        "129": 1,
+        "140": 2,
+        "145": 1,
+        "170": 1,
+        "171": 1,
+        "183": 1,
+        "209": 1,
+        "210": 1,
+        "224": 1,
+        "240": 1,
+        "268": 1,
+        "295": 1,
+        "296": 1,
+        "306": 44,
+        "307": 1569,
+        "311": 1,
+        "312": 1,
+        "322": 1,
+        "323": 2,
+        "335": 1,
+        "337": 1,
+        "338": 2,
+        "339": 2,
+        "349": 1,
+        "366": 1,
+        "376": 4,
+        "377": 66,
+        "382": 2,
+        "392": 2,
+        "404": 1,
+        "407": 2,
+        "408": 2,
+        "409": 2,
+        "420": 3,
+        "434": 1,
+        "435": 1,
+        "436": 1,
+        "447": 7,
+        "477": 1,
+        "479": 1,
+        "490": 2,
+        "499": 1,
+        "516": 1,
+        "517": 4,
+        "521": 1,
+        "533": 1,
+        "544": 1194
+      },
+      "read_gaps_ms": {
+        "n": 3155,
+        "min": 0.4634999204427004,
+        "median": 1.1354000307619572,
+        "p95": 3.0389399733394367,
+        "max": 33.357599982991815,
+        "mean": 1.6036088748136905
+      },
+      "DATA_completion_gaps_ms": {
+        "n": 3939,
+        "min": 0,
+        "median": 0.9689999278634787,
+        "p95": 2.6661099167540665,
+        "max": 33.357599982991815,
+        "mean": 1.2844341203445528
+      },
+      "nonzero_DATA_completion_gaps_ms": {
+        "n": 3155,
+        "min": 0.4634999204427004,
+        "median": 1.1354000307619572,
+        "p95": 3.0389399733394367,
+        "max": 33.357599982991815,
+        "mean": 1.6036088748136905
+      },
+      "same_read_adjacent_DATA": 784,
+      "DATA_per_nonempty_read": {
+        "1": 2372,
+        "2": 784
+      },
+      "first_DATA_after_START_ACK_ms": 6.00220006890595,
+      "first_DATA_to_last_DATA_ms": 5059.386000037193,
+      "first_DATA_to_END_ms": 5059.386000037193,
+      "first27_DATA_completion_span_ms": 33.5657000541687,
+      "first27_DATA_positive_gaps_ms": {
+        "n": 22,
+        "min": 0.5532000213861465,
+        "median": 1.33714999537915,
+        "p95": 2.73526010569185,
+        "max": 2.7409999165683985,
+        "mean": 1.52571363882585
+      },
+      "end_before_STOP": false,
+      "unknown_produced_tail": true,
+      "host_peak_raw_items": 46,
+      "host_max_service_gap_ms": 25,
+      "host_callback_errors": [],
+      "offline_equality_already_verified": true,
+      "diagnostics_excluded": "I2 reused legacy136 belongs to50k; only delivery/wire evidence compared"
+    }
+  },
+  "source_references": [
+    {
+      "path": "host/tools/v2_stream_probe.py",
+      "lines": "45-71",
+      "meaning": "Audit stamps after nonempty backend read; no empty reads, call duration, USB packets or URBs recorded."
+    },
+    {
+      "path": "host/motortester/stream_serial.py",
+      "lines": "18-26,88-96",
+      "meaning": "Streaming requests nonblocking timeout0."
+    },
+    {
+      "path": ".venv/Lib/site-packages/serial/serialwin32.py",
+      "lines": "262-299",
+      "meaning": "cbInQue snapshots; up to requested size; GetOverlappedResult completes the application read before return."
+    },
+    {
+      "path": "host/motortester/stream_controller.py",
+      "lines": "905-909,973-989",
+      "meaning": "Maximum544 bytes; saturated reads immediately continue, eight full reads yield; otherwise event wait up to1ms target."
+    },
+    {
+      "path": "build/v6i-fw-01/patched/v2/app/mt_live_runtime.c",
+      "lines": "100-118,225-298",
+      "meaning": "Whole-frame space check, one early grant, one prepare+guarded step, fresh TIME/stable barriers and flush."
+    },
+    {
+      "path": "build/v6i-fw-01/patched/v2/protocol/mt_live_device.c",
+      "lines": "314-368,523-585",
+      "meaning": "One staged frame and one write attempt per step; TIME reads, ticket revalidation and completion retain irreversible acceptance rules."
+    },
+    {
+      "path": "build/v6i-fw-01/patched/v2/acquisition/mt_acquisition_profile.c",
+      "lines": "3-32",
+      "meaning": "Nominal3-mode table and10-bit packing work; does not measure runtime cost."
+    }
+  ],
+  "method": {
+    "equality_evidence": "Existing physical-analysis.json offline PASS and matching traffic SHA reused; CRC/raw equality and fresh Open not rerun.",
+    "extraction": "Read saved <BdI> chunks, reconstruct COBS envelopes by direction, inspect header and DATA metadata only; timestamp frame when its terminating byte is returned in host read.",
+    "windows": "First DATA completion through END completion, includes failure draining. Additional first27-frame spans compare equal delivered counts but still do not certify performance.",
+    "units": "milliseconds of host time.monotonic read-return observations, not ADC clock or USB transaction timestamps",
+    "program": "import collections,hashlib,json,math,statistics,struct,sys\nfrom pathlib import Path\nROOT=Path.cwd()\nsys.path.insert(0,str(ROOT/\"host\"))\nfrom motortester.stream_wire import cobs_decode,HEADER,Kind\nCHUNK=struct.Struct(\"<BdI\")\nfiles={}\ndef sha(p):\n    raw=p.read_bytes();files[p.relative_to(ROOT).as_posix()]={\"bytes\":len(raw),\"sha256\":hashlib.sha256(raw).hexdigest()};return raw\ndef stats(seq):\n    seq=sorted(seq)\n    if not seq:return None\n    def q(p):\n        v=(len(seq)-1)*p;a=int(v);b=min(a+1,len(seq)-1)\n        return seq[a]+(seq[b]-seq[a])*(v-a)\n    return {\"n\":len(seq),\"min\":seq[0],\"median\":q(.5),\"p95\":q(.95),\"max\":seq[-1],\"mean\":statistics.mean(seq)}\ndef dist(seq):return {str(k):v for k,v in sorted(collections.Counter(seq).items())}\nout={}\nfor label,folder in [(\"I3_100k\",\"build/v6i-board-02/100000\"),(\"I3_150k\",\"build/v6i-board-02/150000\"),(\"I2_100k_delivery_only\",\"build/v6i-board-01/100000\")]:\n    folder=ROOT/folder\n    analysis=json.loads(sha(folder/\"physical-analysis.json\"))\n    receipt=json.loads(sha(folder/\"run/result.json\"))\n    raw=sha(folder/\"run/traffic.bin\")\n    assert hashlib.sha256(raw).hexdigest()==analysis[\"original_files_sha256_before\"][\"%s/run/traffic.bin\"%folder.name]\n    assert analysis[\"offline_validation_status\"]==\"PASS\"\n    nonce=int(analysis[\"nonce_hex\"],16)\n    chunks=[];frames=[];buf=[bytearray(),bytearray()];pos=0\n    while pos<len(raw):\n        direction,stamp,count=CHUNK.unpack_from(raw,pos);pos+=CHUNK.size\n        block=raw[pos:pos+count];pos+=count\n        ci=len(chunks);chunks.append({\"direction\":direction,\"stamp\":stamp,\"bytes\":count,\"data_frames\":0})\n        for b in block:\n            if b:buf[direction].append(b);continue\n            if not buf[direction]:continue\n            encoded=bytes(buf[direction]);buf[direction].clear();decoded=cobs_decode(encoded)\n            major,minor,kind,r1,n,r2,fn,seq,req=HEADER.unpack_from(decoded)\n            if direction!=1 or fn!=nonce:continue\n            f={\"kind\":kind,\"stamp\":stamp,\"sequence\":seq,\"wire_bytes\":len(encoded)+1,\"chunk\":ci}\n            if kind==int(Kind.DATA):\n                gen,config,first,count,res=struct.unpack_from(\"<IIQHH\",decoded,24)\n                f.update(first_index=first,samples=count);chunks[ci][\"data_frames\"]+=1\n            frames.append(f)\n    data=[f for f in frames if f[\"kind\"]==int(Kind.DATA)]\n    start=next(f for f in frames if f[\"kind\"]==int(Kind.START_ACK))\n    end=next(f for f in frames if f[\"kind\"]==int(Kind.END))\n    reads=[c for c in chunks if c[\"direction\"]==1 and data[0][\"stamp\"]<=c[\"stamp\"]<=end[\"stamp\"]]\n    gaps=[(b[\"stamp\"]-a[\"stamp\"])*1000 for a,b in zip(reads,reads[1:])]\n    framegaps=[(b[\"stamp\"]-a[\"stamp\"])*1000 for a,b in zip(data,data[1:])]\n    first27=data[:27]\n    result={\n      \"probe_status\":receipt[\"status\"],\"nonce\":analysis[\"nonce_hex\"],\"nominal_fs_hz\":analysis[\"requested_sample_rate_hz\"],\n      \"record_host_seconds\":receipt[\"record_wall_seconds\"],\"delivered_samples\":sum(f[\"samples\"] for f in data),\"DATA_frames\":len(data),\n      \"frame_lengths_bytes\":dist(f[\"wire_bytes\"] for f in data),\"frame_sample_counts\":dist(f[\"samples\"] for f in data),\n      \"read_window\":\"first DATA completion read through END completion read, includes draining\",\n      \"read_sizes_bytes\":dist(c[\"bytes\"] for c in reads),\"read_gaps_ms\":stats(gaps),\n      \"DATA_completion_gaps_ms\":stats(framegaps),\"nonzero_DATA_completion_gaps_ms\":stats([g for g in framegaps if g>0]),\n      \"same_read_adjacent_DATA\":sum(g==0 for g in framegaps),\"DATA_per_nonempty_read\":dist(c[\"data_frames\"] for c in reads),\n      \"first_DATA_after_START_ACK_ms\":(data[0][\"stamp\"]-start[\"stamp\"])*1000,\n      \"first_DATA_to_last_DATA_ms\":(data[-1][\"stamp\"]-data[0][\"stamp\"])*1000,\n      \"first_DATA_to_END_ms\":(end[\"stamp\"]-data[0][\"stamp\"])*1000,\n      \"first27_DATA_completion_span_ms\":(first27[-1][\"stamp\"]-first27[0][\"stamp\"])*1000,\n      \"first27_DATA_positive_gaps_ms\":stats([(b[\"stamp\"]-a[\"stamp\"])*1000 for a,b in zip(first27,first27[1:]) if b[\"stamp\"]>a[\"stamp\"]]),\n      \"end_before_STOP\":analysis[\"END_before_STOP\"],\"unknown_produced_tail\":analysis[\"unknown_produced_tail\"],\n      \"host_peak_raw_items\":receipt.get(\"before_stop\",{}).get(\"peak_raw_items\"),\n      \"host_max_service_gap_ms\":receipt.get(\"before_stop\",{}).get(\"max_service_gap_ms\"),\n      \"host_callback_errors\":receipt[\"callback_errors\"],\"offline_equality_already_verified\":True}\n    if label.startswith(\"I3\"):\n        diag=json.loads(sha(folder/\"diagnostics-decoded.json\"))\n        result[\"diagnostics\"]={k:diag[\"raw\"][k] for k in (\"flags\",\"step_count\",\"tx_count\",\"poll_count\",\"copy_count\",\"queue_high_water\",\"driver_observed_poll_gap_us\",\"copy_max_us\",\"step_body_max_cycles\",\"step_gap_max_cycles\",\"tx_max_cycles\",\"first_acquisition_reason\",\"first_adc_fault\",\"first_local_error\")}\n        result[\"diagnostics\"][\"matching_nonce\"]=diag[\"nonce_hex\"]==analysis[\"nonce_hex\"]\n    else:result[\"diagnostics_excluded\"]=\"I2 reused legacy136 belongs to50k; only delivery/wire evidence compared\"\n    if label==\"I3_150k\":\n        result[\"DATA_completion_rows\"]=[{\"first_index\":f[\"first_index\"],\"samples\":f[\"samples\"],\"sequence\":f[\"sequence\"],\"wire_bytes\":f[\"wire_bytes\"],\"host_since_START_ACK_ms\":(f[\"stamp\"]-start[\"stamp\"])*1000,\"read_bytes\":chunks[f[\"chunk\"]][\"bytes\"],\"read_chunk\":f[\"chunk\"]} for f in data]\n    out[label]=result\nfor rel in (\"host/tools/v2_stream_probe.py\",\"host/motortester/stream_controller.py\",\"host/motortester/v2/stream_device.py\",\".venv/Lib/site-packages/serial/serialwin32.py\",\"build/v6i-fw-01/patched/v2/app/mt_live_runtime.c\",\"build/v6i-fw-01/patched/v2/protocol/mt_live_device.c\",\"build/v6i-fw-01/patched/v2/protocol/mt_wire.c\"):\n    sha(ROOT/rel)\nfor rel,record in files.items():assert hashlib.sha256((ROOT/rel).read_bytes()).hexdigest()==record[\"sha256\"]\nprint(json.dumps({\"trials\":out,\"source_files\":files,\"originals_unchanged\":True},ensure_ascii=False))\n"
+  },
+  "source_files": {
+    "build/v6i-board-02/100000/physical-analysis.json": {
+      "bytes": 15346,
+      "sha256": "78344c26ce0fd90edade4ae894ff0b44b67d1c3d6b728f3b4cd444808cb4c164"
+    },
+    "build/v6i-board-02/100000/run/result.json": {
+      "bytes": 5028,
+      "sha256": "9a8deb1629ba079882f3246312f20fa6d40baf143fa7b855bea7fdc19ded4ed4"
+    },
+    "build/v6i-board-02/100000/run/traffic.bin": {
+      "bytes": 1249592,
+      "sha256": "00e014135f8480c5fe043d5b4ae4a25b6ef7c65932a29086b5af91aedd9f837d"
+    },
+    "build/v6i-board-02/100000/diagnostics-decoded.json": {
+      "bytes": 8524,
+      "sha256": "a24f2db470e53ec9dbec827bcb6c2f85938a80c6615dde880b158a6642ac53c0"
+    },
+    "build/v6i-board-02/150000/physical-analysis.json": {
+      "bytes": 15510,
+      "sha256": "fd66ff99ae5a3e92e8ee73c9d34dfc73ab0af7106c6ffc79e38d3a1f05f187cd"
+    },
+    "build/v6i-board-02/150000/run/result.json": {
+      "bytes": 2966,
+      "sha256": "76da924afcba137d41792c2211c7db0ae78c7805f6a821be3f6bac5de6540648"
+    },
+    "build/v6i-board-02/150000/run/traffic.bin": {
+      "bytes": 6525,
+      "sha256": "528822e5818dd731d4fe0c76374052c1f4bb14aea8ff8035ec93526f9eaf392e"
+    },
+    "build/v6i-board-02/150000/diagnostics-decoded.json": {
+      "bytes": 8562,
+      "sha256": "729f5fd83365702cb340cbcf78d74f53fdf72ae828d81f43f2d8303364ffc213"
+    },
+    "build/v6i-board-01/100000/physical-analysis.json": {
+      "bytes": 15343,
+      "sha256": "1e729ed83fbf2507dd36eb72d003cb37028b70f2e6973e5a433fc7bd6276a022"
+    },
+    "build/v6i-board-01/100000/run/result.json": {
+      "bytes": 5029,
+      "sha256": "d301223add26c3a10997eacf4c3fee785ed86c8e24f2749d4858364a1036410d"
+    },
+    "build/v6i-board-01/100000/run/traffic.bin": {
+      "bytes": 1250918,
+      "sha256": "39080a1d8b9d70e96b1f140f8d6f2013668112b9304c4b788294cb992cb0603d"
+    },
+    "host/tools/v2_stream_probe.py": {
+      "bytes": 10534,
+      "sha256": "ee3fe6a3909c6e20939de654e8bc441b59d556002f39ea86ceaf925889b7a56b"
+    },
+    "host/motortester/stream_controller.py": {
+      "bytes": 51967,
+      "sha256": "7af92930afc4ff57c4bb120c773926595f534cfabe084b15d53aca9fad1d0f0e"
+    },
+    "host/motortester/v2/stream_device.py": {
+      "bytes": 28129,
+      "sha256": "8e4bda8d6b38a0b7044d58175d740d51f3e81b2dd7794df49a910d42d15868de"
+    },
+    ".venv/Lib/site-packages/serial/serialwin32.py": {
+      "bytes": 20284,
+      "sha256": "17681ea9a650120c71db1aae9b8881301a40d38c47b34bb0da050e3f5bfbbe00"
+    },
+    "build/v6i-fw-01/patched/v2/app/mt_live_runtime.c": {
+      "bytes": 17077,
+      "sha256": "efadedb84e304f0c31b5c5e9bf130753d8296ac14d462f65a2d5eea1a178cc46"
+    },
+    "build/v6i-fw-01/patched/v2/protocol/mt_live_device.c": {
+      "bytes": 29544,
+      "sha256": "d2b1eb83b41f4bb89b6dba09495dbd37e16451a464545f51939f1bd6659f035c"
+    },
+    "build/v6i-fw-01/patched/v2/protocol/mt_wire.c": {
+      "bytes": 11344,
+      "sha256": "f8bf4f55f2e4fc769aae0cb57b826dc116486ebefd78279ec130e133cb520fbf"
+    },
+    "host/motortester/stream_serial.py": {
+      "bytes": 6048,
+      "sha256": "cd35af141eaecb2c6bba7bb03814863b91b55500723289f3cafe91416d720493"
+    },
+    "build/v6i-fw-01/patched/v2/acquisition/mt_acquisition_profile.c": {
+      "bytes": 1306,
+      "sha256": "3b2b6d2a9bf622b1c17476be42f4bd20500ec7c54bdcee6dd489358f57ed3e1e"
+    },
+    "build/v6i-board-02/100000/hardware-procedure-facts.json": {
+      "bytes": 563,
+      "sha256": "7e2d01513b456ba922bcece882eb9986f800041c0b7d036c09f202f517c63d8b"
+    },
+    "build/v6i-board-02/150000/hardware-procedure-facts.json": {
+      "bytes": 605,
+      "sha256": "13c00784f5aadf0fc3bd253e9301297c8589ba7330a63cf030828b1e4c5d37aa"
+    },
+    "build/v6i-board-02/100000/diagnostics-first.bin": {
+      "bytes": 136,
+      "sha256": "afeed0355c5f01f5224dfc53329734e1a3d86c15af1c4268af5b214faf8adf14"
+    },
+    "build/v6i-board-02/100000/diagnostics-second.bin": {
+      "bytes": 136,
+      "sha256": "afeed0355c5f01f5224dfc53329734e1a3d86c15af1c4268af5b214faf8adf14"
+    },
+    "build/v6i-board-02/150000/diagnostics-first.bin": {
+      "bytes": 136,
+      "sha256": "52e61f708069e7e7e5d9cc70f7433c1769508f2dbd767dbfeafb46d8da708610"
+    },
+    "build/v6i-board-02/150000/diagnostics-second.bin": {
+      "bytes": 136,
+      "sha256": "52e61f708069e7e7e5d9cc70f7433c1769508f2dbd767dbfeafb46d8da708610"
+    }
+  },
+  "originals_unchanged": true,
+  "limits": [
+    "I3 physical150k remains FAIL;100k PASS applies to saved5s trial only.",
+    "All compared END records retain produced_end unknown; matching bytes do not prove zero losses.",
+    "150k retains10MSB of ADC12; the discarded2LSBs cannot be reconstructed.",
+    "I2/100k legacy136 intentionally excluded because it belongs to preceding50k boot attempt.",
+    "This author analysis is not the independent critic's acceptance."
+  ]
+}
+

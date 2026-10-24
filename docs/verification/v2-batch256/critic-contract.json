@@ -1,0 +1,93 @@
+{
+  "schema": "v2-06k-independent-contract-review-1",
+  "reviewer": "stream200_critic",
+  "independent": true,
+  "date": "2026-10-24",
+  "status": "PASS",
+  "score": 9.6,
+  "scope": "Documentation and calculations for mode4 DATA256 only; no implementation, Windows package, Flash or physical150k acceptance",
+  "base_commit": "1c638d7562bc02ac84c0a44f909bab8e3f8a5dd7",
+  "preserved_SC_source_commit": "310d53b10c79a48ddc45357ff65d88c686aef883",
+  "preserved_SC_BIN_sha256": "a36f72a772c03c5cbfd85767e5f07f0abc3ad2f2ffd7d1ee1c43143d20ca1c90",
+  "requirements": ["V2-STR16", "V2-STR14", "V2-STR15"],
+  "candidate_build_planned": "0x56325344",
+  "canonical_path": "docs/streaming-batch256.md",
+  "canonical_sha256": "e62983a12054f427c6eaa83aad7cadbef9aaf65a216cf8abb0d65aa318904595",
+  "archive_manifest_path": "docs/verification/v2-batch256/analysis-01/manifest.json",
+  "archive_manifest_sha256": "d60daa46d381e252dbec1b8517df8f5e04cce12bcb9cd404c06989c34c8b7cad",
+  "archive_total_bytes": 42996,
+  "archive_pairs_checked": [
+    {"name": "firmware-batch-proposal.md", "size_bytes": 12187, "sha256": "c7a59253aba568633cb887ef549e988891e95d867f2f6aa197c4486afcc92d82", "byte_equal": true, "manifest_match": true},
+    {"name": "host-batch-proposal.md", "size_bytes": 17624, "sha256": "8e2ad3530db676cb2147b19a02cc821f191e3510be2b3ea708c55bbecc311656", "byte_equal": true, "manifest_match": true},
+    {"name": "critic-findings.md", "size_bytes": 13185, "sha256": "45102fd8c6e70b325294792e8d6edf983588e2dea4d0b16c37afb5ad8094764a", "byte_equal": true, "manifest_match": true}
+  ],
+  "canonical_links_checked": [
+    {"target": "progress.md", "exists": true},
+    {"target": "quality-gate.md", "exists": true},
+    {"target": "streaming-selectable-profiles.md", "exists": true}
+  ],
+  "format_sizes_checked": {"hello_mode": 12, "ack": 16, "caps": 24, "data_metadata": 20},
+  "calculations_checked": {
+    "packed256_bytes": 320,
+    "payload_bytes": 340,
+    "decoded_bytes": 368,
+    "COBS_with_delimiter_upper_bytes": 371,
+    "FIFO_bytes": 384,
+    "FIFO_spare_bytes": 13,
+    "canonical_raw_bytes": 512,
+    "frames_per_second": "9375/16",
+    "wire_upper_bytes_per_second": "3478125/16",
+    "previous_wire_upper_bytes_per_second": "984375/4",
+    "sample_period_us": "20/3",
+    "mode150_nominal_fs": 150000,
+    "usb_packets_if_separate_full_transfer": 6,
+    "usb_packet_count_is_measured": false
+  },
+  "read_only_source_checks": [
+    "Existing SC HelloAck decoder requires block128 and discovery capabilities1 or3; marker7/global256 rejects before START.",
+    "Current endpoint short_seen uses MAX_BLOCK128; changed implementation must derive128/256 from selected mode.",
+    "Current model quantization condition mode3/old marker must explicitly include the new mode4 marker.",
+    "Journal MAX_BLOCK_SAMPLES8192 is independent of wire128/256 and remains unchanged.",
+    "Actual SC core completed DATA currently consumes one queue head; new pair path requires all-view validation before any CRC/pop mutation."
+  ],
+  "ratings": [
+    {"criterion": "C1", "weight": 0.30, "score": 9.6, "basis": "Explicit mode4 and strict negotiation preserve old modes, time, canonical quantization and files."},
+    {"criterion": "C2", "weight": 0.20, "score": 9.55, "basis": "Atomic two-view acceptance, terminal-only short, retained zero/partial/unknown/TIME/epoch rules and bounded resources are specified; actual performance remains unverified."},
+    {"criterion": "C3", "weight": 0.25, "score": 9.6, "basis": "Exact archive, links, format sizes, arithmetic and old rejection path personally checked; no implementation or hardware success claimed."},
+    {"criterion": "C4", "weight": 0.15, "score": 9.6, "basis": "Closed mode registry avoids a needless storage format change, sample buffer or unrelated TIME optimization."},
+    {"criterion": "C5", "weight": 0.10, "score": 9.7, "basis": "Unique requirement16, pinned canonical contract and minimal staged evidence plan support continuation without chat history."}
+  ],
+  "open_P0_P1_in_contract": [],
+  "preserved_physical_issue": "I3 150k queue-full remains REWORK; no physical150k acceptance is inferred from this contract.",
+  "closed_or_resolved_findings": [
+    "Explicit new mode4 rather than silent reinterpretation of published mode3.",
+    "Global discovery256 distinguished from selected ACK/CAPS128 or256.",
+    "Both queue views validated before any prefix CRC or pop mutation; ring wrap and stale second view included in evidence plan.",
+    "Short1..255 only at sealed draining tail; lone128 drains and total257 becomes256+1.",
+    "Journal8192 independent of wire count; strict intrinsic marker+mode makes new header field unnecessary.",
+    "No unconditional claim of greater initial latency or measured USB packet count; early grant aging and guarded CRC remain risks.",
+    "Existing discovery bit names verified against canonical I; separate CAPS flags1 remains unchanged."
+  ],
+  "necessary_future_evidence": [
+    "One actual-core/queue/wire model for pair256/wrap7-to0, stale second view, known-zero/partial/unknown/TIME, pending HELLO/Stop, terminal tails including257-to256+1.",
+    "Exact ARM/static SRAM/stack and targeted unchanged-runtime/TIME/DCD/guard comparison; no broad legacy suite.",
+    "Compact host negotiation/count/padding checks, C-to-Python256+tail+END, fresh journal Open without companion and preserved old mode3 data.",
+    "One focused Windows GUI and frozen package Record-Stop-Open flow pinned to exact final artifacts.",
+    "Separate exact hardware admission and physical review; one diagnostic attempt per boot, Reset/Run plus actual user USB replug, stop sequence on failure."
+  ],
+  "environment": {"shell": "PowerShell", "python": "3.14.7", "platform": "Windows-10-10.0.19045-SP0"},
+  "verification_method": "Read-only Get-Content/rg/Get-FileHash/git rev-parse and inline .venv/Scripts/python.exe -B - using pathlib/hashlib/json/re/struct/Fraction. First calculation invocation had a struct-format typo; corrected read-only invocation returned the recorded values.",
+  "software_accepted": false,
+  "windows_package_accepted": false,
+  "flash_approved": false,
+  "physical_150ksps_accepted": false,
+  "hardware_access_by_reviewer": false,
+  "implementation_tests_run": false,
+  "limitations": [
+    "Contract PASS applies only to the pinned document and does not transfer automatically to implementation.",
+    "Larger guarded CRC and early grant aging may still prevent sustained150k despite lower frames per second.",
+    "SC932 spare SRAM bytes and previous stack result are not proof for the candidate.",
+    "Canonical10 retains the12-bit code scale but loses two LSB; not10-bit hardware ADC mode, ENOB or calibrated voltage.",
+    "No analog input, ignition or vehicle qualification; old I3 failed evidence remains unchanged."
+  ]
+}
