@@ -1,5 +1,12 @@
 # Координация самостоятельного V2
 
+V2-06i2: root единолично COM/SWD/Flash, канонические документы и архивы;
+higher_fs_review — только offline plan-draft/register decoder/SB READY helper
+в build/v6i-board-01; host_200k — offline physical analyzer там же. Критик —
+docs/reviews/v2-06i-flash-review.md, v2-06i2-review.md и соответствующие
+critic JSON в verification/v2-selectable-profiles. I source/ARM/package
+заморожены. Допуск Flash и физических утверждений отдельный от software PASS.
+
 V2-06i реализация после согласования контракта: higher_fs_review пишет
 firmware/v2-stream/** и tests/v2-stream-firmware/** кроме замороженного
 usb_turnover_model.c, новые build/v6i-* кроме host/board. Host_200k пишет
