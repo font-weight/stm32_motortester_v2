@@ -1,5 +1,12 @@
 # Координация самостоятельного V2
 
+V2-06i контракт: root — task/requirements/decisions/progress/coordination,
+интеграция и единолично COM/SWD. Higher_fs_review — только
+build/v6i-analysis/firmware-contract.md; host_200k — host-contract.md там же.
+Production пока не меняется; H/H2 артефакты заморожены. Stream200_critic —
+независимые review/critic файлы следующего узла. Области реализации будут
+заданы после согласования формата, отдельный аппаратный опыт пока не назначен.
+
 V2-06h2: root — build/v6h-board-01, COM/SWD, план/архивы/канонические
 документы. Host_200k — только порученный offline-декодер и последующий
 разбор файлов опыта; никаких аппаратных интерфейсов. Stream200_critic —

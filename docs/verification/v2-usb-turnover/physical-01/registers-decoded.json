@@ -1,0 +1,30 @@
+{
+  "scope": "Post-owner-close stopped state only, not active sampling accuracy",
+  "registers": {
+    "TIM3_CR1": 0,
+    "TIM3_PSC": 71,
+    "TIM3_ARR": 9,
+    "ADC_CR2": 0,
+    "ADC_SMPR1": 0,
+    "ADC_SMPR2": 4,
+    "DMA_CCR": 9632,
+    "RCC_APB2RSTR": 0,
+    "RCC_APB1RSTR": 0,
+    "RCC_AHBENR": 21,
+    "RCC_APB2ENR": 516,
+    "RCC_APB1ENR": 8388611
+  },
+  "checks": {
+    "TIM3_CEN_off": true,
+    "TIM3_rate_registers": true,
+    "ADC_off": true,
+    "ADC_sample_PA0": true,
+    "DMA_off": true,
+    "DMA_clock": true,
+    "ADC_GPIOA_clocks": true,
+    "TIM3_clock": true,
+    "ADC_reset_released": true,
+    "TIM3_reset_released": true
+  },
+  "all_checks": true
+}

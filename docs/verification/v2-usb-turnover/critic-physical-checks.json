@@ -1,0 +1,506 @@
+{
+  "schema": "v2-06h2-independent-physical-checks-1",
+  "status": "PASS",
+  "source_commit": "8243fb3224a1e24980848a8ce02431ec41f5bd9c",
+  "source_base_commit": "4c8c14727bae8715279130b05c11f7e518fd8d9a",
+  "physical_manifest_sha256": "63a47ca9179b7b9234e517e635713442a4b7e93f151d9e494c04880d526bf09b",
+  "manifest_pairs": [
+    {
+      "source": "build/v6h-board-01/adc.bin",
+      "archive": "docs/verification/v2-usb-turnover/physical-01/adc.bin",
+      "bytes": 12,
+      "sha256": "b389a6884b289d4b53e9b36853b9a933c640fa7a5abe584f859a56c6768c01ba",
+      "byte_equal": true
+    },
+    {
+      "source": "build/v6h-board-01/adc.log",
+      "archive": "docs/verification/v2-usb-turnover/physical-01/adc.log",
+      "bytes": 846,
+      "sha256": "dcca361ed9e56d819c54223cab9bdf994bcaf168fb56597dc28b373b6d421a00",
+      "byte_equal": true
+    },
+    {
+      "source": "build/v6h-board-01/analyze_physical.py",
+      "archive": "docs/verification/v2-usb-turnover/physical-01/analyze_physical.py",
+      "bytes": 16792,
+      "sha256": "f09533fdcf6a0cea23944a5bf63749da0b4053cc55ed797eb910fcdb4297f709",
+      "byte_equal": true
+    },
+    {
+      "source": "build/v6h-board-01/backup-verified.json",
+      "archive": "docs/verification/v2-usb-turnover/physical-01/backup-verified.json",
+      "bytes": 581,
+      "sha256": "14e139637859f3246fd9ec91dcbccb0793a829341e0636dda326b91d4ac0ec19",
+      "byte_equal": true
+    },
+    {
+      "source": "build/v6h-board-01/backup.log",
+      "archive": "docs/verification/v2-usb-turnover/physical-01/backup.log",
+      "bytes": 872,
+      "sha256": "8b0891728ca93ca2b1098eec3d02e56cfa2e4a7b4d8369ccadd608675e8f3d33",
+      "byte_equal": true
+    },
+    {
+      "source": "build/v6h-board-01/before-flash-64k.bin",
+      "archive": "docs/verification/v2-usb-turnover/physical-01/before-flash-64k.bin",
+      "bytes": 65536,
+      "sha256": "4a1060f0062620580d8ac1e74aba001a2935bd58dcc6cccbb5fcbef957826f4a",
+      "byte_equal": true
+    },
+    {
+      "source": "build/v6h-board-01/check_sa_ready.py",
+      "archive": "docs/verification/v2-usb-turnover/physical-01/check_sa_ready.py",
+      "bytes": 5643,
+      "sha256": "8e97bc4de87bb57d6247e0f94ae911c8048225ff00348b5361f3452fa54f3edf",
+      "byte_equal": true
+    },
+    {
+      "source": "build/v6h-board-01/decode_diagnostics.py",
+      "archive": "docs/verification/v2-usb-turnover/physical-01/decode_diagnostics.py",
+      "bytes": 12800,
+      "sha256": "ba9bea4ae0845c695eb4d70234b19a0476904113456c3d4322ab255a5db96033",
+      "byte_equal": true
+    },
+    {
+      "source": "build/v6h-board-01/diagnostics-decoded.json",
+      "archive": "docs/verification/v2-usb-turnover/physical-01/diagnostics-decoded.json",
+      "bytes": 7036,
+      "sha256": "cb34bf47dc83083a41ef85cfcd71213bdc7f46b4491c1331b162e7396368a60b",
+      "byte_equal": true
+    },
+    {
+      "source": "build/v6h-board-01/diagnostics-decoder-invocation.json",
+      "archive": "docs/verification/v2-usb-turnover/physical-01/diagnostics-decoder-invocation.json",
+      "bytes": 347,
+      "sha256": "b363bc4c5c2abcd2f5fe51cbe089722553a25b70530c42694d714b0d5d0f94ad",
+      "byte_equal": true
+    },
+    {
+      "source": "build/v6h-board-01/diagnostics-first.bin",
+      "archive": "docs/verification/v2-usb-turnover/physical-01/diagnostics-first.bin",
+      "bytes": 136,
+      "sha256": "3ee5fcd1a7169e825955f03ce92b04a788a4269112c1d6ac3bb023a8ccd830a0",
+      "byte_equal": true
+    },
+    {
+      "source": "build/v6h-board-01/diagnostics-first.log",
+      "archive": "docs/verification/v2-usb-turnover/physical-01/diagnostics-first.log",
+      "bytes": 874,
+      "sha256": "915f16b79d367387228c60af2b7674e7dcfdf801febb5b5ba8e78f58385961e3",
+      "byte_equal": true
+    },
+    {
+      "source": "build/v6h-board-01/diagnostics-second.bin",
+      "archive": "docs/verification/v2-usb-turnover/physical-01/diagnostics-second.bin",
+      "bytes": 136,
+      "sha256": "3ee5fcd1a7169e825955f03ce92b04a788a4269112c1d6ac3bb023a8ccd830a0",
+      "byte_equal": true
+    },
+    {
+      "source": "build/v6h-board-01/diagnostics-second.log",
+      "archive": "docs/verification/v2-usb-turnover/physical-01/diagnostics-second.log",
+      "bytes": 876,
+      "sha256": "5a0ef372ba8019cf52a6352c2d60293c272c66176280327d9abb3d99addf31dd",
+      "byte_equal": true
+    },
+    {
+      "source": "build/v6h-board-01/dma.bin",
+      "archive": "docs/verification/v2-usb-turnover/physical-01/dma.bin",
+      "bytes": 16,
+      "sha256": "ddcf9e2157e9a31c71d6b5a34292f68841fbe659c742d0401bd2bcd536cdc55e",
+      "byte_equal": true
+    },
+    {
+      "source": "build/v6h-board-01/dma.log",
+      "archive": "docs/verification/v2-usb-turnover/physical-01/dma.log",
+      "bytes": 846,
+      "sha256": "7b567a1adcda5e504bbfcb97a4c8330a24bb23cc9f60c7e6a396ca30d6daf480",
+      "byte_equal": true
+    },
+    {
+      "source": "build/v6h-board-01/hardware-procedure-facts.json",
+      "archive": "docs/verification/v2-usb-turnover/physical-01/hardware-procedure-facts.json",
+      "bytes": 796,
+      "sha256": "dc0500a96e2a254b775ad32d451671a8b9bd7734baf1c0a593ce826a67c56641",
+      "byte_equal": true
+    },
+    {
+      "source": "build/v6h-board-01/physical-analysis.json",
+      "archive": "docs/verification/v2-usb-turnover/physical-01/physical-analysis.json",
+      "bytes": 11608,
+      "sha256": "a7e3d18dac7223ea3ed150f25011834e6fe678e25c6127a801a2b98d085cdd2b",
+      "byte_equal": true
+    },
+    {
+      "source": "build/v6h-board-01/physical-analysis.md",
+      "archive": "docs/verification/v2-usb-turnover/physical-01/physical-analysis.md",
+      "bytes": 1819,
+      "sha256": "6703cd15e9d50258dedd256844b2694aaf83589e826ae3bb3ea9c79008a8dcf3",
+      "byte_equal": true
+    },
+    {
+      "source": "build/v6h-board-01/plan.json",
+      "archive": "docs/verification/v2-usb-turnover/physical-01/plan.json",
+      "bytes": 7210,
+      "sha256": "03c49dcd130733fb11fd4b68baeb65dd0e8533b3626443a18d2b6eb417e3f715",
+      "byte_equal": true
+    },
+    {
+      "source": "build/v6h-board-01/ports-before.json",
+      "archive": "docs/verification/v2-usb-turnover/physical-01/ports-before.json",
+      "bytes": 135,
+      "sha256": "c8614e25240676a110cd0c9f9761ba2d2fc559f249875431289a7b08eedef67d",
+      "byte_equal": true
+    },
+    {
+      "source": "build/v6h-board-01/preflight.json",
+      "archive": "docs/verification/v2-usb-turnover/physical-01/preflight.json",
+      "bytes": 731,
+      "sha256": "fdb74d1f7692bcdcbf12130a4bdb18d4c9fd83f4f2f16518466223a3d7f8c758",
+      "byte_equal": true
+    },
+    {
+      "source": "build/v6h-board-01/probe-list.txt",
+      "archive": "docs/verification/v2-usb-turnover/physical-01/probe-list.txt",
+      "bytes": 239,
+      "sha256": "b58c8ddae6534dd35b9a1498631f1ee20ba54017c8f3ccfa2b156244c92e72a3",
+      "byte_equal": true
+    },
+    {
+      "source": "build/v6h-board-01/processes-before.json",
+      "archive": "docs/verification/v2-usb-turnover/physical-01/processes-before.json",
+      "bytes": 4,
+      "sha256": "a5338d955b09046ec0b16f3a9625b7955c763aae07dc722e474e6078745f932f",
+      "byte_equal": true
+    },
+    {
+      "source": "build/v6h-board-01/program.log",
+      "archive": "docs/verification/v2-usb-turnover/physical-01/program.log",
+      "bytes": 953,
+      "sha256": "98e642d994a46e472a0ec8d5bcc933d30ab12debdeba95e1998c2231d149e3ab",
+      "byte_equal": true
+    },
+    {
+      "source": "build/v6h-board-01/rcc.bin",
+      "archive": "docs/verification/v2-usb-turnover/physical-01/rcc.bin",
+      "bytes": 20,
+      "sha256": "1e24249e3619f46e4291c93fac339276c89ad2a136a324180aa83757fc71a367",
+      "byte_equal": true
+    },
+    {
+      "source": "build/v6h-board-01/rcc.log",
+      "archive": "docs/verification/v2-usb-turnover/physical-01/rcc.log",
+      "bytes": 846,
+      "sha256": "8d093a5d4b88c79339f41fa5c451d9e6ed5320315ec15b9b2596ef60443b572a",
+      "byte_equal": true
+    },
+    {
+      "source": "build/v6h-board-01/readback-verified.json",
+      "archive": "docs/verification/v2-usb-turnover/physical-01/readback-verified.json",
+      "bytes": 158,
+      "sha256": "bedc9d08848939ff2242109af409d69d97749a4f3c53d8932a0131df50bbd9e2",
+      "byte_equal": true
+    },
+    {
+      "source": "build/v6h-board-01/readback.bin",
+      "archive": "docs/verification/v2-usb-turnover/physical-01/readback.bin",
+      "bytes": 37224,
+      "sha256": "e7f6f07fc6a43e6b109af6e5c652db1322a0e5023e328007b2c50d303f12536e",
+      "byte_equal": true
+    },
+    {
+      "source": "build/v6h-board-01/readback.log",
+      "archive": "docs/verification/v2-usb-turnover/physical-01/readback.log",
+      "bytes": 856,
+      "sha256": "8778d5fe5b57f98376d17f8e2e73a4e6dd3f2175c0a03f0d64323d0422ea300d",
+      "byte_equal": true
+    },
+    {
+      "source": "build/v6h-board-01/registers-decoded.json",
+      "archive": "docs/verification/v2-usb-turnover/physical-01/registers-decoded.json",
+      "bytes": 702,
+      "sha256": "df0ab0781473851f3f87b2fe1b0fd9490bac9c7e9b25832b0bb9705ef46d4aac",
+      "byte_equal": true
+    },
+    {
+      "source": "build/v6h-board-01/reset-run.log",
+      "archive": "docs/verification/v2-usb-turnover/physical-01/reset-run.log",
+      "bytes": 420,
+      "sha256": "f8596a56771eed9f6bf4ebfd453433d8b7e7796ae747d34ca0eea8f480d620c9",
+      "byte_equal": true
+    },
+    {
+      "source": "build/v6h-board-01/run/physical.mtstream",
+      "archive": "docs/verification/v2-usb-turnover/physical-01/run/physical.mtstream",
+      "bytes": 6022996,
+      "sha256": "5f7eb93dd27d4b191f320d58a576f69adfff223f78f4a1269785066ad8b29031",
+      "byte_equal": true
+    },
+    {
+      "source": "build/v6h-board-01/run/physical.mtstream.v2.json",
+      "archive": "docs/verification/v2-usb-turnover/physical-01/run/physical.mtstream.v2.json",
+      "bytes": 1995,
+      "sha256": "089db0b36e904162acacad9788a8ef672ccce7ad79ce3b68928955247717df41",
+      "byte_equal": true
+    },
+    {
+      "source": "build/v6h-board-01/run/result.json",
+      "archive": "docs/verification/v2-usb-turnover/physical-01/run/result.json",
+      "bytes": 12065,
+      "sha256": "0bbf97a6c67953fb950e2b1e974c7bef9185ced6ac0380f769101b320073922f",
+      "byte_equal": true
+    },
+    {
+      "source": "build/v6h-board-01/run/traffic.bin",
+      "archive": "docs/verification/v2-usb-turnover/physical-01/run/traffic.bin",
+      "bytes": 7461021,
+      "sha256": "e0befa7e50d774cce00fd9bca847444e7f0f26dd7f5a59e4565c635bddccce50",
+      "byte_equal": true
+    },
+    {
+      "source": "build/v6h-board-01/save_stopped_state.py",
+      "archive": "docs/verification/v2-usb-turnover/physical-01/save_stopped_state.py",
+      "bytes": 2586,
+      "sha256": "1f7463e628c5e828bc15bd95eda0f37641c6fa2f606ec2697f4789fffb0fcba7",
+      "byte_equal": true
+    },
+    {
+      "source": "build/v6h-board-01/tim3.bin",
+      "archive": "docs/verification/v2-usb-turnover/physical-01/tim3.bin",
+      "bytes": 48,
+      "sha256": "3aedfa625b49e6ef397d1e3bb6738177fe327d6a38b40181d0b536c2d2ad2d59",
+      "byte_equal": true
+    },
+    {
+      "source": "build/v6h-board-01/tim3.log",
+      "archive": "docs/verification/v2-usb-turnover/physical-01/tim3.log",
+      "bytes": 848,
+      "sha256": "cfe71da186506740cd4005af574f763bb6b14c58af0312eb3fce099bd8f9ac87",
+      "byte_equal": true
+    },
+    {
+      "source": "build/v6h-board-01/trial-console.log",
+      "archive": "docs/verification/v2-usb-turnover/physical-01/trial-console.log",
+      "bytes": 178,
+      "sha256": "810b85eb4b4960d7697602a0bd37f3710136bd5c1c11bebaf31b12865035167a",
+      "byte_equal": true
+    },
+    {
+      "source": "build/v6h-board-01/trial-invocation.json",
+      "archive": "docs/verification/v2-usb-turnover/physical-01/trial-invocation.json",
+      "bytes": 222,
+      "sha256": "e90b3df78cdca7c4c8f8d748612fce22bb27408429fe0c82ec466b1acb092150",
+      "byte_equal": true
+    }
+  ],
+  "archive_pairs": 41,
+  "archive_bytes": 13679029,
+  "plan_sha256": "03c49dcd130733fb11fd4b68baeb65dd0e8533b3626443a18d2b6eb417e3f715",
+  "readback_bytes": 37224,
+  "readback_equals_exact_BIN": true,
+  "readback_sha256": "e7f6f07fc6a43e6b109af6e5c652db1322a0e5023e328007b2c50d303f12536e",
+  "record_seconds": 30.00303989998065,
+  "rough_rate_samples_per_host_second": 100004.79984702934,
+  "wire_journal_verification": {
+    "schema": "motortester-v2-wire-verification-1",
+    "status": "PASS",
+    "scope": "Offline equality of saved selected raw range and captured wire DATA",
+    "tool_sha256": "30631ddfdd4364a38361f21305e5166a7b4314a4e34aa8ac79b8fbb83fa9a40e",
+    "traffic_sha256": "e0befa7e50d774cce00fd9bca847444e7f0f26dd7f5a59e4565c635bddccce50",
+    "journal_sha256": "5f7eb93dd27d4b191f320d58a576f69adfff223f78f4a1269785066ad8b29031",
+    "identity": {
+      "session_id": "wire-0.2:d0d83b438307fffd",
+      "generation": 3,
+      "config_id": 1,
+      "nominal_fs_hz": 100000,
+      "origin": "device",
+      "protocol_revision": "0.2-draft-081721",
+      "firmware_version": "build:56325342",
+      "application_version": "v2-serial-unknown-accounting:physical"
+    },
+    "nonce_hex": "0xd0d83b438307fffd",
+    "generation": 3,
+    "R": 1536,
+    "end": 3003339,
+    "recording_recovery_issue": null,
+    "discarded_journal_tail_bytes": 0,
+    "journal_terminal": {
+      "identity": {
+        "session_id": "wire-0.2:d0d83b438307fffd",
+        "generation": 3,
+        "config_id": 1,
+        "nominal_fs_hz": 100000,
+        "origin": "device",
+        "protocol_revision": "0.2-draft-081721",
+        "firmware_version": "build:56325342",
+        "application_version": "v2-serial-unknown-accounting:physical"
+      },
+      "end_sample_index": 3003339,
+      "reason": "stopped",
+      "terminal_observed": true,
+      "device_generated_end_sample_index": null,
+      "device_transmitted_end_sample_index": 3003339,
+      "loss_samples": null,
+      "boundary_evidence": "validated_wire_full_prefix_crc32",
+      "failure": null,
+      "stop_requested": true,
+      "stop_request_id": 4
+    },
+    "clean_stop_reported": false,
+    "physical_identity_verified": false,
+    "timing_qualified": false,
+    "adc_losslessness_verified": false,
+    "wire": {
+      "chunks": 19828,
+      "host_bytes": 136,
+      "device_bytes": 7203121,
+      "empty_delimiters": 1,
+      "decode_errors": [],
+      "trailing_partial_bytes": [
+        0,
+        0
+      ],
+      "trailing_oversized_frame": [
+        false,
+        false
+      ]
+    },
+    "observed_build_id": 1446138690,
+    "observed_caps": {
+      "config_id": 1,
+      "profile": 1,
+      "channel": 0,
+      "adc_bits": 12,
+      "fs_num": 100000,
+      "fs_den": 1,
+      "max_block": 128,
+      "flags": 1
+    },
+    "selected_samples": 3001803,
+    "selected_bytes": 6003606,
+    "wire_selected_samples": 3001803,
+    "wire_selected_sha256": "a663b934b5a83a0752287d9f7965e81b67cbcdf0667ae4aa19786e79f18a3741",
+    "journal_selected_sha256": "a663b934b5a83a0752287d9f7965e81b67cbcdf0667ae4aa19786e79f18a3741",
+    "selected_range_byte_equal": true,
+    "first_mismatch_sample": null,
+    "selected_gaps": [],
+    "selected_overlaps": [],
+    "decoded_data_samples": 3003339,
+    "decoded_data_sha256": "48241123c150dc9a758f21eaf10e3795cb31889cc9e37fc6fc0854385fb105f5",
+    "contiguous_prefix_crc32": "0x7c32b12a",
+    "decoded_prefix_end": 3003339,
+    "raw_gaps": [],
+    "raw_overlaps": [],
+    "kinds": {
+      "host/HELLO": 1,
+      "device/HELLO_ACK": 1,
+      "host/GET_CAPS": 1,
+      "device/CAPS": 1,
+      "host/START": 1,
+      "device/START_ACK": 1,
+      "device/DATA": 23464,
+      "host/STOP": 1,
+      "device/END": 1,
+      "device/STOP_ACK": 1
+    },
+    "immediate_duplicates": 0,
+    "unrelated_frames": 0,
+    "protocol_issues": [],
+    "ends": [
+      {
+        "generation": 3,
+        "config_id": 1,
+        "prefix_end": 3003339,
+        "produced_end": null,
+        "last_data_sequence": 23467,
+        "prefix_crc32": 2083696938,
+        "reason": 0,
+        "flags": 3,
+        "stop_request_id": 4,
+        "sequence": 23468,
+        "host_monotonic": 1374634.1114261,
+        "prefix_crc_verified": true
+      }
+    ],
+    "stop_acks": [
+      {
+        "generation": 3,
+        "prefix_end": 3003339,
+        "terminal_sequence": 23468,
+        "flags": 3,
+        "sequence": 23469,
+        "host_monotonic": 1374634.1114261
+      }
+    ],
+    "unknown_produced_end": true,
+    "limits": [
+      "This is a narrow offline observation check, not a full endpoint deadline replay.",
+      "Matching bytes verify the selected retained range, not unobserved ADC conversions.",
+      "Missing END or produced_end=null retains an unknown tail; no zero-loss inference.",
+      "Host monotonic timestamps are I/O observations, not calibrated sample timing.",
+      "Source/image provenance and the physical board require separate evidence."
+    ]
+  },
+  "verifier_sha256": "30631ddfdd4364a38361f21305e5166a7b4314a4e34aa8ac79b8fbb83fa9a40e",
+  "one_saved_evidence_verifier_call": true,
+  "fresh_open_companion_checked": true,
+  "diagnostics_raw": {
+    "magic": 1297368135,
+    "version": 1,
+    "bytes": 136,
+    "firmware_build": 1446138690,
+    "phase": 3,
+    "flags": 0,
+    "generation": 3,
+    "step_count": 32620,
+    "step_body_max_cycles": 270803,
+    "step_gap_max_cycles": 271188,
+    "tx_count": 32620,
+    "tx_max_cycles": 19350,
+    "poll_count": 32610,
+    "driver_observed_poll_gap_us": 1384,
+    "poll_gap_max_cycles": 99642,
+    "copy_count": 5865,
+    "copy_max_us": 134,
+    "queue_high_water": 6,
+    "first_runtime_result": 0,
+    "first_local_error": 0,
+    "first_acquisition_reason": 0,
+    "first_adc_fault": 0,
+    "first_epoch": 0,
+    "final_runtime_result": 0,
+    "final_core_state": 7,
+    "final_epoch": 3,
+    "final_adc_state": 0,
+    "final_adc_owned": 0,
+    "final_hardware_off": 1,
+    "start_cycle": 3568166634,
+    "last_cycle": 1436260468,
+    "freeze_cycle": 1436260468,
+    "nonce_low": 2198339581,
+    "nonce_high": 3503831875
+  },
+  "diagnostic_pair_sha256": "3ee5fcd1a7169e825955f03ce92b04a788a4269112c1d6ac3bb023a8ccd830a0",
+  "registers_independently_unpacked": {
+    "TIM3_CR1": 0,
+    "TIM3_PSC": 71,
+    "TIM3_ARR": 9,
+    "ADC_CR2": 0,
+    "ADC_SMPR1": 0,
+    "ADC_SMPR2": 4,
+    "DMA_CCR": 9632,
+    "RCC_APB2RSTR": 0,
+    "RCC_APB1RSTR": 0,
+    "RCC_AHBENR": 21,
+    "RCC_APB2ENR": 516,
+    "RCC_APB1ENR": 8388611
+  },
+  "all_register_checks": true,
+  "external_procedure_facts_source": "Root hardware-procedure-facts.json and trial-invocation.json; critic did not observe hardware live",
+  "external_procedure_facts_sha256": "dc0500a96e2a254b775ad32d451671a8b9bd7734baf1c0a593ce826a67c56641",
+  "original_files_unchanged": true,
+  "hardware_access_by_critic": false,
+  "software_tests_or_builds_repeated": false,
+  "additional_START_or_flash": false,
+  "findings": []
+}

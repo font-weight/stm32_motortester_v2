@@ -1,0 +1,107 @@
+{
+  "schema": "v2-06h2-independent-physical-review-1",
+  "reviewer": "stream200_critic",
+  "independent": true,
+  "date": "2026-10-24",
+  "status": "PASS",
+  "score": 9.595,
+  "scope": "One physical V2SB Record30s trial at nominal100000samples/s on current COM6 board with PA0 empty; not indefinite reliability or analog qualification",
+  "source_commit": "8243fb3224a1e24980848a8ce02431ec41f5bd9c",
+  "source_base_commit": "4c8c14727bae8715279130b05c11f7e518fd8d9a",
+  "plan_sha256": "03c49dcd130733fb11fd4b68baeb65dd0e8533b3626443a18d2b6eb417e3f715",
+  "physical_manifest_sha256": "63a47ca9179b7b9234e517e635713442a4b7e93f151d9e494c04880d526bf09b",
+  "checks_sha256": "af56d264861ea2dd7bb1291052f7d1da4e64ab216e061b8ade09e2ce1c4b61e4",
+  "candidate_build": "0x56325342",
+  "candidate_bytes": 37224,
+  "candidate_sha256": "e7f6f07fc6a43e6b109af6e5c652db1322a0e5023e328007b2c50d303f12536e",
+  "candidate_elf_sha256": "f129421a4dfb3baf3d30dbefc0923dcdfcf6ec4ddb0e02293c0ece78fb6d14ed",
+  "flash_admission_sha256": "726f955c9601685560f52580a15ed154c4c32f0b5f2cfd179370c826652eb3a5",
+  "physical_attempts": 1,
+  "record_seconds": 30.00303989998065,
+  "whole_command_wall_seconds_reported_by_root": 31.7603295,
+  "rough_received_per_host_second": 100004.79984702934,
+  "nonce_hex": "d0d83b438307fffd",
+  "generation": 3,
+  "received_prefix_samples": 3003339,
+  "received_prefix_sha256": "48241123c150dc9a758f21eaf10e3795cb31889cc9e37fc6fc0854385fb105f5",
+  "prefix_crc32": 2083696938,
+  "selected_range": [
+    1536,
+    3003339
+  ],
+  "selected_samples": 3001803,
+  "selected_raw_sha256": "a663b934b5a83a0752287d9f7965e81b67cbcdf0667ae4aa19786e79f18a3741",
+  "normal_stop": {
+    "host_stop_request": 4,
+    "END_sequence": 23468,
+    "END_reason": 0,
+    "END_flags": 3,
+    "END_after_STOP": true,
+    "ACK_sequence": 23469,
+    "matching_ACK": true,
+    "produced_end": null,
+    "loss_samples": null
+  },
+  "diagnostic_pair_sha256": "3ee5fcd1a7169e825955f03ce92b04a788a4269112c1d6ac3bb023a8ccd830a0",
+  "diagnostic_flags": 0,
+  "queue_high_water": 6,
+  "queue_slots": 8,
+  "observed_poll_max_us": 1384,
+  "observed_copy_max_us": 134,
+  "observed_deadline_us_exclusive": 5120,
+  "stopped_registers_confirmed": true,
+  "owners_closed": true,
+  "board_retained": "V2SB; no rollback",
+  "software_tests_or_builds_repeated": false,
+  "hardware_access_by_reviewer": false,
+  "one_offline_saved_data_verification": true,
+  "ratings": [
+    {
+      "criterion": "C1",
+      "weight": 0.3,
+      "score": 9.6,
+      "basis": "One exact SB trial met predeclared30s/nominal100k identity, requested Stop and preservation criteria; unknown produced tail remains explicit."
+    },
+    {
+      "criterion": "C2",
+      "weight": 0.2,
+      "score": 9.6,
+      "basis": "No reported device/host fault; frozen flags0, queue6of8, observed poll/copy below5120us, stopped hardware and closed owner; one-run limits remain."
+    },
+    {
+      "criterion": "C3",
+      "weight": 0.25,
+      "score": 9.6,
+      "basis": "Exact readback,41archive pairs, personally verified full selected raw/CRC/sequence and fresh companion, independent binary diagnostic/register unpacking; live procedural facts attributed to operator."
+    },
+    {
+      "criterion": "C4",
+      "weight": 0.15,
+      "score": 9.5,
+      "basis": "Acceptance is bounded to one empty-input physical trial; GUI/analog/calibration and indefinite reliability are explicitly excluded."
+    },
+    {
+      "criterion": "C5",
+      "weight": 0.1,
+      "score": 9.7,
+      "basis": "Exact source/base/plan/image, raw originals, failure history and final retained board state are documented without requiring chat history."
+    }
+  ],
+  "open_P0_P1_in_scope": [],
+  "historical_failed_attempts_preserved": true,
+  "physical_100ksps_trial_accepted": true,
+  "indefinite_stability_accepted": false,
+  "calibrated_sample_rate_accepted": false,
+  "voltage_or_analog_input_accepted": false,
+  "physical_GUI_accepted": false,
+  "future_150ksps_10bit_accepted": false,
+  "limitations": [
+    "One30s trial on current board/PC, PA0 empty; not all setups or long-duration reliability.",
+    "Original DATA is intact over the known transmitted/selected prefix; unobserved produced tail and ADC losses remain unknown.",
+    "Host pacing is not calibrated ADC clock; postStop registers do not independently measure active analog bandwidth or voltage response.",
+    "No live GUI/cursor/display/EXE interaction was tested here; prior software/package evidence stays separate.",
+    "Root supplied live replug/noSWD/nohalt/owner-order facts; critic reviewed saved files only.",
+    "Legacy maxima include terminal/drain context and TX excludes encode; not WCET, CPU ratio or proof of the sole causal mechanism.",
+    "A single success does not replace or relabel earlier FAIL evidence;150k/10bit is a separate prospective scope."
+  ]
+}
