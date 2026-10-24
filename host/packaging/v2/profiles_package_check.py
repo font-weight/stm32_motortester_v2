@@ -8,13 +8,11 @@ from pathlib import Path
 import csv
 import platform
 
-from build_windows import file_tree, png_info, read_json, sha256, write_json
-
-
 def verify_profiles_package(*, output, gui_exe, relocated, foreign_cwd,
                             frozen_env, run, portable, portable_hash,
                             expected_tree, source_archive, revision,
-                            exe_hashes, log):
+                            exe_hashes, log, file_tree, png_info, read_json,
+                            sha256, write_json):
     smoke_output = output / "frozen-profiles"
     run(gui_exe, "--verify-profiles", smoke_output, cwd=foreign_cwd,
         environment=frozen_env, timeout=90)

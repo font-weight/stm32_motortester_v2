@@ -375,7 +375,9 @@ def main(argv=None):
             foreign_cwd=foreign_cwd, frozen_env=frozen_env, run=run,
             portable=portable, portable_hash=portable_hash,
             expected_tree=expected_tree, source_archive=source_archive,
-            revision=revision, exe_hashes=exe_hashes, log=log)
+            revision=revision, exe_hashes=exe_hashes, log=log,
+            file_tree=file_tree, png_info=png_info, read_json=read_json,
+            sha256=sha256, write_json=write_json)
     run(gui_exe, "--verify-package", smoke_output, cwd=foreign_cwd,
         environment=frozen_env, timeout=FROZEN_TIMEOUT)
     smoke = read_json(smoke_output / "result.json")
