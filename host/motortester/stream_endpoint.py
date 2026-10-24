@@ -12,7 +12,8 @@ import zlib
 from .stream_wire import (COUNTER_RESERVE, MAX_BLOCK, MAX_ENCODED, MAX_FRAME,
                           U32_MAX, U64_MAX, Caps, Data, End, Error, Frame, HelloAck,
                           Kind, StartAck, StopAck, WireError, decode_frame,
-                          decode_payload, encode_frame, uint)
+                          decode_payload, encode_frame, uint, MODE_TABLE, MODE_REVISION,
+                          SUPPORTED_SAMPLE_RATES, caps_values)
 
 REQUEST_MS, DATA_MS, PARTIAL_MS, CLEANUP_MS = 2000, 1000, 1000, 2000
 MAX_TIME_MS = (1 << 63) - 1
@@ -34,6 +35,7 @@ def is_unknown_tail_stop(terminal: End) -> bool:
 class State(str, Enum):
     NO_SESSION = "no_session"
     HELLO = "hello"
+    MODE_REQUIRED = "mode_required"
     STOPPED = "stopped"
     STARTING = "starting"
     STREAMING = "streaming"
@@ -75,6 +77,12 @@ class Negotiated:
     nonce: int
     firmware_build: int
     capabilities: Caps | None  # None until a separate GET_CAPS succeeds.
+
+
+@dataclass(frozen=True, slots=True)
+class ModeRequired:
+    nonce: int
+    firmware_build: int
 
 
 @dataclass(frozen=True, slots=True)
@@ -183,7 +191,13 @@ class Endpoint:
     Caller errors in time/action/nonce inputs raise ValueError without mutation;
     malformed transport observations fail the session closed with fixed codes.
     """
-    def __init__(self):
+    def __init__(self, requested_sample_rate_hz=None):
+        if requested_sample_rate_hz is not None and (type(requested_sample_rate_hz) is not int or
+                requested_sample_rate_hz not in SUPPORTED_SAMPLE_RATES):
+            raise ValueError("requested_sample_rate_hz")
+        self.requested_sample_rate_hz = requested_sample_rate_hz
+        self.revision = "0.2"
+        self.mode = 0
         self.state = State.NO_SESSION
         self.nonce = None
         self.generation = None
@@ -327,7 +341,7 @@ class Endpoint:
             if kind != Kind.STOP and (req >= COUNTER_RESERVE or seq >= COUNTER_RESERVE):
                 return [Refused("counter_reserve")]
             header_nonce = self.nonce
-        wire = encode_frame(kind, header_nonce, seq, req, payload)
+        wire = encode_frame(kind, header_nonce, seq, req, payload, revision=self.revision)
         identity = Pending(kind, self.nonce, req, seq, action_id, now_ms, now_ms + REQUEST_MS)
         request = _Request(identity, (b"\0" if recovery else b"") + wire, int(recovery))
         if kind == Kind.STOP:
@@ -366,7 +380,25 @@ class Endpoint:
         self._partial_deadline = None
         self._discarding = False
         self.state = State.HELLO
-        return self._admit(Kind.HELLO, struct.pack("<Q", nonce), 0, now_ms, recovery=recovery)
+        payload = (struct.pack("<QHH", nonce, self.mode, 0) if self.revision == "0.3"
+                   else struct.pack("<Q", nonce))
+        return self._admit(Kind.HELLO, payload, 0, now_ms, recovery=recovery)
+
+    def select_mode(self, nonce: int, now_ms: int) -> tuple:
+        """Only an accepted discovery marker permits this fresh-nonce upgrade."""
+        self._check_time(now_ms)
+        self._check_nonce(nonce)
+        events = self._advance(now_ms)
+        if events:
+            return tuple(events)
+        if self.state != State.MODE_REQUIRED or nonce == self.nonce:
+            return (Refused("mode_handshake_required"),)
+        requested = self.requested_sample_rate_hz or 100_000
+        modes = [mode for mode, values in MODE_TABLE.items() if values[0] == requested]
+        if not modes:
+            return tuple(self._recover("requested_mode_unsupported", now_ms))
+        self.revision, self.mode = "0.3", modes[0]
+        return tuple(self._hello(nonce, now_ms, False))
 
     def hello(self, nonce: int, now_ms: int) -> tuple:
         self._check_time(now_ms)
@@ -471,7 +503,9 @@ class Endpoint:
             return (Refused("start_plan"),)
         if self._next_rx >= COUNTER_RESERVE:
             return (Refused("counter_reserve"),)
-        events = self._admit(Kind.START, struct.pack("<HH", 1, 0), action_id, now_ms)
+        payload = (struct.pack("<I", self._caps.config_id) if self.revision == "0.3"
+                   else struct.pack("<HH", 1, 0))
+        events = self._admit(Kind.START, payload, action_id, now_ms)
         if isinstance(events[0], Pending):
             self._plan = None
         return tuple(events)
@@ -605,13 +639,18 @@ class Endpoint:
 
     def _frame(self, raw, now_ms):
         try:
-            frame = decode_frame(raw, "device")
+            # Framing, length, CRC and header remain bounded/validated even
+            # for an unknown version. A foreign session cannot change this
+            # session's protocol; current-nonce revision is checked below.
+            frame = decode_frame(raw, "device", allow_unknown_revision=True)
         except WireError as exc:
             if exc.code in ("version", "direction", "type") or self.state in (State.STARTING, State.STREAMING, State.DRAINING, State.TERMINAL, State.NEEDS_HELLO):
                 return self._recover(exc.code, now_ms)
             return []
         if frame.nonce != self.nonce:
             return []
+        if frame.revision != self.revision:
+            return self._recover("version", now_ms)
         if self.state == State.HELLO:
             if (frame.kind, frame.sequence, frame.request_id) != (Kind.HELLO_ACK, 1, 1):
                 return self._recover("hello_correlation", now_ms)
@@ -660,11 +699,19 @@ class Endpoint:
                 raise WireError("state")
             self._build = payload.firmware_build
             self._ordinary = None
+            if payload.capabilities == 3:
+                self.state = State.MODE_REQUIRED
+                return [ModeRequired(self.nonce, self._build)]
             self.state = State.STOPPED
             return [Negotiated(self.nonce, self._build, None)]
         if k == Kind.CAPS:
             if self.state != State.STOPPED or request.identity.kind != Kind.GET_CAPS or not isinstance(payload, Caps):
                 raise WireError("state")
+            if self.revision == "0.3" and payload.profile != self.mode:
+                raise WireError("selected_mode")
+            if (self.requested_sample_rate_hz is not None and
+                    payload.fs_num != self.requested_sample_rate_hz * payload.fs_den):
+                raise WireError("selected_rate_mismatch_fixed_" + str(payload.fs_num))
             self._caps = payload
             self._ordinary = None
             return [Negotiated(self.nonce, self._build, self._caps)]
@@ -673,6 +720,8 @@ class Endpoint:
                 raise WireError("generation")
             if now_ms > MAX_TIME_MS - DATA_MS:
                 raise WireError("clock_limit")
+            if payload.config_id != self._caps.config_id:
+                raise WireError("config")
             event = Started(self.nonce, payload.generation, payload.config_id, payload.first_index, request.identity, self._caps)
             self._ordinary = None
             self._data_deadline = now_ms + DATA_MS
@@ -683,6 +732,8 @@ class Endpoint:
                 raise WireError("state")
             if payload.generation != self.generation:
                 raise WireError("generation")
+            if payload.config_id != self._caps.config_id:
+                raise WireError("config")
             if self._short_seen:
                 raise WireError("data_after_short")
             if payload.first_index != self.received_end:
@@ -705,6 +756,8 @@ class Endpoint:
                 raise WireError("state")
             if payload.generation != self.generation:
                 raise WireError("generation")
+            if payload.config_id != self._caps.config_id:
+                raise WireError("config")
             if (payload.prefix_end, payload.prefix_crc32, payload.last_data_sequence) != (self.received_end, self.received_crc32, self._last_data):
                 raise WireError("terminal_prefix")
             if payload.stop_request_id and (self._stop is None or not self._stop.identity.complete or payload.stop_request_id != self._stop.identity.request_id):

@@ -5,7 +5,7 @@ is separate; the invocation owns selection/intent checks, not these carriers.
 Existing generic/synthetic identity strings keep their previous meaning.
 """
 from dataclasses import asdict, dataclass, fields
-from .stream_wire import SUPPORTED_SAMPLE_RATES
+from .stream_wire import LEGACY_SAMPLE_RATES, MODE_REVISION, MODE_TABLE, SUPPORTED_SAMPLE_RATES
 
 
 DMA_DOMAIN = "completed-dma-v1"
@@ -25,6 +25,7 @@ class DeviceStreamContext:
     A HELLO build number is an observation, never authentication of an image.
     """
     execution_kind: str = "physical"
+    requested_sample_rate_hz: int | None = None
 
 
 def validate_device_context(context):
@@ -32,15 +33,21 @@ def validate_device_context(context):
             type(context.execution_kind) is not str or
             context.execution_kind not in ("physical", "injected-test")):
         raise ProvenanceError("Exact device/test stream context required")
+    if context.requested_sample_rate_hz is not None and (
+            type(context.requested_sample_rate_hz) is not int or
+            context.requested_sample_rate_hz not in SUPPORTED_SAMPLE_RATES):
+        raise ProvenanceError("Unsupported requested sample rate")
     return context
 
 
-def device_context_identity(context, observed_build):
+def device_context_identity(context, observed_build, revision="0.2"):
     context = validate_device_context(context)
     if type(observed_build) is not int or not 0 <= observed_build <= 0xffffffff:
         raise ProvenanceError("Validated HELLO build observation required")
     origin = "device" if context.execution_kind == "physical" else "synthetic"
-    return origin, ("0.2-draft-081721", f"build:{observed_build:08x}",
+    if revision not in ("0.2", "0.3"):
+        raise ProvenanceError("Unsupported observed wire revision")
+    return origin, (MODE_REVISION if revision == "0.3" else "0.2-draft-081721", f"build:{observed_build:08x}",
                     "v2-serial-unknown-accounting:" + context.execution_kind)
 
 
@@ -226,9 +233,12 @@ def profile_for_identity(identity):
             build = int(artifact.removeprefix("build:"), 16)
         except (AttributeError, TypeError, ValueError) as exc:
             raise ProvenanceError("Missing observed device build") from exc
-        origin, metadata = device_context_identity(context, build)
+        modes = revision == MODE_REVISION
+        origin, metadata = device_context_identity(context, build, "0.3" if modes else "0.2")
         if ((revision, artifact, producer) != metadata or identity.origin != origin or
-                identity.config_id != 1 or identity.nominal_fs_hz not in SUPPORTED_SAMPLE_RATES):
+                (not modes and (identity.config_id != 1 or identity.nominal_fs_hz not in LEGACY_SAMPLE_RATES)) or
+                (modes and (identity.config_id not in MODE_TABLE or
+                            identity.nominal_fs_hz != MODE_TABLE[identity.config_id][0]))):
             raise ProvenanceError("Mixed generic device identity")
         return None  # Deliberately preserves original, non-DMA counter semantics.
     marked = ("dma-sequence" in (revision or "") or

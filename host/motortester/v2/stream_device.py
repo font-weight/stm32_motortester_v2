@@ -18,10 +18,11 @@ from ..stream_controller import StreamController
 from ..stream_provenance import DeviceStreamContext
 from ..stream_serial import SerialSettings, SerialStreamPeer
 from ..stream_session import SessionLimits
-from ..stream_recording import (ATTEMPT_MAGIC, MAX_ATTEMPT_FILE_BYTES, StreamLimits,
+from ..stream_recording import (ATTEMPT_MAGICS, MAX_ATTEMPT_FILE_BYTES, StreamLimits,
                                 recover, recover_attempt)
+from ..stream_model import LEGACY_IDENTITY_FIELDS
 from ..stream_view import EventConfig
-from ..stream_wire import SUPPORTED_SAMPLE_RATES, supported_caps
+from ..stream_wire import SUPPORTED_SAMPLE_RATES, supported_caps, supported_mode_caps, MODE_REVISION
 from .input import InputProfile, UNKNOWN_PROFILE, text
 from .stream_demo import PacedStreamPeer
 
@@ -30,7 +31,7 @@ CONTEXT_FORMAT = "motortester-v2-stream-context"
 DEFAULT_EVENT_CONFIG = EventConfig(2600, 2200, "above", 50, 150, 25, 100, 500, 0, 4095)
 
 
-def default_event_config(sample_rate_hz):
+def default_event_config(sample_rate_hz, retained_bits=12):
     """Keep default navigation durations at 1/3/0.5/2/10 ms for every rate.
 
     Threshold codes are unchanged. These are host event windows, not an ADC
@@ -39,7 +40,7 @@ def default_event_config(sample_rate_hz):
     if sample_rate_hz not in SUPPORTED_SAMPLE_RATES:
         raise ValueError("Неподдерживаемая частота навигации")
     scale = sample_rate_hz // 50_000
-    return replace(DEFAULT_EVENT_CONFIG, **{
+    return replace(DEFAULT_EVENT_CONFIG, rail_high=4092 if retained_bits == 10 else 4095, **{
         field: getattr(DEFAULT_EVENT_CONFIG, field) * scale for field in
         ("pre_samples", "post_samples", "baseline_samples", "holdoff_samples", "max_event_samples")})
 
@@ -50,9 +51,14 @@ class SerialStreamSelection:
     port: str
     declared_source_commit: str | None = None
     declared_artifact_sha256: str | None = None
+    requested_sample_rate_hz: int | None = None
 
     def __post_init__(self):
         SerialSettings(self.port)
+        if self.requested_sample_rate_hz is not None and (
+                type(self.requested_sample_rate_hz) is not int or
+                self.requested_sample_rate_hz not in SUPPORTED_SAMPLE_RATES):
+            raise ValueError("Неподдерживаемая выбранная частота")
         for value, size in ((self.declared_source_commit, 40), (self.declared_artifact_sha256, 64)):
             if value is not None and (type(value) is not str or len(value) != size or
                     any(c not in "0123456789abcdef" for c in value)):
@@ -68,6 +74,7 @@ class StreamConnection:
     dtr_requested: bool = True
     accounting_domain: str = "unknown"
     image_verified: bool = False
+    protocol_revision: str = "0.2"
 
     def __post_init__(self):
         if type(self.selection) is not SerialStreamSelection:
@@ -75,10 +82,14 @@ class StreamConnection:
         self.selection.__post_init__()
         if (self.execution_kind not in ("physical", "injected-test") or
                 type(self.observed_build_id) is not int or not 0 <= self.observed_build_id <= 0xffffffff or
-                not supported_caps(self.observed_caps) or
+                not ((self.protocol_revision == "0.2" and supported_caps(self.observed_caps)) or
+                     (self.protocol_revision == "0.3" and supported_mode_caps(self.observed_caps))) or
                 self.dtr_requested is not True or self.accounting_domain != "unknown" or
                 self.image_verified is not False):
-            raise ValueError("Некорректное наблюдение wire 0.2; образ и домен учёта не подтверждены")
+            raise ValueError("Некорректное наблюдение потока; образ и домен учёта не подтверждены")
+        if (self.selection.requested_sample_rate_hz is not None and
+                self.selection.requested_sample_rate_hz != self.observed_caps[4]):
+            raise ValueError("Выбранная частота не соответствует CAPS")
 
 
 class _DtrBackend:
@@ -172,9 +183,10 @@ def _digest(path):
     return digest.hexdigest(), count
 
 
-def _journal_binding(path):
+def _journal_binding(path, *, legacy=False):
     with Path(path).open("rb") as stream:
-        attempt = stream.read(8) == ATTEMPT_MAGIC
+        magic = stream.read(8)
+        attempt = magic in ATTEMPT_MAGICS
     if attempt:
         report = recover_attempt(path)
         recording = report.recording
@@ -182,8 +194,13 @@ def _journal_binding(path):
     else:
         recording = recover(path)
         identity, recording_id = recording.identity, recording.start.recording_id
+    values = asdict(identity)
+    if legacy:
+        if magic not in (b"MTSTRM\x01\x00", b"MTSTRM\x02\x00"):
+            raise ValueError("Старый companion не описывает новую версию журнала")
+        values = {name: values[name] for name in LEGACY_IDENTITY_FIELDS}
     return {
-        "identity": asdict(identity), "recording_id": recording_id,
+        "identity": values, "recording_id": recording_id,
         "first_sample_index": None if recording is None else recording.first_sample_index,
         "end_sample_index": None if recording is None else recording.end_sample_index,
     }
@@ -196,13 +213,13 @@ def _write_context(path, context, expected_identity, connection=None):
         raise ValueError("Файл не принадлежит текущей потоковой попытке")
     digest, size = _digest(path)
     value = {
-        "format": CONTEXT_FORMAT, "format_version": 1,
+        "format": CONTEXT_FORMAT, "format_version": 3,
         "context": asdict(context), "time_basis": "nominal_unverified",
         "journal_sha256": digest, "journal_bytes": size, "journal": binding,
+        "connection": None,
     }
     if connection is not None:
         _verify_connection(connection, binding["identity"])
-        value["format_version"] = 2
         value["connection"] = asdict(connection)
     atomic_write(companion_path(path),
                  json.dumps(value, ensure_ascii=False, indent=2, allow_nan=False).encode("utf-8"))
@@ -217,10 +234,14 @@ def _verify_connection(connection, identity):
     if (identity["origin"] != origin or
             identity["firmware_version"] != f"build:{connection.observed_build_id:08x}" or
             identity["application_version"] != "v2-serial-unknown-accounting:" + connection.execution_kind or
-            identity["protocol_revision"] != "0.2-draft-081721" or
+            identity["protocol_revision"] != (MODE_REVISION if connection.protocol_revision == "0.3" else "0.2-draft-081721") or
             identity["config_id"] != connection.observed_caps[0] or
             identity["nominal_fs_hz"] != connection.observed_caps[4]):
         raise ValueError("Наблюдение соединения не соответствует журналу")
+    if connection.protocol_revision == "0.3" and (
+            identity["acquisition_mode"] != connection.observed_caps[0] or
+            identity["retained_bits"] != connection.observed_caps[8]):
+        raise ValueError("Описание квантования не соответствует CAPS")
 
 
 def open_verified_context(path):
@@ -240,11 +261,11 @@ def open_verified_context(path):
     value = json.loads(raw)
     required = {"format", "format_version", "context", "time_basis",
                 "journal_sha256", "journal_bytes", "journal"}
-    if type(value) is dict and value.get("format_version") == 2:
+    if type(value) is dict and value.get("format_version") in (2, 3):
         required.add("connection")
     if (type(value) is not dict or set(value) != required
             or value["format"] != CONTEXT_FORMAT or type(value["format_version"]) is not int
-            or value["format_version"] not in (1, 2) or value["time_basis"] != "nominal_unverified"):
+            or value["format_version"] not in (1, 2, 3) or value["time_basis"] != "nominal_unverified"):
         raise ValueError("Неизвестный формат контекста потока")
     context = value["context"]
     if type(context) is not dict or set(context) != set(StreamContext.__dataclass_fields__):
@@ -253,10 +274,18 @@ def open_verified_context(path):
     context["input_profile"] = InputProfile(**context["input_profile"])
     context = StreamContext(**context)
     connection = None
-    if value["format_version"] == 2:
+    if value["format_version"] == 2 and value["connection"] is None:
+        raise ValueError("Старый serial companion требует контекст соединения")
+    if value["format_version"] in (2, 3) and value["connection"] is not None:
         raw_connection = value["connection"]
+        connection_fields = set(StreamConnection.__dataclass_fields__)
+        selection_fields = set(SerialStreamSelection.__dataclass_fields__)
+        if value["format_version"] == 2:
+            connection_fields.remove("protocol_revision")
+            selection_fields.remove("requested_sample_rate_hz")
         if (type(raw_connection) is not dict or
-                set(raw_connection) != set(StreamConnection.__dataclass_fields__)):
+                set(raw_connection) != connection_fields or type(raw_connection["selection"]) is not dict or
+                set(raw_connection["selection"]) != selection_fields):
             raise ValueError("Некорректный контекст соединения")
         raw_connection = dict(raw_connection)
         raw_connection["selection"] = SerialStreamSelection(**raw_connection["selection"])
@@ -267,7 +296,7 @@ def open_verified_context(path):
     if (type(value["journal_sha256"]) is not str
             or not hmac.compare_digest(digest, value["journal_sha256"])
             or type(value["journal_bytes"]) is not int or size != value["journal_bytes"]
-            or value["journal"] != _journal_binding(path)):
+            or value["journal"] != _journal_binding(path, legacy=value["format_version"] < 3)):
         raise ValueError("Контекст не соответствует исходному потоковому файлу")
     return VerifiedStreamContext(context, True, digest, connection)
 
@@ -313,7 +342,8 @@ class StreamDeviceBridge(QtCore.QObject):
             # 1024 full wire blocks still fit the existing 256 KiB byte cap.
             # At 200k this allows the same 655 ms disk stall budget as 256
             # blocks at 50k. Exhaustion remains an explicit incomplete stop.
-            **({"managed_peer": True, "device_context": DeviceStreamContext(self._execution_kind),
+            **({"managed_peer": True, "device_context": DeviceStreamContext(
+                    self._execution_kind, selection.requested_sample_rate_hz),
                 "session_limits": SessionLimits(max_raw_items=1024)}
                if self.is_device else {}))
         self._display_lock = threading.Lock()
@@ -381,7 +411,8 @@ class StreamDeviceBridge(QtCore.QObject):
             return False
         # Select sample counts only after accepted CAPS, before a new source.
         # Explicit custom sample configurations retain their caller's meaning.
-        config = (default_event_config(self.connection.observed_caps[4])
+        config = (default_event_config(self.connection.observed_caps[4],
+                    self.connection.observed_caps[8] if self.connection.protocol_revision == "0.3" else 12)
                   if self._default_event_config and self.connection is not None else None)
         if not self.controller.preview(**({"event_config": config} if config is not None else {})):
             return False
@@ -402,6 +433,15 @@ class StreamDeviceBridge(QtCore.QObject):
         self._last_error = None
         self._connect_pending = True
         self._fence_new_source(previous.revision)
+        return True
+
+    def select_sample_rate(self, rate):
+        if not self.is_device or self._connect_pending or self._disconnecting or self._closing:
+            return False
+        selection = replace(self.selection, requested_sample_rate_hz=rate)
+        if not self.controller.select_sample_rate(rate):
+            return False
+        self._selection = selection
         return True
 
     def disconnect_source(self):
@@ -487,7 +527,8 @@ class StreamDeviceBridge(QtCore.QObject):
         bridge = status.bridge
         if status.ready and self.is_device and self.connection is None:
             self.connection = StreamConnection(self.selection, self._execution_kind,
-                                               bridge.accepted_build_id, bridge.accepted_caps)
+                                               bridge.accepted_build_id, bridge.accepted_caps,
+                                               protocol_revision="0.3" if len(bridge.accepted_caps) == 10 else "0.2")
         if (bridge is not None and bridge.identity is not None
                 and status.revision >= self._minimum_display_revision
                 and status.revision != self._revision and not status.can_open):
@@ -501,8 +542,13 @@ class StreamDeviceBridge(QtCore.QObject):
         message = status.error or status.display_error
         if not message and self.is_device and bridge and bridge.endpoint_first_fault:
             code = bridge.endpoint_first_fault.code
-            message = (f"Проверка wire 0.2 отклонена: {code}. START не разрешён."
+            message = (f"Проверка потока отклонена: {code}. START не разрешён."
                        if bridge.session is None else f"Приём остановлен: {code}. Сохранён проверенный префикс.")
+            if code.startswith("selected_rate_mismatch_fixed_"):
+                rate = code.removeprefix("selected_rate_mismatch_fixed_")
+                message = (f"Эта прошивка имеет фиксированную частоту {rate} отсчётов/с. "
+                           "Приём не запущен. Закройте окно приёма, откройте его снова, "
+                           "выберите эту частоту и подключитесь.")
         if message:
             self._report_error(message)
         if self._record_path is not None and not self._metadata_started and status.can_open:

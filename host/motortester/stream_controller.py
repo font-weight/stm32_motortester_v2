@@ -277,6 +277,20 @@ class StreamController:
         """Explicit managed open only; never negotiates, previews or records."""
         return self._managed_peer and self._submit("connect", None, None)
 
+    def select_sample_rate(self, rate):
+        """Change the next negotiation only while no port/command is owned."""
+        from .stream_provenance import validate_device_context
+        if self._device_context is None:
+            return False
+        selected = replace(self._device_context, requested_sample_rate_hz=rate)
+        validate_device_context(selected)
+        with self._lock:
+            if (not self._status.can_connect or self._ordinary_inflight or self._command is not None or
+                    self._stop_requested or self._close_requested or self._serial_close_pending):
+                return False
+            self._device_context = selected
+        return True
+
     def prepare(self):
         """Explicit HELLO/CAPS only. No START reservation or writer is created."""
         return self._managed_peer and self._submit("prepare", None, None)
@@ -581,7 +595,12 @@ class StreamController:
 
     def _observe(self, events, now):
         for event in events:
-            if isinstance(event, wire.Negotiated):
+            if isinstance(event, wire.ModeRequired):
+                nonce = secrets.randbits(64) or 1
+                if nonce == event.nonce:
+                    nonce = nonce % ((1 << 64) - 1) + 1
+                self._observe(self._bridge.select_mode(nonce, self._current_time()), now)
+            elif isinstance(event, wire.Negotiated):
                 if event.capabilities is None and self._negotiation == "hello":
                     self._negotiation = "caps"
                     now = self._current_time()

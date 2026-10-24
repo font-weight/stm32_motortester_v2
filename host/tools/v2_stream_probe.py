@@ -106,7 +106,8 @@ def run(args):
 
     try:
         with patch.object(transport, "_serial_factory", factory):
-            selection = SerialStreamSelection(args.port, args.source_commit, args.image_sha256)
+            selection = SerialStreamSelection(args.port, args.source_commit, args.image_sha256,
+                                              requested_sample_rate_hz=args.sample_rate)
             bridge = StreamDeviceBridge(selection=selection)
             bridge.finished.connect(lambda: finished.append(True))
             bridge.recording_ready.connect(saved.append)

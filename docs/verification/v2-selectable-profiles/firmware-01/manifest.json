@@ -1,0 +1,201 @@
+{
+  "schema": "v2-06i-firmware-evidence-1",
+  "scope": "Exact first SC software build/native model; independent acceptance pending; no Flash",
+  "files": [
+    {
+      "source": "build/v6i-freeze.json",
+      "archive": "docs/verification/v2-selectable-profiles/firmware-01/v6i-freeze.json",
+      "bytes": 13519,
+      "sha256": "ae1d2ab6b741cbfd76baf7557c656477c7c7c17646ea143bdc8a189c6681c7cc"
+    },
+    {
+      "source": "build/v6i-fw-01/MotortesterV2-stream-candidate.bin",
+      "archive": "docs/verification/v2-selectable-profiles/firmware-01/v6i-fw-01/MotortesterV2-stream-candidate.bin",
+      "bytes": 38188,
+      "sha256": "a36f72a772c03c5cbfd85767e5f07f0abc3ad2f2ffd7d1ee1c43143d20ca1c90"
+    },
+    {
+      "source": "build/v6i-fw-01/MotortesterV2-stream-candidate.elf",
+      "archive": "docs/verification/v2-selectable-profiles/firmware-01/v6i-fw-01/MotortesterV2-stream-candidate.elf",
+      "bytes": 73468,
+      "sha256": "c050b68d4ffff5d30ba741d7d38f23401f584e26e2500078346aac99e0b8e308"
+    },
+    {
+      "source": "build/v6i-fw-01/image.map",
+      "archive": "docs/verification/v2-selectable-profiles/firmware-01/v6i-fw-01/image.map",
+      "bytes": 78151,
+      "sha256": "20e61d51c1583d670d85383b43d2f447b46d1cf98bcedfa0b0975f425608dcbf"
+    },
+    {
+      "source": "build/v6i-fw-01/image.nm",
+      "archive": "docs/verification/v2-selectable-profiles/firmware-01/v6i-fw-01/image.nm",
+      "bytes": 18471,
+      "sha256": "f72e313b64c32f5ab1531ad648658e8477a59a8fe57f41bdcaec60b4c9121397"
+    },
+    {
+      "source": "build/v6i-fw-01/receipt.json",
+      "archive": "docs/verification/v2-selectable-profiles/firmware-01/v6i-fw-01/receipt.json",
+      "bytes": 396500,
+      "sha256": "7b75a520720d2ab81b212e572f900c78c87d7bd5e9fe833f537801bb0060133d"
+    },
+    {
+      "source": "build/v6i-fw-01/size.stdout",
+      "archive": "docs/verification/v2-selectable-profiles/firmware-01/v6i-fw-01/size.stdout",
+      "bytes": 126,
+      "sha256": "f0a691a38a899af256393c7678556025c4a63cecc5403d5508300b6c02401257"
+    },
+    {
+      "source": "build/v6i-fw-01/static-bound.json",
+      "archive": "docs/verification/v2-selectable-profiles/firmware-01/v6i-fw-01/static-bound.json",
+      "bytes": 184636,
+      "sha256": "d19591591ffe6015ec89c28f986aaba08764f412c10938707c166c57ec945f25"
+    },
+    {
+      "source": "build/v6i-native-01/acquisition/mt_acquisition_profile.c",
+      "archive": "docs/verification/v2-selectable-profiles/firmware-01/v6i-native-01/acquisition/mt_acquisition_profile.c",
+      "bytes": 1306,
+      "sha256": "3b2b6d2a9bf622b1c17476be42f4bd20500ec7c54bdcee6dd489358f57ed3e1e"
+    },
+    {
+      "source": "build/v6i-native-01/acquisition/mt_acquisition_profile.h",
+      "archive": "docs/verification/v2-selectable-profiles/firmware-01/v6i-native-01/acquisition/mt_acquisition_profile.h",
+      "bytes": 1110,
+      "sha256": "ee13d66fa060124a4ce7a1e6d65906c8aa67634ee67337ad73dbbfd40803bd39"
+    },
+    {
+      "source": "build/v6i-native-01/acquisition/mt_sample_queue.c",
+      "archive": "docs/verification/v2-selectable-profiles/firmware-01/v6i-native-01/acquisition/mt_sample_queue.c",
+      "bytes": 3378,
+      "sha256": "bf4994cc329e44cce5d6bbe79225539e60daa53bab76335538ee894bf0b82a7f"
+    },
+    {
+      "source": "build/v6i-native-01/acquisition/mt_sample_queue.h",
+      "archive": "docs/verification/v2-selectable-profiles/firmware-01/v6i-native-01/acquisition/mt_sample_queue.h",
+      "bytes": 4333,
+      "sha256": "87931cd550c6f32e54ff0f1c66ee5843b423b0f93848f706386d2ae47ae9e7c2"
+    },
+    {
+      "source": "build/v6i-native-01/compile.stderr",
+      "archive": "docs/verification/v2-selectable-profiles/firmware-01/v6i-native-01/compile.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "source": "build/v6i-native-01/compile.stdout",
+      "archive": "docs/verification/v2-selectable-profiles/firmware-01/v6i-native-01/compile.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "source": "build/v6i-native-01/model.c",
+      "archive": "docs/verification/v2-selectable-profiles/firmware-01/v6i-native-01/model.c",
+      "bytes": 19417,
+      "sha256": "10761353cf9f111bedfabbe8e865989fdf4a04baa6e9fd50a3825fb320a5956b"
+    },
+    {
+      "source": "build/v6i-native-01/model.stderr",
+      "archive": "docs/verification/v2-selectable-profiles/firmware-01/v6i-native-01/model.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "source": "build/v6i-native-01/model.stdout",
+      "archive": "docs/verification/v2-selectable-profiles/firmware-01/v6i-native-01/model.stdout",
+      "bytes": 347,
+      "sha256": "634e1bc3bb1cb91dbe2a109d457fd7c8f1d225628361de93825a38c43e506fc8"
+    },
+    {
+      "source": "build/v6i-native-01/packed-tail-transcript.bin",
+      "archive": "docs/verification/v2-selectable-profiles/firmware-01/v6i-native-01/packed-tail-transcript.bin",
+      "bytes": 334,
+      "sha256": "5eb4a4f634e0e74e9cd86bb036f4c84486489260d2f13ed5163b9d7d570e99f8"
+    },
+    {
+      "source": "build/v6i-native-01/platform/adc_timer_dma.c",
+      "archive": "docs/verification/v2-selectable-profiles/firmware-01/v6i-native-01/platform/adc_timer_dma.c",
+      "bytes": 26725,
+      "sha256": "7030ca808b3f2edb9f7943af616cf99f73de35820a1169701142c829118896b9"
+    },
+    {
+      "source": "build/v6i-native-01/platform/adc_timer_dma.h",
+      "archive": "docs/verification/v2-selectable-profiles/firmware-01/v6i-native-01/platform/adc_timer_dma.h",
+      "bytes": 10452,
+      "sha256": "6efbf2deab099513e9df6654b687cc322e4685053abf53957972d67cc23061a2"
+    },
+    {
+      "source": "build/v6i-native-01/platform/mt_stream_diag.h",
+      "archive": "docs/verification/v2-selectable-profiles/firmware-01/v6i-native-01/platform/mt_stream_diag.h",
+      "bytes": 3157,
+      "sha256": "a2dc9c01d5a1ca9168e776e33c719ec727f0e0e301aad755d12b3280931774e5"
+    },
+    {
+      "source": "build/v6i-native-01/platform/mt_timebase.c",
+      "archive": "docs/verification/v2-selectable-profiles/firmware-01/v6i-native-01/platform/mt_timebase.c",
+      "bytes": 5691,
+      "sha256": "e9adfde14df828040bd665781ecbd737a3a27e8b3d396e8639d5e93a500ca774"
+    },
+    {
+      "source": "build/v6i-native-01/platform/mt_timebase.h",
+      "archive": "docs/verification/v2-selectable-profiles/firmware-01/v6i-native-01/platform/mt_timebase.h",
+      "bytes": 2792,
+      "sha256": "b41cc0a080ddae68bffd5a1b7f4af31da7900bb29f3939c2bd2c2e690026ad39"
+    },
+    {
+      "source": "build/v6i-native-01/protocol/mt_live_device.c",
+      "archive": "docs/verification/v2-selectable-profiles/firmware-01/v6i-native-01/protocol/mt_live_device.c",
+      "bytes": 29544,
+      "sha256": "d2b1eb83b41f4bb89b6dba09495dbd37e16451a464545f51939f1bd6659f035c"
+    },
+    {
+      "source": "build/v6i-native-01/protocol/mt_live_device.h",
+      "archive": "docs/verification/v2-selectable-profiles/firmware-01/v6i-native-01/protocol/mt_live_device.h",
+      "bytes": 9158,
+      "sha256": "bf86fd103437175a782d987ce95e712021061126e6c7c8cada16b20e8930ab19"
+    },
+    {
+      "source": "build/v6i-native-01/protocol/mt_v2_crc32.h",
+      "archive": "docs/verification/v2-selectable-profiles/firmware-01/v6i-native-01/protocol/mt_v2_crc32.h",
+      "bytes": 528,
+      "sha256": "48f29791e8b0595dabdc70ec06807f4dc064a56e66db514df24dd04ea9222a2f"
+    },
+    {
+      "source": "build/v6i-native-01/protocol/mt_wire.c",
+      "archive": "docs/verification/v2-selectable-profiles/firmware-01/v6i-native-01/protocol/mt_wire.c",
+      "bytes": 11344,
+      "sha256": "f8bf4f55f2e4fc769aae0cb57b826dc116486ebefd78279ec130e133cb520fbf"
+    },
+    {
+      "source": "build/v6i-native-01/protocol/mt_wire.h",
+      "archive": "docs/verification/v2-selectable-profiles/firmware-01/v6i-native-01/protocol/mt_wire.h",
+      "bytes": 3072,
+      "sha256": "d806649d10360398e031b84e830071fb9b62728feae9fe1c44264aa8d0237f38"
+    },
+    {
+      "source": "build/v6i-native-01/result.json",
+      "archive": "docs/verification/v2-selectable-profiles/firmware-01/v6i-native-01/result.json",
+      "bytes": 29854,
+      "sha256": "9f68c319d18724696208ffc721e206b1a9cfd96da5bc0c9d4cb98f6ea5569f05"
+    },
+    {
+      "source": "build/v6i-native-01/source-equivalence.json",
+      "archive": "docs/verification/v2-selectable-profiles/firmware-01/v6i-native-01/source-equivalence.json",
+      "bytes": 6785,
+      "sha256": "ddef86700a4e5b236219a03401fcfc9a12a9f7253e60c7bf811ea0071ba6d0e7"
+    },
+    {
+      "source": "build/v6i-native-01/version.stderr",
+      "archive": "docs/verification/v2-selectable-profiles/firmware-01/v6i-native-01/version.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "source": "build/v6i-native-01/version.stdout",
+      "archive": "docs/verification/v2-selectable-profiles/firmware-01/v6i-native-01/version.stdout",
+      "bytes": 7,
+      "sha256": "355a2e14f6a7f2cb387d9d3b75a3550980d020ee1d005b139b62290c1645068a"
+    }
+  ],
+  "file_count": 32,
+  "total_bytes": 972393,
+  "all_input_pins_verified": true
+}

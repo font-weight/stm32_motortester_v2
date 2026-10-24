@@ -124,7 +124,8 @@ def exercise(app, output, flush=None, *, sample_rate_hz=200_000):
             window = MainWindow(settings_path=output / f"{rate_k}k-settings.ini")
             window.show()
             assert window.timer.isActive()
-            assert window._open_stream_workspace(SerialStreamSelection(f"V2_{rate_k}K_SYNTHETIC"))
+            assert window._open_stream_workspace(SerialStreamSelection(
+                f"V2_{rate_k}K_SYNTHETIC", requested_sample_rate_hz=rate))
             dialog = window.stream_dialog
             dialog.bridge.error.connect(errors.append)
             dialog.connect_button.click()

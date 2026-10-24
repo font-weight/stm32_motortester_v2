@@ -1,5 +1,35 @@
 # Прогресс Мотортестера V2
 
+## 24.10.2026 — V2-06i: программные свидетельства готовы, пакет ожидается
+
+Новый SC/build0x56325343 собран один раз: BIN38188байт,
+SHA256 a36f72a772c03c5cbfd85767e5f07f0abc3ad2f2ffd7d1ee1c43143d20ca1c90.
+Одна native-модель actual core/queue/driver прошла три группы; unchanged H
+runtime/TIME/DCD и guard-пути сопоставлены по исходникам. RAM со стеком8192:
+19548/20480, запас932; conditional stack6068/aligned6072. Legacy136@0x20002BD4.
+[Архив firmware](verification/v2-selectable-profiles/firmware-01/manifest.json)
+содержит32пары972393байта. Подготовительный generator один раз остановился
+на неоднозначной замене до сборки; ARM/native отказов не было.
+
+Host: четыре адресные группы прошли; последующие два прогона тех же групп
+добавили partial HELLO/legacy2 и случаи revision по замечаниям критика.
+Исходные результаты сохранены, неудачных прогонов не было. Actual C
+DATA128+tail3/END прочитан Python с совпадением131кода/CRC. Один offline
+Open прежнего H2 magic2/companion2 сохранил SHA оригиналов.
+[Host receipts](verification/v2-selectable-profiles/host-01/manifest.json):
+10пар26051байт. [Source GUI](verification/v2-selectable-profiles/gui-01/manifest.json):
+9пар13004236байт, Windows10/native windows, synthetic150k,2,086с наблюдения,
+398745сохранённых отсчётов с совпадением, все6flow-checks PASS, COMcalls0.
+Три PNG просмотрены root и критиком: элементы и отметки10бит/неизвестного
+хвоста читаемы. Это не аппаратный150k.
+
+После GUI исправлены порядок nonce/revision, platform в receipt и две UI-фразы;
+адресная unit03 проверяет protocol delta, итоговый frozen GUI должен проверить
+последние тексты/пакет. Критик снял ранние замечания по коду; итоговый software
+балл пока отсутствует. Root проверил синтаксис трёх packaging-файлов через AST.
+Полная прежняя suite/70с picker не повторялась. COM/SWD/Flash SC не было;
+на плате остаётся SB100k. Следующее действие — точная Windows-сборка и ревью.
+
 ## 24.10.2026 — V2-06i: контракт принят, программная реализация идёт
 
 [Контракт выбираемых профилей](streaming-selectable-profiles.md), canonical

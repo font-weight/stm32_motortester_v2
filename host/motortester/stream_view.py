@@ -8,7 +8,7 @@ from __future__ import annotations
 
 from bisect import bisect_left, bisect_right
 from collections import deque
-from dataclasses import dataclass, replace
+from dataclasses import dataclass, replace, fields
 from itertools import islice
 import struct
 from typing import Protocol, Iterator
@@ -60,6 +60,12 @@ def _identity(identity):
     _int(key[1]); _int(key[2]); _int(key[3], 1, 1_000_000)
     _require(key[4] in ("synthetic", "device") and type(key[4]) is str,
              "Неизвестное происхождение потока")
+    from .stream_model import StreamIdentity
+    # New intrinsic representation fields participate in all selection/cache
+    # keys. Old duck-typed readers retain equivalent, explicit legacy defaults.
+    values = {f.name: getattr(identity, f.name, f.default) for f in fields(StreamIdentity)}
+    validated = StreamIdentity(**values)
+    key = tuple(getattr(validated, f.name) for f in fields(StreamIdentity))
     return key
 
 
@@ -397,6 +403,7 @@ class EventDetector:
         if start != self._end:
             return self._terminate("loss" if start > self._end else "overlap", start)
         config = self.config
+        rail_flag = "quantization_edge_bin" if getattr(block.identity, "retained_bits", 12) == 10 else "clipping"
         for index, (code,) in enumerate(struct.iter_unpack("<H", raw), start):
             high, quiet = config.high(code), config.quiet(code)
             clipped = code <= config.rail_low or code >= config.rail_high
@@ -421,12 +428,12 @@ class EventDetector:
                     if self._quiet_run < config.baseline_samples:
                         self._flags.add("baseline_unsettled")
                     if self._rail_count:
-                        self._flags.add("clipping")
+                        self._flags.add(rail_flag)
                     self._holdoff_until = min(MAX_INDEX, index + config.holdoff_samples)
                     if self.retention == "fixed" and len(self._events) == self.event_capacity:
                         self._end = index + 1
                         if clipped:
-                            self._flags.add("clipping")
+                            self._flags.add(rail_flag)
                         self._capacity_pending = self._entry(
                             ("event_capacity", "right_truncated", "tail_ambiguous"))
                         self._active = None
@@ -440,7 +447,7 @@ class EventDetector:
             self._end = index + 1
             if self._active is not None:
                 if clipped:
-                    self._flags.add("clipping")
+                    self._flags.add(rail_flag)
                 if self._settled is not None and not quiet:
                     self._flags.add("tail_ambiguous")
                 if high and self._settled is not None:

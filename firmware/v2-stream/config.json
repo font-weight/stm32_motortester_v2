@@ -1,6 +1,6 @@
 {
   "schema": "motortester-v2-stream-build-1",
-  "firmware_build": 1446138690,
+  "firmware_build": 1446138691,
   "cdc_tx_fifo_bytes": 384,
   "cdc_tx_transfer_bytes": 384,
   "usb_tx_burst_packets": 6,
@@ -29,8 +29,13 @@
     "bcd_device": 512,
     "bus_power_ma": 100,
     "manufacturer": "font-weight",
-    "product": "Motortester V2 100k USBB",
+    "product": "Motortester V2 Modes SC",
     "serial": "AH20261017001"
   },
-  "active_profile_enabled": false
+  "active_profile_enabled": false,
+  "acquisition_modes": [
+    1,
+    2,
+    3
+  ]
 }

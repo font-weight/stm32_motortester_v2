@@ -309,7 +309,8 @@ class StreamBridge:
         self._producer_profile = None if producer_profile is None else admit_profile(producer_profile)
         self._owner_thread = get_ident()
         self._attempt_id, self._limits, self._storage_limits = attempt_id, session_limits, storage_limits
-        self._endpoint = wire.Endpoint()
+        self._endpoint = wire.Endpoint(None if self._device_context is None else
+                                       self._device_context.requested_sample_rate_hz)
         self._session = self._identity = self._plan = self._build = self._caps = None
         self._storage = self._job = self._late_fault = None
         self._closed = False
@@ -479,6 +480,9 @@ class StreamBridge:
     def hello(self, nonce, now_ms):
         return self._dispatch(self._endpoint.hello, now_ms, nonce)
 
+    def select_mode(self, nonce, now_ms):
+        return self._dispatch(self._endpoint.select_mode, now_ms, nonce)
+
     def get_caps(self, now_ms):
         return self._dispatch(self._endpoint.get_caps, now_ms)
 
@@ -534,10 +538,16 @@ class StreamBridge:
         if self._physical_diagnostic_context is not None:
             origin, metadata = physical_context_identity(self._physical_diagnostic_context)
         if self._device_context is not None:
-            origin, metadata = device_context_identity(self._device_context, self._build)
-        self._identity = StreamIdentity("wire-0.2:" + format(self._plan.nonce, "016x"),
+            origin, metadata = device_context_identity(self._device_context, self._build, caps.revision)
+        if caps.revision == "0.3":
+            metadata = (wire.MODE_REVISION, metadata[1], metadata[2])
+        quantization = (dict(acquisition_mode=caps.profile) if caps.revision == "0.3" else {})
+        if caps.revision == "0.3" and caps.retained_bits == 10:
+            quantization.update(retained_bits=10, discarded_lsb=2, wire_sample_encoding="u10packed_le",
+                                normalization="left_shift_2", quantization="truncate_lsb")
+        self._identity = StreamIdentity("wire-" + caps.revision + ":" + format(self._plan.nonce, "016x"),
             self._plan.generation, caps.config_id, caps.fs_num // caps.fs_den,
-            origin, *metadata)
+            origin, *metadata, **quantization)
         self._session = StreamSession(self._identity, self._attempt_id, self._limits)
 
     def preview(self, now_ms):
@@ -696,5 +706,4 @@ class StreamBridge:
             self._late_fault, self._closed,
             None if self._storage is None else self._storage.snapshot(),
             self._build, None if self._caps is None else
-            tuple(getattr(self._caps, name) for name in ("config_id", "profile", "channel", "adc_bits",
-                                                        "fs_num", "fs_den", "max_block", "flags")))
+            wire.caps_values(self._caps))

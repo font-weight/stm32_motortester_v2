@@ -55,15 +55,28 @@ class StreamDialog(QtWidgets.QDialog):
         self.notice = QtWidgets.QLabel(
             ("ДЕМО ПОТОКА · 50 000 отсчётов/с · CH1\n"
              "Программный источник; COM-порт не используется.\n" if selection is None else
-             f"STM32 · {selection.port} · CH1 · потоковый протокол 0.2\n"
+             f"STM32 · {selection.port} · CH1\n"
              "Сначала подключитесь и дождитесь проверки возможностей, затем запустите поток.\n") +
             "Шкала напряжения не настроена. Здесь проверяются передача и запись исходных кодов.")
         self._live_notice = self.notice.text()
         self.notice.setWordWrap(True)
         layout.addWidget(self.notice)
         self.connect_button = self.disconnect_button = None
+        self.rate_combo = None
         if selection is not None:
             connection_row = QtWidgets.QHBoxLayout()
+            self.rate_combo = QtWidgets.QComboBox()
+            for rate, bits in ((50_000, 12), (100_000, 12), (150_000, 10)):
+                self.rate_combo.addItem(f"{rate // 1000} тыс. отсчётов/с · {bits} бит", rate)
+            requested = selection.requested_sample_rate_hz or 100_000
+            index = self.rate_combo.findData(requested)
+            if index < 0:  # Explicit legacy/test selection, absent from public presets.
+                self.rate_combo.addItem(f"{requested // 1000} тыс. · прежняя прошивка", requested)
+                index = self.rate_combo.count() - 1
+            self.rate_combo.setCurrentIndex(index)
+            self.rate_combo.setToolTip("Выбор до подключения. 10 бит — сохранённые старшие биты ADC12; два младших теряются.")
+            connection_row.addWidget(QtWidgets.QLabel("Частота приёма"))
+            connection_row.addWidget(self.rate_combo)
             self.connect_button = QtWidgets.QPushButton(f"Подключить {selection.port}")
             self.connect_button.clicked.connect(self.connect_device)
             self.disconnect_button = QtWidgets.QPushButton("Отключить")
@@ -179,6 +192,9 @@ class StreamDialog(QtWidgets.QDialog):
     def connect_device(self):
         if self.selection is None or self._closing or self.busy:
             return False
+        if not self.bridge.select_sample_rate(self.rate_combo.currentData()):
+            return False
+        self.selection = self.bridge.selection
         if not self._serial_reserved:
             if self._acquire_serial is not None and not self._acquire_serial(self, self.selection.port):
                 self.error_label.setText(
@@ -354,6 +370,7 @@ class StreamDialog(QtWidgets.QDialog):
                                       (not physical or status.phase == "preview"))
         if physical:
             self.connect_button.setEnabled(idle and status.can_connect)
+            self.rate_combo.setEnabled(idle and status.can_connect and not status.command_pending)
             self.disconnect_button.setEnabled(status.can_retry_close or
                                               (not self._closing and status.can_disconnect))
             self.disconnect_button.setText("Повторить закрытие порта" if status.can_retry_close
@@ -362,8 +379,12 @@ class StreamDialog(QtWidgets.QDialog):
             if connection is not None:
                 frequency = connection.observed_caps[4] / connection.observed_caps[5]
                 self._live_notice = (
-                    f"STM32 · {self.selection.port} · CH1 · протокол 0.2 · "
+                    f"STM32 · {self.selection.port} · CH1 · протокол {connection.protocol_revision} · "
                     f"{frequency:g} отсчётов/с · шаг {1_000_000 / frequency:g} мкс номинально\n"
+                    + ("Сохранены 10 старших бит ADC12; младшие 2 отброшены. Коды0/4092 — крайние корзины, точное насыщение неизвестно.\n"
+                       if connection.protocol_revision == "0.3" and connection.observed_caps[8] == 10 else
+                       "Сохранены 12 бит АЦП.\n") +
+                    ("Фиксированная частота прежней прошивки.\n" if connection.protocol_revision == "0.2" else "") +
                     f"Плата сообщила сборку 0x{connection.observed_build_id:08X}. "
                     "Это не проверка файла прошивки или точности частоты.\n"
                     "Шкала напряжения не настроена. Полнота произведённых отсчётов неизвестна.")
@@ -371,7 +392,7 @@ class StreamDialog(QtWidgets.QDialog):
                     self.notice.setText(self._live_notice)
             if status.error:
                 self.error_label.setText(
-                    str(status.error) + "\nНужна потоковая прошивка протокола 0.2. "
+                    str(status.error) + "\nНужна потоковая прошивка протокола 0.2 или 0.3. "
                     "Оконная прошивка 0.1 здесь несовместима. "
                     "После сбоя отключите порт; перед новой попыткой перезапустите плату.")
         self.open_button.setEnabled(idle and status.can_open)
@@ -542,7 +563,7 @@ class StreamDialog(QtWidgets.QDialog):
                 if self.bridge._default_event_config and identity.nominal_fs_hz in SUPPORTED_SAMPLE_RATES:
                     # File navigation is recomputed from raw; the journal does
                     # not store host detector settings or change the raw data.
-                    self.viewer._config = default_event_config(identity.nominal_fs_hz)
+                    self.viewer._config = default_event_config(identity.nominal_fs_hz, identity.retained_bits)
                 self.viewer._accept_archive(archive)
                 rec = self.archive
                 if isinstance(rec, AttemptReport):
@@ -567,7 +588,9 @@ class StreamDialog(QtWidgets.QDialog):
                     "ОТКРЫТАЯ ПОТОКОВАЯ ЗАПИСЬ · "
                     f"{identity.nominal_fs_hz} отсчётов/с · "
                     f"шаг {1_000_000 / identity.nominal_fs_hz:g} мкс номинально.\n"
-                    "Шкала напряжения не настроена. Отображаются только исходные коды; время номинальное.")
+                    + ("Сохранены 10 старших бит ADC12; два младших утрачены. Коды0/4092 — крайние корзины квантования, не точное насыщение.\n"
+                       if identity.retained_bits == 10 else "Сохранены 12 бит АЦП.\n") +
+                    "Шкала напряжения не настроена. Отображаются полученные коды; время номинальное.")
                 if not self.verified_context.companion_present:
                     self.error_label.setText(
                         (self.error_label.text() + "\n" if self.error_label.text() else "") +

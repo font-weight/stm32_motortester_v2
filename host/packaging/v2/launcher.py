@@ -3,6 +3,11 @@ import sys
 
 
 def main():
+    if sys.argv[1:2] == ["--verify-profiles"]:
+        if len(sys.argv) != 3:
+            return 2
+        from motortester.v2.stream_profiles_smoke import run
+        return run(sys.argv[2])
     if sys.argv[1:2] == ["--verify-package"]:
         if len(sys.argv) != 3:
             return 2

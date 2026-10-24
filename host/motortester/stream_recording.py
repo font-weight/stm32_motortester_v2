@@ -17,15 +17,19 @@ from uuid import uuid4
 from .stream_model import (MAX_BLOCK_SAMPLES, MAX_READ_SAMPLES, StreamBlock,
                            StreamError, StreamIdentity, StreamStart,
                            StreamTerminal, FailureEvidence, StreamPreparation,
-                           PreparedReadyToken, UnboundOutcome, require, uint)
+                           PreparedReadyToken, UnboundOutcome, require, uint, LEGACY_IDENTITY_FIELDS)
 
 MAX_RAW_BYTES = 64 * 1024 * 1024
 MAX_BLOCKS = 65536
 MAX_METADATA_BYTES = 4096
 CHECKPOINT_BYTES = 1024 * 1024
 CHECKPOINT_BLOCKS = 128
-MAGIC = b"MTSTRM\x01\x00"
-ATTEMPT_MAGIC = b"MTSTRM\x02\x00"
+LEGACY_MAGIC = b"MTSTRM\x01\x00"
+LEGACY_ATTEMPT_MAGIC = b"MTSTRM\x02\x00"
+MAGIC = b"MTSTRM\x03\x00"
+ATTEMPT_MAGIC = b"MTSTRM\x04\x00"
+DIRECT_MAGICS = (LEGACY_MAGIC, MAGIC)
+ATTEMPT_MAGICS = (LEGACY_ATTEMPT_MAGIC, ATTEMPT_MAGIC)
 _HEADER = struct.Struct("<8sI")
 _FRAME = struct.Struct("<cI")
 _BLOCK = struct.Struct("<QI")
@@ -81,12 +85,16 @@ def _decode(data):
     return value
 
 
-def _construct(cls, obj):
-    require(type(obj) is dict and set(obj) == set(cls.__dataclass_fields__),
+def _construct(cls, obj, *, legacy=False):
+    expected = LEGACY_IDENTITY_FIELDS if legacy and cls is StreamIdentity else cls.__dataclass_fields__
+    require(type(obj) is dict and set(obj) == set(expected),
             "Неизвестные или отсутствующие поля")
     values = dict(obj)
     if cls in (StreamStart, StreamTerminal, StreamPreparation):
-        values["identity"] = _construct(StreamIdentity, values["identity"])
+        values["identity"] = _construct(StreamIdentity, values["identity"], legacy=legacy)
+    if legacy and cls is StreamIdentity:
+        require(values["protocol_revision"] != "0.3-modes-20261024",
+                "Старая версия файла не содержит обязательного описания wire0.3")
     if cls in (StreamTerminal, UnboundOutcome) and values["failure"] is not None:
         values["failure"] = _construct(FailureEvidence, values["failure"])
     return cls(**values)
@@ -659,7 +667,7 @@ def _recover(path, *, attempt):
         prefix = stream.read(_HEADER.size)
         require(len(prefix) == _HEADER.size, "Обрезан заголовок")
         magic, length = _HEADER.unpack(prefix)
-        require(magic == (ATTEMPT_MAGIC if attempt else MAGIC) and
+        require(magic in (ATTEMPT_MAGICS if attempt else DIRECT_MAGICS) and
                 1 <= length <= MAX_METADATA_BYTES, "Неверный заголовок")
         metadata, digest = stream.read(length), stream.read(32)
         require(len(metadata) == length and len(digest) == 32 and
@@ -668,8 +676,9 @@ def _recover(path, *, attempt):
         obj = _decode(metadata)
         root = "preparation" if attempt else "start"
         require(set(obj) == {root, "limits"}, "Неизвестные поля заголовка")
-        preparation = _construct(StreamPreparation, obj[root]) if attempt else None
-        start = None if attempt else _construct(StreamStart, obj[root])
+        legacy = magic in (LEGACY_MAGIC, LEGACY_ATTEMPT_MAGIC)
+        preparation = _construct(StreamPreparation, obj[root], legacy=legacy) if attempt else None
+        start = None if attempt else _construct(StreamStart, obj[root], legacy=legacy)
         limits = _construct(StreamLimits, obj["limits"])
         source_identity = preparation.identity if attempt else start.identity
         entries = []
@@ -723,7 +732,7 @@ def _recover(path, *, attempt):
                 elif kind == b"S":
                     require(start is None and frames == 1 and preparation.start_policy == "source_start",
                             "Повторное или недопустимое объявление начала")
-                    candidate = _construct(StreamStart, _decode(payload))
+                    candidate = _construct(StreamStart, _decode(payload), legacy=legacy)
                     require(candidate.identity == source_identity and
                             candidate.recording_id == preparation.recording_id, "Чужое объявление начала")
                     start = candidate
@@ -736,7 +745,7 @@ def _recover(path, *, attempt):
                     boundary_offset = stream.tell()
                     pending_bytes = pending_count = 0
                 elif kind == b"T":
-                    candidate = _construct(StreamTerminal, _decode(payload))
+                    candidate = _construct(StreamTerminal, _decode(payload), legacy=legacy)
                     require(start is not None and candidate.identity == source_identity and
                             candidate.end_sample_index == next_index, "Неверное завершение")
                     require(stream.tell() == size, "Данные после завершения")

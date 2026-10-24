@@ -123,7 +123,7 @@ def verify_serial_smoke(directory, receipt):
     profile = companion.get("context", {}).get("input_profile", {})
     journal = companion.get("journal", {})
     if (companion.get("format") != "motortester-v2-stream-context"
-            or companion.get("format_version") != 2
+            or companion.get("format_version") != 3
             or companion.get("connection") != connection
             or companion.get("time_basis") != "nominal_unverified"
             or profile.get("state") != "unconfigured"
@@ -241,6 +241,8 @@ def main(argv=None):
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--output", type=Path, default=REPOSITORY / "build" / "v2w",
                         help="New short output path (Windows path limits); never removes an existing directory")
+    parser.add_argument("--verification", choices=("full", "profiles"), default="full",
+                        help="Use the focused profile-selection/packed-data GUI check for V2-06i")
     args = parser.parse_args(argv)
     if (sys.platform != "win32" or platform.machine().upper() not in ("AMD64", "X86_64")
             or sys.maxsize <= 2**32 or sys.version_info[:3] != EXPECTED_PYTHON
@@ -329,13 +331,15 @@ def main(argv=None):
         "lock_sha256": sha256(lock),
         "wheelhouse": file_tree(wheelhouse),
         "entrypoints": [gui_name, inspect_name],
-        "scope": "V2 DEMO/files, explicit wire 0.1 device windows and wire 0.2 serial streams; "
+        "scope": "V2 DEMO/files, explicit wire 0.1 windows, legacy wire 0.2 streams "
+                 "and selectable wire 0.3 stream profiles; "
                  "package checks use injected synthetic byte peers and mocked COM enumeration, "
                  "without physical-device or firmware-image acceptance",
         "license_scope": "Existing notices/source guide included; third-party source archives "
                          "are not bundled; public distribution review remains open",
         "license_input_restoration": restored_notices,
         "verification": "See external build-report.json for this immutable ZIP",
+        "verification_scope": args.verification,
         "files": file_tree(bundle),
     }
     write_json(bundle / "build-manifest.json", manifest)
@@ -362,6 +366,16 @@ def main(argv=None):
     frozen_env["PATH"] = str(system_root / "System32")
     gui_exe, inspect_exe = relocated / gui_name, relocated / inspect_name
     exe_hashes = {name: expected_tree[name] for name in (gui_name, inspect_name)}
+    if args.verification == "profiles":
+        # Only the changed selector, protocol and recording path need a new
+        # frozen witness. Keep the older full verification available unchanged.
+        from profiles_package_check import verify_profiles_package
+        return verify_profiles_package(
+            output=output, gui_exe=gui_exe, relocated=relocated,
+            foreign_cwd=foreign_cwd, frozen_env=frozen_env, run=run,
+            portable=portable, portable_hash=portable_hash,
+            expected_tree=expected_tree, source_archive=source_archive,
+            revision=revision, exe_hashes=exe_hashes, log=log)
     run(gui_exe, "--verify-package", smoke_output, cwd=foreign_cwd,
         environment=frozen_env, timeout=FROZEN_TIMEOUT)
     smoke = read_json(smoke_output / "result.json")

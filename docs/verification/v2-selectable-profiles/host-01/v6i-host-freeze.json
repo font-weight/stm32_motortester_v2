@@ -1,0 +1,146 @@
+{
+  "schema": "v2-06i-host-candidate-1",
+  "status": "SOFTWARE_CANDIDATE_PENDING_REVIEW_AND_PACKAGE",
+  "scope": "50/100/150 selection, wire0.3 retained10, canonical code persistence; no COM/SWD",
+  "source_files": {
+    "host/motortester/stream_wire.py": {
+      "bytes": 14351,
+      "sha256": "d99f9b12750d613f853f37d2bdb71ca09fb0bf997a77b1316041577d56c8a603"
+    },
+    "host/motortester/stream_endpoint.py": {
+      "bytes": 34104,
+      "sha256": "784667aa5e2ae8fd315738726762072f1415ea4475303d86e6e0cdbd353e9213"
+    },
+    "host/motortester/stream_model.py": {
+      "bytes": 12042,
+      "sha256": "818271bd84418d31c050e172546a15e6b32b0edfe3fc0a0b243a584c20b08e16"
+    },
+    "host/motortester/stream_provenance.py": {
+      "bytes": 18706,
+      "sha256": "ebaf559e91f1834fce180a6321dafca573cc569bf6d8582b5977887a79c25ef9"
+    },
+    "host/motortester/stream_bridge.py": {
+      "bytes": 35993,
+      "sha256": "34722bd11e100fafc0a304ffb518a8e1855f017e5c485ab6fc41fd08f947e6c2"
+    },
+    "host/motortester/stream_controller.py": {
+      "bytes": 51967,
+      "sha256": "7af92930afc4ff57c4bb120c773926595f534cfabe084b15d53aca9fad1d0f0e"
+    },
+    "host/motortester/stream_recording.py": {
+      "bytes": 35893,
+      "sha256": "86cf4939ab5a0e848614590046386ac80e56e8db3951f57b49eaf0b26846a9c6"
+    },
+    "host/motortester/stream_view.py": {
+      "bytes": 24085,
+      "sha256": "48ff45aea692e3a3e4447152c0721b231d8bacf53082041557f28433bf027262"
+    },
+    "host/motortester/gui_stream.py": {
+      "bytes": 62747,
+      "sha256": "f3790e4a82fc3b29dd4fa38e63c8e4744d0f8d69169c7664a94a1796e4aa4462"
+    },
+    "host/motortester/v2/stream_device.py": {
+      "bytes": 28129,
+      "sha256": "8e4bda8d6b38a0b7044d58175d740d51f3e81b2dd7794df49a910d42d15868de"
+    },
+    "host/motortester/v2/stream_files.py": {
+      "bytes": 3239,
+      "sha256": "278e71f8a4df456bdd431bedf2925441c7275aca3ca0f13196aaa98a640fa735"
+    },
+    "host/motortester/v2/stream_ui.py": {
+      "bytes": 37997,
+      "sha256": "a2da0021dad7f8090ce6374eb6c9d03504fc661f6b4957d72b800f84499b31bd"
+    },
+    "host/motortester/v2/stream200_smoke.py": {
+      "bytes": 14136,
+      "sha256": "3ba196da4170f505fbd48951c83c40999879b1621f2903b1bcf94274061e3302"
+    },
+    "host/motortester/v2/stream_profiles_smoke.py": {
+      "bytes": 16526,
+      "sha256": "0d60c27fd07575785b43c051e0b4e58aa493dd9dd98434ccc491b09ff7455d1c"
+    },
+    "host/tests/test_stream_modes.py": {
+      "bytes": 12445,
+      "sha256": "f4508a173af1b1f312739f214771b5896c1b2485c4282f6b7de36f406cac53d2"
+    },
+    "host/tools/v2_stream_probe.py": {
+      "bytes": 10534,
+      "sha256": "ee3fe6a3909c6e20939de654e8bc441b59d556002f39ea86ceaf925889b7a56b"
+    },
+    "host/tools/verify_stream_trial.py": {
+      "bytes": 16091,
+      "sha256": "c7892dbaa322657c52ebe30c095d54d395a975c91108cf1ab25ab24b8dceb8fc"
+    },
+    "host/docs/stream-modes.md": {
+      "bytes": 4929,
+      "sha256": "b322c4ec09174bd2b8e7cf7ae20a450c2ab77f96072c5edb077f3fb3b184838c"
+    }
+  },
+  "evidence": {
+    "build/v6i-host-unit-01/tests.log": {
+      "bytes": 733,
+      "sha256": "9b0c801755c3793832484f80d1b0226a27fb7321d1b75f4e1ab2cf291fa3cb5c"
+    },
+    "build/v6i-host-unit-02/tests.log": {
+      "bytes": 733,
+      "sha256": "ab66d3c5a9c1c64e27fc14263b3c86d9e1b2ec9129485c197ba383467392de94"
+    },
+    "build/v6i-host-unit-03/tests.log": {
+      "bytes": 733,
+      "sha256": "e8f32a3fa67a20f367d825d228cafa6d39da9e5bfb97688d282415fa9e0429d8"
+    },
+    "build/v6i-host-unit-03/c-producer-crosscheck.json": {
+      "bytes": 699,
+      "sha256": "47f6f2ad3c8b44202e990095a7a1d12028141f102bd1f29142c3bceb1fab1b25"
+    },
+    "build/v6i-host-unit-03/legacy2-open.json": {
+      "bytes": 950,
+      "sha256": "13a2dba025bafbe8fc16a2f4857d6a9fd02ef6aa6c62d6e00917d4811ca2f4a5"
+    },
+    "build/v6i-host-gui-01/result.json": {
+      "bytes": 4089,
+      "sha256": "26cb1605a9b5817efb39749a6e32de1d2a7d555d26f21c051967843e9b49f3ca"
+    },
+    "build/v6i-host-crosscheck.py": {
+      "bytes": 2160,
+      "sha256": "2b7e517e35fd20483eb33ced0ef8de62fb581210144b939b7002673c2ad64889"
+    },
+    "build/v6i-host-legacy2.py": {
+      "bytes": 1961,
+      "sha256": "6f5072b3c3b6acaf7352ef247afcec76ea68088a0d5d5afb9c5ac2e46604f285"
+    }
+  },
+  "checks": {
+    "focused_groups": 4,
+    "final_unit_pass": true,
+    "native_windows_gui_pass": true,
+    "c_producer_decode_pass": true,
+    "legacy2_originals_unchanged": true
+  },
+  "history": [
+    "unit01 four groups PASS; unit02 added partial HELLO + legacy magic2, PASS",
+    "GUI01 PASS first run, Windows10 native windows platform; all owners closed, real COM0",
+    "unit03 added requested stale/current unknown revision and damaged envelope cases, PASS",
+    "one actual C DATA128+tail3/END fixture decoded, canonical raw+CRC equal",
+    "one actual H2 legacy2/companion2 file reopened; before/after hashes equal"
+  ],
+  "changes_after_source_gui": [
+    "endpoint validates foreign unknown revision after bounded envelope, covered unit03",
+    "receipt platform uses sys.platform; windows_host retains descriptive OS string",
+    "legacy mismatch message explicitly requests close/reopen window; no silent retry",
+    "open-recording text says received codes, not complete original ADC12 codes"
+  ],
+  "commands": {
+    "unit": ".venv/Scripts/python.exe -I -B -c \"import sys,unittest;sys.path[:0]=['host','host/tests'];suite=unittest.defaultTestLoader.loadTestsFromName('test_stream_modes');r=unittest.TextTestRunner(verbosity=2).run(suite);sys.exit(not r.wasSuccessful())\"",
+    "gui": ".venv/Scripts/python.exe -I -B -c \"import sys,runpy;sys.path.insert(0,'host');sys.argv=['stream_profiles_smoke','build/v6i-host-gui-01'];runpy.run_module('motortester.v2.stream_profiles_smoke',run_name='__main__')\"",
+    "c_crosscheck": ".venv/Scripts/python.exe -I -B build/v6i-host-crosscheck.py build/v6i-host-unit-03",
+    "legacy2_open": ".venv/Scripts/python.exe -I -B build/v6i-host-legacy2.py"
+  },
+  "not_verified": [
+    "Packaged executable final source (root pending)",
+    "new firmware physical50/100/150",
+    "ADC frequency accuracy",
+    "analog input/ignition",
+    "continuous operation without limit"
+  ]
+}

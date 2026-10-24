@@ -1,4 +1,42 @@
-# Кандидат V2SB: одна ранняя USB opportunity после ADC
+# Кандидат V2SC: выбираемые50/100/150k до START
+
+V2-06i/build `0x56325343`, product `Motortester V2 Modes SC`. Это новый
+software-кандидат по [контракту профилей](../../docs/streaming-selectable-profiles.md).
+Неизменённая V2SB и её30-секундная физическая проверка сохранены отдельно;
+приёмкаSB не переносится автоматически на этот многорежимный образ.
+
+Новыйapp начинает с discoveryHELLO0.2. V2SC отвечает capability3, требует
+freshnonceHELLO0.3 с mode1/2/3; только выбранные CAPS и STARTconfig_id
+разрешают приём. Discovery не запускаетADC. Старыйapp отвергает capability3
+доSTART; новыйapp отдельно поддерживает старую fixed-Fs wire0.2 прошивку.
+Выбор режима меняется через Stop/закрытие/новое подключение, без горячей
+перенастройки. UI-профили «Осциллограф»/«Зажигание» независимы от этого выбора.
+
+Все режимы используют физическийADC12.50/100k передают все12битu16le;
+150k передаёт10старших плотной упаковкой4кода/5байт. ДваLSB необратимо
+отбрасываются при проверенном копировании в transport queue; DMA snapshot
+не меняется. Канонические сохранённые коды `(ADC12>>2)<<2`, ENDCRC поu16le
+этих кодов. Явные retained10/quantization/sourceADC12 метаданные обязательны.
+Это не изменение разрешенияADC, не калибровка и не исходные полные12бит.
+
+TIM3PSC/ARR:50k=71/19,100k=71/9,150k=47/9 приnominal72MHz; ADC12MHz,
+sample41.5cycles прежний. Период150k —20/3мкс, не округлённые6/7мкс;
+deadlinehalf512 — консервативные3413мкс, CENbracket5TIM2ticks (6отказ).
+Driver/Stop/epoch/TIME/whole-fit/partial guards сохранены. RuntimeSB,
+FIFO384/MPS64/burst6/<500мкс, DMA1024/half512, queue8 не переписываются.
+Legacy136 остаётся; `tx_max_cycles` исключаетprepare. Плотная упаковка
+не гарантирует150k: DATAопераций становитсяна50%больше, deadlineкороче.
+
+```powershell
+.\.venv\Scripts\python.exe -I -B firmware\v2-stream\build_windows.py --output build\v6i-fw-candidate
+```
+
+Нужны одна адресная actual-core/queue/driver модель, sourceguardproof,
+exactARM/static64KiB/20KiB с8192stack reserve и независимыйcritic≥9,5.
+Отдельный аппаратный план допускает толькоroot. Сборка не открываетCOM/SWD.
+Фактически выполненные проверки и дальнейшие шаги — вprogress и ревью.
+
+## Сохранённая V2SB: одна ранняя USB opportunity после ADC
 
 V2-06h/build `0x56325342`, product `Motortester V2 100k USBB`: обычный IRQ
 grant переносится после ADC и существующих TIME/stable/loss проверок, до

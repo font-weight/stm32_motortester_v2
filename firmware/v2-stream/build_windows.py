@@ -1,4 +1,4 @@
-"""Build the separate V2SB 100 kS/s early-grant candidate; never flash hardware."""
+"""Build the separate V2SC selectable50/100/150 kS/s candidate; never flash hardware."""
 import argparse
 import hashlib
 import importlib.util
@@ -29,7 +29,7 @@ ADD = [
     "firmware/boot/mt_stream_main.c", "firmware/app/mt_live_runtime.c",
     "firmware/app/mt_live_adc.c", "firmware/platform/mt_live_clock.c",
     "firmware/protocol/mt_live_device.c", "firmware/acquisition/mt_sample_queue.c",
-    "firmware/platform/mt_stream_diag.c",
+    "firmware/platform/mt_stream_diag.c", "firmware/acquisition/mt_acquisition_profile.c",
 ]
 
 
@@ -280,6 +280,16 @@ def main():
                 target = out / "patched" / row["target"]
                 target.write_bytes(apply_patch((out / row["source"]).read_bytes(),
                     (here / "overlays" / row["patch"]).read_bytes(), row))
+        require(not config["active_profile_enabled"], "Selectable modes require preserved uninstrumented SB schedule")
+        selectable = json.loads((here / "overlays/selectable-profiles.json").read_text("utf-8"))
+        require(selectable["schema"] == "motortester-v2-selectable-overlay-1", "Unexpected selectable overlay")
+        receipt["v2_overlays"].extend(selectable["patches"])
+        for row in selectable["patches"]:
+            target = out / "patched" / row["target"]
+            target.write_bytes(apply_patch((out / row["source"]).read_bytes(),
+                (here / "overlays" / row["patch"]).read_bytes(), row))
+        for name in ("mt_acquisition_profile.c", "mt_acquisition_profile.h"):
+            (out / "patched/v2/acquisition" / name).write_bytes((here / "selectable" / name).read_bytes())
         if config["active_profile_enabled"]:
             for name in ("mt_stream_profile.c", "mt_stream_profile.h"):
                 (out / "patched/v2/platform" / name).write_bytes((here / "profile" / name).read_bytes())
@@ -337,6 +347,7 @@ def main():
                 "source/firmware/protocol/mt_wire.c": "patched/v2/protocol/mt_wire.c",
                 "source/firmware/protocol/mt_live_device.c": "patched/v2/protocol/mt_live_device.c",
                 "source/firmware/acquisition/mt_sample_queue.c": "patched/v2/acquisition/mt_sample_queue.c",
+                "source/firmware/acquisition/mt_acquisition_profile.c": "patched/v2/acquisition/mt_acquisition_profile.c",
                 "source/firmware/transport/mt_usb_bridge.c": "patched/v2/transport/mt_usb_bridge.c",
                 "source/firmware/transport/mt_usb_descriptors.c": "patched/v2/transport/mt_usb_descriptors.c",
             }.get(path, path)
@@ -350,7 +361,7 @@ def main():
         objects.append(reset)
         compile_c("board", "generated/board.c", standard)
         compile_c("timing", "generated/timing.c", standard)
-        require(len(objects) == 30 + int(config["active_profile_enabled"]), "Unexpected link input count")
+        require(len(objects) == 31 + int(config["active_profile_enabled"]), "Unexpected link input count")
         checker = load(source / "tests/boot-link/tools/run_boot_link_tests.py")
         vectors_path = source / "tests/boot-link/vector_map.json"
         require(digest(vectors_path) == checker.VECTOR_SHA, "Vector map differs")

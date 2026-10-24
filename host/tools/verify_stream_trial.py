@@ -96,9 +96,9 @@ def verify(folder):
     recording = attempt.recording
     require(recording is not None, "No recovered selected recording")
     identity = recording.identity
-    match = re.fullmatch(r"wire-0\.2:([0-9a-f]{16})", identity.session_id)
-    require(match is not None and identity.origin == "device", "Expected physical wire-0.2 identity")
-    nonce = int(match[1], 16)
+    match = re.fullmatch(r"wire-(0\.[23]):([0-9a-f]{16})", identity.session_id)
+    require(match is not None and identity.origin == "device", "Expected physical wire identity")
+    revision, nonce = match[1], int(match[2], 16)
     first, stop = recording.first_sample_index, recording.end_sample_index
     require(stop > first and (stop - first) * 2 <= MAX_TRAFFIC, "Selected range outside trial bound")
     report = {
@@ -138,6 +138,9 @@ def verify(folder):
         if effective_nonce != nonce:
             unrelated += 1
             continue
+        if frame.revision != revision:
+            issues.append({"code": "current_nonce_revision", "observed": frame.revision})
+            continue
         key = direction
         if last_frames.get(key) == frame.encoded:
             duplicates += 1
@@ -154,7 +157,7 @@ def verify(folder):
             if frame.kind == Kind.HELLO:
                 hello_seen = True
             elif frame.kind == Kind.START:
-                if frame.request_id != identity.generation:
+                if frame.request_id != identity.generation or (revision == "0.3" and decoded != identity.config_id):
                     issues.append({"code": "host_start_generation"})
             elif frame.kind == Kind.STOP and decoded != identity.generation:
                 issues.append({"code": "host_stop_generation"})
@@ -173,6 +176,10 @@ def verify(folder):
             report["observed_build_id"] = decoded.firmware_build
         elif frame.kind == Kind.CAPS:
             caps_seen = hello_ack_seen
+            if (decoded.config_id != identity.config_id or decoded.fs_num != identity.nominal_fs_hz or
+                    decoded.fs_den != 1 or decoded.retained_bits != identity.retained_bits or
+                    (revision == "0.3" and decoded.profile != identity.acquisition_mode)):
+                issues.append({"code": "caps_identity"})
             report["observed_caps"] = asdict(decoded)
         elif frame.kind == Kind.START_ACK:
             started = (caps_seen and decoded.generation == identity.generation

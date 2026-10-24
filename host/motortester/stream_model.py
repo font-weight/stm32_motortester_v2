@@ -1,11 +1,15 @@
 """Host-normalized indexed samples, not a wire protocol or physical evidence."""
 from dataclasses import dataclass
+import struct
 
 from .stream_provenance import ProvenanceError, profile_for_identity
+from .stream_wire import MODE_REVISION, MODE_TABLE
 
 U64_MAX = (1 << 64) - 1
 MAX_BLOCK_SAMPLES = 8192
 MAX_READ_SAMPLES = 65536
+LEGACY_IDENTITY_FIELDS = ("session_id", "generation", "config_id", "nominal_fs_hz",
+                          "origin", "protocol_revision", "firmware_version", "application_version")
 
 
 class StreamError(ValueError):
@@ -40,6 +44,15 @@ class StreamIdentity:
     protocol_revision: str | None = None
     firmware_version: str | None = None
     application_version: str | None = None
+    acquisition_mode: int = 0
+    source_adc_bits: int = 12
+    retained_bits: int = 12
+    discarded_lsb: int = 0
+    wire_sample_encoding: str = "u16le"
+    normalization: str = "identity"
+    quantization: str = "none"
+    stored_sample_encoding: str = "u16le"
+    stored_code_domain: str = "adc12"
 
     def __post_init__(self):
         text(self.session_id, 128)
@@ -51,6 +64,20 @@ class StreamIdentity:
         for value in (self.protocol_revision, self.firmware_version, self.application_version):
             if value is not None:
                 text(value, 64)
+        for value in (self.acquisition_mode, self.source_adc_bits, self.retained_bits, self.discarded_lsb):
+            uint(value, 12)
+        mode = self.acquisition_mode
+        if self.protocol_revision == MODE_REVISION:
+            require(mode in MODE_TABLE and self.config_id == mode and
+                    self.nominal_fs_hz == MODE_TABLE[mode][0], "Несогласованный режим wire0.3")
+        else:
+            require(mode == 0, "Режим захвата требует версии wire0.3")
+        expected = ((12, 10, 2, "u10packed_le", "left_shift_2", "truncate_lsb") if mode == 3
+                    else (12, 12, 0, "u16le", "identity", "none"))
+        require((self.source_adc_bits, self.retained_bits, self.discarded_lsb,
+                 self.wire_sample_encoding, self.normalization, self.quantization) == expected and
+                self.stored_sample_encoding == "u16le" and self.stored_code_domain == "adc12",
+                "Неполное или несогласованное описание кодов и квантования")
         try:
             profile_for_identity(self)
         except ProvenanceError as exc:
@@ -86,6 +113,10 @@ class StreamBlock:
                 2 <= len(self.raw_u16le) <= 2 * MAX_BLOCK_SAMPLES and
                 len(self.raw_u16le) % 2 == 0, "Ожидаются ограниченные uint16-le bytes")
         uint(self.end_sample_index)
+        if self.identity.protocol_revision == MODE_REVISION:
+            require(all(code <= 4095 and (self.identity.retained_bits == 12 or code % 4 == 0)
+                        for (code,) in struct.iter_unpack("<H", self.raw_u16le)),
+                    "Коды не соответствуют сохранённому режиму ADC/квантования")
 
     @property
     def sample_count(self):

@@ -420,9 +420,9 @@ def _open_archive(path):
         observation = stream._stream_observation
         storage._unchanged(stream, path, observation)
         magic = stream.read(len(storage.MAGIC))
-        if magic == storage.MAGIC:
+        if magic in storage.DIRECT_MAGICS:
             reader = recover
-        elif magic == storage.ATTEMPT_MAGIC:
+        elif magic in storage.ATTEMPT_MAGICS:
             reader = recover_attempt
         else:
             raise StreamError("Неизвестная или обрезанная версия .mtstream")
