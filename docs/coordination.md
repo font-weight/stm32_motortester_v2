@@ -1,5 +1,20 @@
 # Координация самостоятельного V2
 
+V2-06h, анализ: root — канонические документы, TIME/runtime и единолично
+COM/SWD. Higher_fs_review пишет только build/v6h-analysis/firmware-findings.md/json;
+host_200k — host-findings.md/json и вспомогательный offline-скрипт в этой
+папке; stream200_critic — critic-findings.md/json. Production пока читается;
+области реализации/проверки будут уточнены после выбора одного исправления.
+Пользователь возобновил работу после паузы G2; условный возврат S4 сохраняется.
+
+H реализация: higher_fs_review — firmware/v2-stream/**,
+tests/v2-stream-firmware/** кроме usb_turnover_model.c и build/v6h-* кроме
+host/critic/root материалов. Host_200k — только usb_turnover_model.c,
+build/v6h-model-plan.* и свой offline host-findings. Stream200_critic —
+docs/reviews/v2-06h*.md и docs/verification/v2-usb-turnover/critic*.json,
+свой analysis. Root — канонические документы, архивы, интеграция и только
+он — COM/SWD. Flash не входит в программную приёмку H.
+
 V2-06g2: root единолично COM/SWD, build/v6g-board-01 и канонические
 документы. Host_200k — только offline decode_diagnostics.py, затем явно
 порученный разбор сохранённых данных. Stream200_critic — отдельный

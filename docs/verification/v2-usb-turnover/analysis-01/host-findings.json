@@ -1,0 +1,793 @@
+{
+  "schema": "v2-06h-host-usb-offline-findings-1",
+  "scope": "Read-only saved F2/G2 host grouping and source analysis; no device, no new trial, no production changes, no repeated raw/CRC/fresh-open verification.",
+  "physical_100ksps_status": "FAIL_UNRESOLVED",
+  "hypothesis": {
+    "id": "foreground_final_IN_turnover",
+    "statement_ru": "Основная рабочая гипотеза: стоимость полного foreground-прохода между завершением короткой CDC IN-передачи и запуском следующей удерживает средний темп выгрузки ниже поступления DATA128; частые ZERO_SPACE — следствие этого обслуживания. Она согласуется с F2, но причина всех задержек USB и применимость к G2 ещё не доказаны.",
+    "confidence": "source-backed plausible mechanism, not isolated physical root cause",
+    "host_read_change_recommended_now": false,
+    "why_not_host_stall_claim": "Python read completions do not expose USB IN/NAK, outstanding usbser URBs, queue fill or scheduler stalls."
+  },
+  "trials": {
+    "v6f-board-01": {
+      "physical_status": "FAIL",
+      "nonce_hex": "98401a74a29ed72a",
+      "build_id": 1446138681,
+      "generation": 3,
+      "all_nonempty_reads": {
+        "read_count": 26,
+        "wire_bytes": 7328,
+        "length_histogram": {
+          "46": 1,
+          "47": 1,
+          "50": 1,
+          "54": 1,
+          "70": 2,
+          "307": 15,
+          "377": 2,
+          "544": 3
+        },
+        "full_544_reads": 3,
+        "gap_max_ms": 20.98079980351031,
+        "gap_median_ms": 1.9596000202000141,
+        "span_ms": 72.11030018515885
+      },
+      "first_DATA_to_END_nonempty_reads": {
+        "read_count": 22,
+        "wire_bytes": 7131,
+        "length_histogram": {
+          "70": 2,
+          "307": 15,
+          "377": 2,
+          "544": 3
+        },
+        "full_544_reads": 3,
+        "gap_max_ms": 2.65370006673038,
+        "gap_median_ms": 1.8847000319510698,
+        "span_ms": 35.57849978096783
+      },
+      "largest_all_reads_gap_pair": [
+        {
+          "direction": 1,
+          "host_monotonic": 1342753.4869554,
+          "bytes": 54,
+          "host_relative_seconds": 0.007584300125017762
+        },
+        {
+          "direction": 1,
+          "host_monotonic": 1342753.5079362,
+          "bytes": 46,
+          "host_relative_seconds": 0.02856509992852807
+        }
+      ],
+      "largest_gap_is_before_first_DATA": true,
+      "first_DATA_host_seconds": 0.034556500148028135,
+      "END_host_seconds": 0.07013499992899597,
+      "reported_max_owner_service_gap_ms": 20,
+      "reported_peak_disk_queue_items": 4,
+      "chunks": [
+        {
+          "direction": 0,
+          "host_monotonic": 1342753.4793711,
+          "bytes": 38,
+          "host_relative_seconds": 0.0
+        },
+        {
+          "direction": 1,
+          "host_monotonic": 1342753.4828789,
+          "bytes": 47,
+          "host_relative_seconds": 0.0035077999345958233
+        },
+        {
+          "direction": 0,
+          "host_monotonic": 1342753.4839543,
+          "bytes": 30,
+          "host_relative_seconds": 0.0045831999741494656
+        },
+        {
+          "direction": 1,
+          "host_monotonic": 1342753.4869554,
+          "bytes": 54,
+          "host_relative_seconds": 0.007584300125017762
+        },
+        {
+          "direction": 0,
+          "host_monotonic": 1342753.5034666,
+          "bytes": 34,
+          "host_relative_seconds": 0.02409550012089312
+        },
+        {
+          "direction": 1,
+          "host_monotonic": 1342753.5079362,
+          "bytes": 46,
+          "host_relative_seconds": 0.02856509992852807
+        },
+        {
+          "direction": 1,
+          "host_monotonic": 1342753.5139276,
+          "bytes": 307,
+          "host_relative_seconds": 0.034556500148028135
+        },
+        {
+          "direction": 1,
+          "host_monotonic": 1342753.5159358,
+          "bytes": 307,
+          "host_relative_seconds": 0.03656470007263124
+        },
+        {
+          "direction": 1,
+          "host_monotonic": 1342753.5178954,
+          "bytes": 307,
+          "host_relative_seconds": 0.038524300092831254
+        },
+        {
+          "direction": 1,
+          "host_monotonic": 1342753.519011,
+          "bytes": 307,
+          "host_relative_seconds": 0.03963989997282624
+        },
+        {
+          "direction": 1,
+          "host_monotonic": 1342753.520028,
+          "bytes": 307,
+          "host_relative_seconds": 0.04065690003335476
+        },
+        {
+          "direction": 1,
+          "host_monotonic": 1342753.5219127,
+          "bytes": 307,
+          "host_relative_seconds": 0.04254160006530583
+        },
+        {
+          "direction": 1,
+          "host_monotonic": 1342753.5239472,
+          "bytes": 307,
+          "host_relative_seconds": 0.04457610007375479
+        },
+        {
+          "direction": 1,
+          "host_monotonic": 1342753.5248993,
+          "bytes": 307,
+          "host_relative_seconds": 0.04552819998934865
+        },
+        {
+          "direction": 1,
+          "host_monotonic": 1342753.5267623,
+          "bytes": 307,
+          "host_relative_seconds": 0.047391199972480536
+        },
+        {
+          "direction": 1,
+          "host_monotonic": 1342753.5288207,
+          "bytes": 307,
+          "host_relative_seconds": 0.049449600046500564
+        },
+        {
+          "direction": 1,
+          "host_monotonic": 1342753.5313197,
+          "bytes": 307,
+          "host_relative_seconds": 0.051948599983006716
+        },
+        {
+          "direction": 1,
+          "host_monotonic": 1342753.5328686,
+          "bytes": 307,
+          "host_relative_seconds": 0.05349750001914799
+        },
+        {
+          "direction": 1,
+          "host_monotonic": 1342753.5348143,
+          "bytes": 307,
+          "host_relative_seconds": 0.05544320004992187
+        },
+        {
+          "direction": 1,
+          "host_monotonic": 1342753.5360183,
+          "bytes": 307,
+          "host_relative_seconds": 0.056647200137376785
+        },
+        {
+          "direction": 1,
+          "host_monotonic": 1342753.5382391,
+          "bytes": 307,
+          "host_relative_seconds": 0.058868000051006675
+        },
+        {
+          "direction": 1,
+          "host_monotonic": 1342753.5408928,
+          "bytes": 544,
+          "host_relative_seconds": 0.061521700117737055
+        },
+        {
+          "direction": 1,
+          "host_monotonic": 1342753.5416334,
+          "bytes": 70,
+          "host_relative_seconds": 0.06226229993626475
+        },
+        {
+          "direction": 1,
+          "host_monotonic": 1342753.5437954,
+          "bytes": 544,
+          "host_relative_seconds": 0.06442430010065436
+        },
+        {
+          "direction": 1,
+          "host_monotonic": 1342753.545029,
+          "bytes": 377,
+          "host_relative_seconds": 0.065657899947837
+        },
+        {
+          "direction": 1,
+          "host_monotonic": 1342753.5473439,
+          "bytes": 544,
+          "host_relative_seconds": 0.0679727999959141
+        },
+        {
+          "direction": 1,
+          "host_monotonic": 1342753.5478375,
+          "bytes": 70,
+          "host_relative_seconds": 0.06846640002913773
+        },
+        {
+          "direction": 1,
+          "host_monotonic": 1342753.5495061,
+          "bytes": 377,
+          "host_relative_seconds": 0.07013499992899597
+        },
+        {
+          "direction": 0,
+          "host_monotonic": 1342753.5524735,
+          "bytes": 34,
+          "host_relative_seconds": 0.07310239993967116
+        },
+        {
+          "direction": 1,
+          "host_monotonic": 1342753.5549892,
+          "bytes": 50,
+          "host_relative_seconds": 0.07561810011975467
+        }
+      ],
+      "limit": "Nonempty backend.read completion stamps, including Stop drain; not ADC, USB transaction, URB, host-stall or sustained-throughput timestamps. Empty reads and call durations were not logged."
+    },
+    "v6g-board-01": {
+      "physical_status": "FAIL",
+      "nonce_hex": "414093eee96a4607",
+      "build_id": 1446138689,
+      "generation": 3,
+      "all_nonempty_reads": {
+        "read_count": 42,
+        "wire_bytes": 12240,
+        "length_histogram": {
+          "1": 1,
+          "46": 2,
+          "50": 1,
+          "54": 1,
+          "70": 4,
+          "307": 24,
+          "377": 3,
+          "544": 6
+        },
+        "full_544_reads": 6,
+        "gap_max_ms": 19.96479998342693,
+        "gap_median_ms": 1.4764000661671162,
+        "span_ms": 92.61930012144148
+      },
+      "first_DATA_to_END_nonempty_reads": {
+        "read_count": 37,
+        "wire_bytes": 12043,
+        "length_histogram": {
+          "70": 4,
+          "307": 24,
+          "377": 3,
+          "544": 6
+        },
+        "full_544_reads": 6,
+        "gap_max_ms": 4.033300094306469,
+        "gap_median_ms": 1.384700066410005,
+        "span_ms": 56.43659993074834
+      },
+      "largest_all_reads_gap_pair": [
+        {
+          "direction": 1,
+          "host_monotonic": 1345123.2981175,
+          "bytes": 54,
+          "host_relative_seconds": 0.008131799986585975
+        },
+        {
+          "direction": 1,
+          "host_monotonic": 1345123.3180823,
+          "bytes": 46,
+          "host_relative_seconds": 0.028096599970012903
+        }
+      ],
+      "largest_gap_is_before_first_DATA": true,
+      "first_DATA_host_seconds": 0.03517909999936819,
+      "END_host_seconds": 0.09161569993011653,
+      "reported_max_owner_service_gap_ms": 17,
+      "reported_peak_disk_queue_items": 4,
+      "chunks": [
+        {
+          "direction": 0,
+          "host_monotonic": 1345123.2899857,
+          "bytes": 38,
+          "host_relative_seconds": 0.0
+        },
+        {
+          "direction": 1,
+          "host_monotonic": 1345123.2930961,
+          "bytes": 1,
+          "host_relative_seconds": 0.0031103999353945255
+        },
+        {
+          "direction": 1,
+          "host_monotonic": 1345123.2940758,
+          "bytes": 46,
+          "host_relative_seconds": 0.004090100061148405
+        },
+        {
+          "direction": 0,
+          "host_monotonic": 1345123.2961119,
+          "bytes": 30,
+          "host_relative_seconds": 0.006126199848949909
+        },
+        {
+          "direction": 1,
+          "host_monotonic": 1345123.2981175,
+          "bytes": 54,
+          "host_relative_seconds": 0.008131799986585975
+        },
+        {
+          "direction": 0,
+          "host_monotonic": 1345123.3141556,
+          "bytes": 34,
+          "host_relative_seconds": 0.024169899988919497
+        },
+        {
+          "direction": 1,
+          "host_monotonic": 1345123.3180823,
+          "bytes": 46,
+          "host_relative_seconds": 0.028096599970012903
+        },
+        {
+          "direction": 1,
+          "host_monotonic": 1345123.3251648,
+          "bytes": 544,
+          "host_relative_seconds": 0.03517909999936819
+        },
+        {
+          "direction": 1,
+          "host_monotonic": 1345123.3256694,
+          "bytes": 70,
+          "host_relative_seconds": 0.0356836998835206
+        },
+        {
+          "direction": 1,
+          "host_monotonic": 1345123.3270331,
+          "bytes": 307,
+          "host_relative_seconds": 0.03704739990644157
+        },
+        {
+          "direction": 1,
+          "host_monotonic": 1345123.3292241,
+          "bytes": 307,
+          "host_relative_seconds": 0.039238400058820844
+        },
+        {
+          "direction": 1,
+          "host_monotonic": 1345123.3302047,
+          "bytes": 307,
+          "host_relative_seconds": 0.0402189998421818
+        },
+        {
+          "direction": 1,
+          "host_monotonic": 1345123.3320384,
+          "bytes": 307,
+          "host_relative_seconds": 0.042052699951455
+        },
+        {
+          "direction": 1,
+          "host_monotonic": 1345123.3340963,
+          "bytes": 544,
+          "host_relative_seconds": 0.04411059990525246
+        },
+        {
+          "direction": 1,
+          "host_monotonic": 1345123.3345063,
+          "bytes": 70,
+          "host_relative_seconds": 0.04452060000039637
+        },
+        {
+          "direction": 1,
+          "host_monotonic": 1345123.3359827,
+          "bytes": 307,
+          "host_relative_seconds": 0.04599700006656349
+        },
+        {
+          "direction": 1,
+          "host_monotonic": 1345123.3378436,
+          "bytes": 307,
+          "host_relative_seconds": 0.047857899917289615
+        },
+        {
+          "direction": 1,
+          "host_monotonic": 1345123.3396998,
+          "bytes": 307,
+          "host_relative_seconds": 0.049714099848642945
+        },
+        {
+          "direction": 1,
+          "host_monotonic": 1345123.3420849,
+          "bytes": 544,
+          "host_relative_seconds": 0.0520991999655962
+        },
+        {
+          "direction": 1,
+          "host_monotonic": 1345123.3429398,
+          "bytes": 377,
+          "host_relative_seconds": 0.05295409983955324
+        },
+        {
+          "direction": 1,
+          "host_monotonic": 1345123.3457723,
+          "bytes": 307,
+          "host_relative_seconds": 0.05578659987077117
+        },
+        {
+          "direction": 1,
+          "host_monotonic": 1345123.3489008,
+          "bytes": 544,
+          "host_relative_seconds": 0.05891510006040335
+        },
+        {
+          "direction": 1,
+          "host_monotonic": 1345123.3493657,
+          "bytes": 377,
+          "host_relative_seconds": 0.05937999999150634
+        },
+        {
+          "direction": 1,
+          "host_monotonic": 1345123.3510979,
+          "bytes": 307,
+          "host_relative_seconds": 0.061112199909985065
+        },
+        {
+          "direction": 1,
+          "host_monotonic": 1345123.3526758,
+          "bytes": 307,
+          "host_relative_seconds": 0.062690099934116
+        },
+        {
+          "direction": 1,
+          "host_monotonic": 1345123.3560733,
+          "bytes": 544,
+          "host_relative_seconds": 0.06608759984374046
+        },
+        {
+          "direction": 1,
+          "host_monotonic": 1345123.3570284,
+          "bytes": 377,
+          "host_relative_seconds": 0.06704270001500845
+        },
+        {
+          "direction": 1,
+          "host_monotonic": 1345123.3595735,
+          "bytes": 307,
+          "host_relative_seconds": 0.06958779995329678
+        },
+        {
+          "direction": 1,
+          "host_monotonic": 1345123.3605996,
+          "bytes": 307,
+          "host_relative_seconds": 0.07061389996670187
+        },
+        {
+          "direction": 1,
+          "host_monotonic": 1345123.3622947,
+          "bytes": 307,
+          "host_relative_seconds": 0.07230899995192885
+        },
+        {
+          "direction": 1,
+          "host_monotonic": 1345123.3635818,
+          "bytes": 307,
+          "host_relative_seconds": 0.07359609985724092
+        },
+        {
+          "direction": 1,
+          "host_monotonic": 1345123.3646339,
+          "bytes": 307,
+          "host_relative_seconds": 0.07464820006862283
+        },
+        {
+          "direction": 1,
+          "host_monotonic": 1345123.3661882,
+          "bytes": 307,
+          "host_relative_seconds": 0.07620249991305172
+        },
+        {
+          "direction": 1,
+          "host_monotonic": 1345123.3675939,
+          "bytes": 307,
+          "host_relative_seconds": 0.07760820002295077
+        },
+        {
+          "direction": 1,
+          "host_monotonic": 1345123.3686225,
+          "bytes": 307,
+          "host_relative_seconds": 0.07863679993897676
+        },
+        {
+          "direction": 1,
+          "host_monotonic": 1345123.3726558,
+          "bytes": 544,
+          "host_relative_seconds": 0.08267010003328323
+        },
+        {
+          "direction": 1,
+          "host_monotonic": 1345123.3731863,
+          "bytes": 70,
+          "host_relative_seconds": 0.0832005999982357
+        },
+        {
+          "direction": 1,
+          "host_monotonic": 1345123.3744253,
+          "bytes": 307,
+          "host_relative_seconds": 0.0844395998865366
+        },
+        {
+          "direction": 1,
+          "host_monotonic": 1345123.3755463,
+          "bytes": 307,
+          "host_relative_seconds": 0.0855606000404805
+        },
+        {
+          "direction": 1,
+          "host_monotonic": 1345123.3772345,
+          "bytes": 307,
+          "host_relative_seconds": 0.08724879985675216
+        },
+        {
+          "direction": 1,
+          "host_monotonic": 1345123.3783758,
+          "bytes": 307,
+          "host_relative_seconds": 0.08839010004885495
+        },
+        {
+          "direction": 1,
+          "host_monotonic": 1345123.3794501,
+          "bytes": 307,
+          "host_relative_seconds": 0.08946439996361732
+        },
+        {
+          "direction": 1,
+          "host_monotonic": 1345123.3805199,
+          "bytes": 307,
+          "host_relative_seconds": 0.0905341999605298
+        },
+        {
+          "direction": 1,
+          "host_monotonic": 1345123.3816014,
+          "bytes": 70,
+          "host_relative_seconds": 0.09161569993011653
+        },
+        {
+          "direction": 0,
+          "host_monotonic": 1345123.383789,
+          "bytes": 34,
+          "host_relative_seconds": 0.09380330005660653
+        },
+        {
+          "direction": 1,
+          "host_monotonic": 1345123.3857154,
+          "bytes": 50,
+          "host_relative_seconds": 0.09572970005683601
+        }
+      ],
+      "limit": "Nonempty backend.read completion stamps, including Stop drain; not ADC, USB transaction, URB, host-stall or sustained-throughput timestamps. Empty reads and call durations were not logged."
+    }
+  },
+  "host_source_facts": {
+    "read_timeout_seconds": 0,
+    "maximum_read_bytes": 544,
+    "partial_read_wait_target_seconds": 0.001,
+    "full_reads_before_yield": 8,
+    "pyserial_readfile": "ClearCommError cbInQue; n=min(cbInQue,544); n=0 skips ReadFile; n>0 calls ReadFile and waits GetOverlappedResult before returning. No application ReadFile remains pending between owner iterations.",
+    "driver_URBs_between_application_reads": "TBD; absence of application ReadFile is not absence of driver-owned USB requests.",
+    "SetupComm_recommended_input_bytes": 4096,
+    "SetupComm_actual_driver_buffer_bytes": null,
+    "probe_audit": "Two buffered local-file writes run in receiver after each nonempty backend.read. Neither duration nor empty polls is logged. Normal GUI does not use this audit wrapper.",
+    "disk_UI": "Separate workers; Qt20ms is not acquisition polling. Saved peak raw disk queue=4 in both trials, not an observed disk-backlog overflow."
+  },
+  "nominal_budget_arithmetic": {
+    "samples_per_second": 100000,
+    "samples_per_DATA": 128,
+    "DATA_interval_ms": 1.28,
+    "DATA_frames_per_second": 781.25,
+    "observed_DATA_frame_bytes": 307,
+    "wire_bytes_per_second_at_307": 239843.75,
+    "raw_bytes_per_second": 200000,
+    "queue_8_DATA_duration_ms": 10.24,
+    "qualification": "Arithmetic, not measured sustained throughput, ADC timing or USB guarantee; queue slots do not include all transport/ADC staging."
+  },
+  "F2_existing_diagnostic_evidence": {
+    "window_nominal_us": 31176.805555555555,
+    "counters": {
+      "adc_samples_offered": 2944,
+      "data_samples_committed": 1920,
+      "write_zero_space": 14,
+      "write_zero_other": 0,
+      "write_unknown": 0,
+      "write_accepted_bytes": 4651,
+      "in_completion_gap_max_cycles": 392337,
+      "foreground_DWT_reads": 1800,
+      "grant_allowed": 26,
+      "grant_denied": 15,
+      "in_transfers_published": 16,
+      "in_transfer_bytes_published": 4651,
+      "in_ZLP_transfers": 0,
+      "in_packets_completed": 76,
+      "in_packet_bytes_completed": 4651,
+      "burst_resume": 59,
+      "hold_final": 16,
+      "hold_other": 0,
+      "hold_budget": 0,
+      "hold_time_timer": 1,
+      "hold_lifecycle_error": 0,
+      "ISR_DWT_reads": 258
+    },
+    "first_event": {
+      "indices": {
+        "head": 1920,
+        "next": 2944,
+        "prefix": 1920,
+        "adc": 3072
+      },
+      "queue_used": 8,
+      "last_remaining": 1023,
+      "last_poll_us": 20912728,
+      "core_state": 4,
+      "core_first_reason": 0,
+      "adc_state": 1,
+      "adc_first_fault": 0,
+      "core_local_error": 0,
+      "tx_offset": 0,
+      "tx_length": 307,
+      "note": "RAM-only first-close snapshot before Stop/drain; passed primary reason is distinct from core.first_reason.",
+      "last_poll_us_meaning": "Absolute saved TIM2-extended driver timestamp, not a poll gap or duration."
+    },
+    "last_IN_in_open_ADC_phase": true,
+    "last_IN_after_ADC_phase_begin_cycles": 12763,
+    "last_IN_after_ADC_phase_begin_nominal_us": 177.26388888888889,
+    "last_IN_before_first_close_cycles": 27861,
+    "last_IN_before_first_close_nominal_us": 386.9583333333333,
+    "inference": "At first close, published/completed bytes match and the last packet completion hook lies inside the still-open ADC phase. This fits a final-IN event awaiting the next foreground task turn while core DATA remains queued. Neither FIFO occupancy nor every completion/republication interval was directly recorded.",
+    "qualification": "S9 instrumented nominal DWT evidence; retain observer cost/overlap caveats. No CPU percentage summation and no equivalence with uninstrumented SA timing."
+  },
+  "G2_existing_diagnostic_limits": {
+    "active_512byte_profile": false,
+    "queue_high_water": 8,
+    "first_acquisition_reason": 1,
+    "tx_max_excludes_prepare_encode": true,
+    "limit": "Legacy136 maxima extend through drain; no first-close time series. Longer prefix is not measured acceleration."
+  },
+  "next_discriminator_not_executed": "A future authorized bounded observation would distinguish final-IN→task callback→next publication latency from host URB/NAK availability. Do not change host polling, driver buffers, queue depth and firmware scheduling together. Current evidence supports examining firmware foreground turnover first; it does not authorize a new trial.",
+  "primary_web_sources": [
+    {
+      "url": "https://learn.microsoft.com/en-us/windows/win32/api/winbase/ns-winbase-commtimeouts",
+      "supports": "MAXDWORD/0/0 read returns already buffered bytes immediately."
+    },
+    {
+      "url": "https://learn.microsoft.com/en-us/windows/win32/api/winbase/nf-winbase-setupcomm",
+      "supports": "4096 is a requested recommendation; driver buffering implementation is not established by SetupComm."
+    },
+    {
+      "url": "https://learn.microsoft.com/en-us/windows-hardware/drivers/usbcon/usb-bulk-and-interrupt-transfer",
+      "supports": "A driver may initiate USB requests itself; application read timing alone cannot locate bus scheduling delays."
+    }
+  ],
+  "build_dependency_hash_matches": {
+    "build/v6g-fw-02/patched/v2/app/mt_live_runtime.c": true,
+    "build/v6g-fw-02/patched/v2/boot/tusb_config.h": true,
+    "build/v6g-fw-02/patched/usbd.c": true,
+    "build/v6g-fw-02/patched/dcd_stm32_fsdev.c": true,
+    "build/v6g-fw-02/source/firmware/third_party/usb/vendor/tinyusb/src/class/cdc/cdc_device.c": true,
+    "build/v6g-fw-02/source/firmware/third_party/usb/vendor/tinyusb/src/tusb.c": true
+  },
+  "sources": {
+    "build/v6f-board-01/run/traffic.bin": {
+      "bytes": 7854,
+      "sha256": "657a616663ad92a04f0ea63ac54041c0ce4b16e77c291973c6d633528eb41e35"
+    },
+    "build/v6f-board-01/wire-failure-analysis.json": {
+      "bytes": 13898,
+      "sha256": "3178169e8c9dde77e39179ba211f0de6e2fcb9aa9e807f1e72a10495da5d83a6"
+    },
+    "build/v6f-board-01/run/result.json": {
+      "bytes": 2867,
+      "sha256": "1ba95baa91fd9ba35e3c92bcf1f78925974a6de56d8d414d859853585d798ac8"
+    },
+    "build/v6g-board-01/run/traffic.bin": {
+      "bytes": 12974,
+      "sha256": "9c2d994f3a884b61f262d99400e4071b4b3aca4a745c0e482097e6ff8e1e3693"
+    },
+    "build/v6g-board-01/wire-failure-analysis.json": {
+      "bytes": 16822,
+      "sha256": "271d9b1e91888ab9f28d2cf9a9da497692a5bf851981b492eef90ad6a50fa1c1"
+    },
+    "build/v6g-board-01/run/result.json": {
+      "bytes": 2869,
+      "sha256": "5367d23eaf42ff2014976d17d5057a98aa77936fd5864a3f41ace0d26523754d"
+    },
+    "build/v6f-board-01/profile-decoded.json": {
+      "bytes": 14664,
+      "sha256": "86835862916b8553ec9b1c3077c588757b7951621c7674f7156d6c3dcbbf40e0"
+    },
+    "build/v6g-board-01/diagnostics-decoded.json": {
+      "bytes": 6579,
+      "sha256": "81ebe5e27ba23a26ae448cbf2351d539b09ad71cefbeaab34b5a7824bd7c0020"
+    },
+    "host/motortester/stream_serial.py": {
+      "bytes": 6048,
+      "sha256": "cd35af141eaecb2c6bba7bb03814863b91b55500723289f3cafe91416d720493"
+    },
+    "host/motortester/transport.py": {
+      "bytes": 9243,
+      "sha256": "48630f0ca9a849bf42072e1cfc96e97a07eb254fd1f9a747b1d8c95c1c64aca7"
+    },
+    "host/motortester/stream_controller.py": {
+      "bytes": 50965,
+      "sha256": "e7e6559c4e74c5b9ac4429e12b34e7829c9927179c8ac4664425b8e303424fbf"
+    },
+    "host/motortester/v2/stream_device.py": {
+      "bytes": 24661,
+      "sha256": "b230ba2046605ec5982364c8368c6d4d1b508e1bcd940f4f13b46dd65273f8ed"
+    },
+    "host/tools/v2_stream_probe.py": {
+      "bytes": 10445,
+      "sha256": "14de99c546586e5f9fd89b03622861e1865c65f448ceb7224c49cb17ab79cb35"
+    },
+    ".venv/Lib/site-packages/serial/serialwin32.py": {
+      "bytes": 20284,
+      "sha256": "17681ea9a650120c71db1aae9b8881301a40d38c47b34bb0da050e3f5bfbbe00"
+    },
+    "build/v6g-fw-02/config.json": {
+      "bytes": 1004,
+      "sha256": "0c9ebe99528d7e9c64762335f8ac3a83d8b071411fa39f79a97a35cb6c9860c1"
+    },
+    "build/v6g-fw-02/patched/v2/app/mt_live_runtime.c": {
+      "bytes": 16081,
+      "sha256": "3e8b4f78bc5a3f00a200ed367e25075f4db626f411b5c54d5163fc4986abebcd"
+    },
+    "build/v6g-fw-02/patched/v2/boot/tusb_config.h": {
+      "bytes": 1258,
+      "sha256": "7886bfbd42563b0e8f8cd4db6af8ab17691b64a03223c1f247c3633aedef43c3"
+    },
+    "build/v6g-fw-02/patched/usbd.c": {
+      "bytes": 63930,
+      "sha256": "f500d3477ef628c15e8ebb117570da64d34d4b6d638cfa47886422b9a04091fe"
+    },
+    "build/v6g-fw-02/patched/dcd_stm32_fsdev.c": {
+      "bytes": 37675,
+      "sha256": "b763cceef6be395782aa621a65d9cbbdfe9d5fe61bddcc3d44dc143254c30356"
+    },
+    "build/v6f-fw-03/patched/dcd_stm32_fsdev.c": {
+      "bytes": 39118,
+      "sha256": "73688367e16c425dc65214cf7625040212d8b41120d54e412579d83a2c7ae9ff"
+    },
+    "build/v6g-fw-02/source/firmware/third_party/usb/vendor/tinyusb/src/class/cdc/cdc_device.c": {
+      "bytes": 18200,
+      "sha256": "2ca9f63f5812e6fd58405e52b1bb282aa0752d1110fa577aca6442c1f67f4840"
+    },
+    "build/v6g-fw-02/source/firmware/third_party/usb/vendor/tinyusb/src/tusb.c": {
+      "bytes": 16704,
+      "sha256": "b5f0e8ca00ba6e63914583f7b4711c540a125c261b261216f89e5136fda2ac6f"
+    },
+    "build/v6g-fw-02/receipt.json": {
+      "bytes": 379903,
+      "sha256": "60762a0c4c450d742d91d6544f8f64f03394f533f6de411b7de3b2d9ef55719f"
+    }
+  },
+  "originals_unchanged": true,
+  "analysis_script_sha256": "1572e792ed33670e9ebc069718c0a838ef8df89c9d424eaa547d98cc339c8fdc"
+}

@@ -1,4 +1,4 @@
-"""Build the separate V2SA 100 kS/s TX-prepare candidate; never flash hardware."""
+"""Build the separate V2SB 100 kS/s early-grant candidate; never flash hardware."""
 import argparse
 import hashlib
 import importlib.util
@@ -272,6 +272,14 @@ def main():
             target = out / "patched" / row["target"]
             target.write_bytes(apply_patch((out / row["source"]).read_bytes(),
                 (here / "overlays" / row["patch"]).read_bytes(), row))
+        if not config["active_profile_enabled"]:
+            early = json.loads((here / "overlays/early-grant.json").read_text("utf-8"))
+            require(early["schema"] == "motortester-v2-early-grant-overlay-1", "Unexpected early grant overlay")
+            receipt["v2_overlays"].extend(early["patches"])
+            for row in early["patches"]:
+                target = out / "patched" / row["target"]
+                target.write_bytes(apply_patch((out / row["source"]).read_bytes(),
+                    (here / "overlays" / row["patch"]).read_bytes(), row))
         if config["active_profile_enabled"]:
             for name in ("mt_stream_profile.c", "mt_stream_profile.h"):
                 (out / "patched/v2/platform" / name).write_bytes((here / "profile" / name).read_bytes())

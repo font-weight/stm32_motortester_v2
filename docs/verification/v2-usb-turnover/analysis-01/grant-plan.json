@@ -1,0 +1,22 @@
+{
+  "schema": "v2-06h-early-grant-plan-1",
+  "status": "DRAFT",
+  "build": "0x56325342",
+  "one_attempt_per_step": true,
+  "early_point": "After existing ADC/live_time/stable/loss/argument checks, before RX/prepare",
+  "post_IRQ_barrier": "Fresh live_time and stable/loss before RX",
+  "fallback": "Exact previous wrapper grant body only when early point not reached",
+  "actor": "existing app scope remains entered; no reentrant FG/core callback from ISR",
+  "unchanged": [
+    "DCD6packet/<500us",
+    "Fs100k",
+    "FIFO384",
+    "queue8",
+    "TIME checks",
+    "prepare/guarded commit",
+    "legacy136"
+  ],
+  "new_static_storage": 0,
+  "hardware_authorized": false,
+  "performance_limit": "For a transfer not yet published at tud_task, early6/<500us window ages during RX/encode/TX; no second reset or startup throughput guarantee."
+}

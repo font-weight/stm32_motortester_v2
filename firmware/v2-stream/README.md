@@ -1,4 +1,33 @@
-# Кандидат V2SA: подготовка TX перед атомарным write/commit
+# Кандидат V2SB: одна ранняя USB opportunity после ADC
+
+V2-06h/build `0x56325342`, product `Motortester V2 100k USBB`: обычный IRQ
+grant переносится после ADC и существующих TIME/stable/loss проверок, до
+RX/prepare. Так IN, опубликованный task, может продвигаться во время
+подготовки TX. За runtime step допускается одна попытка: на раннем return
+сохраняется wrapper fallback; после ранней попытки второй reset6/500мкс
+не выполняется, включая false/FRES. После возможного IRQ — свежие
+TIME/stable/loss проверки **до чтения/перезапуска RX** и до любого core TX.
+Actor/app scope сохраняет владельца, сменаepoch ведёт в прежний cleanup.
+Если task ещё не опубликовал transfer, его раннее6/<500мкс окно уже стареет
+во время RX/encode/TX. Повторного reset нет; ускорение первого transfer и
+startup не гарантируется. Модель порядка не подтверждает throughput.
+
+100k/ADC512half/DATA128/queue8/FIFO384/MPS64/burst, wire/CRC/prepare-commit
+V2SA и DCD guard прежние; дополнительные буферы не добавляются. S9profile
+выключен, legacy136 остаётся. Его `tx_max_cycles` исключает prepare, общий
+step/poll включает его. Это schedule-гипотеза после сохранённого G2 отказа,
+не физически принятые100/200k и не разрешение наFlash. Возврат старого образа
+не автоматический: только при конкретной необходимости в отдельном плане.
+
+```powershell
+.\.venv\Scripts\python.exe -I -B firmware\v2-stream\build_windows.py --output build\v6h-fw-candidate
+```
+
+До аппаратного плана нужны одна actual-runtime order model, exact source
+сравнение с SA, ARM/static и независимыйcritic. Никаких COM/SWD из сборки.
+
+## Сохранённая V2SA
+
 
 V2-06g проверяет одну ограниченную гипотезу после сохранённого S9 queue-full.
 Build `0x56325341`, product `Motortester V2 100k USBA`;100k/ADC512half/

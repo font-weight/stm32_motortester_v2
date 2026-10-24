@@ -1,5 +1,40 @@
 # Прогресс Мотортестера V2
 
+## 24.10.2026 — V2-06h: работа возобновлена, выбран перенос USB opportunity
+
+Пользователь поручил продолжить по F2/G2 и добиться стабильных100k,
+сохранив отказ от ненужных возвратов S4. Подтвердил подключение платы/ST-Link
+с пустым PA0; Windows снова показывает COM6. Нового START/Flash пока нет,
+последний установленный образ — V2SA, остановленная в G2.
+В source подтверждён промежуток: final IN → queued completion/held IRQ →
+следующий tud_task ставит transfer → ADC/RX/prepare/TX/TIME → grant.
+H переносит единственный обычный grant после ADC-barriers, оставляя fallback
+ранних выходов. После нового IRQ добавлена свежая TIME/stable/loss проверка
+до RX; прежние TIME проверки сохранены. Единственные ARM/static и native
+прогоны H завершились PASS. Модель исполняет actual runtime/epoch с логическими
+ADC/USB/core/time callbacks: порядок, final events по обе стороны task/grant,
+stale epoch/TIME/lifecycle до RX, одна попытка и fallback/known zero.
+Это не модель физического USB и не измерение100k. Другие suite не запускались.
+
+V2SB/build0x56325342, `build/v6h-fw-01`: BIN37224байта, SHA256
+`e7f6f07fc6a43e6b109af6e5c652db1322a0e5023e328007b2c50d303f12536e`;
+ELF `f129421a4dfb3baf3d30dbefc0923dcdfcf6ec4ddb0e02293c0ece78fb6d14ed`.
+text37096/data128/bss11212; с8192 резервом стека19532/20480, запас948.
+Условная граница6044/aligned6048, legacy136 по0x20002BC4, profile512 off.
+Freeze7928fb9d…; [программный архив](verification/v2-usb-turnover/software-evidence.json)
+59побайтно равных пар1065380байт, manifest
+`160ef0446afb0a30af31b4db1b802e4606b6b9855a56c2923d27d80b2b3ae9c6`.
+Ранние замечания key scope/line endings исправлены до сборки.
+[Анализ](verification/v2-usb-turnover/analysis-01/manifest.json) сохраняет
+первоначальный проект; его финальная отметка IMPLEMENTED отдельно входит
+в программный архив. Новое раннее500мкс окно может состариться до first/new
+publish; второго grant нет, гарантии ускорения первого кадра не заявлены.
+Независимое software-ревью ожидается, Flash/START H ещё не выполнялись.
+Свежая64КиБ копия установленной SA побайтно содержит её37132байта
+проверенного образа; полный SHA256
+`4a1060f0062620580d8ac1e74aba001a2935bd58dcc6cccbb5fcbef957826f4a`.
+Резерв S4/95d3a11f… сохранён отдельно. Windows-пакет не менялся.
+
 ## 24.10.2026 — V2-06g2: повторный отказ, работа остановлена по просьбе пользователя
 
 **Физические100k — FAIL. На плате оставлена V2SA, приём остановлен.**

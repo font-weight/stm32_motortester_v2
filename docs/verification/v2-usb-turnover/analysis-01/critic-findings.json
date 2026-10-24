@@ -1,0 +1,139 @@
+{
+  "schema": "v2-06h-independent-causal-findings-1",
+  "reviewer": "stream200_critic",
+  "date": "2026-10-24",
+  "scope": "Read-only source/evidence analysis before a next fix; no implementation or new tests",
+  "status": "ANALYSIS_ONLY_NOT_ACCEPTANCE",
+  "score": null,
+  "candidate_source_commit": "a7b45bccf54f3155de03389aa5e49b237905c994",
+  "physical100k_status": "FAIL_UNRESOLVED",
+  "source_pins": [
+    {
+      "path": "build/v6g-fw-02/patched/v2/app/mt_live_runtime.c",
+      "sha256": "3e8b4f78bc5a3f00a200ed367e25075f4db626f411b5c54d5163fc4986abebcd"
+    },
+    {
+      "path": "build/v6g-fw-02/patched/dcd_stm32_fsdev.c",
+      "sha256": "b763cceef6be395782aa621a65d9cbbdfe9d5fe61bddcc3d44dc143254c30356"
+    },
+    {
+      "path": "build/v6g-fw-02/source/firmware/third_party/usb/vendor/tinyusb/src/tusb.c",
+      "sha256": "b5f0e8ca00ba6e63914583f7b4711c540a125c261b261216f89e5136fda2ac6f"
+    },
+    {
+      "path": "build/v6g-fw-02/source/firmware/third_party/usb/vendor/tinyusb/src/class/cdc/cdc_device.c",
+      "sha256": "2ca9f63f5812e6fd58405e52b1bb282aa0752d1110fa577aca6442c1f67f4840"
+    },
+    {
+      "path": "build/v6g-fw-02/patched/v2/protocol/mt_live_device.c",
+      "sha256": "9b952cd8e19eaa3ff4879429b1e925ca20ff7114c5a1d6d037afd1ed0baa3f33"
+    },
+    {
+      "path": "build/v6f-board-01/profile-time-analysis.json",
+      "sha256": "dd0a0d2bf407250d211d070c111a922667399d47795b49e85c2da88d6ee0aef2"
+    },
+    {
+      "path": "build/v6g-board-01/run/result.json",
+      "sha256": "5367d23eaf42ff2014976d17d5057a98aa77936fd5864a3f41ace0d26523754d"
+    },
+    {
+      "path": "build/v6g-board-01/diagnostics-decoded.json",
+      "sha256": "81ebe5e27ba23a26ae448cbf2351d539b09ad71cefbeaab34b5a7824bd7c0020"
+    }
+  ],
+  "findings": [
+    {
+      "id": "H-C1",
+      "classification": "confirmed_source_dependency",
+      "finding": "Final CDC IN holds endpoint interrupts and posts a task event. If final completion occurs after the current tud_task, event_ready denies normal grant at pass end; next task can clear BUSY/publish transfer while CTR remains held through the following ADC/RX/prepare/TX/TIME pass. Preparation outside PRIMASK does not itself release CTR hold.",
+      "locations": [
+        "mt_live_runtime.c:212,257-289",
+        "dcd_stm32_fsdev.c:377-386,609-626",
+        "cdc_device.c:517-523",
+        "tusb.c:401-420"
+      ]
+    },
+    {
+      "id": "H-C2",
+      "classification": "measured_profile_context_not_counterfactual_proof",
+      "finding": "F2 first-close:41 phase/grant calls,15 DATA committed,14 ZERO_SPACE,grant_denied15,hold_final16,hold_time_timer1,hold_budget0,published/completed4651bytes. Supports focusing on final-transfer turnover; does not prove every frame followed H-C1 or establish its latency fraction."
+    },
+    {
+      "id": "H-C3",
+      "classification": "required_capacity_arithmetic",
+      "finding": "DATA128 arrives every1280us at100k. A max307-byte wire frame requires at most239843.75wireB/s plus control. Fixed max307-byte transfer uses5 USB64 payload packets when not coalesced. This is demand arithmetic, not measured USB capacity."
+    },
+    {
+      "id": "H-C4",
+      "classification": "evidence_limit",
+      "finding": "G2 legacy maxima include completion/drain and have no first-fault phase window.4992 vs F2 2944 is not a speedup measurement. G2 tx_max excludes preparation; F2 includes it. Host read timestamps do not prove host/USB stalls."
+    }
+  ],
+  "questions_before_fix": [
+    {
+      "id": "Q1",
+      "question": "Give a concrete state table for finalIN before tud_task, after task/before ADC, and after a proposed early opportunity: endpointBUSY, event queue, CTR hold, next publication and first possible completion. Mark which transition actually loses a full pass."
+    },
+    {
+      "id": "Q2",
+      "question": "If moving the existing normal grant, prove at most one normal6-packet/500us budget reset per foreground pass; outer fallback may not replenish an already granted budget, and lifecycle/early-error progress must remain possible."
+    },
+    {
+      "id": "Q3",
+      "question": "Which exact TIME/ADC/loss checks precede the new opportunity, and which RX/Stop/epoch revalidations still prevent writing after an interrupt changes lifecycle? Do not remove guards solely because a profile suggests overhead."
+    },
+    {
+      "id": "Q4",
+      "question": "Separate fixable source dependency from sufficiency for stable100k. Preserve same Fs/FIFO/queue/frame sizes and actual failure rules; future physical acceptance must still be one unchanged bounded criterion, not a larger received count."
+    },
+    {
+      "id": "Q5",
+      "question": "For TIME optimization, count retained register observations and quantify any changed contract. F2 TIME interval7.7466ms overlaps phases, residual8.5836ms is unattributed; neither is independent CPU% or guaranteed speedup."
+    },
+    {
+      "id": "Q6",
+      "question": "Early grant runs inside app scope. Inject lifecycle at its unlock: tud_cdc_n_read also calls read_xfer, so verify no stale RX hardware submit or core consumption before cleanup, not merely no TX; preserve actor restore and skip any second ordinary grant attempt even after a refused first attempt."
+    }
+  ],
+  "rejected_inferences": [
+    "Increasing queue only postpones an unresolved service deficit",
+    "500us/budget increase is not supported as dominant F2 cause by one time hold and zero budget holds",
+    "No proof of host bottleneck from nonblocking application reads or chunk timestamps",
+    "No proof100k is impossible, and no new physical success inferred from software/source analysis"
+  ],
+  "work_done": [
+    "Read existing F2/G2 evidence and exact compiled source",
+    "Checked arithmetic and source line dependencies",
+    "Sent independent questions to firmware/host/root"
+  ],
+  "production_changed": false,
+  "tests_run": false,
+  "hardware_access": false,
+  "flash_admission": false,
+  "actor_boundary_review": {
+    "source_fact": "grant itself does not dispatch task or mutate actor; ISR ingress changes epoch/soft metadata, while app scope leave restores previous actor.",
+    "remaining_edge": "RX FIFO read may execute before while(usable) when lifecycle arrives on early grant. Existing bridge guards hardware submit and usable guards core consume; any new immediate stable guard and its scope cleanup must be reviewed explicitly.",
+    "classification": "Required new-boundary model case, not a proven existing corruption defect"
+  },
+  "draft_plan_followup": {
+    "read_paths": [
+      "build/v6h-analysis/grant-plan.md",
+      "build/v6h-analysis/grant-plan.json"
+    ],
+    "sha256": [
+      "8b285b9133d894ad99f3b0343bf4aa9044a4f57cb32ca0e4835ac1a4d4f48003",
+      "9b495622846282d15ddf8af78f100f699f3f53655ddd33bb77da6769e0e70802"
+    ],
+    "finding": "No functional blocker seen at plan level: state table, one attempt marker before helper regardless of return, exact fallback, and new freshTIME/stable-beforeRX barrier address questions. Existing TIME checks retained plus one new observation; implementation/order model/ARM evidence still required.",
+    "source_accepted": false,
+    "flash_approved": false
+  },
+  "early_source_checkpoint": {
+    "runtime_sha256": "532dfd159e923bccaac30ec2404a5e5aa6f886b2ff18fbbc1b5d555e693a127f",
+    "finding": "grant_irq uses key without a local declaration after extraction from wrapper; author notified before ARM compile. Remaining visible delta follows plan.",
+    "status": "RESOLVED_BEFORE_BUILD",
+    "tests_run": false,
+    "resolution": "Local key declaration and exact raw prep bytes matching overlay pin verified. Earlier CRCRLF mismatch resolved by author with write_bytes before any ARM/native run. No further functional blocker seen at source checkpoint; final model/ARM evidence pending.",
+    "resolved_runtime_sha256": "efadedb84e304f0c31b5c5e9bf130753d8296ac14d462f65a2d5eea1a178cc46"
+  }
+}

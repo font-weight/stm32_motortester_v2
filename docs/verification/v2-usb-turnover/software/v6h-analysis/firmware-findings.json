@@ -1,0 +1,64 @@
+{
+  "schema": "v2-06h-firmware-causal-findings-1",
+  "status": "OFFLINE_HYPOTHESIS_SELECTED_NOT_PHYSICALLY_PROVEN",
+  "evidence": {
+    "F2": "31.176806ms first-close,41foreground passes,15DATA committed/14ZERO_SPACE,grant_denied15,hold_final16,hold_time1,budget0",
+    "G2": "FAIL queuefull8 after4992wire samples; ADCfault0,poll1375us,copy202us. No active-only profiler in SA."
+  },
+  "arithmetic": {
+    "DATA_samples": 128,
+    "nominal_period_us_at100k": 1280,
+    "cycles_per_DATA_at72MHz": 92160,
+    "DATA_frame_observed_bytes": 307,
+    "required_wire_bytes_per_second": 239843.75,
+    "IN_packets_per_observed_DATA": 5,
+    "short_last_packet_bytes": 51,
+    "F2_completed_step_mean_us": 740.5534722222222,
+    "two_such_mean_passes_us": 1481.1069444444445,
+    "two_pass_raw_rate_arithmetic": 86421.84810436695,
+    "not_WCET_or_sustained_capacity": true
+  },
+  "TIME": {
+    "S4_S8_SA_source_identical_sha256": "e9adfde14df828040bd665781ecbd737a3a27e8b3d396e8639d5e93a500ca774",
+    "healthy_update_MMIO_reads": 27,
+    "healthy_DATA_empty_DMA_updates_per_pass": 14,
+    "reads_per_such_pass": 378,
+    "F2_updates": 572,
+    "F2_sum_cycles_overlapping": 557758,
+    "F2_mean_update_us": 13.54307498057498,
+    "not_exclusive_CPU_share": true
+  },
+  "ticket": {
+    "SA_normal_match_logical_fields": 32,
+    "ARM_ticket_bytes": 160,
+    "match_static_instruction_rows": 153,
+    "normally_two_checks": true,
+    "no_MMIO_reads_or_loop": "fixed RAM comparisons, not independently timed"
+  },
+  "selected_one_change": "Move sole regular CTR grant to after ADC+fresh TIME/stable/loss and before RX/prepare; old wrapper is fallback only if point not reached. No second6/500us grant reset per runtime step. Revalidate TIME/epoch/lifecycle after early IRQ before RX/write.",
+  "causal_limit": "Exact source proves a serial dependency, not which/all observed frames used it or how many microseconds it cost. SA prepare unlocked PRIMASK but did not release held CTRM.",
+  "not_selected": [
+    "FIFO/queue increase",
+    "Fs reduction",
+    "TIME check removal",
+    "packet coalescing/short-packet policy change",
+    "ticket checks removal"
+  ],
+  "source_hashes": {
+    "build/v6f-board-01/profile-decoded.json": "86835862916b8553ec9b1c3077c588757b7951621c7674f7156d6c3dcbbf40e0",
+    "build/v6f-board-01/profile-time-analysis.json": "dd0a0d2bf407250d211d070c111a922667399d47795b49e85c2da88d6ee0aef2",
+    "build/v6g-board-01/run/result.json": "5367d23eaf42ff2014976d17d5057a98aa77936fd5864a3f41ace0d26523754d",
+    "build/v6g-board-01/diagnostics-decoded.json": "81ebe5e27ba23a26ae448cbf2351d539b09ad71cefbeaab34b5a7824bd7c0020",
+    "build/v6g-board-01/wire-failure-analysis.json": "271d9b1e91888ab9f28d2cf9a9da497692a5bf851981b492eef90ad6a50fa1c1",
+    "build/v6g-fw-02/patched/v2/app/mt_live_runtime.c": "3e8b4f78bc5a3f00a200ed367e25075f4db626f411b5c54d5163fc4986abebcd",
+    "build/v6g-fw-02/patched/dcd_stm32_fsdev.c": "b763cceef6be395782aa621a65d9cbbdfe9d5fe61bddcc3d44dc143254c30356",
+    "build/v6g-fw-02/patched/usbd.c": "f500d3477ef628c15e8ebb117570da64d34d4b6d638cfa47886422b9a04091fe",
+    "build/v6g-fw-02/source/firmware/platform/mt_timebase.c": "e9adfde14df828040bd665781ecbd737a3a27e8b3d396e8639d5e93a500ca774",
+    "build/v6g-fw-02/image.dis": "6870acda6e611210234e02905cd74b510775f6ae6d2bd062e90112bc66314bc3"
+  },
+  "operations": {
+    "hardware": false,
+    "production_changes_in_analysis": false,
+    "tests": false
+  }
+}
