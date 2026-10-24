@@ -1,0 +1,119 @@
+{
+  "schema": "v2-06i-package-evidence-1",
+  "scope": "Frozen Windows10 changed-profile flow, synthetic only. One first invocation after verifier import fix, no package rebuild.",
+  "package_source_commit": "310d53b10c79a48ddc45357ff65d88c686aef883",
+  "verifier_source_commit": "03eb4bb5ff3d4f359a5e41c61d563e6f6e10cfe3",
+  "root_visual_review": "All three frozen PNGs readable, no overlap; legacy instruction says close/reopen.",
+  "files": [
+    {
+      "source": "build/v6iw1/build.log",
+      "archive": "docs/verification/v2-selectable-profiles/package-01/receipts/build.log",
+      "bytes": 34433,
+      "sha256": "2b180adc673da4ec1492ddd8e417d6ccf52b0731899b149ef5a8e56acfd7e16e"
+    },
+    {
+      "source": "build/v6iw1/build-report.json",
+      "archive": "docs/verification/v2-selectable-profiles/package-01/receipts/build-report.json",
+      "bytes": 7347,
+      "sha256": "06c367d6919d59bac6e5c100557c0f398dfa2b707441cd1b9f816666d2016fbf"
+    },
+    {
+      "source": "build/v6iw1/verification-resume.json",
+      "archive": "docs/verification/v2-selectable-profiles/package-01/receipts/verification-resume.json",
+      "bytes": 63419,
+      "sha256": "7e7d01ba82643fdeb13e7652657d60295c0f934a5384b0171589bf2f491e805c"
+    },
+    {
+      "source": "build/v6iw1/verification-resume.log",
+      "archive": "docs/verification/v2-selectable-profiles/package-01/receipts/verification-resume.log",
+      "bytes": 430,
+      "sha256": "5d3ab6234eae029836d59dae2645b9e439ad02bab7bb6450a5d6db3d382fbeab"
+    },
+    {
+      "source": "build/v6iw1/SHA256SUMS.txt",
+      "archive": "docs/verification/v2-selectable-profiles/package-01/receipts/SHA256SUMS.txt",
+      "bytes": 1278,
+      "sha256": "c957916902d88175eb39744c04836c2c6420e1038f434c23c413ad113f59e142"
+    },
+    {
+      "source": "build/v6iw1/dist/MotortesterV2/build-manifest.json",
+      "archive": "docs/verification/v2-selectable-profiles/package-01/receipts/build-manifest.json",
+      "bytes": 87571,
+      "sha256": "7a21696e9f8c20076cac1f2aa9a2fc6b0d28de1e86ca9b79e6e7f685e09da9d5"
+    },
+    {
+      "source": "build/v6i-resume-package.py",
+      "archive": "docs/verification/v2-selectable-profiles/package-01/receipts/v6i-resume-package.py",
+      "bytes": 3026,
+      "sha256": "d2900461642215f2457d7dc0face6774b762f4318e0bb316606bd8cf950971c8"
+    },
+    {
+      "source": "build/v6iw1/frozen-profiles/intrinsic-only.mtstream",
+      "archive": "docs/verification/v2-selectable-profiles/package-01/frozen-profiles/intrinsic-only.mtstream",
+      "bytes": 808287,
+      "sha256": "48fa13af778ce76193e97af7e6b3d2fdef974ce83f210a886947abae6cfdc202"
+    },
+    {
+      "source": "build/v6iw1/frozen-profiles/packed150.csv",
+      "archive": "docs/verification/v2-selectable-profiles/package-01/frozen-profiles/packed150.csv",
+      "bytes": 11312983,
+      "sha256": "36368f1375500cd485b648bddae8294b2a8be5eeb33880a94364211ade9aa5d0"
+    },
+    {
+      "source": "build/v6iw1/frozen-profiles/packed150.csv.json",
+      "archive": "docs/verification/v2-selectable-profiles/package-01/frozen-profiles/packed150.csv.json",
+      "bytes": 2969,
+      "sha256": "ca7fa81c052967b5cd7f947f84040041781dee9388ca799262adbd2b25841f66"
+    },
+    {
+      "source": "build/v6iw1/frozen-profiles/packed150.mtstream",
+      "archive": "docs/verification/v2-selectable-profiles/package-01/frozen-profiles/packed150.mtstream",
+      "bytes": 808287,
+      "sha256": "48fa13af778ce76193e97af7e6b3d2fdef974ce83f210a886947abae6cfdc202"
+    },
+    {
+      "source": "build/v6iw1/frozen-profiles/packed150.mtstream.v2.json",
+      "archive": "docs/verification/v2-selectable-profiles/package-01/frozen-profiles/packed150.mtstream.v2.json",
+      "bytes": 2331,
+      "sha256": "f8ec7534b468f89dec46c220dd7917141edb835e345a9599ac070b5670f54722"
+    },
+    {
+      "source": "build/v6iw1/frozen-profiles/profiles-legacy-mismatch.png",
+      "archive": "docs/verification/v2-selectable-profiles/package-01/frozen-profiles/profiles-legacy-mismatch.png",
+      "bytes": 42505,
+      "sha256": "1acbcac541d46ed5cdb3a666d47bb132952bca2d6db135c2b20243f280d6efd8"
+    },
+    {
+      "source": "build/v6iw1/frozen-profiles/profiles-live.png",
+      "archive": "docs/verification/v2-selectable-profiles/package-01/frozen-profiles/profiles-live.png",
+      "bytes": 62980,
+      "sha256": "6e00dce97b4b5a2d09953a311992580f23fb8defdd38cb3cc7295f23d563a33d"
+    },
+    {
+      "source": "build/v6iw1/frozen-profiles/profiles-open.png",
+      "archive": "docs/verification/v2-selectable-profiles/package-01/frozen-profiles/profiles-open.png",
+      "bytes": 66815,
+      "sha256": "87c67f41e983f43012ef2e93a90375225993149c671e79f2c24da9647acb92fd"
+    },
+    {
+      "source": "build/v6iw1/frozen-profiles/result.json",
+      "archive": "docs/verification/v2-selectable-profiles/package-01/frozen-profiles/result.json",
+      "bytes": 4209,
+      "sha256": "e0e423f70771b8850c5fa4e7654fa26ce6cf0c0a98839d246c3cc83c75db23b4"
+    }
+  ],
+  "file_count": 16,
+  "total_bytes": 13308870,
+  "local_large_artifacts": [
+    {
+      "path": "build/v6iw1/MotortesterV2-windows-x64.zip",
+      "bytes": 61194649,
+      "sha256": "e6b40293e25eb0d27c008ff5d63337a678d8a5c963ac8124f34b5782ed8cb47e"
+    },
+    {
+      "path": "build/v6iw1/source.zip",
+      "bytes": 38642844,
+      "sha256": "c85a71a6e3137602f4403f2c082efc417f57d68060f72fdc9c872b84f7b79a7f"
+    }
+  ]
+}

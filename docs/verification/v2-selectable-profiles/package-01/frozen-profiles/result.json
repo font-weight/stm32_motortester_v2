@@ -1,0 +1,121 @@
+{
+  "status": "PASS",
+  "errors": [],
+  "callback_errors": [],
+  "frozen": true,
+  "platform": "win32",
+  "windows_host": "Windows-10-10.0.19045-SP0",
+  "qt_platform": "windows",
+  "executable": "C:\\Users\\Alexandr\\Desktop\\New folder\\универ\\мотортестер 2\\build\\v6iw1\\Проверка переноса\\MotortesterV2\\MotortesterV2.exe",
+  "owners_closed": true,
+  "real_serial_open_calls": 0,
+  "checks": {
+    "selector_modes": true,
+    "selection_locked": true,
+    "packed_record_roundtrip": true,
+    "intrinsic_quantization": true,
+    "csv_timebase": true,
+    "legacy_mismatch_before_start": true
+  },
+  "files": {
+    "intrinsic-only.mtstream": {
+      "bytes": 808287,
+      "sha256": "48fa13af778ce76193e97af7e6b3d2fdef974ce83f210a886947abae6cfdc202"
+    },
+    "packed150.csv": {
+      "bytes": 11312983,
+      "sha256": "36368f1375500cd485b648bddae8294b2a8be5eeb33880a94364211ade9aa5d0"
+    },
+    "packed150.csv.json": {
+      "bytes": 2969,
+      "sha256": "ca7fa81c052967b5cd7f947f84040041781dee9388ca799262adbd2b25841f66"
+    },
+    "packed150.mtstream": {
+      "bytes": 808287,
+      "sha256": "48fa13af778ce76193e97af7e6b3d2fdef974ce83f210a886947abae6cfdc202"
+    },
+    "packed150.mtstream.v2.json": {
+      "bytes": 2331,
+      "sha256": "f8ec7534b468f89dec46c220dd7917141edb835e345a9599ac070b5670f54722"
+    },
+    "profiles-legacy-mismatch.png": {
+      "bytes": 42505,
+      "sha256": "1acbcac541d46ed5cdb3a666d47bb132952bca2d6db135c2b20243f280d6efd8"
+    },
+    "profiles-live.png": {
+      "bytes": 62980,
+      "sha256": "6e00dce97b4b5a2d09953a311992580f23fb8defdd38cb3cc7295f23d563a33d"
+    },
+    "profiles-open.png": {
+      "bytes": 66815,
+      "sha256": "87c67f41e983f43012ef2e93a90375225993149c671e79f2c24da9647acb92fd"
+    }
+  },
+  "execution_kind": "injected-test",
+  "physical_stream_verified": false,
+  "paced_observation": {
+    "host_seconds": 2.1424056000541896,
+    "received": 321408,
+    "samples_per_host_second": 150022.01263470855,
+    "meaning": "synthetic host scheduling only; not ADC/USB performance"
+  },
+  "limits": {
+    "peak_raw_items": 124,
+    "peak_raw_bytes": 31744,
+    "max_service_gap_ms": 25,
+    "peak_synthetic_backlog_samples": 4495,
+    "synthetic_backlog_limit": 32768
+  },
+  "roundtrip": {
+    "samples": 402123,
+    "raw_sha256": "c06643d69de028e14bbbb68188e480c3ab9cf165076814ac6fe77e446ee675a3",
+    "identity": {
+      "session_id": "wire-0.3:f075ade8858d2655",
+      "generation": 3,
+      "config_id": 3,
+      "nominal_fs_hz": 150000,
+      "origin": "synthetic",
+      "protocol_revision": "0.3-modes-20261024",
+      "firmware_version": "build:56325343",
+      "application_version": "v2-serial-unknown-accounting:injected-test",
+      "acquisition_mode": 3,
+      "source_adc_bits": 12,
+      "retained_bits": 10,
+      "discarded_lsb": 2,
+      "wire_sample_encoding": "u10packed_le",
+      "normalization": "left_shift_2",
+      "quantization": "truncate_lsb",
+      "stored_sample_encoding": "u16le",
+      "stored_code_domain": "adc12"
+    },
+    "connection": {
+      "selection": {
+        "port": "V2_PROFILES_SYNTHETIC",
+        "declared_source_commit": null,
+        "declared_artifact_sha256": null,
+        "requested_sample_rate_hz": 150000
+      },
+      "execution_kind": "injected-test",
+      "observed_build_id": 1446138691,
+      "observed_caps": [
+        3,
+        3,
+        0,
+        12,
+        150000,
+        1,
+        128,
+        1,
+        10,
+        2
+      ],
+      "dtr_requested": true,
+      "accounting_domain": "unknown",
+      "image_verified": false,
+      "protocol_revision": "0.3"
+    },
+    "csv_dt_seconds": 6.666666666666667e-06,
+    "journal_sha256": "48fa13af778ce76193e97af7e6b3d2fdef974ce83f210a886947abae6cfdc202"
+  },
+  "expected_legacy_error": "Эта прошивка имеет фиксированную частоту 100000 отсчётов/с. Приём не запущен. Закройте окно приёма, откройте его снова, выберите эту частоту и подключитесь."
+}

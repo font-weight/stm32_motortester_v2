@@ -1,0 +1,13 @@
+Source: captured functions.exec/write_stdin output for exec session 67197, chunk f5fe88.
+Initial command: .venv/Scripts/python.exe -B host/packaging/v2/build_windows.py --output build/v6iw1 --verification profiles
+Observed exit code: 1. The lines below are the exact final traceback copied from the available tool output, not a rerun. Earlier dependency/build stdout remains in build.log.
+
+Traceback (most recent call last):
+  File "C:\Users\Alexandr\Desktop\New folder\универ\мотортестер 2\host\packaging\v2\build_windows.py", line 542, in <module>
+    raise SystemExit(main())
+                     ~~~~^^
+  File "C:\Users\Alexandr\Desktop\New folder\универ\мотортестер 2\host\packaging\v2\build_windows.py", line 372, in main
+    from profiles_package_check import verify_profiles_package
+  File "C:\Users\Alexandr\Desktop\New folder\универ\мотортестер 2\host\packaging\v2\profiles_package_check.py", line 11, in <module>
+    from build_windows import file_tree, png_info, read_json, sha256, write_json
+ImportError: cannot import name 'file_tree' from 'build_windows' (C:\Users\Alexandr\Desktop\New folder\универ\мотортестер 2\host\packaging\build_windows.py)

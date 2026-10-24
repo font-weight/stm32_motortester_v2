@@ -1,0 +1,80 @@
+{
+  "schema": "v2-06i-independent-package-review-1",
+  "date": "2026-10-24",
+  "critic": "stream200_critic",
+  "independent_of_implementation": true,
+  "scope": "Native Windows10 frozen changed-profile flow with injected source, portable package integrity; not clean-machine/public-release/physical approval",
+  "status": "PASS",
+  "score": 9.59,
+  "threshold": 9.5,
+  "rubric": [
+    {
+      "criterion": "C1",
+      "weight": 0.3,
+      "score": 9.6,
+      "reason": "Финальный EXE показывает три режима, блокировку выбора, quantization и корректный legacy mismatch."
+    },
+    {
+      "criterion": "C2",
+      "weight": 0.2,
+      "score": 9.5,
+      "reason": "Record/Open, missing companion, owners closed и неизменный переносимый комплект; чистая машина отдельно."
+    },
+    {
+      "criterion": "C3",
+      "weight": 0.25,
+      "score": 9.6,
+      "reason": "Первый frozen flow на Windows10, raw/CSV evidence, три лично просмотренных PNG и ZIP/tree/CRC checks."
+    },
+    {
+      "criterion": "C4",
+      "weight": 0.15,
+      "score": 9.6,
+      "reason": "Читаемые подписи, явная потеря двух LSB/unknown tail; прежний полный picker flow не повторялся."
+    },
+    {
+      "criterion": "C5",
+      "weight": 0.1,
+      "score": 9.7,
+      "reason": "Два точных commit для пакета и verifier, неизменные ZIP/source/tree, исходный отказ сохранён."
+    }
+  ],
+  "open_p0": [],
+  "open_p1": [],
+  "package_source_commit": "310d53b10c79a48ddc45357ff65d88c686aef883",
+  "verifier_source_commit": "03eb4bb5ff3d4f359a5e41c61d563e6f6e10cfe3",
+  "portable_bytes": 61194649,
+  "portable_sha256": "e6b40293e25eb0d27c008ff5d63337a678d8a5c963ac8124f34b5782ed8cb47e",
+  "source_zip_sha256": "c85a71a6e3137602f4403f2c082efc417f57d68060f72fdc9c872b84f7b79a7f",
+  "package_manifest_sha256": "6f518b019acfefc0084cbdfb5739bdb43ab5f0e40fabb6b14f775d61a915da43",
+  "failure_supplement_sha256": "7db8eceaefbe2ea95b715f1eff7fdd10653535db566fe2b35dedfc744f9a20ea",
+  "checks_sha256": "464c024f55c4305c4244a08c820fae2dc01b6712543968e9c4832c43ea2e6ce6",
+  "package_builds": 1,
+  "frozen_invocations": 1,
+  "rebuild_after_verifier_fix": false,
+  "recorded_initial_builder_failure": true,
+  "frozen": {
+    "platform": "win32",
+    "windows_host": "Windows-10-10.0.19045-SP0",
+    "qt_platform": "windows",
+    "flow_checks": 6,
+    "owners_closed": true,
+    "real_serial_open_calls": 0,
+    "raw_samples_matching_source_after_open": 402123,
+    "raw_sha256": "c06643d69de028e14bbbb68188e480c3ab9cf165076814ac6fe77e446ee675a3",
+    "csv_checks": "count, metadata, SHA, columns and first time step; not every exported ADC code",
+    "screenshots_personally_viewed": 3,
+    "physical_stream_verified": false
+  },
+  "limitations": [
+    "No clean-machine or public release qualification.",
+    "No repeated unchanged legacy full picker suite; separate Inspect EXE hash verified but not executed in this focused flow.",
+    "Synthetic scheduling rate is not USB/ADC throughput.",
+    "Legacy mismatch recovery requires closing and reopening the stream window."
+  ],
+  "physical": {
+    "status": "NOT_REVIEWED",
+    "score": null,
+    "flash_approved": false
+  }
+}

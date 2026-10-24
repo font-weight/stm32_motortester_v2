@@ -1,0 +1,94 @@
+{
+  "schema": "v2-06i-independent-software-review-1",
+  "date": "2026-10-24",
+  "critic": "stream200_critic",
+  "independent_of_implementation": true,
+  "source_commit": "310d53b10c79a48ddc45357ff65d88c686aef883",
+  "base_commit": "c3407c1bbc2bd152a2e9ae193eb0628aa421ec0a",
+  "requirements": [
+    "V2-STR14",
+    "V2-STR15"
+  ],
+  "contract_sha256": "eb84ef5fea2c36da9de397f7a17a0c4d3671a4da8748834a4b09b5b6e14b62f1",
+  "firmware_freeze_sha256": "ae1d2ab6b741cbfd76baf7557c656477c7c7c17646ea143bdc8a189c6681c7cc",
+  "host_freeze_sha256": "39825f1561beb32a6612f6c9534de93464afd448de70bc3cd37a7c8b23dc0231",
+  "scope": "Software logic and exact ARM candidate for selectable 50k/12,100k/12,150k/10; no Flash or physical-rate qualification",
+  "status": "PASS",
+  "score": 9.6,
+  "threshold": 9.5,
+  "rubric": [
+    {
+      "criterion": "C1",
+      "weight": 0.3,
+      "score": 9.7,
+      "reason": "Явные discovery/nonce/mode, canonical12 и intrinsic quantization; адресные границы времени и старого формата."
+    },
+    {
+      "criterion": "C2",
+      "weight": 0.2,
+      "score": 9.6,
+      "reason": "Fail-closed revision/ticket/partial/known-zero, строгие коды и bounded RAM; реальная периферия отдельно."
+    },
+    {
+      "criterion": "C3",
+      "weight": 0.25,
+      "score": 9.5,
+      "reason": "Exact ARM/native, четыре host группы, actual-C crosscheck и legacy2 Open; модели имеют явно логические seams."
+    },
+    {
+      "criterion": "C4",
+      "weight": 0.15,
+      "score": 9.5,
+      "reason": "Один descriptor и versioned metadata, понятный selector; legacy fault требует повторного открытия окна."
+    },
+    {
+      "criterion": "C5",
+      "weight": 0.1,
+      "score": 9.7,
+      "reason": "Source/base/freeze, команды и побайтные архивы, сохранены ранние ошибки и изменения проверки."
+    }
+  ],
+  "open_p0": [],
+  "open_p1": [],
+  "firmware": {
+    "build_id": "0x56325343",
+    "bin_bytes": 38188,
+    "bin_sha256": "a36f72a772c03c5cbfd85767e5f07f0abc3ad2f2ffd7d1ee1c43143d20ca1c90",
+    "elf_sha256": "c050b68d4ffff5d30ba741d7d38f23401f584e26e2500078346aac99e0b8e308",
+    "ram_including_stack_reserve": 19548,
+    "ram_capacity": 20480,
+    "stack_reserve": 8192,
+    "conditional_stack_bound": 6068,
+    "aligned_stack_bound": 6072,
+    "legacy_diag_address": "0x20002BD4",
+    "legacy_diag_bytes": 136
+  },
+  "verification": {
+    "author_arm_runs": 1,
+    "author_native_runs": 1,
+    "author_host_groups_final": 4,
+    "actual_c_crosscheck_codes": 131,
+    "source_gui_runs": 1,
+    "critic_new_dynamic_runs": 0,
+    "critic_hardware_accesses": 0,
+    "checks": "critic-source-checks.json",
+    "checks_sha256": "464c024f55c4305c4244a08c820fae2dc01b6712543968e9c4832c43ea2e6ce6"
+  },
+  "resolved_findings": [
+    "Smoke platform field mismatched frozen verifier: sys.platform plus separate windows_host now consistent.",
+    "Unknown revision was rejected before stale nonce: bounded envelope then nonce then active revision; payload decoding stays strict.",
+    "Legacy companion2 evidence missing: one offline historical H2 Open, original hashes unchanged."
+  ],
+  "limitations": [
+    "Physical rates on V2SC not reviewed; this is not Flash approval.",
+    "Conditional stack analysis and logical native seams are not WCET or measured peripheral timing.",
+    "150k keeps only ten MSBs of a 12-bit ADC; lost two LSBs are not reconstructed.",
+    "Legacy 200k wire/file API remains supported, but normal GUI selector contains only requested 50/100/150k; do not claim ordinary picker reconnect to 200k.",
+    "Unknown produced tail and unconfigured physical input remain explicit."
+  ],
+  "physical": {
+    "status": "NOT_REVIEWED",
+    "score": null,
+    "flash_approved": false
+  }
+}

@@ -1,0 +1,84 @@
+{
+  "schema": "v2-06i-independent-source-package-checks-1",
+  "critic": "stream200_critic",
+  "environment": {
+    "platform": "Windows-10-10.0.19045-SP0",
+    "python": "3.14.7"
+  },
+  "read_only_checks": true,
+  "new_dynamic_tests": 0,
+  "hardware_accesses": 0,
+  "archives": [
+    {
+      "path": "docs/verification/v2-selectable-profiles/firmware-01/manifest.json",
+      "sha256": "ba12bf52dc4b33c3240778aca436ff5b8bba5614d81248c3a0e8e09be860b6f8",
+      "pairs": 32,
+      "bytes": 972393,
+      "byte_equal": true
+    },
+    {
+      "path": "docs/verification/v2-selectable-profiles/host-01/manifest.json",
+      "sha256": "59a8f96d7651f5124e33ddd224c818008f528b452f0db335af79ac746bedbb98",
+      "pairs": 10,
+      "bytes": 26051,
+      "byte_equal": true
+    },
+    {
+      "path": "docs/verification/v2-selectable-profiles/gui-01/manifest.json",
+      "sha256": "62971f50b77f304fa43bb48d45756a502fd3effe47ec93d46745bbe279b18722",
+      "pairs": 9,
+      "bytes": 13004236,
+      "byte_equal": true
+    },
+    {
+      "path": "docs/verification/v2-selectable-profiles/package-01/manifest.json",
+      "sha256": "6f518b019acfefc0084cbdfb5739bdb43ab5f0e40fabb6b14f775d61a915da43",
+      "pairs": 16,
+      "bytes": 13308870,
+      "byte_equal": true
+    }
+  ],
+  "package": {
+    "source_commit": "310d53b10c79a48ddc45357ff65d88c686aef883",
+    "verifier_commit": "03eb4bb5ff3d4f359a5e41c61d563e6f6e10cfe3",
+    "portable_bytes": 61194649,
+    "portable_sha256": "e6b40293e25eb0d27c008ff5d63337a678d8a5c963ac8124f34b5782ed8cb47e",
+    "source_sha256": "c85a71a6e3137602f4403f2c082efc417f57d68060f72fdc9c872b84f7b79a7f",
+    "zip_crc_valid": true,
+    "source_zip_crc_valid": true,
+    "zip_dist_relocated_resume_trees_equal": true,
+    "files": 475,
+    "manifest_files": 474,
+    "smoke_files_sha_verified": 9,
+    "build_report_sha256": "06c367d6919d59bac6e5c100557c0f398dfa2b707441cd1b9f816666d2016fbf",
+    "resume_sha256": "7e7d01ba82643fdeb13e7652657d60295c0f934a5384b0171589bf2f491e805c",
+    "result_sha256": "e0e423f70771b8850c5fa4e7654fa26ce6cf0c0a98839d246c3cc83c75db23b4",
+    "verifier_inputs": {
+      "host\\packaging\\v2\\build_windows.py": "e7b2e62f925eddc024e9bbff42603351fdecc83092e3878e9bc3166ee91430cb",
+      "host\\packaging\\v2\\profiles_package_check.py": "8a833c851012bc82968c732ade744b8e5746a39e277e179023cf26443d30966c",
+      "build\\v6i-resume-package.py": "d2900461642215f2457d7dc0face6774b762f4318e0bb316606bd8cf950971c8"
+    },
+    "pngs_personally_viewed": [
+      "profiles-live.png",
+      "profiles-open.png",
+      "profiles-legacy-mismatch.png"
+    ]
+  },
+  "earlier_personal_checks": {
+    "firmware_freeze_pins": 91,
+    "host_source_pins": 18,
+    "host_evidence_pins": 8,
+    "unchanged_firmware_pairs": 38,
+    "source_read_and_narrow_fix_review": true,
+    "source_gui_pngs_viewed": 3,
+    "description": "Performed during source review before final package check; no compiler or model replay."
+  },
+  "status": "PASS",
+  "failure_supplement": {
+    "path": "docs/verification/v2-selectable-profiles/package-01/failure-supplement.json",
+    "sha256": "7db8eceaefbe2ea95b715f1eff7fdd10653535db566fe2b35dedfc744f9a20ea",
+    "captured_traceback_sha256": "b8ed79a3bb7291b272624f662be83b996a6521324b97a0dddb1947b12723f309",
+    "byte_equal": true,
+    "origin": "Exact final traceback transcribed from initial exec session67197/chunkf5fe88, no re-execution"
+  }
+}
