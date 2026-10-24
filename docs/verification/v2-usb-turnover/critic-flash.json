@@ -1,0 +1,83 @@
+{
+  "schema": "v2-06h2-independent-flash-admission-1",
+  "reviewer": "stream200_critic",
+  "independent": true,
+  "date": "2026-10-24",
+  "status": "PASS",
+  "score": 9.605,
+  "scope": "One exact V2SB flash and one target30s Record trial; not physical100k acceptance",
+  "source_commit": "8243fb3224a1e24980848a8ce02431ec41f5bd9c",
+  "source_base_commit": "4c8c14727bae8715279130b05c11f7e518fd8d9a",
+  "review_plan_commit": "bbbbd3aa78d405186a0fab2777e0ffb88e6a6bba",
+  "plan_sha256": "03c49dcd130733fb11fd4b68baeb65dd0e8533b3626443a18d2b6eb417e3f715",
+  "preflight_manifest_sha256": "2c84c0799b3d4115755a1631e00f96c77977a4f5f720709794447875eacedd33",
+  "software_review_sha256": "ef049bb3dc22cd130a6cab960e04dcdfe11166a067d1c388ee9927167293fbdb",
+  "candidate_build": "0x56325342",
+  "candidate_bytes": 37224,
+  "candidate_sha256": "e7f6f07fc6a43e6b109af6e5c652db1322a0e5023e328007b2c50d303f12536e",
+  "candidate_elf_sha256": "f129421a4dfb3baf3d30dbefc0923dcdfcf6ec4ddb0e02293c0ece78fb6d14ed",
+  "rollback_SA_bytes": 65536,
+  "rollback_SA_sha256": "4a1060f0062620580d8ac1e74aba001a2935bd58dcc6cccbb5fcbef957826f4a",
+  "rollback_ready_helper_sha256": "8e97bc4de87bb57d6247e0f94ae911c8048225ff00348b5361f3452fa54f3edf",
+  "diagnostic_decoder_sha256": "ba9bea4ae0845c695eb4d70234b19a0476904113456c3d4322ab255a5db96033",
+  "checks_sha256": "6f7a159197155c52849b8fab6b43af14dde7e79ea408d8c6c5963bc8d047f1b9",
+  "ratings": [
+    {
+      "criterion": "C1",
+      "weight": 0.3,
+      "score": 9.6,
+      "basis": "Exact accepted SB image/source and a single30s Record attempt; fixed wire/raw/END/ACK/diagnostic criteria."
+    },
+    {
+      "criterion": "C2",
+      "weight": 0.2,
+      "score": 9.65,
+      "basis": "Fresh full SA recovery copy, preSTART identity guards, sole owner and noSWD while COM active; no automatic retry or unnecessary S4 rollback."
+    },
+    {
+      "criterion": "C3",
+      "weight": 0.25,
+      "score": 9.6,
+      "basis": "All13 archived pairs and12 command input pins verified; future physical evidence remains unclaimed."
+    },
+    {
+      "criterion": "C4",
+      "weight": 0.15,
+      "score": 9.5,
+      "basis": "Success/failure owner-close branches and conditional recovery are explicit; live post-replug state still requires execution."
+    },
+    {
+      "criterion": "C5",
+      "weight": 0.1,
+      "score": 9.7,
+      "basis": "Exact plan, tools, source/base, recovery helper and offline decoder are retained and independently checked."
+    }
+  ],
+  "open_P0_P1": [],
+  "flash_approved": true,
+  "admitted_START_count": 1,
+  "record_target_seconds_after_preview": 30,
+  "automatic_retry_approved": false,
+  "automatic_rollback_after_failure": false,
+  "conditions": [
+    "Keep confirmed PA0-empty, board USB power, ST-Link3.3V disconnected, app closed and same sole probe; root alone owns hardware.",
+    "Program exact37224-byte image and verify; separate complete readback must be byte-equal before reset/run.",
+    "Actual user USB replug/ready response, then exact build and supported CAPS100000/1,CH1/12bit/DATA128 before the sole START.",
+    "One Preview then target Record30s; preserve actual record interval, overshoot and whole procedure wall/no halt facts.",
+    "No SWD while COM active: PASS owners_closed=true, or FAIL cleanup_finished=true AND final_state.phase=closed; otherwise resolve ownership first.",
+    "After closure: two equal legacy136 dumps0x20002BC4; no512 profile reads; register blocks exclude ADC_DR.",
+    "Retain SB only with confirmed boot/communication/stopped. Restore fresh full SA only for recorded plan necessity, verify/readback all65536, reset/user replug, SA-only READY helper without START. S4 only separate explicit need.",
+    "Final physical result requires normalEND0/matchingSTOP_ACK, continuous wire identity/sequence/prefix/CRC, freshOpen/companion/raw comparison, rough90..110k pacing, flags0 and poll/copy<5120us, stopped registers and valid clocks/resets."
+  ],
+  "physical_100ksps_accepted": false,
+  "hardware_access_by_reviewer": false,
+  "implementation_tests_repeated": false,
+  "limitations": [
+    "30s Record is not total procedure wall or indefinite reliability qualification.",
+    "Actual whole wall and no debugger halt are separate facts for DWT wrap assumptions; do not infer elapsed time across modulo wraps.",
+    "16MiB audit limit can fail on unfavorable chunking; nominal7.2MB payload is not a guaranteed upper bound including13-byte chunk headers. Audit overflow is a host logging failure, not devicequeuefull.",
+    "Legacy TX bracket excludes prepare/encode, cannot be directly compared as total TX against S8/S9; early grant may age before publication.",
+    "Raw unknown produced tail stays unknown; nominalFs/pacing are not calibrated sample rate, voltage accuracy or analog/ignition/automotive qualification.",
+    "This admission does not assert any SB program/readback/replug/START occurred."
+  ]
+}

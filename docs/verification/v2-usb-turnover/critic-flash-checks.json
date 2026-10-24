@@ -1,0 +1,190 @@
+{
+  "schema": "v2-06h2-independent-flash-checks-1",
+  "status": "PASS",
+  "source_commit": "8243fb3224a1e24980848a8ce02431ec41f5bd9c",
+  "source_base_commit": "4c8c14727bae8715279130b05c11f7e518fd8d9a",
+  "review_plan_commit": "bbbbd3aa78d405186a0fab2777e0ffb88e6a6bba",
+  "plan_sha256": "03c49dcd130733fb11fd4b68baeb65dd0e8533b3626443a18d2b6eb417e3f715",
+  "manifest_sha256": "2c84c0799b3d4115755a1631e00f96c77977a4f5f720709794447875eacedd33",
+  "archive_pairs": [
+    {
+      "source": "build/v6h-board-01/plan.json",
+      "archive": "docs/verification/v2-usb-turnover/preflight-01/plan.json",
+      "bytes": 7210,
+      "sha256": "03c49dcd130733fb11fd4b68baeb65dd0e8533b3626443a18d2b6eb417e3f715",
+      "byte_equal": true
+    },
+    {
+      "source": "build/v6h-board-01/preflight.json",
+      "archive": "docs/verification/v2-usb-turnover/preflight-01/preflight.json",
+      "bytes": 731,
+      "sha256": "fdb74d1f7692bcdcbf12130a4bdb18d4c9fd83f4f2f16518466223a3d7f8c758",
+      "byte_equal": true
+    },
+    {
+      "source": "build/v6h-board-01/backup-verified.json",
+      "archive": "docs/verification/v2-usb-turnover/preflight-01/backup-verified.json",
+      "bytes": 581,
+      "sha256": "14e139637859f3246fd9ec91dcbccb0793a829341e0636dda326b91d4ac0ec19",
+      "byte_equal": true
+    },
+    {
+      "source": "build/v6h-board-01/processes-before.json",
+      "archive": "docs/verification/v2-usb-turnover/preflight-01/processes-before.json",
+      "bytes": 4,
+      "sha256": "a5338d955b09046ec0b16f3a9625b7955c763aae07dc722e474e6078745f932f",
+      "byte_equal": true
+    },
+    {
+      "source": "build/v6h-board-01/ports-before.json",
+      "archive": "docs/verification/v2-usb-turnover/preflight-01/ports-before.json",
+      "bytes": 135,
+      "sha256": "c8614e25240676a110cd0c9f9761ba2d2fc559f249875431289a7b08eedef67d",
+      "byte_equal": true
+    },
+    {
+      "source": "build/v6h-board-01/probe-list.txt",
+      "archive": "docs/verification/v2-usb-turnover/preflight-01/probe-list.txt",
+      "bytes": 239,
+      "sha256": "b58c8ddae6534dd35b9a1498631f1ee20ba54017c8f3ccfa2b156244c92e72a3",
+      "byte_equal": true
+    },
+    {
+      "source": "build/v6h-board-01/backup.log",
+      "archive": "docs/verification/v2-usb-turnover/preflight-01/backup.log",
+      "bytes": 872,
+      "sha256": "8b0891728ca93ca2b1098eec3d02e56cfa2e4a7b4d8369ccadd608675e8f3d33",
+      "byte_equal": true
+    },
+    {
+      "source": "build/v6h-board-01/before-flash-64k.bin",
+      "archive": "docs/verification/v2-usb-turnover/preflight-01/before-flash-64k.bin",
+      "bytes": 65536,
+      "sha256": "4a1060f0062620580d8ac1e74aba001a2935bd58dcc6cccbb5fcbef957826f4a",
+      "byte_equal": true
+    },
+    {
+      "source": "build/v6h-board-01/decode_diagnostics.py",
+      "archive": "docs/verification/v2-usb-turnover/preflight-01/decode_diagnostics.py",
+      "bytes": 12800,
+      "sha256": "ba9bea4ae0845c695eb4d70234b19a0476904113456c3d4322ab255a5db96033",
+      "byte_equal": true
+    },
+    {
+      "source": "build/v6h-board-01/check_sa_ready.py",
+      "archive": "docs/verification/v2-usb-turnover/preflight-01/check_sa_ready.py",
+      "bytes": 5643,
+      "sha256": "8e97bc4de87bb57d6247e0f94ae911c8048225ff00348b5361f3452fa54f3edf",
+      "byte_equal": true
+    },
+    {
+      "source": "build/v6h-plan.py",
+      "archive": "docs/verification/v2-usb-turnover/preflight-01/v6h-plan.py",
+      "bytes": 5861,
+      "sha256": "8a71df26d401789312536e1a16b9e4d99e759b8d5f083c1d51fa4e5fd1a26b39",
+      "byte_equal": true
+    },
+    {
+      "source": "build/v6h-recovery-helper.py",
+      "archive": "docs/verification/v2-usb-turnover/preflight-01/v6h-recovery-helper.py",
+      "bytes": 1148,
+      "sha256": "d843e9dd01367ff3e64bd82b494554e1546a50b92771f6051c089584a0cbebf6",
+      "byte_equal": true
+    },
+    {
+      "source": "host/tools/v2_stream_probe.py",
+      "archive": "docs/verification/v2-usb-turnover/preflight-01/v2_stream_probe.py",
+      "bytes": 10445,
+      "sha256": "14de99c546586e5f9fd89b03622861e1865c65f448ceb7224c49cb17ab79cb35",
+      "byte_equal": true
+    }
+  ],
+  "archive_bytes": 111205,
+  "pins": [
+    {
+      "name": "plan",
+      "path": "build\\v6h-board-01\\plan.json",
+      "sha256": "03c49dcd130733fb11fd4b68baeb65dd0e8533b3626443a18d2b6eb417e3f715"
+    },
+    {
+      "name": "preflight",
+      "path": "build\\v6h-board-01\\preflight.json",
+      "sha256": "fdb74d1f7692bcdcbf12130a4bdb18d4c9fd83f4f2f16518466223a3d7f8c758"
+    },
+    {
+      "name": "cli",
+      "path": "C:\\Program Files (x86)\\STMicroelectronics\\STM32 ST-LINK Utility\\ST-LINK Utility\\ST-LINK_CLI.exe",
+      "sha256": "7fb012b5e26abf45342caa05c6bc33936f8a379b67797cc55658ffb8bf15e95f"
+    },
+    {
+      "name": "bin",
+      "path": "build\\v6h-fw-01\\MotortesterV2-stream-candidate.bin",
+      "sha256": "e7f6f07fc6a43e6b109af6e5c652db1322a0e5023e328007b2c50d303f12536e"
+    },
+    {
+      "name": "elf",
+      "path": "build\\v6h-fw-01\\MotortesterV2-stream-candidate.elf",
+      "sha256": "f129421a4dfb3baf3d30dbefc0923dcdfcf6ec4ddb0e02293c0ece78fb6d14ed"
+    },
+    {
+      "name": "review",
+      "path": "docs\\reviews\\v2-06h-review.md",
+      "sha256": "ef049bb3dc22cd130a6cab960e04dcdfe11166a067d1c388ee9927167293fbdb"
+    },
+    {
+      "name": "probe",
+      "path": "host\\tools\\v2_stream_probe.py",
+      "sha256": "14de99c546586e5f9fd89b03622861e1865c65f448ceb7224c49cb17ab79cb35"
+    },
+    {
+      "name": "decoder",
+      "path": "build\\v6h-board-01\\decode_diagnostics.py",
+      "sha256": "ba9bea4ae0845c695eb4d70234b19a0476904113456c3d4322ab255a5db96033"
+    },
+    {
+      "name": "rollback_SA",
+      "path": "build\\v6h-board-01\\before-flash-64k.bin",
+      "sha256": "4a1060f0062620580d8ac1e74aba001a2935bd58dcc6cccbb5fcbef957826f4a"
+    },
+    {
+      "name": "rollback_READY",
+      "path": "build\\v6h-board-01\\check_sa_ready.py",
+      "sha256": "8e97bc4de87bb57d6247e0f94ae911c8048225ff00348b5361f3452fa54f3edf"
+    },
+    {
+      "name": "fallback_S4",
+      "path": "build\\v6g-board-01\\before-flash-64k.bin",
+      "sha256": "95d3a11f8db843e362b2c59ed6fbf380dd630e067fa23f6ae5a9c7d2b11dff1e"
+    },
+    {
+      "name": "legacy_READY",
+      "path": "build\\v5-board-stream-04\\check_ready.py",
+      "sha256": "7034811bb771781927228b5115e7446ef3ec9b059963cbc7963a07fbe48f7c34"
+    }
+  ],
+  "decoder_nm_sha256": "d5c1f1b7aa32963d52392e9e06512ffe54304ba4e282fa58a41a98e7860652e6",
+  "backup_bytes": 65536,
+  "backup_prefix_equals_SA": true,
+  "SA_prefix_bytes": 37132,
+  "candidate_bytes": 37224,
+  "readback_hex_bytes": "0x9168",
+  "ready_helper_bridge_calls": [
+    "connect_source",
+    "shutdown"
+  ],
+  "ready_helper_checked_by_reading_and_AST_only": true,
+  "register_ranges_exclude_ADC_DR": true,
+  "software_tests_repeated": false,
+  "hardware_access": false,
+  "reviewer_check_attempts": [
+    {
+      "result": "FAIL",
+      "cause": "Reviewer initial read-only checker used positional argv indexes incorrectly; no hardware action or report written."
+    },
+    {
+      "result": "PASS",
+      "change": "Lookup argument position by -P/-Dump; actual plan remains unchanged."
+    }
+  ],
+  "findings": []
+}
