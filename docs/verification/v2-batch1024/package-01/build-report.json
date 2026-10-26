@@ -1,0 +1,220 @@
+{
+  "status": "PASS",
+  "verification_scope": "selectable-profiles-batch1024",
+  "scope": "Frozen Windows profile selector and injected wire/file/CSV path; no physical COM, clean-machine or unchanged legacy-suite qualification",
+  "source_commit": "67b57bfaabbf7cf9290225058f2e8bca3b0964d8",
+  "portable_zip": "MotortesterV2-windows-x64.zip",
+  "portable_sha256": "436cdaf1f27322e8ff7e90809f6c091950edcf7a599a97766c128c6e19a6dbfe",
+  "source_sha256": "9fa1ce85e6677919b9d105583c317031a64f5e5276d17f3e7a035d23bf297d71",
+  "executable_sha256": {
+    "MotortesterV2.exe": "582cb37eb508746953b7200c2955aff5fb62b4263b6c734fdb7495e09a404e37",
+    "MotortesterV2Inspect.exe": "065cc6b84278830a4b0c7ef6abeb5d03b8a933fcdfc0619d1a9db9e2a3ecf85f"
+  },
+  "extracted_bundle": "C:\\Users\\Alexandr\\Desktop\\New folder\\универ\\мотортестер 2\\build\\v6lw1\\Проверка переноса\\MotortesterV2",
+  "working_directory": "C:\\Users\\Alexandr\\Desktop\\New folder\\универ\\мотортестер 2\\build\\v6lw1\\Другая рабочая папка",
+  "isolated_path": "C:\\Windows\\System32",
+  "frozen_smoke": {
+    "status": "PASS",
+    "errors": [],
+    "callback_errors": [],
+    "frozen": true,
+    "platform": "win32",
+    "windows_host": "Windows-10-10.0.19045-SP0",
+    "qt_platform": "windows",
+    "executable": "C:\\Users\\Alexandr\\Desktop\\New folder\\универ\\мотортестер 2\\build\\v6lw1\\Проверка переноса\\MotortesterV2\\MotortesterV2.exe",
+    "owners_closed": true,
+    "real_serial_open_calls": 0,
+    "checks": {
+      "selector_modes": true,
+      "batch_mode5_negotiated": true,
+      "selection_locked": true,
+      "batch1024_wire_evidence": true,
+      "packed_record_roundtrip": true,
+      "intrinsic_quantization": true,
+      "csv_timebase": true,
+      "legacy_mismatch_before_start": true,
+      "sc_sd150_batch_required_before_start": true
+    },
+    "files": {
+      "intrinsic-only.mtstream": {
+        "bytes": 725777,
+        "sha256": "33b741c160182508f3f6d1171063fdb54c5be862e6318f8862fbd090af02bbe2"
+      },
+      "packed150.csv": {
+        "bytes": 10150552,
+        "sha256": "98e604ed63dca396b3e6b4fa1d856afd23082d18a9ec8c0afd57a7fc0a9c4e5c"
+      },
+      "packed150.csv.json": {
+        "bytes": 2977,
+        "sha256": "bdf83a0bb3a2173f52b01cbcfb99b82367ceb121a130aaf33ba530c400127532"
+      },
+      "packed150.mtstream": {
+        "bytes": 725777,
+        "sha256": "33b741c160182508f3f6d1171063fdb54c5be862e6318f8862fbd090af02bbe2"
+      },
+      "packed150.mtstream.v2.json": {
+        "bytes": 2336,
+        "sha256": "1bd7bee2efc1ddea6187b40f12b4f60a0025d94273cad18baf7d16fe79fcb87d"
+      },
+      "profiles-legacy-mismatch.png": {
+        "bytes": 42505,
+        "sha256": "1acbcac541d46ed5cdb3a666d47bb132952bca2d6db135c2b20243f280d6efd8"
+      },
+      "profiles-live.png": {
+        "bytes": 63723,
+        "sha256": "f4d5ee17a458b17101f924f6e6e73d7803ed5927f3ebdcb4bd81e10498985152"
+      },
+      "profiles-open.png": {
+        "bytes": 66607,
+        "sha256": "bb1639fbed9c8b0a3d21d356e54a002a280bdcc47be9699afafa4b67d1a987ca"
+      },
+      "profiles-sc150-mismatch.png": {
+        "bytes": 44054,
+        "sha256": "cf54e89d86c2631565da8fdc061e637f133bc0efc020239e261362343373274f"
+      },
+      "profiles-sd150-mismatch.png": {
+        "bytes": 44235,
+        "sha256": "8c9f9f3f541be0d3c543aee9c07892dd564678e5fad32752f4ce7255307fe56a"
+      }
+    },
+    "execution_kind": "injected-test",
+    "physical_stream_verified": false,
+    "paced_observation": {
+      "host_seconds": 2.034397799987346,
+      "received": 305152,
+      "samples_per_host_second": 149996.22984349375,
+      "meaning": "synthetic host scheduling only; not ADC/USB performance"
+    },
+    "batch": {
+      "acquisition_mode": 5,
+      "config_id": 5,
+      "negotiated_max_block": 1024,
+      "discovery_capabilities": 15,
+      "discovery_max_block": 1024,
+      "discovery_max_payload": 1300,
+      "selected_ack_max_block": 1024,
+      "selected_ack_max_payload": 1300,
+      "full_DATA1024_frames": 399,
+      "first_full_data_count": 1024,
+      "short_tail_frames": 1,
+      "terminal_short_samples": 563,
+      "largest_frame_bytes": 1330,
+      "data_count_sequence_validation": true,
+      "canonical_crc_validated": true
+    },
+    "limits": {
+      "peak_raw_items": 16,
+      "peak_raw_bytes": 32768,
+      "max_service_gap_ms": 37,
+      "peak_synthetic_backlog_samples": 6491,
+      "synthetic_backlog_limit": 32768
+    },
+    "roundtrip": {
+      "samples": 361011,
+      "raw_sha256": "707e61b974b67b93c9c49f3e1329d20e2d655e0ad078eef813886ee0cd84a034",
+      "identity": {
+        "session_id": "wire-0.3:385431a4bafe6957",
+        "generation": 3,
+        "config_id": 5,
+        "nominal_fs_hz": 150000,
+        "origin": "synthetic",
+        "protocol_revision": "0.3-batch1024-20261025",
+        "firmware_version": "build:f0102401",
+        "application_version": "v2-serial-unknown-accounting:injected-test",
+        "acquisition_mode": 5,
+        "source_adc_bits": 12,
+        "retained_bits": 10,
+        "discarded_lsb": 2,
+        "wire_sample_encoding": "u10packed_le",
+        "normalization": "left_shift_2",
+        "quantization": "truncate_lsb",
+        "stored_sample_encoding": "u16le",
+        "stored_code_domain": "adc12"
+      },
+      "connection": {
+        "selection": {
+          "port": "V2_PROFILES_SYNTHETIC",
+          "declared_source_commit": null,
+          "declared_artifact_sha256": null,
+          "requested_sample_rate_hz": 150000
+        },
+        "execution_kind": "injected-test",
+        "observed_build_id": 4027589633,
+        "observed_caps": [
+          5,
+          5,
+          0,
+          12,
+          150000,
+          1,
+          1024,
+          1,
+          10,
+          2
+        ],
+        "dtr_requested": true,
+        "accounting_domain": "unknown",
+        "image_verified": false,
+        "protocol_revision": "0.3"
+      },
+      "csv_dt_seconds": 6.666666666666667e-06,
+      "journal_sha256": "33b741c160182508f3f6d1171063fdb54c5be862e6318f8862fbd090af02bbe2"
+    },
+    "expected_legacy_error": "Эта прошивка имеет фиксированную частоту 100000 отсчётов/с. Приём не запущен. Закройте окно приёма, откройте его снова, выберите эту частоту и подключитесь.",
+    "expected_sc150_error": "Для 150000 отсчётов/с нужна прошивка с пакетами по 1024 отсчёта. Подключённая прошивка этот режим не поддерживает; приём не запущен. Можно закрыть окно приёма и выбрать 50000 или 100000, либо обновить прошивку после проверки совместимости.",
+    "expected_sd150_error": "Для 150000 отсчётов/с нужна прошивка с пакетами по 1024 отсчёта. Подключённая прошивка этот режим не поддерживает; приём не запущен. Можно закрыть окно приёма и выбрать 50000 или 100000, либо обновить прошивку после проверки совместимости."
+  },
+  "png_files": {
+    "profiles-legacy-mismatch.png": {
+      "sha256": "1acbcac541d46ed5cdb3a666d47bb132952bca2d6db135c2b20243f280d6efd8",
+      "bytes": 42505,
+      "width": 1220,
+      "height": 870,
+      "validation": "PNG IHDR/CRC and SHA-256"
+    },
+    "profiles-live.png": {
+      "sha256": "f4d5ee17a458b17101f924f6e6e73d7803ed5927f3ebdcb4bd81e10498985152",
+      "bytes": 63723,
+      "width": 1220,
+      "height": 870,
+      "validation": "PNG IHDR/CRC and SHA-256"
+    },
+    "profiles-open.png": {
+      "sha256": "bb1639fbed9c8b0a3d21d356e54a002a280bdcc47be9699afafa4b67d1a987ca",
+      "bytes": 66607,
+      "width": 1220,
+      "height": 870,
+      "validation": "PNG IHDR/CRC and SHA-256"
+    },
+    "profiles-sc150-mismatch.png": {
+      "sha256": "cf54e89d86c2631565da8fdc061e637f133bc0efc020239e261362343373274f",
+      "bytes": 44054,
+      "width": 1220,
+      "height": 870,
+      "validation": "PNG IHDR/CRC and SHA-256"
+    },
+    "profiles-sd150-mismatch.png": {
+      "sha256": "8c9f9f3f541be0d3c543aee9c07892dd564678e5fad32752f4ce7255307fe56a",
+      "bytes": 44235,
+      "width": 1220,
+      "height": 870,
+      "validation": "PNG IHDR/CRC and SHA-256"
+    }
+  },
+  "smoke_files": {
+    "intrinsic-only.mtstream": "33b741c160182508f3f6d1171063fdb54c5be862e6318f8862fbd090af02bbe2",
+    "packed150.csv": "98e604ed63dca396b3e6b4fa1d856afd23082d18a9ec8c0afd57a7fc0a9c4e5c",
+    "packed150.csv.json": "bdf83a0bb3a2173f52b01cbcfb99b82367ceb121a130aaf33ba530c400127532",
+    "packed150.mtstream": "33b741c160182508f3f6d1171063fdb54c5be862e6318f8862fbd090af02bbe2",
+    "packed150.mtstream.v2.json": "1bd7bee2efc1ddea6187b40f12b4f60a0025d94273cad18baf7d16fe79fcb87d",
+    "profiles-legacy-mismatch.png": "1acbcac541d46ed5cdb3a666d47bb132952bca2d6db135c2b20243f280d6efd8",
+    "profiles-live.png": "f4d5ee17a458b17101f924f6e6e73d7803ed5927f3ebdcb4bd81e10498985152",
+    "profiles-open.png": "bb1639fbed9c8b0a3d21d356e54a002a280bdcc47be9699afafa4b67d1a987ca",
+    "profiles-sc150-mismatch.png": "cf54e89d86c2631565da8fdc061e637f133bc0efc020239e261362343373274f",
+    "profiles-sd150-mismatch.png": "8c9f9f3f541be0d3c543aee9c07892dd564678e5fad32752f4ce7255307fe56a",
+    "result.json": "b115ab9eb935c7643504ca1fe01ad870ada8c6656c039aab13042dbf0fb52d43"
+  },
+  "windows_host": "Windows-10-10.0.19045-SP0",
+  "physical_device_verified": false,
+  "public_release_approved": false
+}

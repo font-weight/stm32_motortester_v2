@@ -1,0 +1,205 @@
+{
+  "schema": "v2-06l1-independent-source-review-1",
+  "date": "2026-10-26",
+  "reviewer": "stream200_critic",
+  "independent_non_author": true,
+  "status": "PASS",
+  "score": 9.6025,
+  "threshold": 9.5,
+  "scope": "Exact V2SE production firmware source/ARM conditional static, actual-core software model, host logic and source Qt GUI on Windows10; package checker reviewed as source only.",
+  "base_commit": "07862595ce96d19d8a95361f7db3f7ea3da336af",
+  "functional_firmware_base_commit": "cb4757940b3ee9968f953becfbc3ca8caea102d7",
+  "exact_identity": "Frozen manifests below, not uncommitted HEAD alone",
+  "requirements": [
+    "V2-STR17",
+    "preserve V2-STR14/15/16"
+  ],
+  "pins": {
+    "build/v6l-freeze.json": {
+      "bytes": 10264,
+      "sha256": "0b7979e47bd867dd2f8108a033e47eeec325315bd8ee81815c5acb2fdb447eba"
+    },
+    "build/v6l-host-gui-freeze-01.json": {
+      "bytes": 8861,
+      "sha256": "aee5232236b4181d1641bfef2c267f3a589f6c99307f3a6436335022f7d7e1a5"
+    },
+    "build/v6l-host-draft-01.json": {
+      "bytes": 3726,
+      "sha256": "aa794fbd7aa0db0ffcf4050551f546b49f75c6bd24ab74404f1a65b8eef0d52a"
+    },
+    "build/v6l-fw-04/receipt.json": {
+      "bytes": 409700,
+      "sha256": "28580a042ca0cba80f5d4b7bddc6e58eb0a425820863abf2ce0c8611f6030785"
+    },
+    "build/v6l-fw-04/static-bound.json": {
+      "bytes": 188953,
+      "sha256": "00ced5b6b7a3998caeda9e25b09743e64833e13a62acea97e8405e6bc85229cc"
+    },
+    "build/v6l-core-native-01/result.json": {
+      "bytes": 34001,
+      "sha256": "7eb61d4daa2f69389d1f6e3cb411227fe32d803c28f55de98434d9600f4ca7c0"
+    },
+    "build/v6l-core-native-01/source-equivalence.json": {
+      "bytes": 9223,
+      "sha256": "70fd376916dbdcc312ee803acd98e63332617adf01b8b5d5da8457f6782aaf16"
+    },
+    "docs/verification/v2-batch1024/production-01/manifest.json": {
+      "bytes": 400596,
+      "sha256": "092accd177f10d9414b31cc0bf0cd32b31ee80c325b36884a1a36349d3cfab91"
+    },
+    "docs/verification/v2-batch1024/production-01/c1153-equivalence.json": {
+      "bytes": 609,
+      "sha256": "40d9b16b08dfc4c9b26189d10a6d758c55807da4d47b5c01227f0738ab9b4a6f"
+    },
+    "docs/verification/v2-batch1024/gui-01/manifest.json": {
+      "bytes": 3605,
+      "sha256": "650d45fa3b3c3abd7e6d77ba5153809e50067b16d227e73c0b79a0da6f08ae9e"
+    },
+    "build/v6l-host-unit-01/c1153-producer-journal-crosscheck.json": {
+      "bytes": 9209,
+      "sha256": "b35f41d6dcf932f6e8d7e203a1683f2c75975769224ac945f42fdb83e89d6f7c"
+    },
+    "host/packaging/v2/profiles_package_check.py": {
+      "bytes": 8470,
+      "sha256": "99e816031192c52297f916ccadb27d3541e768c22b4015a150bda56d0241b80b"
+    },
+    "host/packaging/v2/README_PORTABLE_RU.txt": {
+      "bytes": 22108,
+      "sha256": "704bb453b68bd55ec2a8c74e44b4edd7723cedf55c56418845065f0e40d09737"
+    },
+    "docs/streaming-batch1024.md": {
+      "bytes": 10706,
+      "sha256": "e721282bce688549c204715b55311c7ac2167c37900194865a25128f3446ac15"
+    },
+    "build/v6l-analysis/integration-plan-r2.md": {
+      "bytes": 22538,
+      "sha256": "f77b39f2c639ad28e3b58a3bf7eb51fe94212cd35557d67fe7359b14f6f13d65"
+    }
+  },
+  "firmware": {
+    "build_id": "0x56325345",
+    "bin_bytes": 42444,
+    "bin_sha256": "c1d2c5909341b010d0869f6f7a818d8dd46525bd18d6075e0dda780a9e23b9df",
+    "elf_sha256": "359754708f712b1d7d668b3b7c2b41b1cec59025761e05b9291035103030b3eb",
+    "RAM_bytes_with_reserve": 20388,
+    "RAM_capacity_bytes": 20480,
+    "stack_reserve_bytes": 8192,
+    "conditional_stack_bound_bytes": 6156,
+    "aligned_bound_bytes": 6160,
+    "spare_bytes_outside_reserve": 92,
+    "legacy_diagnostics_address": "0x20002F1C",
+    "legacy_diagnostics_bytes": 136,
+    "diagnostic_one_attempt_per_boot": true
+  },
+  "personal_verification": {
+    "source_reads": [
+      "final core/queue/header overlays",
+      "builder/config/board/profile delta",
+      "serializer unchanged against accepted prototype",
+      "actual-core model and runner",
+      "host prior logic and GUI helper/doc delta",
+      "package checker and portable README"
+    ],
+    "unique_pinned_files_checked": 738,
+    "pinned_bytes_checked": 243311577,
+    "recipe_inputs": 553,
+    "recipe_dependencies": 116,
+    "native_inputs": 110,
+    "production_archive_pairs": 1309,
+    "production_archive_bytes": 8887407,
+    "gui_archive_pairs": 12,
+    "gui_archive_bytes": 12170066,
+    "all_hashes_and_copies_match": true,
+    "source_GUI_PNGs_personally_viewed": 5,
+    "new_product_test_runs": 0,
+    "hardware_calls": 0
+  },
+  "source_GUI": {
+    "platform": "Windows-10-10.0.19045-SP0",
+    "qt_platform": "windows",
+    "frozen": false,
+    "checks": 9,
+    "decoded_full_DATA1024": 401,
+    "terminal_short_samples": 398,
+    "largest_frame_bytes": 1330,
+    "raw_codes_fresh_Open_equal": 370062,
+    "COM_open_calls": 0,
+    "owners_closed": true,
+    "callbacks_and_errors": [],
+    "CSV_scope": "count, metadata and first nominal fractional step; not each CSV code in GUI smoke"
+  },
+  "actual_core_fixture": {
+    "bytes": 1614,
+    "sha256": "cf62a2d6153aa7f59e4c886e9f487e950381ac6d6cbafa1ca285d19f22333013",
+    "raw_samples": 1153,
+    "frames": [
+      1024,
+      129
+    ],
+    "canonical_crc32": 1967919874,
+    "byte_identical_to_prior_host_crosscheck": true,
+    "host_rerun_required": false
+  },
+  "preserved_failures": [
+    "ARM01 misleading indentation rejected before image acceptance",
+    "ARM02 missing explicit serializer source mapping rejected",
+    "ARM03 strict object count31 rejected new32 inputs"
+  ],
+  "criteria": [
+    {
+      "id": "C1",
+      "weight": 0.3,
+      "score": 9.65,
+      "basis": "Mode5/1024 negotiation, queue ownership, canonical data and deferred final commit are consistent in exact code and actual-core witnesses; legacy modes retained."
+    },
+    {
+      "id": "C2",
+      "weight": 0.2,
+      "score": 9.55,
+      "basis": "Atomic four-view validation, zero/partial/unknown acceptance, Stop/HELLO/epoch and final TIME rejection covered. Linked SRAM fits with full 8192 reserve; only92 bytes beyond reserve limits future growth. Physical timing is outside this gate."
+    },
+    {
+      "id": "C3",
+      "weight": 0.25,
+      "score": 9.6,
+      "basis": "Exact ARM/static, one actual-core four-group model, byte-identical actual C fixture to prior host crosscheck, four prior host groups and one Windows source GUI. Explicit logical seams; no full peripheral/timing execution claimed."
+    },
+    {
+      "id": "C4",
+      "weight": 0.15,
+      "score": 9.55,
+      "basis": "Separated queue/staging/accepted prefix, unchanged runtime transport, readable5GUI screenshots; small historical proposal wording in contract remains explicitly distinguished from final freeze."
+    },
+    {
+      "id": "C5",
+      "weight": 0.1,
+      "score": 9.65,
+      "basis": "Pinned inputs, byte-equal archives, preserved failed builds, reproducible commands, explicit image/diagnostic identity and source-only package checker."
+    }
+  ],
+  "open_P0_P1": [],
+  "nonblocking_notes": [
+    {
+      "id": "L1-N1",
+      "priority": "P3",
+      "note": "Contract retains a historical proposed/not implemented heading; this report and exact freeze establish implementation, progress remains current-status authority. No image change required."
+    },
+    {
+      "id": "L1-N2",
+      "priority": "LIMIT",
+      "note": "92 bytes free outside unchanged8192 stack reserve; additional static storage requires a new linked budget, not assumed spare capacity."
+    }
+  ],
+  "excluded": [
+    "Frozen Windows package execution/acceptance",
+    "Flash or hardware procedure admission",
+    "Physical sustained150k, ADC service latency,1ms transaction WCET",
+    "Physical stack high-water mark and no-loss claim",
+    "Analogue voltage accuracy/bandwidth, ignition or vehicle"
+  ],
+  "physical_150k_verified": false,
+  "package_verified": false,
+  "flash_approved": false,
+  "next_gate": "Exact Windows package review and separate exact hardware plan admission; source PASS does not close V2-STR17 physical stability.",
+  "source_commit": "67b57bfaabbf7cf9290225058f2e8bca3b0964d8"
+}
