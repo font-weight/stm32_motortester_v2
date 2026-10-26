@@ -1,0 +1,462 @@
+{
+  "schema": "v2-06l2-physical-evidence-1",
+  "scope": "One failed150k/DATA1024 trial;50/100 NOT_RUN by user limit; preserve negative result",
+  "files": [
+    {
+      "source": "build/v6l-board-01/analyze_physical.py",
+      "archive": "docs/verification/v2-batch1024/physical-01/analyze_physical.py",
+      "bytes": 25836,
+      "sha256": "23eed797c61588db6aaee5e5daa88608a25a8a32de13a0bbbe0d3bee66c16aed"
+    },
+    {
+      "source": "build/v6l-board-01/backup_current_sd.py",
+      "archive": "docs/verification/v2-batch1024/physical-01/backup_current_sd.py",
+      "bytes": 2502,
+      "sha256": "6d1bbee2778abdb81e78a722eb5422a9d9ab69d964701aa62ae8cfcd5ff65f45"
+    },
+    {
+      "source": "build/v6l-board-01/backup-invocation.json",
+      "archive": "docs/verification/v2-batch1024/physical-01/backup-invocation.json",
+      "bytes": 386,
+      "sha256": "50d991446adc157153933c3c0c0be1d159dca602f88065db4ad53007fee6f4a9"
+    },
+    {
+      "source": "build/v6l-board-01/backup-verified.json",
+      "archive": "docs/verification/v2-batch1024/physical-01/backup-verified.json",
+      "bytes": 597,
+      "sha256": "17aeda722d4e1babe45b027a7bd2d62047838e0c2a65e212e6a496f4e8bd91ba"
+    },
+    {
+      "source": "build/v6l-board-01/backup.log",
+      "archive": "docs/verification/v2-batch1024/physical-01/backup.log",
+      "bytes": 893,
+      "sha256": "55b4f81f7a74b53fb68d343f275dcf683b7e96e9bce1cd823085c77485d2bf03"
+    },
+    {
+      "source": "build/v6l-board-01/backup.stdout.bin",
+      "archive": "docs/verification/v2-batch1024/physical-01/backup.stdout.bin",
+      "bytes": 671,
+      "sha256": "8db8e713bd6dd06f035d1644974566cb484a15e67be8343211a636b8aba3aba1"
+    },
+    {
+      "source": "build/v6l-board-01/before-flash-64k.bin",
+      "archive": "docs/verification/v2-batch1024/physical-01/before-flash-64k.bin",
+      "bytes": 65536,
+      "sha256": "944b29b6ab730eda7a0f3418146d5590edb1e7717c99a12fa74a0fd8bf6ba19e"
+    },
+    {
+      "source": "build/v6l-board-01/decode_diagnostics.py",
+      "archive": "docs/verification/v2-batch1024/physical-01/decode_diagnostics.py",
+      "bytes": 15308,
+      "sha256": "17dc6a634a04293df6f2642e362fa0dc163e03fbd3ef2381cb5741b463006fb0"
+    },
+    {
+      "source": "build/v6l-board-01/finalize_plan.py",
+      "archive": "docs/verification/v2-batch1024/physical-01/finalize_plan.py",
+      "bytes": 3558,
+      "sha256": "cfec783295421c97fdfa14d9de6ceca86844a16f062aea8d36b9d452666b082b"
+    },
+    {
+      "source": "build/v6l-board-01/plan-draft.json",
+      "archive": "docs/verification/v2-batch1024/physical-01/plan-draft.json",
+      "bytes": 4713,
+      "sha256": "f92428bec5054a0be64bd21bc8d13fe1dff088390755be0bc5c499f61fa6b544"
+    },
+    {
+      "source": "build/v6l-board-01/plan.json",
+      "archive": "docs/verification/v2-batch1024/physical-01/plan.json",
+      "bytes": 12155,
+      "sha256": "9835d9cb1527301600e26f7f9644609c875d5188d0f08cd3279a99e880d3fdde"
+    },
+    {
+      "source": "build/v6l-board-01/ports-at-execution.json",
+      "archive": "docs/verification/v2-batch1024/physical-01/ports-at-execution.json",
+      "bytes": 135,
+      "sha256": "c8614e25240676a110cd0c9f9761ba2d2fc559f249875431289a7b08eedef67d"
+    },
+    {
+      "source": "build/v6l-board-01/ports-before-trial.json",
+      "archive": "docs/verification/v2-batch1024/physical-01/ports-before-trial.json",
+      "bytes": 135,
+      "sha256": "c8614e25240676a110cd0c9f9761ba2d2fc559f249875431289a7b08eedef67d"
+    },
+    {
+      "source": "build/v6l-board-01/ports-before.json",
+      "archive": "docs/verification/v2-batch1024/physical-01/ports-before.json",
+      "bytes": 135,
+      "sha256": "c8614e25240676a110cd0c9f9761ba2d2fc559f249875431289a7b08eedef67d"
+    },
+    {
+      "source": "build/v6l-board-01/prepare_offline_helpers.py",
+      "archive": "docs/verification/v2-batch1024/physical-01/prepare_offline_helpers.py",
+      "bytes": 2140,
+      "sha256": "b92068b50861d51870560e490b44c69d3b924eb9c5bf75e0ae0a36ee43c9dafc"
+    },
+    {
+      "source": "build/v6l-board-01/preserve_preview_prefix.py",
+      "archive": "docs/verification/v2-batch1024/physical-01/preserve_preview_prefix.py",
+      "bytes": 1917,
+      "sha256": "864aaca3259df41ced7801a40cd9f59b8b07259f432ab18d9f3c51e4dc3189e7"
+    },
+    {
+      "source": "build/v6l-board-01/probe-list.txt",
+      "archive": "docs/verification/v2-batch1024/physical-01/probe-list.txt",
+      "bytes": 239,
+      "sha256": "b58c8ddae6534dd35b9a1498631f1ee20ba54017c8f3ccfa2b156244c92e72a3"
+    },
+    {
+      "source": "build/v6l-board-01/processes-at-execution.json",
+      "archive": "docs/verification/v2-batch1024/physical-01/processes-at-execution.json",
+      "bytes": 4,
+      "sha256": "a5338d955b09046ec0b16f3a9625b7955c763aae07dc722e474e6078745f932f"
+    },
+    {
+      "source": "build/v6l-board-01/processes-before.json",
+      "archive": "docs/verification/v2-batch1024/physical-01/processes-before.json",
+      "bytes": 4,
+      "sha256": "a5338d955b09046ec0b16f3a9625b7955c763aae07dc722e474e6078745f932f"
+    },
+    {
+      "source": "build/v6l-board-01/program_and_verify.py",
+      "archive": "docs/verification/v2-batch1024/physical-01/program_and_verify.py",
+      "bytes": 2616,
+      "sha256": "e2ea4535f3cc377601d34c84500d54ebd62026be44548bd4bfdf209f53096d03"
+    },
+    {
+      "source": "build/v6l-board-01/program-invocation.json",
+      "archive": "docs/verification/v2-batch1024/physical-01/program-invocation.json",
+      "bytes": 391,
+      "sha256": "6e2649f5799116173e6ebfb7b7bcce0b1bd260eb2ecd51ecdb1862e85a5f0441"
+    },
+    {
+      "source": "build/v6l-board-01/program.log",
+      "archive": "docs/verification/v2-batch1024/physical-01/program.log",
+      "bytes": 981,
+      "sha256": "e293dab96bc062e847a40df25b0ded48726c9343875715bf3d296360e36f6883"
+    },
+    {
+      "source": "build/v6l-board-01/program.stdout.bin",
+      "archive": "docs/verification/v2-batch1024/physical-01/program.stdout.bin",
+      "bytes": 756,
+      "sha256": "27186b8d93db48130dc369917f28f6ca676d6321613fccbfd800170082595c05"
+    },
+    {
+      "source": "build/v6l-board-01/readback-invocation.json",
+      "archive": "docs/verification/v2-batch1024/physical-01/readback-invocation.json",
+      "bytes": 379,
+      "sha256": "b58328e59b6a250b6674085e9c55419eb34e46a335f26461a620b7ae623cc5f1"
+    },
+    {
+      "source": "build/v6l-board-01/readback-verified.json",
+      "archive": "docs/verification/v2-batch1024/physical-01/readback-verified.json",
+      "bytes": 326,
+      "sha256": "4b59421c5574a23f686424de9704b713ea6d3bbed3c5614209cab9a8103ab672"
+    },
+    {
+      "source": "build/v6l-board-01/readback.bin",
+      "archive": "docs/verification/v2-batch1024/physical-01/readback.bin",
+      "bytes": 42444,
+      "sha256": "c1d2c5909341b010d0869f6f7a818d8dd46525bd18d6075e0dda780a9e23b9df"
+    },
+    {
+      "source": "build/v6l-board-01/readback.log",
+      "archive": "docs/verification/v2-batch1024/physical-01/readback.log",
+      "bytes": 877,
+      "sha256": "30afe4106241431e72da57a3806234f900655694c71d7b95217b281a643236b7"
+    },
+    {
+      "source": "build/v6l-board-01/readback.stdout.bin",
+      "archive": "docs/verification/v2-batch1024/physical-01/readback.stdout.bin",
+      "bytes": 655,
+      "sha256": "e6adf0b9d8b834e89dd1f498d1c96e26df82678722fd6af3dd7740d3e52a4b8a"
+    },
+    {
+      "source": "build/v6l-board-01/reset-invocation.json",
+      "archive": "docs/verification/v2-batch1024/physical-01/reset-invocation.json",
+      "bytes": 317,
+      "sha256": "e001297540615ddc696825ccfe9d818b7a55f55eaed66e7ff6dc9e794371b291"
+    },
+    {
+      "source": "build/v6l-board-01/reset.log",
+      "archive": "docs/verification/v2-batch1024/physical-01/reset.log",
+      "bytes": 439,
+      "sha256": "0bdf3581b5ad76c8ea2f518f0c4c702adff2fbf2ce77b5774ec19019a652aebe"
+    },
+    {
+      "source": "build/v6l-board-01/reset.stdout.bin",
+      "archive": "docs/verification/v2-batch1024/physical-01/reset.stdout.bin",
+      "bytes": 420,
+      "sha256": "f8596a56771eed9f6bf4ebfd453433d8b7e7796ae747d34ca0eea8f480d620c9"
+    },
+    {
+      "source": "build/v6l-board-01/root_read_fault.py",
+      "archive": "docs/verification/v2-batch1024/physical-01/root_read_fault.py",
+      "bytes": 3719,
+      "sha256": "4094d939cf3c6d448ba59840bf1388ed87055a4af9f284444ec423535b46063a"
+    },
+    {
+      "source": "build/v6l-board-01/root_read_stopped.py",
+      "archive": "docs/verification/v2-batch1024/physical-01/root_read_stopped.py",
+      "bytes": 3584,
+      "sha256": "3dc58aa6dd667574cae4ee481abcc1ac91d66b126a3a5714af5154ad0410e8e7"
+    },
+    {
+      "source": "build/v6l-board-01/root-chronology.json",
+      "archive": "docs/verification/v2-batch1024/physical-01/root-chronology.json",
+      "bytes": 2054,
+      "sha256": "3704f1d4f9031637eab1a0347080d47de7f9a08b12e987b34b4575719e7fcc55"
+    },
+    {
+      "source": "build/v6l-board-01/run_first_trial.py",
+      "archive": "docs/verification/v2-batch1024/physical-01/run_first_trial.py",
+      "bytes": 2303,
+      "sha256": "e63381b7459042c2944ad4d12d7f908add38f29a62bbc787af3da5496b2ca843"
+    },
+    {
+      "source": "build/v6l-board-01/save_stopped_state.py",
+      "archive": "docs/verification/v2-batch1024/physical-01/save_stopped_state.py",
+      "bytes": 5250,
+      "sha256": "3b609d3e5d713adcbe51c3ed98624f3a614faaf193bd7945e41f8604b75991d7"
+    },
+    {
+      "source": "build/v6l-board-01/user-limit.json",
+      "archive": "docs/verification/v2-batch1024/physical-01/user-limit.json",
+      "bytes": 374,
+      "sha256": "b25262dfc18be73cc92b45d59d0d240fb6f4baf6cfd5a11b856297fe698879be"
+    },
+    {
+      "source": "build/v6l-board-01/150000/adc.bin",
+      "archive": "docs/verification/v2-batch1024/physical-01/150000/adc.bin",
+      "bytes": 12,
+      "sha256": "b389a6884b289d4b53e9b36853b9a933c640fa7a5abe584f859a56c6768c01ba"
+    },
+    {
+      "source": "build/v6l-board-01/150000/adc.invocation.json",
+      "archive": "docs/verification/v2-batch1024/physical-01/150000/adc.invocation.json",
+      "bytes": 327,
+      "sha256": "297d238b8ff4fee57e39ee63a609dd7d06dec084e7294595c3d90ef0c5342863"
+    },
+    {
+      "source": "build/v6l-board-01/150000/adc.log",
+      "archive": "docs/verification/v2-batch1024/physical-01/150000/adc.log",
+      "bytes": 881,
+      "sha256": "a5346f3bc00bc14458bb71f7027788df93519978d9446eb16b65d709939e83cf"
+    },
+    {
+      "source": "build/v6l-board-01/150000/adc.stdout.bin",
+      "archive": "docs/verification/v2-batch1024/physical-01/150000/adc.stdout.bin",
+      "bytes": 659,
+      "sha256": "8a7acd858c72cf5cbed7c44b48fd59407491dc7792d62278841f25a4597df5b6"
+    },
+    {
+      "source": "build/v6l-board-01/150000/diagnostics-decoded.json",
+      "archive": "docs/verification/v2-batch1024/physical-01/150000/diagnostics-decoded.json",
+      "bytes": 8692,
+      "sha256": "2201c2d8647b32be2178eba8f11c1209cc8696ec90ce7ab0e5e8608a968f63e2"
+    },
+    {
+      "source": "build/v6l-board-01/150000/diagnostics-decoder-stderr.txt",
+      "archive": "docs/verification/v2-batch1024/physical-01/150000/diagnostics-decoder-stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "source": "build/v6l-board-01/150000/diagnostics-first.bin",
+      "archive": "docs/verification/v2-batch1024/physical-01/150000/diagnostics-first.bin",
+      "bytes": 136,
+      "sha256": "a5b7b3a729184f2d4203155a15f8d71a20ae9d525224aac1963396832ff88ef9"
+    },
+    {
+      "source": "build/v6l-board-01/150000/diagnostics-first.invocation.json",
+      "archive": "docs/verification/v2-batch1024/physical-01/150000/diagnostics-first.invocation.json",
+      "bytes": 343,
+      "sha256": "aae7284d277f2e10902177431ce51bfa7522dcd13a3ee5608ff81d42f70aeed2"
+    },
+    {
+      "source": "build/v6l-board-01/150000/diagnostics-first.log",
+      "archive": "docs/verification/v2-batch1024/physical-01/150000/diagnostics-first.log",
+      "bytes": 909,
+      "sha256": "d43e94ec6c96b95a98d644bf33f2d3b6fda497fb122fced66cd0e05cccc7499d"
+    },
+    {
+      "source": "build/v6l-board-01/150000/diagnostics-first.stdout.bin",
+      "archive": "docs/verification/v2-batch1024/physical-01/150000/diagnostics-first.stdout.bin",
+      "bytes": 687,
+      "sha256": "3574c28e227db4c56fd370bb1c9c37ab665191ed2c639e881a5a45bfd3ab3b9e"
+    },
+    {
+      "source": "build/v6l-board-01/150000/diagnostics-second.bin",
+      "archive": "docs/verification/v2-batch1024/physical-01/150000/diagnostics-second.bin",
+      "bytes": 136,
+      "sha256": "a5b7b3a729184f2d4203155a15f8d71a20ae9d525224aac1963396832ff88ef9"
+    },
+    {
+      "source": "build/v6l-board-01/150000/diagnostics-second.invocation.json",
+      "archive": "docs/verification/v2-batch1024/physical-01/150000/diagnostics-second.invocation.json",
+      "bytes": 344,
+      "sha256": "39cf487f87d9950f47456451343ad0f0b944415ff5d685bb91f4e65db658b633"
+    },
+    {
+      "source": "build/v6l-board-01/150000/diagnostics-second.log",
+      "archive": "docs/verification/v2-batch1024/physical-01/150000/diagnostics-second.log",
+      "bytes": 911,
+      "sha256": "2fea010ba745ddf3a461e0356c7b15a0158760c7b12b32ca5d0943bbc0d6a60e"
+    },
+    {
+      "source": "build/v6l-board-01/150000/diagnostics-second.stdout.bin",
+      "archive": "docs/verification/v2-batch1024/physical-01/150000/diagnostics-second.stdout.bin",
+      "bytes": 689,
+      "sha256": "9e8d58a5c60d547f1b5f0e00561298029da19fddac6a970a621672db0b622fb1"
+    },
+    {
+      "source": "build/v6l-board-01/150000/dma.bin",
+      "archive": "docs/verification/v2-batch1024/physical-01/150000/dma.bin",
+      "bytes": 16,
+      "sha256": "1450b33ca74ff37e4bdd901880a07306f150d2f07696bc19eaf76d7f9e259dff"
+    },
+    {
+      "source": "build/v6l-board-01/150000/dma.invocation.json",
+      "archive": "docs/verification/v2-batch1024/physical-01/150000/dma.invocation.json",
+      "bytes": 329,
+      "sha256": "e0c2362d348abe331cfd2abacc658e062476092352d9702f01a9b10e920aeeed"
+    },
+    {
+      "source": "build/v6l-board-01/150000/dma.log",
+      "archive": "docs/verification/v2-batch1024/physical-01/150000/dma.log",
+      "bytes": 881,
+      "sha256": "917bceebef8065e8d371459d35b63ae4ebf8d85385cf1164debfec8d97fa56a3"
+    },
+    {
+      "source": "build/v6l-board-01/150000/dma.stdout.bin",
+      "archive": "docs/verification/v2-batch1024/physical-01/150000/dma.stdout.bin",
+      "bytes": 659,
+      "sha256": "de2ed685eca5ac48985c7a0edc3ba3f6c33e189e5354e5ab21c82c2e23db1f4c"
+    },
+    {
+      "source": "build/v6l-board-01/150000/hardware-procedure-facts.json",
+      "archive": "docs/verification/v2-batch1024/physical-01/150000/hardware-procedure-facts.json",
+      "bytes": 605,
+      "sha256": "b44a6f79c05e9a3cc3af047eee76d33ef7041614518acc711d6f25dfb2554250"
+    },
+    {
+      "source": "build/v6l-board-01/150000/physical-analysis.json",
+      "archive": "docs/verification/v2-batch1024/physical-01/150000/physical-analysis.json",
+      "bytes": 12124,
+      "sha256": "050ec51c1a60d0f8c7dd60b50cec03869b1631df0b250b91409e60bc91848b6d"
+    },
+    {
+      "source": "build/v6l-board-01/150000/physical-analysis.md",
+      "archive": "docs/verification/v2-batch1024/physical-01/150000/physical-analysis.md",
+      "bytes": 2176,
+      "sha256": "421828e48defed3d15cb900d6d34f5dbebfa14c5ab21e18a18e87d68ec3f99b3"
+    },
+    {
+      "source": "build/v6l-board-01/150000/rcc.bin",
+      "archive": "docs/verification/v2-batch1024/physical-01/150000/rcc.bin",
+      "bytes": 20,
+      "sha256": "1e24249e3619f46e4291c93fac339276c89ad2a136a324180aa83757fc71a367"
+    },
+    {
+      "source": "build/v6l-board-01/150000/rcc.invocation.json",
+      "archive": "docs/verification/v2-batch1024/physical-01/150000/rcc.invocation.json",
+      "bytes": 328,
+      "sha256": "57f0bdcf5d20aad553c960ed33e4a268b281647b506374e6c6aff1cb4892fb96"
+    },
+    {
+      "source": "build/v6l-board-01/150000/rcc.log",
+      "archive": "docs/verification/v2-batch1024/physical-01/150000/rcc.log",
+      "bytes": 881,
+      "sha256": "1d8deecf930d95d9e99c4ad01366963e8bc959950da98b8e5b32ecf67beed16b"
+    },
+    {
+      "source": "build/v6l-board-01/150000/rcc.stdout.bin",
+      "archive": "docs/verification/v2-batch1024/physical-01/150000/rcc.stdout.bin",
+      "bytes": 659,
+      "sha256": "7b4d3a0db02f9008fcfa5c7fc476555655c0c4b08da022bc1c2d04d85570630d"
+    },
+    {
+      "source": "build/v6l-board-01/150000/received-preview-prefix.json",
+      "archive": "docs/verification/v2-batch1024/physical-01/150000/received-preview-prefix.json",
+      "bytes": 832,
+      "sha256": "17eec858116d9444d9d915063f630edbe6cbd0d8bf2287b96c91596a8b3a0815"
+    },
+    {
+      "source": "build/v6l-board-01/150000/received-preview-prefix.u16le",
+      "archive": "docs/verification/v2-batch1024/physical-01/150000/received-preview-prefix.u16le",
+      "bytes": 16384,
+      "sha256": "4bdca59330eb2ea44b4b7dccdfc42701e414e3e511853f142bf286c7b5695576"
+    },
+    {
+      "source": "build/v6l-board-01/150000/register-decoder-console.txt",
+      "archive": "docs/verification/v2-batch1024/physical-01/150000/register-decoder-console.txt",
+      "bytes": 237,
+      "sha256": "ef59b8c09c01b1419c6f2a770cfd71adee65dbbe1151f88b06ba6f5ae608f564"
+    },
+    {
+      "source": "build/v6l-board-01/150000/registers-decoded.json",
+      "archive": "docs/verification/v2-batch1024/physical-01/150000/registers-decoded.json",
+      "bytes": 2042,
+      "sha256": "e125e238f3e2b1af1f901b023050819b92edcaca1bc700353e27efaeeea23921"
+    },
+    {
+      "source": "build/v6l-board-01/150000/tim3.bin",
+      "archive": "docs/verification/v2-batch1024/physical-01/150000/tim3.bin",
+      "bytes": 48,
+      "sha256": "434bf6f731f9523fff7b4d0fec0a2064653578d9bce9553a87fb8f0e7ca74147"
+    },
+    {
+      "source": "build/v6l-board-01/150000/tim3.invocation.json",
+      "archive": "docs/verification/v2-batch1024/physical-01/150000/tim3.invocation.json",
+      "bytes": 330,
+      "sha256": "e26f650240204cf75904ffff89ea5dfb28b8ab6df3eaf751863d4959a987a32a"
+    },
+    {
+      "source": "build/v6l-board-01/150000/tim3.log",
+      "archive": "docs/verification/v2-batch1024/physical-01/150000/tim3.log",
+      "bytes": 883,
+      "sha256": "0b2ad5699bfe9effb94971fa323b307114c28f05ce58c78613757e3f5b230c3c"
+    },
+    {
+      "source": "build/v6l-board-01/150000/tim3.stdout.bin",
+      "archive": "docs/verification/v2-batch1024/physical-01/150000/tim3.stdout.bin",
+      "bytes": 661,
+      "sha256": "895449d988dc31ab3beadcc3fa8c887fb48ce568a96df5411678ef32a0eb97ae"
+    },
+    {
+      "source": "build/v6l-board-01/150000/trial-console.txt",
+      "archive": "docs/verification/v2-batch1024/physical-01/150000/trial-console.txt",
+      "bytes": 15543,
+      "sha256": "f3762690b3674611a9556d5220573b7937061fd6f82d77c4db9c4fb00e2d225d"
+    },
+    {
+      "source": "build/v6l-board-01/150000/trial-invocation.json",
+      "archive": "docs/verification/v2-batch1024/physical-01/150000/trial-invocation.json",
+      "bytes": 1020,
+      "sha256": "1701a6d65b9e816d129fd73c94c4302fada764a1f46e2d9a86801adb79b7357c"
+    },
+    {
+      "source": "build/v6l-board-01/150000/run/physical.mtstream",
+      "archive": "docs/verification/v2-batch1024/physical-01/150000/run/physical.mtstream",
+      "bytes": 1128,
+      "sha256": "a8a249482e8b127c4891335c80986172de93a793b7ac7da8d6ac8ed24559ceaf"
+    },
+    {
+      "source": "build/v6l-board-01/150000/run/physical.mtstream.v2.json",
+      "archive": "docs/verification/v2-batch1024/physical-01/150000/run/physical.mtstream.v2.json",
+      "bytes": 2401,
+      "sha256": "bbda559da446c7484de97e6a48c34ef6059773c3a577f2fe6ebd69b9ff209660"
+    },
+    {
+      "source": "build/v6l-board-01/150000/run/result.json",
+      "archive": "docs/verification/v2-batch1024/physical-01/150000/run/result.json",
+      "bytes": 17183,
+      "sha256": "d9a652ec19c2de06fd653528d22aa10c1b5a78b588934fb4f721165a11b75a97"
+    },
+    {
+      "source": "build/v6l-board-01/150000/run/traffic.bin",
+      "archive": "docs/verification/v2-batch1024/physical-01/150000/run/traffic.bin",
+      "bytes": 11626,
+      "sha256": "c34212a32e1d873cd6e04a4bd37889eaa67de175a4b01e26ffc952083c336526"
+    }
+  ]
+}

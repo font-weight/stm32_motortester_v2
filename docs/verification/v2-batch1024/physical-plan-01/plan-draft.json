@@ -1,0 +1,54 @@
+{
+  "schema": "motortester-v2-batch1024-physical-plan-1",
+  "status": "DRAFT_NOT_ADMITTED_FOR_EXECUTION",
+  "purpose": "One exact SE flash, one 150k/30s DATA1024 trial, then only if successful two 50k/100k five-second regressions. Each diagnostic trial starts after a fresh boot and actual user USB replug. No analogue or indefinite stability claim.",
+  "source_commit": "TBD_AFTER_SOURCE_FREEZE",
+  "candidate_path": "build/v6l-fw-04/MotortesterV2-stream-candidate.bin",
+  "candidate_bytes": 42444,
+  "candidate_sha256": "c1d2c5909341b010d0869f6f7a818d8dd46525bd18d6075e0dda780a9e23b9df",
+  "candidate_elf_sha256": "359754708f712b1d7d668b3b7c2b41b1cec59025761e05b9291035103030b3eb",
+  "candidate_nm_sha256": "d13b6c9a566ef6c1ab1c799bb18d6828be2fa0fbe6e62f6e6ea18be100c51a55",
+  "firmware_build": "0x56325345",
+  "diagnostic_address": "0x20002F1C",
+  "diagnostic_bytes": 136,
+  "cli_path": "C:/Program Files (x86)/STMicroelectronics/STM32 ST-LINK Utility/ST-LINK Utility/ST-LINK_CLI.exe",
+  "cli_sha256_from_H_template": "7fb012b5e26abf45342caa05c6bc33936f8a379b67797cc55658ffb8bf15e95f",
+  "probe_serial": "57005400120000393333574E",
+  "port": "COM6",
+  "rollback_image": "build/v6l-board-01/before-flash-64k.bin",
+  "rollback_bytes": 65536,
+  "rollback_sha256": "TBD_FRESH_SD_BACKUP",
+  "backup_expected_SD_prefix_bytes": 39448,
+  "backup_expected_SD_prefix_sha256": "244c3af19647ffa24d43973c1d55d24e3b5ce70c494bf781067e13aa60a2daa5",
+  "before_flash": [
+    "Exact production/native/ARM/sourceGUI review has no open P0/P1 and score>=9.5; source commit clean for Windows package.",
+    "Record and verify exact Windows package and independent package review; physical assertions remain unverified.",
+    "Check one expected ST-Link, COM6 identity, application closed and no capture owner. Board powered only by its USB; PA0 empty; ST-Link supply disconnected per user.",
+    "Read fresh 64KiB current SD backup without erasing; require known 39448-byte SD prefix. Preserve earlier backups.",
+    "Final plan pins helpers, exact image, backup and package; independent exact-plan admission required before Flash."
+  ],
+  "flash_procedure": [
+    "Program pinned candidate at0x08000000 with ST-Link verification; log exact argv, exit code, expected probe SN and Verification...OK/Programming Complete.",
+    "Independent Dump of all42444bytes must equal candidate byte-for-byte before reset.",
+    "Reset/Run once; success strings MCU Reset. and Application started.; do not infer failure from absence of running.",
+    "Ask actual new USB-board unplug/replug; leave ST-Link unchanged, PA0 empty, app closed. Wait for user reply before START."
+  ],
+  "sessions": [
+    {"order":1,"sample_rate_hz":150000,"mode":5,"seconds":30,"max_block":1024,"max_payload":1300,"retained_bits":10,"deadline_us_exclusive":3413,"psc":47,"arr":9},
+    {"order":2,"sample_rate_hz":50000,"mode":1,"seconds":5,"max_block":128,"max_payload":512,"retained_bits":12,"deadline_us_exclusive":10240,"psc":71,"arr":19},
+    {"order":3,"sample_rate_hz":100000,"mode":2,"seconds":5,"max_block":128,"max_payload":512,"retained_bits":12,"deadline_us_exclusive":5120,"psc":71,"arr":9}
+  ],
+  "session_rules": [
+    "Only one START per session; discovery0.2 cap15/max1024/payload1300, fresh nonce selected HELLO0.3, exact build/CAPS before START.",
+    "Use existing v2_stream_probe.py with selected Fs, source commit, image SHA and new run folder; preserve wire and raw. Preview then Record then explicit Stop and fresh Open.",
+    "Never SWD/halt during active owner. Confirm owner closure and complete normal END/STOP_ACK before diagnostic reads; queuefull fault may use separately guarded fault reader after matching END/ACK.",
+    "Offline analysis must verify indices, sequence, canonical CRC, full1024 plus optional final short, no DATA after short, file/raw equality and unknown produced tail.",
+    "Read136 twice at exact nm address, then TIM3 0x40000400/48, ADC0x40012408/12, DMA0x40020008/16, RCC0x4002100C/20. Never read ADC_DR.",
+    "Require fresh build/nonce/generation, flags0, ADCpoll/copy below selected deadline and stopped timer/ADC/DMA with expected PSC/ARR. Root records actual chronology separately.",
+    "Proceed to next Fs only after all previous gates pass. New Reset/Run plus actual new user USB replug is mandatory to reset one-attempt-per-boot diagnostic; never reuse prior reply.",
+    "On any failure preserve all evidence and stop this trial plan. Do not repeat START or restore SD automatically. Concrete boot/link/stop problem requires root assessment; throughput failure alone does not justify rollback."
+  ],
+  "software_review": "TBD",
+  "windows_package": "TBD",
+  "helper_hashes": "TBD_AFTER_DRAFT_REVIEW"
+}

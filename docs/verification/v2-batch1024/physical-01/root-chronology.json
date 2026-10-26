@@ -1,0 +1,29 @@
+{
+  "schema": "v2-06l2-root-actual-chronology-1",
+  "operator": "root",
+  "date": "2026-10-26",
+  "actual_user_reply": "готово. После проверки сохрани результат и заверши работу",
+  "scope_change": "User limited this session to the first150k trial and saving results.50/100 deferred; no repeat/rollback.",
+  "ordered_actions": [
+    "Read-only fresh SD64KiB backup; exact39448prefix confirmed; no capture process.",
+    "After independent exact-plan admission, one V2SE program+verify and independent42444-byte readback equal; one Reset/Run logged successfully.",
+    "User actually unplugged/replugged board USB and replied with the exact text above. This is the reply for this boot only.",
+    "COM6 confirmed. Single START150k/mode5 via pinned source probe, with fresh discovery/selected nonce; no SWD/halt during this owner lifetime.",
+    "Source ended reason1 after8complete DATA1024. Record did not establish a start; probe later timed out waiting for recording and shut down. No retry.",
+    "Owner closure was confirmed by result cleanup_finished=true, final_state.phase=closed. Offline analysis verified reason1 END12 and matching STOP_ACK13/request4, prefix8192/CRC2134820010.",
+    "Only after owner closure and offline fault-END/ACK proof, root invoked admitted fault reader. Two136 dumps and stopped TIM3/ADC/DMA/RCC were saved; ADC_DR not read.",
+    "Derived Preview prefix8192 preserved separately from unchanged wire and failed-unbound journal. No normal recording claimed."
+  ],
+  "program_count": 1,
+  "reset_run_count": 1,
+  "START_count": 1,
+  "SWD_or_halt_during_active_owner": false,
+  "ADC_DR_read": false,
+  "rollback_count": 0,
+  "remaining_image": "V2SE/0x56325345",
+  "remaining_device_state": "Stopped: matching terminal ACK plus saved TIM3/ADC/DMA off",
+  "physical150k": "FAIL_QUEUE_FULL_BEFORE_RECORD",
+  "physical50k": "NOT_RUN_USER_LIMIT",
+  "physical100k": "NOT_RUN_USER_LIMIT",
+  "next_hardware_action": "None in this session; finish after preservation and review."
+}

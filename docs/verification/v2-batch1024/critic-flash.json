@@ -1,0 +1,202 @@
+{
+  "schema": "v2-06l2-exact-package-and-flash-admission-1",
+  "date": "2026-10-26",
+  "reviewer": "stream200_critic",
+  "independent_non_author": true,
+  "status": "PASS",
+  "score": 9.5825,
+  "threshold": 9.5,
+  "plan_sha256": "9835d9cb1527301600e26f7f9644609c875d5188d0f08cd3279a99e880d3fdde",
+  "plan_path": "build/v6l-board-01/plan.json",
+  "source_commit": "67b57bfaabbf7cf9290225058f2e8bca3b0964d8",
+  "source_verdict_sha256": "64273a46b448c3d0ae92ffca849e3900da53d7f15fc53a8ac13dede057594a21",
+  "scope": "New frozen Windows package plus conditional admission of exactly the pinned SE Flash/readback/reset and150k30s then50k5s/100k5s hardware plan. This is not a result of any SE physical trial.",
+  "package": {
+    "status": "PASS",
+    "score": 9.62,
+    "criteria": [
+      {
+        "id": "C1",
+        "weight": 0.3,
+        "score": 9.65,
+        "basis": "Exact source/build/ZIP/EXE and mode5/1024 frozen flow correspond to accepted source."
+      },
+      {
+        "id": "C2",
+        "weight": 0.2,
+        "score": 9.6,
+        "basis": "Fresh Open and bare journal preserve raw/identity; SC/SD mismatch before START, owners closed, no real COM."
+      },
+      {
+        "id": "C3",
+        "weight": 0.25,
+        "score": 9.6,
+        "basis": "One actual frozen Windows10 run, receipts and artifacts inspected; no clean-machine or physical claim."
+      },
+      {
+        "id": "C4",
+        "weight": 0.15,
+        "score": 9.6,
+        "basis": "Live/Open and compatibility text readable; prior3 PNG byte-identical to personally viewed source GUI."
+      },
+      {
+        "id": "C5",
+        "weight": 0.1,
+        "score": 9.65,
+        "basis": "Sealed475-file package, exact source archive and15-pair archived evidence verified."
+      }
+    ],
+    "zip_bytes": 61201355,
+    "zip_sha256": "436cdaf1f27322e8ff7e90809f6c091950edcf7a599a97766c128c6e19a6dbfe",
+    "exe_sha256": "582cb37eb508746953b7200c2955aff5fb62b4263b6c734fdb7495e09a404e37",
+    "build_report_sha256": "6f9f22d27664d5a0a726c240eeaff751eb1f7d6b57cd7e3afea47752a3f729ac",
+    "platform": "Windows-10-10.0.19045-SP0",
+    "frozen_checks": 9,
+    "decoded_full1024": 399,
+    "short_tail_samples": 563,
+    "largest_frame_bytes": 1330,
+    "raw_codes_fresh_Open_equal": 361011,
+    "real_COM_calls": 0,
+    "owners_closed": true,
+    "errors": [],
+    "CRC_and475_file_zip_tree_verified": true,
+    "source_archive_sha256": "9fa1ce85e6677919b9d105583c317031a64f5e5276d17f3e7a035d23bf297d71",
+    "personally_viewed_new_frozen_PNGs": 2,
+    "other3_PNGs_byte_identical_to_previously_viewed": true,
+    "CSV_claim": "count/metadata/hash/first fractional step, not every CSV code",
+    "limits": [
+      "Injected synthetic source only",
+      "No clean-machine or unchanged legacy-suite rerun",
+      "No physical ADC/USB qualification or public release approval"
+    ]
+  },
+  "admission": {
+    "status": "PASS",
+    "score": 9.5825,
+    "criteria": [
+      {
+        "id": "C1",
+        "weight": 0.3,
+        "score": 9.6,
+        "basis": "Exact SE image/build/readback address and150-first plan; separate boot/replug per diagnostic attempt."
+      },
+      {
+        "id": "C2",
+        "weight": 0.2,
+        "score": 9.55,
+        "basis": "Fresh full SD backup, single program/START limits, owner-close gates and failure-stop without automatic rollback."
+      },
+      {
+        "id": "C3",
+        "weight": 0.25,
+        "score": 9.6,
+        "basis": "26 execution pins plus CLI and backup personally checked; concrete per-session wire/raw/diag/register criteria."
+      },
+      {
+        "id": "C4",
+        "weight": 0.15,
+        "score": 9.55,
+        "basis": "15030s then conditional50/1005s; no-SWD and fresh user replies explicit, procedural facts remain operator obligations."
+      },
+      {
+        "id": "C5",
+        "weight": 0.1,
+        "score": 9.6,
+        "basis": "Pinned helpers/plan/backup/archive; exact admission hash enforced by program wrapper."
+      }
+    ],
+    "candidate_bytes": 42444,
+    "candidate_sha256": "c1d2c5909341b010d0869f6f7a818d8dd46525bd18d6075e0dda780a9e23b9df",
+    "firmware_build": "0x56325345",
+    "diagnostic_address": "0x20002F1C",
+    "diagnostic_bytes": 136,
+    "rollback_image": "build/v6l-board-01/before-flash-64k.bin",
+    "rollback_sha256": "944b29b6ab730eda7a0f3418146d5590edb1e7717c99a12fa74a0fd8bf6ba19e",
+    "backup_prefix_exact_SD": true,
+    "program_limit": 1,
+    "START_limit_per_session": 1,
+    "session_order": [
+      [
+        150000,
+        30
+      ],
+      [
+        50000,
+        5
+      ],
+      [
+        100000,
+        5
+      ]
+    ],
+    "prerequisites_before_each_START": [
+      "Fresh successful Reset/Run and actual new user USB-board replug reply; never reuse an earlier reply",
+      "Expected single probe/SN and COM6, app/capture closed, USB-only board power/ST-Link supply disconnected/PA0 empty remain as confirmed",
+      "All earlier session criteria pass; any failure stops the sequence",
+      "Build/CAPS/discovery15/new selected nonce are exact before START"
+    ],
+    "conditions_after_capture": [
+      "No SWD/halt during active owner; success owners_closed or failed cleanup_finished+closed must precede reads",
+      "PASS requires target Record duration, nominal pacing within10%, canonical wire/raw/Open/CRC, normal END/STOP_ACK, no source errors",
+      "Two frozen136 agree with current build/nonce/generation; flags0 and poll/copy below3413/10240/5120us as applicable",
+      "Stopped TIM3/ADC/DMA and selected PSC/ARR; register reads avoid ADC_DR",
+      "Operator records actual reset/replug/owner-close/read chronology; helper-generated facts alone are not independent proof",
+      "Preserve failures/unknown produced tail; no automatic retry or rollback; rollback requires concrete boot/link/stop necessity"
+    ],
+    "physical_trial_status": "NOT_RUN_AT_ADMISSION",
+    "physical_150k_verified": false
+  },
+  "pins": {
+    "build/v6lw1/build-report.json": "6f9f22d27664d5a0a726c240eeaff751eb1f7d6b57cd7e3afea47752a3f729ac",
+    "build/v6lw1/source.zip": "9fa1ce85e6677919b9d105583c317031a64f5e5276d17f3e7a035d23bf297d71",
+    "build/v6lw1/frozen-profiles/result.json": "b115ab9eb935c7643504ca1fe01ad870ada8c6656c039aab13042dbf0fb52d43",
+    "docs/verification/v2-batch1024/package-01/manifest.json": "258d7bb535556a7e88ea75d01b022dd200ea349a42140b3a5816b908ebe50c8d",
+    "docs/verification/v2-batch1024/backup-01/manifest.json": "5acebe949aa64a215b6efee5488080d21cad074a3271d818b282301458839053",
+    "build/v6l-board-01/backup-verified.json": "17aeda722d4e1babe45b027a7bd2d62047838e0c2a65e212e6a496f4e8bd91ba"
+  },
+  "execution_inputs": {
+    "build/v6l-fw-04/MotortesterV2-stream-candidate.bin": "c1d2c5909341b010d0869f6f7a818d8dd46525bd18d6075e0dda780a9e23b9df",
+    "build/v6l-fw-04/MotortesterV2-stream-candidate.elf": "359754708f712b1d7d668b3b7c2b41b1cec59025761e05b9291035103030b3eb",
+    "build/v6l-fw-04/image.nm": "d13b6c9a566ef6c1ab1c799bb18d6828be2fa0fbe6e62f6e6ea18be100c51a55",
+    "build/v6l-fw-04/static-bound.json": "00ced5b6b7a3998caeda9e25b09743e64833e13a62acea97e8405e6bc85229cc",
+    "build/v6l-freeze.json": "0b7979e47bd867dd2f8108a033e47eeec325315bd8ee81815c5acb2fdb447eba",
+    "docs/verification/v2-batch1024/critic-source.json": "64273a46b448c3d0ae92ffca849e3900da53d7f15fc53a8ac13dede057594a21",
+    "build/v6lw1/build-report.json": "6f9f22d27664d5a0a726c240eeaff751eb1f7d6b57cd7e3afea47752a3f729ac",
+    "build/v6lw1/MotortesterV2-windows-x64.zip": "436cdaf1f27322e8ff7e90809f6c091950edcf7a599a97766c128c6e19a6dbfe",
+    "build/v6lw1/dist/MotortesterV2/MotortesterV2.exe": "582cb37eb508746953b7200c2955aff5fb62b4263b6c734fdb7495e09a404e37",
+    "build/v6l-board-01/backup-verified.json": "17aeda722d4e1babe45b027a7bd2d62047838e0c2a65e212e6a496f4e8bd91ba",
+    "build/v6l-board-01/before-flash-64k.bin": "944b29b6ab730eda7a0f3418146d5590edb1e7717c99a12fa74a0fd8bf6ba19e",
+    "host/tools/v2_stream_probe.py": "ee3fe6a3909c6e20939de654e8bc441b59d556002f39ea86ceaf925889b7a56b",
+    "host/tools/verify_stream_trial.py": "b32552a3283fb6043cfcc0b207f66bfaedb2a8978b4f0edb69a51c30295caf67",
+    "host/motortester/stream_wire.py": "87eb5567553190a1063e787e788bd7652cb9e872a4d3126902626f530784984f",
+    "host/motortester/stream_endpoint.py": "61093588cc11bed15708bb06c63ca6ee0f57d0c81fdced18513c55ceebd6db42",
+    "host/motortester/stream_model.py": "e5a261abe9ef7d294428f50614373685a7b6e6363c1146f90e6353afbafee03c",
+    "host/motortester/stream_recording.py": "107b2d59b71dcbb99599e1199c4a0f17c978cae517f2c198ac68d742f8265589",
+    "host/motortester/stream_bridge.py": "dea1d555e0653ad8a1ada1c24677b8ec67c76e02f6c475b752581ed939e56a39",
+    "host/motortester/stream_serial.py": "cd35af141eaecb2c6bba7bb03814863b91b55500723289f3cafe91416d720493",
+    "host/motortester/v2/stream_device.py": "ce4b68a07ee241da9c7add6ed98e59ba3dcf6d1008fa1870c2871cac4e961ee7",
+    "build/v6l-board-01/program_and_verify.py": "e2ea4535f3cc377601d34c84500d54ebd62026be44548bd4bfdf209f53096d03",
+    "build/v6l-board-01/analyze_physical.py": "23eed797c61588db6aaee5e5daa88608a25a8a32de13a0bbbe0d3bee66c16aed",
+    "build/v6l-board-01/decode_diagnostics.py": "17dc6a634a04293df6f2642e362fa0dc163e03fbd3ef2381cb5741b463006fb0",
+    "build/v6l-board-01/save_stopped_state.py": "3b609d3e5d713adcbe51c3ed98624f3a614faaf193bd7945e41f8604b75991d7",
+    "build/v6l-board-01/root_read_stopped.py": "3dc58aa6dd667574cae4ee481abcc1ac91d66b126a3a5714af5154ad0410e8e7",
+    "build/v6l-board-01/root_read_fault.py": "4094d939cf3c6d448ba59840bf1388ed87055a4af9f284444ec423535b46063a"
+  },
+  "personal_audit": {
+    "execution_pins": 26,
+    "CLI_sha_match": true,
+    "fresh_backup65536_full_and39448_prefix_match": true,
+    "package_archive_pairs": 15,
+    "package_archive_bytes": 11941253,
+    "backup_archive_pairs": 9,
+    "backup_archive_bytes": 70963,
+    "source_models_or_ARM_repeated": false,
+    "new_product_runs": 0,
+    "COM_calls": 0,
+    "SWD_calls": 0
+  },
+  "open_P0_P1": [],
+  "physical_device_verified": false,
+  "flash_approved_only_for_exact_plan": true,
+  "public_release_approved": false
+}
