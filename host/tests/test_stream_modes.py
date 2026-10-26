@@ -12,8 +12,8 @@ from motortester import stream_endpoint as ep
 from motortester import stream_recording as journal
 from motortester.stream_model import (StreamIdentity, StreamStart, StreamBlock,
                                       StreamTerminal, StreamError, LEGACY_IDENTITY_FIELDS)
-from motortester.stream_wire import (Kind, MODE_REVISION, BATCH_REVISION, decode_frame, decode_payload,
-                                    pack10, unpack10, WireError)
+from motortester.stream_wire import (Kind, MODE_REVISION, BATCH_REVISION, BATCH1024_REVISION,
+                                    decode_frame, decode_payload, pack10, unpack10, WireError)
 from motortester.v2.stream_files import open_stream, export_stream
 from motortester.v2.stream_device import (StreamContext, _write_context, StreamConnection,
                                          SerialStreamSelection)
@@ -40,29 +40,30 @@ def accepted(endpoint):
     return decode_frame(offer.data)
 
 
-def negotiate(rate=150_000, *, legacy_rate=None, batch=True):
+def negotiate(rate=150_000, *, legacy_rate=None, marker=15):
     endpoint = ep.Endpoint(rate)
     endpoint.hello(11, 0)
     request = accepted(endpoint)
     assert request.revision == "0.2"
-    events = endpoint.receive(literal(129, struct.pack("<BBBBHHII", 0, 2, 1, 12, 512,
-        256 if batch and legacy_rate is None else 128,
-        0x56325344, 1 if legacy_rate else 7 if batch else 3), revision=2, nonce=11, request=1), 0)
+    marker = 1 if legacy_rate else marker
+    maximum, payload_maximum = {1: (128, 512), 3: (128, 512), 7: (256, 512), 15: (1024, 1300)}[marker]
+    events = endpoint.receive(literal(129, struct.pack("<BBBBHHII", 0, 2, 1, 12,
+        payload_maximum, maximum, 0xF0102401, marker), revision=2, nonce=11, request=1), 0)
     if legacy_rate is None:
-        if rate == 150_000 and not batch:
+        if rate == 150_000 and marker != 15:
             return endpoint
         assert isinstance(events[0], ep.ModeRequired)
         assert isinstance(endpoint.plan_start(0)[0], ep.Refused)
         endpoint.select_mode(22, 0)
         request = accepted(endpoint)
         assert request.revision == "0.3"
-        mode = {50_000: 1, 100_000: 2, 150_000: 4}[rate]
+        mode = {50_000: 1, 100_000: 2, 150_000: 5}[rate]
         assert request.payload == struct.pack("<QHH", 22, mode, 0)
-        maximum = 256 if mode == 4 else 128
-        endpoint.receive(literal(129, struct.pack("<BBBBHHII", 0, 3, 1, 12, 512, maximum,
-            0x56325344, 1), request=1), 0)
+        maximum, payload_maximum = (1024, 1300) if mode == 5 else (128, 512)
+        endpoint.receive(literal(129, struct.pack("<BBBBHHII", 0, 3, 1, 12, payload_maximum, maximum,
+            0xF0102401, 1), request=1), 0)
         caps = struct.pack("<IHBBIIHBBI", mode, mode, 0, 12, rate, 1, maximum,
-                           10 if mode == 4 else 12, 2 if mode == 4 else 1, 1)
+                           10 if mode == 5 else 12, 2 if mode == 5 else 1, 1)
     else:
         caps = struct.pack("<IHBBIIHHI", 1, 1, 0, 12, legacy_rate, 1, 128, 0, 1)
     endpoint.get_caps(0)
@@ -110,9 +111,31 @@ class StreamModesTests(unittest.TestCase):
                 decode_payload(decode_frame(literal(152, struct.pack("<IIQHH", 3, mode, 0, count, 0))))
         with self.assertRaises(WireError):
             decode_payload(decode_frame(literal(152, struct.pack("<IIQHH", 3, 4, (1 << 64) - 128, 256, 0) + b"\0" * 320)))
+        # The large envelope is exclusively DATA0.3/config5. Old mode4 above
+        # remains max256 even though the generic bounded accumulator is larger.
+        for count, packed in ((1023, vectors[3][0] * 255 + vectors[2][0]),
+                              (1024, vectors[3][0] * 256)):
+            codes = (vectors[3][1] * 256)[:count]
+            frame = literal(152, struct.pack("<IIQHH", 3, 5, 0, count, 0) + packed)
+            self.assertGreater(len(frame), 544)
+            self.assertLessEqual(len(frame), 1335)
+            self.assertEqual(decode_payload(decode_frame(frame)).samples, codes)
+            self.assertEqual(pack10(codes), packed)
+            if count % 4:
+                with self.assertRaises(WireError):
+                    decode_payload(decode_frame(literal(152, struct.pack("<IIQHH", 3, 5, 0, count, 0) +
+                        packed[:-1] + bytes([packed[-1] | 0x80]))))
+        for revision, kind, mode in ((2, 152, 5), (3, 152, 4), (3, 153, 5), (4, 152, 5)):
+            with self.assertRaises(WireError):
+                decode_frame(literal(kind, struct.pack("<IIQHH", 3, mode, 0, 1024, 0) + b"\0" * 1280,
+                                     revision=revision), allow_unknown_revision=True)
+        with self.assertRaises(WireError):
+            decode_payload(decode_frame(literal(152, struct.pack("<IIQHH", 3, 5, 0, 1025, 0))))
+        with self.assertRaises(WireError):
+            decode_payload(decode_frame(literal(152, struct.pack("<IIQHH", 3, 5, (1 << 64) - 1023, 1024, 0) + b"\0" * 1280)))
 
     def test_discovery_mode_binding_and_legacy_mismatch(self):
-        for rate, mode in ((50_000, 1), (100_000, 2), (150_000, 4)):
+        for rate, mode in ((50_000, 1), (100_000, 2), (150_000, 5)):
             endpoint = negotiate(rate)
             plan, = endpoint.plan_start(0)
             endpoint.start(0, plan=plan)
@@ -132,21 +155,23 @@ class StreamModesTests(unittest.TestCase):
             endpoint = negotiate(rate, legacy_rate=rate)
             self.assertEqual(endpoint.state, ep.State.STOPPED)
             self.assertIsNone(endpoint.first_fault)
-        for rate in (50_000, 100_000):
-            self.assertIsNone(negotiate(rate, batch=False).first_fault)
-        unsupported = negotiate(150_000, batch=False)
-        self.assertEqual(unsupported.first_fault.code, "batch256_firmware_required")
-        self.assertIsInstance(unsupported.plan_start(0)[0], ep.Refused)
-        self.assertFalse(any(isinstance(x, ep.WriteOffer) and x.request.kind == Kind.START
-                             for x in unsupported.next_write(0)))
+        for marker in (3, 7):
+            for rate in (50_000, 100_000):
+                self.assertIsNone(negotiate(rate, marker=marker).first_fault)
+            unsupported = negotiate(150_000, marker=marker)
+            self.assertEqual(unsupported.first_fault.code, "batch1024_firmware_required")
+            self.assertIsInstance(unsupported.plan_start(0)[0], ep.Refused)
+            self.assertFalse(any(isinstance(x, ep.WriteOffer) and x.request.kind == Kind.START
+                                 for x in unsupported.next_write(0)))
         # ACK and CAPS selected sizes must agree; discovery max is only global.
-        for marker, maximum in ((7, 128), (3, 256), (1, 256)):
+        for marker, maximum, payload_maximum in ((7, 128, 512), (3, 256, 512), (1, 256, 512),
+                                                (15, 1024, 512), (7, 1024, 1300), (15, 256, 1300)):
             with self.assertRaises(WireError):
-                decode_payload(decode_frame(literal(129, struct.pack("<BBBBHHII", 0, 2, 1, 12, 512,
+                decode_payload(decode_frame(literal(129, struct.pack("<BBBBHHII", 0, 2, 1, 12, payload_maximum,
                     maximum, 0x56325344, marker), revision=2)))
         wrong = ep.Endpoint(150_000); wrong.hello(11, 0); accepted(wrong)
-        wrong.receive(literal(129, struct.pack("<BBBBHHII", 0, 2, 1, 12, 512, 256,
-            0x56325344, 7), revision=2, nonce=11, request=1), 0)
+        wrong.receive(literal(129, struct.pack("<BBBBHHII", 0, 2, 1, 12, 1300, 1024,
+            0xF0102401, 15), revision=2, nonce=11, request=1), 0)
         wrong.select_mode(22, 0); accepted(wrong)
         wrong.receive(literal(129, struct.pack("<BBBBHHII", 0, 3, 1, 12, 512, 128,
             0x56325344, 1), request=1), 0)
@@ -162,7 +187,7 @@ class StreamModesTests(unittest.TestCase):
         self.assertEqual(endpoint.first_fault.code, "version")
         endpoint = negotiate()
         endpoint.start(0); accepted(endpoint)
-        endpoint.receive(literal(136, struct.pack("<IIQ", 3, 4, 0), sequence=3, request=3), 0)
+        endpoint.receive(literal(136, struct.pack("<IIQ", 3, 5, 0), sequence=3, request=3), 0)
         corrupted = bytearray(stale_unknown); corrupted[-2] ^= 1
         endpoint.receive(bytes(corrupted), 0)
         self.assertIsNotNone(endpoint.first_fault)  # Foreign nonce never bypasses envelope integrity.
@@ -175,15 +200,35 @@ class StreamModesTests(unittest.TestCase):
         self.assertEqual(endpoint.first_fault.code, "request")
         self.assertIsInstance(endpoint.select_mode(22, 0)[0], ep.Refused)
         endpoint = negotiate(); endpoint.start(0); accepted(endpoint)
-        endpoint.receive(literal(136, struct.pack("<IIQ", 3, 4, 0), sequence=3, request=3), 0)
-        for seq, first, count in ((4, 0, 256), (5, 256, 129)):
-            endpoint.receive(literal(152, struct.pack("<IIQHH", 3, 4, first, count, 0) +
-                                     b"\0" * ((count * 10 + 7) // 8), sequence=seq), 0)
+        endpoint.receive(literal(136, struct.pack("<IIQ", 3, 5, 0), sequence=3, request=3), 0)
+        self.assertEqual(ep.MAX_INPUT_BYTES, 544)
+        for seq, first, count in ((4, 0, 1024), (5, 1024, 129)):
+            framed = literal(152, struct.pack("<IIQHH", 3, 5, first, count, 0) +
+                             b"\0" * ((count * 10 + 7) // 8), sequence=seq)
+            before = endpoint.received_end
+            for offset in range(0, len(framed) - 1, 544):
+                events = endpoint.receive(framed[offset:min(offset + 544, len(framed) - 1)], 0)
+                self.assertEqual(endpoint.received_end, before)
+                self.assertFalse(any(isinstance(event, ep.ValidatedData) for event in events))
+            events = endpoint.receive(framed[-1:], 0)
+            self.assertEqual(sum(isinstance(event, ep.ValidatedData) for event in events), 1)
         self.assertIsNone(endpoint.first_fault)
-        self.assertEqual(endpoint.received_end, 385)
-        self.assertEqual(endpoint.received_crc32, zlib.crc32(b"\0" * 770))
-        endpoint.receive(literal(152, struct.pack("<IIQHH", 3, 4, 385, 1, 0) + b"\0\0", sequence=6), 0)
+        self.assertEqual(endpoint.received_end, 1153)
+        self.assertEqual(endpoint.received_crc32, zlib.crc32(b"\0" * 2306))
+        endpoint.receive(literal(152, struct.pack("<IIQHH", 3, 5, 1153, 1, 0) + b"\0\0", sequence=6), 0)
         self.assertEqual(endpoint.first_fault.code, "data_after_short")
+        # A cut large frame cannot publish a fraction or advance END prefix.
+        cut = negotiate(); cut.start(0); accepted(cut)
+        cut.receive(literal(136, struct.pack("<IIQ", 3, 5, 0), sequence=3, request=3), 0)
+        complete = literal(152, struct.pack("<IIQHH", 3, 5, 0, 1024, 0) + b"\0" * 1280, sequence=4)
+        for offset in range(0, len(complete), 544):
+            cut.receive(complete[offset:offset + 544], 0)
+        partial = literal(152, struct.pack("<IIQHH", 3, 5, 1024, 1024, 0) + b"\0" * 1280, sequence=5)
+        cut.receive(partial[:544], 0)
+        self.assertEqual(cut.received_end, 1024)
+        cut.tick(1001)
+        self.assertIsNotNone(cut.first_fault)
+        self.assertEqual((cut.received_end, cut.received_crc32), (1024, zlib.crc32(b"\0" * 2048)))
 
     def test_intrinsic_journal_roundtrip_without_companion_and_csv(self):
         identity = StreamIdentity("wire-0.3:0000000000000016", 3, 3, 150_000, "synthetic",
@@ -249,6 +294,38 @@ class StreamModesTests(unittest.TestCase):
                     StreamBlock(batch, 0, struct.pack("<H", code))
             with self.assertRaises(StreamError):
                 journal._construct(StreamIdentity, {k: v for k, v in asdict(batch).items() if k != "discarded_lsb"})
+            large = replace(batch, protocol_revision=BATCH1024_REVISION, acquisition_mode=5,
+                            config_id=5, firmware_version="build:f0102401")
+            large_raw = struct.pack("<1153H", *((0, 4, 4092, 1364) * 289)[:1153])
+            large_path = Path(folder) / "batch1024.mtstream"
+            writer = journal.StreamWriter.create(large_path, StreamStart(large, 1024, "batch1024"))
+            writer.append(StreamBlock(large, 1024, large_raw[:2048]))
+            writer.append(StreamBlock(large, 2048, large_raw[2048:]))
+            writer.finish(StreamTerminal(large, 2177, "stopped", True, None, 2177, None,
+                                         stop_requested=True, stop_request_id=4))
+            writer.close()
+            original_large = large_path.read_bytes()
+            bare_large, reopened_large = open_stream(large_path)
+            self.assertFalse(bare_large.companion_present)
+            self.assertEqual(reopened_large.identity, large)
+            self.assertEqual(b"".join(b.raw_u16le for b in reopened_large.iter_raw()), large_raw)
+            large_connection = StreamConnection(SerialStreamSelection("fixture", requested_sample_rate_hz=150_000),
+                "injected-test", 0xF0102401, (5, 5, 0, 12, 150000, 1, 1024, 1, 10, 2), protocol_revision="0.3")
+            _write_context(large_path, StreamContext(), large, large_connection)
+            self.assertEqual(open_stream(large_path)[0].connection, large_connection)
+            large_csv = Path(folder) / "batch1024.csv"
+            export_stream(large_csv, reopened_large, bare_large)
+            self.assertEqual(float(large_csv.read_text("utf-8").splitlines()[2].split(",")[1]), 1 / 150_000)
+            self.assertEqual(json.loads(large_csv.with_suffix(".csv.json").read_text("utf-8"))["identity"], asdict(large))
+            self.assertEqual(large_path.read_bytes(), original_large)
+            for broken in (dict(protocol_revision=BATCH_REVISION), dict(acquisition_mode=4, config_id=4),
+                           dict(retained_bits=12), dict(wire_sample_encoding="u16le")):
+                with self.assertRaises(StreamError):
+                    replace(large, **broken)
+            with self.assertRaises(StreamError):
+                StreamBlock(large, 0, struct.pack("<H", 4095))
+            with self.assertRaises(StreamError):
+                journal._construct(StreamIdentity, {k: v for k, v in asdict(large).items() if k != "discarded_lsb"})
         for code in (1, 4095, 4096):
             with self.assertRaises(StreamError):
                 StreamBlock(identity, 0, struct.pack("<H", code))

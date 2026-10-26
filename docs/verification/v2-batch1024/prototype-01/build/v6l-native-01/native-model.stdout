@@ -1,0 +1,4 @@
+PASS synthetic DATA1024+tail129+END / bounded512 collection / stale prepared ownership not published / single final prefix commit
+PASS tails1,2,3,127,128,129,1023 and full1024 worst1335 / quantum1,17,128,512 / canaries / independent COBS+CRC+pad oracle
+PASS invalid ADC before masking / gap and quantum513 rejected / zero-count noDATA / unknown acceptance or guard denial cannot commit / destructive COBS abort / stale shared-byte append retry
+state_bytes=32; tx_capacity=1336; production_runtime_executed=0

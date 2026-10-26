@@ -13,7 +13,7 @@ from .stream_wire import (COUNTER_RESERVE, MAX_ENCODED, MAX_FRAME,
                           U32_MAX, U64_MAX, Caps, Data, End, Error, Frame, HelloAck,
                           Kind, StartAck, StopAck, WireError, decode_frame,
                           decode_payload, encode_frame, uint, MODE_TABLE, MODE_REVISION,
-                          MODE_MAX_BLOCK, mode_revision,
+                          MODE_MAX_BLOCK, MODE_MAX_PAYLOAD, mode_revision,
                           SUPPORTED_SAMPLE_RATES, caps_values)
 
 REQUEST_MS, DATA_MS, PARTIAL_MS, CLEANUP_MS = 2000, 1000, 1000, 2000
@@ -201,6 +201,7 @@ class Endpoint:
         self.mode = 0
         self._discovery_capabilities = 0
         self._ack_max_block = None
+        self._ack_max_payload = None
         self.state = State.NO_SESSION
         self.nonce = None
         self.generation = None
@@ -373,6 +374,7 @@ class Endpoint:
         self._short_seen = self._stop_used = False
         self._caps = self._build = None
         self._ack_max_block = None
+        self._ack_max_payload = None
         if self.revision == "0.2":
             self._discovery_capabilities = 0
         self._plan = None
@@ -400,11 +402,11 @@ class Endpoint:
         if self.state != State.MODE_REQUIRED or nonce == self.nonce:
             return (Refused("mode_handshake_required"),)
         requested = self.requested_sample_rate_hz or 100_000
-        mode = {50_000: 1, 100_000: 2, 150_000: 4}.get(requested)
+        mode = {50_000: 1, 100_000: 2, 150_000: 5}.get(requested)
         if mode is None:
             return tuple(self._recover("requested_mode_unsupported", now_ms))
-        if mode == 4 and self._discovery_capabilities != 7:
-            return tuple(self._recover("batch256_firmware_required", now_ms))
+        if mode == 5 and self._discovery_capabilities != 15:
+            return tuple(self._recover("batch1024_firmware_required", now_ms))
         self.revision, self.mode = "0.3", mode
         return tuple(self._hello(nonce, now_ms, False))
 
@@ -708,14 +710,17 @@ class Endpoint:
             self._build = payload.firmware_build
             self._ordinary = None
             self._ack_max_block = payload.max_block
-            if payload.capabilities in (3, 7):
+            self._ack_max_payload = payload.max_payload
+            if payload.capabilities in (3, 7, 15):
                 self._discovery_capabilities = payload.capabilities
-                if self.requested_sample_rate_hz == 150_000 and payload.capabilities != 7:
-                    raise WireError("batch256_firmware_required")
+                if self.requested_sample_rate_hz == 150_000 and payload.capabilities != 15:
+                    raise WireError("batch1024_firmware_required")
                 self.state = State.MODE_REQUIRED
                 return [ModeRequired(self.nonce, self._build)]
             if self.revision == "0.3" and payload.max_block != MODE_MAX_BLOCK[self.mode]:
                 raise WireError("selected_block_mismatch")
+            if self.revision == "0.3" and payload.max_payload != MODE_MAX_PAYLOAD[self.mode]:
+                raise WireError("selected_payload_mismatch")
             self.state = State.STOPPED
             return [Negotiated(self.nonce, self._build, None)]
         if k == Kind.CAPS:
@@ -725,6 +730,8 @@ class Endpoint:
                 raise WireError("selected_mode")
             if payload.max_block != self._ack_max_block:
                 raise WireError("selected_block_mismatch")
+            if self._ack_max_payload != (MODE_MAX_PAYLOAD[payload.profile] if self.revision == "0.3" else 512):
+                raise WireError("selected_payload_mismatch")
             if (self.requested_sample_rate_hz is not None and
                     payload.fs_num != self.requested_sample_rate_hz * payload.fs_den):
                 raise WireError("selected_rate_mismatch_fixed_" + str(payload.fs_num))

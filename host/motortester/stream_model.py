@@ -73,7 +73,7 @@ class StreamIdentity:
                     self.protocol_revision == mode_revision(mode), "Несогласованный режим wire0.3")
         else:
             require(mode == 0, "Режим захвата требует версии wire0.3")
-        expected = ((12, 10, 2, "u10packed_le", "left_shift_2", "truncate_lsb") if mode in (3, 4)
+        expected = ((12, 10, 2, "u10packed_le", "left_shift_2", "truncate_lsb") if mode in (3, 4, 5)
                     else (12, 12, 0, "u16le", "identity", "none"))
         require((self.source_adc_bits, self.retained_bits, self.discarded_lsb,
                  self.wire_sample_encoding, self.normalization, self.quantization) == expected and

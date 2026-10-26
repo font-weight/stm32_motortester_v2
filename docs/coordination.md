@@ -1,5 +1,14 @@
 # Координация самостоятельного V2
 
+V2-06l: higher_fs_review — изолированный firmware/v2-stream/batch1024/**,
+tests/v2-stream-firmware/batch1024*, build/v6l-native-* и firmware proposal;
+host_200k — host/motortester/**, host/tests/test_stream_modes.py, host proposal
+и build/v6l-host-*. Root — канонический контракт/docs, архив/интеграция,
+единолично COM/SWD. stream200_critic — независимый design/prototype review
+и build/v6l-analysis/critic*, docs/reviews/v2-06l*. Production firmware и
+пакет пока не интегрировать: первичный ограниченный результат — serializer
+и host draft с точными свидетельствами. Предыдущие K artifacts неизменны.
+
 V2-06k реализация после contract PASS: higher_fs_review — firmware/v2-stream/**,
 tests/v2-stream-firmware/** (одна новая pair-модель/runner, прежние evidence
 не переписывать), build/v6k-fw-*, v6k-native-*, v6k-freeze.json. Host_200k —

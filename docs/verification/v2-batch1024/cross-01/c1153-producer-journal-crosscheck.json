@@ -1,0 +1,263 @@
+{
+  "schema": "v2-06l-c1153-host-crosscheck-1",
+  "status": "PASS",
+  "scope": "Actual isolated C serializer plus existing C END encoder -> Python codec, direct journal, bare fresh Open and CSV",
+  "production_runtime_executed": false,
+  "physical_device_verified": false,
+  "firmware_build_observed": null,
+  "GUI_executed": false,
+  "COM_calls": 0,
+  "SWD_calls": 0,
+  "errors": [],
+  "outputs": {
+    "build/v6l-host-unit-01/c1153.mtstream": {
+      "bytes": 3889,
+      "sha256": "42536bad0188b6eba7dd89a16e02430ec7e8f324a33b461448ba702c85956f8c"
+    },
+    "build/v6l-host-unit-01/c1153.csv": {
+      "bytes": 30898,
+      "sha256": "a1a514c6a60bef41d3a6cbe85b1fac92b893e3d5deed8fd518f1eb65af92f7d8"
+    },
+    "build/v6l-host-unit-01/c1153.csv.json": {
+      "bytes": 2889,
+      "sha256": "5caba7934034b6eb3012a3ed1104e34d2ea4a90a1c5bf8c59c1a4da5d101680a"
+    }
+  },
+  "host_draft_manifest": {
+    "path": "build/v6l-host-draft-01.json",
+    "bytes": 3726,
+    "sha256": "aa794fbd7aa0db0ffcf4050551f546b49f75c6bd24ab74404f1a65b8eef0d52a"
+  },
+  "host_source_files": {
+    "host/motortester/stream_wire.py": {
+      "bytes": 16443,
+      "sha256": "87eb5567553190a1063e787e788bd7652cb9e872a4d3126902626f530784984f"
+    },
+    "host/motortester/stream_endpoint.py": {
+      "bytes": 35624,
+      "sha256": "61093588cc11bed15708bb06c63ca6ee0f57d0c81fdced18513c55ceebd6db42"
+    },
+    "host/motortester/stream_model.py": {
+      "bytes": 12154,
+      "sha256": "e5a261abe9ef7d294428f50614373685a7b6e6363c1146f90e6353afbafee03c"
+    },
+    "host/motortester/v2/stream_device.py": {
+      "bytes": 28753,
+      "sha256": "ce4b68a07ee241da9c7add6ed98e59ba3dcf6d1008fa1870c2871cac4e961ee7"
+    },
+    "host/tests/test_stream_modes.py": {
+      "bytes": 24242,
+      "sha256": "87c7e839a356908ce658edffb4c88ea2db01c212355b719488c20ce6f4a53394"
+    },
+    "host/motortester/stream_provenance.py": {
+      "bytes": 18997,
+      "sha256": "77a2752e767d1ee6b78d0bd2e3cf4373f629fea76b283337bac1bdeb5d28c954"
+    },
+    "host/motortester/stream_bridge.py": {
+      "bytes": 36021,
+      "sha256": "dea1d555e0653ad8a1ada1c24677b8ec67c76e02f6c475b752581ed939e56a39"
+    },
+    "host/motortester/stream_recording.py": {
+      "bytes": 35932,
+      "sha256": "107b2d59b71dcbb99599e1199c4a0f17c978cae517f2c198ac68d742f8265589"
+    },
+    "host/motortester/stream_serial.py": {
+      "bytes": 6048,
+      "sha256": "cd35af141eaecb2c6bba7bb03814863b91b55500723289f3cafe91416d720493"
+    },
+    "host/tools/verify_stream_trial.py": {
+      "bytes": 16124,
+      "sha256": "b32552a3283fb6043cfcc0b207f66bfaedb2a8978b4f0edb69a51c30295caf67"
+    }
+  },
+  "source": "build/v6l-native-01/batch1153-transcript.bin",
+  "source_fixture": {
+    "bytes": 1614,
+    "sha256": "cf62a2d6153aa7f59e4c886e9f487e950381ac6d6cbafa1ca285d19f22333013"
+  },
+  "C_producer_inputs": {
+    "build/v6l-native-01/model.c": {
+      "bytes": 11367,
+      "sha256": "f1f4801929d09b75aed8d07df8293fcb5c2cd3a06ad44bd65de1785de3d28fa6"
+    },
+    "build/v6l-native-01/mt_batch1024.c": {
+      "bytes": 5879,
+      "sha256": "3e13f073e933ba08c7112ad943a4d14bb0520fef1e2349b569f1e656af87440e"
+    },
+    "build/v6l-native-01/mt_batch1024.h": {
+      "bytes": 4452,
+      "sha256": "330b317fb893ae0385e7a6cc8b1ace1e81c4c9e0e14984a4f8c0b20b1484aeb0"
+    },
+    "build/v6l-native-01/mt_wire.c": {
+      "bytes": 11344,
+      "sha256": "f8bf4f55f2e4fc769aae0cb57b826dc116486ebefd78279ec130e133cb520fbf"
+    },
+    "build/v6l-native-01/mt_wire.h": {
+      "bytes": 3072,
+      "sha256": "d806649d10360398e031b84e830071fb9b62728feae9fe1c44264aa8d0237f38"
+    },
+    "build/v6l-native-01/mt_v2_crc32.h": {
+      "bytes": 528,
+      "sha256": "48f29791e8b0595dabdc70ec06807f4dc064a56e66db514df24dd04ea9222a2f"
+    }
+  },
+  "producer_receipt": {
+    "path": "build/v6l-native-01/result.json",
+    "bytes": 8692,
+    "sha256": "9715e3edbc09acd6ba4900dbff208089216262c3e01ebfdf5bf82ca8117a75bc"
+  },
+  "decoded": {
+    "nonce": 503,
+    "generation": 3,
+    "config_id": 5,
+    "revision": "0.3",
+    "counts": [
+      1024,
+      129
+    ],
+    "first_indices": [
+      0,
+      1024
+    ],
+    "frame_sequences": [
+      4,
+      5,
+      6
+    ],
+    "frame_bytes": [
+      1332,
+      212,
+      70
+    ],
+    "wire_bytes": 1614,
+    "canonical_samples": 1153,
+    "canonical_bytes": 2306,
+    "raw_sha256": "1f5c9f712929bceae1a09adb39de4cec43d31ef4abe2d99cc8b63531af417b7d",
+    "prefix_crc32": 1967919874,
+    "END": {
+      "generation": 3,
+      "config_id": 5,
+      "prefix_end": 1153,
+      "produced_end": null,
+      "last_data_sequence": 5,
+      "prefix_crc32": 1967919874,
+      "reason": 0,
+      "flags": 3,
+      "stop_request_id": 4
+    }
+  },
+  "journal": {
+    "path": "build/v6l-host-unit-01/c1153.mtstream",
+    "bytes": 3889,
+    "sha256": "42536bad0188b6eba7dd89a16e02430ec7e8f324a33b461448ba702c85956f8c",
+    "identity": {
+      "session_id": "wire-0.3:00000000000001f7",
+      "generation": 3,
+      "config_id": 5,
+      "nominal_fs_hz": 150000,
+      "origin": "synthetic",
+      "protocol_revision": "0.3-batch1024-20261025",
+      "firmware_version": "build:f0102401",
+      "application_version": "v2-serial-unknown-accounting:injected-test",
+      "acquisition_mode": 5,
+      "source_adc_bits": 12,
+      "retained_bits": 10,
+      "discarded_lsb": 2,
+      "wire_sample_encoding": "u10packed_le",
+      "normalization": "left_shift_2",
+      "quantization": "truncate_lsb",
+      "stored_sample_encoding": "u16le",
+      "stored_code_domain": "adc12"
+    },
+    "fresh_open_raw_equal": true,
+    "without_companion": true,
+    "unknown_tail_preserved": true,
+    "unchanged_after_open_and_export": true
+  },
+  "time_basis": {
+    "nominal_fs_hz": 150000,
+    "sample_interval_seconds": 6.666666666666667e-06,
+    "sample_interval_microseconds_rational": [
+      20,
+      3
+    ],
+    "all_CSV_indices_codes_times_equal": true,
+    "calibrated_clock": false
+  },
+  "limits": [
+    "Producer is the isolated serializer, not production core/runtime or a firmware image.",
+    "No HELLO/START/STOP_ACK lifecycle or USB/ADC throughput is exercised here.",
+    "Synthetic END and exact retained prefix do not prove physical completeness.",
+    "Partial-frame no-early-publish was checked in unit01; it is not a second runtime test here."
+  ],
+  "input_pins_before": {
+    "build/v6l-native-01/batch1153-transcript.bin": {
+      "bytes": 1614,
+      "sha256": "cf62a2d6153aa7f59e4c886e9f487e950381ac6d6cbafa1ca285d19f22333013"
+    },
+    "build/v6l-native-01/result.json": {
+      "bytes": 8692,
+      "sha256": "9715e3edbc09acd6ba4900dbff208089216262c3e01ebfdf5bf82ca8117a75bc"
+    },
+    "build/v6l-native-01/model.c": {
+      "bytes": 11367,
+      "sha256": "f1f4801929d09b75aed8d07df8293fcb5c2cd3a06ad44bd65de1785de3d28fa6"
+    },
+    "build/v6l-native-01/mt_batch1024.c": {
+      "bytes": 5879,
+      "sha256": "3e13f073e933ba08c7112ad943a4d14bb0520fef1e2349b569f1e656af87440e"
+    },
+    "build/v6l-native-01/mt_batch1024.h": {
+      "bytes": 4452,
+      "sha256": "330b317fb893ae0385e7a6cc8b1ace1e81c4c9e0e14984a4f8c0b20b1484aeb0"
+    },
+    "build/v6l-native-01/mt_wire.c": {
+      "bytes": 11344,
+      "sha256": "f8bf4f55f2e4fc769aae0cb57b826dc116486ebefd78279ec130e133cb520fbf"
+    },
+    "build/v6l-native-01/mt_wire.h": {
+      "bytes": 3072,
+      "sha256": "d806649d10360398e031b84e830071fb9b62728feae9fe1c44264aa8d0237f38"
+    },
+    "build/v6l-native-01/mt_v2_crc32.h": {
+      "bytes": 528,
+      "sha256": "48f29791e8b0595dabdc70ec06807f4dc064a56e66db514df24dd04ea9222a2f"
+    }
+  },
+  "input_pins_after": {
+    "build/v6l-native-01/batch1153-transcript.bin": {
+      "bytes": 1614,
+      "sha256": "cf62a2d6153aa7f59e4c886e9f487e950381ac6d6cbafa1ca285d19f22333013"
+    },
+    "build/v6l-native-01/result.json": {
+      "bytes": 8692,
+      "sha256": "9715e3edbc09acd6ba4900dbff208089216262c3e01ebfdf5bf82ca8117a75bc"
+    },
+    "build/v6l-native-01/model.c": {
+      "bytes": 11367,
+      "sha256": "f1f4801929d09b75aed8d07df8293fcb5c2cd3a06ad44bd65de1785de3d28fa6"
+    },
+    "build/v6l-native-01/mt_batch1024.c": {
+      "bytes": 5879,
+      "sha256": "3e13f073e933ba08c7112ad943a4d14bb0520fef1e2349b569f1e656af87440e"
+    },
+    "build/v6l-native-01/mt_batch1024.h": {
+      "bytes": 4452,
+      "sha256": "330b317fb893ae0385e7a6cc8b1ace1e81c4c9e0e14984a4f8c0b20b1484aeb0"
+    },
+    "build/v6l-native-01/mt_wire.c": {
+      "bytes": 11344,
+      "sha256": "f8bf4f55f2e4fc769aae0cb57b826dc116486ebefd78279ec130e133cb520fbf"
+    },
+    "build/v6l-native-01/mt_wire.h": {
+      "bytes": 3072,
+      "sha256": "d806649d10360398e031b84e830071fb9b62728feae9fe1c44264aa8d0237f38"
+    },
+    "build/v6l-native-01/mt_v2_crc32.h": {
+      "bytes": 528,
+      "sha256": "48f29791e8b0595dabdc70ec06807f4dc064a56e66db514df24dd04ea9222a2f"
+    }
+  },
+  "inputs_unchanged": true,
+  "script_sha256": "71969bf97247a08a3e4a2ac8e76076050ffa146a247489fb86774615591f81af"
+}

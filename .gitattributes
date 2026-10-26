@@ -48,6 +48,17 @@ docs/verification/v2-batch256/**/*.map -whitespace
 docs/verification/v2-batch256/**/*.log -whitespace
 docs/streaming-batch256.md -text
 docs/reviews/v2-06k*.md -text
+docs/verification/v2-batch1024/** -text whitespace=cr-at-eol
+docs/verification/v2-batch1024/**/*.bin binary
+docs/verification/v2-batch1024/**/*.u16le binary
+docs/verification/v2-batch1024/**/*.txt -whitespace
+docs/verification/v2-batch1024/**/*.log -whitespace
+docs/verification/v2-batch1024/**/*.stdout -whitespace
+docs/verification/v2-batch1024/**/*.stderr -whitespace
+docs/reviews/v2-06l*.md -text
+docs/streaming-batch1024.md -text whitespace=cr-at-eol
+firmware/v2-stream/batch1024/** -text
+tests/v2-stream-firmware/batch1024* -text
 host/docs/stream-modes.md -text
 firmware/v2-stream/selectable/* -text
 docs/verification/v2-tx-prepare/**/*.u16le binary

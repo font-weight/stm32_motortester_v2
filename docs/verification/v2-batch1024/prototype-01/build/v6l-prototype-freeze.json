@@ -1,0 +1,186 @@
+{
+  "schema": "motortester-v2-batch1024-isolated-prototype-freeze-1",
+  "status": "FROZEN_ISOLATED_PROTOTYPE_PENDING_REVIEW_NOT_PRODUCTION",
+  "scope": "TX-only1336, fixed state32, late known count, packed10 and CRC/inplaceCOBS; mode5/wire0.3 draft",
+  "inputs": [
+    {
+      "path": "firmware/v2-stream/batch1024/mt_batch1024.c",
+      "bytes": 5879,
+      "sha256": "3e13f073e933ba08c7112ad943a4d14bb0520fef1e2349b569f1e656af87440e"
+    },
+    {
+      "path": "firmware/v2-stream/batch1024/mt_batch1024.h",
+      "bytes": 4452,
+      "sha256": "330b317fb893ae0385e7a6cc8b1ace1e81c4c9e0e14984a4f8c0b20b1484aeb0"
+    },
+    {
+      "path": "firmware/v2-stream/batch1024/README.md",
+      "bytes": 2472,
+      "sha256": "1291cad4d23aedc2d07091f5f40ee83db3a3561451278aa95a4368fcf1688728"
+    },
+    {
+      "path": "tests/v2-stream-firmware/batch1024_model.c",
+      "bytes": 11367,
+      "sha256": "f1f4801929d09b75aed8d07df8293fcb5c2cd3a06ad44bd65de1785de3d28fa6"
+    },
+    {
+      "path": "tests/v2-stream-firmware/batch1024_check.py",
+      "bytes": 6261,
+      "sha256": "cf1f8d943e9d992ec4793d5d3d8dea9daeee7c485da01ffa9b67e85913176c5b"
+    },
+    {
+      "path": "build/v6l-analysis/firmware1024-proposal.md",
+      "bytes": 12483,
+      "sha256": "78402147db0bafacb82494bf0b3fee87f126ef274c367cd2931fba8341eed1d8"
+    }
+  ],
+  "outputs": [
+    {
+      "path": "build/v6l-native-01/result.json",
+      "bytes": 8692,
+      "sha256": "9715e3edbc09acd6ba4900dbff208089216262c3e01ebfdf5bf82ca8117a75bc"
+    },
+    {
+      "path": "build/v6l-native-01/native-model.stdout",
+      "bytes": 512,
+      "sha256": "e4cdcc9fa6d7a4ba6a998da30c13c6f51f2b62f2d5b419f40cee033192ca6107"
+    },
+    {
+      "path": "build/v6l-native-01/native-compile.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "build/v6l-native-01/arm-object.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "build/v6l-native-01/batch1024.o",
+      "bytes": 2464,
+      "sha256": "486767930c8f6b8afbc310fc8a16ba9718d5cdf69d74dcb97841f4af7df53ee6"
+    },
+    {
+      "path": "build/v6l-native-01/batch1024.su",
+      "bytes": 441,
+      "sha256": "b2e6599717da97effd44326132b5a29d8727cb682014fcf54d77afe9f05b6f49"
+    },
+    {
+      "path": "build/v6l-native-01/arm-size.stdout",
+      "bytes": 103,
+      "sha256": "0f35d3cc28eb8fe59b79f76605c8fca8aaa9133892572a7eba8fbe1716c19dba"
+    },
+    {
+      "path": "build/v6l-native-01/batch1153-transcript.bin",
+      "bytes": 1614,
+      "sha256": "cf62a2d6153aa7f59e4c886e9f487e950381ac6d6cbafa1ca285d19f22333013"
+    },
+    {
+      "path": "build/v6l-native-01/model.exe",
+      "bytes": 191488,
+      "sha256": "f6ded96f6baa1958f8405af1fcd8e479b4c286955a0138c0451ce8354364e0eb"
+    }
+  ],
+  "native_result_sha256": "9715e3edbc09acd6ba4900dbff208089216262c3e01ebfdf5bf82ca8117a75bc",
+  "memory": {
+    "old_SD_static_plus_stack_reserve": 19564,
+    "TX_growth": 792,
+    "state_growth": 32,
+    "proposed_total_with8192reserve": 20388,
+    "capacity": 20480,
+    "spare": 92,
+    "exact_integrated_map_proved": false
+  },
+  "arm_module_object": {
+    "text_bytes": 1208,
+    "data_bytes": 0,
+    "bss_bytes": 0,
+    "per_function_stack": [
+      {
+        "function": "put32",
+        "bytes": 0,
+        "kind": "static"
+      },
+      {
+        "function": "mt_batch1024_begin",
+        "bytes": 24,
+        "kind": "static"
+      },
+      {
+        "function": "mt_batch1024_collect",
+        "bytes": 36,
+        "kind": "static"
+      },
+      {
+        "function": "mt_batch1024_seal",
+        "bytes": 0,
+        "kind": "static"
+      },
+      {
+        "function": "mt_batch1024_step",
+        "bytes": 24,
+        "kind": "static"
+      },
+      {
+        "function": "mt_batch1024_piece",
+        "bytes": 16,
+        "kind": "static"
+      },
+      {
+        "function": "mt_batch1024_accepted",
+        "bytes": 12,
+        "kind": "static"
+      },
+      {
+        "function": "mt_batch1024_commit",
+        "bytes": 20,
+        "kind": "static"
+      },
+      {
+        "function": "mt_batch1024_abort",
+        "bytes": 0,
+        "kind": "static"
+      }
+    ],
+    "not_linked_image": true,
+    "not_full_runtime_stack_bound": true
+  },
+  "fixture": {
+    "path": "C:\\Users\\Alexandr\\Desktop\\New folder\\\u0443\u043d\u0438\u0432\u0435\u0440\\\u043c\u043e\u0442\u043e\u0440\u0442\u0435\u0441\u0442\u0435\u0440 2\\build\\v6l-native-01\\batch1153-transcript.bin",
+    "sha256": "cf62a2d6153aa7f59e4c886e9f487e950381ac6d6cbafa1ca285d19f22333013",
+    "format": "bareCOBS DATA1024 seq4/index0, DATA129 seq5/index1024, synthetic END seq6/prefix1153",
+    "nonce": 503,
+    "generation": 3,
+    "mode": 5,
+    "config_id": 5,
+    "protocol_revision": "0.3",
+    "canonical_u16le_sha256": "1f5c9f712929bceae1a09adb39de4cec43d31ef4abe2d99cc8b63531af417b7d",
+    "canonical_END_crc32": 1967919874,
+    "raw_formula": "first1024=((i*37+3)&4095)&4092; final129=(4095-i)&4092",
+    "producer_scope": "Actual isolated serializer + existing generic C END encoder; not production core/runtime."
+  },
+  "run_counts": {
+    "native_model": 1,
+    "native_compilation": 1,
+    "ARM_object_only": 1,
+    "ARM_link_or_firmware_image": 0,
+    "hardware": 0
+  },
+  "failed_runs": [],
+  "corrections_before_first_run": [
+    "Reviewer shared-byte speculative append: clear unowned high bits before retry; exact witness added.",
+    "Explicit COBS destructive-stage abort/no-old-cursor rollback and witness."
+  ],
+  "integration_gaps": [
+    "No production queue ownership/pop implementation or exact multi-view guard",
+    "No actual Stop/HELLO/Abort/TIME/epoch lifecycle implementation",
+    "No scheduler/ADC service/WCET/USB throughput result",
+    "No final linked RAM/stack/firmware/Flash approval"
+  ],
+  "production_outside_prototype_drift": [],
+  "not_claimed": [
+    "Stable150k",
+    "Low-voltage or analog accuracy",
+    "Ignition/vehicle operation"
+  ]
+}

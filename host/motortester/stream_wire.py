@@ -2,7 +2,8 @@
 
 Current contracts: docs/streaming-selectable-profiles.md and
 docs/streaming-batch256.md. Transport/session and storage use this codec,
-but remain separate modules. Historical wire 0.2 prose pin:
+but remain separate modules. The mode5/DATA1024 extension is a software
+draft, not physical qualification. Historical wire 0.2 prose pin:
 PR192 08172114403273ecfac2fb1e8e49d92f9c68756f;
 SHA256 174aed3c570a204d865c1a446c7878c628a972222d00ef8f60d33ad9c92c998a.
 """
@@ -13,7 +14,10 @@ import zlib
 
 DRAFT_COMMIT = "08172114403273ecfac2fb1e8e49d92f9c68756f"
 DRAFT_SHA256 = "174aed3c570a204d865c1a446c7878c628a972222d00ef8f60d33ad9c92c998a"
-MAX_PAYLOAD, MAX_DECODED, MAX_ENCODED, MAX_FRAME = 512, 540, 543, 544
+# These are allocation/framing ceilings. Only mode5 device DATA may use
+# the larger envelope; all legacy/control frames retain their old bounds.
+LEGACY_MAX_PAYLOAD, LEGACY_MAX_FRAME = 512, 544
+MAX_PAYLOAD, MAX_DECODED, MAX_ENCODED, MAX_FRAME = 1300, 1328, 1334, 1335
 MAX_BLOCK, U32_MAX, U64_MAX = 128, 0xffffffff, 0xffffffffffffffff
 COUNTER_RESERVE = 0xffffff00
 HEADER = struct.Struct("<BBBBHHQII")
@@ -22,18 +26,20 @@ HEADER = struct.Struct("<BBBBHHQII")
 LEGACY_SAMPLE_RATES = frozenset((50_000, 100_000, 200_000))
 SUPPORTED_SAMPLE_RATES = LEGACY_SAMPLE_RATES | {150_000}
 MODE_TABLE = {1: (50_000, 12, 1), 2: (100_000, 12, 1),
-              3: (150_000, 10, 2), 4: (150_000, 10, 2)}
-MODE_MAX_BLOCK = {1: 128, 2: 128, 3: 128, 4: 256}
+              3: (150_000, 10, 2), 4: (150_000, 10, 2), 5: (150_000, 10, 2)}
+MODE_MAX_BLOCK = {1: 128, 2: 128, 3: 128, 4: 256, 5: 1024}
+MODE_MAX_PAYLOAD = {1: 512, 2: 512, 3: 512, 4: 512, 5: 1300}
 MODE_REVISION = "0.3-modes-20261024"
 BATCH_REVISION = "0.3-batch256-20261024"
-MODE_REVISIONS = frozenset((MODE_REVISION, BATCH_REVISION))
+BATCH1024_REVISION = "0.3-batch1024-20261025"
+MODE_REVISIONS = frozenset((MODE_REVISION, BATCH_REVISION, BATCH1024_REVISION))
 
 
 def mode_revision(mode):
-    """Durable closed registry: mode3 stays DATA128; only mode4 is DATA256."""
+    """Durable closed registry: historical modes never change packet meaning."""
     if mode not in MODE_TABLE:
         raise ValueError("Unknown acquisition mode")
-    return BATCH_REVISION if mode == 4 else MODE_REVISION
+    return BATCH1024_REVISION if mode == 5 else BATCH_REVISION if mode == 4 else MODE_REVISION
 
 
 def supported_caps(values):
@@ -63,7 +69,7 @@ def caps_values(caps):
 
 def unpack10(packed, count):
     """Decode the transmitted bits into ADC12 code units, never restore lost LSBs."""
-    if type(count) is not int or not 1 <= count <= 256:
+    if type(count) is not int or not 1 <= count <= 1024:
         raise WireError("count")
     if len(packed) != (10 * count + 7) // 8:
         raise WireError("payload_length")
@@ -74,7 +80,7 @@ def unpack10(packed, count):
 
 
 def pack10(canonical):
-    if not 1 <= len(canonical) <= 256 or any(
+    if not 1 <= len(canonical) <= 1024 or any(
             type(c) is not int or not 0 <= c <= 4092 or c % 4 for c in canonical):
         raise WireError("code")
     bits = sum((c >> 2) << (10 * n) for n, c in enumerate(canonical))
@@ -97,6 +103,13 @@ class Kind(IntEnum):
 
 HOST_KINDS = frozenset((Kind.HELLO, Kind.GET_CAPS, Kind.STOP, Kind.START))
 DEVICE_KINDS = frozenset(set(Kind) - HOST_KINDS)
+
+
+def _large_data(kind, revision, payload):
+    # This structural discriminator permits bounded envelope validation even
+    # for a foreign nonce. Count/padding and selected-mode binding follow it.
+    return (kind == Kind.DATA and revision == "0.3" and len(payload) >= 8 and
+            struct.unpack_from("<I", payload, 4)[0] == 5)
 
 
 class WireError(ValueError):
@@ -182,13 +195,18 @@ def decode_frame(framed: bytes, direction: str | None = None, *, allow_unknown_r
         kind = Kind(kind)
     except ValueError:
         raise WireError("type") from None
+    payload = raw[24:-4]
+    revision = f"{major}.{minor}"
+    if not _large_data(kind, revision, payload) and (
+            size > LEGACY_MAX_PAYLOAD or len(framed) > LEGACY_MAX_FRAME):
+        raise WireError("length")
     if direction not in (None, "host", "device"):
         raise ValueError("direction")
     if direction == "host" and kind not in HOST_KINDS or direction == "device" and kind not in DEVICE_KINDS:
         raise WireError("direction")
     if seq == 0:
         raise WireError("sequence")
-    return Frame(kind, nonce, seq, req, raw[24:-4], framed, f"{major}.{minor}")
+    return Frame(kind, nonce, seq, req, payload, framed, revision)
 
 
 @dataclass(frozen=True, slots=True)
@@ -202,6 +220,7 @@ class HelloAck:
     firmware_build: int
     capabilities: int = 1
     max_block: int = 128
+    max_payload: int = 512
 
 
 @dataclass(frozen=True, slots=True)
@@ -317,10 +336,11 @@ def decode_payload(frame: Frame) -> object:
         major, minor, channels, bits, maximum, block, build, caps = _unpack("<BBBBHHII", p)
         if (major, minor) != (0, 3 if modes else 2):
             raise WireError("version")
-        allowed = ((1, 128), (1, 256)) if modes else ((1, 128), (3, 128), (7, 256))
-        if (channels, bits, maximum) != (1, 12, 512) or (caps, block) not in allowed:
+        allowed = (((1, 128, 512), (1, 256, 512), (1, 1024, 1300)) if modes else
+                   ((1, 128, 512), (3, 128, 512), (7, 256, 512), (15, 1024, 1300)))
+        if (channels, bits) != (1, 12) or (caps, block, maximum) not in allowed:
             raise WireError("caps")
-        return HelloAck(build, caps, block)
+        return HelloAck(build, caps, block, maximum)
     if k == Kind.CAPS:
         if modes:
             config, profile, channel, bits, numerator, denominator, block, retained, encoding, flags = _unpack("<IHBBIIHBBI", p)
@@ -408,6 +428,8 @@ def encode_frame(kind: Kind, nonce: int, sequence: int, request_id: int, payload
         raise WireError("counter")
     if revision not in ("0.2", "0.3"):
         raise WireError("version")
+    if not _large_data(kind, revision, payload) and len(payload) > LEGACY_MAX_PAYLOAD:
+        raise WireError("payload_length")
     raw = HEADER.pack(0, int(revision[-1]), kind, 0, len(payload), 0, nonce, sequence, request_id) + payload
     framed = cobs_encode(raw + struct.pack("<I", zlib.crc32(raw))) + b"\0"
     decode_payload(decode_frame(framed))

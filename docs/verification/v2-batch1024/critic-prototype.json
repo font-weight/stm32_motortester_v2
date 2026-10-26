@@ -1,0 +1,52 @@
+{
+  "schema": "v2-06l-independent-isolated-prototype-review-1",
+  "date": "2026-10-26",
+  "reviewer": "stream200_critic",
+  "independent": true,
+  "status": "PASS",
+  "score": 9.6075,
+  "scope": "Isolated DATA1024 C serializer, separate ARM module object, host codec/negotiation/storage logic and actual C-to-host journal/CSV fixture; excludes production runtime, linked firmware, GUI/package and hardware",
+  "requirement": "V2-STR17 partial software milestone",
+  "base_commit": "bbe297e584d4cb5f22bd090980f721aaa933233a",
+  "functional_SD_source": "cb4757940b3ee9968f953becfbc3ca8caea102d7",
+  "prototype_freeze_sha256": "3b4e3493ffd548d23c00888018e8354e4f65b25547fd9672c67dc561c14fcf0b",
+  "host_draft_freeze_sha256": "aa794fbd7aa0db0ffcf4050551f546b49f75c6bd24ab74404f1a65b8eef0d52a",
+  "draft_contract_sha256": "acd3c8d4171e2cb364d5f4130301da18e0bd7bbdab829629c091340fc0b8a599",
+  "serializer_C_sha256": "3e13f073e933ba08c7112ad943a4d14bb0520fef1e2349b569f1e656af87440e",
+  "serializer_header_sha256": "330b317fb893ae0385e7a6cc8b1ace1e81c4c9e0e14984a4f8c0b20b1484aeb0",
+  "native_result_sha256": "9715e3edbc09acd6ba4900dbff208089216262c3e01ebfdf5bf82ca8117a75bc",
+  "crosscheck_sha256": "b35f41d6dcf932f6e8d7e203a1683f2c75975769224ac945f42fdb83e89d6f7c",
+  "pin_audit": {"unique_initial_files": 35, "initial_bytes_hashed": 180943976, "cross_input_output_pins_checked": true, "mismatches": []},
+  "archives": [
+    {"path": "docs/verification/v2-batch1024/prototype-01/manifest.json", "sha256": "b130d0a8c3daacb7b3377ca2e55e3e2a0bfc6ac1f2266398bbcb660ed3399e25", "pairs": 26, "bytes": 104850, "byte_equal": true},
+    {"path": "docs/verification/v2-batch1024/cross-01/manifest.json", "sha256": "34d54072e75f59b8f46cec553552337463705c728a1aaab1a783d75e605f8e4d", "pairs": 2, "bytes": 18712, "byte_equal": true},
+    {"path": "docs/verification/v2-batch1024/cross-01/output-manifest.json", "sha256": "e3a4107f3f44c74f8ea95d4abf25c6d5234ef9139f52cfb1eeb03d9ec762a88e", "pairs": 3, "bytes": 37676, "byte_equal": true}
+  ],
+  "native": {"status": "PASS", "attempts": 1, "groups": 3, "actual_module": true, "production_runtime_executed": false, "model_sha256": "f1f4801929d09b75aed8d07df8293fcb5c2cd3a06ad44bd65de1785de3d28fa6", "runner_sha256": "cf1f8d943e9d992ec4793d5d3d8dea9daeee7c485da01ffa9b67e85913176c5b", "maximum_frame_bytes_witness": 1335, "tails": [1,2,3,127,128,129,1023,1024], "quantum_values": [1,17,128,512], "logical_final_guards_only": true},
+  "ARM_object": {"sha256": "486767930c8f6b8afbc310fc8a16ba9718d5cdf69d74dcb97841f4af7df53ee6", "text": 1208, "data": 0, "bss": 0, "state_bytes": 32, "max_individual_function_stack": 36, "linked_firmware": false, "full_stack_bound": false},
+  "memory_calculation": {"SD_with8192reserve": 19564, "TX_growth": 792, "state_growth": 32, "proposed_total": 20388, "capacity": 20480, "spare": 92, "exact_integrated_map_proved": false},
+  "host_units": {"status": "PASS", "groups": 4, "attempts": 1, "seconds": 0.200, "log_sha256": "2587dcea241bf61e160a32792429ffd57816c96b98655a8b43b66e2c620ed557", "read_chunk_bytes": 544, "no_early_publish_checked": true, "old_mode3_mode4_files_preserved": true},
+  "C_to_host": {"status": "PASS", "fixture_sha256": "cf62a2d6153aa7f59e4c886e9f487e950381ac6d6cbafa1ca285d19f22333013", "wire_bytes": 1614, "counts": [1024,129], "frame_bytes": [1332,212,70], "nonce": 503, "generation": 3, "config_id": 5, "raw_samples": 1153, "raw_sha256": "1f5c9f712929bceae1a09adb39de4cec43d31ef4abe2d99cc8b63531af417b7d", "prefix_crc32": 1967919874, "fresh_Open_without_companion_equal": true, "all_CSV_indices_codes_times_compared": true, "time_basis": "nominal i/150000 seconds;20/3 microseconds", "produced_end": null, "synthetic_END": true, "firmware_build_observed": null},
+  "closed_findings": [
+    "Shared packed byte retained speculative high bits across rejected work-state append; owned-low-bit mask fixes retry1023-to0 and exact witness passes before first native freeze.",
+    "Destructive COBS is explicitly monotonic: stale state cannot roll back storage; abort witness blocks subsequent piece/commit. Actual caller recovery remains future integration."
+  ],
+  "open_P0_P1_in_this_scope": [],
+  "ratings": [
+    {"criterion": "C1", "weight": 0.30, "score": 9.6, "basis": "Exact known-count format, canonical data and strict compatible host identity."},
+    {"criterion": "C2", "weight": 0.20, "score": 9.5, "basis": "Bounded module, partial/unknown/abort/canary edges; explicit caller obligations and shared-byte fix."},
+    {"criterion": "C3", "weight": 0.25, "score": 9.7, "basis": "Necessary actual C, ARM object, host units and full cross-language raw/CSV evidence; no hardware inference."},
+    {"criterion": "C4", "weight": 0.15, "score": 9.55, "basis": "Small isolated serializer and documented irreversible storage/ownership boundaries."},
+    {"criterion": "C5", "weight": 0.10, "score": 9.7, "basis": "Pinned source/tools/commands, immutable copies and verified receipts."}
+  ],
+  "reviewer_actions": {"read_source_model_runner_and_diffs": true, "hash_copy_audit": true, "native_rerun": false, "unit_rerun": false, "crosscheck_rerun": false, "ARM_build": false, "COM_calls": 0, "SWD_calls": 0},
+  "isolated_serializer_host_logic_accepted": true,
+  "production_runtime_accepted": false,
+  "linked_firmware_accepted": false,
+  "GUI_or_package_accepted": false,
+  "flash_approved": false,
+  "physical_150ksps_accepted": false,
+  "user_stable150k_goal_complete": false,
+  "integration_prerequisites": ["Actual queue-to-staging ownership and multi-view validation", "Concrete Stop/HELLO/Abort/TIME/epoch matrix including cached partial frame", "Bounded ADC/USB scheduling and final commit guard", "Exact linked SRAM/stack", "Separate GUI/package and Flash/physical admission"],
+  "limitations": ["Serializer boolean guard is not actual runtime proof", "ARM object stack is not full call graph or WCET", "92 spare bytes are arithmetic after8192 reserve, not measured linked capacity", "Fourfold fewer DATA frames is only about10percent fewer worst-case wire bytes", "K2 physical FAIL remains unchanged; installed SD retained and SD50/100 remain NOT_RUN", "No analog accuracy, ignition or vehicle qualification"]
+}

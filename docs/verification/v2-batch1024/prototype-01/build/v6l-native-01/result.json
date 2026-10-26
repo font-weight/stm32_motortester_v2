@@ -1,0 +1,172 @@
+{
+  "status": "PASS",
+  "scope": "One isolated serializer model and ARM object/stack census; no firmware image or hardware.",
+  "inputs": {
+    "C:\\Users\\Alexandr\\Desktop\\New folder\\\u0443\u043d\u0438\u0432\u0435\u0440\\\u043c\u043e\u0442\u043e\u0440\u0442\u0435\u0441\u0442\u0435\u0440 2\\tests\\v2-stream-firmware\\batch1024_check.py": "cf1f8d943e9d992ec4793d5d3d8dea9daeee7c485da01ffa9b67e85913176c5b",
+    "C:\\Users\\Alexandr\\Desktop\\New folder\\\u0443\u043d\u0438\u0432\u0435\u0440\\\u043c\u043e\u0442\u043e\u0440\u0442\u0435\u0441\u0442\u0435\u0440 2\\build\\v6k-fw-01\\receipt.json": "a08eb248185e90365f2025d6f1bb88a89447bb2f1ea9adbcbe5da9e2423b98ed",
+    "C:\\Users\\Alexandr\\Desktop\\New folder\\\u0443\u043d\u0438\u0432\u0435\u0440\\\u043c\u043e\u0442\u043e\u0440\u0442\u0435\u0441\u0442\u0435\u0440 2\\firmware\\v2-stream\\batch1024\\mt_batch1024.c": "3e13f073e933ba08c7112ad943a4d14bb0520fef1e2349b569f1e656af87440e",
+    "C:\\Users\\Alexandr\\Desktop\\New folder\\\u0443\u043d\u0438\u0432\u0435\u0440\\\u043c\u043e\u0442\u043e\u0440\u0442\u0435\u0441\u0442\u0435\u0440 2\\firmware\\v2-stream\\batch1024\\mt_batch1024.h": "330b317fb893ae0385e7a6cc8b1ace1e81c4c9e0e14984a4f8c0b20b1484aeb0",
+    "C:\\Users\\Alexandr\\Desktop\\New folder\\\u0443\u043d\u0438\u0432\u0435\u0440\\\u043c\u043e\u0442\u043e\u0440\u0442\u0435\u0441\u0442\u0435\u0440 2\\tests\\v2-stream-firmware\\batch1024_model.c": "f1f4801929d09b75aed8d07df8293fcb5c2cd3a06ad44bd65de1785de3d28fa6",
+    "C:\\Users\\Alexandr\\Desktop\\New folder\\\u0443\u043d\u0438\u0432\u0435\u0440\\\u043c\u043e\u0442\u043e\u0440\u0442\u0435\u0441\u0442\u0435\u0440 2\\build\\v6k-fw-01\\patched\\v2\\protocol\\mt_wire.c": "f8bf4f55f2e4fc769aae0cb57b826dc116486ebefd78279ec130e133cb520fbf",
+    "C:\\Users\\Alexandr\\Desktop\\New folder\\\u0443\u043d\u0438\u0432\u0435\u0440\\\u043c\u043e\u0442\u043e\u0440\u0442\u0435\u0441\u0442\u0435\u0440 2\\build\\v6k-fw-01\\patched\\v2\\protocol\\mt_wire.h": "d806649d10360398e031b84e830071fb9b62728feae9fe1c44264aa8d0237f38",
+    "C:\\Users\\Alexandr\\Desktop\\New folder\\\u0443\u043d\u0438\u0432\u0435\u0440\\\u043c\u043e\u0442\u043e\u0440\u0442\u0435\u0441\u0442\u0435\u0440 2\\build\\v6k-fw-01\\patched\\v2\\protocol\\mt_v2_crc32.h": "48f29791e8b0595dabdc70ec06807f4dc064a56e66db514df24dd04ea9222a2f",
+    "C:\\Users\\Alexandr\\Desktop\\New folder\\\u0443\u043d\u0438\u0432\u0435\u0440\\\u043c\u043e\u0442\u043e\u0440\u0442\u0435\u0441\u0442\u0435\u0440 2\\build\\v5-native-toolchain\\zig-x86_64-windows-0.15.2\\zig.exe": "d408dd38eed3e5204af841bcebf70502a4dbbb8399a3a3262be55059370bc018",
+    "C:\\ST\\STM32CubeIDE_1.15.0\\STM32CubeIDE\\plugins\\com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.12.3.rel1.win32_1.0.100.202403111256\\tools\\bin\\arm-none-eabi-gcc.exe": "da128f8abc72633d8c5ee43062ab6b806fdcf797988842ebae1551a1a546afe4",
+    "C:\\ST\\STM32CubeIDE_1.15.0\\STM32CubeIDE\\plugins\\com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.12.3.rel1.win32_1.0.100.202403111256\\tools\\bin\\arm-none-eabi-size.exe": "d8cffdaf23b12aba2035301d39330987777698dc58b2fbf582bd582abb1700f6"
+  },
+  "commands": [
+    {
+      "label": "native-compile",
+      "argv": [
+        "C:\\Users\\Alexandr\\Desktop\\New folder\\\u0443\u043d\u0438\u0432\u0435\u0440\\\u043c\u043e\u0442\u043e\u0440\u0442\u0435\u0441\u0442\u0435\u0440 2\\build\\v5-native-toolchain\\zig-x86_64-windows-0.15.2\\zig.exe",
+        "cc",
+        "-std=c11",
+        "-O1",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-I.",
+        "model.c",
+        "mt_batch1024.c",
+        "mt_wire.c",
+        "-o",
+        "model.exe"
+      ],
+      "exit_code": 0
+    },
+    {
+      "label": "native-model",
+      "argv": [
+        "C:\\Users\\Alexandr\\Desktop\\New folder\\\u0443\u043d\u0438\u0432\u0435\u0440\\\u043c\u043e\u0442\u043e\u0440\u0442\u0435\u0441\u0442\u0435\u0440 2\\build\\v6l-native-01\\model.exe",
+        "C:\\Users\\Alexandr\\Desktop\\New folder\\\u0443\u043d\u0438\u0432\u0435\u0440\\\u043c\u043e\u0442\u043e\u0440\u0442\u0435\u0441\u0442\u0435\u0440 2\\build\\v6l-native-01\\batch1153-transcript.bin"
+      ],
+      "exit_code": 0
+    },
+    {
+      "label": "arm-object",
+      "argv": [
+        "C:\\ST\\STM32CubeIDE_1.15.0\\STM32CubeIDE\\plugins\\com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.12.3.rel1.win32_1.0.100.202403111256\\tools\\bin\\arm-none-eabi-gcc.exe",
+        "-std=c11",
+        "-mcpu=cortex-m3",
+        "-mthumb",
+        "-mfloat-abi=soft",
+        "-ffreestanding",
+        "-fno-common",
+        "-fno-short-enums",
+        "-fstack-usage",
+        "-Os",
+        "-Wall",
+        "-Wextra",
+        "-Wpedantic",
+        "-Wconversion",
+        "-Wsign-conversion",
+        "-Werror",
+        "-pedantic-errors",
+        "-fno-unwind-tables",
+        "-fno-asynchronous-unwind-tables",
+        "-fno-stack-protector",
+        "-fno-lto",
+        "-I.",
+        "-c",
+        "mt_batch1024.c",
+        "-o",
+        "batch1024.o"
+      ],
+      "exit_code": 0
+    },
+    {
+      "label": "arm-size",
+      "argv": [
+        "C:\\ST\\STM32CubeIDE_1.15.0\\STM32CubeIDE\\plugins\\com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.12.3.rel1.win32_1.0.100.202403111256\\tools\\bin\\arm-none-eabi-size.exe",
+        "batch1024.o"
+      ],
+      "exit_code": 0
+    }
+  ],
+  "stdout": "PASS synthetic DATA1024+tail129+END / bounded512 collection / stale prepared ownership not published / single final prefix commit\r\nPASS tails1,2,3,127,128,129,1023 and full1024 worst1335 / quantum1,17,128,512 / canaries / independent COBS+CRC+pad oracle\r\nPASS invalid ADC before masking / gap and quantum513 rejected / zero-count noDATA / unknown acceptance or guard denial cannot commit / destructive COBS abort / stale shared-byte append retry\r\nstate_bytes=32; tx_capacity=1336; production_runtime_executed=0\r\n",
+  "prototype_state_bytes": 32,
+  "proposed_TX_capacity_bytes": 1336,
+  "memory_calculation": {
+    "old_SD_static_plus_stack_reserve": 19564,
+    "TX_growth": 792,
+    "state_growth": 32,
+    "proposed_total_with8192reserve": 20388,
+    "capacity": 20480,
+    "spare": 92,
+    "exact_integrated_map_proved": false
+  },
+  "arm_object_size_output": "text\t   data\t    bss\t    dec\t    hex\tfilename\r\n   1208\t      0\t      0\t   1208\t    4b8\tbatch1024.o",
+  "arm_function_stack": [
+    {
+      "function": "put32",
+      "bytes": 0,
+      "kind": "static"
+    },
+    {
+      "function": "mt_batch1024_begin",
+      "bytes": 24,
+      "kind": "static"
+    },
+    {
+      "function": "mt_batch1024_collect",
+      "bytes": 36,
+      "kind": "static"
+    },
+    {
+      "function": "mt_batch1024_seal",
+      "bytes": 0,
+      "kind": "static"
+    },
+    {
+      "function": "mt_batch1024_step",
+      "bytes": 24,
+      "kind": "static"
+    },
+    {
+      "function": "mt_batch1024_piece",
+      "bytes": 16,
+      "kind": "static"
+    },
+    {
+      "function": "mt_batch1024_accepted",
+      "bytes": 12,
+      "kind": "static"
+    },
+    {
+      "function": "mt_batch1024_commit",
+      "bytes": 20,
+      "kind": "static"
+    },
+    {
+      "function": "mt_batch1024_abort",
+      "bytes": 0,
+      "kind": "static"
+    }
+  ],
+  "arm_stack_note": "Per-function isolated module object only, not a linked runtime/IRQ/callback bound.",
+  "arm_object_sha256": "486767930c8f6b8afbc310fc8a16ba9718d5cdf69d74dcb97841f4af7df53ee6",
+  "arm_stack_usage_sha256": "b2e6599717da97effd44326132b5a29d8727cb682014fcf54d77afe9f05b6f49",
+  "native_model_exe_sha256": "f6ded96f6baa1958f8405af1fcd8e479b4c286955a0138c0451ce8354364e0eb",
+  "production_outside_prototype_drift": [],
+  "fixture": {
+    "path": "C:\\Users\\Alexandr\\Desktop\\New folder\\\u0443\u043d\u0438\u0432\u0435\u0440\\\u043c\u043e\u0442\u043e\u0440\u0442\u0435\u0441\u0442\u0435\u0440 2\\build\\v6l-native-01\\batch1153-transcript.bin",
+    "sha256": "cf62a2d6153aa7f59e4c886e9f487e950381ac6d6cbafa1ca285d19f22333013",
+    "format": "bareCOBS DATA1024 seq4/index0, DATA129 seq5/index1024, synthetic END seq6/prefix1153",
+    "nonce": 503,
+    "generation": 3,
+    "mode": 5,
+    "config_id": 5,
+    "protocol_revision": "0.3",
+    "canonical_u16le_sha256": "1f5c9f712929bceae1a09adb39de4cec43d31ef4abe2d99cc8b63531af417b7d",
+    "canonical_END_crc32": 1967919874,
+    "raw_formula": "first1024=((i*37+3)&4095)&4092; final129=(4095-i)&4092",
+    "producer_scope": "Actual isolated serializer + existing generic C END encoder; not production core/runtime."
+  },
+  "not_confirmed": [
+    "Runtime ownership/Stop/HELLO/epoch integration",
+    "ADC/USB schedule/deadline/throughput",
+    "Final ARM SRAM/stack/link",
+    "Flash admission"
+  ],
+  "input_drift": []
+}

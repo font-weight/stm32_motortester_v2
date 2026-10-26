@@ -1,0 +1,162 @@
+{
+  "schema": "v2-06l-prototype-evidence-1",
+  "scope": "Isolated C serializer and host unit draft only; no runtime integration, linked firmware, GUI or physical acceptance",
+  "files": [
+    {
+      "source": "build/v6l-prototype-freeze.json",
+      "archive": "docs/verification/v2-batch1024/prototype-01/build/v6l-prototype-freeze.json",
+      "bytes": 6053,
+      "sha256": "3b4e3493ffd548d23c00888018e8354e4f65b25547fd9672c67dc561c14fcf0b"
+    },
+    {
+      "source": "build/v6l-analysis/firmware1024-proposal.md",
+      "archive": "docs/verification/v2-batch1024/prototype-01/build/v6l-analysis/firmware1024-proposal.md",
+      "bytes": 12483,
+      "sha256": "78402147db0bafacb82494bf0b3fee87f126ef274c367cd2931fba8341eed1d8"
+    },
+    {
+      "source": "build/v6l-analysis/host1024-proposal.md",
+      "archive": "docs/verification/v2-batch1024/prototype-01/build/v6l-analysis/host1024-proposal.md",
+      "bytes": 22913,
+      "sha256": "7291e954421dc9444e61f97b2414865c097f1054a4d8de9e7d2ba11d32ab9d8b"
+    },
+    {
+      "source": "build/v6l-analysis/saved-traffic-summary.json",
+      "archive": "docs/verification/v2-batch1024/prototype-01/build/v6l-analysis/saved-traffic-summary.json",
+      "bytes": 2210,
+      "sha256": "a143f8b2fbd16b3560a33d80389ff06b2999820584f2a9a7cda87442cefb7471"
+    },
+    {
+      "source": "build/v6l-host-draft-01.json",
+      "archive": "docs/verification/v2-batch1024/prototype-01/build/v6l-host-draft-01.json",
+      "bytes": 3726,
+      "sha256": "aa794fbd7aa0db0ffcf4050551f546b49f75c6bd24ab74404f1a65b8eef0d52a"
+    },
+    {
+      "source": "tests/v2-stream-firmware/batch1024_check.py",
+      "archive": "docs/verification/v2-batch1024/prototype-01/tests/v2-stream-firmware/batch1024_check.py",
+      "bytes": 6261,
+      "sha256": "cf1f8d943e9d992ec4793d5d3d8dea9daeee7c485da01ffa9b67e85913176c5b"
+    },
+    {
+      "source": "build/v6l-native-01/arm-object.stderr",
+      "archive": "docs/verification/v2-batch1024/prototype-01/build/v6l-native-01/arm-object.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "source": "build/v6l-native-01/arm-object.stdout",
+      "archive": "docs/verification/v2-batch1024/prototype-01/build/v6l-native-01/arm-object.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "source": "build/v6l-native-01/arm-size.stderr",
+      "archive": "docs/verification/v2-batch1024/prototype-01/build/v6l-native-01/arm-size.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "source": "build/v6l-native-01/arm-size.stdout",
+      "archive": "docs/verification/v2-batch1024/prototype-01/build/v6l-native-01/arm-size.stdout",
+      "bytes": 103,
+      "sha256": "0f35d3cc28eb8fe59b79f76605c8fca8aaa9133892572a7eba8fbe1716c19dba"
+    },
+    {
+      "source": "build/v6l-native-01/batch1024.o",
+      "archive": "docs/verification/v2-batch1024/prototype-01/build/v6l-native-01/batch1024.o",
+      "bytes": 2464,
+      "sha256": "486767930c8f6b8afbc310fc8a16ba9718d5cdf69d74dcb97841f4af7df53ee6"
+    },
+    {
+      "source": "build/v6l-native-01/batch1024.su",
+      "archive": "docs/verification/v2-batch1024/prototype-01/build/v6l-native-01/batch1024.su",
+      "bytes": 441,
+      "sha256": "b2e6599717da97effd44326132b5a29d8727cb682014fcf54d77afe9f05b6f49"
+    },
+    {
+      "source": "build/v6l-native-01/batch1153-transcript.bin",
+      "archive": "docs/verification/v2-batch1024/prototype-01/build/v6l-native-01/batch1153-transcript.bin",
+      "bytes": 1614,
+      "sha256": "cf62a2d6153aa7f59e4c886e9f487e950381ac6d6cbafa1ca285d19f22333013"
+    },
+    {
+      "source": "build/v6l-native-01/model.c",
+      "archive": "docs/verification/v2-batch1024/prototype-01/build/v6l-native-01/model.c",
+      "bytes": 11367,
+      "sha256": "f1f4801929d09b75aed8d07df8293fcb5c2cd3a06ad44bd65de1785de3d28fa6"
+    },
+    {
+      "source": "build/v6l-native-01/mt_batch1024.c",
+      "archive": "docs/verification/v2-batch1024/prototype-01/build/v6l-native-01/mt_batch1024.c",
+      "bytes": 5879,
+      "sha256": "3e13f073e933ba08c7112ad943a4d14bb0520fef1e2349b569f1e656af87440e"
+    },
+    {
+      "source": "build/v6l-native-01/mt_batch1024.h",
+      "archive": "docs/verification/v2-batch1024/prototype-01/build/v6l-native-01/mt_batch1024.h",
+      "bytes": 4452,
+      "sha256": "330b317fb893ae0385e7a6cc8b1ace1e81c4c9e0e14984a4f8c0b20b1484aeb0"
+    },
+    {
+      "source": "build/v6l-native-01/mt_v2_crc32.h",
+      "archive": "docs/verification/v2-batch1024/prototype-01/build/v6l-native-01/mt_v2_crc32.h",
+      "bytes": 528,
+      "sha256": "48f29791e8b0595dabdc70ec06807f4dc064a56e66db514df24dd04ea9222a2f"
+    },
+    {
+      "source": "build/v6l-native-01/mt_wire.c",
+      "archive": "docs/verification/v2-batch1024/prototype-01/build/v6l-native-01/mt_wire.c",
+      "bytes": 11344,
+      "sha256": "f8bf4f55f2e4fc769aae0cb57b826dc116486ebefd78279ec130e133cb520fbf"
+    },
+    {
+      "source": "build/v6l-native-01/mt_wire.h",
+      "archive": "docs/verification/v2-batch1024/prototype-01/build/v6l-native-01/mt_wire.h",
+      "bytes": 3072,
+      "sha256": "d806649d10360398e031b84e830071fb9b62728feae9fe1c44264aa8d0237f38"
+    },
+    {
+      "source": "build/v6l-native-01/native-compile.stderr",
+      "archive": "docs/verification/v2-batch1024/prototype-01/build/v6l-native-01/native-compile.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "source": "build/v6l-native-01/native-compile.stdout",
+      "archive": "docs/verification/v2-batch1024/prototype-01/build/v6l-native-01/native-compile.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "source": "build/v6l-native-01/native-model.stderr",
+      "archive": "docs/verification/v2-batch1024/prototype-01/build/v6l-native-01/native-model.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "source": "build/v6l-native-01/native-model.stdout",
+      "archive": "docs/verification/v2-batch1024/prototype-01/build/v6l-native-01/native-model.stdout",
+      "bytes": 512,
+      "sha256": "e4cdcc9fa6d7a4ba6a998da30c13c6f51f2b62f2d5b419f40cee033192ca6107"
+    },
+    {
+      "source": "build/v6l-native-01/result.json",
+      "archive": "docs/verification/v2-batch1024/prototype-01/build/v6l-native-01/result.json",
+      "bytes": 8692,
+      "sha256": "9715e3edbc09acd6ba4900dbff208089216262c3e01ebfdf5bf82ca8117a75bc"
+    },
+    {
+      "source": "build/v6l-host-unit-01/exit-code.txt",
+      "archive": "docs/verification/v2-batch1024/prototype-01/build/v6l-host-unit-01/exit-code.txt",
+      "bytes": 3,
+      "sha256": "13bf7b3039c63bf5a50491fa3cfd8eb4e699d1ba1436315aef9cbe5711530354"
+    },
+    {
+      "source": "build/v6l-host-unit-01/tests.log",
+      "archive": "docs/verification/v2-batch1024/prototype-01/build/v6l-host-unit-01/tests.log",
+      "bytes": 733,
+      "sha256": "2587dcea241bf61e160a32792429ffd57816c96b98655a8b43b66e2c620ed557"
+    }
+  ]
+}

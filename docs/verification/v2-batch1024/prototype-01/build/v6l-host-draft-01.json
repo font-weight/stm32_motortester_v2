@@ -1,0 +1,109 @@
+{
+  "schema": "v2-06l-host-draft-1",
+  "status": "DRAFT_NOT_ACCEPTED",
+  "base_commit": "bbe297e584d4cb5f22bd090980f721aaa933233a",
+  "scope": "known-count wire0.3 mode5 DATA1024; no firmware integration/GUI/package/hardware",
+  "source_files": {
+    "host/motortester/stream_wire.py": {
+      "bytes": 16443,
+      "sha256": "87eb5567553190a1063e787e788bd7652cb9e872a4d3126902626f530784984f"
+    },
+    "host/motortester/stream_endpoint.py": {
+      "bytes": 35624,
+      "sha256": "61093588cc11bed15708bb06c63ca6ee0f57d0c81fdced18513c55ceebd6db42"
+    },
+    "host/motortester/stream_model.py": {
+      "bytes": 12154,
+      "sha256": "e5a261abe9ef7d294428f50614373685a7b6e6363c1146f90e6353afbafee03c"
+    },
+    "host/motortester/v2/stream_device.py": {
+      "bytes": 28753,
+      "sha256": "ce4b68a07ee241da9c7add6ed98e59ba3dcf6d1008fa1870c2871cac4e961ee7"
+    },
+    "host/tests/test_stream_modes.py": {
+      "bytes": 24242,
+      "sha256": "87c7e839a356908ce658edffb4c88ea2db01c212355b719488c20ce6f4a53394"
+    },
+    "host/motortester/stream_provenance.py": {
+      "bytes": 18997,
+      "sha256": "77a2752e767d1ee6b78d0bd2e3cf4373f629fea76b283337bac1bdeb5d28c954"
+    },
+    "host/motortester/stream_bridge.py": {
+      "bytes": 36021,
+      "sha256": "dea1d555e0653ad8a1ada1c24677b8ec67c76e02f6c475b752581ed939e56a39"
+    },
+    "host/motortester/stream_recording.py": {
+      "bytes": 35932,
+      "sha256": "107b2d59b71dcbb99599e1199c4a0f17c978cae517f2c198ac68d742f8265589"
+    },
+    "host/motortester/stream_serial.py": {
+      "bytes": 6048,
+      "sha256": "cd35af141eaecb2c6bba7bb03814863b91b55500723289f3cafe91416d720493"
+    },
+    "host/tools/verify_stream_trial.py": {
+      "bytes": 16124,
+      "sha256": "b32552a3283fb6043cfcc0b207f66bfaedb2a8978b4f0edb69a51c30295caf67"
+    }
+  },
+  "evidence": {
+    "build/v6l-host-unit-01/tests.log": {
+      "bytes": 733,
+      "sha256": "2587dcea241bf61e160a32792429ffd57816c96b98655a8b43b66e2c620ed557"
+    },
+    "build/v6l-host-unit-01/exit-code.txt": {
+      "bytes": 3,
+      "sha256": "13bf7b3039c63bf5a50491fa3cfd8eb4e699d1ba1436315aef9cbe5711530354"
+    },
+    "build/v6l-analysis/host1024-proposal.md": {
+      "bytes": 22913,
+      "sha256": "7291e954421dc9444e61f97b2414865c097f1054a4d8de9e7d2ba11d32ab9d8b"
+    }
+  },
+  "contract": {
+    "mode": 5,
+    "max_payload": 1300,
+    "max_raw_frame": 1328,
+    "max_wire_frame_with_delimiter": 1335,
+    "firmware_tx_capacity": 1336,
+    "discovery": [
+      15,
+      1024,
+      1300
+    ],
+    "selected_caps": [
+      5,
+      5,
+      0,
+      12,
+      150000,
+      1,
+      1024,
+      1,
+      10,
+      2
+    ],
+    "intrinsic_revision": "0.3-batch1024-20261025",
+    "input_read_bytes": 544,
+    "raw_byte_cap": 262144,
+    "journal_chunk_samples": 8192,
+    "synthetic_test_build": "0xf0102401"
+  },
+  "checks": {
+    "focused_groups": 4,
+    "first_attempt_pass": true,
+    "full_suite_run": false,
+    "GUI_run": false,
+    "real_COM_calls": 0,
+    "SWD_calls": 0
+  },
+  "commands": {
+    "unit": ".venv/Scripts/python.exe -I -B -c \"import sys,unittest;sys.path[:0]=['host','host/tests'];suite=unittest.defaultTestLoader.loadTestsFromName('test_stream_modes');r=unittest.TextTestRunner(verbosity=2).run(suite);sys.exit(not r.wasSuccessful())\""
+  },
+  "deferred": [
+    "Independent exact-code review",
+    "Actual C producer crosscheck after firmware prototype",
+    "Update synthetic GUI peer/receipt to mode5 before running --verify-profiles; old helper still expects mode4",
+    "Native Windows GUI and frozen package",
+    "Firmware integration and physical stability150k"
+  ]
+}
