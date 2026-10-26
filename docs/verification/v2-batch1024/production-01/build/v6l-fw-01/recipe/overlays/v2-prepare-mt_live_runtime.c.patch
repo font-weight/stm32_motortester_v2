@@ -1,0 +1,43 @@
+--- v2/app/mt_live_runtime.c
++++ v2/app/mt_live_runtime.c
+@@ -123,6 +123,13 @@
+      * No clearing here: hard-loss quarantine is a separate lifecycle action. */
+     return r && r->initialized && r->in_step && !r->writer_active && usable(r);
+ }
++/* Called only within the pre-existing write/commit IRQ guard. Preparing
++ * bytes never certifies transport identity: hardware flags remain live. */
++static int prepared_tx_step(mt_live_runtime *r,const mt_live_tx_ticket *ticket,
++                             uint32_t prepared_epoch,uint32_t prepared_soft_serial) {
++    if(r->epoch!=prepared_epoch || r->soft_serial!=prepared_soft_serial || !usable(r))return 1;
++    return mt_live_device_step_prepared(&r->device,ticket);
++}
+ static int prepare_adc(mt_live_runtime *r) {
+     const uint32_t ahb=0x40021014u,apb2=0x40021018u,apb1=0x4002101cu;
+     adc_write(r,ahb,adc_read(r,ahb)|1u);
+@@ -198,7 +205,8 @@
+     return MT_LIVE_RUNTIME_TIME_FAULT;
+ }
+ static mt_live_runtime_result step(mt_live_runtime *r) {
+-    mt_usb_scope scope; uint32_t key; int serviced,tx_ok;
++    mt_usb_scope scope; uint32_t key,prepared_epoch,prepared_soft_serial; int serviced,tx_ok;
++    mt_live_tx_ticket ticket;
+     if(live_time(r)==UINT64_MAX || r->clock_fault)return time_fault(r);
+     if(!synchronize_loss(r))return loss_result(r);
+     tud_task_ext(0,false);
+@@ -244,8 +252,15 @@
+     if(quiescent(r) && r->device.state==MT_LIVE_HELLO_PENDING)
+         mt_stream_diag_replaced((uint32_t)r->device.state,r->epoch,(uint32_t)r->adc.state);
+ #endif
++    /* Pure staging runs with the previous interrupt mask restored. The same
++     * foreground owner retains queue/core bytes; ISR may only change USB epoch.
++     * No new frame buffer, callbacks, or irreversible acceptance occurs here. */
++    prepared_epoch=r->epoch; prepared_soft_serial=r->soft_serial;
++    (void)mt_live_device_prepare_tx(&r->device,&ticket);
+     MT_DIAG_STAMP(diag_tx);
+-    key=mt_usb_bridge_lock(); tx_ok=mt_live_device_step(&r->device); mt_usb_bridge_unlock(key);
++    key=mt_usb_bridge_lock();
++    tx_ok=prepared_tx_step(r,&ticket,prepared_epoch,prepared_soft_serial);
++    mt_usb_bridge_unlock(key);
+     MT_DIAG_TX_END(diag_tx);
+     if(live_time(r)==UINT64_MAX)return time_fault(r);
+     if(!synchronize_loss(r))return loss_result(r);

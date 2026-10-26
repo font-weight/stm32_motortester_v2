@@ -1,4 +1,51 @@
-# Кандидат V2SD: непрерывные DATA256 для 150k
+# Кандидат V2SE: DATA1024 с отдельным владением staging
+
+V2-06l1/build `0x56325345`, product `Motortester V2 Batch1024 SE`, по
+[контракту1024](../../docs/streaming-batch1024.md). Новый mode5/config5:
+150k/ADC12/retained10, packed10 и прежний wire0.3 layout, maxDATA1024.
+Discovery cap15/maxblock1024/maxpayload1300; selected ACK/CAPS явно связывают
+mode5. Старые1..4 сохраняют границы, RX/previous543 и общий control codec544.
+Public150 требует обновлённых приложения и прошивки, без rate fallback.
+
+Только TX увеличен544→1336 и добавлен state32. Queue8×128/DMA1024/half512/
+FIFO384/MPS64/burst6/<500мкс и H runtime/TIME/ADC/USB остаются прежними.
+Подготовка переносит до512 samples из queue в packed staging до IRQ guard.
+Queue pop теперь обозначает ownership transfer, а не delivery. Глобальный
+prefix/CRC не продвигается. Actual count известен до первого отправленного
+байта:1024 либо конечный short1..1023 после Stop/seal, без padding/пауз ADC.
+
+Raw размещается со смещением7 внутри TX; CRC и in-place COBS не выделяют
+большой raw/message на стеке. До6 внутренних quanta512 обрабатывают полный
+CRC/COBS в том же prepare, без6 дополнительных полных runtime loops. Это
+ограничение работы, не измеренный ADC service/WCET. Реальная задержка по-прежнему
+должна укладываться в3413мкс; deadline не расширяется ради размера пакета.
+Stale epoch/TIME после destructive COBS требует abort всего in-flight staging;
+rollback старого cursor поверх изменённых raw запрещён.
+
+Один frame≤1335 передаётся immutable fragments≤384 с прежними whole-fit/
+known0/partial/unknown/pre-post TIME rules. Sequence расходуется на первом
+positive byte, как SD. Mode5 completion сначала вычисляет локальный pending
+результат; global end/cachedCRC/lastseq публикуются только после последнего
+успешного core now/bound, фиксированными stores. Late TIME после escapedFULL
+не выдаётся за cleanStop: recovery без prefix commit и нормального END/ACK.
+
+Stop сохраняет staging и drain очереди; END5 только hardware_off+queueempty+
+stageempty. Fresh HELLO accepted0 отбрасывает непереданный staging; partialold
+immutable DATA заканчивается под старой identity перед новым ACK. Loss/Abort
+не переносит staging в новую nonce. Неизвестный хвост остаётся неизвестным.
+Legacy136 по-прежнему один attempt/boot; tx_max исключает prepare.
+
+```powershell
+.\.venv\Scripts\python.exe -I -B firmware\v2-stream\build_windows.py --output build\v6l-fw-candidate
+```
+
+Изолированный prototype/native01 сохранён отдельно. Actual-core model,
+exact ARM/static20KiB с8192 reserve, программный и Windows critic≥9,5, а затем
+отдельный аппаратный план обязательны. Сборка не открывает COM/SWD.
+Кандидат не подтверждает stable150k/аналоговую полосу/точность или зажигание.
+Фактические проверки находятся в progress и независимых review.
+
+## Сохранённая V2SD: непрерывные DATA256 для 150k
 
 V2-06k/build `0x56325344`, product `Motortester V2 Batch SD`, реализует
 [контракт batch256](../../docs/streaming-batch256.md). Новый mode4/config4

@@ -1,0 +1,37 @@
+--- a/protocol/mt_live_device.h
++++ b/protocol/mt_live_device.h
+@@ -2,6 +2,7 @@
+ #define MT_LIVE_DEVICE_H
+ #include "mt_wire.h"
+ #include "../acquisition/mt_sample_queue.h"
++#include "../acquisition/mt_acquisition_profile.h"
+ 
+ /* Isolated native prototype. No production USB/ADC binding exists. */
+ typedef enum {
+@@ -34,7 +35,7 @@
+ typedef struct {
+     void *context;
+     uint64_t (*clock_ms)(void *context);
+-    /* Return exactly 1 only after enabling the fixed 100kS/s profile for this
++    /* Return exactly 1 only after enabling the selected acquisition profile for this
+      * generation, with source indices beginning at zero. Return 0 on failure;
+      * a failed start MAY have partially enabled hardware, so cleanup follows.
+      * Do not call offer/receive/step reentrantly from this callback. */
+@@ -74,6 +75,8 @@
+     mt_live_io io;
+     mt_sample_queue queue;
+     mt_live_state state;
++    uint16_t mode,pending_mode,tx_mode;
++    uint8_t revision,pending_revision,tx_revision;
+     uint64_t last_time, nonce, attempted_nonce, pending_nonce;
+     uint64_t stop_deadline, hello_deadline, inherited_deadline;
+     unsigned stop_budget, hello_budget, inherited_budget;
+@@ -117,6 +120,8 @@
+     mt_live_prepare_result result;
+     unsigned error; /* Deferred mt_live_local_error; no callback in prepare. */
+     mt_live_state state;
++    uint16_t mode,pending_mode,tx_mode;
++    uint8_t revision,pending_revision,tx_revision;
+     uint64_t nonce;
+     uint64_t pending_nonce;
+     uint64_t prefix_end;

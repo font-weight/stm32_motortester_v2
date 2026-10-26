@@ -1,0 +1,151 @@
+{
+  "status": "PASS",
+  "errors": [],
+  "callback_errors": [],
+  "frozen": false,
+  "platform": "win32",
+  "windows_host": "Windows-10-10.0.19045-SP0",
+  "qt_platform": "windows",
+  "executable": "C:\\Users\\Alexandr\\Desktop\\New folder\\универ\\мотортестер 2\\.venv\\Scripts\\python.exe",
+  "owners_closed": true,
+  "real_serial_open_calls": 0,
+  "checks": {
+    "selector_modes": true,
+    "batch_mode5_negotiated": true,
+    "selection_locked": true,
+    "batch1024_wire_evidence": true,
+    "packed_record_roundtrip": true,
+    "intrinsic_quantization": true,
+    "csv_timebase": true,
+    "legacy_mismatch_before_start": true,
+    "sc_sd150_batch_required_before_start": true
+  },
+  "files": {
+    "intrinsic-only.mtstream": {
+      "bytes": 743977,
+      "sha256": "0d5f985abffb1012c481dd0f95a8dbdd7dc16e08e3e501ab15e503be713ff352"
+    },
+    "packed150.csv": {
+      "bytes": 10396798,
+      "sha256": "cfa23f935761ed0fa1e14b9d5386b073fdfecad82859e5e1141cfb2388382fb6"
+    },
+    "packed150.csv.json": {
+      "bytes": 2977,
+      "sha256": "34a34dcb10b010e7e7ac193169739569353935e8556155418e987a042a531b23"
+    },
+    "packed150.mtstream": {
+      "bytes": 743977,
+      "sha256": "0d5f985abffb1012c481dd0f95a8dbdd7dc16e08e3e501ab15e503be713ff352"
+    },
+    "packed150.mtstream.v2.json": {
+      "bytes": 2336,
+      "sha256": "2d586f3b59f3f80cb869b7c63bd2534f10c7b273ddb5c6cc1aacc781031fc36d"
+    },
+    "profiles-legacy-mismatch.png": {
+      "bytes": 42505,
+      "sha256": "1acbcac541d46ed5cdb3a666d47bb132952bca2d6db135c2b20243f280d6efd8"
+    },
+    "profiles-live.png": {
+      "bytes": 68097,
+      "sha256": "148a0f47ec2c2004f5f0508f102b816c7774b6578613b6ff6f55b35c5a556c7b"
+    },
+    "profiles-open.png": {
+      "bytes": 66225,
+      "sha256": "1937f61a0d614fea933ad69f496d1bf13fb56528f4c83c73ca97cf5808d8717c"
+    },
+    "profiles-sc150-mismatch.png": {
+      "bytes": 44054,
+      "sha256": "cf54e89d86c2631565da8fdc061e637f133bc0efc020239e261362343373274f"
+    },
+    "profiles-sd150-mismatch.png": {
+      "bytes": 44235,
+      "sha256": "8c9f9f3f541be0d3c543aee9c07892dd564678e5fad32752f4ce7255307fe56a"
+    }
+  },
+  "execution_kind": "injected-test",
+  "physical_stream_verified": false,
+  "paced_observation": {
+    "host_seconds": 2.112977499840781,
+    "received": 317440,
+    "samples_per_host_second": 150233.49752844978,
+    "meaning": "synthetic host scheduling only; not ADC/USB performance"
+  },
+  "batch": {
+    "acquisition_mode": 5,
+    "config_id": 5,
+    "negotiated_max_block": 1024,
+    "discovery_capabilities": 15,
+    "discovery_max_block": 1024,
+    "discovery_max_payload": 1300,
+    "selected_ack_max_block": 1024,
+    "selected_ack_max_payload": 1300,
+    "full_DATA1024_frames": 401,
+    "first_full_data_count": 1024,
+    "short_tail_frames": 1,
+    "terminal_short_samples": 398,
+    "largest_frame_bytes": 1330,
+    "data_count_sequence_validation": true,
+    "canonical_crc_validated": true
+  },
+  "limits": {
+    "peak_raw_items": 11,
+    "peak_raw_bytes": 21276,
+    "max_service_gap_ms": 26,
+    "peak_synthetic_backlog_samples": 5568,
+    "synthetic_backlog_limit": 32768
+  },
+  "roundtrip": {
+    "samples": 370062,
+    "raw_sha256": "a4679ac90287751d4279b1573a99f323a8c23950f7b52d88a9c454a627ae783f",
+    "identity": {
+      "session_id": "wire-0.3:a2e164928ce74d46",
+      "generation": 3,
+      "config_id": 5,
+      "nominal_fs_hz": 150000,
+      "origin": "synthetic",
+      "protocol_revision": "0.3-batch1024-20261025",
+      "firmware_version": "build:f0102401",
+      "application_version": "v2-serial-unknown-accounting:injected-test",
+      "acquisition_mode": 5,
+      "source_adc_bits": 12,
+      "retained_bits": 10,
+      "discarded_lsb": 2,
+      "wire_sample_encoding": "u10packed_le",
+      "normalization": "left_shift_2",
+      "quantization": "truncate_lsb",
+      "stored_sample_encoding": "u16le",
+      "stored_code_domain": "adc12"
+    },
+    "connection": {
+      "selection": {
+        "port": "V2_PROFILES_SYNTHETIC",
+        "declared_source_commit": null,
+        "declared_artifact_sha256": null,
+        "requested_sample_rate_hz": 150000
+      },
+      "execution_kind": "injected-test",
+      "observed_build_id": 4027589633,
+      "observed_caps": [
+        5,
+        5,
+        0,
+        12,
+        150000,
+        1,
+        1024,
+        1,
+        10,
+        2
+      ],
+      "dtr_requested": true,
+      "accounting_domain": "unknown",
+      "image_verified": false,
+      "protocol_revision": "0.3"
+    },
+    "csv_dt_seconds": 6.666666666666667e-06,
+    "journal_sha256": "0d5f985abffb1012c481dd0f95a8dbdd7dc16e08e3e501ab15e503be713ff352"
+  },
+  "expected_legacy_error": "Эта прошивка имеет фиксированную частоту 100000 отсчётов/с. Приём не запущен. Закройте окно приёма, откройте его снова, выберите эту частоту и подключитесь.",
+  "expected_sc150_error": "Для 150000 отсчётов/с нужна прошивка с пакетами по 1024 отсчёта. Подключённая прошивка этот режим не поддерживает; приём не запущен. Можно закрыть окно приёма и выбрать 50000 или 100000, либо обновить прошивку после проверки совместимости.",
+  "expected_sd150_error": "Для 150000 отсчётов/с нужна прошивка с пакетами по 1024 отсчёта. Подключённая прошивка этот режим не поддерживает; приём не запущен. Можно закрыть окно приёма и выбрать 50000 или 100000, либо обновить прошивку после проверки совместимости."
+}

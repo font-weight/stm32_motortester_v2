@@ -1,0 +1,45 @@
+{
+  "schema": "motortester-v2-adc-cen-overlay-1",
+  "patches": [
+    {
+      "source": "source/firmware/platform/adc_timer_dma.h",
+      "target": "v2/platform/adc_timer_dma.h",
+      "patch": "v2-cen-driver-api.patch",
+      "source_sha256": "09ddf6894143475dba83441228dbd0ba03ae4fba56416a54152832e9797b0365",
+      "patch_sha256": "aff5f365c60fc58aa4ded7c43f6e64146765817627a6635689ec7181d6e1476d",
+      "result_sha256": "81566249d59d9582ce4d6fa139a6f83cfb293d189754c06589e2fbb302f3e829"
+    },
+    {
+      "source": "source/firmware/platform/adc_timer_dma.c",
+      "target": "v2/platform/adc_timer_dma.c",
+      "patch": "v2-cen-driver.patch",
+      "source_sha256": "ddd022b79a3d07ea745a384cc4db5a258ad31feb31e68bc23b5c364054f4f52e",
+      "patch_sha256": "57c27e92dce222ee5180bd965117675bc4b405bad221425a295e839ae58dda55",
+      "result_sha256": "b8c6c4301a1c4e72ae0a3a4f9353a1bab109ccd1a96095d4684d899d5e34ce2b"
+    },
+    {
+      "source": "source/firmware/app/mt_live_adc.h",
+      "target": "v2/app/mt_live_adc.h",
+      "patch": "v2-cen-adapter-api.patch",
+      "source_sha256": "01fe54216725ead7178dbc37519467009922fb04190e472d875f2fa3b76273a1",
+      "patch_sha256": "0fbb06d57ef07f8a502ab0958df12e91850006c9cd3e843d174b52416b23cf23",
+      "result_sha256": "d13268ef5656b064722614be8e1993081e8340ee4e03840bc3c53e486e17341e"
+    },
+    {
+      "source": "source/firmware/app/mt_live_adc.c",
+      "target": "v2/app/mt_live_adc.c",
+      "patch": "v2-cen-adapter.patch",
+      "source_sha256": "43955136b4e44b4dc7ff572d7513981b506b6a6e9b07229a1f9fcaec24957f9f",
+      "patch_sha256": "23aa292a36ec4d815b66460a81d71839f44120333e04a8ce8f5e0ed85ceb7ccf",
+      "result_sha256": "94bc97ab4fb993fcc8536fa4bde85d4fb5afbb78dc8a52c0094dbdbbe3302548"
+    },
+    {
+      "source": "patched/v2/app/mt_live_runtime.c",
+      "target": "v2/app/mt_live_runtime.c",
+      "patch": "v2-cen-runtime.patch",
+      "source_sha256": "eefa74ee9cbaf3d9aaa36e36046b88481af87e03e48af78e40f399c24182eb3a",
+      "patch_sha256": "1c15fab8a75cfd819697b3a20970a7b2858e6821a81fc6673e5da278d2e12668",
+      "result_sha256": "e9d5c7703a2252d683ebbf269d354cf2700952cc2afb49a8fa11879b00c34919"
+    }
+  ]
+}

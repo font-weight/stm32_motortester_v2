@@ -1,4 +1,4 @@
-"""Build the separate V2SD DATA256 batch150k candidate; never flash hardware."""
+"""Build the separate V2SE DATA1024 batch150k candidate; never flash hardware."""
 import argparse
 import hashlib
 import importlib.util
@@ -30,6 +30,7 @@ ADD = [
     "firmware/app/mt_live_adc.c", "firmware/platform/mt_live_clock.c",
     "firmware/protocol/mt_live_device.c", "firmware/acquisition/mt_sample_queue.c",
     "firmware/platform/mt_stream_diag.c", "firmware/acquisition/mt_acquisition_profile.c",
+    "firmware/protocol/mt_batch1024.c",
 ]
 
 
@@ -297,6 +298,15 @@ def main():
             target = out / "patched" / row["target"]
             target.write_bytes(apply_patch((out / row["source"]).read_bytes(),
                 (here / "overlays" / row["patch"]).read_bytes(), row))
+        large_batch = json.loads((here / "overlays/batch1024.json").read_text("utf-8"))
+        require(large_batch["schema"] == "motortester-v2-batch1024-overlay-1", "Unexpected DATA1024 overlay")
+        receipt["v2_overlays"].extend(large_batch["patches"])
+        for row in large_batch["patches"]:
+            target = out / "patched" / row["target"]
+            target.write_bytes(apply_patch((out / row["source"]).read_bytes(),
+                (here / "overlays" / row["patch"]).read_bytes(), row))
+        (out / "patched/v2/protocol/mt_batch1024.c").write_bytes((here / "batch1024/mt_batch1024.c").read_bytes())
+        (out / "patched/v2/protocol/mt_batch1024.h").write_bytes((here / "batch1024/production/mt_batch1024.h").read_bytes())
         if config["active_profile_enabled"]:
             for name in ("mt_stream_profile.c", "mt_stream_profile.h"):
                 (out / "patched/v2/platform" / name).write_bytes((here / "profile" / name).read_bytes())
@@ -353,6 +363,7 @@ def main():
                 "source/firmware/platform/mt_stream_profile.c": "patched/v2/platform/mt_stream_profile.c",
                 "source/firmware/protocol/mt_wire.c": "patched/v2/protocol/mt_wire.c",
                 "source/firmware/protocol/mt_live_device.c": "patched/v2/protocol/mt_live_device.c",
+                "source/firmware/protocol/mt_batch1024.c": "patched/v2/protocol/mt_batch1024.c",
                 "source/firmware/acquisition/mt_sample_queue.c": "patched/v2/acquisition/mt_sample_queue.c",
                 "source/firmware/acquisition/mt_acquisition_profile.c": "patched/v2/acquisition/mt_acquisition_profile.c",
                 "source/firmware/transport/mt_usb_bridge.c": "patched/v2/transport/mt_usb_bridge.c",
@@ -368,7 +379,8 @@ def main():
         objects.append(reset)
         compile_c("board", "generated/board.c", standard)
         compile_c("timing", "generated/timing.c", standard)
-        require(len(objects) == 31 + int(config["active_profile_enabled"]), "Unexpected link input count")
+        # SE adds exactly one serializer object to preserved SD link inputs.
+        require(len(objects) == 32 + int(config["active_profile_enabled"]), "Unexpected link input count")
         checker = load(source / "tests/boot-link/tools/run_boot_link_tests.py")
         vectors_path = source / "tests/boot-link/vector_map.json"
         require(digest(vectors_path) == checker.VECTOR_SHA, "Vector map differs")

@@ -1,0 +1,30 @@
+--- a/app/mt_live_adc.c
++++ b/app/mt_live_adc.c
+@@ -71,10 +71,10 @@
+      * Completed DMA transfers do not prove the final ADC/request drain. */
+     if (!healthy || !out->hardware_off || !b->stop_scratch.dma_end_known) return;
+     for (i=0u; i<b->stop_scratch.count; ++i) {
+-        unsigned block = i / MT_ADC_DMA_BLOCK_SAMPLES;
+-        unsigned offset = i % MT_ADC_DMA_BLOCK_SAMPLES;
++        unsigned block = i / MT_SAMPLE_QUEUE_BLOCK;
++        unsigned offset = i % MT_SAMPLE_QUEUE_BLOCK;
+         out->tail[block].first_index = b->stop_scratch.first_sample_index +
+-            (uint64_t)block * MT_ADC_DMA_BLOCK_SAMPLES;
++            (uint64_t)block * MT_SAMPLE_QUEUE_BLOCK;
+         out->tail[block].codes[offset] = b->stop_scratch.samples[i];
+         out->tail[block].count = (uint16_t)(offset + 1u);
+         out->tail_count = block + 1u;
+@@ -108,6 +108,11 @@
+         block.first_trigger_offset_us != MT_ADC_DMA_SAMPLE_US) {
+         mt_live_device_fault(b->device, 2u); return -1;
+     }
+-    return mt_live_device_offer(b->device, block.first_sample_index,
+-        block.samples, (uint16_t)block.count) ? 1 : -1;
++    /* DMA ownership is checked for the complete 512-sample half first.
++     * DATA/queue granularity stays 128; a rejected chunk never bridges a gap. */
++    for (uint32_t offset=0; offset<block.count; offset+=MT_SAMPLE_QUEUE_BLOCK) {
++        if (!mt_live_device_offer(b->device, block.first_sample_index+offset,
++                block.samples+offset, MT_SAMPLE_QUEUE_BLOCK)) return -1;
++    }
++    return 1;
+ }

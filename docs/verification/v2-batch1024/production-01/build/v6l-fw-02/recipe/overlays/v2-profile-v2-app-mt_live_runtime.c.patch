@@ -1,0 +1,206 @@
+--- a/patched/v2/app/mt_live_runtime.c
++++ b/patched/v2/app/mt_live_runtime.c
+@@ -1,3 +1,6 @@
++/* MT_PROFILE_BEGIN */
++#include "mt_stream_profile.h"
++/* MT_PROFILE_END */
+ #include "mt_live_runtime.h"
+ #include "../platform/mt_stream_diag.h"
+ #include "../platform/mt_usb_ctr.h"
+@@ -82,11 +85,21 @@
+     *after_us=first_us+after_delta;
+     return 1;
+ }
+-static int live_start(void *context,uint32_t generation) {
++static int mt_profiled_live_start_body(void *context,uint32_t generation) {
+     mt_live_runtime *r=context;
+     return usable(r) && mt_usb_bridge_actor() &&
+         mt_live_adc_start_transaction(&r->acquisition,generation,commit_timer);
+ }
++/* MT_PROFILE_BEGIN */
++static int live_start(void *context,uint32_t generation) {
++    mt_live_runtime *r=context;
++    int result=mt_profiled_live_start_body(context,generation);
++    mt_profile_attempt(generation,r->device.nonce,r->epoch);
++    if(result)mt_profile_begin(generation,r->device.nonce,r->epoch);
++    else mt_profile_close(MT_P_CLOSE_NO_START,0);
++    return result;
++}
++/* MT_PROFILE_END */
+ static void live_stop(void *context,mt_live_snapshot *snapshot) {
+     mt_live_runtime *r=context;
+ #if CFG_MT_STREAM_DIAGNOSTICS
+@@ -97,7 +110,7 @@
+ #endif
+     mt_live_adc_quiesce(&r->acquisition,snapshot);
+ }
+-static size_t live_write(void *context,const uint8_t *bytes,size_t length) {
++static size_t mt_profiled_live_write_body(void *context,const uint8_t *bytes,size_t length) {
+     mt_live_runtime *r=context; mt_usb_scope scope; size_t accepted;
+     if(!r || !r->initialized || !r->in_step || r->writer_active ||
+        (!bytes && length) || length>384u)return SIZE_MAX;
+@@ -108,6 +121,9 @@
+      * arm that fragment before its remainder is admitted. Insufficient room
+      * means known zero acceptance and leaves FIFO/core prefix unchanged. */
+     if(tud_cdc_n_write_available(0)<length) {
++        /* MT_PROFILE_BEGIN */
++        mt_profile_write_result(MT_P_WRITE_ZERO_SPACE,0);
++        /* MT_PROFILE_END */
+         mt_usb_bridge_leave(&scope); return 0;
+     }
+     r->writer_active=1;
+@@ -117,6 +133,12 @@
+     /* An epoch loss after the copy never erases a known positive acceptance. */
+     return accepted;
+ }
++/* MT_PROFILE_BEGIN */
++static size_t live_write(void *context,const uint8_t *bytes,size_t length) {
++    size_t accepted=mt_profiled_live_write_body(context,bytes,length);
++    mt_profile_write_return(accepted,length);return accepted;
++}
++/* MT_PROFILE_END */
+ static int live_isolate(void *context) {
+     mt_live_runtime *r=context;
+     /* Sole synchronous foreground writer; accepted FIFO bytes remain ordered.
+@@ -135,7 +157,7 @@
+         !(adc_read(r,0x40000400u)&1u) && adc_read(r,0x40012408u)==0u &&
+         !(adc_read(r,0x40020008u)&1u);
+ }
+-mt_live_runtime_result mt_live_runtime_init(mt_live_runtime *r,mt_timebase *clock,
++mt_live_runtime_result mt_profiled_runtime_init_body(mt_live_runtime *r,mt_timebase *clock,
+     const mt_live_runtime_mmio *mmio,uint32_t hse_hz,mt_usb_lock_fn enter,
+     mt_usb_unlock_fn leave,uint32_t build,unsigned require_dtr,uint32_t bound_ms) {
+     mt_live_runtime_mmio saved; mt_adc_dma_io_t adc_io; mt_adc_dma_start_guard guard;
+@@ -160,6 +182,15 @@
+     if(!mt_live_device_init(&r->device,&io))return MT_LIVE_RUNTIME_ARGUMENT;
+     mt_usb_bridge_init(enter,leave); r->initialized=1; return MT_LIVE_RUNTIME_OK;
+ }
++/* MT_PROFILE_BEGIN */
++mt_live_runtime_result mt_live_runtime_init(mt_live_runtime *r,mt_timebase *clock,
++    const mt_live_runtime_mmio *mmio,uint32_t hse_hz,mt_usb_lock_fn enter,
++    mt_usb_unlock_fn leave,uint32_t build,unsigned require_dtr,uint32_t bound_ms) {
++    mt_live_runtime_result result=mt_profiled_runtime_init_body(r,clock,mmio,hse_hz,enter,leave,build,require_dtr,bound_ms);
++    if(result==MT_LIVE_RUNTIME_OK)mt_profile_init(build,&r->device,&r->adc);
++    return result;
++}
++/* MT_PROFILE_END */
+ static int quiescent(const mt_live_runtime *r) {
+     return r->device.hardware_off && !r->adc.owns_peripherals &&
+         r->adc.state==MT_ADC_DMA_STOPPED;
+@@ -190,6 +221,9 @@
+     mt_usb_bridge_cleaned(r->epoch); return 1;
+ }
+ static mt_live_runtime_result time_fault(mt_live_runtime *r) {
++    /* MT_PROFILE_BEGIN */
++    mt_profile_close(MT_P_CLOSE_TIME,3);
++    /* MT_PROFILE_END */
+     r->clock_fault=1; r->open=0; r->pending=2;
+     r->carry_offset=r->carry_used=0;
+     mt_adc_dma_invalidate_stream_history(&r->adc,MT_ADC_DMA_FAULT_CLOCK);
+@@ -201,7 +235,13 @@
+     mt_usb_scope scope; uint32_t key; int serviced,tx_ok;
+     if(live_time(r)==UINT64_MAX || r->clock_fault)return time_fault(r);
+     if(!synchronize_loss(r))return loss_result(r);
++    /* MT_PROFILE_BEGIN */
++    mt_profile_phase_begin(MT_P_PHASE_TASK);
++    /* MT_PROFILE_END */
+     tud_task_ext(0,false);
++    /* MT_PROFILE_BEGIN */
++    mt_profile_phase_end(0);
++    /* MT_PROFILE_END */
+     if(live_time(r)==UINT64_MAX)return time_fault(r);
+     if(!synchronize_loss(r))return loss_result(r);
+     if(!stable(r))return MT_LIVE_RUNTIME_IDLE;
+@@ -219,10 +259,19 @@
+         }
+         r->open=1;
+     }
++    /* MT_PROFILE_BEGIN */
++    mt_profile_phase_begin(MT_P_PHASE_ADC);
++    /* MT_PROFILE_END */
+     serviced=mt_live_adc_service(&r->acquisition);
++    /* MT_PROFILE_BEGIN */
++    mt_profile_phase_end(serviced);
++    /* MT_PROFILE_END */
+     if(live_time(r)==UINT64_MAX) { mt_usb_bridge_leave(&scope); return time_fault(r); }
+     if(!stable(r)) { mt_usb_bridge_leave(&scope); (void)synchronize_loss(r); return loss_result(r); }
+     if(serviced==-2) { mt_usb_bridge_leave(&scope); return MT_LIVE_RUNTIME_ARGUMENT; }
++    /* MT_PROFILE_BEGIN */
++    mt_profile_phase_begin(MT_P_PHASE_RX);
++    /* MT_PROFILE_END */
+     if(r->carry_offset==r->carry_used) {
+         r->carry_offset=0; r->carry_used=tud_cdc_n_read(0,r->carry,sizeof r->carry);
+     }
+@@ -231,6 +280,9 @@
+         if(!mt_live_device_receive(&r->device,r->carry+r->carry_offset,1u))break;
+         ++r->carry_offset;
+     }
++    /* MT_PROFILE_BEGIN */
++    mt_profile_phase_end(0);
++    /* MT_PROFILE_END */
+     mt_usb_bridge_leave(&scope);
+     if(live_time(r)==UINT64_MAX)return time_fault(r);
+     if(!synchronize_loss(r))return loss_result(r);
+@@ -244,25 +296,40 @@
+     if(quiescent(r) && r->device.state==MT_LIVE_HELLO_PENDING)
+         mt_stream_diag_replaced((uint32_t)r->device.state,r->epoch,(uint32_t)r->adc.state);
+ #endif
++    /* MT_PROFILE_BEGIN */
++    mt_profile_phase_begin(MT_P_PHASE_TX);
++    /* MT_PROFILE_END */
+     MT_DIAG_STAMP(diag_tx);
+     key=mt_usb_bridge_lock(); tx_ok=mt_live_device_step(&r->device); mt_usb_bridge_unlock(key);
+     MT_DIAG_TX_END(diag_tx);
++    /* MT_PROFILE_BEGIN */
++    mt_profile_phase_end(tx_ok);
++    /* MT_PROFILE_END */
+     if(live_time(r)==UINT64_MAX)return time_fault(r);
+     if(!synchronize_loss(r))return loss_result(r);
++    /* MT_PROFILE_BEGIN */
++    mt_profile_phase_begin(MT_P_PHASE_FLUSH);
++    /* MT_PROFILE_END */
+     if(mt_usb_bridge_app_enter(&scope)) {
+         if(usable(r))(void)tud_cdc_n_write_flush(0);
+         mt_usb_bridge_leave(&scope);
+     }
++    /* MT_PROFILE_BEGIN */
++    mt_profile_phase_end(0);
++    /* MT_PROFILE_END */
+     if(live_time(r)==UINT64_MAX)return time_fault(r);
+     if(!synchronize_loss(r))return loss_result(r);
+     return tx_ok ? MT_LIVE_RUNTIME_OK : MT_LIVE_RUNTIME_RECOVERY;
+ }
+-mt_live_runtime_result mt_live_runtime_step(mt_live_runtime *r) {
++mt_live_runtime_result mt_profiled_runtime_step_body(mt_live_runtime *r) {
+     mt_live_runtime_result result; uint32_t key;
+     if(!r || !r->initialized || r->in_step || !tud_inited())return MT_LIVE_RUNTIME_ARGUMENT;
+     MT_DIAG_STAMP(diag_step);
+     r->in_step=1; result=step(r);
+     if(!r->clock_fault && mt_timebase_healthy(r->clock)) {
++        /* MT_PROFILE_BEGIN */
++        mt_profile_phase_begin(MT_P_PHASE_GRANT);
++        /* MT_PROFILE_END */
+         key=mt_usb_bridge_lock();
+         mt_usb_epoch s=mt_usb_bridge_snapshot();
+         /* One IRQ opportunity after foreground service. Old cleanup/queue
+@@ -273,6 +340,9 @@
+            !tud_task_event_ready();
+         (void)mt_usb_fsdev_irq_grant(allow_ctr != 0);
+         mt_usb_bridge_unlock(key);
++        /* MT_PROFILE_BEGIN */
++        mt_profile_phase_end(0);
++        /* MT_PROFILE_END */
+     }
+ #if CFG_MT_STREAM_DIAGNOSTICS
+     if(quiescent(r) && (r->device.state==MT_LIVE_HELLO_PENDING || r->device.state==MT_LIVE_STOPPED)) {
+@@ -288,3 +358,10 @@
+ #endif
+     r->in_step=0; return result;
+ }
++/* MT_PROFILE_BEGIN */
++mt_live_runtime_result mt_live_runtime_step(mt_live_runtime *r) {
++    mt_live_runtime_result result;
++    mt_profile_step_begin();result=mt_profiled_runtime_step_body(r);
++    mt_profile_step_end();mt_profile_check_cap();return result;
++}
++/* MT_PROFILE_END */

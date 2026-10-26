@@ -1,5 +1,15 @@
 # Координация самостоятельного V2
 
+V2-06l L1 после допуска r2: higher_fs_review — firmware/v2-stream/**,
+tests/v2-stream-firmware/**, build/v6l-fw-draft, v6l-fw-01,
+v6l-core-native-01 и новый freeze; прежний prototype/native01 неизменен.
+Host_200k — host/** кроме packaging, build/v6l-host-gui-01; один source GUI.
+Root — host/packaging/v2/**, канонические документы, архивы, интеграция,
+Windows-пакет и единолично COM/SWD. Stream200_critic — независимые точные
+review/critic L. Production V2SE допускается реализовать; Flash только
+после проверки готового образа и отдельного аппаратного плана.
+Ниже — исторические назначения L prototype и предыдущих этапов.
+
 V2-06l: higher_fs_review — изолированный firmware/v2-stream/batch1024/**,
 tests/v2-stream-firmware/batch1024*, build/v6l-native-* и firmware proposal;
 host_200k — host/motortester/**, host/tests/test_stream_modes.py, host proposal

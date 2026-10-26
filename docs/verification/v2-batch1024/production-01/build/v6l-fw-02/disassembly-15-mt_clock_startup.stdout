@@ -1,0 +1,594 @@
+
+objects/15-mt_clock_startup.o:     file format elf32-littlearm
+
+
+Disassembly of section .text.rd:
+
+00000000 <rd>:
+   0:	6803      	ldr	r3, [r0, #0]
+   2:	6880      	ldr	r0, [r0, #8]
+   4:	4718      	bx	r3
+
+Disassembly of section .text.update:
+
+00000000 <update>:
+   0:	e92d 41f0 	stmdb	sp!, {r4, r5, r6, r7, r8, lr}
+   4:	4604      	mov	r4, r0
+   6:	461e      	mov	r6, r3
+   8:	460d      	mov	r5, r1
+   a:	4617      	mov	r7, r2
+   c:	f7ff fffe 	bl	0 <update>
+			c: R_ARM_THM_CALL	rd
+  10:	ea20 0207 	bic.w	r2, r0, r7
+  14:	4629      	mov	r1, r5
+  16:	6863      	ldr	r3, [r4, #4]
+  18:	68a0      	ldr	r0, [r4, #8]
+  1a:	4332      	orrs	r2, r6
+  1c:	e8bd 41f0 	ldmia.w	sp!, {r4, r5, r6, r7, r8, lr}
+  20:	4718      	bx	r3
+
+Disassembly of section .text.wait_bits:
+
+00000000 <wait_bits>:
+   0:	e92d 43f8 	stmdb	sp!, {r3, r4, r5, r6, r7, r8, r9, lr}
+   4:	4605      	mov	r5, r0
+   6:	460e      	mov	r6, r1
+   8:	4690      	mov	r8, r2
+   a:	4699      	mov	r9, r3
+   c:	2400      	movs	r4, #0
+   e:	9f08      	ldr	r7, [sp, #32]
+  10:	42bc      	cmp	r4, r7
+  12:	d102      	bne.n	1a <wait_bits+0x1a>
+  14:	2000      	movs	r0, #0
+  16:	e8bd 83f8 	ldmia.w	sp!, {r3, r4, r5, r6, r7, r8, r9, pc}
+  1a:	4631      	mov	r1, r6
+  1c:	4628      	mov	r0, r5
+  1e:	f7ff fffe 	bl	0 <wait_bits>
+			1e: R_ARM_THM_CALL	rd
+  22:	ea00 0008 	and.w	r0, r0, r8
+  26:	4548      	cmp	r0, r9
+  28:	d001      	beq.n	2e <wait_bits+0x2e>
+  2a:	3401      	adds	r4, #1
+  2c:	e7f0      	b.n	10 <wait_bits+0x10>
+  2e:	2001      	movs	r0, #1
+  30:	e7f1      	b.n	16 <wait_bits+0x16>
+
+Disassembly of section .text.snapshot:
+
+00000000 <snapshot>:
+   0:	b510      	push	{r4, lr}
+   2:	4908      	ldr	r1, [pc, #32]	@ (24 <snapshot+0x24>)
+   4:	4604      	mov	r4, r0
+   6:	f7ff fffe 	bl	0 <snapshot>
+			6: R_ARM_THM_CALL	rd
+   a:	4907      	ldr	r1, [pc, #28]	@ (28 <snapshot+0x28>)
+   c:	62a0      	str	r0, [r4, #40]	@ 0x28
+   e:	4620      	mov	r0, r4
+  10:	f7ff fffe 	bl	0 <snapshot>
+			10: R_ARM_THM_CALL	rd
+  14:	4905      	ldr	r1, [pc, #20]	@ (2c <snapshot+0x2c>)
+  16:	62e0      	str	r0, [r4, #44]	@ 0x2c
+  18:	4620      	mov	r0, r4
+  1a:	f7ff fffe 	bl	0 <snapshot>
+			1a: R_ARM_THM_CALL	rd
+  1e:	6320      	str	r0, [r4, #48]	@ 0x30
+  20:	bd10      	pop	{r4, pc}
+  22:	bf00      	nop
+  24:	40021000 	.word	0x40021000
+  28:	40021004 	.word	0x40021004
+  2c:	40022000 	.word	0x40022000
+
+Disassembly of section .text.domains_idle:
+
+00000000 <domains_idle>:
+   0:	b570      	push	{r4, r5, r6, lr}
+   2:	4917      	ldr	r1, [pc, #92]	@ (60 <domains_idle+0x60>)
+   4:	4604      	mov	r4, r0
+   6:	f7ff fffe 	bl	0 <domains_idle>
+			6: R_ARM_THM_CALL	rd
+   a:	4e16      	ldr	r6, [pc, #88]	@ (64 <domains_idle+0x64>)
+   c:	4230      	tst	r0, r6
+   e:	d001      	beq.n	14 <domains_idle+0x14>
+  10:	2000      	movs	r0, #0
+  12:	bd70      	pop	{r4, r5, r6, pc}
+  14:	4620      	mov	r0, r4
+  16:	4914      	ldr	r1, [pc, #80]	@ (68 <domains_idle+0x68>)
+  18:	f7ff fffe 	bl	0 <domains_idle>
+			18: R_ARM_THM_CALL	rd
+  1c:	f645 657d 	movw	r5, #24189	@ 0x5e7d
+  20:	4228      	tst	r0, r5
+  22:	d1f5      	bne.n	10 <domains_idle+0x10>
+  24:	4620      	mov	r0, r4
+  26:	4911      	ldr	r1, [pc, #68]	@ (6c <domains_idle+0x6c>)
+  28:	f7ff fffe 	bl	0 <domains_idle>
+			28: R_ARM_THM_CALL	rd
+  2c:	4230      	tst	r0, r6
+  2e:	d1ef      	bne.n	10 <domains_idle+0x10>
+  30:	4620      	mov	r0, r4
+  32:	490f      	ldr	r1, [pc, #60]	@ (70 <domains_idle+0x70>)
+  34:	f7ff fffe 	bl	0 <domains_idle>
+			34: R_ARM_THM_CALL	rd
+  38:	4228      	tst	r0, r5
+  3a:	d1e9      	bne.n	10 <domains_idle+0x10>
+  3c:	4620      	mov	r0, r4
+  3e:	490d      	ldr	r1, [pc, #52]	@ (74 <domains_idle+0x74>)
+  40:	f7ff fffe 	bl	0 <domains_idle>
+			40: R_ARM_THM_CALL	rd
+  44:	f000 0055 	and.w	r0, r0, #85	@ 0x55
+  48:	2814      	cmp	r0, #20
+  4a:	d1e1      	bne.n	10 <domains_idle+0x10>
+  4c:	4620      	mov	r0, r4
+  4e:	490a      	ldr	r1, [pc, #40]	@ (78 <domains_idle+0x78>)
+  50:	f7ff fffe 	bl	0 <domains_idle>
+			50: R_ARM_THM_CALL	rd
+  54:	f410 5ffc 	tst.w	r0, #8064	@ 0x1f80
+  58:	bf0c      	ite	eq
+  5a:	2001      	moveq	r0, #1
+  5c:	2000      	movne	r0, #0
+  5e:	e7d8      	b.n	12 <domains_idle+0x12>
+  60:	4002101c 	.word	0x4002101c
+  64:	1ae64807 	.word	0x1ae64807
+  68:	40021018 	.word	0x40021018
+  6c:	40021010 	.word	0x40021010
+  70:	4002100c 	.word	0x4002100c
+  74:	40021014 	.word	0x40021014
+  78:	40021008 	.word	0x40021008
+
+Disassembly of section .text.on_hsi:
+
+00000000 <on_hsi>:
+   0:	b510      	push	{r4, lr}
+   2:	490a      	ldr	r1, [pc, #40]	@ (2c <on_hsi+0x2c>)
+   4:	4604      	mov	r4, r0
+   6:	f7ff fffe 	bl	0 <on_hsi>
+			6: R_ARM_THM_CALL	rd
+   a:	f000 0003 	and.w	r0, r0, #3
+   e:	2803      	cmp	r0, #3
+  10:	d109      	bne.n	26 <on_hsi+0x26>
+  12:	4620      	mov	r0, r4
+  14:	4906      	ldr	r1, [pc, #24]	@ (30 <on_hsi+0x30>)
+  16:	f7ff fffe 	bl	0 <on_hsi>
+			16: R_ARM_THM_CALL	rd
+  1a:	f010 0f0f 	tst.w	r0, #15
+  1e:	bf0c      	ite	eq
+  20:	2001      	moveq	r0, #1
+  22:	2000      	movne	r0, #0
+  24:	bd10      	pop	{r4, pc}
+  26:	2000      	movs	r0, #0
+  28:	e7fc      	b.n	24 <on_hsi+0x24>
+  2a:	bf00      	nop
+  2c:	40021000 	.word	0x40021000
+  30:	40021004 	.word	0x40021004
+
+Disassembly of section .text.fail:
+
+00000000 <fail>:
+   0:	b5f7      	push	{r0, r1, r2, r4, r5, r6, r7, lr}
+   2:	2301      	movs	r3, #1
+   4:	2703      	movs	r7, #3
+   6:	4604      	mov	r4, r0
+   8:	4615      	mov	r5, r2
+   a:	6201      	str	r1, [r0, #32]
+   c:	461a      	mov	r2, r3
+   e:	6247      	str	r7, [r0, #36]	@ 0x24
+  10:	460e      	mov	r6, r1
+  12:	4931      	ldr	r1, [pc, #196]	@ (d8 <fail+0xd8>)
+  14:	f7ff fffe 	bl	0 <fail>
+			14: R_ARM_THM_CALL	update
+  18:	463b      	mov	r3, r7
+  1a:	463a      	mov	r2, r7
+  1c:	4620      	mov	r0, r4
+  1e:	492e      	ldr	r1, [pc, #184]	@ (d8 <fail+0xd8>)
+  20:	9500      	str	r5, [sp, #0]
+  22:	f7ff fffe 	bl	0 <fail>
+			22: R_ARM_THM_CALL	wait_bits
+  26:	b348      	cbz	r0, 7c <fail+0x7c>
+  28:	2300      	movs	r3, #0
+  2a:	463a      	mov	r2, r7
+  2c:	4620      	mov	r0, r4
+  2e:	492b      	ldr	r1, [pc, #172]	@ (dc <fail+0xdc>)
+  30:	f7ff fffe 	bl	0 <fail>
+			30: R_ARM_THM_CALL	update
+  34:	2300      	movs	r3, #0
+  36:	220f      	movs	r2, #15
+  38:	4620      	mov	r0, r4
+  3a:	4928      	ldr	r1, [pc, #160]	@ (dc <fail+0xdc>)
+  3c:	9500      	str	r5, [sp, #0]
+  3e:	f7ff fffe 	bl	0 <fail>
+			3e: R_ARM_THM_CALL	wait_bits
+  42:	b1d8      	cbz	r0, 7c <fail+0x7c>
+  44:	4620      	mov	r0, r4
+  46:	f7ff fffe 	bl	0 <fail>
+			46: R_ARM_THM_CALL	on_hsi
+  4a:	b1b8      	cbz	r0, 7c <fail+0x7c>
+  4c:	2301      	movs	r3, #1
+  4e:	f04f 7280 	mov.w	r2, #16777216	@ 0x1000000
+  52:	4620      	mov	r0, r4
+  54:	4920      	ldr	r1, [pc, #128]	@ (d8 <fail+0xd8>)
+  56:	6263      	str	r3, [r4, #36]	@ 0x24
+  58:	2300      	movs	r3, #0
+  5a:	f7ff fffe 	bl	0 <fail>
+			5a: R_ARM_THM_CALL	update
+  5e:	2300      	movs	r3, #0
+  60:	f04f 7240 	mov.w	r2, #50331648	@ 0x3000000
+  64:	4620      	mov	r0, r4
+  66:	491c      	ldr	r1, [pc, #112]	@ (d8 <fail+0xd8>)
+  68:	9500      	str	r5, [sp, #0]
+  6a:	f7ff fffe 	bl	0 <fail>
+			6a: R_ARM_THM_CALL	wait_bits
+  6e:	b128      	cbz	r0, 7c <fail+0x7c>
+  70:	4620      	mov	r0, r4
+  72:	f7ff fffe 	bl	0 <fail>
+			72: R_ARM_THM_CALL	on_hsi
+  76:	b9b0      	cbnz	r0, a6 <fail+0xa6>
+  78:	2303      	movs	r3, #3
+  7a:	6263      	str	r3, [r4, #36]	@ 0x24
+  7c:	4620      	mov	r0, r4
+  7e:	f7ff fffe 	bl	0 <fail>
+			7e: R_ARM_THM_CALL	snapshot
+  82:	6a63      	ldr	r3, [r4, #36]	@ 0x24
+  84:	2b03      	cmp	r3, #3
+  86:	d009      	beq.n	9c <fail+0x9c>
+  88:	6aa3      	ldr	r3, [r4, #40]	@ 0x28
+  8a:	f003 0303 	and.w	r3, r3, #3
+  8e:	2b03      	cmp	r3, #3
+  90:	d102      	bne.n	98 <fail+0x98>
+  92:	6ae3      	ldr	r3, [r4, #44]	@ 0x2c
+  94:	071b      	lsls	r3, r3, #28
+  96:	d001      	beq.n	9c <fail+0x9c>
+  98:	2303      	movs	r3, #3
+  9a:	6263      	str	r3, [r4, #36]	@ 0x24
+  9c:	2300      	movs	r3, #0
+  9e:	4630      	mov	r0, r6
+  a0:	6363      	str	r3, [r4, #52]	@ 0x34
+  a2:	b003      	add	sp, #12
+  a4:	bdf0      	pop	{r4, r5, r6, r7, pc}
+  a6:	2300      	movs	r3, #0
+  a8:	f44f 3280 	mov.w	r2, #65536	@ 0x10000
+  ac:	4620      	mov	r0, r4
+  ae:	490a      	ldr	r1, [pc, #40]	@ (d8 <fail+0xd8>)
+  b0:	f7ff fffe 	bl	0 <fail>
+			b0: R_ARM_THM_CALL	update
+  b4:	2300      	movs	r3, #0
+  b6:	f44f 3240 	mov.w	r2, #196608	@ 0x30000
+  ba:	4620      	mov	r0, r4
+  bc:	4906      	ldr	r1, [pc, #24]	@ (d8 <fail+0xd8>)
+  be:	9500      	str	r5, [sp, #0]
+  c0:	f7ff fffe 	bl	0 <fail>
+			c0: R_ARM_THM_CALL	wait_bits
+  c4:	2800      	cmp	r0, #0
+  c6:	d0d9      	beq.n	7c <fail+0x7c>
+  c8:	4620      	mov	r0, r4
+  ca:	f7ff fffe 	bl	0 <fail>
+			ca: R_ARM_THM_CALL	on_hsi
+  ce:	2800      	cmp	r0, #0
+  d0:	d0d2      	beq.n	78 <fail+0x78>
+  d2:	2302      	movs	r3, #2
+  d4:	e7d1      	b.n	7a <fail+0x7a>
+  d6:	bf00      	nop
+  d8:	40021000 	.word	0x40021000
+  dc:	40021004 	.word	0x40021004
+
+Disassembly of section .text.matches:
+
+00000000 <matches>:
+   0:	b570      	push	{r4, r5, r6, lr}
+   2:	4604      	mov	r4, r0
+   4:	460e      	mov	r6, r1
+   6:	4615      	mov	r5, r2
+   8:	f7ff fffe 	bl	0 <matches>
+			8: R_ARM_THM_CALL	snapshot
+   c:	6aa2      	ldr	r2, [r4, #40]	@ 0x28
+   e:	4b0c      	ldr	r3, [pc, #48]	@ (40 <matches+0x40>)
+  10:	4013      	ands	r3, r2
+  12:	42b3      	cmp	r3, r6
+  14:	d112      	bne.n	3c <matches+0x3c>
+  16:	6ae3      	ldr	r3, [r4, #44]	@ 0x2c
+  18:	f023 4378 	bic.w	r3, r3, #4160749568	@ 0xf8000000
+  1c:	f423 0300 	bic.w	r3, r3, #8388608	@ 0x800000
+  20:	42ab      	cmp	r3, r5
+  22:	d10b      	bne.n	3c <matches+0x3c>
+  24:	6b23      	ldr	r3, [r4, #48]	@ 0x30
+  26:	f003 033f 	and.w	r3, r3, #63	@ 0x3f
+  2a:	2b32      	cmp	r3, #50	@ 0x32
+  2c:	d106      	bne.n	3c <matches+0x3c>
+  2e:	4620      	mov	r0, r4
+  30:	f7ff fffe 	bl	0 <matches>
+			30: R_ARM_THM_CALL	domains_idle
+  34:	3800      	subs	r0, #0
+  36:	bf18      	it	ne
+  38:	2001      	movne	r0, #1
+  3a:	bd70      	pop	{r4, r5, r6, pc}
+  3c:	2000      	movs	r0, #0
+  3e:	e7fc      	b.n	3a <matches+0x3a>
+  40:	030f00fb 	.word	0x030f00fb
+
+Disassembly of section .text.mt_clock_mmio_read32:
+
+00000000 <mt_clock_mmio_read32>:
+   0:	6808      	ldr	r0, [r1, #0]
+   2:	4770      	bx	lr
+
+Disassembly of section .text.mt_clock_mmio_write32:
+
+00000000 <mt_clock_mmio_write32>:
+   0:	600a      	str	r2, [r1, #0]
+   2:	4770      	bx	lr
+
+Disassembly of section .text.mt_clock_plan_72:
+
+00000000 <mt_clock_plan_72>:
+   0:	b570      	push	{r4, r5, r6, lr}
+   2:	4605      	mov	r5, r0
+   4:	b36a      	cbz	r2, 62 <mt_clock_plan_72+0x62>
+   6:	f5a0 1374 	sub.w	r3, r0, #3997696	@ 0x3d0000
+   a:	4817      	ldr	r0, [pc, #92]	@ (68 <mt_clock_plan_72+0x68>)
+   c:	f5a3 6310 	sub.w	r3, r3, #2304	@ 0x900
+  10:	4283      	cmp	r3, r0
+  12:	d826      	bhi.n	62 <mt_clock_plan_72+0x62>
+  14:	2901      	cmp	r1, #1
+  16:	d824      	bhi.n	62 <mt_clock_plan_72+0x62>
+  18:	4e14      	ldr	r6, [pc, #80]	@ (6c <mt_clock_plan_72+0x6c>)
+  1a:	fbb6 f4f5 	udiv	r4, r6, r5
+  1e:	fb05 6314 	mls	r3, r5, r4, r6
+  22:	b913      	cbnz	r3, 2a <mt_clock_plan_72+0x2a>
+  24:	1ea3      	subs	r3, r4, #2
+  26:	2b0e      	cmp	r3, #14
+  28:	d919      	bls.n	5e <mt_clock_plan_72+0x5e>
+  2a:	f015 0001 	ands.w	r0, r5, #1
+  2e:	d115      	bne.n	5c <mt_clock_plan_72+0x5c>
+  30:	086b      	lsrs	r3, r5, #1
+  32:	fbb6 f4f3 	udiv	r4, r6, r3
+  36:	fb03 6614 	mls	r6, r3, r4, r6
+  3a:	b996      	cbnz	r6, 62 <mt_clock_plan_72+0x62>
+  3c:	1ea3      	subs	r3, r4, #2
+  3e:	2b0e      	cmp	r3, #14
+  40:	d80f      	bhi.n	62 <mt_clock_plan_72+0x62>
+  42:	2002      	movs	r0, #2
+  44:	e9c2 5000 	strd	r5, r0, [r2]
+  48:	049b      	lsls	r3, r3, #18
+  4a:	3801      	subs	r0, #1
+  4c:	ea43 4340 	orr.w	r3, r3, r0, lsl #17
+  50:	2000      	movs	r0, #0
+  52:	f443 33c2 	orr.w	r3, r3, #99328	@ 0x18400
+  56:	e9c2 3103 	strd	r3, r1, [r2, #12]
+  5a:	6094      	str	r4, [r2, #8]
+  5c:	bd70      	pop	{r4, r5, r6, pc}
+  5e:	2001      	movs	r0, #1
+  60:	e7f0      	b.n	44 <mt_clock_plan_72+0x44>
+  62:	2001      	movs	r0, #1
+  64:	e7fa      	b.n	5c <mt_clock_plan_72+0x5c>
+  66:	bf00      	nop
+  68:	00b71b00 	.word	0x00b71b00
+  6c:	044aa200 	.word	0x044aa200
+
+Disassembly of section .text.mt_clock_apply:
+
+00000000 <mt_clock_apply>:
+   0:	e92d 43f0 	stmdb	sp!, {r4, r5, r6, r7, r8, r9, lr}
+   4:	4604      	mov	r4, r0
+   6:	b089      	sub	sp, #36	@ 0x24
+   8:	460e      	mov	r6, r1
+   a:	4610      	mov	r0, r2
+   c:	4698      	mov	r8, r3
+   e:	9d10      	ldr	r5, [sp, #64]	@ 0x40
+  10:	b924      	cbnz	r4, 1c <mt_clock_apply+0x1c>
+  12:	2701      	movs	r7, #1
+  14:	4638      	mov	r0, r7
+  16:	b009      	add	sp, #36	@ 0x24
+  18:	e8bd 83f0 	ldmia.w	sp!, {r4, r5, r6, r7, r8, r9, pc}
+  1c:	2900      	cmp	r1, #0
+  1e:	d0f8      	beq.n	12 <mt_clock_apply+0x12>
+  20:	680b      	ldr	r3, [r1, #0]
+  22:	2b00      	cmp	r3, #0
+  24:	d0f5      	beq.n	12 <mt_clock_apply+0x12>
+  26:	684b      	ldr	r3, [r1, #4]
+  28:	2b00      	cmp	r3, #0
+  2a:	d0f2      	beq.n	12 <mt_clock_apply+0x12>
+  2c:	4b73      	ldr	r3, [pc, #460]	@ (1fc <mt_clock_apply+0x1fc>)
+  2e:	1e6a      	subs	r2, r5, #1
+  30:	429a      	cmp	r2, r3
+  32:	d8ee      	bhi.n	12 <mt_clock_apply+0x12>
+  34:	4641      	mov	r1, r8
+  36:	aa03      	add	r2, sp, #12
+  38:	f7ff fffe 	bl	0 <mt_clock_apply>
+			38: R_ARM_THM_CALL	mt_clock_plan_72
+  3c:	2800      	cmp	r0, #0
+  3e:	d1e8      	bne.n	12 <mt_clock_apply+0x12>
+  40:	6b63      	ldr	r3, [r4, #52]	@ 0x34
+  42:	2b00      	cmp	r3, #0
+  44:	f040 80d8 	bne.w	1f8 <mt_clock_apply+0x1f8>
+  48:	f8d4 c038 	ldr.w	ip, [r4, #56]	@ 0x38
+  4c:	f1bc 0f00 	cmp.w	ip, #0
+  50:	f040 80d2 	bne.w	1f8 <mt_clock_apply+0x1f8>
+  54:	e896 0007 	ldmia.w	r6, {r0, r1, r2}
+  58:	2301      	movs	r3, #1
+  5a:	f104 070c 	add.w	r7, r4, #12
+  5e:	ae03      	add	r6, sp, #12
+  60:	e884 0007 	stmia.w	r4, {r0, r1, r2}
+  64:	6363      	str	r3, [r4, #52]	@ 0x34
+  66:	ce0f      	ldmia	r6!, {r0, r1, r2, r3}
+  68:	c70f      	stmia	r7!, {r0, r1, r2, r3}
+  6a:	6833      	ldr	r3, [r6, #0]
+  6c:	4620      	mov	r0, r4
+  6e:	603b      	str	r3, [r7, #0]
+  70:	f8c4 c03c 	str.w	ip, [r4, #60]	@ 0x3c
+  74:	f8c4 c024 	str.w	ip, [r4, #36]	@ 0x24
+  78:	f7ff fffe 	bl	0 <mt_clock_apply>
+			78: R_ARM_THM_CALL	snapshot
+  7c:	f8df 9180 	ldr.w	r9, [pc, #384]	@ 200 <mt_clock_apply+0x200>
+  80:	6aa6      	ldr	r6, [r4, #40]	@ 0x28
+  82:	ea09 0606 	and.w	r6, r9, r6
+  86:	2e83      	cmp	r6, #131	@ 0x83
+  88:	d004      	beq.n	94 <mt_clock_apply+0x94>
+  8a:	2703      	movs	r7, #3
+  8c:	2300      	movs	r3, #0
+  8e:	6227      	str	r7, [r4, #32]
+  90:	6363      	str	r3, [r4, #52]	@ 0x34
+  92:	e7bf      	b.n	14 <mt_clock_apply+0x14>
+  94:	6ae7      	ldr	r7, [r4, #44]	@ 0x2c
+  96:	f027 4778 	bic.w	r7, r7, #4160749568	@ 0xf8000000
+  9a:	f427 0700 	bic.w	r7, r7, #8388608	@ 0x800000
+  9e:	2f00      	cmp	r7, #0
+  a0:	d1f3      	bne.n	8a <mt_clock_apply+0x8a>
+  a2:	6b23      	ldr	r3, [r4, #48]	@ 0x30
+  a4:	f003 033f 	and.w	r3, r3, #63	@ 0x3f
+  a8:	2b30      	cmp	r3, #48	@ 0x30
+  aa:	d1ee      	bne.n	8a <mt_clock_apply+0x8a>
+  ac:	4620      	mov	r0, r4
+  ae:	f7ff fffe 	bl	0 <mt_clock_apply>
+			ae: R_ARM_THM_CALL	domains_idle
+  b2:	2800      	cmp	r0, #0
+  b4:	d0e9      	beq.n	8a <mt_clock_apply+0x8a>
+  b6:	2301      	movs	r3, #1
+  b8:	221f      	movs	r2, #31
+  ba:	4620      	mov	r0, r4
+  bc:	4951      	ldr	r1, [pc, #324]	@ (204 <mt_clock_apply+0x204>)
+  be:	63a3      	str	r3, [r4, #56]	@ 0x38
+  c0:	2312      	movs	r3, #18
+  c2:	f7ff fffe 	bl	0 <mt_clock_apply>
+			c2: R_ARM_THM_CALL	update
+  c6:	2332      	movs	r3, #50	@ 0x32
+  c8:	223f      	movs	r2, #63	@ 0x3f
+  ca:	4620      	mov	r0, r4
+  cc:	494d      	ldr	r1, [pc, #308]	@ (204 <mt_clock_apply+0x204>)
+  ce:	9500      	str	r5, [sp, #0]
+  d0:	f7ff fffe 	bl	0 <mt_clock_apply>
+			d0: R_ARM_THM_CALL	wait_bits
+  d4:	b938      	cbnz	r0, e6 <mt_clock_apply+0xe6>
+  d6:	462a      	mov	r2, r5
+  d8:	2104      	movs	r1, #4
+  da:	4620      	mov	r0, r4
+  dc:	b009      	add	sp, #36	@ 0x24
+  de:	e8bd 43f0 	ldmia.w	sp!, {r4, r5, r6, r7, r8, r9, lr}
+  e2:	f7ff bffe 	b.w	0 <mt_clock_apply>
+			e2: R_ARM_THM_JUMP24	fail
+  e6:	f3bf 8f4f 	dsb	sy
+  ea:	f3bf 8f6f 	isb	sy
+  ee:	4b46      	ldr	r3, [pc, #280]	@ (208 <mt_clock_apply+0x208>)
+  f0:	f44f 2280 	mov.w	r2, #262144	@ 0x40000
+  f4:	f1b8 0f01 	cmp.w	r8, #1
+  f8:	bf08      	it	eq
+  fa:	461e      	moveq	r6, r3
+  fc:	4620      	mov	r0, r4
+  fe:	4943      	ldr	r1, [pc, #268]	@ (20c <mt_clock_apply+0x20c>)
+ 100:	f406 2380 	and.w	r3, r6, #262144	@ 0x40000
+ 104:	f7ff fffe 	bl	0 <mt_clock_apply>
+			104: R_ARM_THM_CALL	update
+ 108:	4620      	mov	r0, r4
+ 10a:	4940      	ldr	r1, [pc, #256]	@ (20c <mt_clock_apply+0x20c>)
+ 10c:	f7ff fffe 	bl	0 <mt_clock_apply>
+			10c: R_ARM_THM_CALL	rd
+ 110:	ea00 0009 	and.w	r0, r0, r9
+ 114:	42b0      	cmp	r0, r6
+ 116:	d002      	beq.n	11e <mt_clock_apply+0x11e>
+ 118:	462a      	mov	r2, r5
+ 11a:	2105      	movs	r1, #5
+ 11c:	e7dd      	b.n	da <mt_clock_apply+0xda>
+ 11e:	f44f 3380 	mov.w	r3, #65536	@ 0x10000
+ 122:	4620      	mov	r0, r4
+ 124:	461a      	mov	r2, r3
+ 126:	4939      	ldr	r1, [pc, #228]	@ (20c <mt_clock_apply+0x20c>)
+ 128:	f7ff fffe 	bl	0 <mt_clock_apply>
+			128: R_ARM_THM_CALL	update
+ 12c:	f44f 3300 	mov.w	r3, #131072	@ 0x20000
+ 130:	4620      	mov	r0, r4
+ 132:	461a      	mov	r2, r3
+ 134:	4935      	ldr	r1, [pc, #212]	@ (20c <mt_clock_apply+0x20c>)
+ 136:	9500      	str	r5, [sp, #0]
+ 138:	f7ff fffe 	bl	0 <mt_clock_apply>
+			138: R_ARM_THM_CALL	wait_bits
+ 13c:	b910      	cbnz	r0, 144 <mt_clock_apply+0x144>
+ 13e:	462a      	mov	r2, r5
+ 140:	2106      	movs	r1, #6
+ 142:	e7ca      	b.n	da <mt_clock_apply+0xda>
+ 144:	f446 3940 	orr.w	r9, r6, #196608	@ 0x30000
+ 148:	2200      	movs	r2, #0
+ 14a:	4649      	mov	r1, r9
+ 14c:	4620      	mov	r0, r4
+ 14e:	f7ff fffe 	bl	0 <mt_clock_apply>
+			14e: R_ARM_THM_CALL	matches
+ 152:	2800      	cmp	r0, #0
+ 154:	d0e0      	beq.n	118 <mt_clock_apply+0x118>
+ 156:	f8dd 8018 	ldr.w	r8, [sp, #24]
+ 15a:	4620      	mov	r0, r4
+ 15c:	4a2c      	ldr	r2, [pc, #176]	@ (210 <mt_clock_apply+0x210>)
+ 15e:	492d      	ldr	r1, [pc, #180]	@ (214 <mt_clock_apply+0x214>)
+ 160:	4643      	mov	r3, r8
+ 162:	f7ff fffe 	bl	0 <mt_clock_apply>
+			162: R_ARM_THM_CALL	update
+ 166:	4642      	mov	r2, r8
+ 168:	4649      	mov	r1, r9
+ 16a:	4620      	mov	r0, r4
+ 16c:	f7ff fffe 	bl	0 <mt_clock_apply>
+			16c: R_ARM_THM_CALL	matches
+ 170:	2800      	cmp	r0, #0
+ 172:	d0d1      	beq.n	118 <mt_clock_apply+0x118>
+ 174:	f04f 7380 	mov.w	r3, #16777216	@ 0x1000000
+ 178:	4620      	mov	r0, r4
+ 17a:	461a      	mov	r2, r3
+ 17c:	4923      	ldr	r1, [pc, #140]	@ (20c <mt_clock_apply+0x20c>)
+ 17e:	f7ff fffe 	bl	0 <mt_clock_apply>
+			17e: R_ARM_THM_CALL	update
+ 182:	f04f 7300 	mov.w	r3, #33554432	@ 0x2000000
+ 186:	4620      	mov	r0, r4
+ 188:	461a      	mov	r2, r3
+ 18a:	4920      	ldr	r1, [pc, #128]	@ (20c <mt_clock_apply+0x20c>)
+ 18c:	9500      	str	r5, [sp, #0]
+ 18e:	f7ff fffe 	bl	0 <mt_clock_apply>
+			18e: R_ARM_THM_CALL	wait_bits
+ 192:	b910      	cbnz	r0, 19a <mt_clock_apply+0x19a>
+ 194:	462a      	mov	r2, r5
+ 196:	2107      	movs	r1, #7
+ 198:	e79f      	b.n	da <mt_clock_apply+0xda>
+ 19a:	f046 7640 	orr.w	r6, r6, #50331648	@ 0x3000000
+ 19e:	f446 3640 	orr.w	r6, r6, #196608	@ 0x30000
+ 1a2:	4642      	mov	r2, r8
+ 1a4:	4631      	mov	r1, r6
+ 1a6:	4620      	mov	r0, r4
+ 1a8:	f7ff fffe 	bl	0 <mt_clock_apply>
+			1a8: R_ARM_THM_CALL	matches
+ 1ac:	2800      	cmp	r0, #0
+ 1ae:	d0b3      	beq.n	118 <mt_clock_apply+0x118>
+ 1b0:	2302      	movs	r3, #2
+ 1b2:	2203      	movs	r2, #3
+ 1b4:	4620      	mov	r0, r4
+ 1b6:	4917      	ldr	r1, [pc, #92]	@ (214 <mt_clock_apply+0x214>)
+ 1b8:	f7ff fffe 	bl	0 <mt_clock_apply>
+			1b8: R_ARM_THM_CALL	update
+ 1bc:	230a      	movs	r3, #10
+ 1be:	220f      	movs	r2, #15
+ 1c0:	4620      	mov	r0, r4
+ 1c2:	4914      	ldr	r1, [pc, #80]	@ (214 <mt_clock_apply+0x214>)
+ 1c4:	9500      	str	r5, [sp, #0]
+ 1c6:	f7ff fffe 	bl	0 <mt_clock_apply>
+			1c6: R_ARM_THM_CALL	wait_bits
+ 1ca:	b910      	cbnz	r0, 1d2 <mt_clock_apply+0x1d2>
+ 1cc:	462a      	mov	r2, r5
+ 1ce:	2108      	movs	r1, #8
+ 1d0:	e783      	b.n	da <mt_clock_apply+0xda>
+ 1d2:	f3bf 8f4f 	dsb	sy
+ 1d6:	f3bf 8f6f 	isb	sy
+ 1da:	4631      	mov	r1, r6
+ 1dc:	4620      	mov	r0, r4
+ 1de:	f048 020a 	orr.w	r2, r8, #10
+ 1e2:	f7ff fffe 	bl	0 <mt_clock_apply>
+			1e2: R_ARM_THM_CALL	matches
+ 1e6:	b910      	cbnz	r0, 1ee <mt_clock_apply+0x1ee>
+ 1e8:	462a      	mov	r2, r5
+ 1ea:	2109      	movs	r1, #9
+ 1ec:	e775      	b.n	da <mt_clock_apply+0xda>
+ 1ee:	2300      	movs	r3, #0
+ 1f0:	2201      	movs	r2, #1
+ 1f2:	6223      	str	r3, [r4, #32]
+ 1f4:	63e2      	str	r2, [r4, #60]	@ 0x3c
+ 1f6:	e74b      	b.n	90 <mt_clock_apply+0x90>
+ 1f8:	2702      	movs	r7, #2
+ 1fa:	e70b      	b.n	14 <mt_clock_apply+0x14>
+ 1fc:	000f423f 	.word	0x000f423f
+ 200:	030f00fb 	.word	0x030f00fb
+ 204:	40022000 	.word	0x40022000
+ 208:	00040083 	.word	0x00040083
+ 20c:	40021000 	.word	0x40021000
+ 210:	007ffff0 	.word	0x007ffff0
+ 214:	40021004 	.word	0x40021004

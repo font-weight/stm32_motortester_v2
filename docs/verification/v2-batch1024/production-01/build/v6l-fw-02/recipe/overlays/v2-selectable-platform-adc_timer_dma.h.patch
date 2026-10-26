@@ -1,0 +1,75 @@
+--- a/platform/adc_timer_dma.h
++++ b/platform/adc_timer_dma.h
+@@ -3,6 +3,7 @@
+ 
+ #include <stdbool.h>
+ #include <stdint.h>
++#include "../acquisition/mt_acquisition_profile.h"
+ 
+ #define MT_ADC_DMA_SAMPLES 1024u
+ #define MT_ADC_DMA_BLOCK_SAMPLES 512u
+@@ -15,7 +16,7 @@
+ /* Aligned 32-bit register access only (ES096 2.4.2). No startup, ISR or HAL.
+  * Callbacks must return promptly, must not reenter, and must not allocate.
+  * now_us is an always-running modulo-2^32 monotonic clock with <=1 us ticks.
+- * A full wrap between calls cannot be detected: service is required <5120 us.
++ * A full wrap between calls cannot be detected: service is required before the selected half deadline.
+  */
+ typedef struct {
+     uint32_t (*read32)(void *user, uint32_t address);
+@@ -69,12 +70,12 @@
+     uint32_t count;
+     uint32_t nominal_rate_hz;
+     /* Timer CEN write is bracketed by these clock reads. First timer update
+-     * follows one 10 us period; ADC aperture/latency is NOT measured here.
++     * follows one rational profile period; ADC aperture/latency is NOT measured here.
+      * Derive nominal sample time from index, not the foreground drain time.
+      */
+     uint32_t start_before_us;
+     uint32_t start_after_us;
+-    uint32_t first_trigger_offset_us;
++    uint32_t first_trigger_offset_num_us,first_trigger_offset_den;
+ } mt_adc_dma_block_t;
+ 
+ /* Statically allocate in DMA-accessible STM32 SRAM and keep alive through a
+@@ -86,6 +87,7 @@
+     volatile uint16_t dma_samples[MT_ADC_DMA_SAMPLES];
+     uint16_t snapshot[MT_ADC_DMA_BLOCK_SAMPLES];
+     mt_adc_dma_io_t io;
++    const mt_acquisition_profile *profile;
+     mt_adc_dma_clock_t clock;
+     uint32_t hse_hz;
+     uint32_t clock_cfgr;
+@@ -128,11 +130,14 @@
+ /* Read-only MMIO preflight for the application's canonical profile1.
+  * Requires initialized, stopped, unowned driver and inactive ADC/TIM/DMA.
+  * Updates cached clock metadata only; never starts peripherals or changes RCC.
+- * Returns1 only for timer72MHz/PSC71/ARR9 and ADC12MHz;0 otherwise.
++ * Compatibility mode2: timer72MHz/PSC71/ARR9 and ADC12MHz;0 otherwise.
+  */
+ int mt_adc_dma_profile1_ready(mt_adc_dma_t *driver);
++/* Select a fixed descriptor only while stopped/unowned. No peripheral writes.
++ * Failure does not enable hardware; cached preparation may have changed. */
++int mt_adc_dma_profile_ready(mt_adc_dma_t *driver,uint16_t mode);
+ /* Existing RCC must already provide 12 MHz ADC, legal APB clocks and an integer
+- * 1 MHz timer prescaler divisor (ARR=9 gives 100 kS/s). Does not alter RCC CFGR/CR, startup or oscillator choice.
++ * valid nominal72MHz timer plan. The selected PSC/ARR gives50/100/150 kS/s. Does not alter RCC CFGR/CR, startup or oscillator choice.
+  * Owns ADC1, PA0, TIM3, DMA1 channel 1; they must be exclusively reserved.
+  * A successful stop is required before restart after a fault.
+  */
+@@ -168,13 +173,13 @@
+  * It must validate clock and original actor/epoch before AND after that write,
+  * publishing both timestamps only on success. Failure may have enabled TIM3;
+  * this driver restores the mask and performs its existing verified quiesce.
+- * The <=10 us check bounds the CEN bracket, not full validation/IRQ-off time.
++ * The per-profile20/10/5 us check bounds the CEN bracket, not full validation/IRQ-off time.
+  * Full elapsed scheduling obligations and all readback checks remain active. */
+ typedef int (*mt_adc_dma_start_transaction_fn)(void *context,
+                                              uint32_t *before_us, uint32_t *after_us);
+ mt_adc_dma_result_t mt_adc_dma_start_transaction(mt_adc_dma_t *driver,
+     const mt_adc_dma_start_guard *guard, mt_adc_dma_start_transaction_fn transaction);
+-/* Call at intervals STRICTLY LESS THAN 5120 us while running. Copy and metadata
++/* Call at intervals STRICTLY LESS THAN the selected half deadline while running. Copy and metadata
+  * validation also finish inside that budget. Output unchanged unless BLOCK.
+  * A BLOCK view lasts only until the next read/start/stop, regardless of result.
+  * Caller must feed the acquisition core before next read; stop on frozen/error.

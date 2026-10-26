@@ -1,0 +1,33 @@
+--- a/protocol/mt_live_device.h
++++ b/protocol/mt_live_device.h
+@@ -27,14 +27,14 @@
+     unsigned produced_known;     /* Exactly 0 or 1. */
+     uint64_t produced_end;
+     uint16_t acquisition_reason; /* 0 none, or protocol reason 1..6. */
+-    unsigned tail_count;         /* 0..2 certified pending blocks. */
+-    mt_live_tail tail[2];
++    unsigned tail_count;         /* 0..8 certified pending DATA128 blocks. */
++    mt_live_tail tail[8];
+ } mt_live_snapshot;
+ 
+ typedef struct {
+     void *context;
+     uint64_t (*clock_ms)(void *context);
+-    /* Return exactly 1 only after enabling the fixed 50kS/s profile for this
++    /* Return exactly 1 only after enabling the fixed 200kS/s profile for this
+      * generation, with source indices beginning at zero. Return 0 on failure;
+      * a failed start MAY have partially enabled hardware, so cleanup follows.
+      * Do not call offer/receive/step reentrantly from this callback. */
+@@ -45,9 +45,9 @@
+      * produced_known=1 certifies the final exclusive uint64 source endpoint;
+      * it cannot be inferred from queue.next_index. Unknown means end=0.
+      * A failed hardware barrier forces an unknown final endpoint in the core.
+-     * tail_count=0..2, blocks are internally contiguous, codes0..4095, counts
+-     * 1..128 and only the last block may be short. Include a pending full DMA
+-     * half as well as a final partial if both exist. Before a queue gap, the
++     * tail_count=0..8, blocks are internally contiguous, codes0..4095, counts
++     * 1..128 and only the last block may be short. Include every DATA128 chunk of a pending full DMA512
++     * half as well as the final partial half, without fabricating a produced end. Before a queue gap, the
+      * first tail starts at the next offered index. After a queue fault, later
+      * certified tail is discarded; it must never bridge the lost block.
+      * A known produced end must cover the prior accepted prefix and all tail.

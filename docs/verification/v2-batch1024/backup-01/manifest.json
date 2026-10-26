@@ -1,0 +1,60 @@
+{
+  "schema": "v2-06l-readonly-SD-backup-1",
+  "scope": "Fresh SD backup only; no Reset/Flash/START",
+  "files": [
+    {
+      "source": "build/v6l-board-01/backup_current_sd.py",
+      "archive": "docs/verification/v2-batch1024/backup-01/backup_current_sd.py",
+      "bytes": 2502,
+      "sha256": "6d1bbee2778abdb81e78a722eb5422a9d9ab69d964701aa62ae8cfcd5ff65f45"
+    },
+    {
+      "source": "build/v6l-board-01/before-flash-64k.bin",
+      "archive": "docs/verification/v2-batch1024/backup-01/before-flash-64k.bin",
+      "bytes": 65536,
+      "sha256": "944b29b6ab730eda7a0f3418146d5590edb1e7717c99a12fa74a0fd8bf6ba19e"
+    },
+    {
+      "source": "build/v6l-board-01/backup.stdout.bin",
+      "archive": "docs/verification/v2-batch1024/backup-01/backup.stdout.bin",
+      "bytes": 671,
+      "sha256": "8db8e713bd6dd06f035d1644974566cb484a15e67be8343211a636b8aba3aba1"
+    },
+    {
+      "source": "build/v6l-board-01/backup.log",
+      "archive": "docs/verification/v2-batch1024/backup-01/backup.log",
+      "bytes": 893,
+      "sha256": "55b4f81f7a74b53fb68d343f275dcf683b7e96e9bce1cd823085c77485d2bf03"
+    },
+    {
+      "source": "build/v6l-board-01/backup-invocation.json",
+      "archive": "docs/verification/v2-batch1024/backup-01/backup-invocation.json",
+      "bytes": 386,
+      "sha256": "50d991446adc157153933c3c0c0be1d159dca602f88065db4ad53007fee6f4a9"
+    },
+    {
+      "source": "build/v6l-board-01/backup-verified.json",
+      "archive": "docs/verification/v2-batch1024/backup-01/backup-verified.json",
+      "bytes": 597,
+      "sha256": "17aeda722d4e1babe45b027a7bd2d62047838e0c2a65e212e6a496f4e8bd91ba"
+    },
+    {
+      "source": "build/v6l-board-01/ports-before.json",
+      "archive": "docs/verification/v2-batch1024/backup-01/ports-before.json",
+      "bytes": 135,
+      "sha256": "c8614e25240676a110cd0c9f9761ba2d2fc559f249875431289a7b08eedef67d"
+    },
+    {
+      "source": "build/v6l-board-01/processes-before.json",
+      "archive": "docs/verification/v2-batch1024/backup-01/processes-before.json",
+      "bytes": 4,
+      "sha256": "a5338d955b09046ec0b16f3a9625b7955c763aae07dc722e474e6078745f932f"
+    },
+    {
+      "source": "build/v6l-board-01/probe-list.txt",
+      "archive": "docs/verification/v2-batch1024/backup-01/probe-list.txt",
+      "bytes": 239,
+      "sha256": "b58c8ddae6534dd35b9a1498631f1ee20ba54017c8f3ccfa2b156244c92e72a3"
+    }
+  ]
+}

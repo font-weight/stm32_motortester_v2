@@ -1,0 +1,11 @@
+--- a/acquisition/mt_sample_queue.c
++++ b/acquisition/mt_sample_queue.c
+@@ -2,7 +2,7 @@
+ #include <string.h>
+ 
+ _Static_assert(MT_SAMPLE_QUEUE_SLOTS * MT_SAMPLE_QUEUE_BLOCK * sizeof(uint16_t)
+-               == 4096u, "raw sample storage budget");
++               == 2048u, "raw sample storage budget");
+ 
+ static mt_sample_queue_result fail(mt_sample_queue *q,
+                                    mt_sample_queue_result reason) {

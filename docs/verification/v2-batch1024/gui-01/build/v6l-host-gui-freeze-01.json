@@ -1,0 +1,238 @@
+{
+  "schema": "v2-06l-source-gui-freeze-1",
+  "status": "SOURCE_GUI_PASS_AWAITING_INDEPENDENT_REVIEW",
+  "base_commit": "07862595ce96d19d8a95361f7db3f7ea3da336af",
+  "scope": "one Windows source Qt injected mode5/1024 Record-Stop-Open-CSV flow; no real COM/firmware/package",
+  "source_files": {
+    "host/motortester/stream_wire.py": {
+      "bytes": 16443,
+      "sha256": "87eb5567553190a1063e787e788bd7652cb9e872a4d3126902626f530784984f"
+    },
+    "host/motortester/stream_endpoint.py": {
+      "bytes": 35624,
+      "sha256": "61093588cc11bed15708bb06c63ca6ee0f57d0c81fdced18513c55ceebd6db42"
+    },
+    "host/motortester/stream_model.py": {
+      "bytes": 12154,
+      "sha256": "e5a261abe9ef7d294428f50614373685a7b6e6363c1146f90e6353afbafee03c"
+    },
+    "host/motortester/v2/stream_device.py": {
+      "bytes": 28753,
+      "sha256": "ce4b68a07ee241da9c7add6ed98e59ba3dcf6d1008fa1870c2871cac4e961ee7"
+    },
+    "host/tests/test_stream_modes.py": {
+      "bytes": 24242,
+      "sha256": "87c7e839a356908ce658edffb4c88ea2db01c212355b719488c20ce6f4a53394"
+    },
+    "host/motortester/stream_provenance.py": {
+      "bytes": 18997,
+      "sha256": "77a2752e767d1ee6b78d0bd2e3cf4373f629fea76b283337bac1bdeb5d28c954"
+    },
+    "host/motortester/stream_bridge.py": {
+      "bytes": 36021,
+      "sha256": "dea1d555e0653ad8a1ada1c24677b8ec67c76e02f6c475b752581ed939e56a39"
+    },
+    "host/motortester/stream_recording.py": {
+      "bytes": 35932,
+      "sha256": "107b2d59b71dcbb99599e1199c4a0f17c978cae517f2c198ac68d742f8265589"
+    },
+    "host/motortester/stream_serial.py": {
+      "bytes": 6048,
+      "sha256": "cd35af141eaecb2c6bba7bb03814863b91b55500723289f3cafe91416d720493"
+    },
+    "host/tools/verify_stream_trial.py": {
+      "bytes": 16124,
+      "sha256": "b32552a3283fb6043cfcc0b207f66bfaedb2a8978b4f0edb69a51c30295caf67"
+    },
+    "host/motortester/v2/stream_profiles_smoke.py": {
+      "bytes": 25142,
+      "sha256": "d510258d1e41f4377896bde3c8b14e068e0754b66a2e40b4aae145902da4420a"
+    },
+    "host/docs/stream-modes.md": {
+      "bytes": 7990,
+      "sha256": "871db4847ffda581b397525365ea32a4441260551326056fbad6eb0f97c86cc4"
+    },
+    "host/README.md": {
+      "bytes": 41913,
+      "sha256": "181ce8306e0311911e6e7aa6753bd13957502b159f1d1651e04551372c9f5a01"
+    }
+  },
+  "evidence": {
+    "build/v6l-host-unit-01/tests.log": {
+      "bytes": 733,
+      "sha256": "2587dcea241bf61e160a32792429ffd57816c96b98655a8b43b66e2c620ed557"
+    },
+    "build/v6l-host-unit-01/exit-code.txt": {
+      "bytes": 3,
+      "sha256": "13bf7b3039c63bf5a50491fa3cfd8eb4e699d1ba1436315aef9cbe5711530354"
+    },
+    "build/v6l-analysis/host1024-proposal.md": {
+      "bytes": 22913,
+      "sha256": "7291e954421dc9444e61f97b2414865c097f1054a4d8de9e7d2ba11d32ab9d8b"
+    },
+    "build/v6l-host-draft-01.json": {
+      "bytes": 3726,
+      "sha256": "aa794fbd7aa0db0ffcf4050551f546b49f75c6bd24ab74404f1a65b8eef0d52a"
+    },
+    "build/v6l-host-gui-01/result.json": {
+      "bytes": 6024,
+      "sha256": "4db16bd6f5ce056dbdcf3973c8c818da9d1a95d1e01626b88745bd1c1f9d7e12"
+    },
+    "build/v6l-host-unit-01/c1153-producer-journal-crosscheck.json": {
+      "bytes": 9209,
+      "sha256": "b35f41d6dcf932f6e8d7e203a1683f2c75975769224ac945f42fdb83e89d6f7c"
+    },
+    "build/v6l-host-gui-manifest.py": {
+      "bytes": 3758,
+      "sha256": "986c8141723008a6c494b9a31fac166b993e469ae7b7facc479724d56ced67c9"
+    },
+    "build/v6l-host-gui-01/intrinsic-only.mtstream": {
+      "bytes": 743977,
+      "sha256": "0d5f985abffb1012c481dd0f95a8dbdd7dc16e08e3e501ab15e503be713ff352"
+    },
+    "build/v6l-host-gui-01/packed150.csv": {
+      "bytes": 10396798,
+      "sha256": "cfa23f935761ed0fa1e14b9d5386b073fdfecad82859e5e1141cfb2388382fb6"
+    },
+    "build/v6l-host-gui-01/packed150.csv.json": {
+      "bytes": 2977,
+      "sha256": "34a34dcb10b010e7e7ac193169739569353935e8556155418e987a042a531b23"
+    },
+    "build/v6l-host-gui-01/packed150.mtstream": {
+      "bytes": 743977,
+      "sha256": "0d5f985abffb1012c481dd0f95a8dbdd7dc16e08e3e501ab15e503be713ff352"
+    },
+    "build/v6l-host-gui-01/packed150.mtstream.v2.json": {
+      "bytes": 2336,
+      "sha256": "2d586f3b59f3f80cb869b7c63bd2534f10c7b273ddb5c6cc1aacc781031fc36d"
+    },
+    "build/v6l-host-gui-01/profiles-legacy-mismatch.png": {
+      "bytes": 42505,
+      "sha256": "1acbcac541d46ed5cdb3a666d47bb132952bca2d6db135c2b20243f280d6efd8"
+    },
+    "build/v6l-host-gui-01/profiles-live.png": {
+      "bytes": 68097,
+      "sha256": "148a0f47ec2c2004f5f0508f102b816c7774b6578613b6ff6f55b35c5a556c7b"
+    },
+    "build/v6l-host-gui-01/profiles-open.png": {
+      "bytes": 66225,
+      "sha256": "1937f61a0d614fea933ad69f496d1bf13fb56528f4c83c73ca97cf5808d8717c"
+    },
+    "build/v6l-host-gui-01/profiles-sc150-mismatch.png": {
+      "bytes": 44054,
+      "sha256": "cf54e89d86c2631565da8fdc061e637f133bc0efc020239e261362343373274f"
+    },
+    "build/v6l-host-gui-01/profiles-sd150-mismatch.png": {
+      "bytes": 44235,
+      "sha256": "8c9f9f3f541be0d3c543aee9c07892dd564678e5fad32752f4ce7255307fe56a"
+    }
+  },
+  "previous_host_production_and_unit_evidence_unchanged": true,
+  "command": ".venv/Scripts/python.exe -I -B -c \"import sys;sys.path.insert(0,'host');from motortester.v2.stream_profiles_smoke import run;sys.exit(run('build/v6l-host-gui-01'))\"",
+  "exit_code": 0,
+  "attempts": 1,
+  "checks": {
+    "selector_modes": true,
+    "batch_mode5_negotiated": true,
+    "selection_locked": true,
+    "batch1024_wire_evidence": true,
+    "packed_record_roundtrip": true,
+    "intrinsic_quantization": true,
+    "csv_timebase": true,
+    "legacy_mismatch_before_start": true,
+    "sc_sd150_batch_required_before_start": true
+  },
+  "batch": {
+    "acquisition_mode": 5,
+    "config_id": 5,
+    "negotiated_max_block": 1024,
+    "discovery_capabilities": 15,
+    "discovery_max_block": 1024,
+    "discovery_max_payload": 1300,
+    "selected_ack_max_block": 1024,
+    "selected_ack_max_payload": 1300,
+    "full_DATA1024_frames": 401,
+    "first_full_data_count": 1024,
+    "short_tail_frames": 1,
+    "terminal_short_samples": 398,
+    "largest_frame_bytes": 1330,
+    "data_count_sequence_validation": true,
+    "canonical_crc_validated": true
+  },
+  "roundtrip": {
+    "samples": 370062,
+    "raw_sha256": "a4679ac90287751d4279b1573a99f323a8c23950f7b52d88a9c454a627ae783f",
+    "identity": {
+      "session_id": "wire-0.3:a2e164928ce74d46",
+      "generation": 3,
+      "config_id": 5,
+      "nominal_fs_hz": 150000,
+      "origin": "synthetic",
+      "protocol_revision": "0.3-batch1024-20261025",
+      "firmware_version": "build:f0102401",
+      "application_version": "v2-serial-unknown-accounting:injected-test",
+      "acquisition_mode": 5,
+      "source_adc_bits": 12,
+      "retained_bits": 10,
+      "discarded_lsb": 2,
+      "wire_sample_encoding": "u10packed_le",
+      "normalization": "left_shift_2",
+      "quantization": "truncate_lsb",
+      "stored_sample_encoding": "u16le",
+      "stored_code_domain": "adc12"
+    },
+    "connection": {
+      "selection": {
+        "port": "V2_PROFILES_SYNTHETIC",
+        "declared_source_commit": null,
+        "declared_artifact_sha256": null,
+        "requested_sample_rate_hz": 150000
+      },
+      "execution_kind": "injected-test",
+      "observed_build_id": 4027589633,
+      "observed_caps": [
+        5,
+        5,
+        0,
+        12,
+        150000,
+        1,
+        1024,
+        1,
+        10,
+        2
+      ],
+      "dtr_requested": true,
+      "accounting_domain": "unknown",
+      "image_verified": false,
+      "protocol_revision": "0.3"
+    },
+    "csv_dt_seconds": 6.666666666666667e-06,
+    "journal_sha256": "0d5f985abffb1012c481dd0f95a8dbdd7dc16e08e3e501ab15e503be713ff352"
+  },
+  "limits": {
+    "peak_raw_items": 11,
+    "peak_raw_bytes": 21276,
+    "max_service_gap_ms": 26,
+    "peak_synthetic_backlog_samples": 5568,
+    "synthetic_backlog_limit": 32768
+  },
+  "png_review": {
+    "reviewer": "host_200k author; not independent acceptance",
+    "files": [
+      "profiles-legacy-mismatch.png",
+      "profiles-live.png",
+      "profiles-open.png",
+      "profiles-sc150-mismatch.png",
+      "profiles-sd150-mismatch.png"
+    ],
+    "result": "5 PNG inspected; nominal150k/10retained/1024 indication, graph, Open and SC/SD/legacy mismatch text visible without clipping"
+  },
+  "limitations": [
+    "Injected byte fixture build0xF0102401 is not firmware V2SE; image_verified=false.",
+    "Host scheduling observation is not ADC/USB throughput or physical stability.",
+    "Only UI helper and host documentation changed since accepted prototype logic; previous4unitgroups/C crosscheck were not rerun.",
+    "Unknown produced tail remains unknown; no declaration of loss-free physical data.",
+    "Frozen Windows package, production firmware integration and hardware trial are separate gates."
+  ]
+}

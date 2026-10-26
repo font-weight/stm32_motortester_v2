@@ -1,0 +1,48 @@
+--- a/platform/adc_timer_dma.c
++++ b/platform/adc_timer_dma.c
+@@ -154,7 +154,7 @@
+         p.timer_hz < UINT32_C(1000000) ||
+         p.timer_hz / UINT32_C(1000000) > 65536u) { return false; }
+     p.timer_psc = p.timer_hz / UINT32_C(1000000) - 1u;
+-    p.timer_arr = 19u;
++    p.timer_arr = 4u;
+     if (initial) {
+         d->clock = p;
+         d->clock_cfgr = cfgr & CLOCK_MASK;
+@@ -244,12 +244,12 @@
+         invalidate_history(d, MT_ADC_DMA_FAULT_TRANSFER);
+         return hardware_off(d);
+     }
+-    if (!d->next_half && ((f == 0u && n > 128u) || (f == DMA_HT && n <= 128u))) {
+-        k = 256u - n;
+-    } else if (d->next_half && f == 0u && n <= 128u) {
+-        k = 128u - n;
+-    } else if (d->next_half && f == DMA_TC && n > 128u) {
+-        k = 384u - n;
++    if (!d->next_half && ((f == 0u && n > MT_ADC_DMA_BLOCK_SAMPLES) || (f == DMA_HT && n <= MT_ADC_DMA_BLOCK_SAMPLES))) {
++        k = MT_ADC_DMA_SAMPLES - n;
++    } else if (d->next_half && f == 0u && n <= MT_ADC_DMA_BLOCK_SAMPLES) {
++        k = MT_ADC_DMA_BLOCK_SAMPLES - n;
++    } else if (d->next_half && f == DMA_TC && n > MT_ADC_DMA_BLOCK_SAMPLES) {
++        k = MT_ADC_DMA_SAMPLES + MT_ADC_DMA_BLOCK_SAMPLES - n;
+     } else {
+         invalidate_history(d, MT_ADC_DMA_FAULT_DEADLINE);
+         return hardware_off(d);
+@@ -361,7 +361,7 @@
+         return 0;
+     if (!clock_plan(d, true)) return 0;
+     return d->clock.timer_hz == 72000000u && d->clock.timer_psc == 71u &&
+-        d->clock.timer_arr == 19u && d->clock.adc_hz == 12000000u &&
++        d->clock.timer_arr == 4u && d->clock.adc_hz == 12000000u &&
+         (rd(d, DMA_CCR) & DMA_EN) == 0u && (rd(d, TIM_CR1) & 1u) == 0u &&
+         (rd(d, ADC_CR2) & ADC_ADON) == 0u;
+ }
+@@ -404,7 +404,7 @@
+     wr(d, GPIOA_CRL, rd(d, GPIOA_CRL) & ~UINT32_C(15));
+     wr(d, ADC_CR1, 0u); /* Independent, one regular channel, no injected group. */
+     wr(d, ADC_SMPR1, 0u);
+-    wr(d, ADC_SMPR2, 6u); /* SMP0=110: 71.5 ADC cycles. */
++    wr(d, ADC_SMPR2, 4u); /* SMP0=100: 41.5 + 12.5 cycles / 12 MHz = 4.5 us. */
+     wr(d, ADC_SQR1, 0u);
+     wr(d, ADC_SQR2, 0u);
+     wr(d, ADC_SQR3, 0u); /* Length=1, channel=0, right aligned. */

@@ -55,6 +55,10 @@ docs/verification/v2-batch1024/**/*.txt -whitespace
 docs/verification/v2-batch1024/**/*.log -whitespace
 docs/verification/v2-batch1024/**/*.stdout -whitespace
 docs/verification/v2-batch1024/**/*.stderr -whitespace
+docs/verification/v2-batch1024/**/*.map -whitespace
+docs/verification/v2-batch1024/**/*.patch -whitespace
+docs/verification/v2-batch1024/**/*.o binary
+docs/verification/v2-batch1024/**/*.elf binary
 docs/reviews/v2-06l*.md -text
 docs/streaming-batch1024.md -text whitespace=cr-at-eol
 firmware/v2-stream/batch1024/** -text

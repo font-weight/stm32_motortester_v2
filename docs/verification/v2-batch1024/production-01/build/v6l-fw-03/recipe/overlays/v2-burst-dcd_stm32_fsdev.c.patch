@@ -1,0 +1,110 @@
+--- a/dcd_stm32_fsdev.c
++++ b/dcd_stm32_fsdev.c
+@@ -139,6 +139,26 @@
+ #endif
+ static volatile bool mt_ctr_deferred;
+ static volatile bool mt_irq_held;
++/* One foreground grant can continue at most one published CDC IN transfer.
++ * This is not an arbitrary USB task/event burst and never invokes app I/O. */
++static unsigned mt_tx_burst_left;
++static uint16_t mt_tx_burst_counter;
++static uint32_t mt_tx_timer_read(uint32_t address) {
++  return *(volatile uint32_t *)(uintptr_t)address;
++}
++static bool mt_tx_timer_ready(void) {
++  return (mt_tx_timer_read(0x4002101cu)&1u) &&
++      !(mt_tx_timer_read(0x40021010u)&1u) &&
++      mt_tx_timer_read(0x40000000u)==1u &&
++      mt_tx_timer_read(0x40000028u)==71u &&
++      mt_tx_timer_read(0x4000002cu)==65535u;
++}
++static bool mt_tx_burst_time_ok(void) {
++  /* TIM2 is fully validated by the foreground owner before grant. These
++   * checks only bound continuation; no wraps, debugger halt or WCET inferred. */
++  return mt_tx_timer_ready() &&
++      (uint16_t)((uint16_t)mt_tx_timer_read(0x40000024u)-mt_tx_burst_counter)<500u;
++}
+ 
+ bool mt_usb_fsdev_ctr_deferred(void) { return mt_ctr_deferred; }
+ bool mt_usb_fsdev_irq_held(void) { return mt_irq_held; }
+@@ -164,6 +184,8 @@
+   if (FSDEV_REG->CNTR & (U_CNTR_FRES | U_CNTR_PDWN)) return false;
+   bool ctr = allow_ctr && !mt_usb_fsdev_lifecycle_pending() &&
+       !(FSDEV_REG->CNTR & U_CNTR_FSUSP) && (FSDEV_REG->DADDR & U_DADDR_EF);
++  mt_tx_burst_left=ctr && mt_tx_timer_ready() ? 6u : 0u;
++  mt_tx_burst_counter=(uint16_t)mt_tx_timer_read(0x40000024u);
+   mt_ctr_deferred = !ctr;
+   if (ctr) FSDEV_REG->CNTR |= U_CNTR_CTRM;
+   else FSDEV_REG->CNTR &= (fsdev_bus_t)~U_CNTR_CTRM;
+@@ -459,7 +481,7 @@
+ void dcd_int_handler(uint8_t rhport) {
+ #if CFG_MT_USB_CTR_FAIRNESS
+   /* Every entry consumes the foreground grant, including RESET-only entries.
+-   * Pending endpoint flags survive; no second IRQ may tail-chain this quantum. */
++   * Pending endpoint flags survive; only bounded CDC IN continuation may rearm. */
+   mt_usb_fsdev_irq_hold();
+ #endif
+   uint32_t int_status = FSDEV_REG->ISTR;
+@@ -532,9 +554,11 @@
+ #if CFG_MT_USB_CTR_FAIRNESS
+   unsigned mt_ctr_budget = 1u;
+   bool mt_ctr_serviced = false;
++  bool mt_continue_tx = false;
+   while (!mt_ctr_deferred && mt_ctr_budget && (FSDEV_REG->ISTR & U_ISTR_CTR)) {
+     --mt_ctr_budget;
+     mt_ctr_serviced = true;
++    if(mt_tx_burst_left) --mt_tx_burst_left;
+ #else
+   while (FSDEV_REG->ISTR & U_ISTR_CTR) {
+ #endif
+@@ -556,8 +580,29 @@
+     }
+ 
+     if (ep_reg & U_EP_CTR_TX) {
++#if CFG_MT_USB_CTR_FAIRNESS
++      const uint8_t ep_num=(uint8_t)(ep_reg & U_EPADDR_FIELD);
++      xfer_ctl_t *mt_xfer=xfer_ctl_ptr(ep_num,TUSB_DIR_IN);
++      const uint16_t mt_queued=mt_xfer->queued_len;
++      const uint16_t mt_total=mt_xfer->total_len;
++      uint8_t *const mt_buffer=mt_xfer->buffer;
++      const void *const mt_fifo=mt_xfer->ff;
++      const bool mt_candidate=ep_num==2u && !(ep_reg&U_EP_CTR_RX) &&
++          !(ep_reg&U_EP_SETUP) && (ep_reg&U_EP_T_FIELD)==U_EP_BULK &&
++          ((mt_buffer && !mt_fifo) || (!mt_buffer && mt_fifo)) &&
++          mt_xfer->max_packet_size==64u &&
++          mt_total<=384u && mt_queued && mt_queued<mt_total && !(mt_queued&63u);
++#endif
+       ep_write_clear_ctr(ep_id, TUSB_DIR_IN);
+       handle_ctr_tx(ep_id);
++#if CFG_MT_USB_CTR_FAIRNESS
++      const uint32_t mt_remaining=(uint16_t)(mt_total-mt_queued);
++      const uint16_t mt_next=(uint16_t)((uint32_t)mt_queued+
++          (mt_remaining<64u ? mt_remaining : 64u));
++      mt_continue_tx=mt_candidate && mt_xfer->buffer==mt_buffer &&
++          mt_xfer->ff==mt_fifo && mt_xfer->total_len==mt_total &&
++          mt_xfer->queued_len==mt_next;
++#endif
+     }
+   }
+ 
+@@ -565,6 +610,20 @@
+   if (mt_ctr_serviced) {
+     mt_ctr_deferred = true;
+     FSDEV_REG->CNTR &= (fsdev_bus_t)~U_CNTR_CTRM;
++    /* Only an intermediate data-IN packet may spend the remaining grant.
++     * Final/RX/SETUP/control/lifecycle/error paths stay held for foreground.
++     * Check hardware lifecycle again: it may arrive during PMA publication. */
++    if(mt_continue_tx && mt_tx_burst_left &&
++        !(int_status&(U_ISTR_RESET|U_ISTR_PMAOVR|U_ISTR_SUSP|U_ISTR_WKUP|U_ISTR_ERR)) &&
++        !(FSDEV_REG->ISTR&(U_ISTR_DIR|U_ISTR_ERR)) &&
++        !mt_usb_fsdev_lifecycle_pending() && mt_tx_burst_time_ok() &&
++        !(FSDEV_REG->CNTR&(U_CNTR_FRES|U_CNTR_PDWN|U_CNTR_FSUSP)) &&
++        (FSDEV_REG->DADDR&U_DADDR_EF)) {
++      mt_ctr_deferred=false;
++      FSDEV_REG->CNTR|=U_CNTR_CTRM;
++      mt_irq_held=false;
++      fsdev_int_enable(0);
++    }
+   }
+ #endif
+ 

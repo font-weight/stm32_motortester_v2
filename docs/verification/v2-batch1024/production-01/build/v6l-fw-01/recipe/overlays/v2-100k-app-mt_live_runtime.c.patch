@@ -1,0 +1,16 @@
+--- a/app/mt_live_runtime.c
++++ b/app/mt_live_runtime.c
+@@ -103,6 +103,13 @@
+        (!bytes && length) || length>384u)return SIZE_MAX;
+     if(!length || !mt_usb_bridge_app_enter(&scope))return 0;
+     if(!usable(r)) { mt_usb_bridge_leave(&scope); return 0; }
++    /* The sole foreground writer already holds the core's IRQ/epoch guard.
++     * Do not publish a partial next frame: a CDC completion could otherwise
++     * arm that fragment before its remainder is admitted. Insufficient room
++     * means known zero acceptance and leaves FIFO/core prefix unchanged. */
++    if(tud_cdc_n_write_available(0)<length) {
++        mt_usb_bridge_leave(&scope); return 0;
++    }
+     r->writer_active=1;
+     accepted=tud_cdc_n_write(0,bytes,(uint32_t)length);
+     r->writer_active=0;

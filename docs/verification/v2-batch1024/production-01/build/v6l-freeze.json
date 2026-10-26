@@ -1,0 +1,271 @@
+{
+  "schema": "motortester-v2-batch1024-production-freeze-1",
+  "status": "FROZEN_SOFTWARE_CANDIDATE_PENDING_INDEPENDENT_REVIEW",
+  "iteration": "V2-06l1",
+  "build_id": "0x56325345",
+  "base_SD_source": "cb4757940b3ee9968f953becfbc3ca8caea102d7",
+  "contract": {
+    "path": "docs/streaming-batch1024.md",
+    "bytes": 10706,
+    "sha256": "e721282bce688549c204715b55311c7ac2167c37900194865a25128f3446ac15"
+  },
+  "integration_r2": {
+    "path": "build/v6l-analysis/integration-plan-r2.md",
+    "bytes": 22538,
+    "sha256": "f77b39f2c639ad28e3b58a3bf7eb51fe94212cd35557d67fe7359b14f6f13d65"
+  },
+  "frozen_prototype": {
+    "path": "build/v6l-prototype-freeze.json",
+    "bytes": 6053,
+    "sha256": "3b4e3493ffd548d23c00888018e8354e4f65b25547fd9672c67dc561c14fcf0b"
+  },
+  "production_and_model_inputs": [
+    {
+      "path": "firmware/v2-stream/README.md",
+      "bytes": 52451,
+      "sha256": "bd1f1f78c9511baebf2eddc881e3a76feb120aa389d4220d9220ac2800c90de7"
+    },
+    {
+      "path": "firmware/v2-stream/build_windows.py",
+      "bytes": 27083,
+      "sha256": "37f60670b71f24bbfeb7ce94d6f60dd0125fe225ec1ac2bb47dd8b1cda493950"
+    },
+    {
+      "path": "firmware/v2-stream/config.json",
+      "bytes": 1035,
+      "sha256": "f0f3a61f8001ef0722da5f333b22fc18b7d20871cf6cfb970c109cbd4ed869ba"
+    },
+    {
+      "path": "firmware/v2-stream/overlays/board_inputs.py",
+      "bytes": 4180,
+      "sha256": "ed28b78b00caf7f07e8d31877bc86750110f4479a4622ef343216fd5ad5a718c"
+    },
+    {
+      "path": "firmware/v2-stream/selectable/mt_acquisition_profile.c",
+      "bytes": 1428,
+      "sha256": "df8ccaf78a1979db7a259be6fabc2c75e38cdba410c508b2cd1bebe65091a368"
+    },
+    {
+      "path": "firmware/v2-stream/selectable/mt_acquisition_profile.h",
+      "bytes": 1181,
+      "sha256": "0241c4f990852d8dbe466070599c109bba20a566f32a182b06be5ca5907e9eb1"
+    },
+    {
+      "path": "firmware/v2-stream/overlays/batch1024.json",
+      "bytes": 1900,
+      "sha256": "4395f180ef7dd00761e4447d5cbffa7ad5a86d34017a217b6792006c530d94b4"
+    },
+    {
+      "path": "firmware/v2-stream/overlays/v2-batch1024-protocol-mt_live_device.c.patch",
+      "bytes": 11847,
+      "sha256": "84511229e512ff6ad4d853e77f01ddc800c261e2c5f88a79280d4b8957ef2af1"
+    },
+    {
+      "path": "firmware/v2-stream/overlays/v2-batch1024-protocol-mt_live_device.h.patch",
+      "bytes": 1925,
+      "sha256": "148dba709d037b689c0d4766ab6de94e6082f256e569f10cacd7057cb27e0388"
+    },
+    {
+      "path": "firmware/v2-stream/overlays/v2-batch1024-acquisition-mt_sample_queue.c.patch",
+      "bytes": 2103,
+      "sha256": "c5315f9a95d574fa63da4723994fee22f24a8964c103058b504cd4fc429c5463"
+    },
+    {
+      "path": "firmware/v2-stream/overlays/v2-batch1024-acquisition-mt_sample_queue.h.patch",
+      "bytes": 1025,
+      "sha256": "7fcfb74eeb6a11490b79dcc2b7293f47f677f94d8f7f81836610b8bf908a82d1"
+    },
+    {
+      "path": "firmware/v2-stream/batch1024/mt_batch1024.c",
+      "bytes": 5879,
+      "sha256": "3e13f073e933ba08c7112ad943a4d14bb0520fef1e2349b569f1e656af87440e"
+    },
+    {
+      "path": "firmware/v2-stream/batch1024/mt_batch1024.h",
+      "bytes": 4452,
+      "sha256": "330b317fb893ae0385e7a6cc8b1ace1e81c4c9e0e14984a4f8c0b20b1484aeb0"
+    },
+    {
+      "path": "firmware/v2-stream/batch1024/production/mt_batch1024.h",
+      "bytes": 4458,
+      "sha256": "c08e0d8078f6ed0c30dda3c0505b75899823151963fb5922ac59551f0764e7f2"
+    },
+    {
+      "path": "tests/v2-stream-firmware/batch1024_core_model.c",
+      "bytes": 16220,
+      "sha256": "d157ccc37a708720b5e405ac44ee99e61abde87ca1054668abcccf15b6fac099"
+    },
+    {
+      "path": "tests/v2-stream-firmware/batch1024_core_check.py",
+      "bytes": 10228,
+      "sha256": "ab7fa2a7ae0d7f67d199edc6943d8baf48efe9c9d0c365724e98010a4019fc5f"
+    }
+  ],
+  "recipe_receipt": {
+    "path": "build/v6l-fw-04/receipt.json",
+    "bytes": 409700,
+    "sha256": "28580a042ca0cba80f5d4b7bddc6e58eb0a425820863abf2ce0c8611f6030785"
+  },
+  "exact_inputs_field": "receipt.inputs_before; all inputs/dependencies pinned and drift empty",
+  "artifacts": [
+    {
+      "path": "build/v6l-fw-04/MotortesterV2-stream-candidate.bin",
+      "bytes": 42444,
+      "sha256": "c1d2c5909341b010d0869f6f7a818d8dd46525bd18d6075e0dda780a9e23b9df"
+    },
+    {
+      "path": "build/v6l-fw-04/MotortesterV2-stream-candidate.elf",
+      "bytes": 78448,
+      "sha256": "359754708f712b1d7d668b3b7c2b41b1cec59025761e05b9291035103030b3eb"
+    },
+    {
+      "path": "build/v6l-fw-04/MotortesterV2-stream-candidate.hex",
+      "bytes": 119428,
+      "sha256": "0009c4392ed007a6c82b090e1a9eec28088e8d4430ba006c0f17ed30dc91f4b4"
+    },
+    {
+      "path": "build/v6l-fw-04/static-bound.json",
+      "bytes": 188953,
+      "sha256": "00ced5b6b7a3998caeda9e25b09743e64833e13a62acea97e8405e6bc85229cc"
+    },
+    {
+      "path": "build/v6l-fw-04/image.map",
+      "bytes": 80638,
+      "sha256": "91e16a0420f75d668a82758755f085f158d7e713976843ef7a5feb5b42a8ca2e"
+    },
+    {
+      "path": "build/v6l-fw-04/image.nm",
+      "bytes": 19010,
+      "sha256": "d13b6c9a566ef6c1ab1c799bb18d6828be2fa0fbe6e62f6e6ea18be100c51a55"
+    },
+    {
+      "path": "build/v6l-fw-04/image.dis",
+      "bytes": 699568,
+      "sha256": "4968c0908737ab0573bc4a120ad74df2605bad5eedead09cc5476413ec3859fd"
+    }
+  ],
+  "memory": {
+    "BIN_bytes": 42444,
+    "text_bytes": 42316,
+    "data_bytes": 128,
+    "bss_bytes": 12068,
+    "reserved_stack_bytes": 8192,
+    "RAM_with_stack_reserve_bytes": 20388,
+    "RAM_capacity_bytes": 20480,
+    "spare_bytes": 92,
+    "conditional_exact_image_stack_bound_bytes": 6156,
+    "aligned_minimum_bytes": 6160,
+    "note": "Exact linked static analyzer assumptions retained; not measured target stack/WCET."
+  },
+  "legacy136": {
+    "address": "0x20002F1C",
+    "bytes": 136,
+    "symbol": "mt_stream_diagnostics",
+    "one_attempt_per_boot": true
+  },
+  "native": {
+    "result": {
+      "path": "build/v6l-core-native-01/result.json",
+      "bytes": 34001,
+      "sha256": "7eb61d4daa2f69389d1f6e3cb411227fe32d803c28f55de98434d9600f4ca7c0"
+    },
+    "model_exe": {
+      "path": "build/v6l-core-native-01/model.exe",
+      "bytes": 226304,
+      "sha256": "140907f0b7a4e3686dae5a2426d427d13a35393fb659538a3068545043c78e25"
+    },
+    "stdout": {
+      "path": "build/v6l-core-native-01/model.stdout",
+      "bytes": 565,
+      "sha256": "b6f9f47e3432b4bc1fa97928566fe8d91a816401d2c05f668e48565e5649a9d4"
+    },
+    "source_equivalence": {
+      "path": "build/v6l-core-native-01/source-equivalence.json",
+      "bytes": 9223,
+      "sha256": "70fd376916dbdcc312ee803acd98e63332617adf01b8b5d5da8457f6782aaf16"
+    },
+    "groups": [
+      "Actual prepare->step_prepared queue ownership512/atomic4/wrap/old1..4",
+      "Stop/tails1025/source1 drain; CRC/COBS resume states via real serializer setup seam",
+      "HELLO accepted0 discard/partial old frame complete; actual runtime admission helper plus actual core cleanup",
+      "Full escaped frame late final now/clock/bound cannot commit; zero/partial/unknown/prewriteTIME"
+    ],
+    "limits": [
+      "Logical IO/clock/Stop callbacks, not physical peripherals",
+      "Actual extracted runtime submit helper plus explicit actual-core cleanup call, not entire runtime/USB execution",
+      "CRC/COBS Stop states reconstructed by real serializer API; scheduler currently encodes in one nonreentrant FG prepare"
+    ]
+  },
+  "C_fixture": {
+    "file": {
+      "path": "build/v6l-core-native-01/core1153-transcript.bin",
+      "bytes": 1614,
+      "sha256": "cf62a2d6153aa7f59e4c886e9f487e950381ac6d6cbafa1ca285d19f22333013"
+    },
+    "nonce": 503,
+    "generation": 3,
+    "mode": 5,
+    "config_id": 5,
+    "bareCOBS": "DATA1024 seq4/index0 + DATA129 seq5/index1024 + ENDseq6/prefix1153",
+    "canonical_raw_sha256": "1f5c9f712929bceae1a09adb39de4cec43d31ef4abe2d99cc8b63531af417b7d",
+    "END_prefix_crc32": 1967919874,
+    "byte_identical_to_prior_isolated_fixture": true,
+    "source_scope": "Actual production core prepare->step_prepared with logical IO, no physical peripherals."
+  },
+  "preserved_failed_builds": [
+    {
+      "reason": "Strict compiler misleading-indentation rejected two independent if statements on one line; formatting-only fix.",
+      "receipt": {
+        "path": "build/v6l-fw-01/receipt.json",
+        "bytes": 297463,
+        "sha256": "2ec488131693acc92f29367f30f54376ea1f4a24bd4489c75c0dd03990415547"
+      },
+      "stderr": {
+        "path": "build/v6l-fw-01/compile-24-mt_live_device.stderr",
+        "bytes": 591,
+        "sha256": "166574ebf67e21a7e00bb56cacbadc6473537df6e70a77b45d738e58764ca91b"
+      }
+    },
+    {
+      "reason": "New serializer ADD source needed explicit source->patched path mapping in recipe; missing source was rejected.",
+      "receipt": {
+        "path": "build/v6l-fw-02/receipt.json",
+        "bytes": 311513,
+        "sha256": "b9b2a63db88e91894335445e90bb3b0a0edf459efc9554f296f72e27c3a28d31"
+      },
+      "stderr": {
+        "path": "build/v6l-fw-02/compile-28-mt_batch1024.stderr",
+        "bytes": 114,
+        "sha256": "b9771f140a5ae1c0885602ae166b44babc0a0e69397aa4bf22eeef264b3c5bbc"
+      }
+    },
+    {
+      "reason": "Strict31-object link assertion rejected actual extra serializer object; expected count updated explicitly to32.",
+      "receipt": {
+        "path": "build/v6l-fw-03/receipt.json",
+        "bytes": 321230,
+        "sha256": "dc1795bb6f4556327fe16e7b20fea05e317367d0551f69b394f09072fe3e5070"
+      }
+    }
+  ],
+  "run_counts": {
+    "full_ARM_build_attempts": 4,
+    "successful_full_ARM_builds": 1,
+    "actual_core_native_compilations": 1,
+    "actual_core_model_runs": 1,
+    "hardware_calls": 0
+  },
+  "source_equivalence": {
+    "runtime_TIME_ADC_DMA_DCD_FIFO_USB": "byte-identical SD",
+    "original_step_tx_guards": "token-identical after explicit mode5 deferred-completion insertion",
+    "old_queueAPIs_and_packer": "token-identical SD",
+    "new_module_C": "byte-identical frozen prototype; production header comment-only delta"
+  },
+  "not_confirmed": [
+    "Physical sustained150k/ADC service timing",
+    "Low-voltage/analogue accuracy and bandwidth",
+    "Ignition/vehicle operation",
+    "Windows package and independent software acceptance",
+    "Flash admission"
+  ]
+}

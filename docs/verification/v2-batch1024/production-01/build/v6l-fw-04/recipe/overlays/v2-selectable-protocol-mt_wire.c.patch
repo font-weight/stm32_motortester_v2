@@ -1,0 +1,42 @@
+--- a/protocol/mt_wire.c
++++ b/protocol/mt_wire.c
+@@ -130,9 +130,10 @@
+     out[mark] = code; out[write++] = 0; *written = write;
+     return MT_WIRE_OK;
+ }
+-mt_wire_result mt_wire_decode_revision(const uint8_t *frame, size_t length,
++static mt_wire_result decode_body(const uint8_t *frame, size_t length,
+                                       uint8_t major, uint8_t minor,
+-                                      mt_wire_message *m) {
++                                      mt_wire_message *m,
++                                      uint8_t *actual_major,uint8_t *actual_minor) {
+     uint8_t raw[MT_WIRE_RAW_MAX];
+     size_t read = 0, n = 0, count, i;
+     uint8_t code; uint16_t payload_length;
+@@ -158,14 +159,25 @@
+     if (payload_length > MT_WIRE_PAYLOAD_MAX ||
+         n != MT_WIRE_HEADER + (size_t)payload_length + 4u) return MT_WIRE_LENGTH;
+     if (mt_wire_crc32(raw, n - 4u) != get32(raw + n - 4u)) return MT_WIRE_CRC;
+-    if (raw[0] != major || raw[1] != minor) return MT_WIRE_VERSION;
++    if (!actual_major && (raw[0] != major || raw[1] != minor)) return MT_WIRE_VERSION;
+     if (raw[3] != 0 || get16(raw + 6) != 0) return MT_WIRE_RESERVED;
+     /* No fallible operation after this point; commit outputs only after validation. */
+     m->type = raw[2]; m->session = get64(raw + 8);
+     m->sequence = get32(raw + 16); m->request = get32(raw + 20);
+     m->payload_length = payload_length;
+     memcpy(m->payload, raw + MT_WIRE_HEADER, payload_length);
++    if(actual_major) { *actual_major=raw[0];*actual_minor=raw[1]; }
+     return MT_WIRE_OK;
++}
++
++mt_wire_result mt_wire_decode_revision(const uint8_t *frame,size_t length,
++    uint8_t major,uint8_t minor,mt_wire_message *m) {
++    return decode_body(frame,length,major,minor,m,NULL,NULL);
++}
++mt_wire_result mt_wire_decode_envelope(const uint8_t *frame,size_t length,
++    mt_wire_message *m,uint8_t *major,uint8_t *minor) {
++    if(!major || !minor)return MT_WIRE_ARGUMENT;
++    return decode_body(frame,length,0u,0u,m,major,minor);
+ }
+ 
+ mt_wire_result mt_wire_encode(const mt_wire_message *m,

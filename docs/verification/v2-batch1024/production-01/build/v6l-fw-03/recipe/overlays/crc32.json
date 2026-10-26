@@ -1,0 +1,21 @@
+{
+  "schema": "motortester-v2-crc32-overlay-1",
+  "patches": [
+    {
+      "source": "source/firmware/protocol/mt_wire.c",
+      "target": "v2/protocol/mt_wire.c",
+      "patch": "v2-crc-wire.patch",
+      "source_sha256": "9649b9d23b03deaff9fd66bb2c28b886811b88f844288bba365837f8f20b5c7b",
+      "patch_sha256": "97644a4d9cd4bc22a56456f323a205d2c3b0b49c6ef2089edbf6dd893eb06b06",
+      "result_sha256": "db75cb70135ecde3c4f3aaefb032a55cb59808e7541fe232955d302043382d8d"
+    },
+    {
+      "source": "source/firmware/protocol/mt_live_device.c",
+      "target": "v2/protocol/mt_live_device.c",
+      "patch": "v2-crc-prefix.patch",
+      "source_sha256": "be3effe882ebc209c68645fe1140f83a102ca54286d0b9677ab538d7fce3ab4d",
+      "patch_sha256": "3d469bfbdc81b60b25ee3d6a82eb589a93b35d15c4827e342ea4d580d24569cc",
+      "result_sha256": "b74801c3ecaab6ae1627f4812326c71cfd821bc47eb8e458613e6c8d3c00bdc5"
+    }
+  ]
+}

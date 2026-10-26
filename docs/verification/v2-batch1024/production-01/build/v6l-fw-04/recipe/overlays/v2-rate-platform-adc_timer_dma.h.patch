@@ -1,0 +1,58 @@
+--- a/platform/adc_timer_dma.h
++++ b/platform/adc_timer_dma.h
+@@ -4,10 +4,10 @@
+ #include <stdbool.h>
+ #include <stdint.h>
+ 
+-#define MT_ADC_DMA_SAMPLES 256u
+-#define MT_ADC_DMA_BLOCK_SAMPLES 128u
+-#define MT_ADC_DMA_RATE_HZ 50000u
+-#define MT_ADC_DMA_SAMPLE_US 20u
++#define MT_ADC_DMA_SAMPLES 1024u
++#define MT_ADC_DMA_BLOCK_SAMPLES 512u
++#define MT_ADC_DMA_RATE_HZ 200000u
++#define MT_ADC_DMA_SAMPLE_US 5u
+ #define MT_ADC_DMA_BLOCK_US 2560u
+ #define MT_ADC_DMA_WAIT_US 1000u
+ #define MT_ADC_DMA_WAIT_POLLS 10000u
+@@ -69,7 +69,7 @@
+     uint32_t count;
+     uint32_t nominal_rate_hz;
+     /* Timer CEN write is bracketed by these clock reads. First timer update
+-     * follows one 20 us period; ADC aperture/latency is NOT measured here.
++     * follows one 5 us period; ADC aperture/latency is NOT measured here.
+      * Derive nominal sample time from index, not the foreground drain time.
+      */
+     uint32_t start_before_us;
+@@ -80,7 +80,7 @@
+ /* Statically allocate in DMA-accessible STM32 SRAM and keep alive through a
+  * successful stop. Single owner; all calls serialized in foreground. No ISR
+  * accesses this context. Do not mutate public members outside the test model.
+- * Ring=512 B; stable snapshot=256 B. Both count toward the final RAM model.
++ * Ring=2048 B; stable snapshot=1024 B. Both count toward the final RAM model.
+  */
+ typedef struct {
+     volatile uint16_t dma_samples[MT_ADC_DMA_SAMPLES];
+@@ -128,11 +128,11 @@
+ /* Read-only MMIO preflight for the application's canonical profile1.
+  * Requires initialized, stopped, unowned driver and inactive ADC/TIM/DMA.
+  * Updates cached clock metadata only; never starts peripherals or changes RCC.
+- * Returns1 only for timer72MHz/PSC71/ARR19 and ADC12MHz;0 otherwise.
++ * Returns1 only for timer72MHz/PSC71/ARR4 and ADC12MHz;0 otherwise.
+  */
+ int mt_adc_dma_profile1_ready(mt_adc_dma_t *driver);
+ /* Existing RCC must already provide 12 MHz ADC, legal APB clocks and an integer
+- * 1 MHz timer prescaler divisor (ARR=19 gives 50 kS/s). Does not alter RCC CFGR/CR, startup or oscillator choice.
++ * 1 MHz timer prescaler divisor (ARR=4 gives 200 kS/s). Does not alter RCC CFGR/CR, startup or oscillator choice.
+  * Owns ADC1, PA0, TIM3, DMA1 channel 1; they must be exclusively reserved.
+  * A successful stop is required before restart after a fault.
+  */
+@@ -168,7 +168,7 @@
+  * It must validate clock and original actor/epoch before AND after that write,
+  * publishing both timestamps only on success. Failure may have enabled TIM3;
+  * this driver restores the mask and performs its existing verified quiesce.
+- * The <=20 us check bounds the CEN bracket, not full validation/IRQ-off time.
++ * The <=5 us check bounds the CEN bracket, not full validation/IRQ-off time.
+  * Full elapsed scheduling obligations and all readback checks remain active. */
+ typedef int (*mt_adc_dma_start_transaction_fn)(void *context,
+                                              uint32_t *before_us, uint32_t *after_us);

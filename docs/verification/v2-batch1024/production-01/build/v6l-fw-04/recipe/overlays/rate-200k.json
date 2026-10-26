@@ -1,0 +1,77 @@
+{
+  "schema": "motortester-v2-rate-overlay-1",
+  "patches": [
+    {
+      "source": "patched/v2/platform/adc_timer_dma.h",
+      "target": "v2/platform/adc_timer_dma.h",
+      "patch": "v2-rate-platform-adc_timer_dma.h.patch",
+      "source_sha256": "81566249d59d9582ce4d6fa139a6f83cfb293d189754c06589e2fbb302f3e829",
+      "patch_sha256": "863f381c86136acee8d6e99c3ff58c15d212e2d57c68d00124444315600a4df3",
+      "result_sha256": "c9330db5341f79ea1495ba42211252fa70e432d66ea527f7427fc0f391d6c1cf"
+    },
+    {
+      "source": "patched/v2/platform/adc_timer_dma.c",
+      "target": "v2/platform/adc_timer_dma.c",
+      "patch": "v2-rate-platform-adc_timer_dma.c.patch",
+      "source_sha256": "b8c6c4301a1c4e72ae0a3a4f9353a1bab109ccd1a96095d4684d899d5e34ce2b",
+      "patch_sha256": "c06e761f4926cc468480e94e99101a422619682553e9bc088cb7d610f058ba47",
+      "result_sha256": "90e46c2a5480b5a100ac27033c37c3613fff778eda234c17edf28064895ab0ba"
+    },
+    {
+      "source": "patched/v2/acquisition/mt_sample_queue.h",
+      "target": "v2/acquisition/mt_sample_queue.h",
+      "patch": "v2-rate-acquisition-mt_sample_queue.h.patch",
+      "source_sha256": "4c856b9b312b93bdd0fbf4d616316b2d101cad0a807734c4e7488fd03968edc4",
+      "patch_sha256": "d236cd73db53295ad3841c7beeca280a7819bdf28a2cd6938a974594ab4fa152",
+      "result_sha256": "929eedaaff900286fc07b8bbffa6794fc5d044e12a4ce25dee3fb1297180b393"
+    },
+    {
+      "source": "source/firmware/acquisition/mt_sample_queue.c",
+      "target": "v2/acquisition/mt_sample_queue.c",
+      "patch": "v2-rate-acquisition-mt_sample_queue.c.patch",
+      "source_sha256": "3ec95dc93d61db0f33fa227deea4606ee272d43632b6cdc19a0b65837830886c",
+      "patch_sha256": "20dff6438ac9c096a9b5c49ae7978ba133236a401cfaf09055d5478550435339",
+      "result_sha256": "49a1232056101f57423947e266d6bd398eab6b9cae86f3e1d9babf0eb311dc7f"
+    },
+    {
+      "source": "patched/v2/protocol/mt_live_device.h",
+      "target": "v2/protocol/mt_live_device.h",
+      "patch": "v2-rate-protocol-mt_live_device.h.patch",
+      "source_sha256": "b7a5b34239e87268d20e537c5b34d8333590f3a33d06ba8958f3cc275e469641",
+      "patch_sha256": "d56916d9db1a5f4543493e25c1e0b04c4f4b300d1c610f8bf96e6deac2c4b310",
+      "result_sha256": "ba7c89e2ac084e4b0076bc580cc8d9a297521e538b630b9d11155aee13273f1e"
+    },
+    {
+      "source": "patched/v2/protocol/mt_live_device.c",
+      "target": "v2/protocol/mt_live_device.c",
+      "patch": "v2-rate-protocol-mt_live_device.c.patch",
+      "source_sha256": "b74801c3ecaab6ae1627f4812326c71cfd821bc47eb8e458613e6c8d3c00bdc5",
+      "patch_sha256": "dce23d0cf9b9c63b1732e09edabf0923199b14b67719a6a8082f79b49825f47d",
+      "result_sha256": "8da11a6d71f34bcf718e16074e1177eced1a45a8bd9bee3879fdd7aeb250c9c0"
+    },
+    {
+      "source": "patched/v2/app/mt_live_adc.c",
+      "target": "v2/app/mt_live_adc.c",
+      "patch": "v2-rate-app-mt_live_adc.c.patch",
+      "source_sha256": "94bc97ab4fb993fcc8536fa4bde85d4fb5afbb78dc8a52c0094dbdbbe3302548",
+      "patch_sha256": "b74e93bfac18d6eb80bfe81f69f522106f3b45b07020c97dce3cd697ec2dccf9",
+      "result_sha256": "5995b7d664e4b9446e9e29400f34b5dd9a2e4c33acb50f32a35db802c55c930a"
+    },
+    {
+      "source": "patched/v2/app/mt_live_adc.h",
+      "target": "v2/app/mt_live_adc.h",
+      "patch": "v2-rate-app-mt_live_adc.h.patch",
+      "source_sha256": "d13268ef5656b064722614be8e1993081e8340ee4e03840bc3c53e486e17341e",
+      "patch_sha256": "5d9b60f805b3f2210d7bb552fb9e2004ff53ff7b299ced151371553b008af867",
+      "result_sha256": "9056a9520560586673b1a9fb3fde7dda379e29433aff3e3f35075c13ec926afc"
+    },
+    {
+      "source": "patched/v2/app/mt_live_runtime.c",
+      "target": "v2/app/mt_live_runtime.c",
+      "patch": "v2-rate-app-mt_live_runtime.c.patch",
+      "source_sha256": "e9d5c7703a2252d683ebbf269d354cf2700952cc2afb49a8fa11879b00c34919",
+      "patch_sha256": "d1b67929f8b15942b136a3262e7939cf3f6bbe4b9e31d3f1ab27abfc36b0a78d",
+      "result_sha256": "1b96bfc0211dbec14bebcee3f86d98fd3d4d0d8bda3ad714a6ff4a8f8a8d7421"
+    }
+  ]
+}

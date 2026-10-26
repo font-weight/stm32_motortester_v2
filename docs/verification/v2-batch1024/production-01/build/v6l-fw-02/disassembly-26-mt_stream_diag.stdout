@@ -1,0 +1,431 @@
+
+objects/26-mt_stream_diag.o:     file format elf32-littlearm
+
+
+Disassembly of section .text.increment:
+
+00000000 <increment>:
+   0:	6803      	ldr	r3, [r0, #0]
+   2:	3301      	adds	r3, #1
+   4:	bf0b      	itete	eq
+   6:	4a05      	ldreq	r2, [pc, #20]	@ (1c <increment+0x1c>)
+   8:	6803      	ldrne	r3, [r0, #0]
+   a:	6953      	ldreq	r3, [r2, #20]
+   c:	3301      	addne	r3, #1
+   e:	bf06      	itte	eq
+  10:	f043 0302 	orreq.w	r3, r3, #2
+  14:	6153      	streq	r3, [r2, #20]
+  16:	6003      	strne	r3, [r0, #0]
+  18:	4770      	bx	lr
+  1a:	bf00      	nop
+  1c:	00000000 	.word	0x00000000
+			1c: R_ARM_ABS32	mt_stream_diagnostics
+
+Disassembly of section .text.mt_stream_diag_cycle:
+
+00000000 <mt_stream_diag_cycle>:
+   0:	b5f8      	push	{r3, r4, r5, r6, r7, lr}
+   2:	4c1c      	ldr	r4, [pc, #112]	@ (74 <mt_stream_diag_cycle+0x74>)
+   4:	6923      	ldr	r3, [r4, #16]
+   6:	2b03      	cmp	r3, #3
+   8:	d101      	bne.n	e <mt_stream_diag_cycle+0xe>
+   a:	6fe0      	ldr	r0, [r4, #124]	@ 0x7c
+   c:	bdf8      	pop	{r3, r4, r5, r6, r7, pc}
+   e:	4f1a      	ldr	r7, [pc, #104]	@ (78 <mt_stream_diag_cycle+0x78>)
+  10:	683b      	ldr	r3, [r7, #0]
+  12:	2b00      	cmp	r3, #0
+  14:	d02b      	beq.n	6e <mt_stream_diag_cycle+0x6e>
+  16:	4e19      	ldr	r6, [pc, #100]	@ (7c <mt_stream_diag_cycle+0x7c>)
+  18:	4919      	ldr	r1, [pc, #100]	@ (80 <mt_stream_diag_cycle+0x80>)
+  1a:	6830      	ldr	r0, [r6, #0]
+  1c:	4798      	blx	r3
+  1e:	683b      	ldr	r3, [r7, #0]
+  20:	4605      	mov	r5, r0
+  22:	4918      	ldr	r1, [pc, #96]	@ (84 <mt_stream_diag_cycle+0x84>)
+  24:	6830      	ldr	r0, [r6, #0]
+  26:	4798      	blx	r3
+  28:	01c3      	lsls	r3, r0, #7
+  2a:	d509      	bpl.n	40 <mt_stream_diag_cycle+0x40>
+  2c:	f025 457d 	bic.w	r5, r5, #4244635648	@ 0xfd000000
+  30:	f425 057f 	bic.w	r5, r5, #16711680	@ 0xff0000
+  34:	f425 457f 	bic.w	r5, r5, #65280	@ 0xff00
+  38:	f025 05fe 	bic.w	r5, r5, #254	@ 0xfe
+  3c:	2d01      	cmp	r5, #1
+  3e:	d003      	beq.n	48 <mt_stream_diag_cycle+0x48>
+  40:	6963      	ldr	r3, [r4, #20]
+  42:	f043 0310 	orr.w	r3, r3, #16
+  46:	6163      	str	r3, [r4, #20]
+  48:	683b      	ldr	r3, [r7, #0]
+  4a:	490f      	ldr	r1, [pc, #60]	@ (88 <mt_stream_diag_cycle+0x88>)
+  4c:	6830      	ldr	r0, [r6, #0]
+  4e:	4798      	blx	r3
+  50:	4a0e      	ldr	r2, [pc, #56]	@ (8c <mt_stream_diag_cycle+0x8c>)
+  52:	490f      	ldr	r1, [pc, #60]	@ (90 <mt_stream_diag_cycle+0x90>)
+  54:	6813      	ldr	r3, [r2, #0]
+  56:	b133      	cbz	r3, 66 <mt_stream_diag_cycle+0x66>
+  58:	680b      	ldr	r3, [r1, #0]
+  5a:	4283      	cmp	r3, r0
+  5c:	bf02      	ittt	eq
+  5e:	6963      	ldreq	r3, [r4, #20]
+  60:	f043 0310 	orreq.w	r3, r3, #16
+  64:	6163      	streq	r3, [r4, #20]
+  66:	2301      	movs	r3, #1
+  68:	6008      	str	r0, [r1, #0]
+  6a:	6013      	str	r3, [r2, #0]
+  6c:	e7ce      	b.n	c <mt_stream_diag_cycle+0xc>
+  6e:	4618      	mov	r0, r3
+  70:	e7cc      	b.n	c <mt_stream_diag_cycle+0xc>
+  72:	bf00      	nop
+	...
+			74: R_ARM_ABS32	mt_stream_diagnostics
+			78: R_ARM_ABS32	.bss.read_register
+			7c: R_ARM_ABS32	.bss.bus_context
+  80:	e0001000 	.word	0xe0001000
+  84:	e000edfc 	.word	0xe000edfc
+  88:	e0001004 	.word	0xe0001004
+	...
+			8c: R_ARM_ABS32	.bss.have_raw_cycle
+			90: R_ARM_ABS32	.bss.last_raw_cycle
+
+Disassembly of section .text.mt_stream_diag_init:
+
+00000000 <mt_stream_diag_init>:
+   0:	e92d 41f0 	stmdb	sp!, {r4, r5, r6, r7, r8, lr}
+   4:	460f      	mov	r7, r1
+   6:	4614      	mov	r4, r2
+   8:	4698      	mov	r8, r3
+   a:	4605      	mov	r5, r0
+   c:	b0a2      	sub	sp, #136	@ 0x88
+   e:	2800      	cmp	r0, #0
+  10:	d051      	beq.n	b6 <mt_stream_diag_init+0xb6>
+  12:	2900      	cmp	r1, #0
+  14:	d04f      	beq.n	b6 <mt_stream_diag_init+0xb6>
+  16:	4e29      	ldr	r6, [pc, #164]	@ (bc <mt_stream_diag_init+0xbc>)
+  18:	6931      	ldr	r1, [r6, #16]
+  1a:	2900      	cmp	r1, #0
+  1c:	d14b      	bne.n	b6 <mt_stream_diag_init+0xb6>
+  1e:	4b28      	ldr	r3, [pc, #160]	@ (c0 <mt_stream_diag_init+0xc0>)
+  20:	6018      	str	r0, [r3, #0]
+  22:	4b28      	ldr	r3, [pc, #160]	@ (c4 <mt_stream_diag_init+0xc4>)
+  24:	a805      	add	r0, sp, #20
+  26:	601a      	str	r2, [r3, #0]
+  28:	2274      	movs	r2, #116	@ 0x74
+  2a:	f7ff fffe 	bl	0 <memset>
+			2a: R_ARM_THM_CALL	memset
+  2e:	2301      	movs	r3, #1
+  30:	4825      	ldr	r0, [pc, #148]	@ (c8 <mt_stream_diag_init+0xc8>)
+  32:	2288      	movs	r2, #136	@ 0x88
+  34:	e9cd 0300 	strd	r0, r3, [sp]
+  38:	2304      	movs	r3, #4
+  3a:	4669      	mov	r1, sp
+  3c:	4630      	mov	r0, r6
+  3e:	9304      	str	r3, [sp, #16]
+  40:	e9cd 2802 	strd	r2, r8, [sp, #8]
+  44:	f7ff fffe 	bl	0 <memcpy>
+			44: R_ARM_THM_CALL	memcpy
+  48:	4920      	ldr	r1, [pc, #128]	@ (cc <mt_stream_diag_init+0xcc>)
+  4a:	4620      	mov	r0, r4
+  4c:	47a8      	blx	r5
+  4e:	491f      	ldr	r1, [pc, #124]	@ (cc <mt_stream_diag_init+0xcc>)
+  50:	f040 7280 	orr.w	r2, r0, #16777216	@ 0x1000000
+  54:	4620      	mov	r0, r4
+  56:	47b8      	blx	r7
+  58:	4620      	mov	r0, r4
+  5a:	491c      	ldr	r1, [pc, #112]	@ (cc <mt_stream_diag_init+0xcc>)
+  5c:	47a8      	blx	r5
+  5e:	01c3      	lsls	r3, r0, #7
+  60:	d525      	bpl.n	ae <mt_stream_diag_init+0xae>
+  62:	491b      	ldr	r1, [pc, #108]	@ (d0 <mt_stream_diag_init+0xd0>)
+  64:	4620      	mov	r0, r4
+  66:	47a8      	blx	r5
+  68:	0181      	lsls	r1, r0, #6
+  6a:	d420      	bmi.n	ae <mt_stream_diag_init+0xae>
+  6c:	4918      	ldr	r1, [pc, #96]	@ (d0 <mt_stream_diag_init+0xd0>)
+  6e:	4620      	mov	r0, r4
+  70:	47a8      	blx	r5
+  72:	4917      	ldr	r1, [pc, #92]	@ (d0 <mt_stream_diag_init+0xd0>)
+  74:	f040 0201 	orr.w	r2, r0, #1
+  78:	4620      	mov	r0, r4
+  7a:	47b8      	blx	r7
+  7c:	4620      	mov	r0, r4
+  7e:	4914      	ldr	r1, [pc, #80]	@ (d0 <mt_stream_diag_init+0xd0>)
+  80:	47a8      	blx	r5
+  82:	07c2      	lsls	r2, r0, #31
+  84:	d513      	bpl.n	ae <mt_stream_diag_init+0xae>
+  86:	f7ff fffe 	bl	0 <mt_stream_diag_init>
+			86: R_ARM_THM_CALL	mt_stream_diag_cycle
+  8a:	2520      	movs	r5, #32
+  8c:	4604      	mov	r4, r0
+  8e:	f7ff fffe 	bl	0 <mt_stream_diag_init>
+			8e: R_ARM_THM_CALL	mt_stream_diag_cycle
+  92:	3d01      	subs	r5, #1
+  94:	d009      	beq.n	aa <mt_stream_diag_init+0xaa>
+  96:	4284      	cmp	r4, r0
+  98:	d0f9      	beq.n	8e <mt_stream_diag_init+0x8e>
+  9a:	6973      	ldr	r3, [r6, #20]
+  9c:	06db      	lsls	r3, r3, #27
+  9e:	d406      	bmi.n	ae <mt_stream_diag_init+0xae>
+  a0:	2001      	movs	r0, #1
+  a2:	6130      	str	r0, [r6, #16]
+  a4:	b022      	add	sp, #136	@ 0x88
+  a6:	e8bd 81f0 	ldmia.w	sp!, {r4, r5, r6, r7, r8, pc}
+  aa:	4284      	cmp	r4, r0
+  ac:	d1f5      	bne.n	9a <mt_stream_diag_init+0x9a>
+  ae:	6973      	ldr	r3, [r6, #20]
+  b0:	f043 0301 	orr.w	r3, r3, #1
+  b4:	6173      	str	r3, [r6, #20]
+  b6:	2000      	movs	r0, #0
+  b8:	e7f4      	b.n	a4 <mt_stream_diag_init+0xa4>
+  ba:	bf00      	nop
+	...
+			bc: R_ARM_ABS32	mt_stream_diagnostics
+			c0: R_ARM_ABS32	.bss.read_register
+			c4: R_ARM_ABS32	.bss.bus_context
+  c8:	4d544447 	.word	0x4d544447
+  cc:	e000edfc 	.word	0xe000edfc
+  d0:	e0001000 	.word	0xe0001000
+
+Disassembly of section .text.mt_stream_diag_begin:
+
+00000000 <mt_stream_diag_begin>:
+   0:	b510      	push	{r4, lr}
+   2:	4c08      	ldr	r4, [pc, #32]	@ (24 <mt_stream_diag_begin+0x24>)
+   4:	6921      	ldr	r1, [r4, #16]
+   6:	2901      	cmp	r1, #1
+   8:	d10a      	bne.n	20 <mt_stream_diag_begin+0x20>
+   a:	b148      	cbz	r0, 20 <mt_stream_diag_begin+0x20>
+   c:	61a0      	str	r0, [r4, #24]
+   e:	f8c4 2080 	str.w	r2, [r4, #128]	@ 0x80
+  12:	f8c4 3084 	str.w	r3, [r4, #132]	@ 0x84
+  16:	f7ff fffe 	bl	0 <mt_stream_diag_begin>
+			16: R_ARM_THM_CALL	mt_stream_diag_cycle
+  1a:	2302      	movs	r3, #2
+  1c:	6760      	str	r0, [r4, #116]	@ 0x74
+  1e:	6123      	str	r3, [r4, #16]
+  20:	bd10      	pop	{r4, pc}
+  22:	bf00      	nop
+  24:	00000000 	.word	0x00000000
+			24: R_ARM_ABS32	mt_stream_diagnostics
+
+Disassembly of section .text.mt_stream_diag_replaced:
+
+00000000 <mt_stream_diag_replaced>:
+   0:	b510      	push	{r4, lr}
+   2:	4c0e      	ldr	r4, [pc, #56]	@ (3c <mt_stream_diag_replaced+0x3c>)
+   4:	6923      	ldr	r3, [r4, #16]
+   6:	2b02      	cmp	r3, #2
+   8:	d116      	bne.n	38 <mt_stream_diag_replaced+0x38>
+   a:	6963      	ldr	r3, [r4, #20]
+   c:	f043 0308 	orr.w	r3, r3, #8
+  10:	6163      	str	r3, [r4, #20]
+  12:	f04f 33ff 	mov.w	r3, #4294967295
+  16:	65e3      	str	r3, [r4, #92]	@ 0x5c
+  18:	2300      	movs	r3, #0
+  1a:	6620      	str	r0, [r4, #96]	@ 0x60
+  1c:	6661      	str	r1, [r4, #100]	@ 0x64
+  1e:	66a2      	str	r2, [r4, #104]	@ 0x68
+  20:	66e3      	str	r3, [r4, #108]	@ 0x6c
+  22:	2301      	movs	r3, #1
+  24:	6723      	str	r3, [r4, #112]	@ 0x70
+  26:	f7ff fffe 	bl	0 <mt_stream_diag_replaced>
+			26: R_ARM_THM_CALL	mt_stream_diag_cycle
+  2a:	67a0      	str	r0, [r4, #120]	@ 0x78
+  2c:	6fa3      	ldr	r3, [r4, #120]	@ 0x78
+  2e:	67e3      	str	r3, [r4, #124]	@ 0x7c
+  30:	f3bf 8f5f 	dmb	sy
+  34:	2303      	movs	r3, #3
+  36:	6123      	str	r3, [r4, #16]
+  38:	bd10      	pop	{r4, pc}
+  3a:	bf00      	nop
+  3c:	00000000 	.word	0x00000000
+			3c: R_ARM_ABS32	mt_stream_diagnostics
+
+Disassembly of section .text.mt_stream_diag_poll:
+
+00000000 <mt_stream_diag_poll>:
+   0:	b538      	push	{r3, r4, r5, lr}
+   2:	4c0f      	ldr	r4, [pc, #60]	@ (40 <mt_stream_diag_poll+0x40>)
+   4:	4605      	mov	r5, r0
+   6:	6923      	ldr	r3, [r4, #16]
+   8:	2b02      	cmp	r3, #2
+   a:	d117      	bne.n	3c <mt_stream_diag_poll+0x3c>
+   c:	f7ff fffe 	bl	0 <mt_stream_diag_poll>
+			c: R_ARM_THM_CALL	mt_stream_diag_cycle
+  10:	4601      	mov	r1, r0
+  12:	f104 0030 	add.w	r0, r4, #48	@ 0x30
+  16:	f7ff fffe 	bl	0 <mt_stream_diag_poll>
+			16: R_ARM_THM_CALL	increment
+  1a:	6b63      	ldr	r3, [r4, #52]	@ 0x34
+  1c:	4a09      	ldr	r2, [pc, #36]	@ (44 <mt_stream_diag_poll+0x44>)
+  1e:	429d      	cmp	r5, r3
+  20:	6813      	ldr	r3, [r2, #0]
+  22:	4809      	ldr	r0, [pc, #36]	@ (48 <mt_stream_diag_poll+0x48>)
+  24:	bf88      	it	hi
+  26:	6365      	strhi	r5, [r4, #52]	@ 0x34
+  28:	b12b      	cbz	r3, 36 <mt_stream_diag_poll+0x36>
+  2a:	6803      	ldr	r3, [r0, #0]
+  2c:	6ba5      	ldr	r5, [r4, #56]	@ 0x38
+  2e:	1acb      	subs	r3, r1, r3
+  30:	42ab      	cmp	r3, r5
+  32:	bf88      	it	hi
+  34:	63a3      	strhi	r3, [r4, #56]	@ 0x38
+  36:	2301      	movs	r3, #1
+  38:	6001      	str	r1, [r0, #0]
+  3a:	6013      	str	r3, [r2, #0]
+  3c:	bd38      	pop	{r3, r4, r5, pc}
+  3e:	bf00      	nop
+	...
+			40: R_ARM_ABS32	mt_stream_diagnostics
+			44: R_ARM_ABS32	.bss.have_poll
+			48: R_ARM_ABS32	.bss.last_poll
+
+Disassembly of section .text.mt_stream_diag_copy:
+
+00000000 <mt_stream_diag_copy>:
+   0:	4907      	ldr	r1, [pc, #28]	@ (20 <mt_stream_diag_copy+0x20>)
+   2:	b510      	push	{r4, lr}
+   4:	690b      	ldr	r3, [r1, #16]
+   6:	4604      	mov	r4, r0
+   8:	2b02      	cmp	r3, #2
+   a:	d107      	bne.n	1c <mt_stream_diag_copy+0x1c>
+   c:	f101 003c 	add.w	r0, r1, #60	@ 0x3c
+  10:	f7ff fffe 	bl	0 <mt_stream_diag_copy>
+			10: R_ARM_THM_CALL	increment
+  14:	6c0b      	ldr	r3, [r1, #64]	@ 0x40
+  16:	429c      	cmp	r4, r3
+  18:	bf88      	it	hi
+  1a:	640c      	strhi	r4, [r1, #64]	@ 0x40
+  1c:	bd10      	pop	{r4, pc}
+  1e:	bf00      	nop
+  20:	00000000 	.word	0x00000000
+			20: R_ARM_ABS32	mt_stream_diagnostics
+
+Disassembly of section .text.mt_stream_diag_tx:
+
+00000000 <mt_stream_diag_tx>:
+   0:	b538      	push	{r3, r4, r5, lr}
+   2:	4c09      	ldr	r4, [pc, #36]	@ (28 <mt_stream_diag_tx+0x28>)
+   4:	4605      	mov	r5, r0
+   6:	6923      	ldr	r3, [r4, #16]
+   8:	2b02      	cmp	r3, #2
+   a:	d10b      	bne.n	24 <mt_stream_diag_tx+0x24>
+   c:	f7ff fffe 	bl	0 <mt_stream_diag_tx>
+			c: R_ARM_THM_CALL	mt_stream_diag_cycle
+  10:	4601      	mov	r1, r0
+  12:	f104 0028 	add.w	r0, r4, #40	@ 0x28
+  16:	f7ff fffe 	bl	0 <mt_stream_diag_tx>
+			16: R_ARM_THM_CALL	increment
+  1a:	6ae3      	ldr	r3, [r4, #44]	@ 0x2c
+  1c:	1b49      	subs	r1, r1, r5
+  1e:	4299      	cmp	r1, r3
+  20:	bf88      	it	hi
+  22:	62e1      	strhi	r1, [r4, #44]	@ 0x2c
+  24:	bd38      	pop	{r3, r4, r5, pc}
+  26:	bf00      	nop
+  28:	00000000 	.word	0x00000000
+			28: R_ARM_ABS32	mt_stream_diagnostics
+
+Disassembly of section .text.mt_stream_diag_note:
+
+00000000 <mt_stream_diag_note>:
+   0:	b5f0      	push	{r4, r5, r6, r7, lr}
+   2:	4c0f      	ldr	r4, [pc, #60]	@ (40 <mt_stream_diag_note+0x40>)
+   4:	e9dd 6505 	ldrd	r6, r5, [sp, #20]
+   8:	6927      	ldr	r7, [r4, #16]
+   a:	2f02      	cmp	r7, #2
+   c:	d116      	bne.n	3c <mt_stream_diag_note+0x3c>
+   e:	6c67      	ldr	r7, [r4, #68]	@ 0x44
+  10:	42ba      	cmp	r2, r7
+  12:	bf88      	it	hi
+  14:	6462      	strhi	r2, [r4, #68]	@ 0x44
+  16:	6962      	ldr	r2, [r4, #20]
+  18:	0752      	lsls	r2, r2, #29
+  1a:	d40f      	bmi.n	3c <mt_stream_diag_note+0x3c>
+  1c:	ea46 0205 	orr.w	r2, r6, r5
+  20:	431a      	orrs	r2, r3
+  22:	d102      	bne.n	2a <mt_stream_diag_note+0x2a>
+  24:	1ec2      	subs	r2, r0, #3
+  26:	3205      	adds	r2, #5
+  28:	d808      	bhi.n	3c <mt_stream_diag_note+0x3c>
+  2a:	64a0      	str	r0, [r4, #72]	@ 0x48
+  2c:	64e3      	str	r3, [r4, #76]	@ 0x4c
+  2e:	6526      	str	r6, [r4, #80]	@ 0x50
+  30:	6565      	str	r5, [r4, #84]	@ 0x54
+  32:	65a1      	str	r1, [r4, #88]	@ 0x58
+  34:	6963      	ldr	r3, [r4, #20]
+  36:	f043 0304 	orr.w	r3, r3, #4
+  3a:	6163      	str	r3, [r4, #20]
+  3c:	bdf0      	pop	{r4, r5, r6, r7, pc}
+  3e:	bf00      	nop
+  40:	00000000 	.word	0x00000000
+			40: R_ARM_ABS32	mt_stream_diagnostics
+
+Disassembly of section .text.mt_stream_diag_observe:
+
+00000000 <mt_stream_diag_observe>:
+   0:	e92d 46f7 	stmdb	sp!, {r0, r1, r2, r4, r5, r6, r7, r9, sl, lr}
+   4:	4c21      	ldr	r4, [pc, #132]	@ (8c <mt_stream_diag_observe+0x8c>)
+   6:	469a      	mov	sl, r3
+   8:	6923      	ldr	r3, [r4, #16]
+   a:	4606      	mov	r6, r0
+   c:	2b02      	cmp	r3, #2
+   e:	4689      	mov	r9, r1
+  10:	4617      	mov	r7, r2
+  12:	d137      	bne.n	84 <mt_stream_diag_observe+0x84>
+  14:	f7ff fffe 	bl	0 <mt_stream_diag_observe>
+			14: R_ARM_THM_CALL	mt_stream_diag_cycle
+  18:	4605      	mov	r5, r0
+  1a:	f104 001c 	add.w	r0, r4, #28
+  1e:	f7ff fffe 	bl	0 <mt_stream_diag_observe>
+			1e: R_ARM_THM_CALL	increment
+  22:	6a22      	ldr	r2, [r4, #32]
+  24:	1bab      	subs	r3, r5, r6
+  26:	4293      	cmp	r3, r2
+  28:	bf88      	it	hi
+  2a:	6223      	strhi	r3, [r4, #32]
+  2c:	4b18      	ldr	r3, [pc, #96]	@ (90 <mt_stream_diag_observe+0x90>)
+  2e:	4a19      	ldr	r2, [pc, #100]	@ (94 <mt_stream_diag_observe+0x94>)
+  30:	6819      	ldr	r1, [r3, #0]
+  32:	b139      	cbz	r1, 44 <mt_stream_diag_observe+0x44>
+  34:	4915      	ldr	r1, [pc, #84]	@ (8c <mt_stream_diag_observe+0x8c>)
+  36:	6810      	ldr	r0, [r2, #0]
+  38:	f8d1 c024 	ldr.w	ip, [r1, #36]	@ 0x24
+  3c:	1a30      	subs	r0, r6, r0
+  3e:	4560      	cmp	r0, ip
+  40:	bf88      	it	hi
+  42:	6248      	strhi	r0, [r1, #36]	@ 0x24
+  44:	6016      	str	r6, [r2, #0]
+  46:	2201      	movs	r2, #1
+  48:	601a      	str	r2, [r3, #0]
+  4a:	9b10      	ldr	r3, [sp, #64]	@ 0x40
+  4c:	4651      	mov	r1, sl
+  4e:	9301      	str	r3, [sp, #4]
+  50:	9b0f      	ldr	r3, [sp, #60]	@ 0x3c
+  52:	4648      	mov	r0, r9
+  54:	9300      	str	r3, [sp, #0]
+  56:	e9dd 230d 	ldrd	r2, r3, [sp, #52]	@ 0x34
+  5a:	f7ff fffe 	bl	0 <mt_stream_diag_observe>
+			5a: R_ARM_THM_CALL	mt_stream_diag_note
+  5e:	9b0a      	ldr	r3, [sp, #40]	@ 0x28
+  60:	f8c4 905c 	str.w	r9, [r4, #92]	@ 0x5c
+  64:	6627      	str	r7, [r4, #96]	@ 0x60
+  66:	f8c4 a064 	str.w	sl, [r4, #100]	@ 0x64
+  6a:	66a3      	str	r3, [r4, #104]	@ 0x68
+  6c:	9b0b      	ldr	r3, [sp, #44]	@ 0x2c
+  6e:	66e3      	str	r3, [r4, #108]	@ 0x6c
+  70:	9b0c      	ldr	r3, [sp, #48]	@ 0x30
+  72:	6723      	str	r3, [r4, #112]	@ 0x70
+  74:	9b11      	ldr	r3, [sp, #68]	@ 0x44
+  76:	67a5      	str	r5, [r4, #120]	@ 0x78
+  78:	b123      	cbz	r3, 84 <mt_stream_diag_observe+0x84>
+  7a:	67e5      	str	r5, [r4, #124]	@ 0x7c
+  7c:	f3bf 8f5f 	dmb	sy
+  80:	2303      	movs	r3, #3
+  82:	6123      	str	r3, [r4, #16]
+  84:	b003      	add	sp, #12
+  86:	e8bd 86f0 	ldmia.w	sp!, {r4, r5, r6, r7, r9, sl, pc}
+  8a:	bf00      	nop
+	...
+			8c: R_ARM_ABS32	mt_stream_diagnostics
+			90: R_ARM_ABS32	.bss.have_step
+			94: R_ARM_ABS32	.bss.last_step

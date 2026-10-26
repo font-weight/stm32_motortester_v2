@@ -1,0 +1,651 @@
+
+objects/11-cdc_device.o:     file format elf32-littlearm
+
+
+Disassembly of section .text.tud_cdc_rx_cb:
+
+00000000 <tud_cdc_rx_cb>:
+   0:	4770      	bx	lr
+
+Disassembly of section .text.tud_cdc_rx_wanted_cb:
+
+00000000 <tud_cdc_rx_wanted_cb>:
+   0:	4770      	bx	lr
+
+Disassembly of section .text.tud_cdc_tx_complete_cb:
+
+00000000 <tud_cdc_tx_complete_cb>:
+   0:	4770      	bx	lr
+
+Disassembly of section .text.tud_cdc_notify_complete_cb:
+
+00000000 <tud_cdc_notify_complete_cb>:
+   0:	4770      	bx	lr
+
+Disassembly of section .text.tud_cdc_line_state_cb:
+
+00000000 <tud_cdc_line_state_cb>:
+   0:	4770      	bx	lr
+
+Disassembly of section .text.tud_cdc_line_coding_cb:
+
+00000000 <tud_cdc_line_coding_cb>:
+   0:	4770      	bx	lr
+
+Disassembly of section .text.tud_cdc_send_break_cb:
+
+00000000 <tud_cdc_send_break_cb>:
+   0:	4770      	bx	lr
+
+Disassembly of section .text.tud_cdc_n_ready:
+
+00000000 <tud_cdc_n_ready>:
+   0:	b510      	push	{r4, lr}
+   2:	b108      	cbz	r0, 8 <tud_cdc_n_ready+0x8>
+   4:	2000      	movs	r0, #0
+   6:	bd10      	pop	{r4, pc}
+   8:	f7ff fffe 	bl	0 <tud_mounted>
+			8: R_ARM_THM_CALL	tud_mounted
+   c:	4604      	mov	r4, r0
+   e:	f7ff fffe 	bl	0 <tud_suspended>
+			e: R_ARM_THM_CALL	tud_suspended
+  12:	2c00      	cmp	r4, #0
+  14:	d0f6      	beq.n	4 <tud_cdc_n_ready+0x4>
+  16:	2800      	cmp	r0, #0
+  18:	d1f4      	bne.n	4 <tud_cdc_n_ready+0x4>
+  1a:	4b05      	ldr	r3, [pc, #20]	@ (30 <tud_cdc_n_ready+0x30>)
+  1c:	7b98      	ldrb	r0, [r3, #14]
+  1e:	2800      	cmp	r0, #0
+  20:	d0f1      	beq.n	6 <tud_cdc_n_ready+0x6>
+  22:	f893 0026 	ldrb.w	r0, [r3, #38]	@ 0x26
+  26:	3800      	subs	r0, #0
+  28:	bf18      	it	ne
+  2a:	2001      	movne	r0, #1
+  2c:	e7eb      	b.n	6 <tud_cdc_n_ready+0x6>
+  2e:	bf00      	nop
+  30:	00000000 	.word	0x00000000
+			30: R_ARM_ABS32	.bss._cdcd_itf
+
+Disassembly of section .text.tud_cdc_n_connected:
+
+00000000 <tud_cdc_n_connected>:
+   0:	b510      	push	{r4, lr}
+   2:	b108      	cbz	r0, 8 <tud_cdc_n_connected+0x8>
+   4:	2000      	movs	r0, #0
+   6:	bd10      	pop	{r4, pc}
+   8:	f7ff fffe 	bl	0 <tud_mounted>
+			8: R_ARM_THM_CALL	tud_mounted
+   c:	4604      	mov	r4, r0
+   e:	f7ff fffe 	bl	0 <tud_suspended>
+			e: R_ARM_THM_CALL	tud_suspended
+  12:	2c00      	cmp	r4, #0
+  14:	d0f6      	beq.n	4 <tud_cdc_n_connected+0x4>
+  16:	2800      	cmp	r0, #0
+  18:	d1f4      	bne.n	4 <tud_cdc_n_connected+0x4>
+  1a:	4b02      	ldr	r3, [pc, #8]	@ (24 <tud_cdc_n_connected+0x24>)
+  1c:	78d8      	ldrb	r0, [r3, #3]
+  1e:	f000 0001 	and.w	r0, r0, #1
+  22:	e7f0      	b.n	6 <tud_cdc_n_connected+0x6>
+  24:	00000000 	.word	0x00000000
+			24: R_ARM_ABS32	.bss._cdcd_itf
+
+Disassembly of section .text.tud_cdc_n_get_line_state:
+
+00000000 <tud_cdc_n_get_line_state>:
+   0:	b910      	cbnz	r0, 8 <tud_cdc_n_get_line_state+0x8>
+   2:	4b02      	ldr	r3, [pc, #8]	@ (c <tud_cdc_n_get_line_state+0xc>)
+   4:	78d8      	ldrb	r0, [r3, #3]
+   6:	4770      	bx	lr
+   8:	2000      	movs	r0, #0
+   a:	4770      	bx	lr
+   c:	00000000 	.word	0x00000000
+			c: R_ARM_ABS32	.bss._cdcd_itf
+
+Disassembly of section .text.tud_cdc_n_get_line_coding:
+
+00000000 <tud_cdc_n_get_line_coding>:
+   0:	b930      	cbnz	r0, 10 <tud_cdc_n_get_line_coding+0x10>
+   2:	4b04      	ldr	r3, [pc, #16]	@ (14 <tud_cdc_n_get_line_coding+0x14>)
+   4:	6858      	ldr	r0, [r3, #4]
+   6:	6008      	str	r0, [r1, #0]
+   8:	891a      	ldrh	r2, [r3, #8]
+   a:	7a9b      	ldrb	r3, [r3, #10]
+   c:	808a      	strh	r2, [r1, #4]
+   e:	718b      	strb	r3, [r1, #6]
+  10:	4770      	bx	lr
+  12:	bf00      	nop
+  14:	00000000 	.word	0x00000000
+			14: R_ARM_ABS32	.bss._cdcd_itf
+
+Disassembly of section .text.tud_cdc_n_set_wanted_char:
+
+00000000 <tud_cdc_n_set_wanted_char>:
+   0:	b908      	cbnz	r0, 6 <tud_cdc_n_set_wanted_char+0x6>
+   2:	4b01      	ldr	r3, [pc, #4]	@ (8 <tud_cdc_n_set_wanted_char+0x8>)
+   4:	72d9      	strb	r1, [r3, #11]
+   6:	4770      	bx	lr
+   8:	00000000 	.word	0x00000000
+			8: R_ARM_ABS32	.bss._cdcd_itf
+
+Disassembly of section .text.tud_cdc_n_available:
+
+00000000 <tud_cdc_n_available>:
+   0:	b980      	cbnz	r0, 24 <tud_cdc_n_available+0x24>
+   2:	4909      	ldr	r1, [pc, #36]	@ (28 <tud_cdc_n_available+0x28>)
+   4:	8f0b      	ldrh	r3, [r1, #56]	@ 0x38
+   6:	8f4a      	ldrh	r2, [r1, #58]	@ 0x3a
+   8:	8e88      	ldrh	r0, [r1, #52]	@ 0x34
+   a:	b292      	uxth	r2, r2
+   c:	b29b      	uxth	r3, r3
+   e:	4293      	cmp	r3, r2
+  10:	bfb6      	itet	lt
+  12:	ebc2 0240 	rsblt	r2, r2, r0, lsl #1
+  16:	1a9b      	subge	r3, r3, r2
+  18:	189b      	addlt	r3, r3, r2
+  1a:	b29b      	uxth	r3, r3
+  1c:	4298      	cmp	r0, r3
+  1e:	bf28      	it	cs
+  20:	4618      	movcs	r0, r3
+  22:	4770      	bx	lr
+  24:	2000      	movs	r0, #0
+  26:	4770      	bx	lr
+  28:	00000000 	.word	0x00000000
+			28: R_ARM_ABS32	.bss._cdcd_itf
+
+Disassembly of section .text.tud_cdc_n_read:
+
+00000000 <tud_cdc_n_read>:
+   0:	b910      	cbnz	r0, 8 <tud_cdc_n_read+0x8>
+   2:	4802      	ldr	r0, [pc, #8]	@ (c <tud_cdc_n_read+0xc>)
+   4:	f7ff bffe 	b.w	0 <tu_edpt_stream_read>
+			4: R_ARM_THM_JUMP24	tu_edpt_stream_read
+   8:	2000      	movs	r0, #0
+   a:	4770      	bx	lr
+   c:	00000024 	.word	0x00000024
+			c: R_ARM_ABS32	.bss._cdcd_itf
+
+Disassembly of section .text.tud_cdc_n_peek:
+
+00000000 <tud_cdc_n_peek>:
+   0:	b910      	cbnz	r0, 8 <tud_cdc_n_peek+0x8>
+   2:	4802      	ldr	r0, [pc, #8]	@ (c <tud_cdc_n_peek+0xc>)
+   4:	f7ff bffe 	b.w	0 <tu_fifo_peek>
+			4: R_ARM_THM_JUMP24	tu_fifo_peek
+   8:	2000      	movs	r0, #0
+   a:	4770      	bx	lr
+   c:	00000030 	.word	0x00000030
+			c: R_ARM_ABS32	.bss._cdcd_itf
+
+Disassembly of section .text.tud_cdc_n_read_flush:
+
+00000000 <tud_cdc_n_read_flush>:
+   0:	b508      	push	{r3, lr}
+   2:	b938      	cbnz	r0, 14 <tud_cdc_n_read_flush+0x14>
+   4:	4804      	ldr	r0, [pc, #16]	@ (18 <tud_cdc_n_read_flush+0x18>)
+   6:	f7ff fffe 	bl	0 <tu_fifo_clear>
+			6: R_ARM_THM_CALL	tu_fifo_clear
+   a:	e8bd 4008 	ldmia.w	sp!, {r3, lr}
+   e:	4803      	ldr	r0, [pc, #12]	@ (1c <tud_cdc_n_read_flush+0x1c>)
+  10:	f7ff bffe 	b.w	0 <tu_edpt_stream_read_xfer>
+			10: R_ARM_THM_JUMP24	tu_edpt_stream_read_xfer
+  14:	bd08      	pop	{r3, pc}
+  16:	bf00      	nop
+  18:	00000030 	.word	0x00000030
+			18: R_ARM_ABS32	.bss._cdcd_itf
+  1c:	00000024 	.word	0x00000024
+			1c: R_ARM_ABS32	.bss._cdcd_itf
+
+Disassembly of section .text.tud_cdc_n_write:
+
+00000000 <tud_cdc_n_write>:
+   0:	b910      	cbnz	r0, 8 <tud_cdc_n_write+0x8>
+   2:	4802      	ldr	r0, [pc, #8]	@ (c <tud_cdc_n_write+0xc>)
+   4:	f7ff bffe 	b.w	0 <tu_edpt_stream_write>
+			4: R_ARM_THM_JUMP24	tu_edpt_stream_write
+   8:	2000      	movs	r0, #0
+   a:	4770      	bx	lr
+   c:	0000000c 	.word	0x0000000c
+			c: R_ARM_ABS32	.bss._cdcd_itf
+
+Disassembly of section .text.tud_cdc_n_write_flush:
+
+00000000 <tud_cdc_n_write_flush>:
+   0:	b910      	cbnz	r0, 8 <tud_cdc_n_write_flush+0x8>
+   2:	4802      	ldr	r0, [pc, #8]	@ (c <tud_cdc_n_write_flush+0xc>)
+   4:	f7ff bffe 	b.w	0 <tu_edpt_stream_write_xfer>
+			4: R_ARM_THM_JUMP24	tu_edpt_stream_write_xfer
+   8:	2000      	movs	r0, #0
+   a:	4770      	bx	lr
+   c:	0000000c 	.word	0x0000000c
+			c: R_ARM_ABS32	.bss._cdcd_itf
+
+Disassembly of section .text.tud_cdc_n_write_available:
+
+00000000 <tud_cdc_n_write_available>:
+   0:	b910      	cbnz	r0, 8 <tud_cdc_n_write_available+0x8>
+   2:	4802      	ldr	r0, [pc, #8]	@ (c <tud_cdc_n_write_available+0xc>)
+   4:	f7ff bffe 	b.w	0 <tu_edpt_stream_write_available>
+			4: R_ARM_THM_JUMP24	tu_edpt_stream_write_available
+   8:	2000      	movs	r0, #0
+   a:	4770      	bx	lr
+   c:	0000000c 	.word	0x0000000c
+			c: R_ARM_ABS32	.bss._cdcd_itf
+
+Disassembly of section .text.tud_cdc_n_write_clear:
+
+00000000 <tud_cdc_n_write_clear>:
+   0:	b508      	push	{r3, lr}
+   2:	b920      	cbnz	r0, e <tud_cdc_n_write_clear+0xe>
+   4:	4803      	ldr	r0, [pc, #12]	@ (14 <tud_cdc_n_write_clear+0x14>)
+   6:	f7ff fffe 	bl	0 <tu_fifo_clear>
+			6: R_ARM_THM_CALL	tu_fifo_clear
+   a:	2001      	movs	r0, #1
+   c:	bd08      	pop	{r3, pc}
+   e:	2000      	movs	r0, #0
+  10:	e7fc      	b.n	c <tud_cdc_n_write_clear+0xc>
+  12:	bf00      	nop
+  14:	00000018 	.word	0x00000018
+			14: R_ARM_ABS32	.bss._cdcd_itf
+
+Disassembly of section .text.cdcd_init:
+
+00000000 <cdcd_init>:
+   0:	b530      	push	{r4, r5, lr}
+   2:	4c15      	ldr	r4, [pc, #84]	@ (58 <cdcd_init+0x58>)
+   4:	b085      	sub	sp, #20
+   6:	f44f 72fe 	mov.w	r2, #508	@ 0x1fc
+   a:	2100      	movs	r1, #0
+   c:	4620      	mov	r0, r4
+   e:	f7ff fffe 	bl	0 <memset>
+			e: R_ARM_THM_CALL	memset
+  12:	f44f 32e1 	mov.w	r2, #115200	@ 0x1c200
+  16:	4b11      	ldr	r3, [pc, #68]	@ (5c <cdcd_init+0x5c>)
+  18:	2500      	movs	r5, #0
+  1a:	e9c4 2301 	strd	r2, r3, [r4, #4]
+  1e:	2340      	movs	r3, #64	@ 0x40
+  20:	e9cd 3501 	strd	r3, r5, [sp, #4]
+  24:	f504 73de 	add.w	r3, r4, #444	@ 0x1bc
+  28:	462a      	mov	r2, r5
+  2a:	4629      	mov	r1, r5
+  2c:	9300      	str	r3, [sp, #0]
+  2e:	f104 0024 	add.w	r0, r4, #36	@ 0x24
+  32:	462b      	mov	r3, r5
+  34:	f7ff fffe 	bl	0 <tu_edpt_stream_init>
+			34: R_ARM_THM_CALL	tu_edpt_stream_init
+  38:	f44f 73c0 	mov.w	r3, #384	@ 0x180
+  3c:	9301      	str	r3, [sp, #4]
+  3e:	f104 033c 	add.w	r3, r4, #60	@ 0x3c
+  42:	9300      	str	r3, [sp, #0]
+  44:	2201      	movs	r2, #1
+  46:	462b      	mov	r3, r5
+  48:	4629      	mov	r1, r5
+  4a:	9502      	str	r5, [sp, #8]
+  4c:	f104 000c 	add.w	r0, r4, #12
+  50:	f7ff fffe 	bl	0 <tu_edpt_stream_init>
+			50: R_ARM_THM_CALL	tu_edpt_stream_init
+  54:	b005      	add	sp, #20
+  56:	bd30      	pop	{r4, r5, pc}
+  58:	00000000 	.word	0x00000000
+			58: R_ARM_ABS32	.bss._cdcd_itf
+  5c:	ff080000 	.word	0xff080000
+
+Disassembly of section .text.cdcd_deinit:
+
+00000000 <cdcd_deinit>:
+   0:	2001      	movs	r0, #1
+   2:	4770      	bx	lr
+
+Disassembly of section .text.cdcd_reset:
+
+00000000 <cdcd_reset>:
+   0:	b510      	push	{r4, lr}
+   2:	4c08      	ldr	r4, [pc, #32]	@ (24 <cdcd_reset+0x24>)
+   4:	2204      	movs	r2, #4
+   6:	2100      	movs	r1, #0
+   8:	4620      	mov	r0, r4
+   a:	f7ff fffe 	bl	0 <memset>
+			a: R_ARM_THM_CALL	memset
+   e:	2100      	movs	r1, #0
+  10:	f104 0018 	add.w	r0, r4, #24
+  14:	f7ff fffe 	bl	0 <tu_fifo_set_overwritable>
+			14: R_ARM_THM_CALL	tu_fifo_set_overwritable
+  18:	2300      	movs	r3, #0
+  1a:	f884 3026 	strb.w	r3, [r4, #38]	@ 0x26
+  1e:	73a3      	strb	r3, [r4, #14]
+  20:	bd10      	pop	{r4, pc}
+  22:	bf00      	nop
+  24:	00000000 	.word	0x00000000
+			24: R_ARM_ABS32	.bss._cdcd_itf
+
+Disassembly of section .text.cdcd_open:
+
+00000000 <cdcd_open>:
+   0:	e92d 4ff8 	stmdb	sp!, {r3, r4, r5, r6, r7, r8, r9, sl, fp, lr}
+   4:	4616      	mov	r6, r2
+   6:	794a      	ldrb	r2, [r1, #5]
+   8:	4607      	mov	r7, r0
+   a:	2a02      	cmp	r2, #2
+   c:	468a      	mov	sl, r1
+   e:	d111      	bne.n	34 <cdcd_open+0x34>
+  10:	798a      	ldrb	r2, [r1, #6]
+  12:	2a02      	cmp	r2, #2
+  14:	d10e      	bne.n	34 <cdcd_open+0x34>
+  16:	f8df b110 	ldr.w	fp, [pc, #272]	@ 128 <cdcd_open+0x128>
+  1a:	f89b 0026 	ldrb.w	r0, [fp, #38]	@ 0x26
+  1e:	f89b 100e 	ldrb.w	r1, [fp, #14]
+  22:	b150      	cbz	r0, 3a <cdcd_open+0x3a>
+  24:	b149      	cbz	r1, 3a <cdcd_open+0x3a>
+  26:	f04f 23e0 	mov.w	r3, #3758153728	@ 0xe000e000
+  2a:	f8d3 3df0 	ldr.w	r3, [r3, #3568]	@ 0xdf0
+  2e:	07db      	lsls	r3, r3, #31
+  30:	d500      	bpl.n	34 <cdcd_open+0x34>
+  32:	be00      	bkpt	0x0000
+  34:	2000      	movs	r0, #0
+  36:	e8bd 8ff8 	ldmia.w	sp!, {r3, r4, r5, r6, r7, r8, r9, sl, fp, pc}
+  3a:	f89a 1002 	ldrb.w	r1, [sl, #2]
+  3e:	f88b 7000 	strb.w	r7, [fp]
+  42:	f88b 1001 	strb.w	r1, [fp, #1]
+  46:	f89a 4000 	ldrb.w	r4, [sl]
+  4a:	4456      	add	r6, sl
+  4c:	4454      	add	r4, sl
+  4e:	42b4      	cmp	r4, r6
+  50:	7860      	ldrb	r0, [r4, #1]
+  52:	d205      	bcs.n	60 <cdcd_open+0x60>
+  54:	7821      	ldrb	r1, [r4, #0]
+  56:	4421      	add	r1, r4
+  58:	428e      	cmp	r6, r1
+  5a:	d301      	bcc.n	60 <cdcd_open+0x60>
+  5c:	2824      	cmp	r0, #36	@ 0x24
+  5e:	d014      	beq.n	8a <cdcd_open+0x8a>
+  60:	2805      	cmp	r0, #5
+  62:	d10a      	bne.n	7a <cdcd_open+0x7a>
+  64:	4621      	mov	r1, r4
+  66:	4638      	mov	r0, r7
+  68:	f7ff fffe 	bl	0 <usbd_edpt_open>
+			68: R_ARM_THM_CALL	usbd_edpt_open
+  6c:	2800      	cmp	r0, #0
+  6e:	d0da      	beq.n	26 <cdcd_open+0x26>
+  70:	78a1      	ldrb	r1, [r4, #2]
+  72:	f88b 1002 	strb.w	r1, [fp, #2]
+  76:	7821      	ldrb	r1, [r4, #0]
+  78:	440c      	add	r4, r1
+  7a:	7861      	ldrb	r1, [r4, #1]
+  7c:	2904      	cmp	r1, #4
+  7e:	d102      	bne.n	86 <cdcd_open+0x86>
+  80:	7961      	ldrb	r1, [r4, #5]
+  82:	290a      	cmp	r1, #10
+  84:	d049      	beq.n	11a <cdcd_open+0x11a>
+  86:	4625      	mov	r5, r4
+  88:	e032      	b.n	f0 <cdcd_open+0xf0>
+  8a:	460c      	mov	r4, r1
+  8c:	e7df      	b.n	4e <cdcd_open+0x4e>
+  8e:	42b1      	cmp	r1, r6
+  90:	d22e      	bcs.n	f0 <cdcd_open+0xf0>
+  92:	42ae      	cmp	r6, r5
+  94:	d32c      	bcc.n	f0 <cdcd_open+0xf0>
+  96:	7869      	ldrb	r1, [r5, #1]
+  98:	2905      	cmp	r1, #5
+  9a:	d1c4      	bne.n	26 <cdcd_open+0x26>
+  9c:	78e9      	ldrb	r1, [r5, #3]
+  9e:	f001 0103 	and.w	r1, r1, #3
+  a2:	2902      	cmp	r1, #2
+  a4:	d1bf      	bne.n	26 <cdcd_open+0x26>
+  a6:	4629      	mov	r1, r5
+  a8:	4638      	mov	r0, r7
+  aa:	f7ff fffe 	bl	0 <usbd_edpt_open>
+			aa: R_ARM_THM_CALL	usbd_edpt_open
+  ae:	2800      	cmp	r0, #0
+  b0:	d0b9      	beq.n	26 <cdcd_open+0x26>
+  b2:	78a8      	ldrb	r0, [r5, #2]
+  b4:	88a9      	ldrh	r1, [r5, #4]
+  b6:	ea5f 1cd0 	movs.w	ip, r0, lsr #7
+  ba:	f3c1 010a 	ubfx	r1, r1, #0, #11
+  be:	d01b      	beq.n	f8 <cdcd_open+0xf8>
+  c0:	f8ab 1010 	strh.w	r1, [fp, #16]
+  c4:	f44f 71c0 	mov.w	r1, #384	@ 0x180
+  c8:	f88b 000e 	strb.w	r0, [fp, #14]
+  cc:	4817      	ldr	r0, [pc, #92]	@ (12c <cdcd_open+0x12c>)
+  ce:	f88b 700c 	strb.w	r7, [fp, #12]
+  d2:	f8ab 1012 	strh.w	r1, [fp, #18]
+  d6:	f7ff fffe 	bl	0 <tu_fifo_clear>
+			d6: R_ARM_THM_CALL	tu_fifo_clear
+  da:	4629      	mov	r1, r5
+  dc:	f108 0801 	add.w	r8, r8, #1
+  e0:	f894 c004 	ldrb.w	ip, [r4, #4]
+  e4:	780d      	ldrb	r5, [r1, #0]
+  e6:	fa5f f088 	uxtb.w	r0, r8
+  ea:	4584      	cmp	ip, r0
+  ec:	440d      	add	r5, r1
+  ee:	d8ce      	bhi.n	8e <cdcd_open+0x8e>
+  f0:	eba5 000a 	sub.w	r0, r5, sl
+  f4:	b280      	uxth	r0, r0
+  f6:	e79e      	b.n	36 <cdcd_open+0x36>
+  f8:	f88b 0026 	strb.w	r0, [fp, #38]	@ 0x26
+  fc:	4648      	mov	r0, r9
+  fe:	f88b 7024 	strb.w	r7, [fp, #36]	@ 0x24
+ 102:	f8ab 1028 	strh.w	r1, [fp, #40]	@ 0x28
+ 106:	f8ab 102a 	strh.w	r1, [fp, #42]	@ 0x2a
+ 10a:	f7ff fffe 	bl	0 <tu_fifo_clear>
+			10a: R_ARM_THM_CALL	tu_fifo_clear
+ 10e:	4808      	ldr	r0, [pc, #32]	@ (130 <cdcd_open+0x130>)
+ 110:	f7ff fffe 	bl	0 <tu_edpt_stream_read_xfer>
+			110: R_ARM_THM_CALL	tu_edpt_stream_read_xfer
+ 114:	2800      	cmp	r0, #0
+ 116:	d1e0      	bne.n	da <cdcd_open+0xda>
+ 118:	e785      	b.n	26 <cdcd_open+0x26>
+ 11a:	4621      	mov	r1, r4
+ 11c:	f04f 0800 	mov.w	r8, #0
+ 120:	f8df 9010 	ldr.w	r9, [pc, #16]	@ 134 <cdcd_open+0x134>
+ 124:	e7dc      	b.n	e0 <cdcd_open+0xe0>
+ 126:	bf00      	nop
+ 128:	00000000 	.word	0x00000000
+			128: R_ARM_ABS32	.bss._cdcd_itf
+ 12c:	00000018 	.word	0x00000018
+			12c: R_ARM_ABS32	.bss._cdcd_itf
+ 130:	00000024 	.word	0x00000024
+			130: R_ARM_ABS32	.bss._cdcd_itf
+ 134:	00000030 	.word	0x00000030
+			134: R_ARM_ABS32	.bss._cdcd_itf
+
+Disassembly of section .text.cdcd_control_xfer_cb:
+
+00000000 <cdcd_control_xfer_cb>:
+   0:	b538      	push	{r3, r4, r5, lr}
+   2:	460b      	mov	r3, r1
+   4:	4611      	mov	r1, r2
+   6:	7812      	ldrb	r2, [r2, #0]
+   8:	f002 0260 	and.w	r2, r2, #96	@ 0x60
+   c:	2a20      	cmp	r2, #32
+   e:	d10c      	bne.n	2a <cdcd_control_xfer_cb+0x2a>
+  10:	4a20      	ldr	r2, [pc, #128]	@ (94 <cdcd_control_xfer_cb+0x94>)
+  12:	888d      	ldrh	r5, [r1, #4]
+  14:	7854      	ldrb	r4, [r2, #1]
+  16:	42a5      	cmp	r5, r4
+  18:	d107      	bne.n	2a <cdcd_control_xfer_cb+0x2a>
+  1a:	784c      	ldrb	r4, [r1, #1]
+  1c:	2c22      	cmp	r4, #34	@ 0x22
+  1e:	d023      	beq.n	68 <cdcd_control_xfer_cb+0x68>
+  20:	d805      	bhi.n	2e <cdcd_control_xfer_cb+0x2e>
+  22:	2c20      	cmp	r4, #32
+  24:	d00e      	beq.n	44 <cdcd_control_xfer_cb+0x44>
+  26:	2c21      	cmp	r4, #33	@ 0x21
+  28:	d01b      	beq.n	62 <cdcd_control_xfer_cb+0x62>
+  2a:	2000      	movs	r0, #0
+  2c:	e011      	b.n	52 <cdcd_control_xfer_cb+0x52>
+  2e:	2c23      	cmp	r4, #35	@ 0x23
+  30:	d1fb      	bne.n	2a <cdcd_control_xfer_cb+0x2a>
+  32:	2b01      	cmp	r3, #1
+  34:	d01a      	beq.n	6c <cdcd_control_xfer_cb+0x6c>
+  36:	2b03      	cmp	r3, #3
+  38:	d10a      	bne.n	50 <cdcd_control_xfer_cb+0x50>
+  3a:	2000      	movs	r0, #0
+  3c:	8849      	ldrh	r1, [r1, #2]
+  3e:	f7ff fffe 	bl	0 <cdcd_control_xfer_cb>
+			3e: R_ARM_THM_CALL	tud_cdc_send_break_cb
+  42:	e005      	b.n	50 <cdcd_control_xfer_cb+0x50>
+  44:	2b01      	cmp	r3, #1
+  46:	d105      	bne.n	54 <cdcd_control_xfer_cb+0x54>
+  48:	2307      	movs	r3, #7
+  4a:	4a13      	ldr	r2, [pc, #76]	@ (98 <cdcd_control_xfer_cb+0x98>)
+  4c:	f7ff fffe 	bl	0 <tud_control_xfer>
+			4c: R_ARM_THM_CALL	tud_control_xfer
+  50:	2001      	movs	r0, #1
+  52:	bd38      	pop	{r3, r4, r5, pc}
+  54:	2b03      	cmp	r3, #3
+  56:	d1fb      	bne.n	50 <cdcd_control_xfer_cb+0x50>
+  58:	2000      	movs	r0, #0
+  5a:	1d11      	adds	r1, r2, #4
+  5c:	f7ff fffe 	bl	0 <cdcd_control_xfer_cb>
+			5c: R_ARM_THM_CALL	tud_cdc_line_coding_cb
+  60:	e7f6      	b.n	50 <cdcd_control_xfer_cb+0x50>
+  62:	2b01      	cmp	r3, #1
+  64:	d1f4      	bne.n	50 <cdcd_control_xfer_cb+0x50>
+  66:	e7ef      	b.n	48 <cdcd_control_xfer_cb+0x48>
+  68:	2b01      	cmp	r3, #1
+  6a:	d102      	bne.n	72 <cdcd_control_xfer_cb+0x72>
+  6c:	f7ff fffe 	bl	0 <tud_control_status>
+			6c: R_ARM_THM_CALL	tud_control_status
+  70:	e7ee      	b.n	50 <cdcd_control_xfer_cb+0x50>
+  72:	2b03      	cmp	r3, #3
+  74:	d1ec      	bne.n	50 <cdcd_control_xfer_cb+0x50>
+  76:	884c      	ldrh	r4, [r1, #2]
+  78:	f102 0018 	add.w	r0, r2, #24
+  7c:	2100      	movs	r1, #0
+  7e:	70d4      	strb	r4, [r2, #3]
+  80:	f7ff fffe 	bl	0 <tu_fifo_set_overwritable>
+			80: R_ARM_THM_CALL	tu_fifo_set_overwritable
+  84:	2000      	movs	r0, #0
+  86:	f3c4 0240 	ubfx	r2, r4, #1, #1
+  8a:	f004 0101 	and.w	r1, r4, #1
+  8e:	f7ff fffe 	bl	0 <cdcd_control_xfer_cb>
+			8e: R_ARM_THM_CALL	tud_cdc_line_state_cb
+  92:	e7dd      	b.n	50 <cdcd_control_xfer_cb+0x50>
+  94:	00000000 	.word	0x00000000
+			94: R_ARM_ABS32	.bss._cdcd_itf
+  98:	00000004 	.word	0x00000004
+			98: R_ARM_ABS32	.bss._cdcd_itf
+
+Disassembly of section .text.cdcd_xfer_cb:
+
+00000000 <cdcd_xfer_cb>:
+   0:	b5f0      	push	{r4, r5, r6, r7, lr}
+   2:	460d      	mov	r5, r1
+   4:	4c3b      	ldr	r4, [pc, #236]	@ (f4 <cdcd_xfer_cb+0xf4>)
+   6:	461e      	mov	r6, r3
+   8:	f894 1026 	ldrb.w	r1, [r4, #38]	@ 0x26
+   c:	7ba2      	ldrb	r2, [r4, #14]
+   e:	42a9      	cmp	r1, r5
+  10:	78a3      	ldrb	r3, [r4, #2]
+  12:	b085      	sub	sp, #20
+  14:	d018      	beq.n	48 <cdcd_xfer_cb+0x48>
+  16:	4295      	cmp	r5, r2
+  18:	d003      	beq.n	22 <cdcd_xfer_cb+0x22>
+  1a:	429d      	cmp	r5, r3
+  1c:	d145      	bne.n	aa <cdcd_xfer_cb+0xaa>
+  1e:	2d00      	cmp	r5, #0
+  20:	d043      	beq.n	aa <cdcd_xfer_cb+0xaa>
+  22:	7ba3      	ldrb	r3, [r4, #14]
+  24:	42ab      	cmp	r3, r5
+  26:	d10a      	bne.n	3e <cdcd_xfer_cb+0x3e>
+  28:	2000      	movs	r0, #0
+  2a:	f7ff fffe 	bl	0 <cdcd_xfer_cb>
+			2a: R_ARM_THM_CALL	tud_cdc_tx_complete_cb
+  2e:	4832      	ldr	r0, [pc, #200]	@ (f8 <cdcd_xfer_cb+0xf8>)
+  30:	f7ff fffe 	bl	0 <tu_edpt_stream_write_xfer>
+			30: R_ARM_THM_CALL	tu_edpt_stream_write_xfer
+  34:	b918      	cbnz	r0, 3e <cdcd_xfer_cb+0x3e>
+  36:	4631      	mov	r1, r6
+  38:	482f      	ldr	r0, [pc, #188]	@ (f8 <cdcd_xfer_cb+0xf8>)
+  3a:	f7ff fffe 	bl	0 <tu_edpt_stream_write_zlp_if_needed>
+			3a: R_ARM_THM_CALL	tu_edpt_stream_write_zlp_if_needed
+  3e:	78a3      	ldrb	r3, [r4, #2]
+  40:	42ab      	cmp	r3, r5
+  42:	d053      	beq.n	ec <cdcd_xfer_cb+0xec>
+  44:	2001      	movs	r0, #1
+  46:	e038      	b.n	ba <cdcd_xfer_cb+0xba>
+  48:	6ae1      	ldr	r1, [r4, #44]	@ 0x2c
+  4a:	2900      	cmp	r1, #0
+  4c:	d137      	bne.n	be <cdcd_xfer_cb+0xbe>
+  4e:	7ae3      	ldrb	r3, [r4, #11]
+  50:	2bff      	cmp	r3, #255	@ 0xff
+  52:	d01d      	beq.n	90 <cdcd_xfer_cb+0x90>
+  54:	4669      	mov	r1, sp
+  56:	4829      	ldr	r0, [pc, #164]	@ (fc <cdcd_xfer_cb+0xfc>)
+  58:	f7ff fffe 	bl	0 <tu_fifo_get_read_info>
+			58: R_ARM_THM_CALL	tu_fifo_get_read_info
+  5c:	f8bd 3008 	ldrh.w	r3, [sp, #8]
+  60:	2b00      	cmp	r3, #0
+  62:	d033      	beq.n	cc <cdcd_xfer_cb+0xcc>
+  64:	9a03      	ldr	r2, [sp, #12]
+  66:	3b01      	subs	r3, #1
+  68:	441a      	add	r2, r3
+  6a:	b18a      	cbz	r2, 90 <cdcd_xfer_cb+0x90>
+  6c:	2000      	movs	r0, #0
+  6e:	f8bd 3000 	ldrh.w	r3, [sp]
+  72:	9f01      	ldr	r7, [sp, #4]
+  74:	3b01      	subs	r3, #1
+  76:	7ae1      	ldrb	r1, [r4, #11]
+  78:	f8dd c00c 	ldr.w	ip, [sp, #12]
+  7c:	443b      	add	r3, r7
+  7e:	42b0      	cmp	r0, r6
+  80:	d006      	beq.n	90 <cdcd_xfer_cb+0x90>
+  82:	f892 e000 	ldrb.w	lr, [r2]
+  86:	458e      	cmp	lr, r1
+  88:	d127      	bne.n	da <cdcd_xfer_cb+0xda>
+  8a:	2000      	movs	r0, #0
+  8c:	f7ff fffe 	bl	0 <cdcd_xfer_cb>
+			8c: R_ARM_THM_CALL	tud_cdc_rx_wanted_cb
+  90:	8f22      	ldrh	r2, [r4, #56]	@ 0x38
+  92:	8f63      	ldrh	r3, [r4, #58]	@ 0x3a
+  94:	b292      	uxth	r2, r2
+  96:	b29b      	uxth	r3, r3
+  98:	429a      	cmp	r2, r3
+  9a:	d002      	beq.n	a2 <cdcd_xfer_cb+0xa2>
+  9c:	2000      	movs	r0, #0
+  9e:	f7ff fffe 	bl	0 <cdcd_xfer_cb>
+			9e: R_ARM_THM_CALL	tud_cdc_rx_cb
+  a2:	4817      	ldr	r0, [pc, #92]	@ (100 <cdcd_xfer_cb+0x100>)
+  a4:	f7ff fffe 	bl	0 <tu_edpt_stream_read_xfer>
+			a4: R_ARM_THM_CALL	tu_edpt_stream_read_xfer
+  a8:	e7bb      	b.n	22 <cdcd_xfer_cb+0x22>
+  aa:	f04f 23e0 	mov.w	r3, #3758153728	@ 0xe000e000
+  ae:	f8d3 3df0 	ldr.w	r3, [r3, #3568]	@ 0xdf0
+  b2:	07db      	lsls	r3, r3, #31
+  b4:	d500      	bpl.n	b8 <cdcd_xfer_cb+0xb8>
+  b6:	be00      	bkpt	0x0000
+  b8:	2000      	movs	r0, #0
+  ba:	b005      	add	sp, #20
+  bc:	bdf0      	pop	{r4, r5, r6, r7, pc}
+  be:	2300      	movs	r3, #0
+  c0:	b2b2      	uxth	r2, r6
+  c2:	f104 0030 	add.w	r0, r4, #48	@ 0x30
+  c6:	f7ff fffe 	bl	0 <tu_fifo_write_n_access_mode>
+			c6: R_ARM_THM_CALL	tu_fifo_write_n_access_mode
+  ca:	e7c0      	b.n	4e <cdcd_xfer_cb+0x4e>
+  cc:	f8bd 3000 	ldrh.w	r3, [sp]
+  d0:	2b00      	cmp	r3, #0
+  d2:	d0dd      	beq.n	90 <cdcd_xfer_cb+0x90>
+  d4:	9a01      	ldr	r2, [sp, #4]
+  d6:	3b01      	subs	r3, #1
+  d8:	e7c6      	b.n	68 <cdcd_xfer_cb+0x68>
+  da:	4594      	cmp	ip, r2
+  dc:	d004      	beq.n	e8 <cdcd_xfer_cb+0xe8>
+  de:	4297      	cmp	r7, r2
+  e0:	d0d6      	beq.n	90 <cdcd_xfer_cb+0x90>
+  e2:	3a01      	subs	r2, #1
+  e4:	3001      	adds	r0, #1
+  e6:	e7ca      	b.n	7e <cdcd_xfer_cb+0x7e>
+  e8:	461a      	mov	r2, r3
+  ea:	e7fb      	b.n	e4 <cdcd_xfer_cb+0xe4>
+  ec:	2000      	movs	r0, #0
+  ee:	f7ff fffe 	bl	0 <cdcd_xfer_cb>
+			ee: R_ARM_THM_CALL	tud_cdc_notify_complete_cb
+  f2:	e7a7      	b.n	44 <cdcd_xfer_cb+0x44>
+  f4:	00000000 	.word	0x00000000
+			f4: R_ARM_ABS32	.bss._cdcd_itf
+  f8:	0000000c 	.word	0x0000000c
+			f8: R_ARM_ABS32	.bss._cdcd_itf
+  fc:	00000030 	.word	0x00000030
+			fc: R_ARM_ABS32	.bss._cdcd_itf
+ 100:	00000024 	.word	0x00000024
+			100: R_ARM_ABS32	.bss._cdcd_itf

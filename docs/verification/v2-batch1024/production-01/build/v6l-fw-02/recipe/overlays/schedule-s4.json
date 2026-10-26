@@ -1,0 +1,13 @@
+{
+  "schema": "motortester-v2-s4-schedule-overlay-1",
+  "patches": [
+    {
+      "source": "patched/v2/app/mt_live_runtime.c",
+      "target": "v2/app/mt_live_runtime.c",
+      "patch": "v2-s4-schedule-app-mt_live_runtime.c.patch",
+      "source_sha256": "e6e7959fda16be23c74ff66305d109c0ae12d65d353d1c9a10a543a30526667e",
+      "patch_sha256": "54970946519f087f882fdbbb93599116669c88a624114e1fe1839dc315464c99",
+      "result_sha256": "210a48d3e561a42ba7724bf236ff4bec61e2ebd3f40793dc8178aaa3756805b4"
+    }
+  ]
+}

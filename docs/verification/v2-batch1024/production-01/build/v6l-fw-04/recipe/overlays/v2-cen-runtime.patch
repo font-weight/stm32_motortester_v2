@@ -1,0 +1,47 @@
+--- a/v2/app/mt_live_runtime.c
++++ b/v2/app/mt_live_runtime.c
+@@ -49,9 +49,43 @@
+        !usable(r))return 0;
+     *us=observed_us; return 1;
+ }
++/* The two expensive validated snapshots surround a narrow physical CEN bracket.
++ * PRIMASK is already held by the driver; no ISR or foreground writer can alter
++ * TIME state, its callbacks or the original USB actor within this transaction.
++ * Hardware lifecycle flags remain live and usable() checks them on both sides.
++ * Raw CNT values are NEVER published without the final full validation. */
++static int commit_timer(void *context, uint32_t *before_us, uint32_t *after_us) {
++    mt_live_runtime *r=context;
++    uint32_t first_us, last_us, ignored_ms, span, actor=mt_usb_bridge_actor();
++    uint16_t first_counter, before_counter, after_counter, last_counter;
++    uint16_t before_delta, after_delta;
++    if(!actor || !mt_timebase_snapshot(r->clock,&first_us,&ignored_ms))return 0;
++    first_counter=r->clock->last_counter;
++    if(!usable(r))return 0;
++    before_counter=(uint16_t)r->clock->io.read32(r->clock->io.context,0x40000024u);
++    adc_write(r,0x40000400u,1u);
++    /* Read back the APB write inside the physical bracket. */
++    if(adc_read(r,0x40000400u)!=1u)return 0;
++    after_counter=(uint16_t)r->clock->io.read32(r->clock->io.context,0x40000024u);
++    if(!mt_timebase_snapshot(r->clock,&last_us,&ignored_ms) ||
++       mt_usb_bridge_actor()!=actor || !usable(r))return 0;
++    last_counter=r->clock->last_counter;
++    span=(uint32_t)(last_us-first_us);
++    before_delta=(uint16_t)(before_counter-first_counter);
++    after_delta=(uint16_t)(after_counter-first_counter);
++    /* Both CNT samples must lie, in order, inside the SAME validated interval.
++     * This handles TIM2's 16-bit rollover and the published us 32-bit rollover.
++     * The pre-existing <one-counter-wrap service assumption is unchanged. */
++    if(span>MT_TIMEBASE_MAX_DELTA || span!=(uint16_t)(last_counter-first_counter) ||
++       before_delta>span || after_delta<before_delta || after_delta>span)return 0;
++    *before_us=first_us+before_delta;
++    *after_us=first_us+after_delta;
++    return 1;
++}
+ static int live_start(void *context,uint32_t generation) {
+     mt_live_runtime *r=context;
+-    return usable(r) && mt_usb_bridge_actor() && mt_live_adc_start(&r->acquisition,generation);
++    return usable(r) && mt_usb_bridge_actor() &&
++        mt_live_adc_start_transaction(&r->acquisition,generation,commit_timer);
+ }
+ static void live_stop(void *context,mt_live_snapshot *snapshot) {
+     mt_live_runtime *r=context;

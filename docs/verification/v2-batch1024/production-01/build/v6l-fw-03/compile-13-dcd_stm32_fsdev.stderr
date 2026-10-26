@@ -1,0 +1,19 @@
+In file included from patched/dcd_stm32_fsdev.c:101:
+patched/fsdev_common.h: In function 'btable_set_count':
+patched/fsdev_common.h:434:18: warning: conversion from 'unsigned int' to 'uint16_t' {aka 'short unsigned int'} changes the value of '4294966272' [-Wconversion]
+  434 |   cnt          = (cnt & ~0x3FFU) | (byte_count & 0x3FFU);
+      |                  ^
+patched/dcd_stm32_fsdev.c: In function 'dcd_sof_enable':
+patched/dcd_stm32_fsdev.c:288:24: warning: conversion from 'unsigned int' to 'fsdev_bus_t' {aka 'short unsigned int'} changes the value of '4294966783' [-Wconversion]
+  288 |     FSDEV_REG->CNTR &= ~U_CNTR_SOFM;
+      |                        ^
+patched/dcd_stm32_fsdev.c: In function 'dcd_int_handler':
+patched/dcd_stm32_fsdev.c:521:24: warning: conversion from 'unsigned int' to 'fsdev_bus_t' {aka 'short unsigned int'} changes the value of '4294967291' [-Wconversion]
+  521 |     FSDEV_REG->CNTR &= ~U_CNTR_LPMODE;
+      |                        ^
+patched/dcd_stm32_fsdev.c:522:24: warning: conversion from 'unsigned int' to 'fsdev_bus_t' {aka 'short unsigned int'} changes the value of '4294967287' [-Wconversion]
+  522 |     FSDEV_REG->CNTR &= ~U_CNTR_FSUSP;
+      |                        ^
+patched/dcd_stm32_fsdev.c:543:26: warning: conversion from 'unsigned int' to 'fsdev_bus_t' {aka 'short unsigned int'} changes the value of '4294967279' [-Wconversion]
+  543 |       FSDEV_REG->CNTR &= ~U_CNTR_RESUME;
+      |                          ^

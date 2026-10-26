@@ -14,15 +14,22 @@ from unittest.mock import patch
 
 from .serial_smoke import _Factory, _StreamBackend
 from .stream_demo import PacedStreamPeer
-from ..stream_wire import (Kind, MODE_TABLE, MODE_MAX_BLOCK, BATCH_REVISION,
+from ..stream_wire import (Kind, MODE_TABLE, MODE_MAX_BLOCK, MODE_MAX_PAYLOAD, BATCH1024_REVISION,
                           decode_frame, decode_payload, encode_frame, pack10)
 
 
 class ProfilesPeer(PacedStreamPeer):
     """Paced test fixture with one selected mode, same bounded backlog as DEMO."""
-    def __init__(self, *, batch=True):
+    def __init__(self, *, discovery_capabilities=15):
         super().__init__(unknown_tail=True)
-        self.batch = batch
+        # Old SC/SD advertisements remain separate fixtures; their150k modes
+        # must never be silently upgraded to the new1024-sample contract.
+        self.discovery_capabilities = discovery_capabilities
+        self.discovery_max_block, self.discovery_max_payload, self.fixture_build = {
+            3: (128, 512, 0x56325343),
+            7: (256, 512, 0x56325344),
+            15: (1024, 1300, 0xF0102401),
+        }[discovery_capabilities]
         self.revision, self.mode = "0.2", 0
         self.original_period = self._period_raw
         self.handshakes = []
@@ -39,7 +46,7 @@ class ProfilesPeer(PacedStreamPeer):
         if kind == Kind.DATA:
             generation, _, first, count, reserved = struct.unpack_from("<IIQHH", payload)
             raw = payload[20:]
-            if self.mode in (3, 4):
+            if self.mode in (3, 4, 5):
                 raw = pack10(tuple(code for (code,) in struct.iter_unpack("<H", raw)))
             payload = struct.pack("<IIQHH", generation, self.mode, first, count, reserved) + raw
         elif kind in (Kind.START_ACK, Kind.END):
@@ -49,7 +56,8 @@ class ProfilesPeer(PacedStreamPeer):
         decoded_frame = decode_frame(frame, "device")
         observed = decode_payload(decoded_frame)
         if kind == Kind.HELLO_ACK:
-            self.wire_acks.append((decoded_frame.revision, observed.capabilities, observed.max_block))
+            self.wire_acks.append((decoded_frame.revision, observed.capabilities,
+                                   observed.max_block, observed.max_payload))
         elif kind == Kind.DATA:
             maximum = MODE_MAX_BLOCK[self.mode]
             assert observed.first_index == self.wire_next_index and self.wire_short_samples is None
@@ -99,13 +107,16 @@ class ProfilesPeer(PacedStreamPeer):
                 self._period_raw = self.original_period
                 if self.revision == "0.3":
                     self.sample_rate_hz = MODE_TABLE[self.mode][0]
-                    if self.mode in (3, 4):
+                    assert self.mode in ({3: (1, 2, 3), 7: (1, 2, 3, 4), 15: (1, 2, 3, 4, 5)}[
+                        self.discovery_capabilities])
+                    if self.mode in (3, 4, 5):
                         self._period_raw = struct.pack("<" + "H" * self._period_samples,
                             *(code & 4092 for (code,) in struct.iter_unpack("<H", self.original_period)))
+                discovery = self.revision == "0.2"
                 self._enqueue(Kind.HELLO_ACK, struct.pack("<BBBBHHII", 0, int(self.revision[-1]),
-                    1, 12, 512, (256 if self.batch else 128) if self.revision == "0.2" else MODE_MAX_BLOCK[self.mode],
-                    0x56325344 if self.batch else 0x56325343,
-                    (7 if self.batch else 3) if self.revision == "0.2" else 1), frame.request_id)
+                    1, 12, self.discovery_max_payload if discovery else MODE_MAX_PAYLOAD[self.mode],
+                    self.discovery_max_block if discovery else MODE_MAX_BLOCK[self.mode],
+                    self.fixture_build, self.discovery_capabilities if discovery else 1), frame.request_id)
                 continue
             assert self.revision == "0.3" and frame.revision == self.revision
             assert frame.nonce == self._nonce
@@ -127,7 +138,7 @@ class ProfilesPeer(PacedStreamPeer):
         return len(data)
 
     def _data(self, count):
-        # DATA256 can traverse the200-sample synthetic period more than once.
+        # DATA1024 traverses the200-sample synthetic period several times.
         first = (self._next % self._period_samples) * 2
         repeated = self._period_raw * (2 + count // self._period_samples)
         raw = repeated[first:first + 2 * count]
@@ -169,9 +180,9 @@ class ProfilesPeer(PacedStreamPeer):
 
 
 class ProfilesBackend(_StreamBackend):
-    def __init__(self, owner, *, batch=True, **settings):
+    def __init__(self, owner, *, discovery_capabilities=15, **settings):
         super().__init__(owner, **settings)
-        self.peer = ProfilesPeer(batch=batch)
+        self.peer = ProfilesPeer(discovery_capabilities=discovery_capabilities)
 
 
 def exercise(app, output):
@@ -190,10 +201,11 @@ def exercise(app, output):
               "qt_platform": app.platformName(), "executable": sys.executable,
               "owners_closed": False, "real_serial_open_calls": 0, "checks": {}, "files": {},
               "execution_kind": "injected-test", "physical_stream_verified": False}
-    window = dialog = mismatch = sc_mismatch = None
+    window = dialog = mismatch = sc_mismatch = sd_mismatch = None
     factory = _Factory(ProfilesBackend)
     legacy_factory = _Factory(lambda owner, **settings: _RateBackend(owner, 100_000, **settings))
-    sc_factory = _Factory(lambda owner, **settings: ProfilesBackend(owner, batch=False, **settings))
+    sc_factory = _Factory(lambda owner, **settings: ProfilesBackend(owner, discovery_capabilities=3, **settings))
+    sd_factory = _Factory(lambda owner, **settings: ProfilesBackend(owner, discovery_capabilities=7, **settings))
     previous_hook = sys.excepthook
     sys.excepthook = lambda kind, value, tb: report["callback_errors"].append(
         "".join(traceback.format_exception(kind, value, tb)))
@@ -241,12 +253,12 @@ def exercise(app, output):
             dialog.connect_button.click()
             wait(lambda: dialog.bridge.state.ready and dialog.bridge.connection is not None, "mode READY")
             connection = dialog.bridge.connection
-            assert connection.protocol_revision == "0.3" and connection.observed_caps == (4, 4, 0, 12, 150_000, 1, 256, 1, 10, 2)
+            assert connection.protocol_revision == "0.3" and connection.observed_caps == (5, 5, 0, 12, 150_000, 1, 1024, 1, 10, 2)
             backend, = factory.backends
             assert backend.commands == [1, 1, 2]
             assert backend.peer.handshakes[0][1] != backend.peer.handshakes[1][1]
-            assert backend.peer.wire_acks == [("0.2", 7, 256), ("0.3", 1, 256)]
-            report["checks"]["batch_mode4_negotiated"] = True
+            assert backend.peer.wire_acks == [("0.2", 15, 1024, 1300), ("0.3", 1, 1024, 1300)]
+            report["checks"]["batch_mode5_negotiated"] = True
             assert not dialog.rate_combo.isEnabled() and not dialog.bridge.select_sample_rate(50_000)
             report["checks"]["selection_locked"] = True
             dialog.raw_view.click(); dialog.live_button.click()
@@ -271,16 +283,19 @@ def exercise(app, output):
             wait(lambda: dialog.saved_path is not None and not dialog.bridge.metadata_pending, "Stop/journal/context")
             assert dialog.bridge.state.phase == "stopped unknown tail" and not report["errors"]
             peer = backend.peer
-            assert peer.wire_end_validated and peer.wire_full_frames > 0 and peer.wire_first_full == 256
-            assert peer.wire_max_frame_bytes <= 371
-            report["batch"] = {"mode": 4, "max_block": 256, "discovery_capabilities": 7,
-                "discovery_max_block": peer.wire_acks[0][2], "selected_ack_max_block": peer.wire_acks[1][2],
-                "full_data_frames": peer.wire_full_frames, "first_full_data_samples": peer.wire_first_full,
+            assert peer.wire_end_validated and peer.wire_full_frames > 0 and peer.wire_first_full == 1024
+            assert peer.wire_max_frame_bytes <= 1335
+            report["batch"] = {"acquisition_mode": 5, "config_id": 5, "negotiated_max_block": 1024,
+                "discovery_capabilities": peer.wire_acks[0][1],
+                "discovery_max_block": peer.wire_acks[0][2], "discovery_max_payload": peer.wire_acks[0][3],
+                "selected_ack_max_block": peer.wire_acks[1][2], "selected_ack_max_payload": peer.wire_acks[1][3],
+                "full_DATA1024_frames": peer.wire_full_frames, "first_full_data_count": peer.wire_first_full,
                 "short_tail_frames": int(peer.wire_short_samples is not None),
-                "short_tail_samples": peer.wire_short_samples,
-                "largest_data_frame_bytes": peer.wire_max_frame_bytes,
-                "data_count_sequence_validation": peer.wire_end_validated}
-            report["checks"]["batch256_wire_evidence"] = True
+                "terminal_short_samples": peer.wire_short_samples,
+                "largest_frame_bytes": peer.wire_max_frame_bytes,
+                "data_count_sequence_validation": peer.wire_end_validated,
+                "canonical_crc_validated": peer.wire_end_validated}
+            report["checks"]["batch1024_wire_evidence"] = True
             report["limits"] = {"peak_raw_items": dialog.bridge.state.peak_raw_items,
                 "peak_raw_bytes": dialog.bridge.state.peak_raw_bytes,
                 "max_service_gap_ms": dialog.bridge.state.max_service_gap_ms,
@@ -291,7 +306,7 @@ def exercise(app, output):
             wait(lambda: not dialog.busy and dialog.archive is not None and not dialog.viewer.busy, "fresh Open")
             archive = dialog.archive
             assert archive.identity.retained_bits == 10 and archive.identity.discarded_lsb == 2
-            assert archive.identity.protocol_revision == BATCH_REVISION and archive.identity.acquisition_mode == archive.identity.config_id == 4
+            assert archive.identity.protocol_revision == BATCH1024_REVISION and archive.identity.acquisition_mode == archive.identity.config_id == 5
             assert dialog.verified_context.companion_present and dialog.verified_context.connection == connection
             assert archive.recovery_issue is None and archive.terminal.loss_samples is None
             assert "10 старших бит" in dialog.notice.text() and dialog.viewer._config.rail_high == 4092
@@ -350,23 +365,35 @@ def exercise(app, output):
             sc_mismatch.show(); sc_mismatch.connect_button.click()
             wait(lambda: sc_mismatch.bridge.state.bridge is not None and
                  sc_mismatch.bridge.state.bridge.endpoint_first_fault is not None and
-                 "нужна прошивка с пакетами по 256" in sc_mismatch.error_label.text(), "SC150 batch-required visible")
+                 "нужна прошивка с пакетами по 1024" in sc_mismatch.error_label.text(), "SC150 batch-required visible")
             assert sc_factory.backends[0].commands == [1]
             assert not sc_mismatch.bridge.state.ready and sc_mismatch.bridge.state.validated_samples == 0
             assert not sc_mismatch.live_button.isEnabled()
             screenshot("profiles-sc150-mismatch.png", sc_mismatch)
-            report["checks"]["sc150_batch_required_before_start"] = True
             report["expected_sc150_error"] = sc_mismatch.error_label.text()
             sc_mismatch.close(); wait(lambda: sc_mismatch.closed, "SC owner closed")
+            sd_mismatch = StreamDialog(selection=SerialStreamSelection("SD_SYNTHETIC", requested_sample_rate_hz=150_000),
+                bridge_factory=lambda parent, **options: StreamDeviceBridge(parent, fake_backend_factory=sd_factory, **options))
+            sd_mismatch.show(); sd_mismatch.connect_button.click()
+            wait(lambda: sd_mismatch.bridge.state.bridge is not None and
+                 sd_mismatch.bridge.state.bridge.endpoint_first_fault is not None and
+                 "нужна прошивка с пакетами по 1024" in sd_mismatch.error_label.text(), "SD150 batch-required visible")
+            assert sd_factory.backends[0].commands == [1]
+            assert not sd_mismatch.bridge.state.ready and sd_mismatch.bridge.state.validated_samples == 0
+            assert not sd_mismatch.live_button.isEnabled()
+            screenshot("profiles-sd150-mismatch.png", sd_mismatch)
+            report["checks"]["sc_sd150_batch_required_before_start"] = True
+            report["expected_sd150_error"] = sd_mismatch.error_label.text()
+            sd_mismatch.close(); wait(lambda: sd_mismatch.closed, "SD owner closed")
             window.close(); wait(lambda: not window.isVisible(), "main window closed")
             assert not report["errors"] and not report["callback_errors"] and real_open.call_count == 0
-            report.update(status="PASS", owners_closed=all(not b.is_open for f in (factory, legacy_factory, sc_factory) for b in f.backends),
+            report.update(status="PASS", owners_closed=all(not b.is_open for f in (factory, legacy_factory, sc_factory, sd_factory) for b in f.backends),
                           real_serial_open_calls=real_open.call_count)
     except BaseException:
         report["status"] = "FAIL"
         report["errors"].append(traceback.format_exc())
     finally:
-        for active in (dialog, mismatch, sc_mismatch):
+        for active in (dialog, mismatch, sc_mismatch, sd_mismatch):
             if active is not None and not active.closed:
                 active.close()
                 deadline = time.monotonic() + 8

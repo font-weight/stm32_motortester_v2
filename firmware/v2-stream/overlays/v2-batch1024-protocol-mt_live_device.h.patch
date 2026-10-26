@@ -1,0 +1,46 @@
+--- a/protocol/mt_live_device.h
++++ b/protocol/mt_live_device.h
+@@ -1,6 +1,8 @@
+ #ifndef MT_LIVE_DEVICE_H
+ #define MT_LIVE_DEVICE_H
+ #include "mt_wire.h"
++#include "mt_batch1024.h"
++#define MT_LIVE_TX_CAPACITY MT_BATCH1024_CAPACITY
+ #include "../acquisition/mt_sample_queue.h"
+ #include "../acquisition/mt_acquisition_profile.h"
+ 
+@@ -100,7 +102,7 @@
+     uint64_t rx_first_time;
+     uint8_t previous[MT_WIRE_FRAME_MAX - 1u];
+     size_t previous_length;
+-    uint8_t tx[MT_WIRE_FRAME_MAX];
++    uint8_t tx[MT_LIVE_TX_CAPACITY];
+     size_t tx_length, tx_offset;
+     uint8_t tx_type;
+     uint64_t tx_nonce, tx_first_index, tx_second_first_index;
+@@ -108,11 +110,15 @@
+     uint32_t tx_sequence;
+     size_t last_write_accepted;
+     unsigned last_write_known;
++    mt_batch1024_state batch; /* In-flight ownership, NEVER accepted prefix. */
+ } mt_live_device;
+ 
+-/* Foreground-only staging transaction. Ticket and device must not alias;
++/* Foreground staging/ownership transaction. Mode5 may pop copied queue views
++ * into TX ownership BEFORE guard; it never commits accepted prefix.
++ * Ticket and device must not alias;
+  * no other core operation or callback may intervene before guarded submit.
+- * Preparation owns only existing tx bytes/metadata, never an accepted prefix.
++ * Mode5 preparation owns copied source samples in TX and may pop the queue;
++ * all other modes own only bytes/metadata. Accepted prefix never advances here.
+  * Transport epoch/lifecycle are revalidated separately by the runtime guard. */
+ typedef enum { MT_LIVE_TX_EMPTY, MT_LIVE_TX_PREPARED, MT_LIVE_TX_ERROR }
+     mt_live_prepare_result;
+@@ -153,6 +159,7 @@
+     uint8_t tx_type;
+     uint8_t error_type;
+     uint8_t error_code;
++    mt_batch1024_state batch;
+ } mt_live_tx_ticket;
+ mt_live_prepare_result mt_live_device_prepare_tx(mt_live_device *device,
+                                                 mt_live_tx_ticket *ticket);

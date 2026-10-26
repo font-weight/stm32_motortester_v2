@@ -1,0 +1,587 @@
+
+objects/09-tusb.o:     file format elf32-littlearm
+
+
+Disassembly of section .text.stream_claim:
+
+00000000 <stream_claim>:
+   0:	7881      	ldrb	r1, [r0, #2]
+   2:	b121      	cbz	r1, e <stream_claim+0xe>
+   4:	7843      	ldrb	r3, [r0, #1]
+   6:	b913      	cbnz	r3, e <stream_claim+0xe>
+   8:	7800      	ldrb	r0, [r0, #0]
+   a:	f7ff bffe 	b.w	0 <usbd_edpt_claim>
+			a: R_ARM_THM_JUMP24	usbd_edpt_claim
+   e:	2000      	movs	r0, #0
+  10:	4770      	bx	lr
+
+Disassembly of section .text.stream_xfer:
+
+00000000 <stream_xfer>:
+   0:	b537      	push	{r0, r1, r2, r4, r5, lr}
+   2:	7845      	ldrb	r5, [r0, #1]
+   4:	4602      	mov	r2, r0
+   6:	460b      	mov	r3, r1
+   8:	b98d      	cbnz	r5, 2e <stream_xfer+0x2e>
+   a:	6884      	ldr	r4, [r0, #8]
+   c:	7891      	ldrb	r1, [r2, #2]
+   e:	7800      	ldrb	r0, [r0, #0]
+  10:	b92c      	cbnz	r4, 1e <stream_xfer+0x1e>
+  12:	9400      	str	r4, [sp, #0]
+  14:	320c      	adds	r2, #12
+  16:	f7ff fffe 	bl	0 <usbd_edpt_xfer_fifo>
+			16: R_ARM_THM_CALL	usbd_edpt_xfer_fifo
+  1a:	b003      	add	sp, #12
+  1c:	bd30      	pop	{r4, r5, pc}
+  1e:	2b00      	cmp	r3, #0
+  20:	bf14      	ite	ne
+  22:	4622      	movne	r2, r4
+  24:	2200      	moveq	r2, #0
+  26:	9500      	str	r5, [sp, #0]
+  28:	f7ff fffe 	bl	0 <usbd_edpt_xfer>
+			28: R_ARM_THM_CALL	usbd_edpt_xfer
+  2c:	e7f5      	b.n	1a <stream_xfer+0x1a>
+  2e:	2000      	movs	r0, #0
+  30:	e7f3      	b.n	1a <stream_xfer+0x1a>
+
+Disassembly of section .text.stream_release.isra.0:
+
+00000000 <stream_release.isra.0>:
+   0:	7843      	ldrb	r3, [r0, #1]
+   2:	b91b      	cbnz	r3, c <stream_release.isra.0+0xc>
+   4:	7881      	ldrb	r1, [r0, #2]
+   6:	7800      	ldrb	r0, [r0, #0]
+   8:	f7ff bffe 	b.w	0 <usbd_edpt_release>
+			8: R_ARM_THM_JUMP24	usbd_edpt_release
+   c:	4770      	bx	lr
+
+Disassembly of section .text.tusb_time_delay_ms_api:
+
+00000000 <tusb_time_delay_ms_api>:
+   0:	b538      	push	{r3, r4, r5, lr}
+   2:	4604      	mov	r4, r0
+   4:	f7ff fffe 	bl	0 <tusb_time_millis_api>
+			4: R_ARM_THM_CALL	tusb_time_millis_api
+   8:	4605      	mov	r5, r0
+   a:	f7ff fffe 	bl	0 <tusb_time_millis_api>
+			a: R_ARM_THM_CALL	tusb_time_millis_api
+   e:	1b43      	subs	r3, r0, r5
+  10:	42a3      	cmp	r3, r4
+  12:	d3fa      	bcc.n	a <tusb_time_delay_ms_api+0xa>
+  14:	bd38      	pop	{r3, r4, r5, pc}
+
+Disassembly of section .text.tusb_app_virt_to_phys:
+
+00000000 <tusb_app_virt_to_phys>:
+   0:	4770      	bx	lr
+
+Disassembly of section .text.tusb_app_phys_to_virt:
+
+00000000 <tusb_app_phys_to_virt>:
+   0:	4770      	bx	lr
+
+Disassembly of section .text.tusb_rhport_init:
+
+00000000 <tusb_rhport_init>:
+   0:	460b      	mov	r3, r1
+   2:	b513      	push	{r0, r1, r4, lr}
+   4:	b999      	cbnz	r1, 2e <tusb_rhport_init+0x2e>
+   6:	2401      	movs	r4, #1
+   8:	4618      	mov	r0, r3
+   a:	e9cd 4100 	strd	r4, r1, [sp]
+   e:	4669      	mov	r1, sp
+  10:	f7ff fffe 	bl	0 <tud_rhport_init>
+			10: R_ARM_THM_CALL	tud_rhport_init
+  14:	b940      	cbnz	r0, 28 <tusb_rhport_init+0x28>
+  16:	f04f 23e0 	mov.w	r3, #3758153728	@ 0xe000e000
+  1a:	f8d3 3df0 	ldr.w	r3, [r3, #3568]	@ 0xdf0
+  1e:	07da      	lsls	r2, r3, #31
+  20:	d500      	bpl.n	24 <tusb_rhport_init+0x24>
+  22:	be00      	bkpt	0x0000
+  24:	b002      	add	sp, #8
+  26:	bd10      	pop	{r4, pc}
+  28:	4b0d      	ldr	r3, [pc, #52]	@ (60 <tusb_rhport_init+0x60>)
+  2a:	601c      	str	r4, [r3, #0]
+  2c:	e7fa      	b.n	24 <tusb_rhport_init+0x24>
+  2e:	2801      	cmp	r0, #1
+  30:	d801      	bhi.n	36 <tusb_rhport_init+0x36>
+  32:	680b      	ldr	r3, [r1, #0]
+  34:	b943      	cbnz	r3, 48 <tusb_rhport_init+0x48>
+  36:	f04f 23e0 	mov.w	r3, #3758153728	@ 0xe000e000
+  3a:	f8d3 3df0 	ldr.w	r3, [r3, #3568]	@ 0xdf0
+  3e:	07db      	lsls	r3, r3, #31
+  40:	d500      	bpl.n	44 <tusb_rhport_init+0x44>
+  42:	be00      	bkpt	0x0000
+  44:	2000      	movs	r0, #0
+  46:	e7ed      	b.n	24 <tusb_rhport_init+0x24>
+  48:	4c05      	ldr	r4, [pc, #20]	@ (60 <tusb_rhport_init+0x60>)
+  4a:	2b01      	cmp	r3, #1
+  4c:	f844 3020 	str.w	r3, [r4, r0, lsl #2]
+  50:	d001      	beq.n	56 <tusb_rhport_init+0x56>
+  52:	2001      	movs	r0, #1
+  54:	e7e6      	b.n	24 <tusb_rhport_init+0x24>
+  56:	f7ff fffe 	bl	0 <tud_rhport_init>
+			56: R_ARM_THM_CALL	tud_rhport_init
+  5a:	2800      	cmp	r0, #0
+  5c:	d1f9      	bne.n	52 <tusb_rhport_init+0x52>
+  5e:	e7ea      	b.n	36 <tusb_rhport_init+0x36>
+  60:	00000000 	.word	0x00000000
+			60: R_ARM_ABS32	_tusb_rhport_role
+
+Disassembly of section .text.tusb_inited:
+
+00000000 <tusb_inited>:
+   0:	f7ff bffe 	b.w	0 <tud_inited>
+			0: R_ARM_THM_JUMP24	tud_inited
+
+Disassembly of section .text.tusb_int_handler:
+
+00000000 <tusb_int_handler>:
+   0:	2801      	cmp	r0, #1
+   2:	d806      	bhi.n	12 <tusb_int_handler+0x12>
+   4:	4a03      	ldr	r2, [pc, #12]	@ (14 <tusb_int_handler+0x14>)
+   6:	f852 3020 	ldr.w	r3, [r2, r0, lsl #2]
+   a:	2b01      	cmp	r3, #1
+   c:	d101      	bne.n	12 <tusb_int_handler+0x12>
+   e:	f7ff bffe 	b.w	0 <dcd_int_handler>
+			e: R_ARM_THM_JUMP24	dcd_int_handler
+  12:	4770      	bx	lr
+  14:	00000000 	.word	0x00000000
+			14: R_ARM_ABS32	_tusb_rhport_role
+
+Disassembly of section .text.tusb_deinit:
+
+00000000 <tusb_deinit>:
+   0:	2801      	cmp	r0, #1
+   2:	b538      	push	{r3, r4, r5, lr}
+   4:	4604      	mov	r4, r0
+   6:	d80e      	bhi.n	26 <tusb_deinit+0x26>
+   8:	4d0a      	ldr	r5, [pc, #40]	@ (34 <tusb_deinit+0x34>)
+   a:	f855 3020 	ldr.w	r3, [r5, r0, lsl #2]
+   e:	2b01      	cmp	r3, #1
+  10:	d109      	bne.n	26 <tusb_deinit+0x26>
+  12:	f7ff fffe 	bl	0 <tud_deinit>
+			12: R_ARM_THM_CALL	tud_deinit
+  16:	b940      	cbnz	r0, 2a <tusb_deinit+0x2a>
+  18:	f04f 23e0 	mov.w	r3, #3758153728	@ 0xe000e000
+  1c:	f8d3 3df0 	ldr.w	r3, [r3, #3568]	@ 0xdf0
+  20:	07db      	lsls	r3, r3, #31
+  22:	d500      	bpl.n	26 <tusb_deinit+0x26>
+  24:	be00      	bkpt	0x0000
+  26:	2000      	movs	r0, #0
+  28:	bd38      	pop	{r3, r4, r5, pc}
+  2a:	2300      	movs	r3, #0
+  2c:	f845 3024 	str.w	r3, [r5, r4, lsl #2]
+  30:	e7fa      	b.n	28 <tusb_deinit+0x28>
+  32:	bf00      	nop
+  34:	00000000 	.word	0x00000000
+			34: R_ARM_ABS32	_tusb_rhport_role
+
+Disassembly of section .text.tu_desc_find:
+
+00000000 <tu_desc_find>:
+   0:	1c43      	adds	r3, r0, #1
+   2:	4299      	cmp	r1, r3
+   4:	d801      	bhi.n	a <tu_desc_find+0xa>
+   6:	2000      	movs	r0, #0
+   8:	4770      	bx	lr
+   a:	7843      	ldrb	r3, [r0, #1]
+   c:	4293      	cmp	r3, r2
+   e:	d0fb      	beq.n	8 <tu_desc_find+0x8>
+  10:	7803      	ldrb	r3, [r0, #0]
+  12:	4418      	add	r0, r3
+  14:	e7f4      	b.n	0 <tu_desc_find>
+
+Disassembly of section .text.tu_desc_find2:
+
+00000000 <tu_desc_find2>:
+   0:	b510      	push	{r4, lr}
+   2:	1c84      	adds	r4, r0, #2
+   4:	42a1      	cmp	r1, r4
+   6:	d801      	bhi.n	c <tu_desc_find2+0xc>
+   8:	2000      	movs	r0, #0
+   a:	bd10      	pop	{r4, pc}
+   c:	7844      	ldrb	r4, [r0, #1]
+   e:	4294      	cmp	r4, r2
+  10:	d102      	bne.n	18 <tu_desc_find2+0x18>
+  12:	7884      	ldrb	r4, [r0, #2]
+  14:	429c      	cmp	r4, r3
+  16:	d0f8      	beq.n	a <tu_desc_find2+0xa>
+  18:	7804      	ldrb	r4, [r0, #0]
+  1a:	4420      	add	r0, r4
+  1c:	e7f1      	b.n	2 <tu_desc_find2+0x2>
+
+Disassembly of section .text.tu_desc_find3:
+
+00000000 <tu_desc_find3>:
+   0:	b530      	push	{r4, r5, lr}
+   2:	f89d 500c 	ldrb.w	r5, [sp, #12]
+   6:	1cc4      	adds	r4, r0, #3
+   8:	42a1      	cmp	r1, r4
+   a:	d801      	bhi.n	10 <tu_desc_find3+0x10>
+   c:	2000      	movs	r0, #0
+   e:	bd30      	pop	{r4, r5, pc}
+  10:	7844      	ldrb	r4, [r0, #1]
+  12:	4294      	cmp	r4, r2
+  14:	d105      	bne.n	22 <tu_desc_find3+0x22>
+  16:	7884      	ldrb	r4, [r0, #2]
+  18:	429c      	cmp	r4, r3
+  1a:	d102      	bne.n	22 <tu_desc_find3+0x22>
+  1c:	78c4      	ldrb	r4, [r0, #3]
+  1e:	42ac      	cmp	r4, r5
+  20:	d0f5      	beq.n	e <tu_desc_find3+0xe>
+  22:	7804      	ldrb	r4, [r0, #0]
+  24:	4420      	add	r0, r4
+  26:	e7ee      	b.n	6 <tu_desc_find3+0x6>
+
+Disassembly of section .text.tu_edpt_claim:
+
+00000000 <tu_edpt_claim>:
+   0:	7803      	ldrb	r3, [r0, #0]
+   2:	4602      	mov	r2, r0
+   4:	f013 0005 	ands.w	r0, r3, #5
+   8:	d109      	bne.n	1e <tu_edpt_claim+0x1e>
+   a:	7813      	ldrb	r3, [r2, #0]
+   c:	f013 0f05 	tst.w	r3, #5
+  10:	d106      	bne.n	20 <tu_edpt_claim+0x20>
+  12:	7813      	ldrb	r3, [r2, #0]
+  14:	2001      	movs	r0, #1
+  16:	f043 0304 	orr.w	r3, r3, #4
+  1a:	7013      	strb	r3, [r2, #0]
+  1c:	4770      	bx	lr
+  1e:	2000      	movs	r0, #0
+  20:	4770      	bx	lr
+
+Disassembly of section .text.tu_edpt_release:
+
+00000000 <tu_edpt_release>:
+   0:	4603      	mov	r3, r0
+   2:	7802      	ldrb	r2, [r0, #0]
+   4:	f002 0205 	and.w	r2, r2, #5
+   8:	2a04      	cmp	r2, #4
+   a:	bf03      	ittte	eq
+   c:	781a      	ldrbeq	r2, [r3, #0]
+   e:	2001      	moveq	r0, #1
+  10:	f002 02fb 	andeq.w	r2, r2, #251	@ 0xfb
+  14:	2000      	movne	r0, #0
+  16:	bf08      	it	eq
+  18:	701a      	strbeq	r2, [r3, #0]
+  1a:	4770      	bx	lr
+
+Disassembly of section .text.tu_bind_driver_to_ep_itf:
+
+00000000 <tu_bind_driver_to_ep_itf>:
+   0:	b5f0      	push	{r4, r5, r6, r7, lr}
+   2:	9c05      	ldr	r4, [sp, #20]
+   4:	f8bd 5018 	ldrh.w	r5, [sp, #24]
+   8:	4425      	add	r5, r4
+   a:	42ac      	cmp	r4, r5
+   c:	d223      	bcs.n	56 <tu_bind_driver_to_ep_itf+0x56>
+   e:	7826      	ldrb	r6, [r4, #0]
+  10:	4426      	add	r6, r4
+  12:	42b5      	cmp	r5, r6
+  14:	d31f      	bcc.n	56 <tu_bind_driver_to_ep_itf+0x56>
+  16:	7866      	ldrb	r6, [r4, #1]
+  18:	2e05      	cmp	r6, #5
+  1a:	d109      	bne.n	30 <tu_bind_driver_to_ep_itf+0x30>
+  1c:	78a6      	ldrb	r6, [r4, #2]
+  1e:	f006 070f 	and.w	r7, r6, #15
+  22:	eb01 0747 	add.w	r7, r1, r7, lsl #1
+  26:	09f6      	lsrs	r6, r6, #7
+  28:	55b8      	strb	r0, [r7, r6]
+  2a:	7826      	ldrb	r6, [r4, #0]
+  2c:	4434      	add	r4, r6
+  2e:	e7ec      	b.n	a <tu_bind_driver_to_ep_itf+0xa>
+  30:	2e04      	cmp	r6, #4
+  32:	d1fa      	bne.n	2a <tu_bind_driver_to_ep_itf+0x2a>
+  34:	78e6      	ldrb	r6, [r4, #3]
+  36:	2e00      	cmp	r6, #0
+  38:	d1f7      	bne.n	2a <tu_bind_driver_to_ep_itf+0x2a>
+  3a:	78a6      	ldrb	r6, [r4, #2]
+  3c:	429e      	cmp	r6, r3
+  3e:	d308      	bcc.n	52 <tu_bind_driver_to_ep_itf+0x52>
+  40:	f04f 23e0 	mov.w	r3, #3758153728	@ 0xe000e000
+  44:	f8d3 3df0 	ldr.w	r3, [r3, #3568]	@ 0xdf0
+  48:	07db      	lsls	r3, r3, #31
+  4a:	d500      	bpl.n	4e <tu_bind_driver_to_ep_itf+0x4e>
+  4c:	be00      	bkpt	0x0000
+  4e:	2000      	movs	r0, #0
+  50:	bdf0      	pop	{r4, r5, r6, r7, pc}
+  52:	5590      	strb	r0, [r2, r6]
+  54:	e7e9      	b.n	2a <tu_bind_driver_to_ep_itf+0x2a>
+  56:	2001      	movs	r0, #1
+  58:	e7fa      	b.n	50 <tu_bind_driver_to_ep_itf+0x50>
+
+Disassembly of section .text.tu_edpt_stream_init:
+
+00000000 <tu_edpt_stream_init>:
+   0:	b510      	push	{r4, lr}
+   2:	4604      	mov	r4, r0
+   4:	4608      	mov	r0, r1
+   6:	9902      	ldr	r1, [sp, #8]
+   8:	f8bd 200c 	ldrh.w	r2, [sp, #12]
+   c:	b149      	cbz	r1, 22 <tu_edpt_stream_init+0x22>
+   e:	b152      	cbz	r2, 26 <tu_edpt_stream_init+0x26>
+  10:	7060      	strb	r0, [r4, #1]
+  12:	f104 000c 	add.w	r0, r4, #12
+  16:	f7ff fffe 	bl	0 <tu_fifo_config>
+			16: R_ARM_THM_CALL	tu_fifo_config
+  1a:	2001      	movs	r0, #1
+  1c:	9b04      	ldr	r3, [sp, #16]
+  1e:	60a3      	str	r3, [r4, #8]
+  20:	bd10      	pop	{r4, pc}
+  22:	4608      	mov	r0, r1
+  24:	e7fc      	b.n	20 <tu_edpt_stream_init+0x20>
+  26:	4610      	mov	r0, r2
+  28:	e7fa      	b.n	20 <tu_edpt_stream_init+0x20>
+
+Disassembly of section .text.tu_edpt_stream_write_zlp_if_needed:
+
+00000000 <tu_edpt_stream_write_zlp_if_needed>:
+   0:	b538      	push	{r3, r4, r5, lr}
+   2:	8a82      	ldrh	r2, [r0, #20]
+   4:	8ac3      	ldrh	r3, [r0, #22]
+   6:	b292      	uxth	r2, r2
+   8:	b29b      	uxth	r3, r3
+   a:	429a      	cmp	r2, r3
+   c:	4604      	mov	r4, r0
+   e:	d001      	beq.n	14 <tu_edpt_stream_write_zlp_if_needed+0x14>
+  10:	2000      	movs	r0, #0
+  12:	bd38      	pop	{r3, r4, r5, pc}
+  14:	2900      	cmp	r1, #0
+  16:	d0fb      	beq.n	10 <tu_edpt_stream_write_zlp_if_needed+0x10>
+  18:	8883      	ldrh	r3, [r0, #4]
+  1a:	3b01      	subs	r3, #1
+  1c:	ea13 0501 	ands.w	r5, r3, r1
+  20:	d1f6      	bne.n	10 <tu_edpt_stream_write_zlp_if_needed+0x10>
+  22:	f7ff fffe 	bl	0 <tu_edpt_stream_write_zlp_if_needed>
+			22: R_ARM_THM_CALL	stream_claim
+  26:	2800      	cmp	r0, #0
+  28:	d0f2      	beq.n	10 <tu_edpt_stream_write_zlp_if_needed+0x10>
+  2a:	4629      	mov	r1, r5
+  2c:	4620      	mov	r0, r4
+  2e:	f7ff fffe 	bl	0 <tu_edpt_stream_write_zlp_if_needed>
+			2e: R_ARM_THM_CALL	stream_xfer
+  32:	2800      	cmp	r0, #0
+  34:	d1ed      	bne.n	12 <tu_edpt_stream_write_zlp_if_needed+0x12>
+  36:	f04f 23e0 	mov.w	r3, #3758153728	@ 0xe000e000
+  3a:	f8d3 3df0 	ldr.w	r3, [r3, #3568]	@ 0xdf0
+  3e:	07db      	lsls	r3, r3, #31
+  40:	d5e6      	bpl.n	10 <tu_edpt_stream_write_zlp_if_needed+0x10>
+  42:	be00      	bkpt	0x0000
+  44:	e7e4      	b.n	10 <tu_edpt_stream_write_zlp_if_needed+0x10>
+
+Disassembly of section .text.tu_edpt_stream_write_xfer:
+
+00000000 <tu_edpt_stream_write_xfer>:
+   0:	b538      	push	{r3, r4, r5, lr}
+   2:	8a83      	ldrh	r3, [r0, #20]
+   4:	8ac2      	ldrh	r2, [r0, #22]
+   6:	b29b      	uxth	r3, r3
+   8:	b292      	uxth	r2, r2
+   a:	8a01      	ldrh	r1, [r0, #16]
+   c:	4293      	cmp	r3, r2
+   e:	bfb6      	itet	lt
+  10:	ebc2 0241 	rsblt	r2, r2, r1, lsl #1
+  14:	1a9b      	subge	r3, r3, r2
+  16:	189b      	addlt	r3, r3, r2
+  18:	b29b      	uxth	r3, r3
+  1a:	4299      	cmp	r1, r3
+  1c:	bf28      	it	cs
+  1e:	4619      	movcs	r1, r3
+  20:	4604      	mov	r4, r0
+  22:	b301      	cbz	r1, 66 <tu_edpt_stream_write_xfer+0x66>
+  24:	f7ff fffe 	bl	0 <tu_edpt_stream_write_xfer>
+			24: R_ARM_THM_CALL	stream_claim
+  28:	b1e8      	cbz	r0, 66 <tu_edpt_stream_write_xfer+0x66>
+  2a:	68a1      	ldr	r1, [r4, #8]
+  2c:	b9e9      	cbnz	r1, 6a <tu_edpt_stream_write_xfer+0x6a>
+  2e:	8aa3      	ldrh	r3, [r4, #20]
+  30:	8ae2      	ldrh	r2, [r4, #22]
+  32:	b29b      	uxth	r3, r3
+  34:	b292      	uxth	r2, r2
+  36:	8a25      	ldrh	r5, [r4, #16]
+  38:	4293      	cmp	r3, r2
+  3a:	bfb6      	itet	lt
+  3c:	ebc2 0245 	rsblt	r2, r2, r5, lsl #1
+  40:	1a9b      	subge	r3, r3, r2
+  42:	189b      	addlt	r3, r3, r2
+  44:	b29b      	uxth	r3, r3
+  46:	429d      	cmp	r5, r3
+  48:	bf28      	it	cs
+  4a:	461d      	movcs	r5, r3
+  4c:	b1bd      	cbz	r5, 7e <tu_edpt_stream_write_xfer+0x7e>
+  4e:	4629      	mov	r1, r5
+  50:	4620      	mov	r0, r4
+  52:	f7ff fffe 	bl	0 <tu_edpt_stream_write_xfer>
+			52: R_ARM_THM_CALL	stream_xfer
+  56:	b980      	cbnz	r0, 7a <tu_edpt_stream_write_xfer+0x7a>
+  58:	f04f 23e0 	mov.w	r3, #3758153728	@ 0xe000e000
+  5c:	f8d3 3df0 	ldr.w	r3, [r3, #3568]	@ 0xdf0
+  60:	07db      	lsls	r3, r3, #31
+  62:	d500      	bpl.n	66 <tu_edpt_stream_write_xfer+0x66>
+  64:	be00      	bkpt	0x0000
+  66:	2000      	movs	r0, #0
+  68:	bd38      	pop	{r3, r4, r5, pc}
+  6a:	2300      	movs	r3, #0
+  6c:	88e2      	ldrh	r2, [r4, #6]
+  6e:	f104 000c 	add.w	r0, r4, #12
+  72:	f7ff fffe 	bl	0 <tu_fifo_read_n_access_mode>
+			72: R_ARM_THM_CALL	tu_fifo_read_n_access_mode
+  76:	4605      	mov	r5, r0
+  78:	e7e8      	b.n	4c <tu_edpt_stream_write_xfer+0x4c>
+  7a:	4628      	mov	r0, r5
+  7c:	e7f4      	b.n	68 <tu_edpt_stream_write_xfer+0x68>
+  7e:	4620      	mov	r0, r4
+  80:	f7ff fffe 	bl	0 <tu_edpt_stream_write_xfer>
+			80: R_ARM_THM_CALL	stream_release.isra.0
+  84:	e7ef      	b.n	66 <tu_edpt_stream_write_xfer+0x66>
+
+Disassembly of section .text.tu_edpt_stream_write:
+
+00000000 <tu_edpt_stream_write>:
+   0:	b538      	push	{r3, r4, r5, lr}
+   2:	4604      	mov	r4, r0
+   4:	4610      	mov	r0, r2
+   6:	b1f2      	cbz	r2, 46 <tu_edpt_stream_write+0x46>
+   8:	2300      	movs	r3, #0
+   a:	b292      	uxth	r2, r2
+   c:	f104 000c 	add.w	r0, r4, #12
+  10:	f7ff fffe 	bl	0 <tu_fifo_write_n_access_mode>
+			10: R_ARM_THM_CALL	tu_fifo_write_n_access_mode
+  14:	8aa3      	ldrh	r3, [r4, #20]
+  16:	8ae2      	ldrh	r2, [r4, #22]
+  18:	b29b      	uxth	r3, r3
+  1a:	b292      	uxth	r2, r2
+  1c:	8a21      	ldrh	r1, [r4, #16]
+  1e:	4293      	cmp	r3, r2
+  20:	bfb6      	itet	lt
+  22:	ebc2 0241 	rsblt	r2, r2, r1, lsl #1
+  26:	1a9b      	subge	r3, r3, r2
+  28:	189b      	addlt	r3, r3, r2
+  2a:	b29b      	uxth	r3, r3
+  2c:	428b      	cmp	r3, r1
+  2e:	bf28      	it	cs
+  30:	460b      	movcs	r3, r1
+  32:	88a2      	ldrh	r2, [r4, #4]
+  34:	4605      	mov	r5, r0
+  36:	429a      	cmp	r2, r3
+  38:	d901      	bls.n	3e <tu_edpt_stream_write+0x3e>
+  3a:	428a      	cmp	r2, r1
+  3c:	d902      	bls.n	44 <tu_edpt_stream_write+0x44>
+  3e:	4620      	mov	r0, r4
+  40:	f7ff fffe 	bl	0 <tu_edpt_stream_write>
+			40: R_ARM_THM_CALL	tu_edpt_stream_write_xfer
+  44:	4628      	mov	r0, r5
+  46:	bd38      	pop	{r3, r4, r5, pc}
+
+Disassembly of section .text.tu_edpt_stream_write_available:
+
+00000000 <tu_edpt_stream_write_available>:
+   0:	8a83      	ldrh	r3, [r0, #20]
+   2:	8ac2      	ldrh	r2, [r0, #22]
+   4:	b29b      	uxth	r3, r3
+   6:	8a00      	ldrh	r0, [r0, #16]
+   8:	b292      	uxth	r2, r2
+   a:	4293      	cmp	r3, r2
+   c:	bfb6      	itet	lt
+   e:	ebc2 0240 	rsblt	r2, r2, r0, lsl #1
+  12:	1a9b      	subge	r3, r3, r2
+  14:	189b      	addlt	r3, r3, r2
+  16:	b29b      	uxth	r3, r3
+  18:	4298      	cmp	r0, r3
+  1a:	bf86      	itte	hi
+  1c:	1ac0      	subhi	r0, r0, r3
+  1e:	b280      	uxthhi	r0, r0
+  20:	2000      	movls	r0, #0
+  22:	4770      	bx	lr
+
+Disassembly of section .text.tu_edpt_stream_read_xfer:
+
+00000000 <tu_edpt_stream_read_xfer>:
+   0:	b538      	push	{r3, r4, r5, lr}
+   2:	8a83      	ldrh	r3, [r0, #20]
+   4:	8ac1      	ldrh	r1, [r0, #22]
+   6:	8a02      	ldrh	r2, [r0, #16]
+   8:	b29b      	uxth	r3, r3
+   a:	b289      	uxth	r1, r1
+   c:	428b      	cmp	r3, r1
+   e:	bfb6      	itet	lt
+  10:	ebc1 0142 	rsblt	r1, r1, r2, lsl #1
+  14:	1a5b      	subge	r3, r3, r1
+  16:	185b      	addlt	r3, r3, r1
+  18:	b29b      	uxth	r3, r3
+  1a:	429a      	cmp	r2, r3
+  1c:	bf94      	ite	ls
+  1e:	2200      	movls	r2, #0
+  20:	1ad2      	subhi	r2, r2, r3
+  22:	8883      	ldrh	r3, [r0, #4]
+  24:	bf88      	it	hi
+  26:	b292      	uxthhi	r2, r2
+  28:	4293      	cmp	r3, r2
+  2a:	4605      	mov	r5, r0
+  2c:	d82a      	bhi.n	84 <tu_edpt_stream_read_xfer+0x84>
+  2e:	f7ff fffe 	bl	0 <tu_edpt_stream_read_xfer>
+			2e: R_ARM_THM_CALL	stream_claim
+  32:	b338      	cbz	r0, 84 <tu_edpt_stream_read_xfer+0x84>
+  34:	8aab      	ldrh	r3, [r5, #20]
+  36:	8aea      	ldrh	r2, [r5, #22]
+  38:	8a29      	ldrh	r1, [r5, #16]
+  3a:	b29b      	uxth	r3, r3
+  3c:	b292      	uxth	r2, r2
+  3e:	4293      	cmp	r3, r2
+  40:	bfb6      	itet	lt
+  42:	ebc2 0241 	rsblt	r2, r2, r1, lsl #1
+  46:	1a9b      	subge	r3, r3, r2
+  48:	189b      	addlt	r3, r3, r2
+  4a:	b29b      	uxth	r3, r3
+  4c:	4299      	cmp	r1, r3
+  4e:	bf94      	ite	ls
+  50:	2100      	movls	r1, #0
+  52:	1ac9      	subhi	r1, r1, r3
+  54:	88ab      	ldrh	r3, [r5, #4]
+  56:	bf88      	it	hi
+  58:	b289      	uxthhi	r1, r1
+  5a:	428b      	cmp	r3, r1
+  5c:	d816      	bhi.n	8c <tu_edpt_stream_read_xfer+0x8c>
+  5e:	425b      	negs	r3, r3
+  60:	ea01 0403 	and.w	r4, r1, r3
+  64:	88eb      	ldrh	r3, [r5, #6]
+  66:	4628      	mov	r0, r5
+  68:	429c      	cmp	r4, r3
+  6a:	bf28      	it	cs
+  6c:	461c      	movcs	r4, r3
+  6e:	4621      	mov	r1, r4
+  70:	f7ff fffe 	bl	0 <tu_edpt_stream_read_xfer>
+			70: R_ARM_THM_CALL	stream_xfer
+  74:	b940      	cbnz	r0, 88 <tu_edpt_stream_read_xfer+0x88>
+  76:	f04f 23e0 	mov.w	r3, #3758153728	@ 0xe000e000
+  7a:	f8d3 3df0 	ldr.w	r3, [r3, #3568]	@ 0xdf0
+  7e:	07db      	lsls	r3, r3, #31
+  80:	d500      	bpl.n	84 <tu_edpt_stream_read_xfer+0x84>
+  82:	be00      	bkpt	0x0000
+  84:	2000      	movs	r0, #0
+  86:	bd38      	pop	{r3, r4, r5, pc}
+  88:	4620      	mov	r0, r4
+  8a:	e7fc      	b.n	86 <tu_edpt_stream_read_xfer+0x86>
+  8c:	4628      	mov	r0, r5
+  8e:	f7ff fffe 	bl	0 <tu_edpt_stream_read_xfer>
+			8e: R_ARM_THM_CALL	stream_release.isra.0
+  92:	e7f7      	b.n	84 <tu_edpt_stream_read_xfer+0x84>
+
+Disassembly of section .text.tu_edpt_stream_read:
+
+00000000 <tu_edpt_stream_read>:
+   0:	b538      	push	{r3, r4, r5, lr}
+   2:	b292      	uxth	r2, r2
+   4:	4604      	mov	r4, r0
+   6:	2300      	movs	r3, #0
+   8:	300c      	adds	r0, #12
+   a:	f7ff fffe 	bl	0 <tu_fifo_read_n_access_mode>
+			a: R_ARM_THM_CALL	tu_fifo_read_n_access_mode
+   e:	4605      	mov	r5, r0
+  10:	4620      	mov	r0, r4
+  12:	f7ff fffe 	bl	0 <tu_edpt_stream_read>
+			12: R_ARM_THM_CALL	tu_edpt_stream_read_xfer
+  16:	4628      	mov	r0, r5
+  18:	bd38      	pop	{r3, r4, r5, pc}

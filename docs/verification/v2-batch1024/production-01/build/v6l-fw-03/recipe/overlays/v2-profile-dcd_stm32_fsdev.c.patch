@@ -1,0 +1,109 @@
+--- a/patched/dcd_stm32_fsdev.c
++++ b/patched/dcd_stm32_fsdev.c
+@@ -1,3 +1,6 @@
++/* MT_PROFILE_BEGIN */
++#include "mt_stream_profile.h"
++/* MT_PROFILE_END */
+ /*
+  * The MIT License (MIT)
+  *
+@@ -190,6 +193,9 @@
+   if (ctr) FSDEV_REG->CNTR |= U_CNTR_CTRM;
+   else FSDEV_REG->CNTR &= (fsdev_bus_t)~U_CNTR_CTRM;
+   mt_irq_held = false;
++  /* MT_PROFILE_BEGIN */
++  mt_profile_grant(ctr?1u:0u);
++  /* MT_PROFILE_END */
+   fsdev_int_enable(0);
+   return true;
+ }
+@@ -478,7 +484,7 @@
+   }
+ }
+ 
+-void dcd_int_handler(uint8_t rhport) {
++void mt_profiled_dcd_int_handler_body(uint8_t rhport) {
+ #if CFG_MT_USB_CTR_FAIRNESS
+   /* Every entry consumes the foreground grant, including RESET-only entries.
+    * Pending endpoint flags survive; only bounded CDC IN continuation may rearm. */
+@@ -555,6 +561,9 @@
+   unsigned mt_ctr_budget = 1u;
+   bool mt_ctr_serviced = false;
+   bool mt_continue_tx = false;
++  /* MT_PROFILE_BEGIN */
++  unsigned mt_profile_hold=MT_P_HOLD_OTHER;
++  /* MT_PROFILE_END */
+   while (!mt_ctr_deferred && mt_ctr_budget && (FSDEV_REG->ISTR & U_ISTR_CTR)) {
+     --mt_ctr_budget;
+     mt_ctr_serviced = true;
+@@ -593,6 +602,12 @@
+           mt_xfer->max_packet_size==64u &&
+           mt_total<=384u && mt_queued && mt_queued<mt_total && !(mt_queued&63u);
+ #endif
++      /* MT_PROFILE_BEGIN */
++      if(ep_num==2u) {
++        mt_profile_in_packet(mt_queued,mt_total,mt_xfer->max_packet_size);
++        if(!(ep_reg&(U_EP_CTR_RX|U_EP_SETUP)) && mt_queued>=mt_total)mt_profile_hold=MT_P_HOLD_FINAL;
++      }
++      /* MT_PROFILE_END */
+       ep_write_clear_ctr(ep_id, TUSB_DIR_IN);
+       handle_ctr_tx(ep_id);
+ #if CFG_MT_USB_CTR_FAIRNESS
+@@ -613,12 +628,15 @@
+     /* Only an intermediate data-IN packet may spend the remaining grant.
+      * Final/RX/SETUP/control/lifecycle/error paths stay held for foreground.
+      * Check hardware lifecycle again: it may arrive during PMA publication. */
+-    if(mt_continue_tx && mt_tx_burst_left &&
+-        !(int_status&(U_ISTR_RESET|U_ISTR_PMAOVR|U_ISTR_SUSP|U_ISTR_WKUP|U_ISTR_ERR)) &&
+-        !(FSDEV_REG->ISTR&(U_ISTR_DIR|U_ISTR_ERR)) &&
+-        !mt_usb_fsdev_lifecycle_pending() && mt_tx_burst_time_ok() &&
+-        !(FSDEV_REG->CNTR&(U_CNTR_FRES|U_CNTR_PDWN|U_CNTR_FSUSP)) &&
+-        (FSDEV_REG->DADDR&U_DADDR_EF)) {
++    if(mt_profile_guard(mt_profile_hold,mt_continue_tx) && mt_profile_guard(MT_P_HOLD_BUDGET,mt_tx_burst_left!=0u) &&
++        mt_profile_guard(MT_P_HOLD_LIFECYCLE,!(int_status&(U_ISTR_RESET|U_ISTR_PMAOVR|U_ISTR_SUSP|U_ISTR_WKUP|U_ISTR_ERR))) &&
++        mt_profile_guard(MT_P_HOLD_LIFECYCLE,!(FSDEV_REG->ISTR&(U_ISTR_DIR|U_ISTR_ERR))) &&
++        mt_profile_guard(MT_P_HOLD_LIFECYCLE,!mt_usb_fsdev_lifecycle_pending()) && mt_profile_guard(MT_P_HOLD_TIME,mt_tx_burst_time_ok()) &&
++        mt_profile_guard(MT_P_HOLD_LIFECYCLE,!(FSDEV_REG->CNTR&(U_CNTR_FRES|U_CNTR_PDWN|U_CNTR_FSUSP))) &&
++        mt_profile_guard(MT_P_HOLD_LIFECYCLE,(FSDEV_REG->DADDR&U_DADDR_EF))) {
++      /* MT_PROFILE_BEGIN */
++      mt_profile_burst_resume();
++      /* MT_PROFILE_END */
+       mt_ctr_deferred=false;
+       FSDEV_REG->CNTR|=U_CNTR_CTRM;
+       mt_irq_held=false;
+@@ -632,6 +650,12 @@
+     FSDEV_REG->ISTR = (fsdev_bus_t)~U_ISTR_PMAOVR;
+   }
+ }
++/* MT_PROFILE_BEGIN */
++void dcd_int_handler(uint8_t rhport) {
++  mt_profile_irq_ticket ticket=mt_profile_irq_begin();
++  mt_profiled_dcd_int_handler_body(rhport);mt_profile_irq_end(ticket);
++}
++/* MT_PROFILE_END */
+ 
+ //--------------------------------------------------------------------+
+ // Endpoint API
+@@ -987,7 +1011,7 @@
+   return edpt_xfer(rhport, ep_num, dir);
+ }
+ 
+-bool dcd_edpt_xfer_fifo(uint8_t rhport, uint8_t ep_addr, tu_fifo_t *ff, uint16_t total_bytes, bool is_isr) {
++bool mt_profiled_edpt_xfer_fifo_body(uint8_t rhport, uint8_t ep_addr, tu_fifo_t *ff, uint16_t total_bytes, bool is_isr) {
+   (void)is_isr;
+   const uint8_t    ep_num = tu_edpt_number(ep_addr);
+   const tusb_dir_t dir    = tu_edpt_dir(ep_addr);
+@@ -1000,6 +1024,13 @@
+ 
+   return edpt_xfer(rhport, ep_num, dir);
+ }
++/* MT_PROFILE_BEGIN */
++bool dcd_edpt_xfer_fifo(uint8_t rhport,uint8_t ep_addr,tu_fifo_t *ff,uint16_t total_bytes,bool is_isr) {
++  bool result=mt_profiled_edpt_xfer_fifo_body(rhport,ep_addr,ff,total_bytes,is_isr);
++  if(result)mt_profile_transfer(ep_addr,total_bytes);
++  return result;
++}
++/* MT_PROFILE_END */
+ 
+ void dcd_edpt_stall(uint8_t rhport, uint8_t ep_addr) {
+   (void)rhport;

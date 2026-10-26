@@ -1,0 +1,8 @@
+patched/v2/protocol/mt_live_device.c: In function 'batch_prepare':
+patched/v2/protocol/mt_live_device.c:405:9: error: this 'if' clause does not guard... [-Werror=misleading-indentation]
+  405 |         if(blocks>4u)blocks=4u;if(blocks>room/128u)blocks=room/128u;
+      |         ^~
+patched/v2/protocol/mt_live_device.c:405:32: note: ...this statement, but the latter is misleadingly indented as if it were guarded by the 'if'
+  405 |         if(blocks>4u)blocks=4u;if(blocks>room/128u)blocks=room/128u;
+      |                                ^~
+cc1.exe: all warnings being treated as errors

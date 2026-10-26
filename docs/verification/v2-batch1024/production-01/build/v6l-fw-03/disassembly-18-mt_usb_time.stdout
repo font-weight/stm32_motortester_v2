@@ -1,0 +1,163 @@
+
+objects/18-mt_usb_time.o:     file format elf32-littlearm
+
+
+Disassembly of section .text.fail:
+
+00000000 <fail>:
+   0:	4b02      	ldr	r3, [pc, #8]	@ (c <fail+0xc>)
+   2:	681a      	ldr	r2, [r3, #0]
+   4:	2a01      	cmp	r2, #1
+   6:	bf98      	it	ls
+   8:	6018      	strls	r0, [r3, #0]
+   a:	4770      	bx	lr
+   c:	00000000 	.word	0x00000000
+			c: R_ARM_ABS32	.bss.state
+
+Disassembly of section .text.mt_usb_time_valid:
+
+00000000 <mt_usb_time_valid>:
+   0:	b510      	push	{r4, lr}
+   2:	4c08      	ldr	r4, [pc, #32]	@ (24 <mt_usb_time_valid+0x24>)
+   4:	6823      	ldr	r3, [r4, #0]
+   6:	2b01      	cmp	r3, #1
+   8:	d107      	bne.n	1a <mt_usb_time_valid+0x1a>
+   a:	4b07      	ldr	r3, [pc, #28]	@ (28 <mt_usb_time_valid+0x28>)
+   c:	6818      	ldr	r0, [r3, #0]
+   e:	f7ff fffe 	bl	0 <mt_timebase_healthy>
+			e: R_ARM_THM_CALL	mt_timebase_healthy
+  12:	b910      	cbnz	r0, 1a <mt_usb_time_valid+0x1a>
+  14:	2003      	movs	r0, #3
+  16:	f7ff fffe 	bl	0 <mt_usb_time_valid>
+			16: R_ARM_THM_CALL	fail
+  1a:	6820      	ldr	r0, [r4, #0]
+  1c:	1e43      	subs	r3, r0, #1
+  1e:	4258      	negs	r0, r3
+  20:	4158      	adcs	r0, r3
+  22:	bd10      	pop	{r4, pc}
+	...
+			24: R_ARM_ABS32	.bss.state
+			28: R_ARM_ABS32	.bss.bound_clock
+
+Disassembly of section .text.mt_usb_time_status:
+
+00000000 <mt_usb_time_status>:
+   0:	b508      	push	{r3, lr}
+   2:	f7ff fffe 	bl	0 <mt_usb_time_status>
+			2: R_ARM_THM_CALL	mt_usb_time_valid
+   6:	4b01      	ldr	r3, [pc, #4]	@ (c <mt_usb_time_status+0xc>)
+   8:	6818      	ldr	r0, [r3, #0]
+   a:	bd08      	pop	{r3, pc}
+   c:	00000000 	.word	0x00000000
+			c: R_ARM_ABS32	.bss.state
+
+Disassembly of section .text.mt_usb_time_bind:
+
+00000000 <mt_usb_time_bind>:
+   0:	e92d 41f0 	stmdb	sp!, {r4, r5, r6, r7, r8, lr}
+   4:	4e1a      	ldr	r6, [pc, #104]	@ (70 <mt_usb_time_bind+0x70>)
+   6:	4604      	mov	r4, r0
+   8:	6833      	ldr	r3, [r6, #0]
+   a:	b11b      	cbz	r3, 14 <mt_usb_time_bind+0x14>
+   c:	2005      	movs	r0, #5
+   e:	f7ff fffe 	bl	0 <mt_usb_time_bind>
+			e: R_ARM_THM_CALL	fail
+  12:	e002      	b.n	1a <mt_usb_time_bind+0x1a>
+  14:	4d17      	ldr	r5, [pc, #92]	@ (74 <mt_usb_time_bind+0x74>)
+  16:	682b      	ldr	r3, [r5, #0]
+  18:	b113      	cbz	r3, 20 <mt_usb_time_bind+0x20>
+  1a:	2000      	movs	r0, #0
+  1c:	e8bd 81f0 	ldmia.w	sp!, {r4, r5, r6, r7, r8, pc}
+  20:	b908      	cbnz	r0, 26 <mt_usb_time_bind+0x26>
+  22:	2002      	movs	r0, #2
+  24:	e7f3      	b.n	e <mt_usb_time_bind+0xe>
+  26:	f04f 0801 	mov.w	r8, #1
+  2a:	4b13      	ldr	r3, [pc, #76]	@ (78 <mt_usb_time_bind+0x78>)
+  2c:	f8c6 8000 	str.w	r8, [r6]
+  30:	6018      	str	r0, [r3, #0]
+  32:	f7ff fffe 	bl	0 <mt_timebase_healthy>
+			32: R_ARM_THM_CALL	mt_timebase_healthy
+  36:	b948      	cbnz	r0, 4c <mt_usb_time_bind+0x4c>
+  38:	2003      	movs	r0, #3
+  3a:	f7ff fffe 	bl	0 <mt_usb_time_bind>
+			3a: R_ARM_THM_CALL	fail
+  3e:	2300      	movs	r3, #0
+  40:	6828      	ldr	r0, [r5, #0]
+  42:	6033      	str	r3, [r6, #0]
+  44:	1e43      	subs	r3, r0, #1
+  46:	4258      	negs	r0, r3
+  48:	4158      	adcs	r0, r3
+  4a:	e7e7      	b.n	1c <mt_usb_time_bind+0x1c>
+  4c:	4620      	mov	r0, r4
+  4e:	f7ff fffe 	bl	0 <mt_timebase_now_ms>
+			4e: R_ARM_THM_CALL	mt_timebase_now_ms
+  52:	4607      	mov	r7, r0
+  54:	4620      	mov	r0, r4
+  56:	f7ff fffe 	bl	0 <mt_timebase_healthy>
+			56: R_ARM_THM_CALL	mt_timebase_healthy
+  5a:	2800      	cmp	r0, #0
+  5c:	d0ec      	beq.n	38 <mt_usb_time_bind+0x38>
+  5e:	682b      	ldr	r3, [r5, #0]
+  60:	2b00      	cmp	r3, #0
+  62:	d1ec      	bne.n	3e <mt_usb_time_bind+0x3e>
+  64:	4b05      	ldr	r3, [pc, #20]	@ (7c <mt_usb_time_bind+0x7c>)
+  66:	f8c5 8000 	str.w	r8, [r5]
+  6a:	601f      	str	r7, [r3, #0]
+  6c:	e7e7      	b.n	3e <mt_usb_time_bind+0x3e>
+  6e:	bf00      	nop
+	...
+			70: R_ARM_ABS32	.bss.active
+			74: R_ARM_ABS32	.bss.state
+			78: R_ARM_ABS32	.bss.bound_clock
+			7c: R_ARM_ABS32	.bss.last_good_ms
+
+Disassembly of section .text.tusb_time_millis_api:
+
+00000000 <tusb_time_millis_api>:
+   0:	e92d 41f0 	stmdb	sp!, {r4, r5, r6, r7, r8, lr}
+   4:	4d16      	ldr	r5, [pc, #88]	@ (60 <tusb_time_millis_api+0x60>)
+   6:	4c17      	ldr	r4, [pc, #92]	@ (64 <tusb_time_millis_api+0x64>)
+   8:	682b      	ldr	r3, [r5, #0]
+   a:	b12b      	cbz	r3, 18 <tusb_time_millis_api+0x18>
+   c:	2005      	movs	r0, #5
+   e:	f7ff fffe 	bl	0 <tusb_time_millis_api>
+			e: R_ARM_THM_CALL	fail
+  12:	6820      	ldr	r0, [r4, #0]
+  14:	e8bd 81f0 	ldmia.w	sp!, {r4, r5, r6, r7, r8, pc}
+  18:	4f13      	ldr	r7, [pc, #76]	@ (68 <tusb_time_millis_api+0x68>)
+  1a:	683b      	ldr	r3, [r7, #0]
+  1c:	b913      	cbnz	r3, 24 <tusb_time_millis_api+0x24>
+  1e:	2004      	movs	r0, #4
+  20:	f7ff fffe 	bl	0 <tusb_time_millis_api>
+			20: R_ARM_THM_CALL	fail
+  24:	f7ff fffe 	bl	0 <tusb_time_millis_api>
+			24: R_ARM_THM_CALL	mt_usb_time_valid
+  28:	2800      	cmp	r0, #0
+  2a:	d0f2      	beq.n	12 <tusb_time_millis_api+0x12>
+  2c:	2301      	movs	r3, #1
+  2e:	f8df 803c 	ldr.w	r8, [pc, #60]	@ 6c <tusb_time_millis_api+0x6c>
+  32:	602b      	str	r3, [r5, #0]
+  34:	f8d8 0000 	ldr.w	r0, [r8]
+  38:	f7ff fffe 	bl	0 <mt_timebase_now_ms>
+			38: R_ARM_THM_CALL	mt_timebase_now_ms
+  3c:	4606      	mov	r6, r0
+  3e:	f8d8 0000 	ldr.w	r0, [r8]
+  42:	f7ff fffe 	bl	0 <mt_timebase_healthy>
+			42: R_ARM_THM_CALL	mt_timebase_healthy
+  46:	b910      	cbnz	r0, 4e <tusb_time_millis_api+0x4e>
+  48:	2003      	movs	r0, #3
+  4a:	f7ff fffe 	bl	0 <tusb_time_millis_api>
+			4a: R_ARM_THM_CALL	fail
+  4e:	683b      	ldr	r3, [r7, #0]
+  50:	2b01      	cmp	r3, #1
+  52:	f04f 0300 	mov.w	r3, #0
+  56:	bf08      	it	eq
+  58:	6026      	streq	r6, [r4, #0]
+  5a:	602b      	str	r3, [r5, #0]
+  5c:	e7d9      	b.n	12 <tusb_time_millis_api+0x12>
+  5e:	bf00      	nop
+	...
+			60: R_ARM_ABS32	.bss.active
+			64: R_ARM_ABS32	.bss.last_good_ms
+			68: R_ARM_ABS32	.bss.state
+			6c: R_ARM_ABS32	.bss.bound_clock
