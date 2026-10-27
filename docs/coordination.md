@@ -1,5 +1,16 @@
 # Координация самостоятельного V2
 
+N: higher_fs_review — firmware/v2-stream/**, tests/v2-stream-firmware/**,
+build/v6n-* кроме board/decoder; точный компактный trace ABI, hooks, native,
+ARM/resources и freeze. Root — канонические документы, offline decoder,
+build/v6n-board-*, интеграция/архивы и единолично COM/SWD.
+Stream200_critic — независимый review N и точного аппаратного плана,
+без реализации/новых аппаратных действий. Host/Windows-пакет не меняются.
+Host_200k — только tests/v2-stream-firmware/stream_progress_model.c;
+единственный запуск через runner автора higher_fs_review, не дублировать.
+Пользователь возобновил работу; прежний stop касается завершённого M2,
+не запрещает новую обоснованную N. Не включать512B профиль в92B RAM-запас.
+
 M2 после опыта: root сохраняет build/v6m-board-02, канонические документы и
 архив physical-02; единолично владеет аппаратными действиями, новых сейчас
 нет. Stream200_critic — независимая проверка точного отрицательного результата

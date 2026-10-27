@@ -1,0 +1,365 @@
+
+objects/04-mt_wire.o:     file format elf32-littlearm
+
+
+Disassembly of section .text.put32:
+
+00000000 <put32>:
+   0:	0a0b      	lsrs	r3, r1, #8
+   2:	7001      	strb	r1, [r0, #0]
+   4:	7043      	strb	r3, [r0, #1]
+   6:	0c0b      	lsrs	r3, r1, #16
+   8:	0e09      	lsrs	r1, r1, #24
+   a:	7083      	strb	r3, [r0, #2]
+   c:	70c1      	strb	r1, [r0, #3]
+   e:	4770      	bx	lr
+
+Disassembly of section .text.get32:
+
+00000000 <get32>:
+   0:	2300      	movs	r3, #0
+   2:	1e42      	subs	r2, r0, #1
+   4:	4618      	mov	r0, r3
+   6:	f812 1f01 	ldrb.w	r1, [r2, #1]!
+   a:	4099      	lsls	r1, r3
+   c:	3308      	adds	r3, #8
+   e:	2b20      	cmp	r3, #32
+  10:	ea40 0001 	orr.w	r0, r0, r1
+  14:	d1f7      	bne.n	6 <get32+0x6>
+  16:	4770      	bx	lr
+
+Disassembly of section .text.mt_wire_crc32:
+
+00000000 <mt_wire_crc32>:
+   0:	f04f 32ff 	mov.w	r2, #4294967295
+   4:	b510      	push	{r4, lr}
+   6:	4c07      	ldr	r4, [pc, #28]	@ (24 <mt_wire_crc32+0x24>)
+   8:	4401      	add	r1, r0
+   a:	4288      	cmp	r0, r1
+   c:	d101      	bne.n	12 <mt_wire_crc32+0x12>
+   e:	43d0      	mvns	r0, r2
+  10:	bd10      	pop	{r4, pc}
+  12:	f810 3b01 	ldrb.w	r3, [r0], #1
+  16:	4053      	eors	r3, r2
+  18:	b2db      	uxtb	r3, r3
+  1a:	f854 3023 	ldr.w	r3, [r4, r3, lsl #2]
+  1e:	ea83 2212 	eor.w	r2, r3, r2, lsr #8
+  22:	e7f2      	b.n	a <mt_wire_crc32+0xa>
+  24:	00000000 	.word	0x00000000
+			24: R_ARM_ABS32	mt_v2_crc32_table
+
+Disassembly of section .text.decode_body.part.0:
+
+00000000 <decode_body.part.0>:
+   0:	e92d 4ff0 	stmdb	sp!, {r4, r5, r6, r7, r8, r9, sl, fp, lr}
+   4:	469a      	mov	sl, r3
+   6:	f240 231e 	movw	r3, #542	@ 0x21e
+   a:	4691      	mov	r9, r2
+   c:	1e4a      	subs	r2, r1, #1
+   e:	f5ad 7d09 	sub.w	sp, sp, #548	@ 0x224
+  12:	429a      	cmp	r2, r3
+  14:	e9dd 7892 	ldrd	r7, r8, [sp, #584]	@ 0x248
+  18:	d904      	bls.n	24 <decode_body.part.0+0x24>
+  1a:	2004      	movs	r0, #4
+  1c:	f50d 7d09 	add.w	sp, sp, #548	@ 0x224
+  20:	e8bd 8ff0 	ldmia.w	sp!, {r4, r5, r6, r7, r8, r9, sl, fp, pc}
+  24:	2500      	movs	r5, #0
+  26:	462e      	mov	r6, r5
+  28:	ac01      	add	r4, sp, #4
+  2a:	5d82      	ldrb	r2, [r0, r6]
+  2c:	1c73      	adds	r3, r6, #1
+  2e:	b90a      	cbnz	r2, 34 <decode_body.part.0+0x34>
+  30:	2003      	movs	r0, #3
+  32:	e7f3      	b.n	1c <decode_body.part.0+0x1c>
+  34:	f102 3cff 	add.w	ip, r2, #4294967295
+  38:	1ace      	subs	r6, r1, r3
+  3a:	45b4      	cmp	ip, r6
+  3c:	d8f8      	bhi.n	30 <decode_body.part.0+0x30>
+  3e:	f5c5 7607 	rsb	r6, r5, #540	@ 0x21c
+  42:	45b4      	cmp	ip, r6
+  44:	d8e9      	bhi.n	1a <decode_body.part.0+0x1a>
+  46:	461e      	mov	r6, r3
+  48:	2300      	movs	r3, #0
+  4a:	eb04 0e05 	add.w	lr, r4, r5
+  4e:	459c      	cmp	ip, r3
+  50:	d80b      	bhi.n	6a <decode_body.part.0+0x6a>
+  52:	2aff      	cmp	r2, #255	@ 0xff
+  54:	441d      	add	r5, r3
+  56:	d012      	beq.n	7e <decode_body.part.0+0x7e>
+  58:	42b1      	cmp	r1, r6
+  5a:	d912      	bls.n	82 <decode_body.part.0+0x82>
+  5c:	f5b5 7f07 	cmp.w	r5, #540	@ 0x21c
+  60:	d0db      	beq.n	1a <decode_body.part.0+0x1a>
+  62:	2300      	movs	r3, #0
+  64:	5563      	strb	r3, [r4, r5]
+  66:	3501      	adds	r5, #1
+  68:	e7df      	b.n	2a <decode_body.part.0+0x2a>
+  6a:	f810 b006 	ldrb.w	fp, [r0, r6]
+  6e:	f1bb 0f00 	cmp.w	fp, #0
+  72:	d0dd      	beq.n	30 <decode_body.part.0+0x30>
+  74:	3601      	adds	r6, #1
+  76:	f80e bb01 	strb.w	fp, [lr], #1
+  7a:	3301      	adds	r3, #1
+  7c:	e7e7      	b.n	4e <decode_body.part.0+0x4e>
+  7e:	42b1      	cmp	r1, r6
+  80:	d8d3      	bhi.n	2a <decode_body.part.0+0x2a>
+  82:	2d1b      	cmp	r5, #27
+  84:	d9c9      	bls.n	1a <decode_body.part.0+0x1a>
+  86:	88a6      	ldrh	r6, [r4, #4]
+  88:	f5b6 7f00 	cmp.w	r6, #512	@ 0x200
+  8c:	d8c5      	bhi.n	1a <decode_body.part.0+0x1a>
+  8e:	f106 031c 	add.w	r3, r6, #28
+  92:	429d      	cmp	r5, r3
+  94:	d1c1      	bne.n	1a <decode_body.part.0+0x1a>
+  96:	f106 0b18 	add.w	fp, r6, #24
+  9a:	4659      	mov	r1, fp
+  9c:	4620      	mov	r0, r4
+  9e:	f7ff fffe 	bl	0 <decode_body.part.0>
+			9e: R_ARM_THM_CALL	mt_wire_crc32
+  a2:	4605      	mov	r5, r0
+  a4:	eb04 000b 	add.w	r0, r4, fp
+  a8:	f7ff fffe 	bl	0 <decode_body.part.0>
+			a8: R_ARM_THM_CALL	get32
+  ac:	4285      	cmp	r5, r0
+  ae:	d145      	bne.n	13c <decode_body.part.0+0x13c>
+  b0:	f1b8 0f00 	cmp.w	r8, #0
+  b4:	d105      	bne.n	c2 <decode_body.part.0+0xc2>
+  b6:	7823      	ldrb	r3, [r4, #0]
+  b8:	454b      	cmp	r3, r9
+  ba:	d141      	bne.n	140 <decode_body.part.0+0x140>
+  bc:	7863      	ldrb	r3, [r4, #1]
+  be:	4553      	cmp	r3, sl
+  c0:	d13e      	bne.n	140 <decode_body.part.0+0x140>
+  c2:	78e3      	ldrb	r3, [r4, #3]
+  c4:	2b00      	cmp	r3, #0
+  c6:	d13d      	bne.n	144 <decode_body.part.0+0x144>
+  c8:	88e3      	ldrh	r3, [r4, #6]
+  ca:	2b00      	cmp	r3, #0
+  cc:	d13a      	bne.n	144 <decode_body.part.0+0x144>
+  ce:	461d      	mov	r5, r3
+  d0:	4618      	mov	r0, r3
+  d2:	78a2      	ldrb	r2, [r4, #2]
+  d4:	f10d 0e0b 	add.w	lr, sp, #11
+  d8:	703a      	strb	r2, [r7, #0]
+  da:	f81e 1f01 	ldrb.w	r1, [lr, #1]!
+  de:	f1a3 0220 	sub.w	r2, r3, #32
+  e2:	f1c3 0c20 	rsb	ip, r3, #32
+  e6:	fa01 f202 	lsl.w	r2, r1, r2
+  ea:	fa21 fc0c 	lsr.w	ip, r1, ip
+  ee:	4099      	lsls	r1, r3
+  f0:	3308      	adds	r3, #8
+  f2:	ea42 020c 	orr.w	r2, r2, ip
+  f6:	2b40      	cmp	r3, #64	@ 0x40
+  f8:	ea45 0501 	orr.w	r5, r5, r1
+  fc:	ea40 0002 	orr.w	r0, r0, r2
+ 100:	d1eb      	bne.n	da <decode_body.part.0+0xda>
+ 102:	e9c7 5002 	strd	r5, r0, [r7, #8]
+ 106:	a805      	add	r0, sp, #20
+ 108:	f7ff fffe 	bl	0 <decode_body.part.0>
+			108: R_ARM_THM_CALL	get32
+ 10c:	6138      	str	r0, [r7, #16]
+ 10e:	a806      	add	r0, sp, #24
+ 110:	f7ff fffe 	bl	0 <decode_body.part.0>
+			110: R_ARM_THM_CALL	get32
+ 114:	4632      	mov	r2, r6
+ 116:	6178      	str	r0, [r7, #20]
+ 118:	833e      	strh	r6, [r7, #24]
+ 11a:	a907      	add	r1, sp, #28
+ 11c:	f107 001a 	add.w	r0, r7, #26
+ 120:	f7ff fffe 	bl	0 <memcpy>
+			120: R_ARM_THM_CALL	memcpy
+ 124:	f1b8 0f00 	cmp.w	r8, #0
+ 128:	d101      	bne.n	12e <decode_body.part.0+0x12e>
+ 12a:	2000      	movs	r0, #0
+ 12c:	e776      	b.n	1c <decode_body.part.0+0x1c>
+ 12e:	7823      	ldrb	r3, [r4, #0]
+ 130:	7862      	ldrb	r2, [r4, #1]
+ 132:	f888 3000 	strb.w	r3, [r8]
+ 136:	9b94      	ldr	r3, [sp, #592]	@ 0x250
+ 138:	701a      	strb	r2, [r3, #0]
+ 13a:	e7f6      	b.n	12a <decode_body.part.0+0x12a>
+ 13c:	2005      	movs	r0, #5
+ 13e:	e76d      	b.n	1c <decode_body.part.0+0x1c>
+ 140:	2006      	movs	r0, #6
+ 142:	e76b      	b.n	1c <decode_body.part.0+0x1c>
+ 144:	2007      	movs	r0, #7
+ 146:	e769      	b.n	1c <decode_body.part.0+0x1c>
+
+Disassembly of section .text.mt_wire_encode_revision.part.0:
+
+00000000 <mt_wire_encode_revision.part.0>:
+   0:	b5f0      	push	{r4, r5, r6, r7, lr}
+   2:	4604      	mov	r4, r0
+   4:	4610      	mov	r0, r2
+   6:	8b22      	ldrh	r2, [r4, #24]
+   8:	461d      	mov	r5, r3
+   a:	f5b2 7f00 	cmp.w	r2, #512	@ 0x200
+   e:	f5ad 7d09 	sub.w	sp, sp, #548	@ 0x224
+  12:	d86a      	bhi.n	ea <mt_wire_encode_revision.part.0+0xea>
+  14:	9b8e      	ldr	r3, [sp, #568]	@ 0x238
+  16:	f5b3 7f08 	cmp.w	r3, #544	@ 0x220
+  1a:	d368      	bcc.n	ee <mt_wire_encode_revision.part.0+0xee>
+  1c:	e9d4 ec02 	ldrd	lr, ip, [r4, #8]
+  20:	f88d 1004 	strb.w	r1, [sp, #4]
+  24:	2100      	movs	r1, #0
+  26:	7823      	ldrb	r3, [r4, #0]
+  28:	f88d 0005 	strb.w	r0, [sp, #5]
+  2c:	f88d 3006 	strb.w	r3, [sp, #6]
+  30:	f88d 1007 	strb.w	r1, [sp, #7]
+  34:	f8ad 2008 	strh.w	r2, [sp, #8]
+  38:	f8ad 100a 	strh.w	r1, [sp, #10]
+  3c:	f10d 070b 	add.w	r7, sp, #11
+  40:	f1c1 0620 	rsb	r6, r1, #32
+  44:	f1a1 0020 	sub.w	r0, r1, #32
+  48:	fa2e f301 	lsr.w	r3, lr, r1
+  4c:	fa0c f606 	lsl.w	r6, ip, r6
+  50:	4333      	orrs	r3, r6
+  52:	fa2c f000 	lsr.w	r0, ip, r0
+  56:	3108      	adds	r1, #8
+  58:	4303      	orrs	r3, r0
+  5a:	2940      	cmp	r1, #64	@ 0x40
+  5c:	f807 3f01 	strb.w	r3, [r7, #1]!
+  60:	d1ee      	bne.n	40 <mt_wire_encode_revision.part.0+0x40>
+  62:	6921      	ldr	r1, [r4, #16]
+  64:	a805      	add	r0, sp, #20
+  66:	f7ff fffe 	bl	0 <mt_wire_encode_revision.part.0>
+			66: R_ARM_THM_CALL	put32
+  6a:	6961      	ldr	r1, [r4, #20]
+  6c:	a806      	add	r0, sp, #24
+  6e:	f7ff fffe 	bl	0 <mt_wire_encode_revision.part.0>
+			6e: R_ARM_THM_CALL	put32
+  72:	f104 011a 	add.w	r1, r4, #26
+  76:	a807      	add	r0, sp, #28
+  78:	f7ff fffe 	bl	0 <memcpy>
+			78: R_ARM_THM_CALL	memcpy
+  7c:	8b24      	ldrh	r4, [r4, #24]
+  7e:	a801      	add	r0, sp, #4
+  80:	f104 0618 	add.w	r6, r4, #24
+  84:	4631      	mov	r1, r6
+  86:	f7ff fffe 	bl	0 <mt_wire_encode_revision.part.0>
+			86: R_ARM_THM_CALL	mt_wire_crc32
+  8a:	ab01      	add	r3, sp, #4
+  8c:	4601      	mov	r1, r0
+  8e:	1998      	adds	r0, r3, r6
+  90:	f7ff fffe 	bl	0 <mt_wire_encode_revision.part.0>
+			90: R_ARM_THM_CALL	put32
+  94:	2001      	movs	r0, #1
+  96:	2300      	movs	r3, #0
+  98:	4601      	mov	r1, r0
+  9a:	461f      	mov	r7, r3
+  9c:	f104 061c 	add.w	r6, r4, #28
+  a0:	aa01      	add	r2, sp, #4
+  a2:	f812 cb01 	ldrb.w	ip, [r2], #1
+  a6:	1c44      	adds	r4, r0, #1
+  a8:	eb05 0e03 	add.w	lr, r5, r3
+  ac:	f1bc 0f00 	cmp.w	ip, #0
+  b0:	d110      	bne.n	d4 <mt_wire_encode_revision.part.0+0xd4>
+  b2:	54e9      	strb	r1, [r5, r3]
+  b4:	4603      	mov	r3, r0
+  b6:	2101      	movs	r1, #1
+  b8:	3701      	adds	r7, #1
+  ba:	42be      	cmp	r6, r7
+  bc:	d808      	bhi.n	d0 <mt_wire_encode_revision.part.0+0xd0>
+  be:	2000      	movs	r0, #0
+  c0:	54e9      	strb	r1, [r5, r3]
+  c2:	9b8f      	ldr	r3, [sp, #572]	@ 0x23c
+  c4:	5528      	strb	r0, [r5, r4]
+  c6:	3401      	adds	r4, #1
+  c8:	601c      	str	r4, [r3, #0]
+  ca:	f50d 7d09 	add.w	sp, sp, #548	@ 0x224
+  ce:	bdf0      	pop	{r4, r5, r6, r7, pc}
+  d0:	4620      	mov	r0, r4
+  d2:	e7e6      	b.n	a2 <mt_wire_encode_revision.part.0+0xa2>
+  d4:	3101      	adds	r1, #1
+  d6:	b2c9      	uxtb	r1, r1
+  d8:	29ff      	cmp	r1, #255	@ 0xff
+  da:	f805 c000 	strb.w	ip, [r5, r0]
+  de:	d1eb      	bne.n	b8 <mt_wire_encode_revision.part.0+0xb8>
+  e0:	4623      	mov	r3, r4
+  e2:	f88e 1000 	strb.w	r1, [lr]
+  e6:	1c84      	adds	r4, r0, #2
+  e8:	e7e5      	b.n	b6 <mt_wire_encode_revision.part.0+0xb6>
+  ea:	2004      	movs	r0, #4
+  ec:	e7ed      	b.n	ca <mt_wire_encode_revision.part.0+0xca>
+  ee:	2002      	movs	r0, #2
+  f0:	e7eb      	b.n	ca <mt_wire_encode_revision.part.0+0xca>
+
+Disassembly of section .text.mt_wire_encode_revision:
+
+00000000 <mt_wire_encode_revision>:
+   0:	b470      	push	{r4, r5, r6}
+   2:	e9dd 6503 	ldrd	r6, r5, [sp, #12]
+   6:	b130      	cbz	r0, 16 <mt_wire_encode_revision+0x16>
+   8:	b12b      	cbz	r3, 16 <mt_wire_encode_revision+0x16>
+   a:	b125      	cbz	r5, 16 <mt_wire_encode_revision+0x16>
+   c:	e9cd 6503 	strd	r6, r5, [sp, #12]
+  10:	bc70      	pop	{r4, r5, r6}
+  12:	f7ff bffe 	b.w	0 <mt_wire_encode_revision>
+			12: R_ARM_THM_JUMP24	mt_wire_encode_revision.part.0
+  16:	2001      	movs	r0, #1
+  18:	bc70      	pop	{r4, r5, r6}
+  1a:	4770      	bx	lr
+
+Disassembly of section .text.mt_wire_decode_revision:
+
+00000000 <mt_wire_decode_revision>:
+   0:	b530      	push	{r4, r5, lr}
+   2:	b085      	sub	sp, #20
+   4:	9c08      	ldr	r4, [sp, #32]
+   6:	b140      	cbz	r0, 1a <mt_wire_decode_revision+0x1a>
+   8:	b13c      	cbz	r4, 1a <mt_wire_decode_revision+0x1a>
+   a:	2500      	movs	r5, #0
+   c:	9400      	str	r4, [sp, #0]
+   e:	e9cd 5501 	strd	r5, r5, [sp, #4]
+  12:	f7ff fffe 	bl	0 <mt_wire_decode_revision>
+			12: R_ARM_THM_CALL	decode_body.part.0
+  16:	b005      	add	sp, #20
+  18:	bd30      	pop	{r4, r5, pc}
+  1a:	2001      	movs	r0, #1
+  1c:	e7fb      	b.n	16 <mt_wire_decode_revision+0x16>
+
+Disassembly of section .text.mt_wire_decode_envelope:
+
+00000000 <mt_wire_decode_envelope>:
+   0:	b530      	push	{r4, r5, lr}
+   2:	b085      	sub	sp, #20
+   4:	9d08      	ldr	r5, [sp, #32]
+   6:	b15b      	cbz	r3, 20 <mt_wire_decode_envelope+0x20>
+   8:	b155      	cbz	r5, 20 <mt_wire_decode_envelope+0x20>
+   a:	b148      	cbz	r0, 20 <mt_wire_decode_envelope+0x20>
+   c:	b142      	cbz	r2, 20 <mt_wire_decode_envelope+0x20>
+   e:	e9cd 3501 	strd	r3, r5, [sp, #4]
+  12:	2300      	movs	r3, #0
+  14:	9200      	str	r2, [sp, #0]
+  16:	461a      	mov	r2, r3
+  18:	f7ff fffe 	bl	0 <mt_wire_decode_envelope>
+			18: R_ARM_THM_CALL	decode_body.part.0
+  1c:	b005      	add	sp, #20
+  1e:	bd30      	pop	{r4, r5, pc}
+  20:	2001      	movs	r0, #1
+  22:	e7fb      	b.n	1c <mt_wire_decode_envelope+0x1c>
+
+Disassembly of section .text.mt_wire_encode:
+
+00000000 <mt_wire_encode>:
+   0:	b507      	push	{r0, r1, r2, lr}
+   2:	e9cd 2300 	strd	r2, r3, [sp]
+   6:	460b      	mov	r3, r1
+   8:	2201      	movs	r2, #1
+   a:	2100      	movs	r1, #0
+   c:	f7ff fffe 	bl	0 <mt_wire_encode>
+			c: R_ARM_THM_CALL	mt_wire_encode_revision
+  10:	b003      	add	sp, #12
+  12:	f85d fb04 	ldr.w	pc, [sp], #4
+
+Disassembly of section .text.mt_wire_decode:
+
+00000000 <mt_wire_decode>:
+   0:	b507      	push	{r0, r1, r2, lr}
+   2:	2301      	movs	r3, #1
+   4:	9200      	str	r2, [sp, #0]
+   6:	2200      	movs	r2, #0
+   8:	f7ff fffe 	bl	0 <mt_wire_decode>
+			8: R_ARM_THM_CALL	mt_wire_decode_revision
+   c:	b003      	add	sp, #12
+   e:	f85d fb04 	ldr.w	pc, [sp], #4

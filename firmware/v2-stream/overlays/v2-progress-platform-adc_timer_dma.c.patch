@@ -1,0 +1,19 @@
+--- a/platform/adc_timer_dma.c
++++ b/platform/adc_timer_dma.c
+@@ -1,5 +1,6 @@
+ #include "mt_stream_diag.h"
+ #include "adc_timer_dma.h"
++#include "mt_stream_progress.h" /* N_PROGRESS_INCLUDE */
+ 
+ #include <stddef.h>
+ 
+@@ -340,6 +341,9 @@
+     d->state = MT_ADC_DMA_FAULTED;
+     d->fault = fault;
+     if (d->stream_mode) invalidate_history(d, fault);
++#if CFG_MT_PROGRESS_TRACE /* N_PROGRESS */
++    mt_progress_close(NULL,MT_N_CLOSE_ADC,(unsigned)fault);
++#endif
+     if (!quiesce(d)) { d->fault = MT_ADC_DMA_FAULT_STOP; }
+     return MT_ADC_DMA_ERROR;
+ }

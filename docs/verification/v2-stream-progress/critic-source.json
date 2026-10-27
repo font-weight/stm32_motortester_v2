@@ -1,0 +1,104 @@
+{
+  "schema": "v2-06n-independent-source-review-1",
+  "date": "2026-10-27",
+  "reviewer": "/root/stream200_critic",
+  "independent_of_implementation": true,
+  "status": "PASS",
+  "score": 9.625,
+  "scope": "N1 exact SG diagnostic instrumentation, ARM resource bound, native logic and offline decoder only",
+  "base_commit": "556caf4599dfdf9a3170b75a486f721e5494a5df",
+  "identity_basis": "Immutable freeze and archive hashes; not an uncommitted-diff inference",
+  "freeze": {
+    "path": "build/v6n-freeze.json",
+    "sha256": "cd7ed1ffe7b5ab7e3563c051d0653232c2282fc675a2810b808b803486717720",
+    "verified_rows": 39,
+    "verified_row_bytes": 2372882,
+    "mismatches": []
+  },
+  "archive": {
+    "path": "docs/verification/v2-stream-progress/production-01/manifest.json",
+    "sha256": "cb1c8b5e3083d2337d450a29a756adb10c569a42a10d0d706deebc3aaced4491",
+    "personally_verified_byte_equal_pairs": 525,
+    "bytes": 4267641,
+    "mismatches": []
+  },
+  "artifact": {
+    "build": "0x56325347",
+    "bin_bytes": 43816,
+    "bin_sha256": "daad9e462be6ed6aeebffa1d1da37d3dc31ac28061ee5297da1a578b3fa8b759",
+    "elf_sha256": "f60b3a130dedf9231177117272ab0bca0def5c741bdd53cc27a2e73e7426cd37"
+  },
+  "requirements": ["task N1 bounded diagnostic result", "V2-STR14", "V2-STR17"],
+  "method_document": {
+    "path": "docs/streaming-progress-trace.md",
+    "sha256": "b5a9ae88fea239a7d4d32d006d23244fb84525fffb0dc0fd06adee5e73faf546"
+  },
+  "personal_verification": {
+    "kind": "Read-only source, saved report, file hash/byte comparison and ELF-section inspection",
+    "commands": "PowerShell rg/Get-Content/git read; Python pathlib/hashlib/json/struct, without importing or executing product/test modules",
+    "ARM_inputs": 563,
+    "compiler_dependencies": 118,
+    "ARM_objects": 33,
+    "analysis_inputs": 35,
+    "native_inputs": 116,
+    "input_mismatches": [],
+    "new_object_writable_section": {"name": ".bss.mt_stream_progress", "bytes": 64, "alignment": 4},
+    "DWT_literal_and_DMB_read_in_saved_disassembly": true,
+    "builds_or_tests_rerun_by_critic": 0,
+    "hardware_actions_by_critic": 0,
+    "production_edits_by_critic": 0
+  },
+  "resources": {
+    "data_bytes": 128,
+    "bss_bytes": 12132,
+    "stack_reserve_bytes": 8192,
+    "static_plus_reserve_bytes": 20452,
+    "RAM_bytes": 20480,
+    "spare_above_reserve_bytes": 28,
+    "conditional_stack_bound_bytes": 6156,
+    "aligned_stack_bound_bytes": 6160,
+    "static_bound_sha256": "656accc5949fff168c6fe453b19a63db20c5a6a315e11626d3fc2cfd23db3f3a",
+    "physical_stack_high_water_verified": false,
+    "progress_address": "0x20002FA4",
+    "progress_bytes": 64,
+    "legacy_address": "0x20002F1C",
+    "legacy_bytes": 136
+  },
+  "evidence": {
+    "ARM": {"path": "build/v6n-fw-01/receipt.json", "sha256": "1585c8fc60523593a991ad8bf4bf36c55c3f701c8f7ddfef7d2ee415e061c48b", "runs": 1, "status": "BUILT_STATIC_CHECKED_TRANSPORT_CANDIDATE"},
+    "native": {"path": "build/v6n-native-01/result.json", "sha256": "1536f4cc75fa6dd6d6f6f66d0d6c00913910defd582e84bca9af2e5230527e50", "runs": 1, "status": "PASS", "actual_hooks": ["offer", "ACTIVE ADC fail"], "logical_seams": ["queue", "terminate/history/quiesce", "USB/IRQ/DWT/legacy"]},
+    "source_equivalence": {"sha256": "26d3a098d264b31abbcd0e01bb6628c18cce53b4b9ded140860f13367f7d6ac6", "unchanged_patched_files": 48, "changed_files_token_equal_after_removing_only_explicit_N_blocks": 3},
+    "observer_audit": {"sha256": "8cc825e79ee1b246716ff639d1bd0798eb2da0a25869d985202cc2e53529e7ce", "quantitative_latency_bound": false},
+    "actual_C_fixture_sha256": "761f9c6da65816e44c07c32a97625a0fd89aeaa7aa8d69b6ae45afdeeffe8acb",
+    "decoder": {"path": "build/v6n-decoder-02/result.json", "sha256": "b3c654d42235ddc1901c78c34d36638edd57676a462d7c673b540b29ef58f3ea", "status": "PASS", "bounded_negative_cases": 13, "legacy_binding_is_synthetic": true, "decoder_sha256": "dab3ed2843857259049dff2d298c97f580d4883d6cd48461d88d2241103b165f", "checker_sha256": "8e49c21cee59f6bfe69880169e33ac6f323948ca3f9fb6fc4f8088add1633138"}
+  },
+  "findings": [
+    {"id": "N1-01", "status": "CLOSED", "issue": "Invalid CAP record could still publish nominal_timing", "resolution": "Structural cap-kind check separated; timing assigned only without errors; all negative checker cases assert None timing", "verification": "Source delta read plus saved decoder02 PASS; decoder01 and freeze-r1 retained; no ARM/native repeat"}
+  ],
+  "open_P0_P1_in_N1_scope": [],
+  "open_project_findings": [
+    {"id": "P1-M2-01", "priority": "P1", "status": "OPEN", "requirement": "Stable physical 150000 samples/s", "latest_physical_result": "REWORK", "latest_physical_score": 6.375, "report": "docs/reviews/v2-06m-physical-review.md", "not_closed_by_N1": true}
+  ],
+  "limitations": [
+    "Positive DATA bytes are known FIFO acceptance, not USB delivery or committed raw prefix.",
+    "Prepare time is inclusive of IRQ/observer and cached or EMPTY calls; incomplete prepare excluded and flagged.",
+    "One attempt per boot. First close precedes cleanup; cap is an observation checkpoint and may hide a later fault.",
+    "Pre-ACTIVE NULL ADC fail cannot bind EMPTY; refused START and original legacy ADC reason remain distinct.",
+    "Pair validity needs exact build/readback/nonce/generation and operator evidence; decoder does not independently authenticate physical identity.",
+    "DWT modulo timing needs no halt/reset and less than one wrap at assumed nominal72MHz; no CPU-share/WCET or observer-overhead correction.",
+    "Native C fixture is API stress, not a complete production-reachable session; full runtime and physical timing not executed.",
+    "28 static bytes remain above the retained8192 stack reserve; any growth requires a new resource review."
+  ],
+  "rubric": {
+    "C1": {"weight": 0.30, "score": 9.75, "basis": "First-close, identity, typed causes and honest unavailable/acceptance semantics"},
+    "C2": {"weight": 0.20, "score": 9.50, "basis": "Freeze, late-write suppression, saturation and exact bounds; tight static margin and observer timing explicitly limited"},
+    "C3": {"weight": 0.25, "score": 9.60, "basis": "Exact ARM, actual-C hooks/fixture, negative decoder and source equality; logical seams disclosed"},
+    "C4": {"weight": 0.15, "score": 9.50, "basis": "One64B bank, no ISR/private-static writers, bounded hooks and documented ABI"},
+    "C5": {"weight": 0.10, "score": 9.75, "basis": "Exact commands/pins/archive, preserved earlier decoder evidence and reproducible baseline"}
+  },
+  "flash_approved": false,
+  "physical_throughput_accepted": false,
+  "physical_timing_qualified": false,
+  "next_gate": "Separate exact root-owned SG Flash and diagnostic-trial plan review",
+  "report": "docs/reviews/v2-06n-review.md"
+}

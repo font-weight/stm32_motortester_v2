@@ -1,0 +1,302 @@
+{
+  "schema": "motortester-V2-06n-source-freeze-1",
+  "date": "2026-10-27",
+  "status": "DIAGNOSTIC_SOFTWARE_CANDIDATE_FROZEN_FOR_INDEPENDENT_REVIEW",
+  "firmware_build": "0x56325347",
+  "product": "Motortester V2 Progress SG",
+  "scope": "Compact active-only first-close diagnostic observer over unchanged SF working operations; not a throughput fix. No hardware access.",
+  "production_files": [
+    {
+      "path": "firmware/v2-stream/progress/mt_stream_progress.c",
+      "bytes": 7856,
+      "sha256": "eada6c8ee4996e96bf7e3749ce1ab7604d8d700fdedf356beed5f35293f10e77"
+    },
+    {
+      "path": "firmware/v2-stream/progress/mt_stream_progress.h",
+      "bytes": 3094,
+      "sha256": "9bf52d95d4473d184686e1b650c40342e401950485c1f48d4ed4c581fc5de89d"
+    },
+    {
+      "path": "firmware/v2-stream/progress/ABI.md",
+      "bytes": 6410,
+      "sha256": "7ba392b6aed4acb5c1601179b02e55e1d70c2294eaf9ea7edb0e306181a78896"
+    },
+    {
+      "path": "firmware/v2-stream/README.md",
+      "bytes": 54646,
+      "sha256": "009697d58012cf830a62eb41021c590116b0d2d507c14e7ccfe527c20f32be6f"
+    },
+    {
+      "path": "firmware/v2-stream/build_windows.py",
+      "bytes": 27954,
+      "sha256": "e006c3ddfa9e921d627e1e5d964ba88e3d73b013ed8b7de4f424392c48c4804d"
+    },
+    {
+      "path": "firmware/v2-stream/config.json",
+      "bytes": 1034,
+      "sha256": "5b7eaaf48d231899c351f081444be1e50936e8c57e392f273e7ea46e6fe2daf6"
+    },
+    {
+      "path": "firmware/v2-stream/overlays/board_inputs.py",
+      "bytes": 4180,
+      "sha256": "c53b8691ef4d4391322b6678dad597780d7947fca3334467bc7f2f96b28bd105"
+    },
+    {
+      "path": "firmware/v2-stream/overlays/progress-trace.json",
+      "bytes": 1412,
+      "sha256": "c2051912de6ed2ff8d6f5e8cd46485eb813b5190c08571bb102d06ffd2361698"
+    },
+    {
+      "path": "firmware/v2-stream/overlays/v2-progress-protocol-mt_live_device.c.patch",
+      "bytes": 4227,
+      "sha256": "a7ebd40d0a0a8015efae51ac2df7a0a266b0b3ae2a35889dc012692255011210"
+    },
+    {
+      "path": "firmware/v2-stream/overlays/v2-progress-app-mt_live_runtime.c.patch",
+      "bytes": 2241,
+      "sha256": "1137d3b20f6f9458b74305fc71154bffc1a91b06c68675446595b418cfb39267"
+    },
+    {
+      "path": "firmware/v2-stream/overlays/v2-progress-platform-adc_timer_dma.c.patch",
+      "bytes": 558,
+      "sha256": "746abe09861c99bfbfaca5e82779907d753bf6788d6774489d18f7964cd9cbbd"
+    }
+  ],
+  "native_source_files": [
+    {
+      "path": "tests/v2-stream-firmware/stream_progress_check.py",
+      "bytes": 10995,
+      "sha256": "cff9356cfa74519c126a185909e8414a8dcd33cae3881cbb224aa046d08c37ec"
+    },
+    {
+      "path": "tests/v2-stream-firmware/stream_progress_model.c",
+      "bytes": 14418,
+      "sha256": "d3d9382b4ae0453a22e148c0d66c64c6e01a614359ce86ec6bf157ae807220fb"
+    },
+    {
+      "path": "tests/v2-stream-firmware/check_usb_gate.py",
+      "bytes": 7216,
+      "sha256": "067de6afbaa2faa1c60828b4fdc46d1e5bd8f1344f78efba9ca70c87181f9ad7"
+    }
+  ],
+  "evidence": [
+    {
+      "path": "build/v6n-source/prepare_hooks.py",
+      "bytes": 5159,
+      "sha256": "18f808be3d905a15c023463ec047a2fa47f942bd9fe21f99f2daae053c10eb38"
+    },
+    {
+      "path": "build/v6n-analysis/observer-audit.json",
+      "bytes": 6220,
+      "sha256": "8cc825e79ee1b246716ff639d1bd0798eb2da0a25869d985202cc2e53529e7ce"
+    },
+    {
+      "path": "build/v6n-fw-01/receipt.json",
+      "bytes": 420950,
+      "sha256": "1585c8fc60523593a991ad8bf4bf36c55c3f701c8f7ddfef7d2ee415e061c48b"
+    },
+    {
+      "path": "build/v6n-fw-01/static-bound.json",
+      "bytes": 193350,
+      "sha256": "656accc5949fff168c6fe453b19a63db20c5a6a315e11626d3fc2cfd23db3f3a"
+    },
+    {
+      "path": "build/v6n-fw-01/image.map",
+      "bytes": 82909,
+      "sha256": "bc4822b1868e08774ff3655743075e6f60f885a17951593084adee6bd77fb0e6"
+    },
+    {
+      "path": "build/v6n-fw-01/image.nm",
+      "bytes": 19453,
+      "sha256": "b6fed7783277e5d4ade5b5d80f90eadb3683d322cfecfc425c62d35f754d9c44"
+    },
+    {
+      "path": "build/v6n-fw-01/image.dis",
+      "bytes": 722752,
+      "sha256": "405f34a0e1779d0a7aceeb487ee624e8cf5c0a693c2e3300166538a7a809b48f"
+    },
+    {
+      "path": "build/v6n-fw-01/disassembly-29-mt_stream_progress.stdout",
+      "bytes": 19513,
+      "sha256": "89b8d51ec77ace8950a06e23f38b29db465cb1dd0a0a2a5ac5c21def33f13cc1"
+    },
+    {
+      "path": "build/v6n-fw-01/objects/29-mt_stream_progress.su",
+      "bytes": 781,
+      "sha256": "e44c8f1f50bd785c5f9cdfdace8496499dff4b467ccbb5e438563b266c7ea1b8"
+    },
+    {
+      "path": "build/v6n-fw-01/size.stdout",
+      "bytes": 126,
+      "sha256": "8db30dff3ababcb4522332b2d99c57ab855e8608e21fd8ab43db2f30feb49093"
+    },
+    {
+      "path": "build/v6n-native-01/result.json",
+      "bytes": 35480,
+      "sha256": "1536f4cc75fa6dd6d6f6f66d0d6c00913910defd582e84bca9af2e5230527e50"
+    },
+    {
+      "path": "build/v6n-native-01/source-equivalence.json",
+      "bytes": 7598,
+      "sha256": "26d3a098d264b31abbcd0e01bb6628c18cce53b4b9ded140860f13367f7d6ac6"
+    },
+    {
+      "path": "build/v6n-native-01/model.stdout",
+      "bytes": 521,
+      "sha256": "45ee6396a471732b76d7f85710b12f31626b61eca7bee9c0e768d781084a9077"
+    },
+    {
+      "path": "build/v6n-native-01/actual-progress.bin",
+      "bytes": 64,
+      "sha256": "761f9c6da65816e44c07c32a97625a0fd89aeaa7aa8d69b6ae45afdeeffe8acb"
+    }
+  ],
+  "root_owned_decoder_evidence": [
+    {
+      "path": "host/tools/decode_stream_progress.py",
+      "bytes": 10416,
+      "sha256": "dab3ed2843857259049dff2d298c97f580d4883d6cd48461d88d2241103b165f"
+    },
+    {
+      "path": "host/tests/stream_progress_decoder_check.py",
+      "bytes": 5386,
+      "sha256": "8e49c21cee59f6bfe69880169e33ac6f323948ca3f9fb6fc4f8088add1633138"
+    },
+    {
+      "path": "build/v6n-decoder-01/result.json",
+      "bytes": 2777,
+      "sha256": "a15e60b9a14f77663ef3ffd74529944939f1607a8af55f91dc4598e2236a44d6"
+    },
+    {
+      "path": "build/v6n-decoder-02/result.json",
+      "bytes": 2777,
+      "sha256": "b3c654d42235ddc1901c78c34d36638edd57676a462d7c673b540b29ef58f3ea"
+    }
+  ],
+  "artifacts": [
+    {
+      "path": "build/v6n-fw-01/MotortesterV2-stream-candidate.bin",
+      "bytes": 43816,
+      "sha256": "daad9e462be6ed6aeebffa1d1da37d3dc31ac28061ee5297da1a578b3fa8b759"
+    },
+    {
+      "path": "build/v6n-fw-01/MotortesterV2-stream-candidate.elf",
+      "bytes": 80564,
+      "sha256": "f60b3a130dedf9231177117272ab0bca0def5c741bdd53cc27a2e73e7426cd37"
+    },
+    {
+      "path": "build/v6n-fw-01/MotortesterV2-stream-candidate.hex",
+      "bytes": 123290,
+      "sha256": "a97eb0338e153e41ac4c4ca9758e4a01a8a5c3b5f881ab01aed2a661457540b6"
+    }
+  ],
+  "baseline_pins": [
+    {
+      "path": "build/v6m-freeze.json",
+      "bytes": 9794,
+      "sha256": "badbd5cead757e325b0597df788b7d4f91034fe25a50e04c906f0fe7a64c01c9"
+    },
+    {
+      "path": "build/v6m-fw-01/receipt.json",
+      "bytes": 409335,
+      "sha256": "29fda434e0a73f94f54efe812600a1fc78dfcc644bb77d5842959b5ccf95eb07"
+    },
+    {
+      "path": "build/v6m-followup/analysis.md",
+      "bytes": 12537,
+      "sha256": "abf57a569e2490887a619d3bc2c659f726eff04381eeacd52f9301d7b46724eb"
+    }
+  ],
+  "exact_inputs": "Compiler/toolchain/dependencies/object and analysis pins are in the ARM receipt; native API/model/stub boundaries in native result/source-equivalence. All recorded author inputs rechecked at freeze.",
+  "resources": {
+    "flash_bin_bytes": 43816,
+    "data_bytes": 128,
+    "bss_bytes": 12132,
+    "new_static_bytes": 64,
+    "new_static_object_section": ".bss.mt_stream_progress,alignment4,no other writable module section",
+    "stack_reserve_bytes": 8192,
+    "total_static_plus_reserve": 20452,
+    "RAM_bytes": 20480,
+    "spare_above_reserve": 28,
+    "conditional_stack": {
+      "report_sha256": "656accc5949fff168c6fe453b19a63db20c5a6a315e11626d3fc2cfd23db3f3a",
+      "status": "CONDITIONAL_EXACT_IMAGE_STATIC_BOUND",
+      "upper_bound_bytes": 6156,
+      "aligned_minimum_bytes": 6160
+    },
+    "not_physical_stack_high_water": true
+  },
+  "records": {
+    "progress": {
+      "symbol": "mt_stream_progress",
+      "address": "0x20002FA4",
+      "bytes": 64,
+      "magic_version": "0x4d544e31",
+      "header": "firmware/v2-stream/progress/mt_stream_progress.h",
+      "ABI": "firmware/v2-stream/progress/ABI.md",
+      "writer": "sole foreground; no ISR/private static state",
+      "one_attempt_per_boot": true,
+      "observation_target_cap_cycles": 18000000,
+      "cap_does_not_stop_ADC": true
+    },
+    "legacy": {
+      "symbol": "mt_stream_diagnostics",
+      "address": "0x20002F1C",
+      "bytes": 136,
+      "code_ABI_unchanged": true
+    },
+    "pairing": "Require matching nonce/generation, legacySGbuild, expected exact image/source and identical frozen copies. Neither record authenticates physical identity on its own."
+  },
+  "hook_map_and_observer_limits": "build/v6n-analysis/observer-audit.json",
+  "verification": {
+    "ARM": "First author build build/v6n-fw-01 PASS; no failed ARM attempts.",
+    "native": "First author targeted run build/v6n-native-01 PASS, three compact groups, no old serializer/core/host/GUI suite repeated.",
+    "actual_hook_execution": "Actual extracted offer() and ADC fail() with queue/terminate/history/quiesce logical stubs assert snapshot before cleanup. Not full runtime or hardware execution.",
+    "C_fixture_sha256": "761f9c6da65816e44c07c32a97625a0fd89aeaa7aa8d69b6ae45afdeeffe8acb",
+    "C_fixture_identity": {
+      "generation": 7,
+      "nonce": "0123456789abcdef",
+      "kind": "QUEUE",
+      "primary": 1,
+      "synthetic_native": true
+    },
+    "fixture_caveat": "API stress history includes partial/unknown/open-prepare/frozen-marker flags; actual production core would recover at first unknown. This ABI witness is not a complete production-reachable session.",
+    "root_decoder": "Two root-owned bounded decoder runs preserved: decoder-01 initially PASS but lacked the invalid-timing-None assertion; critic found INVALID cap still emitted nominal_timing. Root corrected decoder/checker, decoder-02 PASS for the same13 bounded negative cases with explicit None timing on invalid records. Actual-C fixture unchanged. Author did not rerun ARM/native or decoder.",
+    "decoder_runs": [
+      {
+        "directory": "build/v6n-decoder-01",
+        "role": "Preserved initial result, superseded for invalid timing suppression",
+        "result_sha256": "a15e60b9a14f77663ef3ffd74529944939f1607a8af55f91dc4598e2236a44d6"
+      },
+      {
+        "directory": "build/v6n-decoder-02",
+        "role": "Current corrected offline decoder/checker result",
+        "result_sha256": "b3c654d42235ddc1901c78c34d36638edd57676a462d7c673b540b29ef58f3ea"
+      }
+    ]
+  },
+  "meaning_limits": [
+    "Positive DATA bytes are known FIFO callback acceptance, not USB delivery, committed sample prefix or physical losslessness.",
+    "Prepare sums include IRQ time and all cached/EMPTY prepare calls; open partial prepare excluded with explicit flags. No CPU fraction or observer correction.",
+    "First-close bank freezes before cleanup; no late epilogue writes. Cap may precede a later source failure and cannot capture that later state.",
+    "Before ACTIVE, NULL ADC-fail hook cannot bind identity; later refused-start NO_START and original legacy136 ADCcause remain distinct.",
+    "DWT timing requires no halt/reset and interval below one wrap; nominal72MHz only.",
+    "Observer changes timing; resource/logic PASS does not establish its latency effect or stable150k."
+  ],
+  "preserved_failures": [
+    "All SF/M2 negative physical data remain unchanged; this diagnostic candidate does not resolve P1 stable150k."
+  ],
+  "physical": {
+    "COM_SWD_Reset_Flash_executed_by_author": false,
+    "installed_SF_modified_by_author": false,
+    "flash_approved": false,
+    "stable150k_established": false
+  },
+  "next_gate": "Independent exact software review, then separate root-owned N2 hardware plan.",
+  "superseded_freeze": {
+    "path": "build/v6n-freeze-r1.json",
+    "sha256": "0f04fed89b9465d285f976d9b138f5172ec793299e08a6ac7ab4ad9b40585620",
+    "bytes": 11073,
+    "reason": "Root-owned decoder-only correction: an INVALID cap record must not publish nominal_timing. Firmware, ABI, ARM and native evidence unchanged."
+  }
+}

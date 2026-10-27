@@ -1,0 +1,100 @@
+--- a/protocol/mt_live_device.c
++++ b/protocol/mt_live_device.c
+@@ -1,5 +1,6 @@
+ #include "mt_live_device.h"
+ #include "mt_v2_crc32.h"
++#include "../platform/mt_stream_progress.h" /* N_PROGRESS_INCLUDE */
+ #include <string.h>
+ 
+ #define RESERVE UINT32_C(0xffffff00)
+@@ -40,6 +41,9 @@
+     if(s.acquisition_reason>0u && s.acquisition_reason<=6u)cause(d,s.acquisition_reason);
+ }
+ static void recover(mt_live_device *d,unsigned reason) {
++#if CFG_MT_PROGRESS_TRACE /* N_PROGRESS */
++    mt_progress_close(d,reason==MT_LIVE_ERR_CLOCK?MT_N_CLOSE_TIME:MT_N_CLOSE_RECOVERY,reason);
++#endif
+     local_cause(d,reason);
+     if(d->state==MT_LIVE_STARTING || d->state==MT_LIVE_STREAMING)
+         raw_barrier(d);
+@@ -119,6 +123,9 @@
+     if(d->state!=MT_LIVE_STARTING && d->state!=MT_LIVE_STREAMING) {
+         recover(d,MT_LIVE_ERR_PROTOCOL); return;
+     }
++#if CFG_MT_PROGRESS_TRACE /* N_PROGRESS */
++    mt_progress_close(d,reason?MT_N_CLOSE_SOURCE:MT_N_CLOSE_STOP,reason);
++#endif
+     if(!now(d,&n))return;
+     d->stop_budget=1; d->stop_deadline=n+LIMIT_MS;
+     d->state=MT_LIVE_DRAINING;
+@@ -165,6 +172,9 @@
+     int isolation;
+     if(nonce==d->nonce || nonce==d->attempted_nonce)return;
+     if(!now(d,&n) || !expire(d,n))return;
++#if CFG_MT_PROGRESS_TRACE /* N_PROGRESS */
++    mt_progress_close(d,MT_N_CLOSE_HELLO,0u);
++#endif
+     d->attempted_nonce=nonce; d->pending_nonce=nonce;
+     d->pending_revision=revision;d->pending_mode=mode;
+     if(d->tx_offset && inherited!=UINT64_MAX) {
+@@ -252,7 +262,13 @@
+         if(d->hardware_off) {
+             d->hardware_off=0;
+             started=d->io.start(d->io.context,d->generation);
++#if CFG_MT_PROGRESS_TRACE /* N_PROGRESS */
++            if(started==1)mt_progress_begin(d);
++#endif
+         } else started=0;
++#if CFG_MT_PROGRESS_TRACE /* N_PROGRESS */
++        if(started!=1)mt_progress_close(d,MT_N_CLOSE_NO_START,0u);
++#endif
+         if(!now(d,&after))return;
+         if(started!=1) {
+             d->want_start=0;
+@@ -713,7 +729,13 @@
+     offer=d->tx_length-d->tx_offset; if(offer>384u)offer=384u;
+     first=(d->tx_offset==0u);
+     if(ticket && !ticket_matches(d,ticket))return d->state!=MT_LIVE_FAULT;
++#if CFG_MT_PROGRESS_TRACE /* N_PROGRESS */
++    if(d->tx_type==DATA)mt_progress_write_begin();
++#endif
+     accepted=d->io.write(d->io.context,d->tx+d->tx_offset,offer);
++#if CFG_MT_PROGRESS_TRACE /* N_PROGRESS */
++    if(d->tx_type==DATA)mt_progress_write_end(offer,accepted);
++#endif
+     d->last_write_known=(accepted!=SIZE_MAX && accepted<=offer);
+     d->last_write_accepted=d->last_write_known?accepted:0;
+     if(!d->last_write_known) { d->needs_delimiter=1; recover(d,MT_LIVE_ERR_TRANSPORT); return 0; }
+@@ -759,7 +781,11 @@
+     if(!d || !now(d,&n) || !expire(d,n))return 0;
+     if(d->state!=MT_LIVE_STARTING && d->state!=MT_LIVE_STREAMING)return 0;
+     q=mt_sample_queue_push_quantized(&d->queue,first_index,codes,count,0,discarded_lsb(d));
+-    if(q!=MT_SAMPLE_QUEUE_OK) { terminate(d,q==MT_SAMPLE_QUEUE_FULL?1u:2u,n); return 0; }
++    if(q!=MT_SAMPLE_QUEUE_OK) {
++#if CFG_MT_PROGRESS_TRACE /* N_PROGRESS */
++        mt_progress_close(d,q==MT_SAMPLE_QUEUE_FULL?MT_N_CLOSE_QUEUE:MT_N_CLOSE_SOURCE,q==MT_SAMPLE_QUEUE_FULL?1u:2u);
++#endif
++        terminate(d,q==MT_SAMPLE_QUEUE_FULL?1u:2u,n); return 0; }
+     return 1;
+ }
+ void mt_live_device_fault(mt_live_device *d,uint16_t reason) {
+@@ -769,6 +795,9 @@
+      * failure during recovery must not replace that earlier cause. */
+     if(d->state==MT_LIVE_STARTING || d->state==MT_LIVE_STREAMING ||
+        d->state==MT_LIVE_DRAINING || d->state==MT_LIVE_TERMINAL)cause(d,reason);
++#if CFG_MT_PROGRESS_TRACE /* N_PROGRESS */
++    mt_progress_close(d,MT_N_CLOSE_SOURCE,reason);
++#endif
+     if(!now(d,&n) || !expire(d,n))return;
+     if(d->end_started) { cause(d,reason); recover(d,MT_LIVE_ERR_CALLBACK); return; }
+     if(d->tx_type==END && d->tx_length && !d->tx_offset)d->tx_length=0;
+@@ -776,6 +805,9 @@
+ }
+ void mt_live_device_transport_lost(mt_live_device *d) {
+     if(!d)return;
++#if CFG_MT_PROGRESS_TRACE /* N_PROGRESS */
++    mt_progress_close(d,MT_N_CLOSE_TRANSPORT,MT_LIVE_ERR_TRANSPORT);
++#endif
+     raw_barrier(d);
+     d->state=MT_LIVE_FAULT;
+     recover(d,MT_LIVE_ERR_TRANSPORT);

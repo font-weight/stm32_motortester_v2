@@ -1,0 +1,136 @@
+{
+  "schema": "motortester-V2-06n-observer-audit-1",
+  "date": "2026-10-27",
+  "module_object": {
+    "path": "build\\v6n-fw-01\\objects\\29-mt_stream_progress.o",
+    "sha256": "ed5ab195c5006a4655cc5c84dee4d8403a6cc8f1f56dad51a60455097f5c0820",
+    "writable_sections": [
+      {
+        "section": ".bss.mt_stream_progress",
+        "bytes": 64,
+        "type": 8,
+        "alignment": 4
+      }
+    ],
+    "all_additional_static_bytes": 64
+  },
+  "resources": {
+    "data": 128,
+    "bss": 12132,
+    "stack_reserve": 8192,
+    "total": 20452,
+    "ram": 20480,
+    "spare": 28,
+    "conditional_stack_bound": 6156,
+    "aligned_minimum": 6160,
+    "not_physical_high_water": true
+  },
+  "compiled_evidence": {
+    "module_disassembly_sha256": "89b8d51ec77ace8950a06e23f38b29db465cb1dd0a0a2a5ac5c21def33f13cc1",
+    "no_indirect_calls_in_new_module": true,
+    "no_TIME_or_legacy_cycle_calls_in_new_module": true,
+    "direct_DWT": "Literal0xe0001000 plus LDR offset4 at existing point; no new MMIO health loop",
+    "DMB_before_frozen_store": true
+  },
+  "observer_work": {
+    "prepare": "One direct CYCCNT read at begin and one at completed end whileACTIVE; bounded scalar flag/counter work, no per-byte hooks",
+    "known_positive_DATA": "One direct CYCCNT read; scalar gap/byte/count/partial history",
+    "known_zero_or_unknown_DATA": "Scalar classification only, no direct cycle read",
+    "checkpoint": "One direct CYCCNT read per active runtime return; target250ms only, actual overshoot retained",
+    "first_close": "One direct CYCCNT read ifACTIVE; bounded core snapshot and existing nested guard/actor read-only FIFO/task/gates snapshot; no dispatch/flush/controller write",
+    "cold_bind": "Single64B initialization, compiler memset/local88B frame; once per boot, no second static bank",
+    "limitations": "No microsecond/WCET/CPU-overhead qualification. Inclusive prepare includes IRQ. Observer can change timing and source failure onset; no numeric correction subtracted."
+  },
+  "hook_map": [
+    {
+      "path": "patched/v2/protocol/mt_live_device.c",
+      "line": 266,
+      "anchor": "mt_progress_begin",
+      "meaning": "successful io.start; before following now/queueinit/START_ACK",
+      "sha256": "ebd2826022fa3b538c7f59a31711c19370433056bdcf6b5f406f216de62da5e7"
+    },
+    {
+      "path": "patched/v2/protocol/mt_live_device.c",
+      "line": 786,
+      "anchor": "MT_N_CLOSE_QUEUE",
+      "meaning": "after failed queue push; before terminate/quiesce/drain",
+      "sha256": "ebd2826022fa3b538c7f59a31711c19370433056bdcf6b5f406f216de62da5e7"
+    },
+    {
+      "path": "patched/v2/protocol/mt_live_device.c",
+      "line": 799,
+      "anchor": "MT_N_CLOSE_SOURCE,reason",
+      "meaning": "after already-observed source cause; before now can fail",
+      "sha256": "ebd2826022fa3b538c7f59a31711c19370433056bdcf6b5f406f216de62da5e7"
+    },
+    {
+      "path": "patched/v2/protocol/mt_live_device.c",
+      "line": 45,
+      "anchor": "MT_N_CLOSE_RECOVERY",
+      "meaning": "before original recover mutations/callbacks",
+      "sha256": "ebd2826022fa3b538c7f59a31711c19370433056bdcf6b5f406f216de62da5e7"
+    },
+    {
+      "path": "patched/v2/protocol/mt_live_device.c",
+      "line": 809,
+      "anchor": "MT_N_CLOSE_TRANSPORT",
+      "meaning": "after NULL eligibility; before raw_barrier",
+      "sha256": "ebd2826022fa3b538c7f59a31711c19370433056bdcf6b5f406f216de62da5e7"
+    },
+    {
+      "path": "patched/v2/protocol/mt_live_device.c",
+      "line": 176,
+      "anchor": "MT_N_CLOSE_HELLO",
+      "meaning": "after valid fresh HELLO/time admission, before identity/staging cleanup",
+      "sha256": "ebd2826022fa3b538c7f59a31711c19370433056bdcf6b5f406f216de62da5e7"
+    },
+    {
+      "path": "patched/v2/protocol/mt_live_device.c",
+      "line": 737,
+      "anchor": "mt_progress_write_end",
+      "meaning": "DATA callback return known/zero/partial/unknown before postwrite now",
+      "sha256": "ebd2826022fa3b538c7f59a31711c19370433056bdcf6b5f406f216de62da5e7"
+    },
+    {
+      "path": "patched/v2/app/mt_live_runtime.c",
+      "line": 113,
+      "anchor": "mt_progress_zero_space",
+      "meaning": "only actual available<length branch, only DATA",
+      "sha256": "c8525c8a2737ea077e02d7f3217252e812eb72e6ded0cc9cc37840fa2dbc6351"
+    },
+    {
+      "path": "patched/v2/app/mt_live_runtime.c",
+      "line": 293,
+      "anchor": "mt_progress_prepare_begin",
+      "meaning": "local-stamp bracket around actual prepare, inclusive; before IRQ guard",
+      "sha256": "c8525c8a2737ea077e02d7f3217252e812eb72e6ded0cc9cc37840fa2dbc6351"
+    },
+    {
+      "path": "patched/v2/app/mt_live_runtime.c",
+      "line": 321,
+      "anchor": "mt_progress_checkpoint",
+      "meaning": "post-step target cap; no stop or rearm",
+      "sha256": "c8525c8a2737ea077e02d7f3217252e812eb72e6ded0cc9cc37840fa2dbc6351"
+    },
+    {
+      "path": "patched/v2/app/mt_live_runtime.c",
+      "line": 205,
+      "anchor": "MT_N_CLOSE_TIME",
+      "meaning": "before original time_fault cleanup",
+      "sha256": "c8525c8a2737ea077e02d7f3217252e812eb72e6ded0cc9cc37840fa2dbc6351"
+    },
+    {
+      "path": "patched/v2/platform/adc_timer_dma.c",
+      "line": 345,
+      "anchor": "MT_N_CLOSE_ADC",
+      "meaning": "ACTIVE only; after original driver fault latch/history invalidation, before quiesce; NULL metadata",
+      "sha256": "a0acc99437cad4cc6fcbee12569f853923ed0d8d5d7a4fdd59a6814b647955df"
+    }
+  ],
+  "source_equivalence": "build/v6n-native-01/source-equivalence.json",
+  "pre_ACTIVE_limit": "Driver failure inside start occurs before begin; NULL hook does not bindEMPTY. Later refused start freezesNO_START, original ADCcause remainslegacy136. Native actualfail case explicitlyACTIVE.",
+  "partial_limit": "Open prepare atclose is excluded from completed sum/count; flag indicates unavailable partialduration. No late epilogue publication.",
+  "cap_limit": "A later failure after cap is not captured as the first-close cause; cap does not stop acquisition.",
+  "synthetic_fixture_limit": "Native API fixture includes partial/unknown/open spans for ABI coverage; this is not a complete production-reachable history (actualcore recovers on firstunknown).",
+  "hardware_access": false
+}

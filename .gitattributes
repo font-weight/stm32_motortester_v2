@@ -74,6 +74,22 @@ docs/verification/v2-serializer-local/**/*.map -whitespace
 docs/verification/v2-serializer-local/**/*.patch -whitespace
 docs/reviews/v2-06m*.md -text
 docs/streaming-serializer-local.md -text whitespace=cr-at-eol
+docs/verification/v2-stream-progress/** -text whitespace=cr-at-eol
+docs/verification/v2-stream-progress/**/*.bin binary
+docs/verification/v2-stream-progress/**/*.o binary
+docs/verification/v2-stream-progress/**/*.elf binary
+docs/verification/v2-stream-progress/**/*.txt -whitespace
+docs/verification/v2-stream-progress/**/*.log -whitespace
+docs/verification/v2-stream-progress/**/*.stdout -whitespace
+docs/verification/v2-stream-progress/**/*.stderr -whitespace
+docs/verification/v2-stream-progress/**/*.map -whitespace
+docs/verification/v2-stream-progress/**/*.patch -whitespace
+docs/reviews/v2-06n*.md -text
+docs/streaming-progress-trace.md -text whitespace=cr-at-eol
+firmware/v2-stream/progress/** -text
+tests/v2-stream-firmware/stream_progress* -text
+host/tools/decode_stream_progress.py -text
+host/tests/stream_progress_decoder_check.py -text
 firmware/v2-stream/batch1024/** -text
 tests/v2-stream-firmware/batch1024* -text
 host/docs/stream-modes.md -text

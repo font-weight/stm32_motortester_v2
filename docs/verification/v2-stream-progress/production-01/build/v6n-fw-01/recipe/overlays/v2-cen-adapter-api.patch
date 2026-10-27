@@ -1,0 +1,12 @@
+--- a/v2/app/mt_live_adc.h
++++ b/v2/app/mt_live_adc.h
+@@ -26,6 +26,9 @@
+ /* Call through board-owner wrappers from matching mt_live_io callbacks. The
+  * same binding must back both callbacks; no calls into the live core here. */
+ int mt_live_adc_start(void *binding, uint32_t generation);
++/* Optional V2 entrypoint; no change to the persistent binding/guard layout. */
++int mt_live_adc_start_transaction(void *binding, uint32_t generation,
++                                 mt_adc_dma_start_transaction_fn transaction);
+ void mt_live_adc_quiesce(void *binding, mt_live_snapshot *snapshot);
+ /* At most one real driver read and immediate synchronous queue offer. Return1
+  * accepted,0 no block/inactive,-1 acquisition fault/queue rejection,-2 badarg.

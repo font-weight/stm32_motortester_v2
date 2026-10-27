@@ -1,0 +1,46 @@
+
+objects/00-mt_boot_cpu.o:     file format elf32-littlearm
+
+
+Disassembly of section .text.mt_boot_cpu_masked:
+
+00000000 <mt_boot_cpu_masked>:
+   0:	b510      	push	{r4, lr}
+   2:	f3ef 8410 	mrs	r4, PRIMASK
+   6:	f3ef 8311 	mrs	r3, BASEPRI
+   a:	f3ef 8013 	mrs	r0, FAULTMASK
+   e:	f3ef 8105 	mrs	r1, IPSR
+  12:	f3ef 8214 	mrs	r2, CONTROL
+  16:	2c01      	cmp	r4, #1
+  18:	d108      	bne.n	2c <mt_boot_cpu_masked+0x2c>
+  1a:	4303      	orrs	r3, r0
+  1c:	430b      	orrs	r3, r1
+  1e:	f002 0203 	and.w	r2, r2, #3
+  22:	4313      	orrs	r3, r2
+  24:	bf0c      	ite	eq
+  26:	2001      	moveq	r0, #1
+  28:	2000      	movne	r0, #0
+  2a:	bd10      	pop	{r4, pc}
+  2c:	2000      	movs	r0, #0
+  2e:	e7fc      	b.n	2a <mt_boot_cpu_masked+0x2a>
+
+Disassembly of section .text.mt_boot_cpu_admit:
+
+00000000 <mt_boot_cpu_admit>:
+   0:	b508      	push	{r3, lr}
+   2:	f7ff fffe 	bl	0 <mt_boot_cpu_admit>
+			2: R_ARM_THM_CALL	mt_boot_cpu_masked
+   6:	b138      	cbz	r0, 18 <mt_boot_cpu_admit+0x18>
+   8:	f3bf 8f4f 	dsb	sy
+   c:	f3bf 8f6f 	isb	sy
+  10:	b662      	cpsie	i
+  12:	f3bf 8f6f 	isb	sy
+  16:	2001      	movs	r0, #1
+  18:	bd08      	pop	{r3, pc}
+
+Disassembly of section .text.mt_boot_cpu_halt:
+
+00000000 <mt_boot_cpu_halt>:
+   0:	b672      	cpsid	i
+   2:	bf00      	nop
+   4:	e7fd      	b.n	2 <mt_boot_cpu_halt+0x2>

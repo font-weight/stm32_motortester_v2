@@ -1,0 +1,21 @@
+--- a/v2/platform/adc_timer_dma.h
++++ b/v2/platform/adc_timer_dma.h
+@@ -162,6 +162,18 @@
+ } mt_adc_dma_start_guard;
+ mt_adc_dma_result_t mt_adc_dma_start_guarded(mt_adc_dma_t *driver,
+                                             const mt_adc_dma_start_guard *guard);
++/* Separate V2 API: existing guard layout/constructors remain unchanged.
++ * transaction runs under the entered guard after ADC/DMA setup. It alone writes
++ * TIM3 CEN=1, bracketed by fresh observations of the SAME validated TIME source.
++ * It must validate clock and original actor/epoch before AND after that write,
++ * publishing both timestamps only on success. Failure may have enabled TIM3;
++ * this driver restores the mask and performs its existing verified quiesce.
++ * The <=20 us check bounds the CEN bracket, not full validation/IRQ-off time.
++ * Full elapsed scheduling obligations and all readback checks remain active. */
++typedef int (*mt_adc_dma_start_transaction_fn)(void *context,
++                                             uint32_t *before_us, uint32_t *after_us);
++mt_adc_dma_result_t mt_adc_dma_start_transaction(mt_adc_dma_t *driver,
++    const mt_adc_dma_start_guard *guard, mt_adc_dma_start_transaction_fn transaction);
+ /* Call at intervals STRICTLY LESS THAN 2560 us while running. Copy and metadata
+  * validation also finish inside that budget. Output unchanged unless BLOCK.
+  * A BLOCK view lasts only until the next read/start/stop, regardless of result.

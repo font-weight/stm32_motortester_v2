@@ -1,0 +1,16 @@
+--- a/acquisition/mt_sample_queue.h
++++ b/acquisition/mt_sample_queue.h
+@@ -65,6 +65,13 @@
+                                            uint16_t count,
+                                            unsigned final_block);
+ 
++/* Same validation and publication as push; discarded_lsb must be0 or2.
++ * Validate original ADC12 before masking. Only copied queue-owned codes change;
++ * mode3 canonical c12 retains its12-bit scale with low2bits zero. */
++mt_sample_queue_result mt_sample_queue_push_quantized(mt_sample_queue *queue,
++    uint64_t first_index,const uint16_t *samples,uint16_t count,
++    unsigned final_block,unsigned discarded_lsb);
++
+ /* Stop accepting samples, preserving queued prefix and any earlier fault.
+  * This is a software queue barrier only, not a hardware stop operation.
+  * NULL seal is a no-op. Existing borrowed views remain valid through sealing. */

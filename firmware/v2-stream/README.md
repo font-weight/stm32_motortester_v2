@@ -1,4 +1,22 @@
-# Кандидат V2SF: локальные счётчики подготовки DATA1024
+# Кандидат V2SG: диагностика до первого отказа очереди
+
+V2-06n/build `0x56325347`, product `Motortester V2 Progress SG` добавляет
+один64B foreground-only снимок рядом с прежней136B диагностикой.
+Алгоритмы SF, wire, очередь, ADC/TIME и grant не меняются. Формат/пределы —
+[progress/ABI.md](progress/ABI.md). FIFO acceptance не равен USB delivery;
+inclusive cycles не являются долями CPU. First-close выполняется до Stop/drain,
+и последующие эпилоги снимок не изменяют. Один attempt/boot;250ms cap
+останавливает только наблюдение. Образ не подтверждает устойчивые150k.
+
+```powershell
+.\.venv\Scripts\python.exe -I -B firmware\v2-stream\build_windows.py --output build\v6n-fw-NEW
+```
+
+Нужны exact RAM/stack, одна адресная проверка новых hooks/freeze и независимое
+ревью до отдельного физического плана. Сборка не открывает COM/SWD.
+Точные результаты и установленная прошивка — только в progress/review.
+
+## Сохранённый V2SF: локальные счётчики подготовки DATA1024
 
 V2-06m/build `0x56325346`, product `Motortester V2 Batch1024 SF`, по
 [контракту M](../../docs/streaming-serializer-local.md) и

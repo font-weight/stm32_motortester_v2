@@ -1,0 +1,115 @@
+{
+  "status": "PASS",
+  "scope": "One native-C-fixture decode plus bounded malformed-evidence group",
+  "fixture_sha256": "761f9c6da65816e44c07c32a97625a0fd89aeaa7aa8d69b6ae45afdeeffe8acb",
+  "decoder_sha256": "42be1d8888f96bba1fded269992df11701da8f19e71e1856a89584ea630886e2",
+  "checker_sha256": "cebf1861eec41c4d958372e44b6566004a48ee55187ce33dcd0ee1634d3ff391",
+  "known_fixture_fields": {
+    "begin_cycle": 1000,
+    "end_cycle": 5000,
+    "prepare_cycles": 400,
+    "prepare_count": 1,
+    "positive_bytes": 401,
+    "positive_count": 2,
+    "last_positive_cycle": 2400,
+    "max_positive_gap_cycles": 2600,
+    "zero_space_count": 1,
+    "zero_other_count": 1,
+    "tx_offset": 384,
+    "tx_length": 1335,
+    "stage_count": 1024,
+    "stage_phase": 4,
+    "queue_used": 8,
+    "fifo_free": 128,
+    "snapshot_bits": 15,
+    "close_kind": 1
+  },
+  "negative_checks": [
+    {
+      "case": "wrong_size",
+      "errors": [
+        "first_size_not_64",
+        "second_size_not_64"
+      ]
+    },
+    {
+      "case": "unequal_pair",
+      "errors": [
+        "repeated_dump_mismatch"
+      ]
+    },
+    {
+      "case": "not_frozen",
+      "errors": [
+        "record_not_frozen"
+      ]
+    },
+    {
+      "case": "foreign_nonce",
+      "errors": [
+        "nonce_mismatch",
+        "legacy_build_session_image_binding_invalid"
+      ]
+    },
+    {
+      "case": "foreign_generation",
+      "errors": [
+        "generation_mismatch",
+        "legacy_build_session_image_binding_invalid"
+      ]
+    },
+    {
+      "case": "wrong_image_binding",
+      "errors": [
+        "legacy_build_session_image_binding_invalid"
+      ]
+    },
+    {
+      "case": "wrong_typed_primary",
+      "errors": [
+        "primary_outside_close_kind_domain"
+      ]
+    },
+    {
+      "case": "noactive_with_history",
+      "errors": [
+        "no_active_start_with_active_history"
+      ]
+    },
+    {
+      "case": "short_cap",
+      "errors": [
+        "cap_boundary_inconsistent"
+      ]
+    },
+    {
+      "case": "prepare_without_count",
+      "errors": [
+        "prepare_cycles_without_completed_call"
+      ]
+    },
+    {
+      "case": "impossible_positive_count",
+      "errors": [
+        "accepted_bytes_exceed_callback_capacity"
+      ]
+    },
+    {
+      "case": "unavailable_FIFO_not_sentinel",
+      "errors": [
+        "unavailable_USB_snapshot_not_sentinel"
+      ]
+    },
+    {
+      "case": "missing_close_tail",
+      "errors": [
+        "cycle_spans_inconsistent"
+      ]
+    }
+  ],
+  "unknown_FIFO_preserved": true,
+  "typed_TIME_supported": true,
+  "legacy_binding_is_synthetic": true,
+  "hardware_executed": false,
+  "physical_throughput_claim": false
+}
