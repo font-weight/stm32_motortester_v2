@@ -1,0 +1,52 @@
+{
+  "schema": "motortester-v2-06o-independent-exact-flash-admission-1",
+  "date": "2026-10-27",
+  "status": "PASS",
+  "score": 9.6,
+  "plan_sha256": "85863223936e6c0b4b00e04db4ac5cd1ea6f7dca938770d515709c5fff9620c2",
+  "scope": "O2 exact SH installation/readback/reset and one requested30s 150k mode5/DATA1024 trial, conditional on fresh operator checks and actual post-reset user replug",
+  "reviewer": "/root/stream200_critic",
+  "independent": true,
+  "source_commit": "08196d8c0db477c2b567262eb01e56af3663a79e",
+  "source_review": {"path": "docs/verification/v2-late-grant/critic-source.json", "sha256": "83c89997848ecf31bca767f4a149c352203c03bbebdf3e90fe1c6be0ecacaf62", "status": "PASS", "score": 9.625, "not_repeated": true},
+  "archive": {"path": "docs/verification/v2-late-grant/plan-01/manifest.json", "sha256": "935933bb2faca55868a555273a8634f04c0661f94e5091bfaba1e70d5a605465", "files": 17, "bytes": 148864, "all_source_copy_byte_equal": true},
+  "candidate": {"build": "0x56325348", "bytes": 44212, "bin_sha256": "99fcd38af9ac4e4feb8b7b4fa0bd577a77d8103773c0951e6b6a433e22deddf2", "elf_sha256": "29c12600228c367f440dbfab09761c8572f342cf5f96e5c20336e3fbb24b0cb3", "readback_start": "0x08000000", "readback_length": "0xACB4", "legacy136": "0x20002F1C", "progress64": "0x20002FA4"},
+  "backup": {"path": "build/v6o-board-01/before-flash-64k.bin", "bytes": 65536, "sha256": "0b363d4b41822d9390d8b9a6b5cc76b5c2cc0b2a458bb059decc46c7335e7dcc", "SG_prefix_bytes": 43816, "SG_prefix_sha256": "daad9e462be6ed6aeebffa1d1da37d3dc31ac28061ee5297da1a578b3fa8b759", "full_and_prefix_personally_verified": true},
+  "execution_limits": {"program": 1, "reset_run_after_equal_readback": 1, "sessions": 1, "START": 1, "sample_rate_hz": 150000, "mode": 5, "max_block": 1024, "requested_Record_seconds": 30, "additional_50k_100k": false, "automatic_retry": false, "automatic_rollback": false},
+  "verified_plan_delta": {
+    "execution_pins": 27,
+    "CLI_sha256": "7fb012b5e26abf45342caa05c6bc33936f8a379b67797cc55658ffb8bf15e95f",
+    "probe_serial": "57005400120000393333574E",
+    "helpers_reviewed": ["program_and_verify.py", "run_trial.py", "root_read_closed.py", "analyze_physical.py", "decode_diagnostics.py", "save_stopped_state.py"],
+    "delta": "Pinned SH identity/paths,30s request, explicit SH decoder build and updated diagnostic wording; previous gate behavior preserved",
+    "readback_bounds_match": true,
+    "source_package_or_test_reruns": 0,
+    "critic_hardware_actions": 0
+  },
+  "reused_package": {"zip_sha256": "436cdaf1f27322e8ff7e90809f6c091950edcf7a599a97766c128c6e19a6dbfe", "build_report_sha256": "6f9f22d27664d5a0a726c240eeaff751eb1f7d6b57cd7e3afea47752a3f729ac", "reason": "Acquisition host/wire/GUI unchanged; prior L package acceptance retained, no new GUI or package qualification claimed"},
+  "mandatory_execution_conditions": [
+    "Root alone checks fresh expected COM6/PNP/code0, single expected ST-Link and no application/capture/CLI owner immediately before program; old backup inventory is not current admission evidence",
+    "Preserve USB-only board supply/no ST-Link3.3 and empty PA0; stop on changed physical conditions",
+    "Recheck exact pins/admission before program; one verify plus independent complete44212-byte readback must equal candidate before Reset/Run",
+    "Ask and record a new actual user USB-board replug after this SH Reset; prior ready responses do not satisfy it; bind reset-log hash and chronology",
+    "One freshboot150k mode5 START only, no50/100; any failure ends this plan without repeat/reset/automatic rollback",
+    "No SWD/halt while COM is active; retain timestamps and actual owner closure",
+    "Only after offline coherent END/ACK/nonce/generation/indices/CRC and closed owner may root read paired136/64 and stopped TIM3/ADC/DMA/RCC; never ADC_DR",
+    "Timeout, missing result or absent closed-owner/coherent terminal evidence does not authorize root_read_closed or a retry",
+    "Record actual elapsed procedure/observation and nohalt/reset assumptions; timeout65s is not a <2^32-cycle guarantee. Do not interpret nominal DWT timing if wrap/validity assumptions cannot be established",
+    "NormalEND/ACK, fault-free requested30s, raw/Open/CRC and stopped registers are needed for the bounded physical success; valid diagnostics alone cannot close P1"
+  ],
+  "known_limits": ["Preflight freshness, actual human reply and absence of external SWD/halt are operator facts, not proven solely by helper booleans", "A successful single trial would apply only to observed low-voltage/empty-input conditions and does not qualify analog accuracy or ignition"],
+  "open_P0_P1_in_plan_scope": [],
+  "open_external_requirement": {"id": "P1-M2-01", "status": "OPEN", "requirement": "Physically stable150k", "closed_by_admission": false},
+  "rubric": {
+    "C1": {"weight": 0.30, "score": 9.75, "basis": "Exact accepted image, one bounded150k trial and explicit terminal/data criteria"},
+    "C2": {"weight": 0.20, "score": 9.50, "basis": "Backup/full readback, failure stop, fresh replug and owner-close gates; external conditions remain explicit"},
+    "C3": {"weight": 0.25, "score": 9.50, "basis": "All27 inputs and17 archive pairs verified; hardware outcomes remain future evidence"},
+    "C4": {"weight": 0.15, "score": 9.50, "basis": "Small helper delta with one hardware owner, no silent retry or lowered criteria"},
+    "C5": {"weight": 0.10, "score": 9.75, "basis": "Exact plan hash, commands, backup, source and preserved prior evidence"}
+  },
+  "hardware_trial_executed_by_review": false,
+  "stable150k_established": false,
+  "report": "docs/reviews/v2-06o-flash-review.md"
+}

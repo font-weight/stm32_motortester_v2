@@ -1,5 +1,57 @@
 # Прогресс Мотортестера V2
 
+## 27.10.2026 — O2: SH получила20480 кодов, но снова queue-full;64B диагностика не включилась
+
+Source`08196d8c0db477c2b567262eb01e56af3663a79e` опубликован в V2.
+Exact [план O2](verification/v2-late-grant/plan-01/build/v6o-board-01/plan.json)
+SHA256`85863223936e6c0b4b00e04db4ac5cd1ea6f7dca938770d515709c5fff9620c2`
+принят [критиком9,60](reviews/v2-06o-flash-review.md). После свежих inventory,
+проверки отсутствия владельцев и HOTPLUG identity записана SH;44212байт
+readback совпали. Один Reset/Run, затем новый фактический ответ пользователя
+на USB-replug и отдельный свежий COM6 inventory предшествовали START.
+
+Единственный опыт150k/mode5 с запросом30с завершился **FAIL: queue-full**.
+Получены20 полных DATA1024/20480кодa; Record сохранила17408 `[3072,20480)`.
+Offline wire/индексы/CRC/raw/fresh Open — PASS. ENDseq24/reason1/flags3/
+prefix20480/CRC1933017381 пришёл раньше STOPreq4, matching ACKseq25.
+Nonce`6fd5a5c6c60ddaad`, generation3. Record wall≈0,117960с; это время host,
+не ADC rate. Требуемые30с не достигнуты, произведённый хвост/потери неизвестны.
+
+COM закрылся10:34:28.515UTC; первый SWD read начат10:35:06.410UTC.
+Две136B копии одинаковы SHA256
+`71a87baf205529f9883c3ebc083d17350cd89dcd135acbfb228c862d65c901d5`:
+первый reason1, queue8/8, ADCfault0, maxpoll2952мкс, copy184мкс,
+step230706циклов, TX14616циклов. Stopped TIM3/ADC/DMA иPSC47/ARR9 проверены.
+Новых Reset/START/50/100k/отката не было; **на плате оставлена SH, остановлена**.
+
+Обе64B записи полностью нулевые, SHA256
+`f5a5fd42d16a20302798ef6ed309979b43003d2320d9f0e8ea9831a92759fb4b`.
+Decoder правильно вернул **INVALID**, root_read_closed закончил exit1 после
+всех8 чтений и успешных legacy/register decodes. Никакого повторного чтения
+или запуска не было; отдельный root supplement сохраняет эту ошибку helper.
+В exact SH найден программный дефект **P1-O2-02**: progress header содержит
+SG `MT_N_BUILD=0x56325347`, но paired/bind требует равенства legacy SH
+`0x56325348`. Поэтому64B observer не связался с сеансом. Проверка O1 ошибочно
+приняла неизменность observer без build-dependent интеграции; модель O
+отключала observer, а SH decoder использовал синтетическую identity.
+Прежний source PASS ниже — исторический; утверждение о работающей64B
+диагностике SH отозвано. Дополнительных временных выводов по нулевому trace нет.
+Рост префикса относительно SG нельзя приписывать только late grant:
+отключившаяся диагностическая работа также изменила нагрузку.
+
+[Архив O2](verification/v2-late-grant/physical-01/manifest.json):80файлов,
+321707байт, SHA256`f409517ee1a9ea2485188be668f932b4b8f7c395de1d55cd1202cd94ae212fac`.
+Имена старой schema v2-06m в analyzer сохранены; explicit SH build/source/image
+и root supplement определяют этот сеанс. Независимая
+[оценка O2](reviews/v2-06o-physical-review.md) — **REWORK5,80**; критик
+сверил80 архивных пар и подтвердил отдельный P1-O2-02. Полная приёмка
+exact SH в O1 отозвана; первоначальный immutable отчёт сохранён.
+Доказательство причины zero64 и границы вывода о queue-full сохранены в
+[offline-разборе](verification/v2-late-grant/followup-01/analysis.md).
+Следующий шаг — устранить отдельную build-константу observer, проверить
+actual C binding с точной версией, затем определить отдельный новый опыт.
+Стабильные150k/P1-M2-01 остаются открытыми.
+
 ## 27.10.2026 — O1: кандидат SH собран, адресные проверки завершены
 
 Одна ARM-сборка и один actual-runtime native model прошли с первого запуска.

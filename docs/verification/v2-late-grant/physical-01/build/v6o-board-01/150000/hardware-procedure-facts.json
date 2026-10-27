@@ -1,0 +1,24 @@
+{
+  "schema": "v2-06o-root-observed-hardware-facts-1",
+  "program_readback_bytes": 44212,
+  "starts": 1,
+  "SWD_or_halt_during_active": false,
+  "SWD_only_after_owner_close_and_matching_END_ACK": true,
+  "legacy_dump_independent_calls": 2,
+  "progress_dump_independent_calls": 2,
+  "ADC_DR_read": false,
+  "rollback_performed": false,
+  "retained_image": "V2SH/0x56325348",
+  "physical_result": "FAIL_QUEUE_FULL",
+  "legacy136": "VALID_FIRST_FAULT",
+  "progress64": "INVALID_ALL_ZERO",
+  "stopped_registers": "PASS",
+  "helper_result": "root_read_closed exited1 after all8 reads and legacy/register decodes; progress decoder rejected zero64. No helper or hardware rerun.",
+  "diagnostic_cause": "Exact SH header MT_N_BUILD=0x56325347 differs from actual legacy SH build0x56325348. paired/bind refuse observer initialization.",
+  "source": "Root operator chronology plus saved invocation receipts; helper stopped before its usual facts writer, so this separate offline supplement preserves the failure.",
+  "limits": [
+    "O1 software acceptance did not catch the build-dependent observer binding; physical64 evidence is unavailable.",
+    "Larger delivered prefix cannot be credited solely to late grant: SH also accidentally disabled observer work.",
+    "Original physical-analysis schema name retains v2-06m; explicit build/source/image/mode identify this O2 SH run."
+  ]
+}
