@@ -1,0 +1,74 @@
+{
+  "schema": "motortester-v2-06q-independent-exact-plan-review-1",
+  "date": "2026-10-27",
+  "critic": "/root/stream200_critic",
+  "independent_non_author": true,
+  "status": "PASS",
+  "score": 9.6,
+  "threshold": 9.5,
+  "plan_sha256": "5089104d2a4fb524bfa044f3c66ae7c92069ab0c3bb8745abd6d61394ca848b4",
+  "scope": "Exact Q2 SJ Flash/readback/Reset and one150k mode5 requested30s trial; conditional procedure admission, not execution or throughput acceptance",
+  "source_commit": "b8d72a76f623a53cea5f3fa308965ea48f852799",
+  "plan_path": "build/v6q-board-01/plan.json",
+  "archive_sha256": "1727c1a28567dc176050103f46bf1f237815c9bfda28a1d3f0ea0bc27de7cfed",
+  "candidate": {
+    "build": "0x5632534a",
+    "bytes": 45372,
+    "bin_sha256": "5041ae67ccc25eda8d0003121370baed1120b025399099d4c3f42abfee61ca88",
+    "elf_sha256": "55afde847a5629fd573c92d5b9d61eeaa267d8236edb2f43088ac65a015fd4d6",
+    "readback_address": "0x08000000",
+    "readback_bytes_hex": "0xb13c",
+    "legacy136_address": "0x20002f1c",
+    "progress64_address": "0x20002fa4"
+  },
+  "backup": {
+    "bytes": 65536,
+    "sha256": "8dc2d6cb927066502f2a050dbde3970b9d4cf3bf86340a0857094a325ff781f6",
+    "SI_prefix_bytes": 44216,
+    "SI_prefix_sha256": "aeccdce0a5c2705e5fc77338595655a1f8d20367de486cbc83250f85a3a2d9c7",
+    "prefix_personally_byte_equal": true,
+    "automatic_restore_authorized": false
+  },
+  "personal_passive_verification": {
+    "archive_pairs": 16,
+    "archive_bytes": 147043,
+    "execution_inputs": 27,
+    "CLI_pin_matches": true,
+    "drift": [],
+    "read": "Plan, program/readback/reset wrapper, trial/replug binding, closed-owner reader, six helper deltas versus P, saved backup log and bytes",
+    "method": "Read-only pathlib/hashlib/json/difflib and Git; no test, decoder, model, build or hardware execution"
+  },
+  "software_evidence_reused": {
+    "Q1_status": "PASS",
+    "Q1_score": 9.605,
+    "Q1_critic_sha256": "cc67f0b688077fcf5058c20014cb4b41a7c3f67ec53f8585e8853855537f37f5",
+    "existing_windows_L_acceptance_retained": true,
+    "windows_zip_sha256": "436cdaf1f27322e8ff7e90809f6c091950edcf7a599a97766c128c6e19a6dbfe",
+    "windows_build_report_sha256": "6f9f22d27664d5a0a726c240eeaff751eb1f7d6b57cd7e3afea47752a3f729ac",
+    "new_package_or_GUI_test": false
+  },
+  "execution_conditions": [
+    "Root sole hardware operator: fresh expected COM6/PNP/probe57005400120000393333574E, no application/capture owner, unchanged confirmed PA0 empty and USB-only board supply before Flash",
+    "One program+verify, complete independent45372byte readback must equal candidate before one Reset/Run",
+    "New actual user USB-board replug after SJ Reset, recorded against this reset.log; earlier readiness is not sufficient",
+    "One fresh boot, discovery then freshnonce selected SJ mode5/CAPS150000/max1024/retained10, one START/requested30s; no50/100",
+    "No SWD or halt while COM owns acquisition; closedowner plus offline coherent END/STOP_ACK/identity/CRC before memory reads",
+    "Two independent136 and two64 dumps at exact addresses, same SJ/build/image/nonce/gen, then stopped TIM3/ADC/DMA/RCC; no ADC_DR",
+    "Failure terminates this plan, evidence retained and SJ left installed when link/stop permit; no automatic retry/reset/rollback",
+    "Root records actual chronology/wall/nohalt; helper facts and65s timeout do not independently prove DWT wrap constraints",
+    "Invalid diagnostics, cap/partial/unknown/saturation and source faults remain explicit; diagnostic or prefix-integrity PASS is not stable150k PASS"
+  ],
+  "required_physical_result": "Actual30s normal completion without source fault/gap; raw/CRC/freshOpen/END/ACK, valid paired identity diagnostics and stopped registers; limited to observed conditions",
+  "findings": [],
+  "external_open_findings": [{"id":"P1-M2-01","status":"OPEN","scope":"Physical stable150k"}],
+  "rubric": {
+    "C1":{"weight":0.30,"score":9.7,"basis":"Exact identity, single scoped session and preservation of protocol/acceptance criteria"},
+    "C2":{"weight":0.20,"score":9.5,"basis":"Backup/readback/replug/owner/stop boundaries; external operator conditions remain mandatory"},
+    "C3":{"weight":0.25,"score":9.6,"basis":"Pinned archive/helpers/binaries, prior bounded software evidence; execution not yet claimed"},
+    "C4":{"weight":0.15,"score":9.5,"basis":"Small reviewed helper delta and explicit failure/diagnostic limits"},
+    "C5":{"weight":0.10,"score":9.65,"basis":"Exact argv/pins and preserved chronology/evidence paths"}
+  },
+  "hardware_executed_by_critic": false,
+  "physical_150k_accepted": false,
+  "report": "docs/reviews/v2-06q-flash-review.md"
+}
