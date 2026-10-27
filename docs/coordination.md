@@ -1,5 +1,12 @@
 # Координация самостоятельного V2
 
+Q: higher_fs_review пока владеет только build/v6p-followup/analysis.*:
+offline-проект узкого collect-only после полного cached DATA1024 commit
+и прежнего flush. До согласования контракта — без кода/сборок/аппаратуры.
+Root — канонические документы, архивы, интеграция и единолично COM/SWD.
+Stream200_critic — независимое ревью, без реализации. P2 завершён;
+его единственный START не повторять, фактическое состояние — в progress.
+
 P: higher_fs_review — firmware/v2-stream/**, tests/v2-stream-firmware/**,
 build/v6p-* кроме board/decoder; общий generated build id и одна адресная
 actual-C/ARM проверка. Root — decoder/checker, документы, архивы, подготовка

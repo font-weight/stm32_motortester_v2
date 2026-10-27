@@ -1,5 +1,47 @@
 # Прогресс Мотортестера V2
 
+## 27.10.2026 — P2 завершён: диагностика SI исправна,150k снова queue-full
+
+После нового фактического ответа пользователя «готово» выполнен единственный
+START плана P2. Trial13:07:59.941–13:08:00.535UTC закончился **FAIL reason1**;
+запрошенные30с не достигнуты. Получено12 полных DATA1024/12288 кодов,
+Record сохранила9216 `[3072,12288)`. Offline wire/индексы/CRC/raw/fresh Open
+— PASS для сохранённого префикса. ENDseq16/flags3/prefix12288/CRC2018795817
+пришёл раньше STOPreq4; matching ACKseq17. Nonce`b028756735517057`, gen3,
+SI/0x56325349. Record wall≈0,070405с — host interval, не измеренная Fs.
+Произведённый хвост и количество потерянных отсчётов неизвестны.
+
+После закрытия COM и offline END/ACK проверки сняты парные136/64 и stopped
+регистры; SWD не использовался во время захвата. Обе136B копии совпали:
+SHA256`dd5a8d40bd521e106d7ea61ae85ac5da80830beabad4d5ca15a05edc7e7f54e7`.
+Первый reason1, queue8/8, ADCfault0; maxpoll2953мкс, copy184мкс.
+TIM3 CEN0/PSC47/ARR9, ADC_CR2=0, DMA EN0 и clock/reset checks подтверждены.
+
+Обе64B записи теперь непустые и одинаковые:
+SHA256`deaf04c7eb5a82f9d2b2280d0d7a7be50e7bc968679761fa50df95c553f0cfda`.
+Decoder — VALID_WITH_LIMITS, без errors/warnings, exact identity совпала.
+First-close: queue8, TX0/0, batch EMPTY/count0, FIFO free201;
+held/deferred/task-ready=true. До закрытия6184077cycles, prepare96 вызовов/
+2246855cycles, positive FIFO14685байт/44callback, zero-space27/other0,
+max no-positive699918cycles, последний positive за34124cycles до freeze.
+Это условные циклы при72MHz, не калиброванное время и не чистое CPU-время.
+FIFO acceptance не равно доставленным данным; снимок сделан до drain.
+Сочетание полей не доказывает единственную причину переполнения.
+
+[Физический архив P2](verification/v2-progress-identity/physical-01/manifest.json):
+79файлов290672байта, SHA256
+`d6353288cc66512b613a54813ec8328019808d27385bebd1820f47ae6c4ebbec`.
+[Независимый итог](reviews/v2-06p-physical-review.md): физическая устойчивость
+**REWORK6,375**, исправление binding/пригодность диагностики **PASS9,60**.
+P1-O2-02 закрыт только для этого SI опыта; P1-M2-01 stable150k открыт.
+Исторические SH zero64/REWORK неизменны. Повторных START/Reset/50/100k
+или отката не было. **На плате оставлена остановленная SI.**
+
+Следующий ограниченный шаг Q — offline-проект collect-only после завершения
+cached DATA1024 и существующего flush, чтобы разгрузить очередь до нового
+ADC service. Гипотеза требует проверки cost/ownership/epoch и отдельного
+аппаратного опыта; новых аппаратных действий пока нет.
+
 ## 27.10.2026 — P2: SI установлена, ожидается новый USB-replug
 
 Source`0ca687eadd1f5c7b96ffd95796e8d03f01a4f1a1` опубликован только в V2.

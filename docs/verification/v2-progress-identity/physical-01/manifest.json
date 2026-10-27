@@ -1,0 +1,480 @@
+{
+  "schema": "v2-06p-physical-evidence-1",
+  "scope": "Preserved exact evidence; archive operation is not another test or acceptance",
+  "files": [
+    {
+      "source": "build/v6p-board-01/150000/adc.bin",
+      "archive": "docs/verification/v2-progress-identity/physical-01/build/v6p-board-01/150000/adc.bin",
+      "bytes": 12,
+      "sha256": "b389a6884b289d4b53e9b36853b9a933c640fa7a5abe584f859a56c6768c01ba"
+    },
+    {
+      "source": "build/v6p-board-01/150000/adc.invocation.json",
+      "archive": "docs/verification/v2-progress-identity/physical-01/build/v6p-board-01/150000/adc.invocation.json",
+      "bytes": 381,
+      "sha256": "b31701bfbdec4f0eb3104f760dab5de8ecef1ce9630c123d9910ca766ac6733a"
+    },
+    {
+      "source": "build/v6p-board-01/150000/adc.log",
+      "archive": "docs/verification/v2-progress-identity/physical-01/build/v6p-board-01/150000/adc.log",
+      "bytes": 881,
+      "sha256": "91eedda785a7da1771a39ed0210678620ed96badbf49020716d0b8845e1e845d"
+    },
+    {
+      "source": "build/v6p-board-01/150000/adc.stdout.bin",
+      "archive": "docs/verification/v2-progress-identity/physical-01/build/v6p-board-01/150000/adc.stdout.bin",
+      "bytes": 659,
+      "sha256": "cca985496697086916ad86b5ff2eabd9c99a52f1ef780a40c5b83260c4a3428d"
+    },
+    {
+      "source": "build/v6p-board-01/150000/diagnostics-decoded.json",
+      "archive": "docs/verification/v2-progress-identity/physical-01/build/v6p-board-01/150000/diagnostics-decoded.json",
+      "bytes": 8852,
+      "sha256": "3a39eecd2366182ff0805c225404e38f560de67d88fb0d1120db445a6893ff9d"
+    },
+    {
+      "source": "build/v6p-board-01/150000/diagnostics-decoder-stderr.txt",
+      "archive": "docs/verification/v2-progress-identity/physical-01/build/v6p-board-01/150000/diagnostics-decoder-stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "source": "build/v6p-board-01/150000/diagnostics-first.bin",
+      "archive": "docs/verification/v2-progress-identity/physical-01/build/v6p-board-01/150000/diagnostics-first.bin",
+      "bytes": 136,
+      "sha256": "dd5a8d40bd521e106d7ea61ae85ac5da80830beabad4d5ca15a05edc7e7f54e7"
+    },
+    {
+      "source": "build/v6p-board-01/150000/diagnostics-first.invocation.json",
+      "archive": "docs/verification/v2-progress-identity/physical-01/build/v6p-board-01/150000/diagnostics-first.invocation.json",
+      "bytes": 396,
+      "sha256": "fcec709ef1839f3be7ed97deb0410dbe5783cad9da89aedd2ea426b726bd5bd8"
+    },
+    {
+      "source": "build/v6p-board-01/150000/diagnostics-first.log",
+      "archive": "docs/verification/v2-progress-identity/physical-01/build/v6p-board-01/150000/diagnostics-first.log",
+      "bytes": 909,
+      "sha256": "319474f4bcce3db8e5e853f6a6d74afaf63ce5c799b45cb9db76cabd69ef16cf"
+    },
+    {
+      "source": "build/v6p-board-01/150000/diagnostics-first.stdout.bin",
+      "archive": "docs/verification/v2-progress-identity/physical-01/build/v6p-board-01/150000/diagnostics-first.stdout.bin",
+      "bytes": 687,
+      "sha256": "2eaa3159b3797387b51e094f0acf82305f8c238cce8a65d2f4b1a89e3d9286c9"
+    },
+    {
+      "source": "build/v6p-board-01/150000/diagnostics-second.bin",
+      "archive": "docs/verification/v2-progress-identity/physical-01/build/v6p-board-01/150000/diagnostics-second.bin",
+      "bytes": 136,
+      "sha256": "dd5a8d40bd521e106d7ea61ae85ac5da80830beabad4d5ca15a05edc7e7f54e7"
+    },
+    {
+      "source": "build/v6p-board-01/150000/diagnostics-second.invocation.json",
+      "archive": "docs/verification/v2-progress-identity/physical-01/build/v6p-board-01/150000/diagnostics-second.invocation.json",
+      "bytes": 398,
+      "sha256": "e08cf46f38a72d959f85ddf2b4d0bc143458856ed0e1bb76032c51163e79601e"
+    },
+    {
+      "source": "build/v6p-board-01/150000/diagnostics-second.log",
+      "archive": "docs/verification/v2-progress-identity/physical-01/build/v6p-board-01/150000/diagnostics-second.log",
+      "bytes": 911,
+      "sha256": "5b2c686c2e5435e78f18983faa1d2846014e7db0b2bccbc198738a1ec7738507"
+    },
+    {
+      "source": "build/v6p-board-01/150000/diagnostics-second.stdout.bin",
+      "archive": "docs/verification/v2-progress-identity/physical-01/build/v6p-board-01/150000/diagnostics-second.stdout.bin",
+      "bytes": 689,
+      "sha256": "417abb7fecf7c37abeeedcd8467bec6823054d40377c4b0f78578757e60d0791"
+    },
+    {
+      "source": "build/v6p-board-01/150000/dma.bin",
+      "archive": "docs/verification/v2-progress-identity/physical-01/build/v6p-board-01/150000/dma.bin",
+      "bytes": 16,
+      "sha256": "4818102f9c5cc9f58baa83d3413a51597ea8e313f1312129951daa3b3da43999"
+    },
+    {
+      "source": "build/v6p-board-01/150000/dma.invocation.json",
+      "archive": "docs/verification/v2-progress-identity/physical-01/build/v6p-board-01/150000/dma.invocation.json",
+      "bytes": 382,
+      "sha256": "b51c017c115bcfcde618fc65db416fef8afd8f4f9aa809ca908d89c55b990c21"
+    },
+    {
+      "source": "build/v6p-board-01/150000/dma.log",
+      "archive": "docs/verification/v2-progress-identity/physical-01/build/v6p-board-01/150000/dma.log",
+      "bytes": 881,
+      "sha256": "38d027b299248c880bd1cba75793d8f65e0554ce0f49ebccd598b7e8e975badf"
+    },
+    {
+      "source": "build/v6p-board-01/150000/dma.stdout.bin",
+      "archive": "docs/verification/v2-progress-identity/physical-01/build/v6p-board-01/150000/dma.stdout.bin",
+      "bytes": 659,
+      "sha256": "2fb4835d41b3b8bc346f27a6664ac6d9f850fa944b7930840e9f48e9fed17234"
+    },
+    {
+      "source": "build/v6p-board-01/150000/hardware-procedure-facts.json",
+      "archive": "docs/verification/v2-progress-identity/physical-01/build/v6p-board-01/150000/hardware-procedure-facts.json",
+      "bytes": 463,
+      "sha256": "315d0741035804b010c0c925ab029bef41d93bbbc868036aed2a9c787a96aa41"
+    },
+    {
+      "source": "build/v6p-board-01/150000/physical-analysis.json",
+      "archive": "docs/verification/v2-progress-identity/physical-01/build/v6p-board-01/150000/physical-analysis.json",
+      "bytes": 16343,
+      "sha256": "e62bc91855fe20db1061a6c49ffc4c4b6857ae370768faa22137b6a98df7e38b"
+    },
+    {
+      "source": "build/v6p-board-01/150000/physical-analysis.md",
+      "archive": "docs/verification/v2-progress-identity/physical-01/build/v6p-board-01/150000/physical-analysis.md",
+      "bytes": 2236,
+      "sha256": "64ac0ac7acf1e4edb5c5485231fa47742a2549b0d3a0102cda6cbddd2ce98d28"
+    },
+    {
+      "source": "build/v6p-board-01/150000/progress-decoded.json",
+      "archive": "docs/verification/v2-progress-identity/physical-01/build/v6p-board-01/150000/progress-decoded.json",
+      "bytes": 2804,
+      "sha256": "0aba21364ad043afaa1b80b96fc8bac4a24f1b0dc8ab5746ecc9883f01861397"
+    },
+    {
+      "source": "build/v6p-board-01/150000/progress-decoder-stderr.txt",
+      "archive": "docs/verification/v2-progress-identity/physical-01/build/v6p-board-01/150000/progress-decoder-stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "source": "build/v6p-board-01/150000/progress-first.bin",
+      "archive": "docs/verification/v2-progress-identity/physical-01/build/v6p-board-01/150000/progress-first.bin",
+      "bytes": 64,
+      "sha256": "deaf04c7eb5a82f9d2b2280d0d7a7be50e7bc968679761fa50df95c553f0cfda"
+    },
+    {
+      "source": "build/v6p-board-01/150000/progress-first.invocation.json",
+      "archive": "docs/verification/v2-progress-identity/physical-01/build/v6p-board-01/150000/progress-first.invocation.json",
+      "bytes": 394,
+      "sha256": "3e988523f5e52b93e6474e52629ed0ba70dcf656ce55f612834af07c3ebd65c8"
+    },
+    {
+      "source": "build/v6p-board-01/150000/progress-first.log",
+      "archive": "docs/verification/v2-progress-identity/physical-01/build/v6p-board-01/150000/progress-first.log",
+      "bytes": 903,
+      "sha256": "f88bc6b4a9d329e1eab730944904bf7c1ff14e1b08e75a769a8a9a53c1343c6a"
+    },
+    {
+      "source": "build/v6p-board-01/150000/progress-first.stdout.bin",
+      "archive": "docs/verification/v2-progress-identity/physical-01/build/v6p-board-01/150000/progress-first.stdout.bin",
+      "bytes": 681,
+      "sha256": "0fc0d95c4e64c1fed0b13c07eb5cdbb60c4f2684a8099c40a02525e95f11f08e"
+    },
+    {
+      "source": "build/v6p-board-01/150000/progress-second.bin",
+      "archive": "docs/verification/v2-progress-identity/physical-01/build/v6p-board-01/150000/progress-second.bin",
+      "bytes": 64,
+      "sha256": "deaf04c7eb5a82f9d2b2280d0d7a7be50e7bc968679761fa50df95c553f0cfda"
+    },
+    {
+      "source": "build/v6p-board-01/150000/progress-second.invocation.json",
+      "archive": "docs/verification/v2-progress-identity/physical-01/build/v6p-board-01/150000/progress-second.invocation.json",
+      "bytes": 394,
+      "sha256": "99e8df34bf1b4fb4b371b42a8abed38a03534bf0b4ed6611da31dade5e6ce74c"
+    },
+    {
+      "source": "build/v6p-board-01/150000/progress-second.log",
+      "archive": "docs/verification/v2-progress-identity/physical-01/build/v6p-board-01/150000/progress-second.log",
+      "bytes": 905,
+      "sha256": "2bbb47d5d49b609556e7c21de5db1e92416a86ca2f72d49aa95464ccde5c98ab"
+    },
+    {
+      "source": "build/v6p-board-01/150000/progress-second.stdout.bin",
+      "archive": "docs/verification/v2-progress-identity/physical-01/build/v6p-board-01/150000/progress-second.stdout.bin",
+      "bytes": 683,
+      "sha256": "691d9d4eb1053b3fbadf9b992e310ebe7a245b728f206435016394027bc19065"
+    },
+    {
+      "source": "build/v6p-board-01/150000/rcc.bin",
+      "archive": "docs/verification/v2-progress-identity/physical-01/build/v6p-board-01/150000/rcc.bin",
+      "bytes": 20,
+      "sha256": "1e24249e3619f46e4291c93fac339276c89ad2a136a324180aa83757fc71a367"
+    },
+    {
+      "source": "build/v6p-board-01/150000/rcc.invocation.json",
+      "archive": "docs/verification/v2-progress-identity/physical-01/build/v6p-board-01/150000/rcc.invocation.json",
+      "bytes": 382,
+      "sha256": "d329b7fe185930de100667c263e2c8bc802f1ee124fa7dd40d72444196a3e0fd"
+    },
+    {
+      "source": "build/v6p-board-01/150000/rcc.log",
+      "archive": "docs/verification/v2-progress-identity/physical-01/build/v6p-board-01/150000/rcc.log",
+      "bytes": 881,
+      "sha256": "d21f2bbf3dcf7d2253a862db899e72172cbb07c95cb31fab24376605a1c6a17d"
+    },
+    {
+      "source": "build/v6p-board-01/150000/rcc.stdout.bin",
+      "archive": "docs/verification/v2-progress-identity/physical-01/build/v6p-board-01/150000/rcc.stdout.bin",
+      "bytes": 659,
+      "sha256": "f38b1338d27dd6691c5c0fb0268aa966efd51f2ce3d83ac079a17bf4f16cb85d"
+    },
+    {
+      "source": "build/v6p-board-01/150000/register-decoder-console.txt",
+      "archive": "docs/verification/v2-progress-identity/physical-01/build/v6p-board-01/150000/register-decoder-console.txt",
+      "bytes": 237,
+      "sha256": "44ba4c350b6efab81556e5b9f1eac070246f2ba89ba0300b1accad160d32ff05"
+    },
+    {
+      "source": "build/v6p-board-01/150000/registers-decoded.json",
+      "archive": "docs/verification/v2-progress-identity/physical-01/build/v6p-board-01/150000/registers-decoded.json",
+      "bytes": 2042,
+      "sha256": "ef49e1df6a1b8ea835be6ab2c22a1a8fe7489ae10c2db53591441cca4d5b6799"
+    },
+    {
+      "source": "build/v6p-board-01/150000/run/physical.mtstream",
+      "archive": "docs/verification/v2-progress-identity/physical-01/build/v6p-board-01/150000/run/physical.mtstream",
+      "bytes": 20178,
+      "sha256": "57fcf64ff504fea292850c11af2015856efe6bccd9a9be9f9c86730c34c74328"
+    },
+    {
+      "source": "build/v6p-board-01/150000/run/physical.mtstream.v2.json",
+      "archive": "docs/verification/v2-progress-identity/physical-01/build/v6p-board-01/150000/run/physical.mtstream.v2.json",
+      "bytes": 2403,
+      "sha256": "b8b7d5043094df40046fdba94ac61be1488b60e25fc8183884af9afe0edf62df"
+    },
+    {
+      "source": "build/v6p-board-01/150000/run/result.json",
+      "archive": "docs/verification/v2-progress-identity/physical-01/build/v6p-board-01/150000/run/result.json",
+      "bytes": 2973,
+      "sha256": "5a891fe8b9269373079a3793d81f717b8dbfb6a76ecdfab60bebdf4ff1325802"
+    },
+    {
+      "source": "build/v6p-board-01/150000/run/traffic.bin",
+      "archive": "docs/verification/v2-progress-identity/physical-01/build/v6p-board-01/150000/run/traffic.bin",
+      "bytes": 17122,
+      "sha256": "4933799d6462c3b16882b245a1f69efba18fa6b5ba6b10ad8b9425c761ab383d"
+    },
+    {
+      "source": "build/v6p-board-01/150000/tim3.bin",
+      "archive": "docs/verification/v2-progress-identity/physical-01/build/v6p-board-01/150000/tim3.bin",
+      "bytes": 48,
+      "sha256": "df9ad576bf535386fae8c2d4e6afb2a27c969bafe47dd413d13754601be8cd30"
+    },
+    {
+      "source": "build/v6p-board-01/150000/tim3.invocation.json",
+      "archive": "docs/verification/v2-progress-identity/physical-01/build/v6p-board-01/150000/tim3.invocation.json",
+      "bytes": 384,
+      "sha256": "23d18ac22ba5501ed6772f2d5a7c5654e098775594bbcebfc84d54442c594215"
+    },
+    {
+      "source": "build/v6p-board-01/150000/tim3.log",
+      "archive": "docs/verification/v2-progress-identity/physical-01/build/v6p-board-01/150000/tim3.log",
+      "bytes": 883,
+      "sha256": "ab822af06c190eaaf32773688a5e9685d5a9cab167826c8144bb4e04eb690631"
+    },
+    {
+      "source": "build/v6p-board-01/150000/tim3.stdout.bin",
+      "archive": "docs/verification/v2-progress-identity/physical-01/build/v6p-board-01/150000/tim3.stdout.bin",
+      "bytes": 661,
+      "sha256": "c94259961611bdd5830921b1fac0b0a6e1bf76eae46e193ccff918a2e7678332"
+    },
+    {
+      "source": "build/v6p-board-01/150000/trial-console.txt",
+      "archive": "docs/verification/v2-progress-identity/physical-01/build/v6p-board-01/150000/trial-console.txt",
+      "bytes": 540,
+      "sha256": "c5e0a9638a47e66fbf5ac301471ea6ce18e4efa895169b474b0ef8bf30ee27e6"
+    },
+    {
+      "source": "build/v6p-board-01/150000/trial-invocation.json",
+      "archive": "docs/verification/v2-progress-identity/physical-01/build/v6p-board-01/150000/trial-invocation.json",
+      "bytes": 926,
+      "sha256": "1ad7e34839d6848e210d3d8ba2962a67f8269ea8f834febd72c46267a329b695"
+    },
+    {
+      "source": "build/v6p-board-01/150000-user-replug.json",
+      "archive": "docs/verification/v2-progress-identity/physical-01/build/v6p-board-01/150000-user-replug.json",
+      "bytes": 374,
+      "sha256": "a63a8b8bea58d3b1d600f575b72d052cda60b520c366080f28e7305a8fd24456"
+    },
+    {
+      "source": "build/v6p-board-01/analyze_physical.py",
+      "archive": "docs/verification/v2-progress-identity/physical-01/build/v6p-board-01/analyze_physical.py",
+      "bytes": 25836,
+      "sha256": "e2fa2076ca112f8dd0cb4c4aa484aff018884c416925e6b34a8a3549b0b7cb39"
+    },
+    {
+      "source": "build/v6p-board-01/backup-invocation.json",
+      "archive": "docs/verification/v2-progress-identity/physical-01/build/v6p-board-01/backup-invocation.json",
+      "bytes": 395,
+      "sha256": "d577afb6fa11c2f0947aff9e9e2dc7be2ff0a8cec48b26172d59ee71bb37012a"
+    },
+    {
+      "source": "build/v6p-board-01/backup-preflight.json",
+      "archive": "docs/verification/v2-progress-identity/physical-01/build/v6p-board-01/backup-preflight.json",
+      "bytes": 358,
+      "sha256": "36d75b6fe52f9661e929f31a3c4a12a514f851cd463d18aa1d3f5db6b69be93c"
+    },
+    {
+      "source": "build/v6p-board-01/backup-verified.json",
+      "archive": "docs/verification/v2-progress-identity/physical-01/build/v6p-board-01/backup-verified.json",
+      "bytes": 531,
+      "sha256": "7d32a88b85cba2b180a329d2827e2b067958187f52b7a753c841af47dfebe44e"
+    },
+    {
+      "source": "build/v6p-board-01/backup.log",
+      "archive": "docs/verification/v2-progress-identity/physical-01/build/v6p-board-01/backup.log",
+      "bytes": 893,
+      "sha256": "f581480b0a4d871d2551ef3cf636fde47e5b35e13cb6c11dcee890736732d8ff"
+    },
+    {
+      "source": "build/v6p-board-01/backup.stdout.bin",
+      "archive": "docs/verification/v2-progress-identity/physical-01/build/v6p-board-01/backup.stdout.bin",
+      "bytes": 671,
+      "sha256": "883dc5230b9dfd8323738ff982e9fbbb6d96b1913f7dd23977efc19db728889a"
+    },
+    {
+      "source": "build/v6p-board-01/before-flash-64k.bin",
+      "archive": "docs/verification/v2-progress-identity/physical-01/build/v6p-board-01/before-flash-64k.bin",
+      "bytes": 65536,
+      "sha256": "ddaf7a51d41f5fd6ee01590dbfb13aa60b6ea1358edf7cb945983a20cdcf5a02"
+    },
+    {
+      "source": "build/v6p-board-01/com-inventory.json",
+      "archive": "docs/verification/v2-progress-identity/physical-01/build/v6p-board-01/com-inventory.json",
+      "bytes": 183,
+      "sha256": "e0e65c46e6bf4769b79fc9923c992ae16eed82d60a4a333c0385beb220dcc831"
+    },
+    {
+      "source": "build/v6p-board-01/decode_diagnostics.py",
+      "archive": "docs/verification/v2-progress-identity/physical-01/build/v6p-board-01/decode_diagnostics.py",
+      "bytes": 15476,
+      "sha256": "d7d4d462b6fece50f38f896e329478caeee0db2b5cb3105442606f281592e1b1"
+    },
+    {
+      "source": "build/v6p-board-01/flash-preflight.json",
+      "archive": "docs/verification/v2-progress-identity/physical-01/build/v6p-board-01/flash-preflight.json",
+      "bytes": 814,
+      "sha256": "e784ef4f3cc98908e3983db21b77fd37da4e9a0ed510d562d83b6868ec76aec8"
+    },
+    {
+      "source": "build/v6p-board-01/flash-probe-identity.log",
+      "archive": "docs/verification/v2-progress-identity/physical-01/build/v6p-board-01/flash-probe-identity.log",
+      "bytes": 357,
+      "sha256": "d8e7fbe0c580b1f2f5b2418514663c71cfdf28d0c5db7af64c5e9b4d1e35e1bf"
+    },
+    {
+      "source": "build/v6p-board-01/helper-derivation.json",
+      "archive": "docs/verification/v2-progress-identity/physical-01/build/v6p-board-01/helper-derivation.json",
+      "bytes": 2590,
+      "sha256": "635c23603abcbf795c519faabfb30d5fbceeee55d7baf1e828555c9398c6368a"
+    },
+    {
+      "source": "build/v6p-board-01/make_plan.py",
+      "archive": "docs/verification/v2-progress-identity/physical-01/build/v6p-board-01/make_plan.py",
+      "bytes": 6818,
+      "sha256": "0728803e915b7dd8499f0bdbd4724d933fb023608b77f73a8b16cf62e17315c2"
+    },
+    {
+      "source": "build/v6p-board-01/plan.json",
+      "archive": "docs/verification/v2-progress-identity/physical-01/build/v6p-board-01/plan.json",
+      "bytes": 9806,
+      "sha256": "cf69f5573213e661cd9647d14ba32a635d6e242064d8cd4615db04044e36c095"
+    },
+    {
+      "source": "build/v6p-board-01/program-invocation.json",
+      "archive": "docs/verification/v2-progress-identity/physical-01/build/v6p-board-01/program-invocation.json",
+      "bytes": 390,
+      "sha256": "7410a703f0b96eb293d446a81ac2c6d8e1a95c3e7441d621ff83de9290f5966a"
+    },
+    {
+      "source": "build/v6p-board-01/program.log",
+      "archive": "docs/verification/v2-progress-identity/physical-01/build/v6p-board-01/program.log",
+      "bytes": 981,
+      "sha256": "2b4b55aebd7db1c6a8086e468f4273a6d7d4f6e72b1dcb4f02463a802fbfe8e6"
+    },
+    {
+      "source": "build/v6p-board-01/program.stdout.bin",
+      "archive": "docs/verification/v2-progress-identity/physical-01/build/v6p-board-01/program.stdout.bin",
+      "bytes": 756,
+      "sha256": "96b769ca346b951ab4eea4cbcd47d977f98c10833e482ff7b8897391ed7cd443"
+    },
+    {
+      "source": "build/v6p-board-01/program_and_verify.py",
+      "archive": "docs/verification/v2-progress-identity/physical-01/build/v6p-board-01/program_and_verify.py",
+      "bytes": 2624,
+      "sha256": "de8f0ee7702e7efc5116c59a67cc97993eb76dda7bce539af3ab765e161a9c3b"
+    },
+    {
+      "source": "build/v6p-board-01/readback-invocation.json",
+      "archive": "docs/verification/v2-progress-identity/physical-01/build/v6p-board-01/readback-invocation.json",
+      "bytes": 379,
+      "sha256": "fe8aa9b171763cd38e3f047ba8ff49d278bcc65303209b51703c42e101b29fc9"
+    },
+    {
+      "source": "build/v6p-board-01/readback-verified.json",
+      "archive": "docs/verification/v2-progress-identity/physical-01/build/v6p-board-01/readback-verified.json",
+      "bytes": 326,
+      "sha256": "60741b01d6f856eb5072237dcd191f1d815a8f6cd0ff6d271403313c6454738c"
+    },
+    {
+      "source": "build/v6p-board-01/readback.bin",
+      "archive": "docs/verification/v2-progress-identity/physical-01/build/v6p-board-01/readback.bin",
+      "bytes": 44216,
+      "sha256": "aeccdce0a5c2705e5fc77338595655a1f8d20367de486cbc83250f85a3a2d9c7"
+    },
+    {
+      "source": "build/v6p-board-01/readback.log",
+      "archive": "docs/verification/v2-progress-identity/physical-01/build/v6p-board-01/readback.log",
+      "bytes": 877,
+      "sha256": "b85481709544a9541bd7468bc514355ebcae43663cb3454ed9960e2536341085"
+    },
+    {
+      "source": "build/v6p-board-01/readback.stdout.bin",
+      "archive": "docs/verification/v2-progress-identity/physical-01/build/v6p-board-01/readback.stdout.bin",
+      "bytes": 655,
+      "sha256": "e1a66b34ae28ca8e429ec1c227f9aa306fdad166c2a8498f34bd69327e36e854"
+    },
+    {
+      "source": "build/v6p-board-01/reset-invocation.json",
+      "archive": "docs/verification/v2-progress-identity/physical-01/build/v6p-board-01/reset-invocation.json",
+      "bytes": 318,
+      "sha256": "ad9ee07dc28cb4858516a88b5ae7e43b0c04f7dc2128bad8a18b863b7158b5e6"
+    },
+    {
+      "source": "build/v6p-board-01/reset.log",
+      "archive": "docs/verification/v2-progress-identity/physical-01/build/v6p-board-01/reset.log",
+      "bytes": 439,
+      "sha256": "0bdf3581b5ad76c8ea2f518f0c4c702adff2fbf2ce77b5774ec19019a652aebe"
+    },
+    {
+      "source": "build/v6p-board-01/reset.stdout.bin",
+      "archive": "docs/verification/v2-progress-identity/physical-01/build/v6p-board-01/reset.stdout.bin",
+      "bytes": 420,
+      "sha256": "f8596a56771eed9f6bf4ebfd453433d8b7e7796ae747d34ca0eea8f480d620c9"
+    },
+    {
+      "source": "build/v6p-board-01/root_read_closed.py",
+      "archive": "docs/verification/v2-progress-identity/physical-01/build/v6p-board-01/root_read_closed.py",
+      "bytes": 4370,
+      "sha256": "075c5522e2b20ae163e89ade8adbc4322f6ab92bf963246d6b16373ecccfe633"
+    },
+    {
+      "source": "build/v6p-board-01/run_trial.py",
+      "archive": "docs/verification/v2-progress-identity/physical-01/build/v6p-board-01/run_trial.py",
+      "bytes": 2158,
+      "sha256": "14f343b2c4a5d55a4630009edb52ed0078d366e95c86c828435159104603b08b"
+    },
+    {
+      "source": "build/v6p-board-01/save_current_backup.py",
+      "archive": "docs/verification/v2-progress-identity/physical-01/build/v6p-board-01/save_current_backup.py",
+      "bytes": 2265,
+      "sha256": "b3e8641812ed905a9fa1c8c8c9ab2191466ef166503699a8591136483e6d52e2"
+    },
+    {
+      "source": "build/v6p-board-01/save_stopped_state.py",
+      "archive": "docs/verification/v2-progress-identity/physical-01/build/v6p-board-01/save_stopped_state.py",
+      "bytes": 5250,
+      "sha256": "d7ac3699fc100384e253713c8d8bf384d5012a266ce671e37fdafbb3c9a2e76e"
+    },
+    {
+      "source": "build/v6p-board-01/trial-preflight.json",
+      "archive": "docs/verification/v2-progress-identity/physical-01/build/v6p-board-01/trial-preflight.json",
+      "bytes": 352,
+      "sha256": "01e9cfa77bd344421917c0834818e2fe771d13383da3bdfbaec28e9d778b2115"
+    }
+  ]
+}
