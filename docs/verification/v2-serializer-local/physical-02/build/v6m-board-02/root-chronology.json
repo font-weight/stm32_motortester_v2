@@ -1,0 +1,22 @@
+{
+  "schema": "v2-06m2-connect-root-chronology-1",
+  "operator": "root",
+  "ordered_actions": [
+    "User actually confirmed the second10-secondUSB replug.",
+    "Root queried inventory: expectedCOM6/PNP and compositeAH20261017001 areOK/code0. NoMotortesterV2/python/pythonw/STLinkCLI owner processes returned.",
+    "Same SF and parent verified Reset; no new Flash/Reset. Invoked exactly one admitted 150k attempt at 2026-10-27T05:33:56.116878+00:00.",
+    "Probe child exited 1: Record began at R=1024, received prefix=3072 in three DATA1024 frames; saved range [1024,3072). Device END reason=1 arrived before host STOP; matching STOP_ACK followed. The requested 30-second capture FAILED early.",
+    "Probe finished cleanup with phase=closed before any SWD access. Root ran offline physical analysis once: saved selected raw equals wire, terminal CRC/sequence and STOP_ACK agree; unknown produced tail remains unknown.",
+    "Only after the closed-owner and fault END/ACK evidence, root invoked root_read_fault.py once. Two independent 136-byte reads matched current SF build, nonce 89f044908e44e09b and generation 3; queue high-water=8, first acquisition reason=1, first ADC fault=0. Stopped-register checks passed.",
+    "No SWD or halt during active capture; no ADC_DR read. No further START, Flash, Reset or rollback. Conditional 50k/100k checks NOT_RUN because the first 150k attempt failed. SF remains installed and acquisition is stopped."
+  ],
+  "new_program_count": 0,
+  "new_reset_count": 0,
+  "START_count": 1,
+  "rollback_count": 0,
+  "remaining_image": "V2SF/0x56325346",
+  "physical_150k_result": "FAIL: queue full; 30-second criterion not met",
+  "conditional_50k_100k": "NOT_RUN",
+  "SWD_or_halt_during_active": false,
+  "ADC_DR_read": false
+}

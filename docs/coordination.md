@@ -1,5 +1,14 @@
 # Координация самостоятельного V2
 
+M2 после опыта: root сохраняет build/v6m-board-02, канонические документы и
+архив physical-02; единолично владеет аппаратными действиями, новых сейчас
+нет. Stream200_critic — независимая проверка точного отрицательного результата
+в docs/reviews/v2-06m-physical-review.md и соответствующем critic-physical.json.
+Higher_fs_review — только offline разбор очереди/передачи в
+build/v6m-followup/analysis.*; без новых сборок, тестов, production-правок,
+COM/SWD. Host_200k завершил работу. Прежний программный PASS не переносится
+на физическую устойчивость.
+
 V2-06m: higher_fs_review — firmware/v2-stream/**, tests/v2-stream-firmware/**,
 build/v6m-* кроме board/host; оптимизация serializer, новый freeze и только
 необходимые differential/actual-core/ARM проверки. Root —
