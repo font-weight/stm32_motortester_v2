@@ -1,0 +1,29 @@
+{
+  "argv": [
+    ".venv/Scripts/python.exe",
+    "-B",
+    "host/tools/v2_stream_probe.py",
+    "--port",
+    "COM6",
+    "--output",
+    "build/v6n-board-01/150000/run",
+    "--seconds",
+    "3",
+    "--build-id",
+    "0x56325347",
+    "--sample-rate",
+    "150000",
+    "--source-commit",
+    "f4c40c2f13be098f24bff069916bbb13dd7973a5",
+    "--image-sha256",
+    "daad9e462be6ed6aeebffa1d1da37d3dc31ac28061ee5297da1a578b3fa8b759"
+  ],
+  "started_utc": "2026-10-27T08:32:54.649316+00:00",
+  "finished_utc": "2026-10-27T08:32:55.809990+00:00",
+  "wall_seconds": 1.1606497999746352,
+  "exit_code": 1,
+  "console_sha256": "460fce902e5379cef820ff2d128a745e64ba834ecd8c815e3ed24ea2ef213165",
+  "plan_sha256": "0094d242a09a2bf128666932b34d3b6b1fb700da4f07e004f5fdcc301c08d8f1",
+  "user_replug_record_sha256": "5804864169359f4ae9a47f876605a4f53ab6cc0716d4c5058e67b41e08512559",
+  "attempt_count": 1
+}

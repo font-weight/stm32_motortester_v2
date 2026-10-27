@@ -1,0 +1,35 @@
+{
+  "scope": "Offline derivation only; helpers not executed on hardware",
+  "files": [
+    {
+      "source": "build/v6m-board-02/analyze_physical.py",
+      "source_sha256": "c81e4f158c5a878b5965559daafd88a19edef54d5ec64c6cf6b9a41e5ea4cef9",
+      "new": "analyze_physical.py",
+      "new_sha256": "4f295a2533399f05021e0c08719f53eb03bbc034f48f80cc2c0f0958c69d6d35"
+    },
+    {
+      "source": "build/v6m-board-02/decode_diagnostics.py",
+      "source_sha256": "ed434e3490181a00b74c19558e1d0991d889b44c61b3d791e42629c8b71d9412",
+      "new": "decode_diagnostics.py",
+      "new_sha256": "96476664e230bb917dffb2ee0eefb5e6deb44c89f7d770641ec7418fdbd9105b"
+    },
+    {
+      "source": "build/v6m-board-02/save_stopped_state.py",
+      "source_sha256": "b588349c425b6944a731eebc4b193ba30d53714308f9b03832cff3d0a4ab5339",
+      "new": "save_stopped_state.py",
+      "new_sha256": "35a2ad20684dadf018e04ef8501df1d703dd3fa5cedfe40d954c38efc8ab8ba3"
+    },
+    {
+      "source": "build/v6m-board-01/program_and_verify.py",
+      "source_sha256": "19524fa5e07a5ba0c65cc17584cd42ca8afb9b19dcb2f342fba80a5d8b17684a",
+      "new": "program_and_verify.py",
+      "new_sha256": "039861037961861d34153d23a58b565195228544ac93df7b7737d510e14c922e"
+    },
+    {
+      "source": "build/v6m-board-01/save_current_backup.py",
+      "source_sha256": "2a4beffa41c2b28e1ab2b91cca423c77cafb871e6e20d6d5a1a597d8eff3777c",
+      "new": "save_current_backup.py",
+      "new_sha256": "7c0056d52b1191a6bb9b81b2325ea7172865352552a6d20ce75e075bf312092b"
+    }
+  ]
+}

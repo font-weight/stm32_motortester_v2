@@ -1,0 +1,89 @@
+{
+  "schema": "v2-06n-independent-exact-flash-plan-review-1",
+  "date": "2026-10-27",
+  "status": "PASS",
+  "score": 9.6,
+  "plan_sha256": "0094d242a09a2bf128666932b34d3b6b1fb700da4f07e004f5fdcc301c08d8f1",
+  "plan_path": "build/v6n-board-01/plan.json",
+  "reviewer": "/root/stream200_critic",
+  "independent_of_implementation_and_hardware_execution": true,
+  "scope": "Exact N2 diagnostic procedure admission: one SG program/readback/reset, new actual post-reset USB replug, one150k mode5 requested3s trial and closed-owner offline diagnostic readout",
+  "source_commit": "f4c40c2f13be098f24bff069916bbb13dd7973a5",
+  "source_acceptance": {
+    "path": "docs/verification/v2-stream-progress/critic-source.json",
+    "sha256": "fdb608cd86545ceabfc9e934e681d67c5e303900ccb832c5ac2d848d3ff1df71",
+    "status": "PASS",
+    "score": 9.625,
+    "not_repeated": true
+  },
+  "archive": {
+    "path": "docs/verification/v2-stream-progress/plan-01/manifest.json",
+    "sha256": "359818e5d7d6f7a927021c30564bb9be910b7a2fbf4d7737cbb41572347e8a92",
+    "personally_verified_byte_equal_pairs": 16,
+    "bytes": 144405,
+    "mismatches": []
+  },
+  "personal_passive_checks": {
+    "execution_input_hashes": 27,
+    "mismatches": [],
+    "candidate_size_matches_dump_0xab28": true,
+    "CLI_sha256": "7fb012b5e26abf45342caa05c6bc33936f8a379b67797cc55658ffb8bf15e95f",
+    "backup_full64k_hash_and_SF42480_prefix": true,
+    "helpers_read": ["program_and_verify.py", "run_trial.py", "root_read_closed.py", "save_stopped_state.py"],
+    "derived_offline_helpers_compared_to_prior_M": ["analyze_physical.py", "decode_diagnostics.py", "save_stopped_state.py"],
+    "product_tests_builds_or_hardware_by_critic": 0
+  },
+  "image": {
+    "build": "0x56325347",
+    "bytes": 43816,
+    "bin_sha256": "daad9e462be6ed6aeebffa1d1da37d3dc31ac28061ee5297da1a578b3fa8b759",
+    "elf_sha256": "f60b3a130dedf9231177117272ab0bca0def5c741bdd53cc27a2e73e7426cd37",
+    "legacy_address_bytes": ["0x20002F1C", 136],
+    "progress_address_bytes": ["0x20002FA4", 64]
+  },
+  "retained_backup": {
+    "path": "build/v6n-board-01/before-flash-64k.bin",
+    "bytes": 65536,
+    "sha256": "a17470fcdcfb19196b48e91cf36aa70838ff1acc48dc081ec76a9344b88ed4aa",
+    "SF_prefix_bytes": 42480,
+    "SF_prefix_sha256": "580cfaa40fd782a96d798285f3df7c9a3e2f2f0e126ec61023a89266207be29e",
+    "probe_serial_from_saved_backup_log": "57005400120000393333574E",
+    "automatic_rollback_authorized": false
+  },
+  "preflight": {
+    "initial_absent_inventory_preserved": "build/v6n-board-01/preflash-inventory.json",
+    "initial_sha256": "20fcfafed038ec345c7d32496e5a43e93aa9b60ee724f0205831c6912329a9ec",
+    "latest_path": "build/v6n-board-01/preflash-inventory-02.json",
+    "latest_sha256": "96585f20cc8609118359b2755b923d3cbdfa980414f2a77c333dd918eef3e70f",
+    "latest_utc": "2026-10-27T08:24:33.2198052Z",
+    "latest_saved_result": "Expected COM6 and composite/ST-Link present, error codes0, owners empty, actual user connection reply recorded",
+    "current_reply_is_post_flash_replug": false,
+    "recheck_if_connection_or_owner_state_changes": true
+  },
+  "execution_conditions": [
+    "Root only, same expected probe and no capture owner; stop if identity, pins or device inventory differ.",
+    "One program with verification, separate43816-byte readback equality, then one Reset/Run. Stop on any failed operation; no automatic repeat or rollback.",
+    "Obtain a new actual user USB replug reply after this SG reset; bind it to reset-log hash and fresh expected COM6 inventory before opening COM.",
+    "Exactly one mode5/150000/10retained-bit/1024-block trial, requested3s Record after Preview; new discovery and selected-session nonce, expected SG CAPS. No50/100 or second START.",
+    "No SWD/halt while COM owner active. On timeout or missing owner-close/terminal evidence, do not call root_read_closed.",
+    "After explicit owner closure and coherent saved END/STOP/ACK/nonce/generation/CRC, read two136-byte and two64-byte records plus stopped registers; never ADC_DR.",
+    "Record actual chronology and whole-trial duration; DWT interpretation remains conditional on no halt/reset and less than one wrap. FIFO acceptance is not committed wire prefix.",
+    "Any failure ends this plan. Retain SG if link/stop permit, preserve all data; no automatic recovery image, reset, retry or additional profile.",
+    "Report diagnostic validity separately from physical acquisition outcome and the still-open stable150k requirement."
+  ],
+  "findings": [
+    {"id": "N2-P2-01", "priority": "P2", "blocking": false, "location": "build/v6n-board-01/analyze_physical.py Markdown output", "finding": "One literal SF prose label remains; numeric build and JSON are exact SG plan-derived", "disposition": "Exact helper retained; final root/critic physical report must identify SG explicitly. No change to machine evidence or admission pins."}
+  ],
+  "open_P0_P1_in_plan_scope": [],
+  "open_project_P1": "P1-M2-01 stable physical150k remains OPEN",
+  "rubric": {
+    "C1": {"weight": 0.30, "score": 9.75, "basis": "Single exact diagnostic attempt, explicit identity and scope"},
+    "C2": {"weight": 0.20, "score": 9.50, "basis": "Fresh backup, complete readback, no retry and closed-owner gates; operator chronology remains required"},
+    "C3": {"weight": 0.25, "score": 9.50, "basis": "Exact pins and saved preflight verified; future physical result deliberately unavailable"},
+    "C4": {"weight": 0.15, "score": 9.50, "basis": "Bounded root-only sequence; minor prose label caveat preserved"},
+    "C5": {"weight": 0.10, "score": 9.75, "basis": "Pinned commands/helpers, archive and source/review provenance"}
+  },
+  "new_physical_result_claimed": false,
+  "stable150k_accepted": false,
+  "report": "docs/reviews/v2-06n-flash-review.md"
+}
