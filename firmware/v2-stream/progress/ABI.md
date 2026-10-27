@@ -80,8 +80,10 @@ the NULL-device ADC hook leaves EMPTY unchanged, and the later refused-start
 hook freezes NO_START. The original first ADC cause then remains in legacy136;
 N does not claim to preserve that pre-ACTIVE driver event or its timing.
 
-Prepare includes all actual prepare calls, cached fast returns and EMPTY
-collection alike; it excludes guarded submit. An open prepare at close sets
+Prepare includes all actual prepare calls, cached fast returns, EMPTY
+collection and SJ post-flush collect-only prefetch alike; it excludes guarded
+submit. It may therefore count a second collect-only span in a cached-final
+pass that did no ordinary collection. An open prepare at close sets
 PARTIAL_PREPARE/PREPARE_OPEN and is excluded from completed sum/count. Its
 duration is unavailable; late prepare_end cannot publish it. Completed sums
 are inclusive wall-cycle observations, not disjoint CPU time or percentages.

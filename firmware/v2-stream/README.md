@@ -1,4 +1,29 @@
-# Кандидат V2SI: единая build-привязка board и observer
+# Кандидат V2SJ: сбор следующих отсчётов после TX commit
+
+V2-06q/build `0x5632534A`, product `Motortester V2 Prefetch SJ` проверяет
+одну гипотезу [post-commit prefetch](../../docs/streaming-postcommit-prefetch.md).
+После последнего успешного write уже cached полного mode5 DATA1024 и прежнего
+USB flush сертификат final-TIME commit допускает collect-only до512 следующих
+отсчётов в существующий staging. Сбор выполняется до следующего ADC poll,
+вне PRIMASK, с fresh TIME/epoch/soft/scope до и после. Он не делает seal,
+frameCRC/COBS, второй DATA/write/grant и не продвигает accepted prefix.
+
+Modes1–4, обычный prepare, Stop/HELLO, ADC deadline3413мкс, IRQ6/<500мкс,
+FIFO384/queue8 и wire сохраняются. Packing и локальный prefixCRC требуют
+времени и могут задержать следующий poll; это не подтверждение150k/WCET.
+Новой static памяти нет; точный stack проверяется для нового helper.
+Shared config-derived identity и ABI64/136 сохранены; prepare-span включает
+также prefetch. Для offline decode нужен explicit `--build-id 0x5632534A`.
+
+```powershell
+.\.venv\Scripts\python.exe -I -B firmware\v2-stream\build_windows.py --output build\v6q-fw-NEW
+```
+
+Сборка не открывает COM/SWD. Нужны одна адресная actual-core/runtime модель,
+exact ARM/resources и независимое ревью до отдельного физического плана.
+Точные результаты и установленная прошивка — только в progress/review.
+
+## Сохранённый V2SI: единая build-привязка board и observer
 
 V2-06p/build `0x56325349`, product `Motortester V2 Build Binding SI` исправляет
 только P1-O2-02: `config.json.firmware_build` генерирует общий

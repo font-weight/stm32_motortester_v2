@@ -1,0 +1,39 @@
+--- a/acquisition/mt_sample_queue.c
++++ b/acquisition/mt_sample_queue.c
+@@ -68,6 +68,36 @@
+     return MT_SAMPLE_QUEUE_OK;
+ }
+ 
++mt_sample_queue_result mt_sample_queue_peek_offset(const mt_sample_queue *q,
++    unsigned offset,mt_sample_block *block) {
++    size_t slot;uint64_t first;
++    if(!offset)return mt_sample_queue_peek(q,block);
++    if(!q || !block || offset!=1u)return MT_SAMPLE_QUEUE_ARGUMENT;
++    if(q->used<2u)return MT_SAMPLE_QUEUE_EMPTY;
++    if(UINT64_MAX-q->head_index<q->counts[q->head])return MT_SAMPLE_QUEUE_STALE;
++    first=q->head_index+q->counts[q->head];slot=(q->head+1u)%MT_SAMPLE_QUEUE_SLOTS;
++    *block=(mt_sample_block){q->samples[slot],first,q->counts[slot]};
++    return MT_SAMPLE_QUEUE_OK;
++}
++mt_sample_queue_result mt_sample_queue_pop_span(mt_sample_queue *q,
++    const mt_sample_block *expected,unsigned blocks) {
++    uint64_t end;unsigned i;
++    if(!q || !expected || !blocks || blocks>2u)return MT_SAMPLE_QUEUE_ARGUMENT;
++    if(q->used<blocks)return MT_SAMPLE_QUEUE_EMPTY;
++    end=q->head_index;
++    for(i=0;i<blocks;i++) {
++        size_t slot=(q->head+i)%MT_SAMPLE_QUEUE_SLOTS;
++        if(expected[i].samples!=q->samples[slot] || expected[i].first_index!=end ||
++           !expected[i].count || expected[i].count>MT_SAMPLE_QUEUE_BLOCK ||
++           expected[i].count!=q->counts[slot] || UINT64_MAX-end<expected[i].count)
++            return MT_SAMPLE_QUEUE_STALE;
++        end+=expected[i].count;
++    }
++    /* Every expected view has been validated; no fallible operation follows. */
++    q->head_index=end;q->head=(q->head+blocks)%MT_SAMPLE_QUEUE_SLOTS;q->used-=blocks;
++    return MT_SAMPLE_QUEUE_OK;
++}
++
+ mt_sample_queue_result mt_sample_queue_pop(mt_sample_queue *q,
+                                           uint64_t expected_first_index) {
+     if (!q) return MT_SAMPLE_QUEUE_ARGUMENT;

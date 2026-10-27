@@ -1,4 +1,4 @@
-"""Build V2SI with one generated board/observer build identity; never flash hardware."""
+"""Build V2SJ collect-only post-commit prefetch candidate; never flash hardware."""
 import argparse
 import hashlib
 import importlib.util
@@ -331,6 +331,13 @@ def main():
         require(late["schema"] == "motortester-v2-late-grant-overlay-1", "Unexpected late grant overlay")
         receipt["v2_overlays"].extend(late["patches"])
         for row in late["patches"]:
+            target = out / "patched" / row["target"]
+            target.write_bytes(apply_patch((out / row["source"]).read_bytes(),
+                (here / "overlays" / row["patch"]).read_bytes(), row))
+        prefetch = json.loads((here / "overlays/prefetch.json").read_text("utf-8"))
+        require(prefetch["schema"] == "motortester-v2-prefetch-overlay-1", "Unexpected prefetch overlay")
+        receipt["v2_overlays"].extend(prefetch["patches"])
+        for row in prefetch["patches"]:
             target = out / "patched" / row["target"]
             target.write_bytes(apply_patch((out / row["source"]).read_bytes(),
                 (here / "overlays" / row["patch"]).read_bytes(), row))

@@ -1,5 +1,13 @@
 # Решения Мотортестера V2
 
+Q,27.10.2026: проверить узкий collect-only после подтверждённого последнего
+cached DATA1024 commit и прежнего flush. Использовать существующий staging,
+до512 отсчётов, вне write IRQ guard; без второго write/grant или новых
+static bytes. Completion certificate и fresh pre/post TIME/epoch/soft/scope
+обязательны, ошибки идут через текущий ERROR ticket. Stop/HELLO сохраняют
+смысл owned-but-unpublished данных. [Контракт Q](streaming-postcommit-prefetch.md)
+задаёт проверку, а не обещание throughput; deadline АЦП не расширяется.
+
 P,27.10.2026: после выявленного O2 build mismatch исключить отдельную
 литеральную identity observer. Config должен порождать один общий header,
 используемый board и64B проверкой; отсутствие определения — ошибка сборки.

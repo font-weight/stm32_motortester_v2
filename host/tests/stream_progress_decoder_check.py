@@ -98,7 +98,10 @@ def main():
     assert decode(legacy=si_legacy, expected_build=0x56325349)['accepted_frozen_record']
     reject('SI_requires_explicit_build', decode(legacy=si_legacy, expected_build=decoder.BUILD))
     reject('SH_not_SI', decode(legacy=sh_legacy, expected_build=0x56325349))
-    reject('unsupported_build', decode(expected_build=0x5632534a))
+    sj_legacy = dict(legacy, raw=dict(legacy['raw'], firmware_build=0x5632534a))
+    assert decode(legacy=sj_legacy, expected_build=0x5632534a)['accepted_frozen_record']
+    reject('SI_not_SJ', decode(legacy=si_legacy, expected_build=0x5632534a))
+    reject('unsupported_build', decode(expected_build=0x5632534b))
     reject('empty_observer_bank', decode(bytes(64)))
     # Legal unavailable snapshot stays unknown; it must never be rendered as0.
     unavailable = decode(change(snapshot_bits=0, fifo_free=65535))
@@ -116,7 +119,7 @@ def main():
               'native_legacy136_sha256': hashlib.sha256(legacy_bytes).hexdigest() if args.legacy_bin else None,
               'expected_build': hex(args.build_id),
               'fixture_profile': args.fixture_profile,
-              'SG_default_and_explicit_SH_SI_checked': True,
+              'SG_default_and_explicit_SH_SI_SJ_checked': True,
               'physical_throughput_claim': False}
     (args.output/'fixture-decoded.json').write_text(json.dumps(result, indent=2)+'\n',encoding='utf-8')
     (args.output/'result.json').write_text(json.dumps(report, indent=2)+'\n',encoding='utf-8')

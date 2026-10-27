@@ -1,0 +1,72 @@
+--- a/patched/v2/protocol/mt_live_device.c
++++ b/patched/v2/protocol/mt_live_device.c
+@@ -1,3 +1,6 @@
++/* MT_PROFILE_BEGIN */
++#include "mt_stream_profile.h"
++/* MT_PROFILE_END */
+ #include "mt_live_device.h"
+ #include "mt_v2_crc32.h"
+ #include <string.h>
+@@ -33,6 +36,9 @@
+     if(s.acquisition_reason>0u && s.acquisition_reason<=6u)cause(d,s.acquisition_reason);
+ }
+ static void recover(mt_live_device *d,unsigned reason) {
++    /* MT_PROFILE_BEGIN */
++    mt_profile_close(MT_P_CLOSE_RECOVERY,reason);
++    /* MT_PROFILE_END */
+     local_cause(d,reason);
+     if(d->state==MT_LIVE_STARTING || d->state==MT_LIVE_STREAMING)
+         raw_barrier(d);
+@@ -103,6 +109,9 @@
+     unsigned b;
+     uint64_t after;
+     int valid_snapshot;
++    /* MT_PROFILE_BEGIN */
++    mt_profile_close(reason?MT_P_CLOSE_FAULT:MT_P_CLOSE_STOP,reason);
++    /* MT_PROFILE_END */
+     if(reason)cause(d,reason);
+     if(d->state==MT_LIVE_DRAINING || d->state==MT_LIVE_TERMINAL)return;
+     if(d->state!=MT_LIVE_STARTING && d->state!=MT_LIVE_STREAMING) {
+@@ -369,6 +378,9 @@
+         d->prefix_crc_state=crc_codes(d->prefix_crc_state,b.samples,b.count);
+         d->prefix_end=b.first_index+b.count; d->last_data_sequence=d->tx_sequence;
+         (void)mt_sample_queue_pop(&d->queue,b.first_index);
++        /* MT_PROFILE_BEGIN */
++        mt_profile_data_committed(b.count);
++        /* MT_PROFILE_END */
+     }
+     if(d->state==MT_LIVE_HELLO_PENDING && type!=HELLO_ACK && type!=0u) {
+         d->inherited_budget=0; d->tx_length=d->tx_offset=0; return;
+@@ -449,6 +461,10 @@
+     if(!d || !now(d,&n) || !expire(d,n))return 0;
+     if(d->state!=MT_LIVE_STARTING && d->state!=MT_LIVE_STREAMING)return 0;
+     q=mt_sample_queue_push(&d->queue,first_index,codes,count,0);
++    /* MT_PROFILE_BEGIN */
++    if(q==MT_SAMPLE_QUEUE_OK)mt_profile_adc_offered(count);
++    else mt_profile_close(MT_P_CLOSE_FAULT,q==MT_SAMPLE_QUEUE_FULL?1u:2u);
++    /* MT_PROFILE_END */
+     if(q!=MT_SAMPLE_QUEUE_OK) { terminate(d,q==MT_SAMPLE_QUEUE_FULL?1u:2u,n); return 0; }
+     return 1;
+ }
+@@ -459,6 +475,11 @@
+      * failure during recovery must not replace that earlier cause. */
+     if(d->state==MT_LIVE_STARTING || d->state==MT_LIVE_STREAMING ||
+        d->state==MT_LIVE_DRAINING || d->state==MT_LIVE_TERMINAL)cause(d,reason);
++    /* MT_PROFILE_BEGIN */
++    if(d->state==MT_LIVE_STARTING || d->state==MT_LIVE_STREAMING ||
++       d->state==MT_LIVE_DRAINING || d->state==MT_LIVE_TERMINAL)
++        mt_profile_close(MT_P_CLOSE_FAULT,reason);
++    /* MT_PROFILE_END */
+     if(!now(d,&n) || !expire(d,n))return;
+     if(d->end_started) { cause(d,reason); recover(d,MT_LIVE_ERR_CALLBACK); return; }
+     if(d->tx_type==END && d->tx_length && !d->tx_offset)d->tx_length=0;
+@@ -466,6 +487,9 @@
+ }
+ void mt_live_device_transport_lost(mt_live_device *d) {
+     if(!d)return;
++    /* MT_PROFILE_BEGIN */
++    mt_profile_close(MT_P_CLOSE_TRANSPORT,0);
++    /* MT_PROFILE_END */
+     raw_barrier(d);
+     d->state=MT_LIVE_FAULT;
+     recover(d,MT_LIVE_ERR_TRANSPORT);

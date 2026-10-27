@@ -1,0 +1,12 @@
+--- a/v2/transport/mt_usb_descriptors.c
++++ b/v2/transport/mt_usb_descriptors.c
+@@ -4,7 +4,8 @@
+ #if CFG_TUD_ENABLED != 1 || CFG_TUD_MAX_SPEED != OPT_MODE_FULL_SPEED || \
+     CFG_TUD_CDC != 1 || CFG_TUD_ENDPOINT0_SIZE != 64 || \
+     CFG_TUD_INTERFACE_MAX != 2 || CFG_TUD_ENDPPOINT_MAX != 3 || \
+-    CFG_TUD_CDC_RX_EPSIZE != 64 || CFG_TUD_CDC_TX_EPSIZE != 64
++    CFG_TUD_CDC_RX_EPSIZE != 64 || CFG_TUD_CDC_TX_EPSIZE != 384 || \
++    CFG_TUD_CDC_TX_BUFSIZE != 384
+ #error "Descriptors require the one-CDC full-speed endpoint profile"
+ #endif
+ static uint8_t device[18] = {

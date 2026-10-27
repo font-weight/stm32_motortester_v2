@@ -1,0 +1,177 @@
+--- a/protocol/mt_live_device.c
++++ b/protocol/mt_live_device.c
+@@ -97,6 +97,10 @@
+     if(s->produced_known && s->produced_end<end)return 0;
+     if(!s->produced_known && s->produced_end!=0u)return 0;
+     return 1;
++}
++static unsigned discarded_lsb(const mt_live_device *d) {
++    const mt_acquisition_profile *p=mt_acquisition_profile_get(d->mode);
++    return p && p->retained_bits==10u?2u:0u;
+ }
+ static void terminate(mt_live_device *d,uint16_t reason,uint64_t n) {
+     mt_live_snapshot s;
+@@ -129,7 +133,7 @@
+         if(!d->queue.sealed) {
+             for(b=0;b<s.tail_count;b++) {
+                 mt_sample_queue_result q=mt_sample_queue_push_quantized(&d->queue,s.tail[b].first_index,
+-                    s.tail[b].codes,s.tail[b].count,b+1u==s.tail_count,d->mode==3u?2u:0u);
++                    s.tail[b].codes,s.tail[b].count,b+1u==s.tail_count,discarded_lsb(d));
+                 if(q!=MT_SAMPLE_QUEUE_OK) { cause(d,q==MT_SAMPLE_QUEUE_FULL?1u:2u); break; }
+             }
+         }
+@@ -311,6 +315,61 @@
+     }
+     return crc;
+ }
++static int stage_data(mt_live_device *d,mt_wire_message *m,unsigned *error) {
++    const mt_acquisition_profile *p=mt_acquisition_profile_get(d->mode);
++    mt_sample_block b[2];unsigned blocks=1u;size_t packed,second=0u;uint16_t count;
++    if(!p || mt_sample_queue_peek(&d->queue,&b[0])!=MT_SAMPLE_QUEUE_OK) {
++        *error=MT_LIVE_ERR_ARGUMENT;return 0;
++    }
++    count=b[0].count;
++    if(p->max_block_samples==256u) {
++        if(d->queue.used>=2u) {
++            if(mt_sample_queue_peek_offset(&d->queue,1u,&b[1])!=MT_SAMPLE_QUEUE_OK ||
++               b[0].count!=128u || !b[1].count || b[1].count>128u ||
++               b[1].first_index!=b[0].first_index+b[0].count) {
++                *error=MT_LIVE_ERR_ARGUMENT;return 0;
++            }
++            blocks=2u;count=(uint16_t)(count+b[1].count);
++        }
++        if(count<256u && !(d->state==MT_LIVE_DRAINING && d->queue.sealed &&
++                          d->queue.used==blocks))return 0; /* keep ADC/TIME/USB running */
++    }
++    packed=mt_acquisition_pack(p,b[0].samples,b[0].count,m->payload+20,sizeof m->payload-20u);
++    if(blocks==2u)second=mt_acquisition_pack(p,b[1].samples,b[1].count,
++        m->payload+20u+packed,sizeof m->payload-20u-packed);
++    if(!packed || (blocks==2u && !second)) { *error=MT_LIVE_ERR_ARGUMENT;return 0; }
++    m->payload_length=(uint16_t)(20u+packed+second);
++    w32(m->payload,d->generation);w32(m->payload+4,d->mode);
++    w64(m->payload+8,b[0].first_index);w16(m->payload+16,count);
++    d->tx_count=count;d->tx_first_index=b[0].first_index;d->tx_blocks=(uint16_t)blocks;
++    d->tx_first_slot=(uint16_t)d->queue.head;d->tx_first_count=b[0].count;
++    d->tx_second_slot=blocks==2u?(uint16_t)((d->queue.head+1u)%MT_SAMPLE_QUEUE_SLOTS):0u;
++    d->tx_second_count=blocks==2u?b[1].count:0u;
++    d->tx_second_first_index=blocks==2u?b[1].first_index:0u;
++    return 1;
++}
++static int completed_data(mt_live_device *d) {
++    mt_sample_block b[2];uint32_t crc;unsigned i;
++    if(!d->tx_blocks || d->tx_blocks>2u || d->queue.head!=d->tx_first_slot ||
++       mt_sample_queue_peek(&d->queue,&b[0])!=MT_SAMPLE_QUEUE_OK ||
++       b[0].first_index!=d->tx_first_index || b[0].count!=d->tx_first_count)return 0;
++    if(d->tx_blocks==2u) {
++        if(d->tx_second_slot!=(d->queue.head+1u)%MT_SAMPLE_QUEUE_SLOTS ||
++           mt_sample_queue_peek_offset(&d->queue,1u,&b[1])!=MT_SAMPLE_QUEUE_OK ||
++           b[0].count!=128u || b[1].count!=d->tx_second_count ||
++           b[1].first_index!=d->tx_second_first_index ||
++           b[1].first_index!=b[0].first_index+b[0].count ||
++           d->tx_count!=b[0].count+b[1].count)return 0;
++    } else if(d->tx_count!=b[0].count || d->tx_second_count || d->tx_second_slot ||
++              d->tx_second_first_index)return 0;
++    /* Both selected views are current BEFORE any CRC/prefix/queue mutation.
++     * Compute locally, then atomically pop the validated span, publish once. */
++    crc=d->prefix_crc_state;
++    for(i=0;i<d->tx_blocks;i++)crc=crc_codes(crc,b[i].samples,b[i].count);
++    if(mt_sample_queue_pop_span(&d->queue,b,d->tx_blocks)!=MT_SAMPLE_QUEUE_OK)return 0;
++    d->prefix_crc_state=crc;d->prefix_end=d->tx_first_index+d->tx_count;
++    d->last_data_sequence=d->tx_sequence;return 1;
++}
+ static int build_tx(mt_live_device *d,unsigned *error) {
+     mt_wire_message m; mt_sample_block block;
+     uint8_t type=0; uint32_t request=0;
+@@ -325,8 +384,10 @@
+         }
+         type=HELLO_ACK; request=1; m.session=d->pending_nonce;
+         m.payload_length=16; m.payload[1]=d->pending_revision; m.payload[2]=1; m.payload[3]=12;
+-        w16(m.payload+4,512); w16(m.payload+6,128); w32(m.payload+8,d->io.firmware_build);
+-        w32(m.payload+12,d->pending_revision==2u?3u:1u);
++        const mt_acquisition_profile *p=mt_acquisition_profile_get(d->pending_mode);
++        if(d->pending_revision!=2u && !p) { *error=MT_LIVE_ERR_ARGUMENT;return 0; }
++        w16(m.payload+4,512); w16(m.payload+6,d->pending_revision==2u?256u:p->max_block_samples);
++        w32(m.payload+8,d->io.firmware_build);w32(m.payload+12,d->pending_revision==2u?7u:1u);
+     } else if(d->want_error) {
+         type=ERROR_REPLY; request=d->error_request; m.payload_length=8;
+         m.payload[0]=d->error_type; m.payload[1]=d->error_code; w32(m.payload+4,d->generation);
+@@ -335,19 +396,15 @@
+         const mt_acquisition_profile *p=mt_acquisition_profile_get(d->mode);
+         if(!p) { *error=MT_LIVE_ERR_ARGUMENT;return 0; }
+         w32(m.payload,d->mode); w16(m.payload+4,d->mode); m.payload[7]=12;
+-        w32(m.payload+8,p->rate_hz); w32(m.payload+12,1); w16(m.payload+16,128);
++        w32(m.payload+8,p->rate_hz); w32(m.payload+12,1); w16(m.payload+16,p->max_block_samples);
+         m.payload[18]=p->retained_bits;m.payload[19]=p->encoding;w32(m.payload+20,1);
+     } else if(d->want_start) {
+         type=START_ACK; request=d->generation; m.payload_length=16;
+         w32(m.payload,d->generation); w32(m.payload+4,d->mode);
+     } else if((d->state==MT_LIVE_STREAMING || d->state==MT_LIVE_DRAINING) &&
+               mt_sample_queue_peek(&d->queue,&block)==MT_SAMPLE_QUEUE_OK) {
+-        size_t packed=mt_acquisition_pack(mt_acquisition_profile_get(d->mode),block.samples,
+-            block.count,m.payload+20,sizeof m.payload-20u);
+-        if(!packed) { *error=MT_LIVE_ERR_ARGUMENT;return 0; }
+-        type=DATA; m.payload_length=(uint16_t)(20u+packed);
+-        w32(m.payload,d->generation); w32(m.payload+4,d->mode); w64(m.payload+8,block.first_index); w16(m.payload+16,block.count);
+-        d->tx_count=block.count; d->tx_first_index=block.first_index;
++        if(!stage_data(d,&m,error))return 0;
++        type=DATA;
+     } else if(d->want_end) {
+         type=END; m.payload_length=40;
+         w32(m.payload,d->generation); w32(m.payload+4,d->mode); w64(m.payload+8,d->prefix_end);
+@@ -384,12 +441,7 @@
+ static void completed(mt_live_device *d) {
+     uint8_t type=d->tx_type;
+     if(type==DATA) {
+-        mt_sample_block b;
+-        if(mt_sample_queue_peek(&d->queue,&b)!=MT_SAMPLE_QUEUE_OK ||
+-           b.first_index!=d->tx_first_index || b.count!=d->tx_count) { recover(d,MT_LIVE_ERR_CALLBACK); return; }
+-        d->prefix_crc_state=crc_codes(d->prefix_crc_state,b.samples,b.count);
+-        d->prefix_end=b.first_index+b.count; d->last_data_sequence=d->tx_sequence;
+-        (void)mt_sample_queue_pop(&d->queue,b.first_index);
++        if(!completed_data(d)) { recover(d,MT_LIVE_ERR_CALLBACK);return; }
+     }
+     if(d->state==MT_LIVE_HELLO_PENDING && type!=HELLO_ACK && type!=0u) {
+         d->inherited_budget=0; d->tx_length=d->tx_offset=0; return;
+@@ -463,7 +515,16 @@
+     t->queue_sealed=d->queue.sealed;
+     t->intents=tx_intents(d);
+     t->tx_count=d->tx_count;
++    t->tx_blocks=d->tx_blocks;
++    t->tx_first_slot=d->tx_first_slot;
++    t->tx_second_slot=d->tx_second_slot;
++    t->tx_first_count=d->tx_first_count;
++    t->tx_second_count=d->tx_second_count;
++    t->tx_second_first_index=d->tx_second_first_index;
+     t->head_count=(d->queue.used?d->queue.counts[d->queue.head]:0u);
++    t->second_slot=d->queue.used>1u?(uint16_t)((d->queue.head+1u)%MT_SAMPLE_QUEUE_SLOTS):0u;
++    t->second_count=d->queue.used>1u?d->queue.counts[t->second_slot]:0u;
++    t->second_first_index=d->queue.used>1u?d->queue.head_index+t->head_count:0u;
+     t->first_reason=d->first_reason;
+     t->terminal_flags=d->terminal_flags;
+     t->tx_type=d->tx_type;
+@@ -503,7 +564,16 @@
+         t->queue_sealed==d->queue.sealed &&
+         t->intents==tx_intents(d) &&
+         t->tx_count==d->tx_count &&
++        t->tx_blocks==d->tx_blocks &&
++        t->tx_first_slot==d->tx_first_slot &&
++        t->tx_second_slot==d->tx_second_slot &&
++        t->tx_first_count==d->tx_first_count &&
++        t->tx_second_count==d->tx_second_count &&
++        t->tx_second_first_index==d->tx_second_first_index &&
+         t->head_count==(d->queue.used?d->queue.counts[d->queue.head]:0u) &&
++        t->second_slot==(d->queue.used>1u?(d->queue.head+1u)%MT_SAMPLE_QUEUE_SLOTS:0u) &&
++        t->second_count==(d->queue.used>1u?d->queue.counts[(d->queue.head+1u)%MT_SAMPLE_QUEUE_SLOTS]:0u) &&
++        t->second_first_index==(d->queue.used>1u?d->queue.head_index+d->queue.counts[d->queue.head]:0u) &&
+         t->first_reason==d->first_reason &&
+         t->terminal_flags==d->terminal_flags &&
+         t->tx_type==d->tx_type &&
+@@ -588,7 +658,7 @@
+     uint64_t n; mt_sample_queue_result q;
+     if(!d || !now(d,&n) || !expire(d,n))return 0;
+     if(d->state!=MT_LIVE_STARTING && d->state!=MT_LIVE_STREAMING)return 0;
+-    q=mt_sample_queue_push_quantized(&d->queue,first_index,codes,count,0,d->mode==3u?2u:0u);
++    q=mt_sample_queue_push_quantized(&d->queue,first_index,codes,count,0,discarded_lsb(d));
+     if(q!=MT_SAMPLE_QUEUE_OK) { terminate(d,q==MT_SAMPLE_QUEUE_FULL?1u:2u,n); return 0; }
+     return 1;
+ }

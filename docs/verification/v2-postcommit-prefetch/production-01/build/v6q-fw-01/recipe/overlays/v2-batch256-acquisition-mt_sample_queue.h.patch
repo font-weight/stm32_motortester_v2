@@ -1,0 +1,20 @@
+--- a/acquisition/mt_sample_queue.h
++++ b/acquisition/mt_sample_queue.h
+@@ -82,6 +82,17 @@
+ mt_sample_queue_result mt_sample_queue_peek(const mt_sample_queue *queue,
+                                            mt_sample_block *block);
+ 
++/* Bounded second view; offset0 delegates to peek, offset1 borrows the next slot.
++ * Output unchanged on failure; all previous view-lifetime rules still apply. */
++mt_sample_queue_result mt_sample_queue_peek_offset(const mt_sample_queue *queue,
++    unsigned offset,mt_sample_block *block);
++/* Validate ALL1/2 expected views (slot pointer/index/count) before one head/used
++ * mutation. No callback or partial pop. Expected descriptors cannot alias queue
++ * storage; their borrowed samples pointers MUST name the actual queue slots.
++ * Failure leaves queue/CRC/prefix untouched; no acquisition fault is latched. */
++mt_sample_queue_result mt_sample_queue_pop_span(mt_sample_queue *queue,
++    const mt_sample_block *expected,unsigned blocks);
++
+ /* Remove only the expected head after the caller is finished with its samples.
+  * The caller must not pop on TX enqueue if serialization still borrows the view.
+  * STALE/EMPTY/ARGUMENT do not alter state or latch an acquisition fault.

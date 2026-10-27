@@ -1,0 +1,37 @@
+{
+  "schema": "motortester-v2-batch256-overlay-1",
+  "patches": [
+    {
+      "source": "patched/v2/acquisition/mt_sample_queue.h",
+      "target": "v2/acquisition/mt_sample_queue.h",
+      "patch": "v2-batch256-acquisition-mt_sample_queue.h.patch",
+      "source_sha256": "87931cd550c6f32e54ff0f1c66ee5843b423b0f93848f706386d2ae47ae9e7c2",
+      "patch_sha256": "f2218fac736d36bafba3ef383b3a6eb27a7d5d4cd95dd3b9a6b0f49bc18a9a41",
+      "result_sha256": "177597c2291c9893fce54d5a78761c5f188a39d09e0aae2a2f48b9d5c9934d3a"
+    },
+    {
+      "source": "patched/v2/acquisition/mt_sample_queue.c",
+      "target": "v2/acquisition/mt_sample_queue.c",
+      "patch": "v2-batch256-acquisition-mt_sample_queue.c.patch",
+      "source_sha256": "bf4994cc329e44cce5d6bbe79225539e60daa53bab76335538ee894bf0b82a7f",
+      "patch_sha256": "5ea94acaf9515e1bebbe20ad6b8511e564bfa7cbe2677acc9ce4ea25e54bab8a",
+      "result_sha256": "d54355f863ae9ff5812944bdb935810e9b57f4f698c7098c32b01b04961bc981"
+    },
+    {
+      "source": "patched/v2/protocol/mt_live_device.h",
+      "target": "v2/protocol/mt_live_device.h",
+      "patch": "v2-batch256-protocol-mt_live_device.h.patch",
+      "source_sha256": "bf86fd103437175a782d987ce95e712021061126e6c7c8cada16b20e8930ab19",
+      "patch_sha256": "d8d7bf7fb6e59902fcd202ba88a00ac7162b5bd7b3c0fc4a5f90d3e033c71cb0",
+      "result_sha256": "93f338b4284bb808a6331df1ef5a91003472d6893a248d18116439fbf9791b8d"
+    },
+    {
+      "source": "patched/v2/protocol/mt_live_device.c",
+      "target": "v2/protocol/mt_live_device.c",
+      "patch": "v2-batch256-protocol-mt_live_device.c.patch",
+      "source_sha256": "d2b1eb83b41f4bb89b6dba09495dbd37e16451a464545f51939f1bd6659f035c",
+      "patch_sha256": "a52cb8c1fa00aac7d7a456be05e092e19ddb654f57f8997966c9331ace69a49d",
+      "result_sha256": "8d3eb0a816e56bb95c7ec5fd7a11fca2a934a6f6fd7ce3103587ee14931ff7a4"
+    }
+  ]
+}

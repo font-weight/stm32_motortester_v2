@@ -1,0 +1,18 @@
+--- a/acquisition/mt_sample_queue.h
++++ b/acquisition/mt_sample_queue.h
+@@ -93,6 +93,15 @@
+ mt_sample_queue_result mt_sample_queue_pop_span(mt_sample_queue *queue,
+     const mt_sample_block *expected,unsigned blocks);
+ 
++/* Foreground ownership transfer for mode5: exact1..4 contiguous views.
++ * peek_many output is unchanged on failure. pop_many validates ALL views
++ * before one mutation; failure does not pop any slot or alter first_fault.
++ * Old pop_span1..2 semantics remain unchanged. Descriptors cannot alias queue. */
++mt_sample_queue_result mt_sample_queue_peek_many(const mt_sample_queue *queue,
++    mt_sample_block *views,unsigned blocks);
++mt_sample_queue_result mt_sample_queue_pop_many(mt_sample_queue *queue,
++    const mt_sample_block *expected,unsigned blocks);
++
+ /* Remove only the expected head after the caller is finished with its samples.
+  * The caller must not pop on TX enqueue if serialization still borrows the view.
+  * STALE/EMPTY/ARGUMENT do not alter state or latch an acquisition fault.

@@ -1,0 +1,25 @@
+--- a/v2/platform/mt_usb_ctr.h
++++ b/v2/platform/mt_usb_ctr.h
+@@ -1,12 +1,15 @@
+ #ifndef MT_USB_CTR_H
+ #define MT_USB_CTR_H
+ #include <stdbool.h>
+-/* Available only with the separate opt-in CFG_MT_USB_CTR_FAIRNESS profile.
+- * Foreground calls require the same IRQ save/restore guard as the real DCD.
+- * Rearm only after servicing ADC/TIME and draining queued USB events; preserve
+- * lifecycle/epoch admission. One quantum can produce two CTR events. This API
+- * does not certify WCET, prevent lifecycle storms, or open application admission.
+- * Never clear pending CTR or reinitialize USB as a fairness shortcut. */
++/* V2-only STM32F103 NVIC quantum. Foreground functions require the same
++ * save/restore guard as the DCD ISR. Every ISR entry masks NVIC19/20; nested
++ * OSAL/EP enables respect irq_held. Only the sole runtime grants the next IRQ.
++ * Lifecycle always gets an opportunity with healthy TIME; CTR requires drained
++ * task work and the original cleanup/epoch conditions. No pending flag is
++ * cleared for fairness. No WCET, lossless transport or recovery from TIME_FAULT
++ * is claimed. TIME_FAULT is sticky and requires MCU reset. */
+ bool mt_usb_fsdev_ctr_deferred(void);
+-bool mt_usb_fsdev_ctr_rearm(void);
++bool mt_usb_fsdev_irq_held(void);
++bool mt_usb_fsdev_lifecycle_pending(void);
++bool mt_usb_fsdev_irq_grant(bool allow_ctr);
+ #endif

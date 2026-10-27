@@ -1,0 +1,16 @@
+--- a/protocol/mt_live_device.h
++++ b/protocol/mt_live_device.h
+@@ -161,6 +161,13 @@
+     uint8_t error_code;
+     mt_batch1024_state batch;
+ } mt_live_tx_ticket;
++/* Only the actual completed cached full mode5 ticket may start prefetch.
++ * ready is a pure scheduling/result check. prefetch_tx rechecks it and may
++ * replace that same ticket ONLY AFTER eligibility, with EMPTY or deferred ERROR.
++ * No output bytes/callback/prefix advance; <=512 source samples, no encoding.
++ * Caller preserves transport identity before/after and guards ERROR recovery. */
++int mt_live_device_prefetch_ready(const mt_live_device *device,const mt_live_tx_ticket *ticket);
++mt_live_prepare_result mt_live_device_prefetch_tx(mt_live_device *device,mt_live_tx_ticket *ticket);
+ mt_live_prepare_result mt_live_device_prepare_tx(mt_live_device *device,
+                                                 mt_live_tx_ticket *ticket);
+ /* Caller holds the original write-through-final-commit IRQ guard. A stale

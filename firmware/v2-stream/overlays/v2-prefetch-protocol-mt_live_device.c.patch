@@ -1,0 +1,76 @@
+--- a/protocol/mt_live_device.c
++++ b/protocol/mt_live_device.c
+@@ -396,8 +396,10 @@
+ /* Mode5 foreground preparation transfers queue ownership to packed TX.
+  * No callback/TIME/accepted-prefix mutation. ISR cannot modify queue/storage.
+  * A stale transport epoch later discards this entire in-flight interval. */
+-static int batch_prepare(mt_live_device *d,unsigned *error) {
+-    mt_sample_block views[4];mt_batch1024_state work;unsigned blocks,i,j,room,turns;
++/* Keep view/work-copy lifetime outside completion/error callback frames.
++ * Both ordinary prepare and post-flush prefetch own at most512 samples here. */
++static __attribute__((noinline)) int batch_collect(mt_live_device *d,unsigned *error) {
++    mt_sample_block views[4];mt_batch1024_state work;unsigned blocks,i,j,room;
+     if(d->tx_exhausted || !d->tx_next) { *error=MT_LIVE_ERR_PROTOCOL;return 0; }
+     if(d->state==MT_LIVE_STREAMING && d->tx_next>=RESERVE)return 0;
+     if(batch_idle(d)) {
+@@ -432,6 +434,13 @@
+             if(mt_sample_queue_pop_many(&d->queue,views,blocks)!=MT_SAMPLE_QUEUE_OK) { *error=MT_LIVE_ERR_ARGUMENT;return 0; }
+             d->batch=work;d->tx_count=work.count; /* queue->staging, NOT wire prefix */
+         }
++    }
++    return 1;
++}
++static int batch_prepare(mt_live_device *d,unsigned *error) {
++    unsigned turns;
++    if(!batch_collect(d,error))return 0;
++    if(d->batch.phase==MT_BATCH1024_COLLECT) {
+         if(d->batch.count==1024u || (d->state==MT_LIVE_DRAINING && d->queue.sealed && !d->queue.used)) {
+             if(!mt_batch1024_seal(&d->batch,d->tx)) { *error=MT_LIVE_ERR_ARGUMENT;return 0; }
+         } else return 0;
+@@ -691,6 +700,46 @@
+         t->error_type==d->error_type &&
+         t->error_code==d->error_code && batch_matches(&t->batch,&d->batch);
+ }
++/* A published result certificate, not tx_ok or an empty buffer alone.
++ * Inspect every old field BEFORE reusing the caller's non-aliasing ticket. */
++int mt_live_device_prefetch_ready(const mt_live_device *d,const mt_live_tx_ticket *t) {
++    if(!d || !t || t->result!=MT_LIVE_TX_PREPARED || t->error ||
++       t->state!=MT_LIVE_STREAMING || t->mode!=5u || t->tx_mode!=5u ||
++       t->tx_type!=DATA || t->tx_count!=1024u || !t->tx_offset ||
++       t->tx_offset>=t->tx_length || t->tx_length<=384u || t->tx_length>1335u ||
++       t->batch.phase!=MT_BATCH1024_READY || t->batch.count!=1024u ||
++       t->batch.length!=t->tx_length || t->tx_first_index!=t->prefix_end ||
++       UINT64_MAX-t->tx_first_index<1024u || !t->tx_sequence ||
++       t->tx_sequence>=RESERVE || t->tx_exhausted)return 0;
++    return d->state==MT_LIVE_STREAMING && d->mode==5u && !d->hardware_off &&
++        !d->clock_failed && !d->local_error && !d->first_reason &&
++        d->nonce==t->nonce && d->nonce==t->tx_nonce && d->generation==t->generation &&
++        d->revision==t->revision && d->revision==t->tx_revision &&
++        d->tx_mode==t->tx_mode && d->tx_nonce==t->tx_nonce &&
++        d->tx_type==DATA && d->tx_sequence==t->tx_sequence && d->tx_count==1024u &&
++        !d->tx_length && !d->tx_offset && d->last_write_known &&
++        d->last_write_accepted==t->tx_length-t->tx_offset &&
++        d->batch.phase==MT_BATCH1024_EMPTY && !d->batch.count &&
++        !d->batch.length && !d->batch.offset &&
++        d->prefix_end==t->tx_first_index+1024u &&
++        d->prefix_crc_state==t->batch.prefix_crc && d->last_data_sequence==t->tx_sequence &&
++        !d->tx_exhausted && d->tx_next && d->tx_next<RESERVE &&
++        d->tx_next==t->tx_next && d->tx_next==t->tx_sequence+1u &&
++        !d->want_start && !d->want_caps && !d->want_error && !d->want_end && !d->want_ack &&
++        !d->stop_seen && !d->stop_budget && !d->hello_budget && !d->inherited_budget &&
++        !d->queue.sealed && d->queue.used && d->queue.used<=MT_SAMPLE_QUEUE_SLOTS &&
++        d->queue.head==t->queue_head && d->queue.used==t->queue_used &&
++        d->queue.head_index==t->head_index && d->queue.next_index==t->next_index;
++}
++mt_live_prepare_result mt_live_device_prefetch_tx(mt_live_device *d,mt_live_tx_ticket *t) {
++    unsigned error=MT_LIVE_ERR_NONE;
++    if(!mt_live_device_prefetch_ready(d,t))return MT_LIVE_TX_EMPTY;
++    /* No seal/frame-CRC/COBS/write or callback, even when collection fills up.
++     * Queue pop transfers ownership; the published prefix remains unchanged. */
++    (void)batch_collect(d,&error);
++    ticket_capture(d,t,error?MT_LIVE_TX_ERROR:MT_LIVE_TX_EMPTY,error);
++    return t->result;
++}
+ mt_live_prepare_result mt_live_device_prepare_tx(mt_live_device *d,
+                                                 mt_live_tx_ticket *t) {
+     unsigned error=MT_LIVE_ERR_NONE; int ready;

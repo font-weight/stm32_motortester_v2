@@ -1,0 +1,70 @@
+--- v2/app/mt_live_runtime.c
++++ v2/app/mt_live_runtime.c
+@@ -204,7 +204,25 @@
+     (void)tud_cdc_n_write_clear(0);
+     return MT_LIVE_RUNTIME_TIME_FAULT;
+ }
+-static mt_live_runtime_result step(mt_live_runtime *r) {
++/* Sole grant opportunity, after actual ADC service or on an early-return
++ * fallback. The caller's attempt marker prevents a second6/<500us reset.
++ * Keep the original epoch/task/lifecycle gating exactly the same. */
++static void grant_irq(mt_live_runtime *r) {
++    uint32_t key;
++    if(!r->clock_fault && mt_timebase_healthy(r->clock)) {
++        key=mt_usb_bridge_lock();
++        mt_usb_epoch s=mt_usb_bridge_snapshot();
++        /* One IRQ opportunity after foreground service. Old cleanup/queue
++         * conditions still gate CTR; lifecycle must progress in quarantine. */
++        int allow_ctr=!r->pending && !r->faults && !r->exhausted &&
++           s.current==r->epoch && s.soft_serial==r->soft_serial &&
++           s.cleaned==s.current && !s.pending_soft && !s.faults && !s.exhausted &&
++           !tud_task_event_ready();
++        (void)mt_usb_fsdev_irq_grant(allow_ctr != 0);
++        mt_usb_bridge_unlock(key);
++    }
++}
++static mt_live_runtime_result step(mt_live_runtime *r,unsigned *grant_attempted) {
+     mt_usb_scope scope; uint32_t key,prepared_epoch,prepared_soft_serial; int serviced,tx_ok;
+     mt_live_tx_ticket ticket;
+     if(live_time(r)==UINT64_MAX || r->clock_fault)return time_fault(r);
+@@ -231,6 +249,14 @@
+     if(live_time(r)==UINT64_MAX) { mt_usb_bridge_leave(&scope); return time_fault(r); }
+     if(!stable(r)) { mt_usb_bridge_leave(&scope); (void)synchronize_loss(r); return loss_result(r); }
+     if(serviced==-2) { mt_usb_bridge_leave(&scope); return MT_LIVE_RUNTIME_ARGUMENT; }
++    /* A task completion can already have armed the next IN transfer. Release
++     * it after validated ADC service, before expensive RX/TX preparation.
++     * The scope's actor remains owned; ISR may invalidate epoch/clock state. */
++    *grant_attempted=1u; grant_irq(r);
++    /* New preemption boundary: no old RX FIFO read/rearm, core consumption or
++     * TX is permitted before a fresh clock/epoch/lifecycle observation. */
++    if(live_time(r)==UINT64_MAX) { mt_usb_bridge_leave(&scope); return time_fault(r); }
++    if(!stable(r)) { mt_usb_bridge_leave(&scope); (void)synchronize_loss(r); return loss_result(r); }
+     if(r->carry_offset==r->carry_used) {
+         r->carry_offset=0; r->carry_used=tud_cdc_n_read(0,r->carry,sizeof r->carry);
+     }
+@@ -273,22 +299,11 @@
+     return tx_ok ? MT_LIVE_RUNTIME_OK : MT_LIVE_RUNTIME_RECOVERY;
+ }
+ mt_live_runtime_result mt_live_runtime_step(mt_live_runtime *r) {
+-    mt_live_runtime_result result; uint32_t key;
++    mt_live_runtime_result result; unsigned grant_attempted=0u;
+     if(!r || !r->initialized || r->in_step || !tud_inited())return MT_LIVE_RUNTIME_ARGUMENT;
+     MT_DIAG_STAMP(diag_step);
+-    r->in_step=1; result=step(r);
+-    if(!r->clock_fault && mt_timebase_healthy(r->clock)) {
+-        key=mt_usb_bridge_lock();
+-        mt_usb_epoch s=mt_usb_bridge_snapshot();
+-        /* One IRQ opportunity after foreground service. Old cleanup/queue
+-         * conditions still gate CTR; lifecycle must progress in quarantine. */
+-        int allow_ctr=!r->pending && !r->faults && !r->exhausted &&
+-           s.current==r->epoch && s.soft_serial==r->soft_serial &&
+-           s.cleaned==s.current && !s.pending_soft && !s.faults && !s.exhausted &&
+-           !tud_task_event_ready();
+-        (void)mt_usb_fsdev_irq_grant(allow_ctr != 0);
+-        mt_usb_bridge_unlock(key);
+-    }
++    r->in_step=1; result=step(r,&grant_attempted);
++    if(!grant_attempted)grant_irq(r);
+ #if CFG_MT_STREAM_DIAGNOSTICS
+     if(quiescent(r) && (r->device.state==MT_LIVE_HELLO_PENDING || r->device.state==MT_LIVE_STOPPED)) {
+         mt_stream_diag_note((uint32_t)result,r->epoch,(uint32_t)r->device.queue.used,

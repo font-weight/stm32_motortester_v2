@@ -1,0 +1,31 @@
+--- a/source/firmware/platform/mt_timebase.c
++++ b/source/firmware/platform/mt_timebase.c
+@@ -1,3 +1,6 @@
++/* MT_PROFILE_BEGIN */
++#include "mt_stream_profile.h"
++/* MT_PROFILE_END */
+ #include "mt_timebase.h"
+ #include <stddef.h>
+ #define RCC_CR UINT32_C(0x40021000)
+@@ -77,7 +80,7 @@
+     t->state = MT_TIMEBASE_RUNNING;
+     return mt_timebase_update(t);
+ }
+-int mt_timebase_update(mt_timebase *t) {
++int mt_profiled_timebase_update_body(mt_timebase *t) {
+     uint16_t counter, delta;
+     uint32_t part;
+     if (!valid(t) || t->state != MT_TIMEBASE_RUNNING) return 0;
+@@ -95,6 +98,12 @@
+     t->remainder_us = part % 1000u;
+     return 1;
+ }
++/* MT_PROFILE_BEGIN */
++int mt_timebase_update(mt_timebase *t) {
++    int result;mt_profile_time_begin();result=mt_profiled_timebase_update_body(t);
++    mt_profile_time_end();return result;
++}
++/* MT_PROFILE_END */
+ int mt_timebase_healthy(const mt_timebase *t) {
+     return valid(t) && t->state == MT_TIMEBASE_RUNNING && t->fault == MT_TIMEBASE_NO_FAULT;
+ }

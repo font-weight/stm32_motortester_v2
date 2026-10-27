@@ -1,0 +1,224 @@
+
+objects/16-mt_boot_time.o:     file format elf32-littlearm
+
+
+Disassembly of section .text.read_reg:
+
+00000000 <read_reg>:
+   0:	6803      	ldr	r3, [r0, #0]
+   2:	6880      	ldr	r0, [r0, #8]
+   4:	4718      	bx	r3
+
+Disassembly of section .text.same_clock:
+
+00000000 <same_clock>:
+   0:	b510      	push	{r4, lr}
+   2:	4604      	mov	r4, r0
+   4:	4912      	ldr	r1, [pc, #72]	@ (50 <same_clock+0x50>)
+   6:	f7ff fffe 	bl	0 <same_clock>
+			6: R_ARM_THM_CALL	read_reg
+   a:	6aa3      	ldr	r3, [r4, #40]	@ 0x28
+   c:	4058      	eors	r0, r3
+   e:	4b11      	ldr	r3, [pc, #68]	@ (54 <same_clock+0x54>)
+  10:	4003      	ands	r3, r0
+  12:	b10b      	cbz	r3, 18 <same_clock+0x18>
+  14:	2000      	movs	r0, #0
+  16:	bd10      	pop	{r4, pc}
+  18:	4620      	mov	r0, r4
+  1a:	490f      	ldr	r1, [pc, #60]	@ (58 <same_clock+0x58>)
+  1c:	f7ff fffe 	bl	0 <same_clock>
+			1c: R_ARM_THM_CALL	read_reg
+  20:	6ae3      	ldr	r3, [r4, #44]	@ 0x2c
+  22:	4058      	eors	r0, r3
+  24:	f020 4078 	bic.w	r0, r0, #4160749568	@ 0xf8000000
+  28:	f420 0000 	bic.w	r0, r0, #8388608	@ 0x800000
+  2c:	2800      	cmp	r0, #0
+  2e:	d1f1      	bne.n	14 <same_clock+0x14>
+  30:	4620      	mov	r0, r4
+  32:	490a      	ldr	r1, [pc, #40]	@ (5c <same_clock+0x5c>)
+  34:	f7ff fffe 	bl	0 <same_clock>
+			34: R_ARM_THM_CALL	read_reg
+  38:	f000 003f 	and.w	r0, r0, #63	@ 0x3f
+  3c:	2832      	cmp	r0, #50	@ 0x32
+  3e:	d1e9      	bne.n	14 <same_clock+0x14>
+  40:	6b20      	ldr	r0, [r4, #48]	@ 0x30
+  42:	f000 003f 	and.w	r0, r0, #63	@ 0x3f
+  46:	f1a0 0332 	sub.w	r3, r0, #50	@ 0x32
+  4a:	4258      	negs	r0, r3
+  4c:	4158      	adcs	r0, r3
+  4e:	e7e2      	b.n	16 <same_clock+0x16>
+  50:	40021000 	.word	0x40021000
+  54:	030f00fb 	.word	0x030f00fb
+  58:	40021004 	.word	0x40021004
+  5c:	40022000 	.word	0x40022000
+
+Disassembly of section .text.mt_boot_time_start:
+
+00000000 <mt_boot_time_start>:
+   0:	e92d 43f0 	stmdb	sp!, {r4, r5, r6, r7, r8, r9, lr}
+   4:	460e      	mov	r6, r1
+   6:	4617      	mov	r7, r2
+   8:	4605      	mov	r5, r0
+   a:	b085      	sub	sp, #20
+   c:	2800      	cmp	r0, #0
+   e:	f000 80b1 	beq.w	174 <mt_boot_time_start+0x174>
+  12:	2900      	cmp	r1, #0
+  14:	f000 80ae 	beq.w	174 <mt_boot_time_start+0x174>
+  18:	2a00      	cmp	r2, #0
+  1a:	f000 80ab 	beq.w	174 <mt_boot_time_start+0x174>
+  1e:	680b      	ldr	r3, [r1, #0]
+  20:	2b00      	cmp	r3, #0
+  22:	f000 80a7 	beq.w	174 <mt_boot_time_start+0x174>
+  26:	684b      	ldr	r3, [r1, #4]
+  28:	2b00      	cmp	r3, #0
+  2a:	f000 80a3 	beq.w	174 <mt_boot_time_start+0x174>
+  2e:	6883      	ldr	r3, [r0, #8]
+  30:	2b00      	cmp	r3, #0
+  32:	f040 809d 	bne.w	170 <mt_boot_time_start+0x170>
+  36:	6843      	ldr	r3, [r0, #4]
+  38:	2b00      	cmp	r3, #0
+  3a:	f040 8099 	bne.w	170 <mt_boot_time_start+0x170>
+  3e:	6ad3      	ldr	r3, [r2, #44]	@ 0x2c
+  40:	2b00      	cmp	r3, #0
+  42:	f040 8097 	bne.w	174 <mt_boot_time_start+0x174>
+  46:	6b13      	ldr	r3, [r2, #48]	@ 0x30
+  48:	2b00      	cmp	r3, #0
+  4a:	f040 8093 	bne.w	174 <mt_boot_time_start+0x174>
+  4e:	6a52      	ldr	r2, [r2, #36]	@ 0x24
+  50:	2301      	movs	r3, #1
+  52:	2a00      	cmp	r2, #0
+  54:	f040 808e 	bne.w	174 <mt_boot_time_start+0x174>
+  58:	e9c0 3301 	strd	r3, r3, [r0, #4]
+  5c:	2300      	movs	r3, #0
+  5e:	60c3      	str	r3, [r0, #12]
+  60:	6b4b      	ldr	r3, [r1, #52]	@ 0x34
+  62:	b983      	cbnz	r3, 86 <mt_boot_time_start+0x86>
+  64:	6b8b      	ldr	r3, [r1, #56]	@ 0x38
+  66:	2b01      	cmp	r3, #1
+  68:	d10d      	bne.n	86 <mt_boot_time_start+0x86>
+  6a:	6bcb      	ldr	r3, [r1, #60]	@ 0x3c
+  6c:	2b01      	cmp	r3, #1
+  6e:	d10a      	bne.n	86 <mt_boot_time_start+0x86>
+  70:	6a0b      	ldr	r3, [r1, #32]
+  72:	b943      	cbnz	r3, 86 <mt_boot_time_start+0x86>
+  74:	f8d1 9024 	ldr.w	r9, [r1, #36]	@ 0x24
+  78:	f1b9 0f00 	cmp.w	r9, #0
+  7c:	d103      	bne.n	86 <mt_boot_time_start+0x86>
+  7e:	4608      	mov	r0, r1
+  80:	f7ff fffe 	bl	0 <mt_boot_time_start>
+			80: R_ARM_THM_CALL	same_clock
+  84:	b928      	cbnz	r0, 92 <mt_boot_time_start+0x92>
+  86:	2403      	movs	r4, #3
+  88:	2300      	movs	r3, #0
+  8a:	602c      	str	r4, [r5, #0]
+  8c:	60eb      	str	r3, [r5, #12]
+  8e:	60ab      	str	r3, [r5, #8]
+  90:	e011      	b.n	b6 <mt_boot_time_start+0xb6>
+  92:	4939      	ldr	r1, [pc, #228]	@ (178 <mt_boot_time_start+0x178>)
+  94:	4630      	mov	r0, r6
+  96:	f7ff fffe 	bl	0 <mt_boot_time_start>
+			96: R_ARM_THM_CALL	read_reg
+  9a:	4938      	ldr	r1, [pc, #224]	@ (17c <mt_boot_time_start+0x17c>)
+  9c:	4680      	mov	r8, r0
+  9e:	4630      	mov	r0, r6
+  a0:	f7ff fffe 	bl	0 <mt_boot_time_start>
+			a0: R_ARM_THM_CALL	read_reg
+  a4:	ea48 0300 	orr.w	r3, r8, r0
+  a8:	07da      	lsls	r2, r3, #31
+  aa:	4604      	mov	r4, r0
+  ac:	d507      	bpl.n	be <mt_boot_time_start+0xbe>
+  ae:	2404      	movs	r4, #4
+  b0:	e9c5 9902 	strd	r9, r9, [r5, #8]
+  b4:	602c      	str	r4, [r5, #0]
+  b6:	4620      	mov	r0, r4
+  b8:	b005      	add	sp, #20
+  ba:	e8bd 83f0 	ldmia.w	sp!, {r4, r5, r6, r7, r8, r9, pc}
+  be:	6873      	ldr	r3, [r6, #4]
+  c0:	492d      	ldr	r1, [pc, #180]	@ (178 <mt_boot_time_start+0x178>)
+  c2:	68b0      	ldr	r0, [r6, #8]
+  c4:	f048 0201 	orr.w	r2, r8, #1
+  c8:	4798      	blx	r3
+  ca:	4630      	mov	r0, r6
+  cc:	492a      	ldr	r1, [pc, #168]	@ (178 <mt_boot_time_start+0x178>)
+  ce:	f7ff fffe 	bl	0 <mt_boot_time_start>
+			ce: R_ARM_THM_CALL	read_reg
+  d2:	f010 0001 	ands.w	r0, r0, #1
+  d6:	d104      	bne.n	e2 <mt_boot_time_start+0xe2>
+  d8:	2405      	movs	r4, #5
+  da:	e9c5 0002 	strd	r0, r0, [r5, #8]
+  de:	602c      	str	r4, [r5, #0]
+  e0:	e7e9      	b.n	b6 <mt_boot_time_start+0xb6>
+  e2:	6873      	ldr	r3, [r6, #4]
+  e4:	4925      	ldr	r1, [pc, #148]	@ (17c <mt_boot_time_start+0x17c>)
+  e6:	68b0      	ldr	r0, [r6, #8]
+  e8:	f044 0201 	orr.w	r2, r4, #1
+  ec:	4798      	blx	r3
+  ee:	4630      	mov	r0, r6
+  f0:	4922      	ldr	r1, [pc, #136]	@ (17c <mt_boot_time_start+0x17c>)
+  f2:	f7ff fffe 	bl	0 <mt_boot_time_start>
+			f2: R_ARM_THM_CALL	read_reg
+  f6:	f010 0001 	ands.w	r0, r0, #1
+  fa:	d101      	bne.n	100 <mt_boot_time_start+0x100>
+  fc:	2406      	movs	r4, #6
+  fe:	e7ec      	b.n	da <mt_boot_time_start+0xda>
+ 100:	f024 0201 	bic.w	r2, r4, #1
+ 104:	6873      	ldr	r3, [r6, #4]
+ 106:	491d      	ldr	r1, [pc, #116]	@ (17c <mt_boot_time_start+0x17c>)
+ 108:	68b0      	ldr	r0, [r6, #8]
+ 10a:	4798      	blx	r3
+ 10c:	4630      	mov	r0, r6
+ 10e:	491b      	ldr	r1, [pc, #108]	@ (17c <mt_boot_time_start+0x17c>)
+ 110:	f7ff fffe 	bl	0 <mt_boot_time_start>
+			110: R_ARM_THM_CALL	read_reg
+ 114:	f010 0401 	ands.w	r4, r0, #1
+ 118:	d001      	beq.n	11e <mt_boot_time_start+0x11e>
+ 11a:	2407      	movs	r4, #7
+ 11c:	e7b4      	b.n	88 <mt_boot_time_start+0x88>
+ 11e:	4630      	mov	r0, r6
+ 120:	4915      	ldr	r1, [pc, #84]	@ (178 <mt_boot_time_start+0x178>)
+ 122:	f7ff fffe 	bl	0 <mt_boot_time_start>
+			122: R_ARM_THM_CALL	read_reg
+ 126:	07c3      	lsls	r3, r0, #31
+ 128:	d5f7      	bpl.n	11a <mt_boot_time_start+0x11a>
+ 12a:	4630      	mov	r0, r6
+ 12c:	f7ff fffe 	bl	0 <mt_boot_time_start>
+			12c: R_ARM_THM_CALL	same_clock
+ 130:	2800      	cmp	r0, #0
+ 132:	d0a8      	beq.n	86 <mt_boot_time_start+0x86>
+ 134:	6833      	ldr	r3, [r6, #0]
+ 136:	4638      	mov	r0, r7
+ 138:	9301      	str	r3, [sp, #4]
+ 13a:	6873      	ldr	r3, [r6, #4]
+ 13c:	4a10      	ldr	r2, [pc, #64]	@ (180 <mt_boot_time_start+0x180>)
+ 13e:	9302      	str	r3, [sp, #8]
+ 140:	68b3      	ldr	r3, [r6, #8]
+ 142:	a901      	add	r1, sp, #4
+ 144:	9303      	str	r3, [sp, #12]
+ 146:	f7ff fffe 	bl	0 <mt_timebase_init>
+			146: R_ARM_THM_CALL	mt_timebase_init
+ 14a:	b908      	cbnz	r0, 150 <mt_boot_time_start+0x150>
+ 14c:	2408      	movs	r4, #8
+ 14e:	e79b      	b.n	88 <mt_boot_time_start+0x88>
+ 150:	4638      	mov	r0, r7
+ 152:	f7ff fffe 	bl	0 <mt_timebase_healthy>
+			152: R_ARM_THM_CALL	mt_timebase_healthy
+ 156:	2800      	cmp	r0, #0
+ 158:	d0f8      	beq.n	14c <mt_boot_time_start+0x14c>
+ 15a:	4630      	mov	r0, r6
+ 15c:	f7ff fffe 	bl	0 <mt_boot_time_start>
+			15c: R_ARM_THM_CALL	same_clock
+ 160:	b908      	cbnz	r0, 166 <mt_boot_time_start+0x166>
+ 162:	2409      	movs	r4, #9
+ 164:	e7b9      	b.n	da <mt_boot_time_start+0xda>
+ 166:	2300      	movs	r3, #0
+ 168:	2201      	movs	r2, #1
+ 16a:	602b      	str	r3, [r5, #0]
+ 16c:	60ea      	str	r2, [r5, #12]
+ 16e:	e78e      	b.n	8e <mt_boot_time_start+0x8e>
+ 170:	2402      	movs	r4, #2
+ 172:	e7a0      	b.n	b6 <mt_boot_time_start+0xb6>
+ 174:	2401      	movs	r4, #1
+ 176:	e79e      	b.n	b6 <mt_boot_time_start+0xb6>
+ 178:	4002101c 	.word	0x4002101c
+ 17c:	40021010 	.word	0x40021010
+ 180:	044aa200 	.word	0x044aa200

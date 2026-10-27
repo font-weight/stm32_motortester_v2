@@ -1,0 +1,24 @@
+--- a/app/mt_live_adc.c
++++ b/app/mt_live_adc.c
+@@ -41,7 +41,7 @@
+     mt_adc_dma_result_t result;
+     if (!valid(b) || !generation || b->device->generation != generation ||
+         b->device->state != MT_LIVE_STARTING || !clock_ok(b) ||
+-        !mt_adc_dma_profile1_ready(b->driver)) return 0;
++        !mt_adc_dma_profile_ready(b->driver,b->device->mode)) return 0;
+     result = transaction ? mt_adc_dma_start_transaction(b->driver, &b->guard, transaction)
+                          : mt_adc_dma_start_guarded(b->driver, &b->guard);
+     if (!clock_ok(b)) return 0;
+@@ -104,8 +104,10 @@
+         return -1;
+     }
+     if (!block.samples || block.count != MT_ADC_DMA_BLOCK_SAMPLES ||
+-        block.nominal_rate_hz != MT_ADC_DMA_RATE_HZ ||
+-        block.first_trigger_offset_us != MT_ADC_DMA_SAMPLE_US) {
++        b->driver->profile!=mt_acquisition_profile_get(b->device->mode) ||
++        block.nominal_rate_hz != b->driver->profile->rate_hz ||
++        block.first_trigger_offset_num_us != b->driver->profile->period_num_us ||
++        block.first_trigger_offset_den != b->driver->profile->period_den) {
+         mt_live_device_fault(b->device, 2u); return -1;
+     }
+     /* DMA ownership is checked for the complete 512-sample half first.

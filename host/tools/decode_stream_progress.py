@@ -1,4 +1,4 @@
-"""Decode saved SG/SH/SI progress-v1 evidence. Never opens COM, SWD or a GUI.
+"""Decode saved SG/SH/SI/SJ progress-v1 evidence. Never opens COM, SWD or a GUI.
 
 The 64-byte bank measures FIFO acceptance, not delivered samples. Its identity
 must match the independently decoded legacy136 and an explicitly pinned image.
@@ -11,7 +11,7 @@ import stat
 import struct
 
 BUILD = 0x56325347
-SUPPORTED_BUILDS = (BUILD, 0x56325348, 0x56325349)
+SUPPORTED_BUILDS = (BUILD, 0x56325348, 0x56325349, 0x5632534A)
 MAGIC = 0x4D544E31
 CAP = 18_000_000
 FIELDS = """magic flags generation nonce_low nonce_high begin_cycle end_cycle

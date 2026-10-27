@@ -108,6 +108,21 @@ docs/verification/v2-progress-identity/**/*.map -whitespace
 docs/verification/v2-progress-identity/**/*.patch -whitespace
 docs/reviews/v2-06p*.md -text
 docs/streaming-progress-identity.md -text whitespace=cr-at-eol
+docs/verification/v2-postcommit-prefetch/** -text whitespace=cr-at-eol
+docs/verification/v2-postcommit-prefetch/**/*.bin binary
+docs/verification/v2-postcommit-prefetch/**/*.o binary
+docs/verification/v2-postcommit-prefetch/**/*.elf binary
+docs/verification/v2-postcommit-prefetch/**/*.txt -whitespace
+docs/verification/v2-postcommit-prefetch/**/*.log -whitespace
+docs/verification/v2-postcommit-prefetch/**/*.stdout -whitespace
+docs/verification/v2-postcommit-prefetch/**/*.stderr -whitespace
+docs/verification/v2-postcommit-prefetch/**/*.map -whitespace
+docs/verification/v2-postcommit-prefetch/**/*.patch -whitespace
+docs/reviews/v2-06q*.md -text
+docs/streaming-postcommit-prefetch.md -text whitespace=cr-at-eol
+tests/v2-stream-firmware/prefetch_model.c -text
+tests/v2-stream-firmware/check_prefetch.py -text
+firmware/v2-stream/overlays/prefetch.json -text
 tests/v2-stream-firmware/progress_binding* -text
 docs/streaming-late-grant.md -text whitespace=cr-at-eol
 tests/v2-stream-firmware/deferred_grant* -text

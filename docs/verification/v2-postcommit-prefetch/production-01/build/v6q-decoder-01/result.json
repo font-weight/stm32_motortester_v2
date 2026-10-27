@@ -1,0 +1,169 @@
+{
+  "status": "PASS",
+  "scope": "One native-C-fixture decode plus bounded malformed-evidence group",
+  "fixture_sha256": "f5e6178675f0a43733c099abb4c0c85504536d7e70e5f5dc9692d754ee1c75aa",
+  "decoder_sha256": "985dcc80c536c56b4c09be7fcf169e9b1add0096af449fda68d68d963bb0c3b9",
+  "checker_sha256": "ea0f80fa03fb86bff0fd69c877c0b7b37467de0a4ef225f9dc74091100da1d1a",
+  "known_fixture_fields": {
+    "begin_cycle": 1000,
+    "end_cycle": 5000,
+    "prepare_cycles": 400,
+    "prepare_count": 1,
+    "positive_bytes": 401,
+    "positive_count": 2,
+    "last_positive_cycle": 2400,
+    "max_positive_gap_cycles": 2600,
+    "zero_space_count": 1,
+    "zero_other_count": 1,
+    "tx_offset": 384,
+    "tx_length": 1335,
+    "stage_count": 1024,
+    "stage_phase": 4,
+    "queue_used": 8,
+    "fifo_free": 128,
+    "snapshot_bits": 15,
+    "close_kind": 1
+  },
+  "negative_checks": [
+    {
+      "case": "wrong_size",
+      "errors": [
+        "first_size_not_64",
+        "second_size_not_64"
+      ]
+    },
+    {
+      "case": "unequal_pair",
+      "errors": [
+        "repeated_dump_mismatch"
+      ]
+    },
+    {
+      "case": "not_frozen",
+      "errors": [
+        "record_not_frozen"
+      ]
+    },
+    {
+      "case": "foreign_nonce",
+      "errors": [
+        "nonce_mismatch",
+        "legacy_build_session_image_binding_invalid"
+      ]
+    },
+    {
+      "case": "foreign_generation",
+      "errors": [
+        "generation_mismatch",
+        "legacy_build_session_image_binding_invalid"
+      ]
+    },
+    {
+      "case": "wrong_image_binding",
+      "errors": [
+        "legacy_build_session_image_binding_invalid"
+      ]
+    },
+    {
+      "case": "wrong_typed_primary",
+      "errors": [
+        "primary_outside_close_kind_domain"
+      ]
+    },
+    {
+      "case": "noactive_with_history",
+      "errors": [
+        "no_active_start_with_active_history"
+      ]
+    },
+    {
+      "case": "short_cap",
+      "errors": [
+        "cap_boundary_inconsistent"
+      ]
+    },
+    {
+      "case": "prepare_without_count",
+      "errors": [
+        "prepare_cycles_without_completed_call"
+      ]
+    },
+    {
+      "case": "impossible_positive_count",
+      "errors": [
+        "accepted_bytes_exceed_callback_capacity"
+      ]
+    },
+    {
+      "case": "unavailable_FIFO_not_sentinel",
+      "errors": [
+        "unavailable_USB_snapshot_not_sentinel"
+      ]
+    },
+    {
+      "case": "missing_close_tail",
+      "errors": [
+        "cycle_spans_inconsistent"
+      ]
+    },
+    {
+      "case": "SH_requires_explicit_build",
+      "errors": [
+        "legacy_build_session_image_binding_invalid"
+      ]
+    },
+    {
+      "case": "SG_not_SH",
+      "errors": [
+        "legacy_build_session_image_binding_invalid"
+      ]
+    },
+    {
+      "case": "SI_requires_explicit_build",
+      "errors": [
+        "legacy_build_session_image_binding_invalid"
+      ]
+    },
+    {
+      "case": "SH_not_SI",
+      "errors": [
+        "legacy_build_session_image_binding_invalid"
+      ]
+    },
+    {
+      "case": "SI_not_SJ",
+      "errors": [
+        "legacy_build_session_image_binding_invalid"
+      ]
+    },
+    {
+      "case": "unsupported_build",
+      "errors": [
+        "unsupported_expected_build",
+        "legacy_build_session_image_binding_invalid"
+      ]
+    },
+    {
+      "case": "empty_observer_bank",
+      "errors": [
+        "magic_version_mismatch",
+        "record_not_frozen",
+        "nonce_mismatch",
+        "generation_mismatch",
+        "close_kind_invalid",
+        "unavailable_core_snapshot_not_sentinel",
+        "unavailable_USB_snapshot_not_sentinel"
+      ]
+    }
+  ],
+  "unknown_FIFO_preserved": true,
+  "typed_TIME_supported": true,
+  "legacy_binding_is_synthetic": true,
+  "hardware_executed": false,
+  "native_legacy136_used": true,
+  "native_legacy136_sha256": "98d55e3cb60310e4a990cc7b1c159c48c803bd60d777a68986c80433688446f9",
+  "expected_build": "0x56325349",
+  "fixture_profile": "clean",
+  "SG_default_and_explicit_SH_SI_SJ_checked": true,
+  "physical_throughput_claim": false
+}

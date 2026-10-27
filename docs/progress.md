@@ -1,5 +1,56 @@
 # Прогресс Мотортестера V2
 
+## 27.10.2026 — Q1: SJ собрана, адресная модель прошла
+
+SJ/0x5632534A добавляет collect-only после подтверждённого cached full
+DATA1024 commit и прежнего flush. Старые prefix/CRC не продвигаются повторно;
+новый диапазон остаётся owned-but-unpublished. Сохранённые epoch/soft serial
+исходного прохода проверяются до и после новой работы. Один ARM01 — PASS:
+BIN45372байта, SHA256
+`5041ae67ccc25eda8d0003121370baed1120b025399099d4c3f42abfee61ca88`;
+ELF`55afde847a5629fd573c92d5b9d61eeaa267d8236edb2f43088ac65a015fd4d6`.
+Text45244/data128/bss12132; static growth0. С reserve8192 занято20452/20480,
+остаток28байт. Conditional stack6164/aligned6168, не физический high-water.
+Legacy136@0x20002F1C, progress64@0x20002FA4; generated SJ identity совпала
+в board и observer. ADC/TIME/DCD/queue/wire/serializer source/objects сохранены.
+
+Один native01 — PASS с первого запуска: actual core/queue/serializer/wire/
+observer и извлечённые runtime helpers. Проверены completion→collect0/128/512,
+q8→4 и четыре offer, wrapped views, bytes/CRC/Stop-tail/HELLO, rejected stale/
+zero/partial/unknown/final-TIME/control/RESERVE/modes1–4, original epoch/soft,
+scope отказ, matching ERROR recovery и immutable first-close. Actual observer
+ACTIVE с SJ, ненулевые spans подтверждены. Legacy setup/DWT/TIME/USB/actor
+синтетические; full runtime/flush/grant проверены по source equality, без
+динамической модели USB. Новых аппаратных опытов нет.
+
+Root decoder01 — PASS20 negative cases на сохранённом P actual-C64/136 SI;
+новые SJ allowlist metadata синтетические. Старую C-модель повторно не
+запускали; реальный SJ binding отдельно исполнила Q модель. GUI/Windows-пакет
+не пересобирались, wire не менялся. Freeze SHA256
+`fd3aa369a3f87655411de1c391d989182af82df7b89610f86566f5a803ad0504`.
+[Архив Q1](verification/v2-postcommit-prefetch/production-01/manifest.json):
+571файл4643591байт, manifest SHA256
+`ce5c0f87f650b10ff7bf399962be4dcc1ae361e5c32c512e141bfd25e17aa25d`.
+[Независимое source-review Q](reviews/v2-06q-review.md) — **PASS9,605**:
+571 архивная пара,47 freeze pins,570 ARM inputs/119 dependencies,125 native
+pins и exact SJ board/bind проверены критиком без новых прогонов.
+Открытых P0/P1 в ограниченном Q software нет; на плате остановленная SI.
+Stable150k и фактическая задержка нового collect остаются неподтверждёнными.
+
+## 27.10.2026 — Q начата: collect-only после завершённого DATA1024
+
+P2 сохранён и опубликован в V2 commit`36d2646`. Offline-предложение сохранено
+в [followup-01](verification/v2-progress-identity/followup-01/manifest.json),
+analysis SHA256`7e0944370b9b99de8b34002ef5a1adf7ffcb8f0e70bb55ac735fd58dfb15f4de`.
+Предварительное чтение независимого критика не выявило концептуального
+блокера; это не source/physical PASS. Готовится ограниченный SJ с prefetch
+после existing flush, прежними deadline и явными failure/ownership границами.
+
+Свежая SI64КиБ backup снята только чтением, без Reset/COM/START:
+SHA256`8dc2d6cb927066502f2a050dbde3970b9d4cf3bf86340a0857094a325ff781f6`.
+Prefix44216 совпал с exact SI image aeccd…d9c7. COM6/PNP/code0 и отсутствие
+владельцев проверены. На плате остаётся остановленная SI; новых опытов нет.
+
 ## 27.10.2026 — P2 завершён: диагностика SI исправна,150k снова queue-full
 
 После нового фактического ответа пользователя «готово» выполнен единственный
