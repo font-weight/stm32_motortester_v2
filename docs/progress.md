@@ -1,5 +1,23 @@
 # Прогресс Мотортестера V2
 
+## 27.10.2026 — P2: SI установлена, ожидается новый USB-replug
+
+Source`0ca687eadd1f5c7b96ffd95796e8d03f01a4f1a1` опубликован только в V2.
+Exact [план P2](verification/v2-progress-identity/plan-01/build/v6p-board-01/plan.json)
+SHA256`cf69f5573213e661cd9647d14ba32a635d6e242064d8cd4615db04044e36c095`
+принят [критиком9,60](reviews/v2-06p-flash-review.md). Свежие inventory/owners
+и HOTPLUG identity проверены; SI записана,44216байт побайтного readback совпали.
+После этого выполнен один Reset/Run. У пользователя запрошен отдельный новый
+USB-replug именно после этого Reset. **На плате SI; нового START пока нет.**
+До фактического ответа не открывать COM и не использовать старые ответы.
+Первичные program/readback/reset receipts сохранены в
+[installation-01](verification/v2-progress-identity/installation-01/manifest.json):
+29файлов196505байт, manifest SHA256
+`9c308beb52fb7444e9fcd9032e68b79159edccb7a388ccb9aae52b9dd0a8d94f`.
+В derived helpers остались косметические подписи FLASI/SIA/old-v2sh;
+фактические build0x56325349, image hash, размеры и проверки совпадают с SI.
+Исходные логи не переписывались; это не результат приёма сигнала.
+
 ## 27.10.2026 — P1: SI собрана, actual observer binding проверен
 
 SI/0x56325349: config порождает общий generated header, board и observer

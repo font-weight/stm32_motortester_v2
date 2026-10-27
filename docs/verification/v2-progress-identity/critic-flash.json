@@ -1,0 +1,63 @@
+{
+  "schema": "motortester-v2-06p-independent-exact-plan-review-1",
+  "date": "2026-10-27",
+  "critic": "/root/stream200_critic",
+  "independent_non_author": true,
+  "status": "PASS",
+  "score": 9.6,
+  "threshold": 9.5,
+  "plan_sha256": "cf69f5573213e661cd9647d14ba32a635d6e242064d8cd4615db04044e36c095",
+  "scope": "Exact P2 procedure admission only: one SI program/readback/reset, fresh actual user replug, one150k mode5 DATA1024 requested30s trial; not a physical result",
+  "source_commit": "0ca687eadd1f5c7b96ffd95796e8d03f01a4f1a1",
+  "plan": "build/v6p-board-01/plan.json",
+  "archive": "docs/verification/v2-progress-identity/plan-01/manifest.json",
+  "archive_sha256": "da8c66c79924fc16609a6df753552faed187e4ae364649ea89b19e1954db18a4",
+  "personally_verified": {
+    "source_archive_pairs": 16,
+    "archive_bytes": 145577,
+    "execution_inputs": 27,
+    "CLI_sha256": "7fb012b5e26abf45342caa05c6bc33936f8a379b67797cc55658ffb8bf15e95f",
+    "source_review_sha256": "3df6c18f0ac86b11021225759f7c8e1b4336d398c5cc39af0b773b6f439a4427",
+    "source_review_score": 9.625,
+    "candidate_build": "0x56325349",
+    "candidate_bytes": 44216,
+    "candidate_sha256": "aeccdce0a5c2705e5fc77338595655a1f8d20367de486cbc83250f85a3a2d9c7",
+    "candidate_elf_sha256": "2f6d507f0629407d2f79f04dceff1bf45bbd69226327c3909f57b4347a4e5613",
+    "readback_length": "0xACB8 == 44216",
+    "backup_bytes": 65536,
+    "backup_sha256": "ddaf7a51d41f5fd6ee01590dbfb13aa60b6ea1358edf7cb945983a20cdcf5a02",
+    "backup_prefix_bytes": 44212,
+    "backup_prefix_exact_SH_sha256": "99fcd38af9ac4e4feb8b7b4fa0bd577a77d8103773c0951e6b6a433e22deddf2",
+    "existing_package_sha256": "436cdaf1f27322e8ff7e90809f6c091950edcf7a599a97766c128c6e19a6dbfe",
+    "drift": [],
+    "critic_actions": "Passive file/Git/hash/byte/source review only; no source/build/test/GUI rerun or hardware"
+  },
+  "mandatory_execution_conditions": [
+    "Root alone checks fresh expected probe serial57005400120000393333574E, COM6 expectedPNP/healthy status, no application/capture owner and unchanged user PA0-empty/USB-only power conditions immediately before programming; archived inventory is not current authorization evidence.",
+    "Exactly one program with verification; independent full44216byte readback must equal candidate before one Reset/Run. No reset/retry/rollback after an unmet gate without a separate decision.",
+    "Actual new user USB-board replug must occur after SI Reset and be bound to that reset log; previous ready messages are insufficient. Fresh COM inventory before the sole open/START.",
+    "Exactly one mode5/150000/retained10/max1024 selected session after two-step discovery with fresh nonce and exact SI CAPS; request30s Record. No50/100 or automatic retry.",
+    "No SWD or halt during active COM. Root_read_closed requires explicit owner closure plus offline coherent END/STOP/ACK identity, sequence, prefix, CRC and raw evidence. Timeout alone never authorizes SWD.",
+    "Read136 twice at0x20002F1C and64 twice at0x20002FA4, then stoppedTIM3/ADC/DMA/RCC only; never ADC_DR. Bind paired records to exactSI/image/nonce/generation.",
+    "Require actual valid64 and legacy136 for diagnostic acceptance; preserve INVALID/zero/mismatch and helper failures without rerunning. Throughput acceptance additionally needs normalStop, requested30s, no sourcefault/gap and retained raw/Open evidence.",
+    "Record real chronology, nohalt/reset and DWT less-than-one-wrap conditions separately. The65s subprocess timeout is not proof of less than59.65s DWT interval. Nominal cycles are not calibrated time or CPU share.",
+    "On failure stop this plan and preserve all evidence; retainSI when stopped/link conditions permit. No automatic rollback, repeated START or software modification under this admission."
+  ],
+  "limits": [
+    "P1-M2-01 stable150k remains open until actual qualifying evidence.",
+    "P1-O2-02 software fix is accepted for SI; actual filled coherent64 remains pending. O2 REWORK and invalid zero64 remain unchanged.",
+    "SI restores observer overhead absent from SH/O2; a longer prefix does not isolate late-grant effectiveness.",
+    "Helper labels IMAGE_SIA/SIA-256 and expected_build_not_v2sh are cosmetic stale text; actual plan/byte/build comparisons use SI. Canonical physical report must use correct SHA-256/SI terminology."
+  ],
+  "open_blockers_in_plan_scope": [],
+  "rubric": [
+    {"criterion": "C1", "weight": 0.30, "score": 9.7, "basis": "Exact image/shared identity and bounded one-session procedure are pinned"},
+    {"criterion": "C2", "weight": 0.20, "score": 9.5, "basis": "Readback/replug/closed-terminal gates and no retry; fresh owner/chronology remain root responsibilities"},
+    {"criterion": "C3", "weight": 0.25, "score": 9.5, "basis": "All new archive/input/backup bytes verified; no physical result inferred"},
+    {"criterion": "C4", "weight": 0.15, "score": 9.5, "basis": "Procedure boundaries explicit; harmless inherited helper labels disclosed"},
+    {"criterion": "C5", "weight": 0.10, "score": 9.9, "basis": "Exact source, plan hash, helpers, prior package and backup support reproducibility"}
+  ],
+  "hardware_executed_by_critic": false,
+  "physical_success_established": false,
+  "report": "docs/reviews/v2-06p-flash-review.md"
+}
