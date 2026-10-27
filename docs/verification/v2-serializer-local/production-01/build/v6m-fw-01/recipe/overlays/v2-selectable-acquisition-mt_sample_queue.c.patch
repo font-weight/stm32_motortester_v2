@@ -1,0 +1,42 @@
+--- a/acquisition/mt_sample_queue.c
++++ b/acquisition/mt_sample_queue.c
+@@ -18,15 +18,15 @@
+     q->next_index = first_index;
+ }
+ 
+-mt_sample_queue_result mt_sample_queue_push(mt_sample_queue *q,
++mt_sample_queue_result mt_sample_queue_push_quantized(mt_sample_queue *q,
+                                            uint64_t first_index,
+                                            const uint16_t *samples,
+                                            uint16_t count,
+-                                           unsigned final_block) {
++                                           unsigned final_block,unsigned discarded_lsb) {
+     size_t i, tail;
+     if (!q) return MT_SAMPLE_QUEUE_ARGUMENT;
+     if (q->sealed) return MT_SAMPLE_QUEUE_CLOSED;
+-    if (!samples) return fail(q, MT_SAMPLE_QUEUE_ARGUMENT);
++    if (!samples || (discarded_lsb!=0u && discarded_lsb!=2u)) return fail(q, MT_SAMPLE_QUEUE_ARGUMENT);
+     if (final_block > 1u || count == 0u || count > MT_SAMPLE_QUEUE_BLOCK ||
+         (count < MT_SAMPLE_QUEUE_BLOCK && final_block == 0u))
+         return fail(q, MT_SAMPLE_QUEUE_COUNT);
+@@ -39,12 +39,19 @@
+ 
+     /* No fallible operation after validation: publish only a complete block. */
+     tail = (q->head + q->used) % MT_SAMPLE_QUEUE_SLOTS;
+-    memcpy(q->samples[tail], samples, (size_t)count * sizeof samples[0]);
++    if(discarded_lsb==2u) {
++        for(i=0;i<count;i++)q->samples[tail][i]=(uint16_t)(samples[i]&UINT16_C(0x0ffc));
++    } else memcpy(q->samples[tail], samples, (size_t)count * sizeof samples[0]);
+     q->counts[tail] = count;
+     ++q->used;
+     q->next_index += count;
+     if (final_block) q->sealed = 1u;
+     return MT_SAMPLE_QUEUE_OK;
++}
++
++mt_sample_queue_result mt_sample_queue_push(mt_sample_queue *q,uint64_t first_index,
++    const uint16_t *samples,uint16_t count,unsigned final_block) {
++    return mt_sample_queue_push_quantized(q,first_index,samples,count,final_block,0u);
+ }
+ 
+ void mt_sample_queue_seal(mt_sample_queue *q) {

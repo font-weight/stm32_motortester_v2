@@ -1,32 +1,38 @@
-# Изолированный прототип DATA1024
+# Serializer DATA1024
 
-Модуль не подключён в production recipe. Установленная SD и её runtime,
-RX/previous544, USB/DMA/queue и сохранённые результаты K2 не изменены.
-Назначение — проверить размещение1024 packed10 в TX1336 с late header count,
-ограниченные этапы CRC/COBS и раздельные staged/committed prefix.
+Модуль кодирует mode5/wire0.3 по [контракту](../../../docs/streaming-batch1024.md).
+Production recipe подключает `production/mt_batch1024.c` и общий API
+`production/mt_batch1024.h`. Прежний `mt_batch1024.c/.h` в этой папке —
+сохранённый исходник прототипа и SE для воспроизводимого сравнения.
+Оптимизация локальных CRC/cursors описана в [контракте M](../../../docs/streaming-serializer-local.md).
+Фактическая готовность и выполненные проверки — только в progress/review.
 
-`mt_batch1024_state` —32байта, caller-owned TX —1336. Raw начинается с7,
-COBS output с0: in-place кодировщик не требует второго большого массива.
-Collection принимает исходный ADC12, проверяет значения до masking и считает
-canonical prefixCRC по u16le. Wire frame максимум1335; фрагменты≤384 относятся
-к одному кадру с одним delimiter. Кандидат prefix публикуется только после
-всех известных accepted bytes и переданного внешнего final-guards predicate.
-Это API seam; модуль не реализует сам epoch/TIME/USB/queue admission.
+State —32байта, caller-owned TX —1336; state/storage/input не пересекаются.
+Raw начинается с7, COBS output с0; второй большой массив не нужен.
+Collection валидирует ADC12 до masking и считает canonical u16le prefixCRC.
+Wire frame≤1335, immutable fragments≤384 относятся к одному кадру с одним
+delimiter. Принятый prefix публикуется только после полного известного
+acceptance и внешних final guards. Epoch/TIME/queue/USB admission реализует core.
 
-Collection рассчитан на work-state и свободную область, включая retry-safe
-shared-byte append. CRC/COBS этапы destructive/monotonic: после invalidation
-нужен abort всего in-flight frame, старый state не откатывает storage.
-Перед production обязательно отдельное доказательство queue→staging ownership,
-Stop/HELLO/Abort/fault, ADC service schedule и exact linked SRAM/stack.
+Collection допускает work-state и retry-safe shared-byte append. CRC/COBS —
+destructive monotonic этапы: invalidation требует abort всего in-flight frame;
+откат cursor не восстанавливает изменённое storage. Один step обрабатывает
+до512 input bytes, сохраняя state перед каждым возвратом. Ограниченный объём
+работы сам по себе не доказывает ADC service deadline или физический темп.
 
-Один необходимый проверяющий проход:
+Сборка production без COM/SWD/Flash:
 
 ```powershell
-.\.venv\Scripts\python.exe -I -B tests\v2-stream-firmware\batch1024_check.py --output build\v6l-native-NEW
+.\.venv\Scripts\python.exe -I -B firmware\v2-stream\build_windows.py --output build\v6m-fw-NEW
 ```
 
-Runner компилирует native модель, запускает её один раз и компилирует только
-ARM object для размера state/локальных `.su`, без ARM image/link/Flash.
-Сохраняет stdout/stderr/inputs и synthetic1153-code fixture для host crossdecode.
-Он не открывает COM/SWD. Фактические проверки — в progress/review; кодирование
-не подтверждает stable150k, аналоговую точность или зажигание.
+Адресная проверка нового serializer и его подключения к actual core:
+
+```powershell
+.\.venv\Scripts\python.exe -I -B tests\v2-stream-firmware\batch1024_local_check.py --image build\v6m-fw-NEW --baseline build\v6l-fw-04 --zig build\v5-native-toolchain\zig-x86_64-windows-0.15.2\zig.exe --output build\v6m-native-NEW
+```
+
+Runner сравнивает serializer с frozen SE, исполняет actual-core модель,
+сохраняет input pins/выходы и fixture. Он не открывает аппаратные интерфейсы.
+Исторический `batch1024_check.py` отдельно воспроизводит изолированный
+прототип; его успешная проверка не заменяет production ownership/Stop/HELLO.

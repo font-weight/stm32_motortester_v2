@@ -3,7 +3,7 @@
 #include <stddef.h>
 #include <stdint.h>
 
-/* Shared serializer for V2SE software candidate. Frozen prototype API/body.
+/* Shared serializer for the V2 DATA1024 software candidate. Frozen API.
  * ADC/DMA/queue ownership, epoch, TIME and lifecycle admission belong to the
  * caller. No USB, callback, dynamic allocation or hidden acquisition pause. */
 #define MT_BATCH1024_CAPACITY 1336u

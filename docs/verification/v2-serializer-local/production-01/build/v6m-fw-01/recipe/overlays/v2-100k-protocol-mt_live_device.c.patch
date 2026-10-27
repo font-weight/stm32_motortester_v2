@@ -1,0 +1,11 @@
+--- a/protocol/mt_live_device.c
++++ b/protocol/mt_live_device.c
+@@ -319,7 +319,7 @@
+     } else if(d->want_caps) {
+         type=CAPS_REPLY; request=d->caps_request; m.payload_length=24;
+         w32(m.payload,1); w16(m.payload+4,1); m.payload[7]=12;
+-        w32(m.payload+8,200000); w32(m.payload+12,1); w16(m.payload+16,128); w32(m.payload+20,1);
++        w32(m.payload+8,100000); w32(m.payload+12,1); w16(m.payload+16,128); w32(m.payload+20,1);
+     } else if(d->want_start) {
+         type=START_ACK; request=d->generation; m.payload_length=16;
+         w32(m.payload,d->generation); w32(m.payload+4,1);

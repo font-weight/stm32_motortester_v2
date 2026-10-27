@@ -1,0 +1,12 @@
+--- a/acquisition/mt_sample_queue.h
++++ b/acquisition/mt_sample_queue.h
+@@ -3,7 +3,8 @@
+ #include <stddef.h>
+ #include <stdint.h>
+ 
+-#define MT_SAMPLE_QUEUE_SLOTS 16u
++/* Trade queue SRAM for a larger DMA ring; total SRAM remains within 20 KiB. */
++#define MT_SAMPLE_QUEUE_SLOTS 8u
+ #define MT_SAMPLE_QUEUE_BLOCK 128u
+ 
+ typedef enum {

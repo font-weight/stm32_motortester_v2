@@ -1,11 +1,19 @@
-# Кандидат V2SE: DATA1024 с отдельным владением staging
+# Кандидат V2SF: локальные счётчики подготовки DATA1024
 
-V2-06l1/build `0x56325345`, product `Motortester V2 Batch1024 SE`, по
+V2-06m/build `0x56325346`, product `Motortester V2 Batch1024 SF`, по
+[контракту M](../../docs/streaming-serializer-local.md) и
 [контракту1024](../../docs/streaming-batch1024.md). Новый mode5/config5:
 150k/ADC12/retained10, packed10 и прежний wire0.3 layout, maxDATA1024.
 Discovery cap15/maxblock1024/maxpayload1300; selected ACK/CAPS явно связывают
 mode5. Старые1..4 сохраняют границы, RX/previous543 и общий control codec544.
 Public150 требует обновлённых приложения и прошивки, без rate fallback.
+
+Относительно сохранённой SE меняется только реализация одного bounded
+serializer step: CRC/cursors/code держатся в локальных переменных и точно
+публикуются при каждом возврате, включая destructive error. Budget, bytes,
+проверки и ABI прежние; restrict не добавлен. Production recipe явно выбирает
+`batch1024/production/mt_batch1024.c`; frozen prototype/SE C сохранён отдельно.
+Это сокращение скомпилированной работы, не подтверждение устойчивых150k.
 
 Только TX увеличен544→1336 и добавлен state32. Queue8×128/DMA1024/half512/
 FIFO384/MPS64/burst6/<500мкс и H runtime/TIME/ADC/USB остаются прежними.
@@ -36,12 +44,14 @@ immutable DATA заканчивается под старой identity пере�
 Legacy136 по-прежнему один attempt/boot; tx_max исключает prepare.
 
 ```powershell
-.\.venv\Scripts\python.exe -I -B firmware\v2-stream\build_windows.py --output build\v6l-fw-candidate
+.\.venv\Scripts\python.exe -I -B firmware\v2-stream\build_windows.py --output build\v6m-fw-candidate
 ```
 
-Изолированный prototype/native01 сохранён отдельно. Actual-core model,
-exact ARM/static20KiB с8192 reserve, программный и Windows critic≥9,5, а затем
-отдельный аппаратный план обязательны. Сборка не открывает COM/SWD.
+Изолированный prototype/native01 и SE сохранены отдельно. Serializer
+differential/actual-core model, exact ARM/static20KiB с8192 reserve,
+программный critic≥9,5 и отдельный аппаратный план обязательны.
+При побайтно неизменном wire повторный GUI/Windows-пакет не требуется.
+Сборка не открывает COM/SWD.
 Кандидат не подтверждает stable150k/аналоговую полосу/точность или зажигание.
 Фактические проверки находятся в progress и независимых review.
 

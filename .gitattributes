@@ -61,6 +61,19 @@ docs/verification/v2-batch1024/**/*.o binary
 docs/verification/v2-batch1024/**/*.elf binary
 docs/reviews/v2-06l*.md -text
 docs/streaming-batch1024.md -text whitespace=cr-at-eol
+docs/verification/v2-serializer-local/** -text whitespace=cr-at-eol
+docs/verification/v2-serializer-local/**/*.bin binary
+docs/verification/v2-serializer-local/**/*.u16le binary
+docs/verification/v2-serializer-local/**/*.o binary
+docs/verification/v2-serializer-local/**/*.elf binary
+docs/verification/v2-serializer-local/**/*.txt -whitespace
+docs/verification/v2-serializer-local/**/*.log -whitespace
+docs/verification/v2-serializer-local/**/*.stdout -whitespace
+docs/verification/v2-serializer-local/**/*.stderr -whitespace
+docs/verification/v2-serializer-local/**/*.map -whitespace
+docs/verification/v2-serializer-local/**/*.patch -whitespace
+docs/reviews/v2-06m*.md -text
+docs/streaming-serializer-local.md -text whitespace=cr-at-eol
 firmware/v2-stream/batch1024/** -text
 tests/v2-stream-firmware/batch1024* -text
 host/docs/stream-modes.md -text

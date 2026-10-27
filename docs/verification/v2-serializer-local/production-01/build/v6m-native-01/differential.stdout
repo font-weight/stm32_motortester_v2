@@ -1,0 +1,4 @@
+PASS full1024 budgets1..512 zero/nonzero/mixed; tails1/2/3/127/128/129/255/256/257/1023; per-call return/state/all-storage equality
+PASS CRC/COBS exact transitions; code255/uint16 wrap; consumed-cursor and partial-store error publication; safe-index defensive states
+PASS null/invalid step calls; one shared-byte rejected-work retry; abort remains terminal
+differential_calls=86264; step_calls=60061; valid_frames=1546; hardware_executed=0; throughput_claim=0

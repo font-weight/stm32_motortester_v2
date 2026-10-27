@@ -1,5 +1,16 @@
 # Координация самостоятельного V2
 
+V2-06m: higher_fs_review — firmware/v2-stream/**, tests/v2-stream-firmware/**,
+build/v6m-* кроме board/host; оптимизация serializer, новый freeze и только
+необходимые differential/actual-core/ARM проверки. Root —
+независимый разбор scheduler, канонические документы, интеграция и единолично
+COM/SWD. Stream200_critic — независимая оценка выбранного изменения и точного
+результата M. Host_200k — только новая differential C-модель
+tests/v2-stream-firmware/batch1024_local_model.c; её единственный запуск
+выполняет higher_fs_review своим runner. Wire/host сохраняются.
+Выбраны локальные cursor/CRC/code; прежние TIME/runtime/wire не менять.
+Пользователь возобновил работу; ограничение остановки L2 больше не действует.
+
 V2-06l L1 после допуска r2: higher_fs_review — firmware/v2-stream/**,
 tests/v2-stream-firmware/**, build/v6l-fw-draft, v6l-fw-01,
 v6l-core-native-01 и новый freeze; прежний prototype/native01 неизменен.

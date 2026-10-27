@@ -1,4 +1,4 @@
-"""Build the separate V2SE DATA1024 batch150k candidate; never flash hardware."""
+"""Build the separate V2SF DATA1024 local-cursor candidate; never flash hardware."""
 import argparse
 import hashlib
 import importlib.util
@@ -305,7 +305,7 @@ def main():
             target = out / "patched" / row["target"]
             target.write_bytes(apply_patch((out / row["source"]).read_bytes(),
                 (here / "overlays" / row["patch"]).read_bytes(), row))
-        (out / "patched/v2/protocol/mt_batch1024.c").write_bytes((here / "batch1024/mt_batch1024.c").read_bytes())
+        (out / "patched/v2/protocol/mt_batch1024.c").write_bytes((here / "batch1024/production/mt_batch1024.c").read_bytes())
         (out / "patched/v2/protocol/mt_batch1024.h").write_bytes((here / "batch1024/production/mt_batch1024.h").read_bytes())
         if config["active_profile_enabled"]:
             for name in ("mt_stream_profile.c", "mt_stream_profile.h"):

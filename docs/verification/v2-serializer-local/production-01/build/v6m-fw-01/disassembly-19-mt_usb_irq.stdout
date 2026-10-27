@@ -1,0 +1,30 @@
+
+objects/19-mt_usb_irq.o:     file format elf32-littlearm
+
+
+Disassembly of section .text.usb_irq_dispatch:
+
+00000000 <usb_irq_dispatch>:
+   0:	b510      	push	{r4, lr}
+   2:	f7ff fffe 	bl	0 <mt_irq_guard_enter>
+			2: R_ARM_THM_CALL	mt_irq_guard_enter
+   6:	4604      	mov	r4, r0
+   8:	2000      	movs	r0, #0
+   a:	f7ff fffe 	bl	0 <dcd_int_handler>
+			a: R_ARM_THM_CALL	dcd_int_handler
+   e:	4620      	mov	r0, r4
+  10:	e8bd 4010 	ldmia.w	sp!, {r4, lr}
+  14:	f7ff bffe 	b.w	0 <mt_irq_guard_leave>
+			14: R_ARM_THM_JUMP24	mt_irq_guard_leave
+
+Disassembly of section .text.USB_HP_CAN1_TX_IRQHandler:
+
+00000000 <USB_HP_CAN1_TX_IRQHandler>:
+   0:	f7ff bffe 	b.w	0 <USB_HP_CAN1_TX_IRQHandler>
+			0: R_ARM_THM_JUMP24	usb_irq_dispatch
+
+Disassembly of section .text.USB_LP_CAN1_RX0_IRQHandler:
+
+00000000 <USB_LP_CAN1_RX0_IRQHandler>:
+   0:	f7ff bffe 	b.w	0 <USB_LP_CAN1_RX0_IRQHandler>
+			0: R_ARM_THM_JUMP24	usb_irq_dispatch

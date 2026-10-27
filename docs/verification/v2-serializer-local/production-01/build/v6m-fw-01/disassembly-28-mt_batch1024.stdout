@@ -1,0 +1,529 @@
+
+objects/28-mt_batch1024.o:     file format elf32-littlearm
+
+
+Disassembly of section .text.put32:
+
+00000000 <put32>:
+   0:	0a0b      	lsrs	r3, r1, #8
+   2:	7001      	strb	r1, [r0, #0]
+   4:	7043      	strb	r3, [r0, #1]
+   6:	0c0b      	lsrs	r3, r1, #16
+   8:	0e09      	lsrs	r1, r1, #24
+   a:	7083      	strb	r3, [r0, #2]
+   c:	70c1      	strb	r1, [r0, #3]
+   e:	4770      	bx	lr
+
+Disassembly of section .text.mt_batch1024_begin:
+
+00000000 <mt_batch1024_begin>:
+   0:	b5f8      	push	{r3, r4, r5, r6, r7, lr}
+   2:	460d      	mov	r5, r1
+   4:	4614      	mov	r4, r2
+   6:	461f      	mov	r7, r3
+   8:	4606      	mov	r6, r0
+   a:	2800      	cmp	r0, #0
+   c:	d060      	beq.n	d0 <mt_batch1024_begin+0xd0>
+   e:	2900      	cmp	r1, #0
+  10:	d05e      	beq.n	d0 <mt_batch1024_begin+0xd0>
+  12:	2a00      	cmp	r2, #0
+  14:	d05c      	beq.n	d0 <mt_batch1024_begin+0xd0>
+  16:	e9d2 3200 	ldrd	r3, r2, [r2]
+  1a:	4313      	orrs	r3, r2
+  1c:	d058      	beq.n	d0 <mt_batch1024_begin+0xd0>
+  1e:	6922      	ldr	r2, [r4, #16]
+  20:	2a00      	cmp	r2, #0
+  22:	d055      	beq.n	d0 <mt_batch1024_begin+0xd0>
+  24:	69a2      	ldr	r2, [r4, #24]
+  26:	2a00      	cmp	r2, #0
+  28:	d052      	beq.n	d0 <mt_batch1024_begin+0xd0>
+  2a:	6963      	ldr	r3, [r4, #20]
+  2c:	2b05      	cmp	r3, #5
+  2e:	d14f      	bne.n	d0 <mt_batch1024_begin+0xd0>
+  30:	2220      	movs	r2, #32
+  32:	2100      	movs	r1, #0
+  34:	f7ff fffe 	bl	0 <memset>
+			34: R_ARM_THM_CALL	memset
+  38:	f04f 33ff 	mov.w	r3, #4294967295
+  3c:	6073      	str	r3, [r6, #4]
+  3e:	2301      	movs	r3, #1
+  40:	6037      	str	r7, [r6, #0]
+  42:	82b3      	strh	r3, [r6, #20]
+  44:	61f7      	str	r7, [r6, #28]
+  46:	222c      	movs	r2, #44	@ 0x2c
+  48:	2100      	movs	r1, #0
+  4a:	1de8      	adds	r0, r5, #7
+  4c:	f7ff fffe 	bl	0 <memset>
+			4c: R_ARM_THM_CALL	memset
+  50:	2303      	movs	r3, #3
+  52:	722b      	strb	r3, [r5, #8]
+  54:	2398      	movs	r3, #152	@ 0x98
+  56:	726b      	strb	r3, [r5, #9]
+  58:	2300      	movs	r3, #0
+  5a:	e9d4 c700 	ldrd	ip, r7, [r4]
+  5e:	f105 060e 	add.w	r6, r5, #14
+  62:	f1c3 0020 	rsb	r0, r3, #32
+  66:	f1a3 0120 	sub.w	r1, r3, #32
+  6a:	fa2c f203 	lsr.w	r2, ip, r3
+  6e:	fa07 f000 	lsl.w	r0, r7, r0
+  72:	4302      	orrs	r2, r0
+  74:	fa27 f101 	lsr.w	r1, r7, r1
+  78:	3308      	adds	r3, #8
+  7a:	430a      	orrs	r2, r1
+  7c:	2b40      	cmp	r3, #64	@ 0x40
+  7e:	f806 2f01 	strb.w	r2, [r6, #1]!
+  82:	d1ee      	bne.n	62 <mt_batch1024_begin+0x62>
+  84:	69a1      	ldr	r1, [r4, #24]
+  86:	f105 0017 	add.w	r0, r5, #23
+  8a:	f7ff fffe 	bl	0 <mt_batch1024_begin>
+			8a: R_ARM_THM_CALL	put32
+  8e:	6921      	ldr	r1, [r4, #16]
+  90:	f105 001f 	add.w	r0, r5, #31
+  94:	f7ff fffe 	bl	0 <mt_batch1024_begin>
+			94: R_ARM_THM_CALL	put32
+  98:	6961      	ldr	r1, [r4, #20]
+  9a:	f105 0023 	add.w	r0, r5, #35	@ 0x23
+  9e:	f7ff fffe 	bl	0 <mt_batch1024_begin>
+			9e: R_ARM_THM_CALL	put32
+  a2:	e9d4 6402 	ldrd	r6, r4, [r4, #8]
+  a6:	2300      	movs	r3, #0
+  a8:	3526      	adds	r5, #38	@ 0x26
+  aa:	f1c3 0020 	rsb	r0, r3, #32
+  ae:	f1a3 0120 	sub.w	r1, r3, #32
+  b2:	fa26 f203 	lsr.w	r2, r6, r3
+  b6:	fa04 f000 	lsl.w	r0, r4, r0
+  ba:	4302      	orrs	r2, r0
+  bc:	fa24 f101 	lsr.w	r1, r4, r1
+  c0:	3308      	adds	r3, #8
+  c2:	430a      	orrs	r2, r1
+  c4:	2b40      	cmp	r3, #64	@ 0x40
+  c6:	f805 2f01 	strb.w	r2, [r5, #1]!
+  ca:	d1ee      	bne.n	aa <mt_batch1024_begin+0xaa>
+  cc:	2001      	movs	r0, #1
+  ce:	bdf8      	pop	{r3, r4, r5, r6, r7, pc}
+  d0:	2000      	movs	r0, #0
+  d2:	e7fc      	b.n	ce <mt_batch1024_begin+0xce>
+
+Disassembly of section .text.mt_batch1024_collect:
+
+00000000 <mt_batch1024_collect>:
+   0:	e92d 4ff0 	stmdb	sp!, {r4, r5, r6, r7, r8, r9, sl, fp, lr}
+   4:	f8dd e024 	ldr.w	lr, [sp, #36]	@ 0x24
+   8:	4605      	mov	r5, r0
+   a:	f8bd 4028 	ldrh.w	r4, [sp, #40]	@ 0x28
+   e:	2800      	cmp	r0, #0
+  10:	f000 80a9 	beq.w	166 <mt_batch1024_collect+0x166>
+  14:	2900      	cmp	r1, #0
+  16:	f000 80a6 	beq.w	166 <mt_batch1024_collect+0x166>
+  1a:	f1be 0f00 	cmp.w	lr, #0
+  1e:	f000 80a2 	beq.w	166 <mt_batch1024_collect+0x166>
+  22:	8a80      	ldrh	r0, [r0, #20]
+  24:	2801      	cmp	r0, #1
+  26:	f040 809e 	bne.w	166 <mt_batch1024_collect+0x166>
+  2a:	1e60      	subs	r0, r4, #1
+  2c:	f5b0 7f00 	cmp.w	r0, #512	@ 0x200
+  30:	f080 8099 	bcs.w	166 <mt_batch1024_collect+0x166>
+  34:	892e      	ldrh	r6, [r5, #8]
+  36:	f5b6 6f80 	cmp.w	r6, #1024	@ 0x400
+  3a:	f200 8094 	bhi.w	166 <mt_batch1024_collect+0x166>
+  3e:	f5c6 6080 	rsb	r0, r6, #1024	@ 0x400
+  42:	4284      	cmp	r4, r0
+  44:	f200 808f 	bhi.w	166 <mt_batch1024_collect+0x166>
+  48:	2000      	movs	r0, #0
+  4a:	4680      	mov	r8, r0
+  4c:	4681      	mov	r9, r0
+  4e:	f101 0a26 	add.w	sl, r1, #38	@ 0x26
+  52:	f81a cf01 	ldrb.w	ip, [sl, #1]!
+  56:	f1a0 0720 	sub.w	r7, r0, #32
+  5a:	f1c0 0b20 	rsb	fp, r0, #32
+  5e:	fa0c f707 	lsl.w	r7, ip, r7
+  62:	fa2c fb0b 	lsr.w	fp, ip, fp
+  66:	ea47 070b 	orr.w	r7, r7, fp
+  6a:	fa0c fc00 	lsl.w	ip, ip, r0
+  6e:	3008      	adds	r0, #8
+  70:	ea4c 0c08 	orr.w	ip, ip, r8
+  74:	ea47 0709 	orr.w	r7, r7, r9
+  78:	2840      	cmp	r0, #64	@ 0x40
+  7a:	46e0      	mov	r8, ip
+  7c:	46b9      	mov	r9, r7
+  7e:	d1e8      	bne.n	52 <mt_batch1024_collect+0x52>
+  80:	eb18 0806 	adds.w	r8, r8, r6
+  84:	f159 0900 	adcs.w	r9, r9, #0
+  88:	f04f 0000 	mov.w	r0, #0
+  8c:	bf28      	it	cs
+  8e:	2001      	movcs	r0, #1
+  90:	2800      	cmp	r0, #0
+  92:	d168      	bne.n	166 <mt_batch1024_collect+0x166>
+  94:	eb16 060c 	adds.w	r6, r6, ip
+  98:	f147 0700 	adc.w	r7, r7, #0
+  9c:	429f      	cmp	r7, r3
+  9e:	bf08      	it	eq
+  a0:	4296      	cmpeq	r6, r2
+  a2:	d15e      	bne.n	162 <mt_batch1024_collect+0x162>
+  a4:	1912      	adds	r2, r2, r4
+  a6:	f153 0300 	adcs.w	r3, r3, #0
+  aa:	bf28      	it	cs
+  ac:	2001      	movcs	r0, #1
+  ae:	2800      	cmp	r0, #0
+  b0:	d159      	bne.n	166 <mt_batch1024_collect+0x166>
+  b2:	f83e 3010 	ldrh.w	r3, [lr, r0, lsl #1]
+  b6:	f5b3 5f80 	cmp.w	r3, #4096	@ 0x1000
+  ba:	d254      	bcs.n	166 <mt_batch1024_collect+0x166>
+  bc:	3001      	adds	r0, #1
+  be:	4284      	cmp	r4, r0
+  c0:	d8f7      	bhi.n	b2 <mt_batch1024_collect+0xb2>
+  c2:	f04f 0c00 	mov.w	ip, #0
+  c6:	682e      	ldr	r6, [r5, #0]
+  c8:	f8df 90a0 	ldr.w	r9, [pc, #160]	@ 16c <mt_batch1024_collect+0x16c>
+  cc:	200a      	movs	r0, #10
+  ce:	892b      	ldrh	r3, [r5, #8]
+  d0:	f83e 201c 	ldrh.w	r2, [lr, ip, lsl #1]
+  d4:	4463      	add	r3, ip
+  d6:	4343      	muls	r3, r0
+  d8:	08d8      	lsrs	r0, r3, #3
+  da:	f013 0307 	ands.w	r3, r3, #7
+  de:	bf14      	ite	ne
+  e0:	2701      	movne	r7, #1
+  e2:	461f      	moveq	r7, r3
+  e4:	f022 0203 	bic.w	r2, r2, #3
+  e8:	f100 0a33 	add.w	sl, r0, #51	@ 0x33
+  ec:	ea4f 5202 	mov.w	r2, r2, lsl #20
+  f0:	bf18      	it	ne
+  f2:	fa07 fb03 	lslne.w	fp, r7, r3
+  f6:	ea4f 5212 	mov.w	r2, r2, lsr #20
+  fa:	bf18      	it	ne
+  fc:	f811 700a 	ldrbne.w	r7, [r1, sl]
+ 100:	ea4f 0892 	mov.w	r8, r2, lsr #2
+ 104:	bf1c      	itt	ne
+ 106:	f10b 3bff 	addne.w	fp, fp, #4294967295
+ 10a:	ea0b 0707 	andne.w	r7, fp, r7
+ 10e:	fa08 fb03 	lsl.w	fp, r8, r3
+ 112:	f1c3 0308 	rsb	r3, r3, #8
+ 116:	fa48 f803 	asr.w	r8, r8, r3
+ 11a:	ea82 0306 	eor.w	r3, r2, r6
+ 11e:	b2db      	uxtb	r3, r3
+ 120:	f859 3023 	ldr.w	r3, [r9, r3, lsl #2]
+ 124:	f10c 0c01 	add.w	ip, ip, #1
+ 128:	ea83 2316 	eor.w	r3, r3, r6, lsr #8
+ 12c:	ea83 2212 	eor.w	r2, r3, r2, lsr #8
+ 130:	b2d2      	uxtb	r2, r2
+ 132:	f859 6022 	ldr.w	r6, [r9, r2, lsl #2]
+ 136:	ea47 070b 	orr.w	r7, r7, fp
+ 13a:	4408      	add	r0, r1
+ 13c:	4564      	cmp	r4, ip
+ 13e:	f801 700a 	strb.w	r7, [r1, sl]
+ 142:	ea86 2613 	eor.w	r6, r6, r3, lsr #8
+ 146:	f880 8034 	strb.w	r8, [r0, #52]	@ 0x34
+ 14a:	d8bf      	bhi.n	cc <mt_batch1024_collect+0xcc>
+ 14c:	892b      	ldrh	r3, [r5, #8]
+ 14e:	2001      	movs	r0, #1
+ 150:	441c      	add	r4, r3
+ 152:	230a      	movs	r3, #10
+ 154:	b2a4      	uxth	r4, r4
+ 156:	812c      	strh	r4, [r5, #8]
+ 158:	435c      	muls	r4, r3
+ 15a:	3407      	adds	r4, #7
+ 15c:	08e4      	lsrs	r4, r4, #3
+ 15e:	82ec      	strh	r4, [r5, #22]
+ 160:	602e      	str	r6, [r5, #0]
+ 162:	e8bd 8ff0 	ldmia.w	sp!, {r4, r5, r6, r7, r8, r9, sl, fp, pc}
+ 166:	2000      	movs	r0, #0
+ 168:	e7fb      	b.n	162 <mt_batch1024_collect+0x162>
+ 16a:	bf00      	nop
+ 16c:	00000000 	.word	0x00000000
+			16c: R_ARM_ABS32	mt_v2_crc32_table
+
+Disassembly of section .text.mt_batch1024_seal:
+
+00000000 <mt_batch1024_seal>:
+   0:	b310      	cbz	r0, 48 <mt_batch1024_seal+0x48>
+   2:	b301      	cbz	r1, 46 <mt_batch1024_seal+0x46>
+   4:	8a82      	ldrh	r2, [r0, #20]
+   6:	2a01      	cmp	r2, #1
+   8:	d11d      	bne.n	46 <mt_batch1024_seal+0x46>
+   a:	8903      	ldrh	r3, [r0, #8]
+   c:	3b01      	subs	r3, #1
+   e:	b29b      	uxth	r3, r3
+  10:	f5b3 6f80 	cmp.w	r3, #1024	@ 0x400
+  14:	d217      	bcs.n	46 <mt_batch1024_seal+0x46>
+  16:	8ac3      	ldrh	r3, [r0, #22]
+  18:	3314      	adds	r3, #20
+  1a:	b29b      	uxth	r3, r3
+  1c:	72cb      	strb	r3, [r1, #11]
+  1e:	0a1b      	lsrs	r3, r3, #8
+  20:	730b      	strb	r3, [r1, #12]
+  22:	8903      	ldrh	r3, [r0, #8]
+  24:	f881 302f 	strb.w	r3, [r1, #47]	@ 0x2f
+  28:	0a1b      	lsrs	r3, r3, #8
+  2a:	f881 3030 	strb.w	r3, [r1, #48]	@ 0x30
+  2e:	8ac3      	ldrh	r3, [r0, #22]
+  30:	3330      	adds	r3, #48	@ 0x30
+  32:	8143      	strh	r3, [r0, #10]
+  34:	2300      	movs	r3, #0
+  36:	8183      	strh	r3, [r0, #12]
+  38:	f04f 33ff 	mov.w	r3, #4294967295
+  3c:	6043      	str	r3, [r0, #4]
+  3e:	2302      	movs	r3, #2
+  40:	8283      	strh	r3, [r0, #20]
+  42:	4610      	mov	r0, r2
+  44:	4770      	bx	lr
+  46:	2000      	movs	r0, #0
+  48:	4770      	bx	lr
+
+Disassembly of section .text.mt_batch1024_step:
+
+00000000 <mt_batch1024_step>:
+   0:	e92d 43f8 	stmdb	sp!, {r3, r4, r5, r6, r7, r8, r9, lr}
+   4:	460e      	mov	r6, r1
+   6:	4605      	mov	r5, r0
+   8:	2800      	cmp	r0, #0
+   a:	f000 80a1 	beq.w	150 <mt_batch1024_step+0x150>
+   e:	2900      	cmp	r1, #0
+  10:	f000 809e 	beq.w	150 <mt_batch1024_step+0x150>
+  14:	1e53      	subs	r3, r2, #1
+  16:	f5b3 7f00 	cmp.w	r3, #512	@ 0x200
+  1a:	f080 8099 	bcs.w	150 <mt_batch1024_step+0x150>
+  1e:	8a83      	ldrh	r3, [r0, #20]
+  20:	2b04      	cmp	r3, #4
+  22:	f000 8093 	beq.w	14c <mt_batch1024_step+0x14c>
+  26:	2b02      	cmp	r3, #2
+  28:	d137      	bne.n	9a <mt_batch1024_step+0x9a>
+  2a:	f240 41fe 	movw	r1, #1278	@ 0x4fe
+  2e:	8940      	ldrh	r0, [r0, #10]
+  30:	f1a0 0332 	sub.w	r3, r0, #50	@ 0x32
+  34:	b29b      	uxth	r3, r3
+  36:	428b      	cmp	r3, r1
+  38:	f200 808a 	bhi.w	150 <mt_batch1024_step+0x150>
+  3c:	89ab      	ldrh	r3, [r5, #12]
+  3e:	f1a0 0c04 	sub.w	ip, r0, #4
+  42:	4563      	cmp	r3, ip
+  44:	f200 8084 	bhi.w	150 <mt_batch1024_step+0x150>
+  48:	f04f 0400 	mov.w	r4, #0
+  4c:	6869      	ldr	r1, [r5, #4]
+  4e:	d212      	bcs.n	76 <mt_batch1024_step+0x76>
+  50:	f8df e104 	ldr.w	lr, [pc, #260]	@ 158 <mt_batch1024_step+0x158>
+  54:	f106 0807 	add.w	r8, r6, #7
+  58:	f818 7003 	ldrb.w	r7, [r8, r3]
+  5c:	3401      	adds	r4, #1
+  5e:	404f      	eors	r7, r1
+  60:	b2ff      	uxtb	r7, r7
+  62:	f85e 7027 	ldr.w	r7, [lr, r7, lsl #2]
+  66:	42a2      	cmp	r2, r4
+  68:	ea87 2111 	eor.w	r1, r7, r1, lsr #8
+  6c:	f103 0301 	add.w	r3, r3, #1
+  70:	d901      	bls.n	76 <mt_batch1024_step+0x76>
+  72:	459c      	cmp	ip, r3
+  74:	d8f0      	bhi.n	58 <mt_batch1024_step+0x58>
+  76:	459c      	cmp	ip, r3
+  78:	6069      	str	r1, [r5, #4]
+  7a:	81ab      	strh	r3, [r5, #12]
+  7c:	d10a      	bne.n	94 <mt_batch1024_step+0x94>
+  7e:	3003      	adds	r0, #3
+  80:	43c9      	mvns	r1, r1
+  82:	4430      	add	r0, r6
+  84:	f7ff fffe 	bl	0 <mt_batch1024_step>
+			84: R_ARM_THM_CALL	put32
+  88:	f44f 3380 	mov.w	r3, #65536	@ 0x10000
+  8c:	e9c5 3303 	strd	r3, r3, [r5, #12]
+  90:	2303      	movs	r3, #3
+  92:	82ab      	strh	r3, [r5, #20]
+  94:	4620      	mov	r0, r4
+  96:	e8bd 83f8 	ldmia.w	sp!, {r3, r4, r5, r6, r7, r8, r9, pc}
+  9a:	2b03      	cmp	r3, #3
+  9c:	d158      	bne.n	150 <mt_batch1024_step+0x150>
+  9e:	8980      	ldrh	r0, [r0, #12]
+  a0:	f8b5 c00a 	ldrh.w	ip, [r5, #10]
+  a4:	4560      	cmp	r0, ip
+  a6:	d853      	bhi.n	150 <mt_batch1024_step+0x150>
+  a8:	f5bc 6fa6 	cmp.w	ip, #1328	@ 0x530
+  ac:	d850      	bhi.n	150 <mt_batch1024_step+0x150>
+  ae:	4584      	cmp	ip, r0
+  b0:	4603      	mov	r3, r0
+  b2:	89ec      	ldrh	r4, [r5, #14]
+  b4:	8a2f      	ldrh	r7, [r5, #16]
+  b6:	8a69      	ldrh	r1, [r5, #18]
+  b8:	d943      	bls.n	142 <mt_batch1024_step+0x142>
+  ba:	1833      	adds	r3, r6, r0
+  bc:	f893 8007 	ldrb.w	r8, [r3, #7]
+  c0:	1c43      	adds	r3, r0, #1
+  c2:	3008      	adds	r0, #8
+  c4:	4284      	cmp	r4, r0
+  c6:	d23e      	bcs.n	146 <mt_batch1024_step+0x146>
+  c8:	46a6      	mov	lr, r4
+  ca:	2001      	movs	r0, #1
+  cc:	f106 0907 	add.w	r9, r6, #7
+  d0:	3401      	adds	r4, #1
+  d2:	f1b8 0f00 	cmp.w	r8, #0
+  d6:	d129      	bne.n	12c <mt_batch1024_step+0x12c>
+  d8:	55f1      	strb	r1, [r6, r7]
+  da:	4677      	mov	r7, lr
+  dc:	2101      	movs	r1, #1
+  de:	4282      	cmp	r2, r0
+  e0:	d901      	bls.n	e6 <mt_batch1024_step+0xe6>
+  e2:	459c      	cmp	ip, r3
+  e4:	d816      	bhi.n	114 <mt_batch1024_step+0x114>
+  e6:	459c      	cmp	ip, r3
+  e8:	d10f      	bne.n	10a <mt_batch1024_step+0x10a>
+  ea:	f240 5236 	movw	r2, #1334	@ 0x536
+  ee:	4294      	cmp	r4, r2
+  f0:	d829      	bhi.n	146 <mt_batch1024_step+0x146>
+  f2:	f04f 0c00 	mov.w	ip, #0
+  f6:	55f1      	strb	r1, [r6, r7]
+  f8:	1c62      	adds	r2, r4, #1
+  fa:	f806 c004 	strb.w	ip, [r6, r4]
+  fe:	2404      	movs	r4, #4
+ 100:	82ac      	strh	r4, [r5, #20]
+ 102:	4614      	mov	r4, r2
+ 104:	836a      	strh	r2, [r5, #26]
+ 106:	f8a5 c018 	strh.w	ip, [r5, #24]
+ 10a:	81ab      	strh	r3, [r5, #12]
+ 10c:	81ec      	strh	r4, [r5, #14]
+ 10e:	822f      	strh	r7, [r5, #16]
+ 110:	8269      	strh	r1, [r5, #18]
+ 112:	e7c0      	b.n	96 <mt_batch1024_step+0x96>
+ 114:	f103 0e01 	add.w	lr, r3, #1
+ 118:	f819 8003 	ldrb.w	r8, [r9, r3]
+ 11c:	3308      	adds	r3, #8
+ 11e:	429c      	cmp	r4, r3
+ 120:	f100 0001 	add.w	r0, r0, #1
+ 124:	4673      	mov	r3, lr
+ 126:	d20e      	bcs.n	146 <mt_batch1024_step+0x146>
+ 128:	46a6      	mov	lr, r4
+ 12a:	e7d1      	b.n	d0 <mt_batch1024_step+0xd0>
+ 12c:	3101      	adds	r1, #1
+ 12e:	b289      	uxth	r1, r1
+ 130:	29ff      	cmp	r1, #255	@ 0xff
+ 132:	f806 800e 	strb.w	r8, [r6, lr]
+ 136:	d1d2      	bne.n	de <mt_batch1024_step+0xde>
+ 138:	55f1      	strb	r1, [r6, r7]
+ 13a:	4627      	mov	r7, r4
+ 13c:	f10e 0402 	add.w	r4, lr, #2
+ 140:	e7cc      	b.n	dc <mt_batch1024_step+0xdc>
+ 142:	2000      	movs	r0, #0
+ 144:	e7cf      	b.n	e6 <mt_batch1024_step+0xe6>
+ 146:	f04f 30ff 	mov.w	r0, #4294967295
+ 14a:	e7de      	b.n	10a <mt_batch1024_step+0x10a>
+ 14c:	2000      	movs	r0, #0
+ 14e:	e7a2      	b.n	96 <mt_batch1024_step+0x96>
+ 150:	f04f 30ff 	mov.w	r0, #4294967295
+ 154:	e79f      	b.n	96 <mt_batch1024_step+0x96>
+ 156:	bf00      	nop
+ 158:	00000000 	.word	0x00000000
+			158: R_ARM_ABS32	mt_v2_crc32_table
+
+Disassembly of section .text.mt_batch1024_piece:
+
+00000000 <mt_batch1024_piece>:
+   0:	b570      	push	{r4, r5, r6, lr}
+   2:	b1c8      	cbz	r0, 38 <mt_batch1024_piece+0x38>
+   4:	b1c9      	cbz	r1, 3a <mt_batch1024_piece+0x3a>
+   6:	b1c2      	cbz	r2, 3a <mt_batch1024_piece+0x3a>
+   8:	b1bb      	cbz	r3, 3a <mt_batch1024_piece+0x3a>
+   a:	8a84      	ldrh	r4, [r0, #20]
+   c:	2c04      	cmp	r4, #4
+   e:	d114      	bne.n	3a <mt_batch1024_piece+0x3a>
+  10:	f240 5636 	movw	r6, #1334	@ 0x536
+  14:	8b44      	ldrh	r4, [r0, #26]
+  16:	1e65      	subs	r5, r4, #1
+  18:	b2ad      	uxth	r5, r5
+  1a:	42b5      	cmp	r5, r6
+  1c:	d80d      	bhi.n	3a <mt_batch1024_piece+0x3a>
+  1e:	8b00      	ldrh	r0, [r0, #24]
+  20:	4284      	cmp	r4, r0
+  22:	d90a      	bls.n	3a <mt_batch1024_piece+0x3a>
+  24:	1a24      	subs	r4, r4, r0
+  26:	f5b4 7fc0 	cmp.w	r4, #384	@ 0x180
+  2a:	bf28      	it	cs
+  2c:	f44f 74c0 	movcs.w	r4, #384	@ 0x180
+  30:	4401      	add	r1, r0
+  32:	2001      	movs	r0, #1
+  34:	6011      	str	r1, [r2, #0]
+  36:	601c      	str	r4, [r3, #0]
+  38:	bd70      	pop	{r4, r5, r6, pc}
+  3a:	2000      	movs	r0, #0
+  3c:	e7fc      	b.n	38 <mt_batch1024_piece+0x38>
+
+Disassembly of section .text.mt_batch1024_accepted:
+
+00000000 <mt_batch1024_accepted>:
+   0:	b530      	push	{r4, r5, lr}
+   2:	b1b8      	cbz	r0, 34 <mt_batch1024_accepted+0x34>
+   4:	8a83      	ldrh	r3, [r0, #20]
+   6:	2b04      	cmp	r3, #4
+   8:	d115      	bne.n	36 <mt_batch1024_accepted+0x36>
+   a:	8b02      	ldrh	r2, [r0, #24]
+   c:	8b43      	ldrh	r3, [r0, #26]
+   e:	429a      	cmp	r2, r3
+  10:	d811      	bhi.n	36 <mt_batch1024_accepted+0x36>
+  12:	f240 5536 	movw	r5, #1334	@ 0x536
+  16:	1e5c      	subs	r4, r3, #1
+  18:	b2a4      	uxth	r4, r4
+  1a:	42ac      	cmp	r4, r5
+  1c:	d80b      	bhi.n	36 <mt_batch1024_accepted+0x36>
+  1e:	1a9b      	subs	r3, r3, r2
+  20:	f5b3 7fc0 	cmp.w	r3, #384	@ 0x180
+  24:	bf28      	it	cs
+  26:	f44f 73c0 	movcs.w	r3, #384	@ 0x180
+  2a:	428b      	cmp	r3, r1
+  2c:	d303      	bcc.n	36 <mt_batch1024_accepted+0x36>
+  2e:	440a      	add	r2, r1
+  30:	8302      	strh	r2, [r0, #24]
+  32:	2001      	movs	r0, #1
+  34:	bd30      	pop	{r4, r5, pc}
+  36:	2000      	movs	r0, #0
+  38:	e7fc      	b.n	34 <mt_batch1024_accepted+0x34>
+
+Disassembly of section .text.mt_batch1024_commit:
+
+00000000 <mt_batch1024_commit>:
+   0:	b5f0      	push	{r4, r5, r6, r7, lr}
+   2:	9e07      	ldr	r6, [sp, #28]
+   4:	e9dd 1505 	ldrd	r1, r5, [sp, #20]
+   8:	b348      	cbz	r0, 5e <mt_batch1024_commit+0x5e>
+   a:	b345      	cbz	r5, 5e <mt_batch1024_commit+0x5e>
+   c:	b33e      	cbz	r6, 5e <mt_batch1024_commit+0x5e>
+   e:	2901      	cmp	r1, #1
+  10:	d125      	bne.n	5e <mt_batch1024_commit+0x5e>
+  12:	8a84      	ldrh	r4, [r0, #20]
+  14:	2c04      	cmp	r4, #4
+  16:	d122      	bne.n	5e <mt_batch1024_commit+0x5e>
+  18:	8b44      	ldrh	r4, [r0, #26]
+  1a:	b304      	cbz	r4, 5e <mt_batch1024_commit+0x5e>
+  1c:	8b07      	ldrh	r7, [r0, #24]
+  1e:	42a7      	cmp	r7, r4
+  20:	d11d      	bne.n	5e <mt_batch1024_commit+0x5e>
+  22:	e9d5 7400 	ldrd	r7, r4, [r5]
+  26:	429c      	cmp	r4, r3
+  28:	bf08      	it	eq
+  2a:	4297      	cmpeq	r7, r2
+  2c:	d117      	bne.n	5e <mt_batch1024_commit+0x5e>
+  2e:	6837      	ldr	r7, [r6, #0]
+  30:	69c4      	ldr	r4, [r0, #28]
+  32:	42a7      	cmp	r7, r4
+  34:	d113      	bne.n	5e <mt_batch1024_commit+0x5e>
+  36:	8904      	ldrh	r4, [r0, #8]
+  38:	2700      	movs	r7, #0
+  3a:	eb12 0c04 	adds.w	ip, r2, r4
+  3e:	f153 0c00 	adcs.w	ip, r3, #0
+  42:	bf28      	it	cs
+  44:	2701      	movcs	r7, #1
+  46:	b957      	cbnz	r7, 5e <mt_batch1024_commit+0x5e>
+  48:	18a4      	adds	r4, r4, r2
+  4a:	f143 0300 	adc.w	r3, r3, #0
+  4e:	e9c5 4300 	strd	r4, r3, [r5]
+  52:	6803      	ldr	r3, [r0, #0]
+  54:	6033      	str	r3, [r6, #0]
+  56:	2305      	movs	r3, #5
+  58:	8283      	strh	r3, [r0, #20]
+  5a:	4608      	mov	r0, r1
+  5c:	bdf0      	pop	{r4, r5, r6, r7, pc}
+  5e:	2100      	movs	r1, #0
+  60:	e7fb      	b.n	5a <mt_batch1024_commit+0x5a>
+
+Disassembly of section .text.mt_batch1024_abort:
+
+00000000 <mt_batch1024_abort>:
+   0:	b108      	cbz	r0, 6 <mt_batch1024_abort+0x6>
+   2:	2306      	movs	r3, #6
+   4:	8283      	strh	r3, [r0, #20]
+   6:	4770      	bx	lr

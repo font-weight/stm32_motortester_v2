@@ -1,0 +1,188 @@
+
+objects/07-mt_usb_descriptors.o:     file format elf32-littlearm
+
+
+Disassembly of section .text.mt_usb_descriptors_init:
+
+00000000 <mt_usb_descriptors_init>:
+   0:	e92d 43f0 	stmdb	sp!, {r4, r5, r6, r7, r8, r9, lr}
+   4:	4604      	mov	r4, r0
+   6:	b087      	sub	sp, #28
+   8:	b918      	cbnz	r0, 12 <mt_usb_descriptors_init+0x12>
+   a:	2000      	movs	r0, #0
+   c:	b007      	add	sp, #28
+   e:	e8bd 83f0 	ldmia.w	sp!, {r4, r5, r6, r7, r8, r9, pc}
+  12:	4d41      	ldr	r5, [pc, #260]	@ (118 <mt_usb_descriptors_init+0x118>)
+  14:	682b      	ldr	r3, [r5, #0]
+  16:	2b00      	cmp	r3, #0
+  18:	d1f7      	bne.n	a <mt_usb_descriptors_init+0xa>
+  1a:	f7ff fffe 	bl	0 <tud_inited>
+			1a: R_ARM_THM_CALL	tud_inited
+  1e:	2800      	cmp	r0, #0
+  20:	d1f3      	bne.n	a <mt_usb_descriptors_init+0xa>
+  22:	f64f 72fd 	movw	r2, #65533	@ 0xfffd
+  26:	8821      	ldrh	r1, [r4, #0]
+  28:	1e4b      	subs	r3, r1, #1
+  2a:	b29b      	uxth	r3, r3
+  2c:	4293      	cmp	r3, r2
+  2e:	d8ec      	bhi.n	a <mt_usb_descriptors_init+0xa>
+  30:	88e3      	ldrh	r3, [r4, #6]
+  32:	1e9a      	subs	r2, r3, #2
+  34:	f5b2 7ff9 	cmp.w	r2, #498	@ 0x1f2
+  38:	d8e7      	bhi.n	a <mt_usb_descriptors_init+0xa>
+  3a:	07db      	lsls	r3, r3, #31
+  3c:	d4e5      	bmi.n	a <mt_usb_descriptors_init+0xa>
+  3e:	88a3      	ldrh	r3, [r4, #4]
+  40:	f003 020f 	and.w	r2, r3, #15
+  44:	2a09      	cmp	r2, #9
+  46:	d8e0      	bhi.n	a <mt_usb_descriptors_init+0xa>
+  48:	f3c3 1203 	ubfx	r2, r3, #4, #4
+  4c:	2a09      	cmp	r2, #9
+  4e:	dcdc      	bgt.n	a <mt_usb_descriptors_init+0xa>
+  50:	f3c3 2203 	ubfx	r2, r3, #8, #4
+  54:	2a09      	cmp	r2, #9
+  56:	dcd8      	bgt.n	a <mt_usb_descriptors_init+0xa>
+  58:	f5b3 4f20 	cmp.w	r3, #40960	@ 0xa000
+  5c:	d2d5      	bcs.n	a <mt_usb_descriptors_init+0xa>
+  5e:	46ec      	mov	ip, sp
+  60:	a803      	add	r0, sp, #12
+  62:	4686      	mov	lr, r0
+  64:	2700      	movs	r7, #0
+  66:	4666      	mov	r6, ip
+  68:	68a3      	ldr	r3, [r4, #8]
+  6a:	9300      	str	r3, [sp, #0]
+  6c:	68e3      	ldr	r3, [r4, #12]
+  6e:	9301      	str	r3, [sp, #4]
+  70:	6923      	ldr	r3, [r4, #16]
+  72:	9302      	str	r3, [sp, #8]
+  74:	f85c 8b04 	ldr.w	r8, [ip], #4
+  78:	f1b8 0f00 	cmp.w	r8, #0
+  7c:	d0c5      	beq.n	a <mt_usb_descriptors_init+0xa>
+  7e:	2300      	movs	r3, #0
+  80:	f818 2003 	ldrb.w	r2, [r8, r3]
+  84:	b1a2      	cbz	r2, b0 <mt_usb_descriptors_init+0xb0>
+  86:	f1a2 0920 	sub.w	r9, r2, #32
+  8a:	f1b9 0f5e 	cmp.w	r9, #94	@ 0x5e
+  8e:	d80e      	bhi.n	ae <mt_usb_descriptors_init+0xae>
+  90:	2f02      	cmp	r7, #2
+  92:	d109      	bne.n	a8 <mt_usb_descriptors_init+0xa8>
+  94:	f1a2 0930 	sub.w	r9, r2, #48	@ 0x30
+  98:	f1b9 0f09 	cmp.w	r9, #9
+  9c:	d904      	bls.n	a8 <mt_usb_descriptors_init+0xa8>
+  9e:	f022 0220 	bic.w	r2, r2, #32
+  a2:	3a41      	subs	r2, #65	@ 0x41
+  a4:	2a19      	cmp	r2, #25
+  a6:	d802      	bhi.n	ae <mt_usb_descriptors_init+0xae>
+  a8:	3301      	adds	r3, #1
+  aa:	2b20      	cmp	r3, #32
+  ac:	d1e8      	bne.n	80 <mt_usb_descriptors_init+0x80>
+  ae:	2300      	movs	r3, #0
+  b0:	f84e 3b04 	str.w	r3, [lr], #4
+  b4:	2b00      	cmp	r3, #0
+  b6:	d0a8      	beq.n	a <mt_usb_descriptors_init+0xa>
+  b8:	3701      	adds	r7, #1
+  ba:	2f03      	cmp	r7, #3
+  bc:	d1da      	bne.n	74 <mt_usb_descriptors_init+0x74>
+  be:	4b17      	ldr	r3, [pc, #92]	@ (11c <mt_usb_descriptors_init+0x11c>)
+  c0:	7219      	strb	r1, [r3, #8]
+  c2:	0a09      	lsrs	r1, r1, #8
+  c4:	7259      	strb	r1, [r3, #9]
+  c6:	8862      	ldrh	r2, [r4, #2]
+  c8:	4915      	ldr	r1, [pc, #84]	@ (120 <mt_usb_descriptors_init+0x120>)
+  ca:	729a      	strb	r2, [r3, #10]
+  cc:	0a12      	lsrs	r2, r2, #8
+  ce:	72da      	strb	r2, [r3, #11]
+  d0:	88a2      	ldrh	r2, [r4, #4]
+  d2:	731a      	strb	r2, [r3, #12]
+  d4:	0a12      	lsrs	r2, r2, #8
+  d6:	735a      	strb	r2, [r3, #13]
+  d8:	88e3      	ldrh	r3, [r4, #6]
+  da:	4a12      	ldr	r2, [pc, #72]	@ (124 <mt_usb_descriptors_init+0x124>)
+  dc:	085b      	lsrs	r3, r3, #1
+  de:	7213      	strb	r3, [r2, #8]
+  e0:	2200      	movs	r2, #0
+  e2:	f850 4b04 	ldr.w	r4, [r0], #4
+  e6:	468c      	mov	ip, r1
+  e8:	1c63      	adds	r3, r4, #1
+  ea:	005b      	lsls	r3, r3, #1
+  ec:	f443 7340 	orr.w	r3, r3, #768	@ 0x300
+  f0:	800b      	strh	r3, [r1, #0]
+  f2:	2300      	movs	r3, #0
+  f4:	429c      	cmp	r4, r3
+  f6:	d107      	bne.n	108 <mt_usb_descriptors_init+0x108>
+  f8:	3201      	adds	r2, #1
+  fa:	2a03      	cmp	r2, #3
+  fc:	f101 0140 	add.w	r1, r1, #64	@ 0x40
+ 100:	d1ef      	bne.n	e2 <mt_usb_descriptors_init+0xe2>
+ 102:	2001      	movs	r0, #1
+ 104:	6028      	str	r0, [r5, #0]
+ 106:	e781      	b.n	c <mt_usb_descriptors_init+0xc>
+ 108:	f856 7022 	ldr.w	r7, [r6, r2, lsl #2]
+ 10c:	5cff      	ldrb	r7, [r7, r3]
+ 10e:	3301      	adds	r3, #1
+ 110:	f82c 7f02 	strh.w	r7, [ip, #2]!
+ 114:	e7ee      	b.n	f4 <mt_usb_descriptors_init+0xf4>
+ 116:	bf00      	nop
+	...
+			118: R_ARM_ABS32	.bss.initialized
+			11c: R_ARM_ABS32	.data.device
+			120: R_ARM_ABS32	.bss.strings
+			124: R_ARM_ABS32	.data.configuration
+
+Disassembly of section .text.tud_descriptor_device_cb:
+
+00000000 <tud_descriptor_device_cb>:
+   0:	4b03      	ldr	r3, [pc, #12]	@ (10 <tud_descriptor_device_cb+0x10>)
+   2:	4804      	ldr	r0, [pc, #16]	@ (14 <tud_descriptor_device_cb+0x14>)
+   4:	681b      	ldr	r3, [r3, #0]
+   6:	2b00      	cmp	r3, #0
+   8:	bf08      	it	eq
+   a:	2000      	moveq	r0, #0
+   c:	4770      	bx	lr
+   e:	bf00      	nop
+	...
+			10: R_ARM_ABS32	.bss.initialized
+			14: R_ARM_ABS32	.data.device
+
+Disassembly of section .text.tud_descriptor_configuration_cb:
+
+00000000 <tud_descriptor_configuration_cb>:
+   0:	4a04      	ldr	r2, [pc, #16]	@ (14 <tud_descriptor_configuration_cb+0x14>)
+   2:	4603      	mov	r3, r0
+   4:	6810      	ldr	r0, [r2, #0]
+   6:	b118      	cbz	r0, 10 <tud_descriptor_configuration_cb+0x10>
+   8:	2b00      	cmp	r3, #0
+   a:	4803      	ldr	r0, [pc, #12]	@ (18 <tud_descriptor_configuration_cb+0x18>)
+   c:	bf18      	it	ne
+   e:	2000      	movne	r0, #0
+  10:	4770      	bx	lr
+  12:	bf00      	nop
+	...
+			14: R_ARM_ABS32	.bss.initialized
+			18: R_ARM_ABS32	.data.configuration
+
+Disassembly of section .text.tud_descriptor_string_cb:
+
+00000000 <tud_descriptor_string_cb>:
+   0:	4a09      	ldr	r2, [pc, #36]	@ (28 <tud_descriptor_string_cb+0x28>)
+   2:	4603      	mov	r3, r0
+   4:	6810      	ldr	r0, [r2, #0]
+   6:	b170      	cbz	r0, 26 <tud_descriptor_string_cb+0x26>
+   8:	b153      	cbz	r3, 20 <tud_descriptor_string_cb+0x20>
+   a:	2b03      	cmp	r3, #3
+   c:	d80a      	bhi.n	24 <tud_descriptor_string_cb+0x24>
+   e:	f240 4209 	movw	r2, #1033	@ 0x409
+  12:	4291      	cmp	r1, r2
+  14:	d106      	bne.n	24 <tud_descriptor_string_cb+0x24>
+  16:	4805      	ldr	r0, [pc, #20]	@ (2c <tud_descriptor_string_cb+0x2c>)
+  18:	3b01      	subs	r3, #1
+  1a:	eb00 1083 	add.w	r0, r0, r3, lsl #6
+  1e:	4770      	bx	lr
+  20:	4803      	ldr	r0, [pc, #12]	@ (30 <tud_descriptor_string_cb+0x30>)
+  22:	4770      	bx	lr
+  24:	2000      	movs	r0, #0
+  26:	4770      	bx	lr
+	...
+			28: R_ARM_ABS32	.bss.initialized
+			2c: R_ARM_ABS32	.bss.strings
+			30: R_ARM_ABS32	.rodata.languages

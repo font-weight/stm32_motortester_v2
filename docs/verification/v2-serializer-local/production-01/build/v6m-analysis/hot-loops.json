@@ -1,0 +1,230 @@
+{
+  "schema": "M-exact-ARM-hot-paths-1",
+  "date": "2026-10-27",
+  "status": "STATIC_PATH_COUNTS_ONLY",
+  "inputs": {
+    "build\\v6l-fw-04\\disassembly-28-mt_batch1024.stdout": "856c57ac0533adc215186f2896631a643733b54e0bdb4b844cb316c0721e74d5",
+    "build\\v6m-fw-01\\disassembly-28-mt_batch1024.stdout": "b4e7d7b7d417a9d2ce4446dda79577d0cb953ed26b4159083844c162a7fe23ef"
+  },
+  "paths": {
+    "CRC_continuing": {
+      "SE": {
+        "addresses": [
+          "0x44",
+          "0x46",
+          "0x48",
+          "0x4a",
+          "0x4c",
+          "0x50",
+          "0x52",
+          "0x54",
+          "0x58",
+          "0x5a",
+          "0x5e",
+          "0x60",
+          "0x64",
+          "0x66",
+          "0x68",
+          "0x6a"
+        ],
+        "instruction_count": 16,
+        "state_memory_accesses": 4,
+        "state_access_addresses": [
+          "0x44",
+          "0x4c",
+          "0x66",
+          "0x68"
+        ]
+      },
+      "SF": {
+        "addresses": [
+          "0x58",
+          "0x5c",
+          "0x5e",
+          "0x60",
+          "0x62",
+          "0x66",
+          "0x68",
+          "0x6c",
+          "0x70",
+          "0x72",
+          "0x74"
+        ],
+        "instruction_count": 11,
+        "state_memory_accesses": 0,
+        "state_access_addresses": []
+      }
+    },
+    "COBS_nonzero_no_code255_continuing": {
+      "SE": {
+        "addresses": [
+          "0xa8",
+          "0xaa",
+          "0xac",
+          "0xae",
+          "0xb0",
+          "0xb2",
+          "0xb4",
+          "0xb8",
+          "0xba",
+          "0xbc",
+          "0xbe",
+          "0xc0",
+          "0xc2",
+          "0xc6",
+          "0xc8",
+          "0xca",
+          "0xcc",
+          "0xd0",
+          "0x114",
+          "0x116",
+          "0x118",
+          "0x11c",
+          "0x11e",
+          "0x120",
+          "0x122",
+          "0x124",
+          "0x126",
+          "0xe2",
+          "0xe4"
+        ],
+        "instruction_count": 29,
+        "state_memory_accesses": 7,
+        "state_access_addresses": [
+          "0xa8",
+          "0xaa",
+          "0xba",
+          "0xbc",
+          "0x116",
+          "0x11c",
+          "0x124"
+        ]
+      },
+      "SF": {
+        "addresses": [
+          "0x114",
+          "0x118",
+          "0x11c",
+          "0x11e",
+          "0x120",
+          "0x124",
+          "0x126",
+          "0x128",
+          "0x12a",
+          "0xd0",
+          "0xd2",
+          "0xd6",
+          "0x12c",
+          "0x12e",
+          "0x130",
+          "0x132",
+          "0x136",
+          "0xde",
+          "0xe0",
+          "0xe2",
+          "0xe4"
+        ],
+        "instruction_count": 21,
+        "state_memory_accesses": 0,
+        "state_access_addresses": []
+      }
+    },
+    "COBS_zero_continuing": {
+      "SE": {
+        "addresses": [
+          "0xa8",
+          "0xaa",
+          "0xac",
+          "0xae",
+          "0xb0",
+          "0xb2",
+          "0xb4",
+          "0xb8",
+          "0xba",
+          "0xbc",
+          "0xbe",
+          "0xc0",
+          "0xc2",
+          "0xc6",
+          "0xc8",
+          "0xca",
+          "0xcc",
+          "0xd0",
+          "0xd2",
+          "0xd4",
+          "0xd6",
+          "0xd8",
+          "0xda",
+          "0xdc",
+          "0xde",
+          "0xe0",
+          "0xe2",
+          "0xe4"
+        ],
+        "instruction_count": 28,
+        "state_memory_accesses": 10,
+        "state_access_addresses": [
+          "0xa8",
+          "0xaa",
+          "0xba",
+          "0xbc",
+          "0xd2",
+          "0xd4",
+          "0xd8",
+          "0xda",
+          "0xde",
+          "0xe0"
+        ]
+      },
+      "SF": {
+        "addresses": [
+          "0x114",
+          "0x118",
+          "0x11c",
+          "0x11e",
+          "0x120",
+          "0x124",
+          "0x126",
+          "0x128",
+          "0x12a",
+          "0xd0",
+          "0xd2",
+          "0xd6",
+          "0xd8",
+          "0xda",
+          "0xdc",
+          "0xde",
+          "0xe0",
+          "0xe2",
+          "0xe4"
+        ],
+        "instruction_count": 19,
+        "state_memory_accesses": 0,
+        "state_access_addresses": []
+      }
+    }
+  },
+  "scope": "Decoded instruction paths for continuing byte iterations, excludes entry/exit/code255/end and preemption. Actual branch conditions shown, not cycles/WCET or CPU share.",
+  "state_binding": "SE r4 / SF r5 are actual object state bases in these paths. SF keeps cursor/CRC/code local and stores at bounded returns.",
+  "static_bound": {
+    "report_sha256": "055fd094f81649f754a2f1b4e75f4e23f4b233a56fb3f10f0561e984fa9c520c",
+    "status": "CONDITIONAL_EXACT_IMAGE_STATIC_BOUND",
+    "upper_bound_bytes": 6156,
+    "aligned_minimum_bytes": 6160
+  },
+  "memory": {
+    "data": 128,
+    "bss": 12068,
+    "stack_reserve": 8192,
+    "total": 20388,
+    "capacity": 20480,
+    "spare_above_reserve": 92
+  },
+  "step_function_stack": {
+    "SE": 24,
+    "SF": 32,
+    "unit": "bytes .su, not whole-stack high water"
+  },
+  "hardware_access": false,
+  "physical_150k_proved": false
+}
