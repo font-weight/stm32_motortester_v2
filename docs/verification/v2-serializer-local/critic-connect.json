@@ -1,0 +1,72 @@
+{
+  "schema": "motortester-v2-06m-connect-review-1",
+  "date": "2026-10-27",
+  "status": "PASS",
+  "score": 9.6125,
+  "plan_sha256": "cec1280f8064ca9397290fa4833b5d3905d81bd6943ff335716efb82fee67f0c",
+  "scope": "Exact procedure delta only: one new connection attempt to already installed SF after a new actual USB replug and expected COM inventory. This is conditional procedure admission, not successful connection or physical throughput acceptance.",
+  "critic": "/root/stream200_critic",
+  "independent_of_implementation_and_hardware_operation": true,
+  "repository_commit": "4c96b35e1d03e6ef050095e13d72e4b8ea556dc5",
+  "product_source_commit": "bad4bfb4c39a0a2c5510b6305d033bd64eb48e03",
+  "base_plan_sha256": "6ee442f4ed92029233ab63bbc9c28d0a5e87a6a42d1994a4421db6b8f4cc9453",
+  "candidate": {
+    "build": "0x56325346",
+    "bytes": 42480,
+    "sha256": "580cfaa40fd782a96d798285f3df7c9a3e2f2f0e126ec61023a89266207be29e",
+    "installed_readback_equal": true,
+    "new_program_authorized_for_first_session": false,
+    "new_reset_authorized_for_first_session": false
+  },
+  "personally_checked": {
+    "method": "Read-only saved JSON/log review, six helper source diffs, SHA-256 and byte comparisons using local Python; no helper execution, product test, COM, SWD, Reset or Flash.",
+    "new_or_parent_evidence_pins_checked": 13,
+    "parent_failure_archive": {
+      "path": "docs/verification/v2-serializer-local/physical-01/manifest.json",
+      "sha256": "7906776d10db3321a4195945ed9ecfc305c3a6ae64c9a4e0234625283a14d1c7",
+      "pairs": 51,
+      "bytes": 212214,
+      "all_byte_equal_and_hash_size_matched": true
+    },
+    "new_plan_archive": {
+      "path": "docs/verification/v2-serializer-local/plan-02/manifest.json",
+      "sha256": "b3cb2c9ef527e888c2532e1c0712e7c0740927b8d1967655bdf711fcfe2a2542",
+      "pairs": 8,
+      "bytes": 74028,
+      "all_byte_equal_and_hash_size_matched": true
+    },
+    "runner_sha256": "b8aae2e5d0a3a28c8ed4e965eb96267126e46c6a0ee317fb1c8b09f41f41d88e",
+    "helper_diff": "Analyzer/decoder identical; register decoder help path only; both SWD reader bases moved to board-02 without gate changes; runner binds this verdict, parent zero-wire failure/readback/reset, expected COM/PNP and a new replug record. Separate output directory rejects reuse.",
+    "parent_result": "FAIL TransportOpenError; cleanup_finished=true, phase=closed, host_bytes=0, device_bytes=0, chunks=0, received=0, R=null. No START was sent.",
+    "parent_reset_log": "Expected probe serial 57005400120000393333574E, MCU Reset and Application started; parent readback is byte-equal to exact SF."
+  },
+  "mandatory_execution_conditions": [
+    "A new actual user reply to the pending ten-second USB replug request must arrive. Do not reuse the earlier reply. Bind the new record to the saved parent reset-log SHA and record actual chronology.",
+    "After that reply, obtain fresh COM6 inventory with exact expected PNP ID and verify no competing serial/application owner. Boot register values alone do not prove USB enumeration.",
+    "First session: program=0, Reset=0, one connection attempt and at most one START at 150000 samples/s, mode5, requested Record30s. Use the fresh board-02 output directory and exact pinned inputs.",
+    "Preserve the original connectivity FAIL. Any new failure stops this plan without automatic retry or rollback; retain SF unless a separately assessed concrete recovery need arises.",
+    "Only after every first-session gate passes may 50000/100000 profiles run for5s each, with their own successful Reset/Run and actual new user replug before each START.",
+    "No SWD/halt while the serial owner is active. Retain the existing closed-owner, END/ACK, offline raw/CRC/Open, fresh diagnostic identity, deadline and stopped-register gates."
+  ],
+  "state_at_review": {
+    "new_actual_replug_reply": "PENDING",
+    "new_connection": "NOT_RUN",
+    "SF_physical_150ksps": "NOT_RUN",
+    "original_connectivity_attempt": "FAIL_PRESERVED",
+    "L2_stable_150ksps_P1": "OPEN_UNCHANGED"
+  },
+  "rubric": {
+    "C1": {"weight": 0.30, "score": 9.65, "reason": "Continuation does not erase the first failure or consume a second START; same installed image, new exact output scope and unchanged physical criteria."},
+    "C2": {"weight": 0.20, "score": 9.60, "reason": "One-open limit, parent closure/zero-wire checks, fresh reply/COM gates and stop-on-failure are explicit; chronology and absence of another owner still require the operator."},
+    "C3": {"weight": 0.25, "score": 9.60, "reason": "New and parent saved evidence was inspected and hash-linked; future enumeration and acquisition are explicitly not claimed."},
+    "C4": {"weight": 0.15, "score": 9.55, "reason": "New board-02 base consistently separates attempts; generic inherited session rules are qualified by the explicit first-session no-reset exception."},
+    "C5": {"weight": 0.10, "score": 9.65, "reason": "Exact plan, helper pins, parent evidence and separate output paths support reproducible handoff."}
+  },
+  "open_P0_P1_in_procedure_delta": [],
+  "limitations": [
+    "PASS admits only the stated procedure once its mandatory conditions are met; pending replug is not presumed satisfied.",
+    "Source, ARM, native model and retained Windows package acceptance were not repeated or extended.",
+    "No new conclusion about USB root cause, physical sample rate, sustained150k, ADC accuracy or an ignition input."
+  ],
+  "report": "docs/reviews/v2-06m-connect-review.md"
+}
