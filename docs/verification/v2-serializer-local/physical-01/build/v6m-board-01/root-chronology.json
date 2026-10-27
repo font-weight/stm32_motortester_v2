@@ -1,0 +1,26 @@
+{
+  "schema": "v2-06m2-root-actual-chronology-1",
+  "operator": "root",
+  "date": "2026-10-27",
+  "ordered_actions": [
+    "User resumed and confirmed USB/ST-Link connected, PA0 empty, application closed.",
+    "Root inspected process list (no capture owner), COM6 identity, one probe, then read freshSE64KiB and matched known42444-byte prefix. No Reset/START during backup.",
+    "After exact independent admission, root invoked pinnedprogram_and_verify.py once. ST-Link verification and independent42480-byte readback matched SF BIN; one successful Reset/Run.",
+    "Root asked for a new actual board-USB replug. Awaiting reply; no START sent.",
+    "User actually confirmed freshUSB replug and explicitly requested keepingSF after the test; no rollback. Root proceeds with only the first admitted150k trial.",
+    "First probe could not open COM6; receipt confirmsclosed owner andzero traffic. No HELLO orSTART escaped. Windows showed USBdescriptorfailureCode43 andnoCOM.",
+    "Only afterownerclosure+zero traffic root readmain/boot/RCC/fault memory viaHOTPLUG, noHalt/Reset/Flash. Bootfailure0,usbinit1,irqadmitted1,runtimeIDLE1; faultflags0.",
+    "Asked user another10-second actualUSB replug, keepingSF, noautomaticSTART."
+  ],
+  "program_count": 1,
+  "reset_run_count": 1,
+  "START_count": 0,
+  "rollback_count": 0,
+  "remaining_image": "V2SF/0x56325346",
+  "remaining_device_state": "Runningidleboot; noADC START; WindowsUSBdescriptor43",
+  "physical150k": "NOT_RUN_PRE_START_USB_OPEN_FAILURE",
+  "physical50k": "NOT_RUN",
+  "physical100k": "NOT_RUN",
+  "recorded_utc": "2026-10-27T04:15:10.821652+00:00",
+  "actual_user_reply": "готово. И не надо возвращать после проверки старую версию, оставляй эту"
+}

@@ -1,0 +1,35 @@
+{
+  "status": "FAIL",
+  "port": "COM6",
+  "source": "physical",
+  "seconds_requested": 30.0,
+  "expected_build": 1446138694,
+  "expected_sample_rate_hz": 150000,
+  "input_condition": "PA0 unconnected, as reported by user",
+  "voltage_calibration_verified": false,
+  "callback_errors": [],
+  "errors": [
+    "Serial open failed: TransportOpenError"
+  ],
+  "exception": "Traceback (most recent call last):\n  File \"C:\\Users\\Alexandr\\Desktop\\New folder\\универ\\мотортестер 2\\host\\tools\\v2_stream_probe.py\", line 118, in run\n    assert bridge.state.ready, bridge.state.error\n           ^^^^^^^^^^^^^^^^^^\nAssertionError: Serial open failed: TransportOpenError\n",
+  "cleanup_finished": true,
+  "final_state": {
+    "host_monotonic": 1636462.6069718,
+    "phase": "closed",
+    "received": 0,
+    "error": "Serial open failed: TransportOpenError",
+    "failure": null,
+    "R": null,
+    "accepted": null,
+    "checkpoint": null,
+    "max_service_gap_ms": 50,
+    "peak_raw_items": 0
+  },
+  "traffic": {
+    "host_bytes": 0,
+    "device_bytes": 0,
+    "chunks": 0,
+    "format": "<BdI + payload; 0=host,1=device; monotonic seconds",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  }
+}

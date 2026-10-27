@@ -1,0 +1,14 @@
+{
+  "schema": "v2-06m-root-preflight-observation-1",
+  "recorded_utc": "2026-10-27T04:06:09.722162+00:00",
+  "actual_user_reply": "Да, всё подключено, PA0 пуст, приложение закрыто",
+  "observations": [
+    "Root queried Win32_Process: no MotortesterV2/python/pythonw/ST-LINK_CLI processes returned.",
+    "Win32_SerialPort returned COM6, USB Serial Device.",
+    "CLI -List returned one probe with firmwareV2J37S7; serial unavailable in List output. Subsequent backup log returned expected57005400120000393333574E.",
+    "Read-only flash backup confirmed known SE42444-byte prefix. No Flash/Reset/START performed."
+  ],
+  "COM6_PNP_ID": "USB\\VID_1209&PID_0001&MI_00\\6&D2DE68C&0&0000",
+  "power_basis": "Earlier user: only board USB powers board; ST-Link3.3V disconnected. No change requested.",
+  "limitations": "User-reported PA0/power, not visual wiring or analogue qualification."
+}

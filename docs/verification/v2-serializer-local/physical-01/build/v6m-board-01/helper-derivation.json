@@ -1,0 +1,42 @@
+{
+  "scope": "Plan-local copies; no hardware called",
+  "changes": "Base/review paths, build label/id and analysis report labels only; new run_trial.py is separate.",
+  "files": [
+    {
+      "source": "build/v6l-board-01/program_and_verify.py",
+      "source_sha256": "e2ea4535f3cc377601d34c84500d54ebd62026be44548bd4bfdf209f53096d03",
+      "target": "build/v6m-board-01/program_and_verify.py",
+      "target_sha256": "19524fa5e07a5ba0c65cc17584cd42ca8afb9b19dcb2f342fba80a5d8b17684a"
+    },
+    {
+      "source": "build/v6l-board-01/analyze_physical.py",
+      "source_sha256": "23eed797c61588db6aaee5e5daa88608a25a8a32de13a0bbbe0d3bee66c16aed",
+      "target": "build/v6m-board-01/analyze_physical.py",
+      "target_sha256": "c81e4f158c5a878b5965559daafd88a19edef54d5ec64c6cf6b9a41e5ea4cef9"
+    },
+    {
+      "source": "build/v6l-board-01/decode_diagnostics.py",
+      "source_sha256": "17dc6a634a04293df6f2642e362fa0dc163e03fbd3ef2381cb5741b463006fb0",
+      "target": "build/v6m-board-01/decode_diagnostics.py",
+      "target_sha256": "ed434e3490181a00b74c19558e1d0991d889b44c61b3d791e42629c8b71d9412"
+    },
+    {
+      "source": "build/v6l-board-01/save_stopped_state.py",
+      "source_sha256": "3b609d3e5d713adcbe51c3ed98624f3a614faaf193bd7945e41f8604b75991d7",
+      "target": "build/v6m-board-01/save_stopped_state.py",
+      "target_sha256": "82fe83628f098ba87f1719427af69a78640c9ad780a866f491906d088983d4cb"
+    },
+    {
+      "source": "build/v6l-board-01/root_read_stopped.py",
+      "source_sha256": "3dc58aa6dd667574cae4ee481abcc1ac91d66b126a3a5714af5154ad0410e8e7",
+      "target": "build/v6m-board-01/root_read_stopped.py",
+      "target_sha256": "c86a5246aae6fa5e9919f7d1343049dc0c9611e2f8c98a1d4e3c10573daaa4ec"
+    },
+    {
+      "source": "build/v6l-board-01/root_read_fault.py",
+      "source_sha256": "4094d939cf3c6d448ba59840bf1388ed87055a4af9f284444ec423535b46063a",
+      "target": "build/v6m-board-01/root_read_fault.py",
+      "target_sha256": "e1ca85aa8e3ebf0a790809db8b7b7d4181e6ace46dbcc45ea6a9ef4edf3410ee"
+    }
+  ]
+}
