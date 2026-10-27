@@ -1,4 +1,30 @@
-# Кандидат V2SG: диагностика до первого отказа очереди
+# Кандидат V2SH: поздний grant для нового полного DATA1024
+
+V2-06o/build `0x56325348`, product `Motortester V2 Late Grant SH` проверяет
+одну гипотезу расписания USB по [границам O](../../docs/streaming-late-grant.md).
+Conservative hint выбирает только mode5/STREAMING без cached/control TX,
+способный заполнить1024 в текущем collect≤512. Такой проход получает ту же
+единственную grant-попытку после prepare. До неё и после IRQ выполняются
+свежие TIME/epoch/lifecycle проверки; actual ticket остаётся условием write.
+Отмена hint через RX Stop/HELLO не разрешает старую DATA; cached bytes сохраняются.
+При отказе scope wrapper не выдаёт второй reset; следующий проход сохраняет
+обычный fallback. Cached/collect/control и modes1–4 сохраняют ранний H путь.
+
+Предел6/<500мкс, FIFO384, queue8×128, ADC/TIME checks, wire/CRC/Stop и N64 ABI
+не меняются. Старый in-flight transfer в выбранном проходе тоже ждёт дольше;
+перенос не доказывает deadline/WCET или устойчивые150k. Прежние136/новые64B
+снимки сохраняют границы и влияние измерителя. Для offline decode SH требуется
+явный `--build-id 0x56325348`; значение по умолчанию декодера остаётся SG.
+
+```powershell
+.\.venv\Scripts\python.exe -I -B firmware\v2-stream\build_windows.py --output build\v6o-fw-NEW
+```
+
+Сборка не открывает COM/SWD. Нужны адресная actual-runtime модель новой границы,
+exact ARM/RAM/stack и независимый review до отдельного физического плана.
+Точные результаты и установленная прошивка — только в progress/review.
+
+## Сохранённый V2SG: диагностика до первого отказа очереди
 
 V2-06n/build `0x56325347`, product `Motortester V2 Progress SG` добавляет
 один64B foreground-only снимок рядом с прежней136B диагностикой.

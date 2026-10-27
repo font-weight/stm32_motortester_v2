@@ -1,0 +1,35 @@
+--- a/v2/app/mt_live_runtime.c
++++ b/v2/app/mt_live_runtime.c
+@@ -29,7 +29,8 @@
+     key=mt_usb_bridge_lock();
+     mt_usb_epoch s=mt_usb_bridge_snapshot(); token=mt_usb_bridge_actor();
+     if(!token)token=s.current;
+-    ok=token==r->epoch && s.soft_serial==r->soft_serial && mt_usb_epoch_app_io(&s,token);
++    ok=!mt_usb_fsdev_lifecycle_pending() && token==r->epoch &&
++        s.soft_serial==r->soft_serial && mt_usb_epoch_app_io(&s,token);
+     mt_usb_bridge_unlock(key); return ok;
+ }
+ static int usable(mt_live_runtime *r) {
+@@ -220,15 +221,16 @@
+     if(!r || !r->initialized || r->in_step || !tud_inited())return MT_LIVE_RUNTIME_ARGUMENT;
+     MT_DIAG_STAMP(diag_step);
+     r->in_step=1; result=step(r);
+-    if(!r->clock_fault && !r->pending && !r->faults && !r->exhausted &&
+-       mt_timebase_healthy(r->clock)) {
++    if(!r->clock_fault && mt_timebase_healthy(r->clock)) {
+         key=mt_usb_bridge_lock();
+         mt_usb_epoch s=mt_usb_bridge_snapshot();
+-        /* Do not grant using a stale pre-lock lifecycle observation. PMAOVR
+-         * can poison an epoch without leaving an event in the task queue. */
+-        if(s.current==r->epoch && s.soft_serial==r->soft_serial &&
++        /* One IRQ opportunity after foreground service. Old cleanup/queue
++         * conditions still gate CTR; lifecycle must progress in quarantine. */
++        int allow_ctr=!r->pending && !r->faults && !r->exhausted &&
++           s.current==r->epoch && s.soft_serial==r->soft_serial &&
+            s.cleaned==s.current && !s.pending_soft && !s.faults && !s.exhausted &&
+-           !tud_task_event_ready())(void)mt_usb_fsdev_ctr_rearm();
++           !tud_task_event_ready();
++        (void)mt_usb_fsdev_irq_grant(allow_ctr != 0);
+         mt_usb_bridge_unlock(key);
+     }
+ #if CFG_MT_STREAM_DIAGNOSTICS

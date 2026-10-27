@@ -1,0 +1,737 @@
+
+objects/10-tusb_fifo.o:     file format elf32-littlearm
+
+
+Disassembly of section .text.advance_index:
+
+00000000 <advance_index>:
+   0:	440a      	add	r2, r1
+   2:	b292      	uxth	r2, r2
+   4:	4291      	cmp	r1, r2
+   6:	ea4f 0040 	mov.w	r0, r0, lsl #1
+   a:	d801      	bhi.n	10 <advance_index+0x10>
+   c:	4282      	cmp	r2, r0
+   e:	db01      	blt.n	14 <advance_index+0x14>
+  10:	1a12      	subs	r2, r2, r0
+  12:	b292      	uxth	r2, r2
+  14:	4610      	mov	r0, r2
+  16:	4770      	bx	lr
+
+Disassembly of section .text.ff_peek_local:
+
+00000000 <ff_peek_local>:
+   0:	b538      	push	{r3, r4, r5, lr}
+   2:	4605      	mov	r5, r0
+   4:	1ad4      	subs	r4, r2, r3
+   6:	4608      	mov	r0, r1
+   8:	88a9      	ldrh	r1, [r5, #4]
+   a:	b2a4      	uxth	r4, r4
+   c:	429a      	cmp	r2, r3
+   e:	bfbc      	itt	lt
+  10:	eb04 0441 	addlt.w	r4, r4, r1, lsl #1
+  14:	b2a4      	uxthlt	r4, r4
+  16:	b19c      	cbz	r4, 40 <ff_peek_local+0x40>
+  18:	42a1      	cmp	r1, r4
+  1a:	d205      	bcs.n	28 <ff_peek_local+0x28>
+  1c:	4291      	cmp	r1, r2
+  1e:	bf94      	ite	ls
+  20:	1a52      	subls	r2, r2, r1
+  22:	1852      	addhi	r2, r2, r1
+  24:	b293      	uxth	r3, r2
+  26:	816b      	strh	r3, [r5, #10]
+  28:	4299      	cmp	r1, r3
+  2a:	d906      	bls.n	3a <ff_peek_local+0x3a>
+  2c:	6829      	ldr	r1, [r5, #0]
+  2e:	2201      	movs	r2, #1
+  30:	4419      	add	r1, r3
+  32:	f7ff fffe 	bl	0 <memcpy>
+			32: R_ARM_THM_CALL	memcpy
+  36:	2001      	movs	r0, #1
+  38:	bd38      	pop	{r3, r4, r5, pc}
+  3a:	1a5b      	subs	r3, r3, r1
+  3c:	b29b      	uxth	r3, r3
+  3e:	e7f3      	b.n	28 <ff_peek_local+0x28>
+  40:	4620      	mov	r0, r4
+  42:	e7f9      	b.n	38 <ff_peek_local+0x38>
+
+Disassembly of section .text.tu_fifo_config:
+
+00000000 <tu_fifo_config>:
+   0:	b510      	push	{r4, lr}
+   2:	2400      	movs	r4, #0
+   4:	f5b2 4f00 	cmp.w	r2, #32768	@ 0x8000
+   8:	bf9f      	itttt	ls
+   a:	8144      	strhls	r4, [r0, #10]
+   c:	6001      	strls	r1, [r0, #0]
+   e:	8082      	strhls	r2, [r0, #4]
+  10:	7183      	strbls	r3, [r0, #6]
+  12:	bf96      	itet	ls
+  14:	8104      	strhls	r4, [r0, #8]
+  16:	4620      	movhi	r0, r4
+  18:	2001      	movls	r0, #1
+  1a:	bd10      	pop	{r4, pc}
+
+Disassembly of section .text.tu_fifo_clear:
+
+00000000 <tu_fifo_clear>:
+   0:	2300      	movs	r3, #0
+   2:	8143      	strh	r3, [r0, #10]
+   4:	8103      	strh	r3, [r0, #8]
+   6:	4770      	bx	lr
+
+Disassembly of section .text.tu_fifo_set_overwritable:
+
+00000000 <tu_fifo_set_overwritable>:
+   0:	7983      	ldrb	r3, [r0, #6]
+   2:	428b      	cmp	r3, r1
+   4:	bf18      	it	ne
+   6:	7181      	strbne	r1, [r0, #6]
+   8:	4770      	bx	lr
+
+Disassembly of section .text.tu_hwfifo_write:
+
+00000000 <tu_hwfifo_write>:
+   0:	b513      	push	{r0, r1, r4, lr}
+   2:	4604      	mov	r4, r0
+   4:	b16b      	cbz	r3, 22 <tu_hwfifo_write+0x22>
+   6:	781b      	ldrb	r3, [r3, #0]
+   8:	4293      	cmp	r3, r2
+   a:	d90c      	bls.n	26 <tu_hwfifo_write+0x26>
+   c:	b13a      	cbz	r2, 1e <tu_hwfifo_write+0x1e>
+   e:	2300      	movs	r3, #0
+  10:	a801      	add	r0, sp, #4
+  12:	9301      	str	r3, [sp, #4]
+  14:	f7ff fffe 	bl	0 <memcpy>
+			14: R_ARM_THM_CALL	memcpy
+  18:	f8bd 3004 	ldrh.w	r3, [sp, #4]
+  1c:	8023      	strh	r3, [r4, #0]
+  1e:	b002      	add	sp, #8
+  20:	bd10      	pop	{r4, pc}
+  22:	2302      	movs	r3, #2
+  24:	e7f0      	b.n	8 <tu_hwfifo_write+0x8>
+  26:	8808      	ldrh	r0, [r1, #0]
+  28:	1ad2      	subs	r2, r2, r3
+  2a:	f824 0b04 	strh.w	r0, [r4], #4
+  2e:	4419      	add	r1, r3
+  30:	b292      	uxth	r2, r2
+  32:	e7e9      	b.n	8 <tu_hwfifo_write+0x8>
+
+Disassembly of section .text.tu_hwfifo_read:
+
+00000000 <tu_hwfifo_read>:
+   0:	b513      	push	{r0, r1, r4, lr}
+   2:	4604      	mov	r4, r0
+   4:	4608      	mov	r0, r1
+   6:	b15b      	cbz	r3, 20 <tu_hwfifo_read+0x20>
+   8:	781b      	ldrb	r3, [r3, #0]
+   a:	4293      	cmp	r3, r2
+   c:	d90a      	bls.n	24 <tu_hwfifo_read+0x24>
+   e:	b12a      	cbz	r2, 1c <tu_hwfifo_read+0x1c>
+  10:	8823      	ldrh	r3, [r4, #0]
+  12:	a901      	add	r1, sp, #4
+  14:	f8ad 3004 	strh.w	r3, [sp, #4]
+  18:	f7ff fffe 	bl	0 <memcpy>
+			18: R_ARM_THM_CALL	memcpy
+  1c:	b002      	add	sp, #8
+  1e:	bd10      	pop	{r4, pc}
+  20:	2302      	movs	r3, #2
+  22:	e7f2      	b.n	a <tu_hwfifo_read+0xa>
+  24:	f834 1b04 	ldrh.w	r1, [r4], #4
+  28:	1ad2      	subs	r2, r2, r3
+  2a:	8001      	strh	r1, [r0, #0]
+  2c:	b292      	uxth	r2, r2
+  2e:	4418      	add	r0, r3
+  30:	e7eb      	b.n	a <tu_hwfifo_read+0xa>
+
+Disassembly of section .text.tu_fifo_peek_n_access_mode:
+
+00000000 <tu_fifo_peek_n_access_mode>:
+   0:	e92d 4ff7 	stmdb	sp!, {r0, r1, r2, r4, r5, r6, r7, r8, r9, sl, fp, lr}
+   4:	4680      	mov	r8, r0
+   6:	4618      	mov	r0, r3
+   8:	460f      	mov	r7, r1
+   a:	f8bd 1030 	ldrh.w	r1, [sp, #48]	@ 0x30
+   e:	f8b8 4004 	ldrh.w	r4, [r8, #4]
+  12:	1a45      	subs	r5, r0, r1
+  14:	b2ad      	uxth	r5, r5
+  16:	4288      	cmp	r0, r1
+  18:	bfbc      	itt	lt
+  1a:	eb05 0544 	addlt.w	r5, r5, r4, lsl #1
+  1e:	b2ad      	uxthlt	r5, r5
+  20:	9b0d      	ldr	r3, [sp, #52]	@ 0x34
+  22:	b315      	cbz	r5, 6a <tu_fifo_peek_n_access_mode+0x6a>
+  24:	42ac      	cmp	r4, r5
+  26:	d207      	bcs.n	38 <tu_fifo_peek_n_access_mode+0x38>
+  28:	4625      	mov	r5, r4
+  2a:	4284      	cmp	r4, r0
+  2c:	bf94      	ite	ls
+  2e:	1b00      	subls	r0, r0, r4
+  30:	1900      	addhi	r0, r0, r4
+  32:	b281      	uxth	r1, r0
+  34:	f8a8 100a 	strh.w	r1, [r8, #10]
+  38:	4295      	cmp	r5, r2
+  3a:	bf28      	it	cs
+  3c:	4615      	movcs	r5, r2
+  3e:	428c      	cmp	r4, r1
+  40:	d917      	bls.n	72 <tu_fifo_peek_n_access_mode+0x72>
+  42:	eba4 0901 	sub.w	r9, r4, r1
+  46:	f8d8 2000 	ldr.w	r2, [r8]
+  4a:	1b2c      	subs	r4, r5, r4
+  4c:	440c      	add	r4, r1
+  4e:	fa1f f989 	uxth.w	r9, r9
+  52:	b2a4      	uxth	r4, r4
+  54:	eb02 0a01 	add.w	sl, r2, r1
+  58:	2b00      	cmp	r3, #0
+  5a:	d05c      	beq.n	116 <tu_fifo_peek_n_access_mode+0x116>
+  5c:	454d      	cmp	r5, r9
+  5e:	d80b      	bhi.n	78 <tu_fifo_peek_n_access_mode+0x78>
+  60:	462a      	mov	r2, r5
+  62:	4651      	mov	r1, sl
+  64:	4638      	mov	r0, r7
+  66:	f7ff fffe 	bl	0 <tu_fifo_peek_n_access_mode>
+			66: R_ARM_THM_CALL	tu_hwfifo_write
+  6a:	4628      	mov	r0, r5
+  6c:	b003      	add	sp, #12
+  6e:	e8bd 8ff0 	ldmia.w	sp!, {r4, r5, r6, r7, r8, r9, sl, fp, pc}
+  72:	1b09      	subs	r1, r1, r4
+  74:	b289      	uxth	r1, r1
+  76:	e7e2      	b.n	3e <tu_fifo_peek_n_access_mode+0x3e>
+  78:	781e      	ldrb	r6, [r3, #0]
+  7a:	4638      	mov	r0, r7
+  7c:	f1c6 0b00 	rsb	fp, r6, #0
+  80:	ea09 0b0b 	and.w	fp, r9, fp
+  84:	465a      	mov	r2, fp
+  86:	4651      	mov	r1, sl
+  88:	930d      	str	r3, [sp, #52]	@ 0x34
+  8a:	f7ff fffe 	bl	0 <tu_fifo_peek_n_access_mode>
+			8a: R_ARM_THM_CALL	tu_hwfifo_write
+  8e:	1e72      	subs	r2, r6, #1
+  90:	ea02 0209 	and.w	r2, r2, r9
+  94:	f012 02ff 	ands.w	r2, r2, #255	@ 0xff
+  98:	9b0d      	ldr	r3, [sp, #52]	@ 0x34
+  9a:	eb07 074b 	add.w	r7, r7, fp, lsl #1
+  9e:	d037      	beq.n	110 <tu_fifo_peek_n_access_mode+0x110>
+  a0:	1ab6      	subs	r6, r6, r2
+  a2:	b2b6      	uxth	r6, r6
+  a4:	42a6      	cmp	r6, r4
+  a6:	bf28      	it	cs
+  a8:	4626      	movcs	r6, r4
+  aa:	f10d 0c04 	add.w	ip, sp, #4
+  ae:	2000      	movs	r0, #0
+  b0:	4661      	mov	r1, ip
+  b2:	b2f6      	uxtb	r6, r6
+  b4:	44d3      	add	fp, sl
+  b6:	3001      	adds	r0, #1
+  b8:	f81b eb01 	ldrb.w	lr, [fp], #1
+  bc:	b2c0      	uxtb	r0, r0
+  be:	4282      	cmp	r2, r0
+  c0:	f80c eb01 	strb.w	lr, [ip], #1
+  c4:	d1f7      	bne.n	b6 <tu_fifo_peek_n_access_mode+0xb6>
+  c6:	f04f 0c00 	mov.w	ip, #0
+  ca:	eb01 0e02 	add.w	lr, r1, r2
+  ce:	fa5f f08c 	uxtb.w	r0, ip
+  d2:	4286      	cmp	r6, r0
+  d4:	d813      	bhi.n	fe <tu_fifo_peek_n_access_mode+0xfe>
+  d6:	4638      	mov	r0, r7
+  d8:	4432      	add	r2, r6
+  da:	930d      	str	r3, [sp, #52]	@ 0x34
+  dc:	fa1f f986 	uxth.w	r9, r6
+  e0:	f7ff fffe 	bl	0 <tu_fifo_peek_n_access_mode>
+			e0: R_ARM_THM_CALL	tu_hwfifo_write
+  e4:	f8d8 1000 	ldr.w	r1, [r8]
+  e8:	eba4 0909 	sub.w	r9, r4, r9
+  ec:	9b0d      	ldr	r3, [sp, #52]	@ 0x34
+  ee:	3704      	adds	r7, #4
+  f0:	fa1f f489 	uxth.w	r4, r9
+  f4:	4431      	add	r1, r6
+  f6:	2c00      	cmp	r4, #0
+  f8:	d0b7      	beq.n	6a <tu_fifo_peek_n_access_mode+0x6a>
+  fa:	4622      	mov	r2, r4
+  fc:	e7b2      	b.n	64 <tu_fifo_peek_n_access_mode+0x64>
+  fe:	f8d8 0000 	ldr.w	r0, [r8]
+ 102:	f810 000c 	ldrb.w	r0, [r0, ip]
+ 106:	f10c 0c01 	add.w	ip, ip, #1
+ 10a:	f80e 0b01 	strb.w	r0, [lr], #1
+ 10e:	e7de      	b.n	ce <tu_fifo_peek_n_access_mode+0xce>
+ 110:	f8d8 1000 	ldr.w	r1, [r8]
+ 114:	e7ef      	b.n	f6 <tu_fifo_peek_n_access_mode+0xf6>
+ 116:	454d      	cmp	r5, r9
+ 118:	d805      	bhi.n	126 <tu_fifo_peek_n_access_mode+0x126>
+ 11a:	462a      	mov	r2, r5
+ 11c:	4651      	mov	r1, sl
+ 11e:	4638      	mov	r0, r7
+ 120:	f7ff fffe 	bl	0 <memcpy>
+			120: R_ARM_THM_CALL	memcpy
+ 124:	e7a1      	b.n	6a <tu_fifo_peek_n_access_mode+0x6a>
+ 126:	464a      	mov	r2, r9
+ 128:	4651      	mov	r1, sl
+ 12a:	4638      	mov	r0, r7
+ 12c:	f7ff fffe 	bl	0 <memcpy>
+			12c: R_ARM_THM_CALL	memcpy
+ 130:	4622      	mov	r2, r4
+ 132:	f8d8 1000 	ldr.w	r1, [r8]
+ 136:	eb07 0009 	add.w	r0, r7, r9
+ 13a:	e7f1      	b.n	120 <tu_fifo_peek_n_access_mode+0x120>
+
+Disassembly of section .text.tu_fifo_peek_n:
+
+00000000 <tu_fifo_peek_n>:
+   0:	b537      	push	{r0, r1, r2, r4, r5, lr}
+   2:	2500      	movs	r5, #0
+   4:	8903      	ldrh	r3, [r0, #8]
+   6:	8944      	ldrh	r4, [r0, #10]
+   8:	b29b      	uxth	r3, r3
+   a:	b2a4      	uxth	r4, r4
+   c:	e9cd 4500 	strd	r4, r5, [sp]
+  10:	f7ff fffe 	bl	0 <tu_fifo_peek_n>
+			10: R_ARM_THM_CALL	tu_fifo_peek_n_access_mode
+  14:	b003      	add	sp, #12
+  16:	bd30      	pop	{r4, r5, pc}
+
+Disassembly of section .text.tu_fifo_read_n_access_mode:
+
+00000000 <tu_fifo_read_n_access_mode>:
+   0:	b573      	push	{r0, r1, r4, r5, r6, lr}
+   2:	8906      	ldrh	r6, [r0, #8]
+   4:	8945      	ldrh	r5, [r0, #10]
+   6:	4604      	mov	r4, r0
+   8:	b2ad      	uxth	r5, r5
+   a:	e9cd 5300 	strd	r5, r3, [sp]
+   e:	b2b3      	uxth	r3, r6
+  10:	f7ff fffe 	bl	0 <tu_fifo_read_n_access_mode>
+			10: R_ARM_THM_CALL	tu_fifo_peek_n_access_mode
+  14:	8961      	ldrh	r1, [r4, #10]
+  16:	4603      	mov	r3, r0
+  18:	4602      	mov	r2, r0
+  1a:	b289      	uxth	r1, r1
+  1c:	88a0      	ldrh	r0, [r4, #4]
+  1e:	f7ff fffe 	bl	0 <tu_fifo_read_n_access_mode>
+			1e: R_ARM_THM_CALL	advance_index
+  22:	8160      	strh	r0, [r4, #10]
+  24:	4618      	mov	r0, r3
+  26:	b002      	add	sp, #8
+  28:	bd70      	pop	{r4, r5, r6, pc}
+
+Disassembly of section .text.tu_fifo_write_n_access_mode:
+
+00000000 <tu_fifo_write_n_access_mode>:
+   0:	e92d 4ff0 	stmdb	sp!, {r4, r5, r6, r7, r8, r9, sl, fp, lr}
+   4:	4681      	mov	r9, r0
+   6:	460f      	mov	r7, r1
+   8:	4616      	mov	r6, r2
+   a:	b087      	sub	sp, #28
+   c:	2a00      	cmp	r2, #0
+   e:	d03b      	beq.n	88 <tu_fifo_write_n_access_mode+0x88>
+  10:	8900      	ldrh	r0, [r0, #8]
+  12:	f899 2006 	ldrb.w	r2, [r9, #6]
+  16:	f8b9 400a 	ldrh.w	r4, [r9, #10]
+  1a:	f8b9 5004 	ldrh.w	r5, [r9, #4]
+  1e:	b280      	uxth	r0, r0
+  20:	b2a4      	uxth	r4, r4
+  22:	2a00      	cmp	r2, #0
+  24:	d134      	bne.n	90 <tu_fifo_write_n_access_mode+0x90>
+  26:	42a0      	cmp	r0, r4
+  28:	bfb6      	itet	lt
+  2a:	ebc4 0445 	rsblt	r4, r4, r5, lsl #1
+  2e:	1b04      	subge	r4, r0, r4
+  30:	1824      	addlt	r4, r4, r0
+  32:	b2a4      	uxth	r4, r4
+  34:	42ac      	cmp	r4, r5
+  36:	bf2e      	itee	cs
+  38:	2400      	movcs	r4, #0
+  3a:	1b2c      	subcc	r4, r5, r4
+  3c:	b2a4      	uxthcc	r4, r4
+  3e:	42a6      	cmp	r6, r4
+  40:	bf28      	it	cs
+  42:	4626      	movcs	r6, r4
+  44:	4604      	mov	r4, r0
+  46:	b1fe      	cbz	r6, 88 <tu_fifo_write_n_access_mode+0x88>
+  48:	4622      	mov	r2, r4
+  4a:	42aa      	cmp	r2, r5
+  4c:	d23a      	bcs.n	c4 <tu_fifo_write_n_access_mode+0xc4>
+  4e:	eba5 0b02 	sub.w	fp, r5, r2
+  52:	f8d9 1000 	ldr.w	r1, [r9]
+  56:	1b75      	subs	r5, r6, r5
+  58:	4415      	add	r5, r2
+  5a:	fa1f fb8b 	uxth.w	fp, fp
+  5e:	b2ad      	uxth	r5, r5
+  60:	eb01 0a02 	add.w	sl, r1, r2
+  64:	2b00      	cmp	r3, #0
+  66:	f000 8085 	beq.w	174 <tu_fifo_write_n_access_mode+0x174>
+  6a:	455e      	cmp	r6, fp
+  6c:	d82d      	bhi.n	ca <tu_fifo_write_n_access_mode+0xca>
+  6e:	4632      	mov	r2, r6
+  70:	4651      	mov	r1, sl
+  72:	4638      	mov	r0, r7
+  74:	f7ff fffe 	bl	0 <tu_fifo_write_n_access_mode>
+			74: R_ARM_THM_CALL	tu_hwfifo_read
+  78:	4632      	mov	r2, r6
+  7a:	4621      	mov	r1, r4
+  7c:	f8b9 0004 	ldrh.w	r0, [r9, #4]
+  80:	f7ff fffe 	bl	0 <tu_fifo_write_n_access_mode>
+			80: R_ARM_THM_CALL	advance_index
+  84:	f8a9 0008 	strh.w	r0, [r9, #8]
+  88:	4630      	mov	r0, r6
+  8a:	b007      	add	sp, #28
+  8c:	e8bd 8ff0 	ldmia.w	sp!, {r4, r5, r6, r7, r8, r9, sl, fp, pc}
+  90:	42ae      	cmp	r6, r5
+  92:	d304      	bcc.n	9e <tu_fifo_write_n_access_mode+0x9e>
+  94:	b90b      	cbnz	r3, 9a <tu_fifo_write_n_access_mode+0x9a>
+  96:	1b76      	subs	r6, r6, r5
+  98:	4437      	add	r7, r6
+  9a:	462e      	mov	r6, r5
+  9c:	e7d3      	b.n	46 <tu_fifo_write_n_access_mode+0x46>
+  9e:	42a0      	cmp	r0, r4
+  a0:	ea4f 0145 	mov.w	r1, r5, lsl #1
+  a4:	bfb6      	itet	lt
+  a6:	1b0a      	sublt	r2, r1, r4
+  a8:	1b02      	subge	r2, r0, r4
+  aa:	1812      	addlt	r2, r2, r0
+  ac:	b292      	uxth	r2, r2
+  ae:	4432      	add	r2, r6
+  b0:	428a      	cmp	r2, r1
+  b2:	db05      	blt.n	c0 <tu_fifo_write_n_access_mode+0xc0>
+  b4:	1baa      	subs	r2, r5, r6
+  b6:	4621      	mov	r1, r4
+  b8:	4628      	mov	r0, r5
+  ba:	b292      	uxth	r2, r2
+  bc:	f7ff fffe 	bl	0 <tu_fifo_write_n_access_mode>
+			bc: R_ARM_THM_CALL	advance_index
+  c0:	4604      	mov	r4, r0
+  c2:	e7c1      	b.n	48 <tu_fifo_write_n_access_mode+0x48>
+  c4:	1b52      	subs	r2, r2, r5
+  c6:	b292      	uxth	r2, r2
+  c8:	e7bf      	b.n	4a <tu_fifo_write_n_access_mode+0x4a>
+  ca:	f893 8000 	ldrb.w	r8, [r3]
+  ce:	4638      	mov	r0, r7
+  d0:	f1c8 0200 	rsb	r2, r8, #0
+  d4:	ea0b 0202 	and.w	r2, fp, r2
+  d8:	4651      	mov	r1, sl
+  da:	e9cd 2301 	strd	r2, r3, [sp, #4]
+  de:	f7ff fffe 	bl	0 <tu_fifo_write_n_access_mode>
+			de: R_ARM_THM_CALL	tu_hwfifo_read
+  e2:	f108 32ff 	add.w	r2, r8, #4294967295
+  e6:	9b01      	ldr	r3, [sp, #4]
+  e8:	ea02 0b0b 	and.w	fp, r2, fp
+  ec:	f01b 0bff 	ands.w	fp, fp, #255	@ 0xff
+  f0:	eb07 0043 	add.w	r0, r7, r3, lsl #1
+  f4:	9b02      	ldr	r3, [sp, #8]
+  f6:	d03a      	beq.n	16e <tu_fifo_write_n_access_mode+0x16e>
+  f8:	eba8 080b 	sub.w	r8, r8, fp
+  fc:	fa1f f888 	uxth.w	r8, r8
+ 100:	45a8      	cmp	r8, r5
+ 102:	bf28      	it	cs
+ 104:	46a8      	movcs	r8, r5
+ 106:	fa5f f788 	uxtb.w	r7, r8
+ 10a:	eb0b 0207 	add.w	r2, fp, r7
+ 10e:	a905      	add	r1, sp, #20
+ 110:	9303      	str	r3, [sp, #12]
+ 112:	9002      	str	r0, [sp, #8]
+ 114:	46b8      	mov	r8, r7
+ 116:	f7ff fffe 	bl	0 <tu_fifo_write_n_access_mode>
+			116: R_ARM_THM_CALL	tu_hwfifo_read
+ 11a:	2100      	movs	r1, #0
+ 11c:	9802      	ldr	r0, [sp, #8]
+ 11e:	9a01      	ldr	r2, [sp, #4]
+ 120:	9b03      	ldr	r3, [sp, #12]
+ 122:	3004      	adds	r0, #4
+ 124:	f10d 0c14 	add.w	ip, sp, #20
+ 128:	4452      	add	r2, sl
+ 12a:	3101      	adds	r1, #1
+ 12c:	f81c eb01 	ldrb.w	lr, [ip], #1
+ 130:	b2c9      	uxtb	r1, r1
+ 132:	458b      	cmp	fp, r1
+ 134:	f802 eb01 	strb.w	lr, [r2], #1
+ 138:	d1f7      	bne.n	12a <tu_fifo_write_n_access_mode+0x12a>
+ 13a:	f04f 0c00 	mov.w	ip, #0
+ 13e:	aa05      	add	r2, sp, #20
+ 140:	445a      	add	r2, fp
+ 142:	fa5f fe8c 	uxtb.w	lr, ip
+ 146:	4577      	cmp	r7, lr
+ 148:	f8d9 1000 	ldr.w	r1, [r9]
+ 14c:	d808      	bhi.n	160 <tu_fifo_write_n_access_mode+0x160>
+ 14e:	eba5 0808 	sub.w	r8, r5, r8
+ 152:	fa1f f588 	uxth.w	r5, r8
+ 156:	4439      	add	r1, r7
+ 158:	2d00      	cmp	r5, #0
+ 15a:	d08d      	beq.n	78 <tu_fifo_write_n_access_mode+0x78>
+ 15c:	462a      	mov	r2, r5
+ 15e:	e789      	b.n	74 <tu_fifo_write_n_access_mode+0x74>
+ 160:	f812 eb01 	ldrb.w	lr, [r2], #1
+ 164:	f801 e00c 	strb.w	lr, [r1, ip]
+ 168:	f10c 0c01 	add.w	ip, ip, #1
+ 16c:	e7e9      	b.n	142 <tu_fifo_write_n_access_mode+0x142>
+ 16e:	f8d9 1000 	ldr.w	r1, [r9]
+ 172:	e7f1      	b.n	158 <tu_fifo_write_n_access_mode+0x158>
+ 174:	455e      	cmp	r6, fp
+ 176:	d805      	bhi.n	184 <tu_fifo_write_n_access_mode+0x184>
+ 178:	4632      	mov	r2, r6
+ 17a:	4639      	mov	r1, r7
+ 17c:	4650      	mov	r0, sl
+ 17e:	f7ff fffe 	bl	0 <memcpy>
+			17e: R_ARM_THM_CALL	memcpy
+ 182:	e779      	b.n	78 <tu_fifo_write_n_access_mode+0x78>
+ 184:	465a      	mov	r2, fp
+ 186:	4639      	mov	r1, r7
+ 188:	4650      	mov	r0, sl
+ 18a:	f7ff fffe 	bl	0 <memcpy>
+			18a: R_ARM_THM_CALL	memcpy
+ 18e:	462a      	mov	r2, r5
+ 190:	f8d9 0000 	ldr.w	r0, [r9]
+ 194:	eb07 010b 	add.w	r1, r7, fp
+ 198:	e7f1      	b.n	17e <tu_fifo_write_n_access_mode+0x17e>
+
+Disassembly of section .text.tu_fifo_discard_n:
+
+00000000 <tu_fifo_discard_n>:
+   0:	460a      	mov	r2, r1
+   2:	8903      	ldrh	r3, [r0, #8]
+   4:	8941      	ldrh	r1, [r0, #10]
+   6:	b29b      	uxth	r3, r3
+   8:	b289      	uxth	r1, r1
+   a:	b510      	push	{r4, lr}
+   c:	4604      	mov	r4, r0
+   e:	8880      	ldrh	r0, [r0, #4]
+  10:	428b      	cmp	r3, r1
+  12:	bfb6      	itet	lt
+  14:	ebc1 0140 	rsblt	r1, r1, r0, lsl #1
+  18:	1a5b      	subge	r3, r3, r1
+  1a:	185b      	addlt	r3, r3, r1
+  1c:	4282      	cmp	r2, r0
+  1e:	bf28      	it	cs
+  20:	4602      	movcs	r2, r0
+  22:	b29b      	uxth	r3, r3
+  24:	4293      	cmp	r3, r2
+  26:	bf28      	it	cs
+  28:	4613      	movcs	r3, r2
+  2a:	8961      	ldrh	r1, [r4, #10]
+  2c:	461a      	mov	r2, r3
+  2e:	b289      	uxth	r1, r1
+  30:	f7ff fffe 	bl	0 <tu_fifo_discard_n>
+			30: R_ARM_THM_CALL	advance_index
+  34:	8160      	strh	r0, [r4, #10]
+  36:	4618      	mov	r0, r3
+  38:	bd10      	pop	{r4, pc}
+
+Disassembly of section .text.tu_fifo_read:
+
+00000000 <tu_fifo_read>:
+   0:	8902      	ldrh	r2, [r0, #8]
+   2:	8943      	ldrh	r3, [r0, #10]
+   4:	b510      	push	{r4, lr}
+   6:	b29b      	uxth	r3, r3
+   8:	b292      	uxth	r2, r2
+   a:	4604      	mov	r4, r0
+   c:	f7ff fffe 	bl	0 <tu_fifo_read>
+			c: R_ARM_THM_CALL	ff_peek_local
+  10:	4603      	mov	r3, r0
+  12:	b130      	cbz	r0, 22 <tu_fifo_read+0x22>
+  14:	8961      	ldrh	r1, [r4, #10]
+  16:	2201      	movs	r2, #1
+  18:	88a0      	ldrh	r0, [r4, #4]
+  1a:	b289      	uxth	r1, r1
+  1c:	f7ff fffe 	bl	0 <tu_fifo_read>
+			1c: R_ARM_THM_CALL	advance_index
+  20:	8160      	strh	r0, [r4, #10]
+  22:	4618      	mov	r0, r3
+  24:	bd10      	pop	{r4, pc}
+
+Disassembly of section .text.tu_fifo_peek:
+
+00000000 <tu_fifo_peek>:
+   0:	8902      	ldrh	r2, [r0, #8]
+   2:	8943      	ldrh	r3, [r0, #10]
+   4:	b292      	uxth	r2, r2
+   6:	b29b      	uxth	r3, r3
+   8:	f7ff bffe 	b.w	0 <tu_fifo_peek>
+			8: R_ARM_THM_JUMP24	ff_peek_local
+
+Disassembly of section .text.tu_fifo_write:
+
+00000000 <tu_fifo_write>:
+   0:	b570      	push	{r4, r5, r6, lr}
+   2:	8905      	ldrh	r5, [r0, #8]
+   4:	8903      	ldrh	r3, [r0, #8]
+   6:	8942      	ldrh	r2, [r0, #10]
+   8:	b29b      	uxth	r3, r3
+   a:	b292      	uxth	r2, r2
+   c:	8886      	ldrh	r6, [r0, #4]
+   e:	4293      	cmp	r3, r2
+  10:	bfb6      	itet	lt
+  12:	ebc2 0246 	rsblt	r2, r2, r6, lsl #1
+  16:	1a9b      	subge	r3, r3, r2
+  18:	189b      	addlt	r3, r3, r2
+  1a:	b29b      	uxth	r3, r3
+  1c:	429e      	cmp	r6, r3
+  1e:	4604      	mov	r4, r0
+  20:	b2ad      	uxth	r5, r5
+  22:	d813      	bhi.n	4c <tu_fifo_write+0x4c>
+  24:	7980      	ldrb	r0, [r0, #6]
+  26:	b988      	cbnz	r0, 4c <tu_fifo_write+0x4c>
+  28:	bd70      	pop	{r4, r5, r6, pc}
+  2a:	1b80      	subs	r0, r0, r6
+  2c:	b280      	uxth	r0, r0
+  2e:	4286      	cmp	r6, r0
+  30:	d9fb      	bls.n	2a <tu_fifo_write+0x2a>
+  32:	6823      	ldr	r3, [r4, #0]
+  34:	2201      	movs	r2, #1
+  36:	4418      	add	r0, r3
+  38:	f7ff fffe 	bl	0 <memcpy>
+			38: R_ARM_THM_CALL	memcpy
+  3c:	2201      	movs	r2, #1
+  3e:	4629      	mov	r1, r5
+  40:	88a0      	ldrh	r0, [r4, #4]
+  42:	f7ff fffe 	bl	0 <tu_fifo_write>
+			42: R_ARM_THM_CALL	advance_index
+  46:	8120      	strh	r0, [r4, #8]
+  48:	2001      	movs	r0, #1
+  4a:	e7ed      	b.n	28 <tu_fifo_write+0x28>
+  4c:	4628      	mov	r0, r5
+  4e:	e7ee      	b.n	2e <tu_fifo_write+0x2e>
+
+Disassembly of section .text.tu_fifo_advance_write_pointer:
+
+00000000 <tu_fifo_advance_write_pointer>:
+   0:	460a      	mov	r2, r1
+   2:	8901      	ldrh	r1, [r0, #8]
+   4:	b508      	push	{r3, lr}
+   6:	b289      	uxth	r1, r1
+   8:	4603      	mov	r3, r0
+   a:	8880      	ldrh	r0, [r0, #4]
+   c:	f7ff fffe 	bl	0 <tu_fifo_advance_write_pointer>
+			c: R_ARM_THM_CALL	advance_index
+  10:	8118      	strh	r0, [r3, #8]
+  12:	bd08      	pop	{r3, pc}
+
+Disassembly of section .text.tu_fifo_correct_read_pointer:
+
+00000000 <tu_fifo_correct_read_pointer>:
+   0:	8903      	ldrh	r3, [r0, #8]
+   2:	8882      	ldrh	r2, [r0, #4]
+   4:	b29b      	uxth	r3, r3
+   6:	4293      	cmp	r3, r2
+   8:	bf2c      	ite	cs
+   a:	1a9b      	subcs	r3, r3, r2
+   c:	189b      	addcc	r3, r3, r2
+   e:	b29b      	uxth	r3, r3
+  10:	8143      	strh	r3, [r0, #10]
+  12:	4770      	bx	lr
+
+Disassembly of section .text.tu_fifo_advance_read_pointer:
+
+00000000 <tu_fifo_advance_read_pointer>:
+   0:	460a      	mov	r2, r1
+   2:	8941      	ldrh	r1, [r0, #10]
+   4:	b508      	push	{r3, lr}
+   6:	b289      	uxth	r1, r1
+   8:	4603      	mov	r3, r0
+   a:	8880      	ldrh	r0, [r0, #4]
+   c:	f7ff fffe 	bl	0 <tu_fifo_advance_read_pointer>
+			c: R_ARM_THM_CALL	advance_index
+  10:	8158      	strh	r0, [r3, #10]
+  12:	bd08      	pop	{r3, pc}
+
+Disassembly of section .text.tu_fifo_get_read_info:
+
+00000000 <tu_fifo_get_read_info>:
+   0:	b570      	push	{r4, r5, r6, lr}
+   2:	8904      	ldrh	r4, [r0, #8]
+   4:	8943      	ldrh	r3, [r0, #10]
+   6:	b2a4      	uxth	r4, r4
+   8:	b29b      	uxth	r3, r3
+   a:	8885      	ldrh	r5, [r0, #4]
+   c:	429c      	cmp	r4, r3
+   e:	bfb6      	itet	lt
+  10:	ebc3 0245 	rsblt	r2, r3, r5, lsl #1
+  14:	1ae2      	subge	r2, r4, r3
+  16:	1912      	addlt	r2, r2, r4
+  18:	b292      	uxth	r2, r2
+  1a:	4295      	cmp	r5, r2
+  1c:	d206      	bcs.n	2c <tu_fifo_get_read_info+0x2c>
+  1e:	462a      	mov	r2, r5
+  20:	42a5      	cmp	r5, r4
+  22:	bf94      	ite	ls
+  24:	1b63      	subls	r3, r4, r5
+  26:	192b      	addhi	r3, r5, r4
+  28:	b29b      	uxth	r3, r3
+  2a:	8143      	strh	r3, [r0, #10]
+  2c:	b93a      	cbnz	r2, 3e <tu_fifo_get_read_info+0x3e>
+  2e:	800a      	strh	r2, [r1, #0]
+  30:	810a      	strh	r2, [r1, #8]
+  32:	604a      	str	r2, [r1, #4]
+  34:	2000      	movs	r0, #0
+  36:	60c8      	str	r0, [r1, #12]
+  38:	bd70      	pop	{r4, r5, r6, pc}
+  3a:	1b64      	subs	r4, r4, r5
+  3c:	b2a4      	uxth	r4, r4
+  3e:	42a5      	cmp	r5, r4
+  40:	d9fb      	bls.n	3a <tu_fifo_get_read_info+0x3a>
+  42:	429d      	cmp	r5, r3
+  44:	d909      	bls.n	5a <tu_fifo_get_read_info+0x5a>
+  46:	6800      	ldr	r0, [r0, #0]
+  48:	42a3      	cmp	r3, r4
+  4a:	eb00 0603 	add.w	r6, r0, r3
+  4e:	604e      	str	r6, [r1, #4]
+  50:	d206      	bcs.n	60 <tu_fifo_get_read_info+0x60>
+  52:	2300      	movs	r3, #0
+  54:	800a      	strh	r2, [r1, #0]
+  56:	810b      	strh	r3, [r1, #8]
+  58:	e7ec      	b.n	34 <tu_fifo_get_read_info+0x34>
+  5a:	1b5b      	subs	r3, r3, r5
+  5c:	b29b      	uxth	r3, r3
+  5e:	e7f0      	b.n	42 <tu_fifo_get_read_info+0x42>
+  60:	1b52      	subs	r2, r2, r5
+  62:	1aec      	subs	r4, r5, r3
+  64:	4413      	add	r3, r2
+  66:	800c      	strh	r4, [r1, #0]
+  68:	810b      	strh	r3, [r1, #8]
+  6a:	e7e4      	b.n	36 <tu_fifo_get_read_info+0x36>
+
+Disassembly of section .text.tu_fifo_get_write_info:
+
+00000000 <tu_fifo_get_write_info>:
+   0:	8903      	ldrh	r3, [r0, #8]
+   2:	8942      	ldrh	r2, [r0, #10]
+   4:	b570      	push	{r4, r5, r6, lr}
+   6:	b29b      	uxth	r3, r3
+   8:	b292      	uxth	r2, r2
+   a:	8885      	ldrh	r5, [r0, #4]
+   c:	4293      	cmp	r3, r2
+   e:	bfb6      	itet	lt
+  10:	ebc2 0445 	rsblt	r4, r2, r5, lsl #1
+  14:	1a9c      	subge	r4, r3, r2
+  16:	18e4      	addlt	r4, r4, r3
+  18:	b2a4      	uxth	r4, r4
+  1a:	42a5      	cmp	r5, r4
+  1c:	d808      	bhi.n	30 <tu_fifo_get_write_info+0x30>
+  1e:	2300      	movs	r3, #0
+  20:	800b      	strh	r3, [r1, #0]
+  22:	810b      	strh	r3, [r1, #8]
+  24:	604b      	str	r3, [r1, #4]
+  26:	2000      	movs	r0, #0
+  28:	60c8      	str	r0, [r1, #12]
+  2a:	bd70      	pop	{r4, r5, r6, pc}
+  2c:	1b5b      	subs	r3, r3, r5
+  2e:	b29b      	uxth	r3, r3
+  30:	429d      	cmp	r5, r3
+  32:	d9fb      	bls.n	2c <tu_fifo_get_write_info+0x2c>
+  34:	4295      	cmp	r5, r2
+  36:	d90a      	bls.n	4e <tu_fifo_get_write_info+0x4e>
+  38:	6800      	ldr	r0, [r0, #0]
+  3a:	429a      	cmp	r2, r3
+  3c:	eb00 0603 	add.w	r6, r0, r3
+  40:	604e      	str	r6, [r1, #4]
+  42:	d907      	bls.n	54 <tu_fifo_get_write_info+0x54>
+  44:	1ad2      	subs	r2, r2, r3
+  46:	2300      	movs	r3, #0
+  48:	800a      	strh	r2, [r1, #0]
+  4a:	810b      	strh	r3, [r1, #8]
+  4c:	e7eb      	b.n	26 <tu_fifo_get_write_info+0x26>
+  4e:	1b52      	subs	r2, r2, r5
+  50:	b292      	uxth	r2, r2
+  52:	e7ef      	b.n	34 <tu_fifo_get_write_info+0x34>
+  54:	1aed      	subs	r5, r5, r3
+  56:	1b1b      	subs	r3, r3, r4
+  58:	800d      	strh	r5, [r1, #0]
+  5a:	810b      	strh	r3, [r1, #8]
+  5c:	e7e4      	b.n	28 <tu_fifo_get_write_info+0x28>

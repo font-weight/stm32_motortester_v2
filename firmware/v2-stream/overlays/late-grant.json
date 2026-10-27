@@ -1,0 +1,13 @@
+{
+  "schema": "motortester-v2-late-grant-overlay-1",
+  "patches": [
+    {
+      "source": "patched/v2/app/mt_live_runtime.c",
+      "target": "v2/app/mt_live_runtime.c",
+      "patch": "v2-late-grant-app-mt_live_runtime.c.patch",
+      "source_sha256": "c8525c8a2737ea077e02d7f3217252e812eb72e6ded0cc9cc37840fa2dbc6351",
+      "patch_sha256": "16aacb238ed362328e3c0af7529ae49967feec8e83dd7a8b00ccbf093592ddc6",
+      "result_sha256": "31db9f366c635082cb80540e5f0028323c779a132e1fbf5e5aece8519be4f55d"
+    }
+  ]
+}

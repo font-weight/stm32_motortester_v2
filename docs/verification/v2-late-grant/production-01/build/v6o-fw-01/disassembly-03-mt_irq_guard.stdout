@@ -1,0 +1,16 @@
+
+objects/03-mt_irq_guard.o:     file format elf32-littlearm
+
+
+Disassembly of section .text.mt_irq_guard_enter:
+
+00000000 <mt_irq_guard_enter>:
+   0:	f3ef 8010 	mrs	r0, PRIMASK
+   4:	b672      	cpsid	i
+   6:	4770      	bx	lr
+
+Disassembly of section .text.mt_irq_guard_leave:
+
+00000000 <mt_irq_guard_leave>:
+   0:	f380 8810 	msr	PRIMASK, r0
+   4:	4770      	bx	lr

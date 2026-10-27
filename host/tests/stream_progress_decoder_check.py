@@ -32,7 +32,8 @@ def main():
     def decode(first=raw, second=None, **kwargs):
         return decoder.decode(first, first if second is None else second, kwargs.get('legacy', legacy),
                               kwargs.get('nonce', nonce), kwargs.get('generation', gen),
-                              kwargs.get('image_sha256', args.image_sha256))
+                              kwargs.get('image_sha256', args.image_sha256),
+                              kwargs.get('expected_build', decoder.BUILD))
     def change(**fields):
         values = dict(zip(decoder.FIELDS, decoder.LAYOUT.unpack(raw)))
         values.update(fields)
@@ -69,6 +70,12 @@ def main():
     reject('impossible_positive_count', decode(change(positive_count=500)))
     reject('unavailable_FIFO_not_sentinel', decode(change(snapshot_bits=0)))
     reject('missing_close_tail', decode(change(max_positive_gap_cycles=2599)))
+    sh_legacy = dict(legacy, raw=dict(legacy['raw'], firmware_build=0x56325348))
+    sh_result = decode(legacy=sh_legacy, expected_build=0x56325348)
+    assert sh_result['accepted_frozen_record'] and sh_result['expected_build'] == '0x56325348'
+    reject('SH_requires_explicit_build', decode(legacy=sh_legacy))
+    reject('SG_not_SH', decode(expected_build=0x56325348))
+    reject('unsupported_build', decode(expected_build=0x56325349))
     # Legal unavailable snapshot stays unknown; it must never be rendered as0.
     unavailable = decode(change(snapshot_bits=0, fifo_free=65535))
     assert unavailable['accepted_frozen_record'] and unavailable['USB_snapshot'] is None
@@ -81,6 +88,7 @@ def main():
               'known_fixture_fields': expected, 'negative_checks': checks,
               'unknown_FIFO_preserved': True, 'typed_TIME_supported': True,
               'legacy_binding_is_synthetic': True, 'hardware_executed': False,
+              'SG_default_and_explicit_SH_checked': True,
               'physical_throughput_claim': False}
     (args.output/'fixture-decoded.json').write_text(json.dumps(result, indent=2)+'\n',encoding='utf-8')
     (args.output/'result.json').write_text(json.dumps(report, indent=2)+'\n',encoding='utf-8')

@@ -1,0 +1,11 @@
+--- a/protocol/mt_live_device.h
++++ b/protocol/mt_live_device.h
+@@ -34,7 +34,7 @@
+ typedef struct {
+     void *context;
+     uint64_t (*clock_ms)(void *context);
+-    /* Return exactly 1 only after enabling the fixed 200kS/s profile for this
++    /* Return exactly 1 only after enabling the fixed 100kS/s profile for this
+      * generation, with source indices beginning at zero. Return 0 on failure;
+      * a failed start MAY have partially enabled hardware, so cleanup follows.
+      * Do not call offer/receive/step reentrantly from this callback. */

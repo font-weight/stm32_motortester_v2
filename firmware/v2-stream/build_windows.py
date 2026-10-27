@@ -1,4 +1,4 @@
-"""Build V2SG with compact progress diagnostics; never flash hardware."""
+"""Build V2SH with one deferred grant for new mode5 DATA; never flash hardware."""
 import argparse
 import hashlib
 import importlib.util
@@ -317,6 +317,13 @@ def main():
                 (here / "overlays" / row["patch"]).read_bytes(), row))
         for name in ("mt_stream_progress.c", "mt_stream_progress.h"):
             (out / "patched/v2/platform" / name).write_bytes((here / "progress" / name).read_bytes())
+        late = json.loads((here / "overlays/late-grant.json").read_text("utf-8"))
+        require(late["schema"] == "motortester-v2-late-grant-overlay-1", "Unexpected late grant overlay")
+        receipt["v2_overlays"].extend(late["patches"])
+        for row in late["patches"]:
+            target = out / "patched" / row["target"]
+            target.write_bytes(apply_patch((out / row["source"]).read_bytes(),
+                (here / "overlays" / row["patch"]).read_bytes(), row))
         if config["active_profile_enabled"]:
             for name in ("mt_stream_profile.c", "mt_stream_profile.h"):
                 (out / "patched/v2/platform" / name).write_bytes((here / "profile" / name).read_bytes())

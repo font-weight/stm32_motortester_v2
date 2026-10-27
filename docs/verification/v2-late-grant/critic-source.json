@@ -1,0 +1,101 @@
+{
+  "schema": "motortester-v2-06o-independent-source-review-1",
+  "date": "2026-10-27",
+  "status": "PASS",
+  "score": 9.625,
+  "scope": "O1 exact SH software candidate: one deferred grant for selected new mode5 DATA1024, fail-closed runtime boundaries, ARM resources and SG/SH offline decoder binding",
+  "reviewer": "/root/stream200_critic",
+  "independent_from_implementation_model_decoder": true,
+  "base_commit": "56e712e6830c34cbbac1d2e674fc2e8a74696eaf",
+  "functional_SG_source_commit": "f4c40c2f13be098f24bff069916bbb13dd7973a5",
+  "freeze": {
+    "path": "build/v6o-freeze.json",
+    "sha256": "ba50e3b452c5f2184d61112de8026398c07717da1f7c104a0ad70db02c2875fa",
+    "verified_rows": 33,
+    "verified_bytes": 2035832
+  },
+  "archive": {
+    "path": "docs/verification/v2-late-grant/production-01/manifest.json",
+    "sha256": "ce67de43572509c5b9fb159a2475879ed3d172efd906ea7a8cbf6feb00cb1acb",
+    "pairs_verified": 555,
+    "bytes": 4386470,
+    "all_source_copy_equal": true
+  },
+  "exact_candidate": {
+    "firmware_build": "0x56325348",
+    "bin_bytes": 44212,
+    "image_bin_sha256": "99fcd38af9ac4e4feb8b7b4fa0bd577a77d8103773c0951e6b6a433e22deddf2",
+    "image_elf_sha256": "29c12600228c367f440dbfab09761c8572f342cf5f96e5c20336e3fbb24b0cb3",
+    "runtime_sha256": "31db9f366c635082cb80540e5f0028323c779a132e1fbf5e5aece8519be4f55d",
+    "patch_sha256": "16aacb238ed362328e3c0af7529ae49967feec8e83dd7a8b00ccbf093592ddc6",
+    "methodology_sha256": "cf56b3f5314f6ba9cc5b883802d4e401267be4d76a7303466960b1b90ebd69c6"
+  },
+  "personally_verified": {
+    "source_and_boundary_read": true,
+    "freeze_pins_match": true,
+    "ARM_inputs": 565,
+    "compiler_dependencies": 118,
+    "object_pins": 33,
+    "analysis_inputs": 35,
+    "image_artifacts": 3,
+    "native_inputs": 122,
+    "other_patched_files_byte_equal_SG": 52,
+    "ELF_section_table_independently_read": true,
+    "native_and_decoder_reports_read": true,
+    "input_drift": [],
+    "methods": ["Read source/diff/strict overlay, reports and symbols", "Passive pathlib/hashlib/json/struct byte and ELF checks"],
+    "critic_build_or_test_reruns": 0,
+    "critic_hardware_actions": 0
+  },
+  "saved_evidence": {
+    "ARM": {"path": "build/v6o-fw-01/receipt.json", "sha256": "30d6f8794ade055d3474eff057cf132f2f04b8f10c08a5bbee526cfaeedc0f5d", "status": "BUILT_STATIC_CHECKED_TRANSPORT_CANDIDATE", "first_attempt": true},
+    "native": {"path": "build/v6o-native-01/result.json", "sha256": "016fb84d3292f139e69608110b3967118add3413875136ba987017755bc2d633", "status": "PASS", "first_attempt": true, "groups": 3, "model_sha256": "96ece4a0ab642fbab7fc5bb5b364113d03e79a2c927b97d625d59e39f32c1a1a", "actual": "Extracted runtime bodies and epoch module", "logical_seams": "ADC/core/USB/MMIO/TIME/scope; progress observer disabled only in order harness"},
+    "source_equivalence": {"path": "build/v6o-native-01/source-equivalence.json", "sha256": "6ad33e002164b0c0ad2d0a71d630492929709d8ee721701a3484bdae0ecf203a", "runtime_normalization": "Only two predicates, selector and delimited late block removed", "grant_and_guarded_submit_unchanged": true},
+    "decoder": {"path": "build/v6o-decoder-01/result.json", "sha256": "4a430ff22c582535c4bdabee7ca682d0491ff57be878b4026ac3328984edb1d5", "status": "PASS", "runs": 1, "negative_cases": 16, "fixture_sha256": "761f9c6da65816e44c07c32a97625a0fd89aeaa7aa8d69b6ae45afdeeffe8acb", "legacy_bindings_synthetic": true, "physical_SH_trace": false},
+    "decoder_source_sha256": "888e3b93337f289d7e69627745e393d690f71766c44b6f2c98cd4d21d0b4dbec",
+    "decoder_checker_sha256": "5c4dcb9f735a913cd8a7af0634ce305d4335da979345964995024166d9ee0912"
+  },
+  "resources": {
+    "data_bytes": 128,
+    "bss_bytes": 12132,
+    "new_static_bytes": 0,
+    "stack_reserve_bytes": 8192,
+    "static_plus_reserve_bytes": 20452,
+    "ram_bytes": 20480,
+    "spare_above_reserve_bytes": 28,
+    "runtime_frame_bytes": 328,
+    "conditional_stack_upper_bytes": 6156,
+    "conditional_stack_aligned_bytes": 6160,
+    "static_bound_sha256": "e9317b4704e4a38b74e9e65ac0d7d8f68a2409e354f49988f11b9c5c8351c5bc",
+    "legacy136_address": "0x20002F1C",
+    "progress64_address": "0x20002FA4",
+    "physical_stack_high_water_measured": false
+  },
+  "resolved_review_points": [
+    "Fresh TIME/loss/stable before late grant, not cached healthy alone",
+    "Raw lifecycle pending after denied late scope: next ordinary fallback, no stale RX/TX or duplicate grant",
+    "Hint documented as scheduling choice, not queue/ownership metadata authority"
+  ],
+  "open_P0_P1_in_source_scope": [],
+  "open_external_requirement": {"id": "P1-M2-01", "status": "OPEN", "requirement": "Physically stable 150000 samples/s", "latest_physical_result": "N2 REWORK", "closed_by_this_review": false},
+  "limits": [
+    "Older in-flight IN may wait longer; cached core TX absence does not prove USB idle",
+    "Queue full may occur inside ADC service before grant; no unique root cause or throughput proof",
+    "Native allow_ctr is an argument, not effective CTR permission; actual unchanged DCD checks raw lifecycle",
+    "Additional fresh checks and changed IRQ timing have unmeasured cost",
+    "RAM and stack are exact conditional software bounds, not physical high-water or WCET",
+    "Unchanged64/136 counters preserve FIFO-acceptance, inclusive-cycle and one-attempt-per-boot limits",
+    "No new GUI/package/physical/analog qualification and no Flash/START admission"
+  ],
+  "rubric": {
+    "C1": {"weight": 0.30, "score": 9.75, "basis": "Narrow late scheduling with authoritative prepared ticket and unchanged data/commit paths"},
+    "C2": {"weight": 0.20, "score": 9.50, "basis": "Fail-closed boundaries, one attempt, unchanged static/stack; timing risks bounded outside software scope"},
+    "C3": {"weight": 0.25, "score": 9.60, "basis": "Exact ARM, actual-runtime/epoch model, source equality and decoder negatives with explicit seam limits"},
+    "C4": {"weight": 0.15, "score": 9.50, "basis": "Small predicates and explicit canceled-cache handling; added admission branches require care"},
+    "C5": {"weight": 0.10, "score": 9.75, "basis": "Frozen exact provenance, complete preserved evidence and reproducible commands"}
+  },
+  "flash_approved": false,
+  "hardware_verified": false,
+  "stable150k_established": false,
+  "report": "docs/reviews/v2-06o-review.md"
+}

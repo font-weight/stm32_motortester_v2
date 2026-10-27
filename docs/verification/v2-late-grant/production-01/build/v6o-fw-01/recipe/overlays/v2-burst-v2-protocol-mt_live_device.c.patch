@@ -1,0 +1,11 @@
+--- a/v2/protocol/mt_live_device.c
++++ b/v2/protocol/mt_live_device.c
+@@ -410,7 +410,7 @@
+     if(bound!=UINT64_MAX && (UINT64_MAX-n<d->io.transaction_bound_ms || n+d->io.transaction_bound_ms>=bound)) {
+         recover(d,MT_LIVE_ERR_DEADLINE); return 0;
+     }
+-    offer=d->tx_length-d->tx_offset; if(offer>64u)offer=64u;
++    offer=d->tx_length-d->tx_offset; if(offer>384u)offer=384u;
+     first=(d->tx_offset==0u);
+     accepted=d->io.write(d->io.context,d->tx+d->tx_offset,offer);
+     d->last_write_known=(accepted!=SIZE_MAX && accepted<=offer);

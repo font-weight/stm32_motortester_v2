@@ -1,4 +1,4 @@
-"""Decode saved SG progress-v1 evidence. Never opens COM, SWD or a GUI.
+"""Decode saved SG/SH progress-v1 evidence. Never opens COM, SWD or a GUI.
 
 The 64-byte bank measures FIFO acceptance, not delivered samples. Its identity
 must match the independently decoded legacy136 and an explicitly pinned image.
@@ -11,6 +11,7 @@ import stat
 import struct
 
 BUILD = 0x56325347
+SUPPORTED_BUILDS = (BUILD, 0x56325348)
 MAGIC = 0x4D544E31
 CAP = 18_000_000
 FIELDS = """magic flags generation nonce_low nonce_high begin_cycle end_cycle
@@ -31,7 +32,7 @@ PRIMARY = {1: {1}, 2: set(range(1, 7)), 3: set(range(1, 8)), 4: {0}, 5: {0},
            6: {3}, 7: set(range(1, 9)), 8: {0}, 9: {0}, 10: {0}, 11: {2}}
 
 
-def decode(first, second, legacy, nonce, generation, image_sha256):
+def decode(first, second, legacy, nonce, generation, image_sha256, expected_build=BUILD):
     out = {'schema': 'motortester-sg-progress-v1-offline', 'errors': [],
            'warnings': [], 'accepted_frozen_record': False,
            'physical_identity_verified': False, 'timing_qualified': False,
@@ -45,6 +46,8 @@ def decode(first, second, legacy, nonce, generation, image_sha256):
         return out
     if first != second:
         errors.append('repeated_dump_mismatch')
+    if expected_build not in SUPPORTED_BUILDS:
+        errors.append('unsupported_expected_build')
     d = dict(zip(FIELDS, LAYOUT.unpack(first)))
     out['raw'] = d
     flags = d['flags']
@@ -71,12 +74,12 @@ def decode(first, second, legacy, nonce, generation, image_sha256):
     lr = legacy.get('raw') or {}
     pin = legacy.get('exact_candidate') or {}
     if (legacy.get('accepted_frozen_record') is not True or legacy.get('errors') != []
-            or lr.get('firmware_build') != BUILD or lr.get('generation') != generation
+            or lr.get('firmware_build') != expected_build or lr.get('generation') != generation
             or lr.get('phase') != 3 or lr.get('nonce_low') != (nonce & 0xffffffff)
             or lr.get('nonce_high') != nonce >> 32
             or pin.get('image_bin_sha256') != image_sha256):
         errors.append('legacy_build_session_image_binding_invalid')
-    out['expected_build'] = f'0x{BUILD:08x}'
+    out['expected_build'] = f'0x{expected_build:08x}'
     out['declared_image_sha256'] = image_sha256
     if has(9):
         if not (d['tx_offset'] <= d['tx_length'] <= 1335 and d['stage_count'] <= 1024
@@ -184,11 +187,13 @@ def main():
     ap.add_argument('--nonce', type=number, required=True)
     ap.add_argument('--generation', type=number, required=True)
     ap.add_argument('--image-sha256', required=True)
+    ap.add_argument('--build-id', type=number, choices=SUPPORTED_BUILDS, default=BUILD,
+                    help='Exact expected build; SG remains the default for saved evidence')
     args = ap.parse_args()
     try:
         out = decode(saved(args.first, 64), saved(args.second, 64),
                      json.loads(saved(args.legacy, 1024 * 1024)), args.nonce,
-                     args.generation, args.image_sha256)
+                     args.generation, args.image_sha256, args.build_id)
     except (OSError, ValueError, TypeError, AttributeError) as exc:
         out = {'status': 'INVALID', 'accepted_frozen_record': False, 'errors': [str(exc)]}
     print(json.dumps(out, ensure_ascii=False, indent=2))

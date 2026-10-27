@@ -1,0 +1,109 @@
+--- a/v2/platform/adc_timer_dma.c
++++ b/v2/platform/adc_timer_dma.c
+@@ -366,9 +366,10 @@
+         (rd(d, ADC_CR2) & ADC_ADON) == 0u;
+ }
+ 
+-static mt_adc_dma_result_t start(mt_adc_dma_t *d, const mt_adc_dma_start_guard *guard)
+-{
+-    uint32_t key = 0;
++static mt_adc_dma_result_t start(mt_adc_dma_t *d, const mt_adc_dma_start_guard *guard,
++                                 mt_adc_dma_start_transaction_fn transaction)
++{
++    uint32_t key = 0, transaction_before = 0, transaction_after = 0;
+     mt_adc_dma_fault_t commit_fault = MT_ADC_DMA_FAULT_NONE;
+     if (!valid(d)) { return MT_ADC_DMA_BAD_ARGUMENT; }
+     if (d->state != MT_ADC_DMA_STOPPED || d->owns_peripherals) { return MT_ADC_DMA_BUSY; }
+@@ -439,7 +440,8 @@
+     barrier();
+     if (guard) {
+         key = guard->enter(guard->context);
+-        d->start_before_us = now(d);
++        if (transaction) (void)now(d);
++        else d->start_before_us = now(d);
+         if (!guard->allowed(guard->context)) {
+             commit_fault = MT_ADC_DMA_FAULT_ADMISSION;
+             goto committed;
+@@ -451,26 +453,34 @@
+         commit_fault = MT_ADC_DMA_FAULT_CLOCK;
+         goto committed;
+     }
+-    if (!guard) d->start_before_us = now(d);
+-    if (guard && guard->timed_allowed &&
+-        !guard->timed_allowed(guard->context, &d->start_before_us)) {
+-        commit_fault = MT_ADC_DMA_FAULT_ADMISSION;
+-        goto committed;
+-    }
+-    wr(d, TIM_CR1, 1u);
+-    if (guard && guard->timed_allowed) {
+-        if (!guard->timed_allowed(guard->context, &d->start_after_us)) {
++    if (transaction) {
++        if (!transaction(guard->context, &transaction_before, &transaction_after)) {
+             commit_fault = MT_ADC_DMA_FAULT_ADMISSION;
+             goto committed;
+         }
+     } else {
+-        d->start_after_us = now(d);
+-        if (guard && !guard->allowed(guard->context)) {
++        if (!guard) d->start_before_us = now(d);
++        if (guard && guard->timed_allowed &&
++            !guard->timed_allowed(guard->context, &d->start_before_us)) {
+             commit_fault = MT_ADC_DMA_FAULT_ADMISSION;
+             goto committed;
+         }
+-    }
+-    if ((uint32_t)(d->start_after_us - d->start_before_us) > MT_ADC_DMA_SAMPLE_US) {
++        wr(d, TIM_CR1, 1u);
++        if (guard && guard->timed_allowed) {
++            if (!guard->timed_allowed(guard->context, &d->start_after_us)) {
++                commit_fault = MT_ADC_DMA_FAULT_ADMISSION;
++                goto committed;
++            }
++        } else {
++            d->start_after_us = now(d);
++            if (guard && !guard->allowed(guard->context)) {
++                commit_fault = MT_ADC_DMA_FAULT_ADMISSION;
++                goto committed;
++            }
++        }
++    }
++    if ((transaction ? (uint32_t)(transaction_after - transaction_before) :
++         (uint32_t)(d->start_after_us - d->start_before_us)) > MT_ADC_DMA_SAMPLE_US) {
+         commit_fault = MT_ADC_DMA_FAULT_TIMEBASE;
+         goto committed;
+     }
+@@ -479,6 +489,12 @@
+         rd(d, ADC_CR2) != (ADC_TIM3 | ADC_ADON | ADC_DMA | ADC_EXTTRIG)) {
+         commit_fault = MT_ADC_DMA_FAULT_TRANSFER;
+         goto committed;
++    }
++    /* New transaction metadata becomes visible only after all admission,
++     * interval and register checks. Legacy diagnostic metadata is unchanged. */
++    if (transaction) {
++        d->start_before_us = transaction_before;
++        d->start_after_us = transaction_after;
+     }
+     d->last_poll_us = d->start_before_us;
+     d->last_progress_us = d->start_before_us;
+@@ -499,13 +515,19 @@
+ }
+ 
+ mt_adc_dma_result_t mt_adc_dma_start(mt_adc_dma_t *d) {
+-    return start(d, NULL);
++    return start(d, NULL, NULL);
+ }
+ mt_adc_dma_result_t mt_adc_dma_start_guarded(mt_adc_dma_t *d,
+                                             const mt_adc_dma_start_guard *guard) {
+     if (!guard || !guard->enter || !guard->allowed || !guard->leave)
+         return MT_ADC_DMA_BAD_ARGUMENT;
+-    return start(d, guard);
++    return start(d, guard, NULL);
++}
++mt_adc_dma_result_t mt_adc_dma_start_transaction(mt_adc_dma_t *d,
++    const mt_adc_dma_start_guard *guard, mt_adc_dma_start_transaction_fn transaction) {
++    if (!guard || !guard->enter || !guard->allowed || !guard->leave || !transaction)
++        return MT_ADC_DMA_BAD_ARGUMENT;
++    return start(d, guard, transaction);
+ }
+ 
+ mt_adc_dma_result_t mt_adc_dma_read_block(mt_adc_dma_t *d, mt_adc_dma_block_t *block)

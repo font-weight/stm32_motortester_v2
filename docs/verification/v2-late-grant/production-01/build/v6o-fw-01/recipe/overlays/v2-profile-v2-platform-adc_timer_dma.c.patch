@@ -1,0 +1,19 @@
+--- a/patched/v2/platform/adc_timer_dma.c
++++ b/patched/v2/platform/adc_timer_dma.c
+@@ -1,3 +1,6 @@
++/* MT_PROFILE_BEGIN */
++#include "mt_stream_profile.h"
++/* MT_PROFILE_END */
+ #include "mt_stream_diag.h"
+ #include "adc_timer_dma.h"
+ 
+@@ -339,6 +342,9 @@
+     d->state = MT_ADC_DMA_FAULTED;
+     d->fault = fault;
+     if (d->stream_mode) invalidate_history(d, fault);
++    /* MT_PROFILE_BEGIN */
++    mt_profile_close(MT_P_CLOSE_ADC,(unsigned)fault);
++    /* MT_PROFILE_END */
+     if (!quiesce(d)) { d->fault = MT_ADC_DMA_FAULT_STOP; }
+     return MT_ADC_DMA_ERROR;
+ }

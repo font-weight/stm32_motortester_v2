@@ -1,0 +1,91 @@
+{
+  "schema": "motortester-V2-06o-author-audit-1",
+  "date": "2026-10-27",
+  "status": "SOFTWARE_CANDIDATE_NOT_PHYSICAL_ACCEPTANCE",
+  "baseline": {
+    "path": "build/v6n-freeze.json",
+    "bytes": 12323,
+    "sha256": "cd7ed1ffe7b5ab7e3563c051d0653232c2282fc675a2810b808b803486717720"
+  },
+  "runtime": {
+    "path": "build/v6o-fw-01/patched/v2/app/mt_live_runtime.c",
+    "bytes": 20487,
+    "sha256": "31db9f366c635082cb80540e5f0028323c779a132e1fbf5e5aece8519be4f55d"
+  },
+  "scope": "Only scheduling hint, actual-ticket classification and fresh pre/post deferred grant barriers; same single grant budget and old early/fallback paths.",
+  "evidence_boundaries": {
+    "actual_runtime_model": "Extracted candidate runtime bodies and actual epoch module execute. ADC/core/USB/clock/scope callbacks are explicit logical seams.",
+    "metadata_authority": "Hint checks mode/state/phase/count/queue-used/intents only; it is not a queue/ownership identity validator. Actual unchanged prepare and full guarded ticket remain authoritative.",
+    "N64": "Observer C/header and legacy136 byte-identical SG; N instrumentation disabled only in logical native order model and enabled in exact ARM.",
+    "physical": "No author hardware access, no150k throughput or deadline/WCET qualification."
+  },
+  "changed_boundaries": [
+    {
+      "point": "post-ADC before RX",
+      "condition": "Only STREAMING/mode5/new full-batch scheduling hint skips old early grant; original fresh TIME/stable before RX is retained."
+    },
+    {
+      "point": "after prepare, before late grant",
+      "order": "Consume attempt marker; fresh live_time, synchronize_loss, usable/stable; enter app scope/actor; stable; unchanged grant_irq."
+    },
+    {
+      "point": "after late grant",
+      "order": "Fresh live_time/stable; leave scope on all outcomes; prepared epoch/serial and original core ticket are revalidated under original write-through-final-commit guard."
+    },
+    {
+      "point": "hint cancellation",
+      "order": "PREPARED DATA failing new STREAMING/READY1024 metadata remains cached for ordinary path next pass; EMPTY/control/ERROR retain original guarded handling."
+    },
+    {
+      "point": "scope/pre-admission failure",
+      "order": "Zero actual grant calls permitted; consumed marker prevents second current-step reset. Next ordinary pass retains fallback, including raw lifecycle."
+    }
+  ],
+  "unchanged": "TIME backend/checks, ADC/DMA, queue/ownership, serializer, core commit/CRC/Stop/HELLO, wire, DCD6/<500 continuation and N64/legacy136 algorithms.",
+  "resources": {
+    "bin_bytes": 44212,
+    "data_bytes": 128,
+    "bss_bytes": 12132,
+    "new_static_bytes": 0,
+    "stack_reserve_bytes": 8192,
+    "static_plus_reserve": 20452,
+    "RAM_bytes": 20480,
+    "spare_above_reserve": 28,
+    "runtime_frame_bytes": 328,
+    "runtime_frame_equal_SG": true,
+    "conditional_stack": {
+      "report_sha256": "e9317b4704e4a38b74e9e65ac0d7d8f68a2409e354f49988f11b9c5c8351c5bc",
+      "status": "CONDITIONAL_EXACT_IMAGE_STATIC_BOUND",
+      "upper_bound_bytes": 6156,
+      "aligned_minimum_bytes": 6160
+    },
+    "not_physical_stack_high_water": true
+  },
+  "records": {
+    "progress64": {
+      "address": "0x20002FA4",
+      "bytes": 64
+    },
+    "legacy136": {
+      "address": "0x20002F1C",
+      "bytes": 136
+    }
+  },
+  "risks": [
+    "Deferred grant also delays older in-flight IN in the selected pass.",
+    "Queue full can be detected inside ADC service before this pass reaches grant.",
+    "Current snapshot does not identify hold budget/time/final cause or quantify grant-window aging.",
+    "Additional TIME checks and changed IRQ timing have cost; no CPU-share or WCET inference."
+  ],
+  "verification": {
+    "ARM": "build/v6o-fw-01 first attempt PASS; no failed author ARM outputs.",
+    "native": "build/v6o-native-01 first targeted attempt PASS; no old suites repeated.",
+    "root_decoder": "build/v6o-decoder-01 root-owned targeted run once, reused N C fixture with explicit synthetic SG/SH bindings; not a native SH or hardware trace.",
+    "COM_SWD_Reset_Flash_by_author": false
+  },
+  "source_equivalence": {
+    "path": "build/v6o-native-01/source-equivalence.json",
+    "bytes": 9869,
+    "sha256": "6ad33e002164b0c0ad2d0a71d630492929709d8ee721701a3484bdae0ecf203a"
+  }
+}

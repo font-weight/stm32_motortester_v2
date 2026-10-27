@@ -1,0 +1,513 @@
+
+objects/29-mt_stream_progress.o:     file format elf32-littlearm
+
+
+Disassembly of section .text.increment:
+
+00000000 <increment>:
+   0:	f64f 72ff 	movw	r2, #65535	@ 0xffff
+   4:	8803      	ldrh	r3, [r0, #0]
+   6:	b29b      	uxth	r3, r3
+   8:	4293      	cmp	r3, r2
+   a:	bf0b      	itete	eq
+   c:	4a05      	ldreq	r2, [pc, #20]	@ (24 <increment+0x24>)
+   e:	8803      	ldrhne	r3, [r0, #0]
+  10:	6853      	ldreq	r3, [r2, #4]
+  12:	3301      	addne	r3, #1
+  14:	bf0b      	itete	eq
+  16:	f043 0310 	orreq.w	r3, r3, #16
+  1a:	b29b      	uxthne	r3, r3
+  1c:	6053      	streq	r3, [r2, #4]
+  1e:	8003      	strhne	r3, [r0, #0]
+  20:	4770      	bx	lr
+  22:	bf00      	nop
+  24:	00000000 	.word	0x00000000
+			24: R_ARM_ABS32	mt_stream_progress
+
+Disassembly of section .text.bind:
+
+00000000 <bind>:
+   0:	b5f0      	push	{r4, r5, r6, r7, lr}
+   2:	4c24      	ldr	r4, [pc, #144]	@ (94 <bind+0x94>)
+   4:	4603      	mov	r3, r0
+   6:	6860      	ldr	r0, [r4, #4]
+   8:	b091      	sub	sp, #68	@ 0x44
+   a:	f010 0007 	ands.w	r0, r0, #7
+   e:	d13c      	bne.n	8a <bind+0x8a>
+  10:	2b00      	cmp	r3, #0
+  12:	d03a      	beq.n	8a <bind+0x8a>
+  14:	f8d3 28c8 	ldr.w	r2, [r3, #2248]	@ 0x8c8
+  18:	2a00      	cmp	r2, #0
+  1a:	d038      	beq.n	8e <bind+0x8e>
+  1c:	f8d3 6868 	ldr.w	r6, [r3, #2152]	@ 0x868
+  20:	f8d3 586c 	ldr.w	r5, [r3, #2156]	@ 0x86c
+  24:	ea56 0305 	orrs.w	r3, r6, r5
+  28:	d02d      	beq.n	86 <bind+0x86>
+  2a:	4b1b      	ldr	r3, [pc, #108]	@ (98 <bind+0x98>)
+  2c:	491b      	ldr	r1, [pc, #108]	@ (9c <bind+0x9c>)
+  2e:	68df      	ldr	r7, [r3, #12]
+  30:	428f      	cmp	r7, r1
+  32:	d128      	bne.n	86 <bind+0x86>
+  34:	6999      	ldr	r1, [r3, #24]
+  36:	428a      	cmp	r2, r1
+  38:	d125      	bne.n	86 <bind+0x86>
+  3a:	f8d3 1080 	ldr.w	r1, [r3, #128]	@ 0x80
+  3e:	42b1      	cmp	r1, r6
+  40:	d121      	bne.n	86 <bind+0x86>
+  42:	f8d3 3084 	ldr.w	r3, [r3, #132]	@ 0x84
+  46:	42ab      	cmp	r3, r5
+  48:	d11d      	bne.n	86 <bind+0x86>
+  4a:	2601      	movs	r6, #1
+  4c:	4d14      	ldr	r5, [pc, #80]	@ (a0 <bind+0xa0>)
+  4e:	e9cd 2102 	strd	r2, r1, [sp, #8]
+  52:	4601      	mov	r1, r0
+  54:	222c      	movs	r2, #44	@ 0x2c
+  56:	a805      	add	r0, sp, #20
+  58:	e9cd 5600 	strd	r5, r6, [sp]
+  5c:	9304      	str	r3, [sp, #16]
+  5e:	f7ff fffe 	bl	0 <memset>
+			5e: R_ARM_THM_CALL	memset
+  62:	f04f 33ff 	mov.w	r3, #4294967295
+  66:	466d      	mov	r5, sp
+  68:	e9cd 330d 	strd	r3, r3, [sp, #52]	@ 0x34
+  6c:	f8ad 303c 	strh.w	r3, [sp, #60]	@ 0x3c
+  70:	cd0f      	ldmia	r5!, {r0, r1, r2, r3}
+  72:	c40f      	stmia	r4!, {r0, r1, r2, r3}
+  74:	cd0f      	ldmia	r5!, {r0, r1, r2, r3}
+  76:	c40f      	stmia	r4!, {r0, r1, r2, r3}
+  78:	cd0f      	ldmia	r5!, {r0, r1, r2, r3}
+  7a:	c40f      	stmia	r4!, {r0, r1, r2, r3}
+  7c:	e895 000f 	ldmia.w	r5, {r0, r1, r2, r3}
+  80:	e884 000f 	stmia.w	r4, {r0, r1, r2, r3}
+  84:	4630      	mov	r0, r6
+  86:	b011      	add	sp, #68	@ 0x44
+  88:	bdf0      	pop	{r4, r5, r6, r7, pc}
+  8a:	2000      	movs	r0, #0
+  8c:	e7fb      	b.n	86 <bind+0x86>
+  8e:	4610      	mov	r0, r2
+  90:	e7f9      	b.n	86 <bind+0x86>
+  92:	bf00      	nop
+	...
+			94: R_ARM_ABS32	mt_stream_progress
+			98: R_ARM_ABS32	mt_stream_diagnostics
+  9c:	56325347 	.word	0x56325347
+  a0:	4d544e31 	.word	0x4d544e31
+
+Disassembly of section .text.mt_progress_prepare_begin:
+
+00000000 <mt_progress_prepare_begin>:
+   0:	4b0a      	ldr	r3, [pc, #40]	@ (2c <mt_progress_prepare_begin+0x2c>)
+   2:	685a      	ldr	r2, [r3, #4]
+   4:	f002 0207 	and.w	r2, r2, #7
+   8:	2a02      	cmp	r2, #2
+   a:	d10d      	bne.n	28 <mt_progress_prepare_begin+0x28>
+   c:	685a      	ldr	r2, [r3, #4]
+   e:	0452      	lsls	r2, r2, #17
+  10:	bf42      	ittt	mi
+  12:	685a      	ldrmi	r2, [r3, #4]
+  14:	f442 5280 	orrmi.w	r2, r2, #4096	@ 0x1000
+  18:	605a      	strmi	r2, [r3, #4]
+  1a:	685a      	ldr	r2, [r3, #4]
+  1c:	f442 4280 	orr.w	r2, r2, #16384	@ 0x4000
+  20:	605a      	str	r2, [r3, #4]
+  22:	4b03      	ldr	r3, [pc, #12]	@ (30 <mt_progress_prepare_begin+0x30>)
+  24:	6858      	ldr	r0, [r3, #4]
+  26:	4770      	bx	lr
+  28:	2000      	movs	r0, #0
+  2a:	4770      	bx	lr
+  2c:	00000000 	.word	0x00000000
+			2c: R_ARM_ABS32	mt_stream_progress
+  30:	e0001000 	.word	0xe0001000
+
+Disassembly of section .text.mt_progress_prepare_end:
+
+00000000 <mt_progress_prepare_end>:
+   0:	4911      	ldr	r1, [pc, #68]	@ (48 <mt_progress_prepare_end+0x48>)
+   2:	b508      	push	{r3, lr}
+   4:	684b      	ldr	r3, [r1, #4]
+   6:	f003 0307 	and.w	r3, r3, #7
+   a:	2b02      	cmp	r3, #2
+   c:	d11b      	bne.n	46 <mt_progress_prepare_end+0x46>
+   e:	684b      	ldr	r3, [r1, #4]
+  10:	045b      	lsls	r3, r3, #17
+  12:	d518      	bpl.n	46 <mt_progress_prepare_end+0x46>
+  14:	4b0d      	ldr	r3, [pc, #52]	@ (4c <mt_progress_prepare_end+0x4c>)
+  16:	685b      	ldr	r3, [r3, #4]
+  18:	1a18      	subs	r0, r3, r0
+  1a:	69cb      	ldr	r3, [r1, #28]
+  1c:	181b      	adds	r3, r3, r0
+  1e:	bf29      	itett	cs
+  20:	f04f 33ff 	movcs.w	r3, #4294967295
+  24:	69cb      	ldrcc	r3, [r1, #28]
+  26:	61cb      	strcs	r3, [r1, #28]
+  28:	684b      	ldrcs	r3, [r1, #4]
+  2a:	bf36      	itet	cc
+  2c:	18c0      	addcc	r0, r0, r3
+  2e:	f043 0310 	orrcs.w	r3, r3, #16
+  32:	61c8      	strcc	r0, [r1, #28]
+  34:	4806      	ldr	r0, [pc, #24]	@ (50 <mt_progress_prepare_end+0x50>)
+  36:	bf28      	it	cs
+  38:	604b      	strcs	r3, [r1, #4]
+  3a:	f7ff fffe 	bl	0 <mt_progress_prepare_end>
+			3a: R_ARM_THM_CALL	increment
+  3e:	684b      	ldr	r3, [r1, #4]
+  40:	f423 4380 	bic.w	r3, r3, #16384	@ 0x4000
+  44:	604b      	str	r3, [r1, #4]
+  46:	bd08      	pop	{r3, pc}
+  48:	00000000 	.word	0x00000000
+			48: R_ARM_ABS32	mt_stream_progress
+  4c:	e0001000 	.word	0xe0001000
+  50:	0000002c 	.word	0x0000002c
+			50: R_ARM_ABS32	mt_stream_progress
+
+Disassembly of section .text.mt_progress_write_begin:
+
+00000000 <mt_progress_write_begin>:
+   0:	4b05      	ldr	r3, [pc, #20]	@ (18 <mt_progress_write_begin+0x18>)
+   2:	685a      	ldr	r2, [r3, #4]
+   4:	f002 0207 	and.w	r2, r2, #7
+   8:	2a02      	cmp	r2, #2
+   a:	bf02      	ittt	eq
+   c:	685a      	ldreq	r2, [r3, #4]
+   e:	f422 5200 	biceq.w	r2, r2, #8192	@ 0x2000
+  12:	605a      	streq	r2, [r3, #4]
+  14:	4770      	bx	lr
+  16:	bf00      	nop
+  18:	00000000 	.word	0x00000000
+			18: R_ARM_ABS32	mt_stream_progress
+
+Disassembly of section .text.mt_progress_zero_space:
+
+00000000 <mt_progress_zero_space>:
+   0:	4b05      	ldr	r3, [pc, #20]	@ (18 <mt_progress_zero_space+0x18>)
+   2:	685a      	ldr	r2, [r3, #4]
+   4:	f002 0207 	and.w	r2, r2, #7
+   8:	2a02      	cmp	r2, #2
+   a:	bf02      	ittt	eq
+   c:	685a      	ldreq	r2, [r3, #4]
+   e:	f442 5200 	orreq.w	r2, r2, #8192	@ 0x2000
+  12:	605a      	streq	r2, [r3, #4]
+  14:	4770      	bx	lr
+  16:	bf00      	nop
+  18:	00000000 	.word	0x00000000
+			18: R_ARM_ABS32	mt_stream_progress
+
+Disassembly of section .text.mt_progress_write_end:
+
+00000000 <mt_progress_write_end>:
+   0:	b538      	push	{r3, r4, r5, lr}
+   2:	4c24      	ldr	r4, [pc, #144]	@ (94 <mt_progress_write_end+0x94>)
+   4:	6863      	ldr	r3, [r4, #4]
+   6:	f003 0307 	and.w	r3, r3, #7
+   a:	2b02      	cmp	r3, #2
+   c:	d11c      	bne.n	48 <mt_progress_write_end+0x48>
+   e:	1e43      	subs	r3, r0, #1
+  10:	f5b3 7fc0 	cmp.w	r3, #384	@ 0x180
+  14:	bf22      	ittt	cs
+  16:	6863      	ldrcs	r3, [r4, #4]
+  18:	f443 5380 	orrcs.w	r3, r3, #4096	@ 0x1000
+  1c:	6063      	strcs	r3, [r4, #4]
+  1e:	1c4a      	adds	r2, r1, #1
+  20:	d001      	beq.n	26 <mt_progress_write_end+0x26>
+  22:	4288      	cmp	r0, r1
+  24:	d204      	bcs.n	30 <mt_progress_write_end+0x30>
+  26:	6863      	ldr	r3, [r4, #4]
+  28:	f043 0380 	orr.w	r3, r3, #128	@ 0x80
+  2c:	6063      	str	r3, [r4, #4]
+  2e:	e007      	b.n	40 <mt_progress_write_end+0x40>
+  30:	b959      	cbnz	r1, 4a <mt_progress_write_end+0x4a>
+  32:	6863      	ldr	r3, [r4, #4]
+  34:	049b      	lsls	r3, r3, #18
+  36:	bf4c      	ite	mi
+  38:	4817      	ldrmi	r0, [pc, #92]	@ (98 <mt_progress_write_end+0x98>)
+  3a:	4818      	ldrpl	r0, [pc, #96]	@ (9c <mt_progress_write_end+0x9c>)
+  3c:	f7ff fffe 	bl	0 <mt_progress_write_end>
+			3c: R_ARM_THM_CALL	increment
+  40:	6863      	ldr	r3, [r4, #4]
+  42:	f423 5300 	bic.w	r3, r3, #8192	@ 0x2000
+  46:	6063      	str	r3, [r4, #4]
+  48:	bd38      	pop	{r3, r4, r5, pc}
+  4a:	4b15      	ldr	r3, [pc, #84]	@ (a0 <mt_progress_write_end+0xa0>)
+  4c:	685a      	ldr	r2, [r3, #4]
+  4e:	6a63      	ldr	r3, [r4, #36]	@ 0x24
+  50:	6aa5      	ldr	r5, [r4, #40]	@ 0x28
+  52:	1ad3      	subs	r3, r2, r3
+  54:	42ab      	cmp	r3, r5
+  56:	bf88      	it	hi
+  58:	62a3      	strhi	r3, [r4, #40]	@ 0x28
+  5a:	6262      	str	r2, [r4, #36]	@ 0x24
+  5c:	6863      	ldr	r3, [r4, #4]
+  5e:	4288      	cmp	r0, r1
+  60:	f043 0308 	orr.w	r3, r3, #8
+  64:	6063      	str	r3, [r4, #4]
+  66:	bf88      	it	hi
+  68:	6863      	ldrhi	r3, [r4, #4]
+  6a:	480e      	ldr	r0, [pc, #56]	@ (a4 <mt_progress_write_end+0xa4>)
+  6c:	bf84      	itt	hi
+  6e:	f043 0340 	orrhi.w	r3, r3, #64	@ 0x40
+  72:	6063      	strhi	r3, [r4, #4]
+  74:	f7ff fffe 	bl	0 <mt_progress_write_end>
+			74: R_ARM_THM_CALL	increment
+  78:	6a23      	ldr	r3, [r4, #32]
+  7a:	185b      	adds	r3, r3, r1
+  7c:	d203      	bcs.n	86 <mt_progress_write_end+0x86>
+  7e:	6a23      	ldr	r3, [r4, #32]
+  80:	4419      	add	r1, r3
+  82:	6221      	str	r1, [r4, #32]
+  84:	e7dc      	b.n	40 <mt_progress_write_end+0x40>
+  86:	f04f 33ff 	mov.w	r3, #4294967295
+  8a:	6223      	str	r3, [r4, #32]
+  8c:	6863      	ldr	r3, [r4, #4]
+  8e:	f043 0310 	orr.w	r3, r3, #16
+  92:	e7cb      	b.n	2c <mt_progress_write_end+0x2c>
+  94:	00000000 	.word	0x00000000
+			94: R_ARM_ABS32	mt_stream_progress
+  98:	00000030 	.word	0x00000030
+			98: R_ARM_ABS32	mt_stream_progress
+  9c:	00000032 	.word	0x00000032
+			9c: R_ARM_ABS32	mt_stream_progress
+  a0:	e0001000 	.word	0xe0001000
+  a4:	0000002e 	.word	0x0000002e
+			a4: R_ARM_ABS32	mt_stream_progress
+
+Disassembly of section .text.mt_progress_close:
+
+00000000 <mt_progress_close>:
+   0:	b5f7      	push	{r0, r1, r2, r4, r5, r6, r7, lr}
+   2:	4c66      	ldr	r4, [pc, #408]	@ (19c <mt_progress_close+0x19c>)
+   4:	4617      	mov	r7, r2
+   6:	6863      	ldr	r3, [r4, #4]
+   8:	4605      	mov	r5, r0
+   a:	075a      	lsls	r2, r3, #29
+   c:	460e      	mov	r6, r1
+   e:	f000 8091 	beq.w	134 <mt_progress_close+0x134>
+  12:	6862      	ldr	r2, [r4, #4]
+  14:	f002 0207 	and.w	r2, r2, #7
+  18:	1e53      	subs	r3, r2, #1
+  1a:	2b01      	cmp	r3, #1
+  1c:	f200 8093 	bhi.w	146 <mt_progress_close+0x146>
+  20:	6863      	ldr	r3, [r4, #4]
+  22:	f023 0307 	bic.w	r3, r3, #7
+  26:	f043 0303 	orr.w	r3, r3, #3
+  2a:	6063      	str	r3, [r4, #4]
+  2c:	1e73      	subs	r3, r6, #1
+  2e:	2b0a      	cmp	r3, #10
+  30:	d802      	bhi.n	38 <mt_progress_close+0x38>
+  32:	f5b7 3f80 	cmp.w	r7, #65536	@ 0x10000
+  36:	d304      	bcc.n	42 <mt_progress_close+0x42>
+  38:	6863      	ldr	r3, [r4, #4]
+  3a:	b2bf      	uxth	r7, r7
+  3c:	f443 5380 	orr.w	r3, r3, #4096	@ 0x1000
+  40:	6063      	str	r3, [r4, #4]
+  42:	2a01      	cmp	r2, #1
+  44:	f040 8081 	bne.w	14a <mt_progress_close+0x14a>
+  48:	6863      	ldr	r3, [r4, #4]
+  4a:	f443 6380 	orr.w	r3, r3, #1024	@ 0x400
+  4e:	6063      	str	r3, [r4, #4]
+  50:	4b53      	ldr	r3, [pc, #332]	@ (1a0 <mt_progress_close+0x1a0>)
+  52:	b2f6      	uxtb	r6, r6
+  54:	695b      	ldr	r3, [r3, #20]
+  56:	f013 0f11 	tst.w	r3, #17
+  5a:	bf1e      	ittt	ne
+  5c:	6863      	ldrne	r3, [r4, #4]
+  5e:	f043 0320 	orrne.w	r3, r3, #32
+  62:	6063      	strne	r3, [r4, #4]
+  64:	6863      	ldr	r3, [r4, #4]
+  66:	b29b      	uxth	r3, r3
+  68:	ea43 4307 	orr.w	r3, r3, r7, lsl #16
+  6c:	6063      	str	r3, [r4, #4]
+  6e:	f884 603f 	strb.w	r6, [r4, #63]	@ 0x3f
+  72:	2d00      	cmp	r5, #0
+  74:	d02e      	beq.n	d4 <mt_progress_close+0xd4>
+  76:	f505 5280 	add.w	r2, r5, #4096	@ 0x1000
+  7a:	f8d2 32bc 	ldr.w	r3, [r2, #700]	@ 0x2bc
+  7e:	f5b3 6fa7 	cmp.w	r3, #1336	@ 0x538
+  82:	d27e      	bcs.n	182 <mt_progress_close+0x182>
+  84:	f8d2 02c0 	ldr.w	r0, [r2, #704]	@ 0x2c0
+  88:	4283      	cmp	r3, r0
+  8a:	d37a      	bcc.n	182 <mt_progress_close+0x182>
+  8c:	f8b2 6300 	ldrh.w	r6, [r2, #768]	@ 0x300
+  90:	f5b6 6f80 	cmp.w	r6, #1024	@ 0x400
+  94:	d875      	bhi.n	182 <mt_progress_close+0x182>
+  96:	f8b2 130c 	ldrh.w	r1, [r2, #780]	@ 0x30c
+  9a:	2906      	cmp	r1, #6
+  9c:	d871      	bhi.n	182 <mt_progress_close+0x182>
+  9e:	f8d5 2844 	ldr.w	r2, [r5, #2116]	@ 0x844
+  a2:	2a08      	cmp	r2, #8
+  a4:	d86d      	bhi.n	182 <mt_progress_close+0x182>
+  a6:	b29b      	uxth	r3, r3
+  a8:	b280      	uxth	r0, r0
+  aa:	b2c9      	uxtb	r1, r1
+  ac:	b2d2      	uxtb	r2, r2
+  ae:	86a0      	strh	r0, [r4, #52]	@ 0x34
+  b0:	86e3      	strh	r3, [r4, #54]	@ 0x36
+  b2:	8726      	strh	r6, [r4, #56]	@ 0x38
+  b4:	f884 103c 	strb.w	r1, [r4, #60]	@ 0x3c
+  b8:	f884 203d 	strb.w	r2, [r4, #61]	@ 0x3d
+  bc:	6863      	ldr	r3, [r4, #4]
+  be:	f443 7300 	orr.w	r3, r3, #512	@ 0x200
+  c2:	6063      	str	r3, [r4, #4]
+  c4:	f8d5 3914 	ldr.w	r3, [r5, #2324]	@ 0x914
+  c8:	2b00      	cmp	r3, #0
+  ca:	d05e      	beq.n	18a <mt_progress_close+0x18a>
+  cc:	6863      	ldr	r3, [r4, #4]
+  ce:	f443 4300 	orr.w	r3, r3, #32768	@ 0x8000
+  d2:	6063      	str	r3, [r4, #4]
+  d4:	f7ff fffe 	bl	0 <mt_usb_bridge_lock>
+			d4: R_ARM_THM_CALL	mt_usb_bridge_lock
+  d8:	4606      	mov	r6, r0
+  da:	4668      	mov	r0, sp
+  dc:	f7ff fffe 	bl	0 <mt_usb_bridge_app_enter>
+			dc: R_ARM_THM_CALL	mt_usb_bridge_app_enter
+  e0:	b1e0      	cbz	r0, 11c <mt_progress_close+0x11c>
+  e2:	2000      	movs	r0, #0
+  e4:	f7ff fffe 	bl	0 <tud_cdc_n_write_available>
+			e4: R_ARM_THM_CALL	tud_cdc_n_write_available
+  e8:	f5b0 7fc0 	cmp.w	r0, #384	@ 0x180
+  ec:	d851      	bhi.n	192 <mt_progress_close+0x192>
+  ee:	b283      	uxth	r3, r0
+  f0:	8763      	strh	r3, [r4, #58]	@ 0x3a
+  f2:	f7ff fffe 	bl	0 <mt_usb_fsdev_irq_held>
+			f2: R_ARM_THM_CALL	mt_usb_fsdev_irq_held
+  f6:	2800      	cmp	r0, #0
+  f8:	bf0c      	ite	eq
+  fa:	2501      	moveq	r5, #1
+  fc:	2503      	movne	r5, #3
+  fe:	f7ff fffe 	bl	0 <mt_usb_fsdev_ctr_deferred>
+			fe: R_ARM_THM_CALL	mt_usb_fsdev_ctr_deferred
+ 102:	4607      	mov	r7, r0
+ 104:	f7ff fffe 	bl	0 <tud_task_event_ready>
+			104: R_ARM_THM_CALL	tud_task_event_ready
+ 108:	00c3      	lsls	r3, r0, #3
+ 10a:	ea43 0087 	orr.w	r0, r3, r7, lsl #2
+ 10e:	4305      	orrs	r5, r0
+ 110:	b2ed      	uxtb	r5, r5
+ 112:	f884 503e 	strb.w	r5, [r4, #62]	@ 0x3e
+ 116:	4668      	mov	r0, sp
+ 118:	f7ff fffe 	bl	0 <mt_usb_bridge_leave>
+			118: R_ARM_THM_CALL	mt_usb_bridge_leave
+ 11c:	4630      	mov	r0, r6
+ 11e:	f7ff fffe 	bl	0 <mt_usb_bridge_unlock>
+			11e: R_ARM_THM_CALL	mt_usb_bridge_unlock
+ 122:	f3bf 8f5f 	dmb	sy
+ 126:	6863      	ldr	r3, [r4, #4]
+ 128:	f023 0307 	bic.w	r3, r3, #7
+ 12c:	f043 0304 	orr.w	r3, r3, #4
+ 130:	6063      	str	r3, [r4, #4]
+ 132:	e008      	b.n	146 <mt_progress_close+0x146>
+ 134:	b138      	cbz	r0, 146 <mt_progress_close+0x146>
+ 136:	f8d0 3914 	ldr.w	r3, [r0, #2324]	@ 0x914
+ 13a:	b123      	cbz	r3, 146 <mt_progress_close+0x146>
+ 13c:	f7ff fffe 	bl	0 <mt_progress_close>
+			13c: R_ARM_THM_CALL	bind
+ 140:	2800      	cmp	r0, #0
+ 142:	f47f af66 	bne.w	12 <mt_progress_close+0x12>
+ 146:	b003      	add	sp, #12
+ 148:	bdf0      	pop	{r4, r5, r6, r7, pc}
+ 14a:	4b16      	ldr	r3, [pc, #88]	@ (1a4 <mt_progress_close+0x1a4>)
+ 14c:	685b      	ldr	r3, [r3, #4]
+ 14e:	61a3      	str	r3, [r4, #24]
+ 150:	6a62      	ldr	r2, [r4, #36]	@ 0x24
+ 152:	6aa1      	ldr	r1, [r4, #40]	@ 0x28
+ 154:	1a9a      	subs	r2, r3, r2
+ 156:	428a      	cmp	r2, r1
+ 158:	bf88      	it	hi
+ 15a:	62a2      	strhi	r2, [r4, #40]	@ 0x28
+ 15c:	2e05      	cmp	r6, #5
+ 15e:	d108      	bne.n	172 <mt_progress_close+0x172>
+ 160:	6962      	ldr	r2, [r4, #20]
+ 162:	1a9b      	subs	r3, r3, r2
+ 164:	4a10      	ldr	r2, [pc, #64]	@ (1a8 <mt_progress_close+0x1a8>)
+ 166:	4293      	cmp	r3, r2
+ 168:	bf82      	ittt	hi
+ 16a:	6863      	ldrhi	r3, [r4, #4]
+ 16c:	f443 6300 	orrhi.w	r3, r3, #2048	@ 0x800
+ 170:	6063      	strhi	r3, [r4, #4]
+ 172:	6863      	ldr	r3, [r4, #4]
+ 174:	045b      	lsls	r3, r3, #17
+ 176:	f57f af6b 	bpl.w	50 <mt_progress_close+0x50>
+ 17a:	6863      	ldr	r3, [r4, #4]
+ 17c:	f443 7380 	orr.w	r3, r3, #256	@ 0x100
+ 180:	e765      	b.n	4e <mt_progress_close+0x4e>
+ 182:	6863      	ldr	r3, [r4, #4]
+ 184:	f443 5380 	orr.w	r3, r3, #4096	@ 0x1000
+ 188:	e79b      	b.n	c2 <mt_progress_close+0xc2>
+ 18a:	6863      	ldr	r3, [r4, #4]
+ 18c:	f423 4300 	bic.w	r3, r3, #32768	@ 0x8000
+ 190:	e79f      	b.n	d2 <mt_progress_close+0xd2>
+ 192:	6863      	ldr	r3, [r4, #4]
+ 194:	f443 5380 	orr.w	r3, r3, #4096	@ 0x1000
+ 198:	6063      	str	r3, [r4, #4]
+ 19a:	e7bc      	b.n	116 <mt_progress_close+0x116>
+	...
+			19c: R_ARM_ABS32	mt_stream_progress
+			1a0: R_ARM_ABS32	mt_stream_diagnostics
+ 1a4:	e0001000 	.word	0xe0001000
+ 1a8:	0112a880 	.word	0x0112a880
+
+Disassembly of section .text.mt_progress_begin:
+
+00000000 <mt_progress_begin>:
+   0:	b510      	push	{r4, lr}
+   2:	4604      	mov	r4, r0
+   4:	f7ff fffe 	bl	0 <mt_progress_begin>
+			4: R_ARM_THM_CALL	bind
+   8:	b308      	cbz	r0, 4e <mt_progress_begin+0x4e>
+   a:	4a11      	ldr	r2, [pc, #68]	@ (50 <mt_progress_begin+0x50>)
+   c:	6913      	ldr	r3, [r2, #16]
+   e:	2b02      	cmp	r3, #2
+  10:	4b10      	ldr	r3, [pc, #64]	@ (54 <mt_progress_begin+0x54>)
+  12:	d103      	bne.n	1c <mt_progress_begin+0x1c>
+  14:	6952      	ldr	r2, [r2, #20]
+  16:	f012 0f11 	tst.w	r2, #17
+  1a:	d00a      	beq.n	32 <mt_progress_begin+0x32>
+  1c:	685a      	ldr	r2, [r3, #4]
+  1e:	4620      	mov	r0, r4
+  20:	e8bd 4010 	ldmia.w	sp!, {r4, lr}
+  24:	f042 0220 	orr.w	r2, r2, #32
+  28:	605a      	str	r2, [r3, #4]
+  2a:	210a      	movs	r1, #10
+  2c:	2200      	movs	r2, #0
+  2e:	f7ff bffe 	b.w	0 <mt_progress_begin>
+			2e: R_ARM_THM_JUMP24	mt_progress_close
+  32:	4a09      	ldr	r2, [pc, #36]	@ (58 <mt_progress_begin+0x58>)
+  34:	6852      	ldr	r2, [r2, #4]
+  36:	615a      	str	r2, [r3, #20]
+  38:	625a      	str	r2, [r3, #36]	@ 0x24
+  3a:	685a      	ldr	r2, [r3, #4]
+  3c:	f442 4200 	orr.w	r2, r2, #32768	@ 0x8000
+  40:	605a      	str	r2, [r3, #4]
+  42:	685a      	ldr	r2, [r3, #4]
+  44:	f022 0207 	bic.w	r2, r2, #7
+  48:	f042 0202 	orr.w	r2, r2, #2
+  4c:	605a      	str	r2, [r3, #4]
+  4e:	bd10      	pop	{r4, pc}
+	...
+			50: R_ARM_ABS32	mt_stream_diagnostics
+			54: R_ARM_ABS32	mt_stream_progress
+  58:	e0001000 	.word	0xe0001000
+
+Disassembly of section .text.mt_progress_checkpoint:
+
+00000000 <mt_progress_checkpoint>:
+   0:	4a08      	ldr	r2, [pc, #32]	@ (24 <mt_progress_checkpoint+0x24>)
+   2:	6853      	ldr	r3, [r2, #4]
+   4:	f003 0307 	and.w	r3, r3, #7
+   8:	2b02      	cmp	r3, #2
+   a:	d10a      	bne.n	22 <mt_progress_checkpoint+0x22>
+   c:	4b06      	ldr	r3, [pc, #24]	@ (28 <mt_progress_checkpoint+0x28>)
+   e:	685b      	ldr	r3, [r3, #4]
+  10:	6952      	ldr	r2, [r2, #20]
+  12:	1a9b      	subs	r3, r3, r2
+  14:	4a05      	ldr	r2, [pc, #20]	@ (2c <mt_progress_checkpoint+0x2c>)
+  16:	4293      	cmp	r3, r2
+  18:	d903      	bls.n	22 <mt_progress_checkpoint+0x22>
+  1a:	2200      	movs	r2, #0
+  1c:	2105      	movs	r1, #5
+  1e:	f7ff bffe 	b.w	0 <mt_progress_checkpoint>
+			1e: R_ARM_THM_JUMP24	mt_progress_close
+  22:	4770      	bx	lr
+  24:	00000000 	.word	0x00000000
+			24: R_ARM_ABS32	mt_stream_progress
+  28:	e0001000 	.word	0xe0001000
+  2c:	0112a87f 	.word	0x0112a87f

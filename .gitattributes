@@ -85,6 +85,19 @@ docs/verification/v2-stream-progress/**/*.stderr -whitespace
 docs/verification/v2-stream-progress/**/*.map -whitespace
 docs/verification/v2-stream-progress/**/*.patch -whitespace
 docs/reviews/v2-06n*.md -text
+docs/verification/v2-late-grant/** -text whitespace=cr-at-eol
+docs/verification/v2-late-grant/**/*.bin binary
+docs/verification/v2-late-grant/**/*.o binary
+docs/verification/v2-late-grant/**/*.elf binary
+docs/verification/v2-late-grant/**/*.txt -whitespace
+docs/verification/v2-late-grant/**/*.log -whitespace
+docs/verification/v2-late-grant/**/*.stdout -whitespace
+docs/verification/v2-late-grant/**/*.stderr -whitespace
+docs/verification/v2-late-grant/**/*.map -whitespace
+docs/verification/v2-late-grant/**/*.patch -whitespace
+docs/reviews/v2-06o*.md -text
+docs/streaming-late-grant.md -text whitespace=cr-at-eol
+tests/v2-stream-firmware/deferred_grant* -text
 docs/streaming-progress-trace.md -text whitespace=cr-at-eol
 firmware/v2-stream/progress/** -text
 tests/v2-stream-firmware/stream_progress* -text

@@ -1,5 +1,12 @@
 # Координация самостоятельного V2
 
+O: higher_fs_review — firmware/v2-stream/**, tests/v2-stream-firmware/**,
+build/v6o-* кроме board/decoder; одна корректировка late grant, адресный
+actual-runtime model, ARM/resource audit, freeze. Root — offline decoder
+SG/SH, канонические документы, архивы и единолично COM/SWD. Stream200_critic —
+независимый proposal/source/exact-plan/physical review без реализации.
+N2 завершён и сохранён; его попытки не повторять. На плате SG до нового плана.
+
 N: higher_fs_review — firmware/v2-stream/**, tests/v2-stream-firmware/**,
 build/v6n-* кроме board/decoder; точный компактный trace ABI, hooks, native,
 ARM/resources и freeze. Root — канонические документы, offline decoder,
