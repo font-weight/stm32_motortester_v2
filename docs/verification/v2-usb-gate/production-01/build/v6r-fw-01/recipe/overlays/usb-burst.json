@@ -1,0 +1,53 @@
+{
+  "schema": "motortester-v2-usb-burst-overlay-1",
+  "patches": [
+    {
+      "source": "patched/v2/boot/tusb_config.h",
+      "target": "v2/boot/tusb_config.h",
+      "patch": "v2-burst-v2-boot-tusb_config.h.patch",
+      "source_sha256": "341fd5a09fe5594c9e6dbee0c14427c485476e58bd8efb640091a717dd657c9e",
+      "patch_sha256": "380477aa9d82428665fc6456499d8427ad4787f82bd8a31ae11ba5d63a57758c",
+      "result_sha256": "7886bfbd42563b0e8f8cd4db6af8ab17691b64a03223c1f247c3633aedef43c3"
+    },
+    {
+      "source": "source/firmware/transport/mt_usb_descriptors.c",
+      "target": "v2/transport/mt_usb_descriptors.c",
+      "patch": "v2-burst-v2-transport-mt_usb_descriptors.c.patch",
+      "source_sha256": "efe258f1567b17f66e9a6c48793d95586c3c6869ad890e05ee642c8f58ac3ad7",
+      "patch_sha256": "b1b355e943b2a3df276dda700778f3a6cf28bef1cdc4a3b2a53b94d27b20d813",
+      "result_sha256": "cc0ada207e46acde8d72eb988257cbc61b7d294103f1c452257c40b7a3e30e25"
+    },
+    {
+      "source": "patched/v2/protocol/mt_live_device.c",
+      "target": "v2/protocol/mt_live_device.c",
+      "patch": "v2-burst-v2-protocol-mt_live_device.c.patch",
+      "source_sha256": "8da11a6d71f34bcf718e16074e1177eced1a45a8bd9bee3879fdd7aeb250c9c0",
+      "patch_sha256": "fa94bc808b3d8e481a21e39f156bf357ee6b9c70638114261fab2e3c166542ae",
+      "result_sha256": "9eca593152eb91f65cc35af6e78c73a5d1a1c02bafb737ca6e8542c234095868"
+    },
+    {
+      "source": "patched/v2/protocol/mt_live_device.h",
+      "target": "v2/protocol/mt_live_device.h",
+      "patch": "v2-burst-v2-protocol-mt_live_device.h.patch",
+      "source_sha256": "ba7c89e2ac084e4b0076bc580cc8d9a297521e538b630b9d11155aee13273f1e",
+      "patch_sha256": "e0dae231844e3e56d70f5c331a15103176785f3df8459346a3ff1bf347d7c20f",
+      "result_sha256": "a700783d31b7a52ef6408705d24ac9ce1a34c3693a1bad6a9287c8050922d93a"
+    },
+    {
+      "source": "patched/v2/app/mt_live_runtime.c",
+      "target": "v2/app/mt_live_runtime.c",
+      "patch": "v2-burst-v2-app-mt_live_runtime.c.patch",
+      "source_sha256": "1b96bfc0211dbec14bebcee3f86d98fd3d4d0d8bda3ad714a6ff4a8f8a8d7421",
+      "patch_sha256": "b565825392fbd9997a741a714bdfe6174b03286b24f9b48e33ed5427c64395de",
+      "result_sha256": "373aca3c30184148e59612f453112e56a50d9e42ade4e23a1c6bf38e8d501205"
+    },
+    {
+      "source": "patched/dcd_stm32_fsdev.c",
+      "target": "dcd_stm32_fsdev.c",
+      "patch": "v2-burst-dcd_stm32_fsdev.c.patch",
+      "source_sha256": "fc32d066d899693afec30830a419f0c5bc81129261a1a70001ed499a892b460d",
+      "patch_sha256": "d06995fb5dc7caf71846dae05b670fb18ba0798b713f5e013284360c1c197900",
+      "result_sha256": "b763cceef6be395782aa621a65d9cbbdfe9d5fe61bddcc3d44dc143254c30356"
+    }
+  ]
+}

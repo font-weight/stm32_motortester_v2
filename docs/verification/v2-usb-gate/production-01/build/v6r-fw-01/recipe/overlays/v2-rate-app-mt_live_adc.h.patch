@@ -1,0 +1,20 @@
+--- a/app/mt_live_adc.h
++++ b/app/mt_live_adc.h
+@@ -6,7 +6,7 @@
+ 
+ /* One static foreground owner. Driver, TIME, endpoint and guard context outlive
+  * this binding. No legacy control, concurrent access, or live reinitialization.
+- * stop_scratch avoids adding another544-byte local frame below the live core's
++ * stop_scratch avoids adding a full DMA-stop local frame below the live core's
+  * own snapshot. It is private mutable scratch, never a published sample view. */
+ typedef struct {
+     mt_adc_dma_t *driver;
+@@ -30,7 +30,7 @@
+ int mt_live_adc_start_transaction(void *binding, uint32_t generation,
+                                  mt_adc_dma_start_transaction_fn transaction);
+ void mt_live_adc_quiesce(void *binding, mt_live_snapshot *snapshot);
+-/* At most one real driver read and immediate synchronous queue offer. Return1
++/* At most one driver half512 read and four immediate DATA128 queue offers. Return1
+  * accepted,0 no block/inactive,-1 acquisition fault/queue rejection,-2 badarg.
+  * A failed offer can synchronously quiesce: never use the old BLOCK view after.
+  * Caller owns USB epoch admission and independent TIME/live timer servicing;

@@ -1,0 +1,37 @@
+--- a/app/mt_live_runtime.c
++++ b/app/mt_live_runtime.c
+@@ -197,24 +197,9 @@
+     (void)tud_cdc_n_write_clear(0);
+     return MT_LIVE_RUNTIME_TIME_FAULT;
+ }
+-/* An additional bounded ADC opportunity around USB/TX work reduces the
+- * drain gap. It retains actor/lifecycle admission and the driver's full
+- * deadline/ownership checks; this is not a target WCET assertion. */
+-static int adc_checkpoint(mt_live_runtime *r) {
+-    mt_usb_scope scope;
+-    int result=0;
+-    if(mt_usb_bridge_app_enter(&scope)) {
+-        if(usable(r)) result=mt_live_adc_service(&r->acquisition);
+-        mt_usb_bridge_leave(&scope);
+-    }
+-    return result;
+-}
+ static mt_live_runtime_result step(mt_live_runtime *r) {
+     mt_usb_scope scope; uint32_t key; int serviced,tx_ok;
+     if(live_time(r)==UINT64_MAX || r->clock_fault)return time_fault(r);
+-    if(!synchronize_loss(r))return loss_result(r);
+-    if(adc_checkpoint(r)==-2)return MT_LIVE_RUNTIME_ARGUMENT;
+-    if(live_time(r)==UINT64_MAX)return time_fault(r);
+     if(!synchronize_loss(r))return loss_result(r);
+     tud_task_ext(0,false);
+     if(live_time(r)==UINT64_MAX)return time_fault(r);
+@@ -262,9 +247,6 @@
+     MT_DIAG_STAMP(diag_tx);
+     key=mt_usb_bridge_lock(); tx_ok=mt_live_device_step(&r->device); mt_usb_bridge_unlock(key);
+     MT_DIAG_TX_END(diag_tx);
+-    if(live_time(r)==UINT64_MAX)return time_fault(r);
+-    if(!synchronize_loss(r))return loss_result(r);
+-    if(adc_checkpoint(r)==-2)return MT_LIVE_RUNTIME_ARGUMENT;
+     if(live_time(r)==UINT64_MAX)return time_fault(r);
+     if(!synchronize_loss(r))return loss_result(r);
+     if(mt_usb_bridge_app_enter(&scope)) {

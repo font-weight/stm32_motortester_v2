@@ -101,7 +101,7 @@ def main():
     sj_legacy = dict(legacy, raw=dict(legacy['raw'], firmware_build=0x5632534a))
     assert decode(legacy=sj_legacy, expected_build=0x5632534a)['accepted_frozen_record']
     reject('SI_not_SJ', decode(legacy=si_legacy, expected_build=0x5632534a))
-    reject('unsupported_build', decode(expected_build=0x5632534b))
+    reject('unsupported_build', decode(expected_build=0x5632534c))
     reject('empty_observer_bank', decode(bytes(64)))
     # Legal unavailable snapshot stays unknown; it must never be rendered as0.
     unavailable = decode(change(snapshot_bits=0, fifo_free=65535))

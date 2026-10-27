@@ -1,4 +1,4 @@
-"""Build V2SJ collect-only post-commit prefetch candidate; never flash hardware."""
+"""Build V2SK24-byte USB gate diagnostic candidate; never flash hardware."""
 import argparse
 import hashlib
 import importlib.util
@@ -32,6 +32,7 @@ ADD = [
     "firmware/platform/mt_stream_diag.c", "firmware/acquisition/mt_acquisition_profile.c",
     "firmware/protocol/mt_batch1024.c",
     "firmware/platform/mt_stream_progress.c",
+    "firmware/platform/mt_usb_gate.c",
 ]
 
 
@@ -325,7 +326,7 @@ def main():
             target = out / "patched" / row["target"]
             target.write_bytes(apply_patch((out / row["source"]).read_bytes(),
                 (here / "overlays" / row["patch"]).read_bytes(), row))
-        for name in ("mt_stream_progress.c", "mt_stream_progress.h"):
+        for name in ("mt_stream_progress.c", "mt_stream_progress.h", "mt_usb_gate.c", "mt_usb_gate.h"):
             (out / "patched/v2/platform" / name).write_bytes((here / "progress" / name).read_bytes())
         late = json.loads((here / "overlays/late-grant.json").read_text("utf-8"))
         require(late["schema"] == "motortester-v2-late-grant-overlay-1", "Unexpected late grant overlay")
@@ -338,6 +339,13 @@ def main():
         require(prefetch["schema"] == "motortester-v2-prefetch-overlay-1", "Unexpected prefetch overlay")
         receipt["v2_overlays"].extend(prefetch["patches"])
         for row in prefetch["patches"]:
+            target = out / "patched" / row["target"]
+            target.write_bytes(apply_patch((out / row["source"]).read_bytes(),
+                (here / "overlays" / row["patch"]).read_bytes(), row))
+        usb_gate = json.loads((here / "overlays/usb-gate.json").read_text("utf-8"))
+        require(usb_gate["schema"] == "motortester-v2-usb-gate-overlay-1", "Unexpected USB gate overlay")
+        receipt["v2_overlays"].extend(usb_gate["patches"])
+        for row in usb_gate["patches"]:
             target = out / "patched" / row["target"]
             target.write_bytes(apply_patch((out / row["source"]).read_bytes(),
                 (here / "overlays" / row["patch"]).read_bytes(), row))
@@ -396,6 +404,7 @@ def main():
                 "source/firmware/platform/mt_timebase.c": "patched/v2/platform/mt_timebase.c",
                 "source/firmware/platform/mt_stream_profile.c": "patched/v2/platform/mt_stream_profile.c",
                 "source/firmware/platform/mt_stream_progress.c": "patched/v2/platform/mt_stream_progress.c",
+                "source/firmware/platform/mt_usb_gate.c": "patched/v2/platform/mt_usb_gate.c",
                 "source/firmware/protocol/mt_wire.c": "patched/v2/protocol/mt_wire.c",
                 "source/firmware/protocol/mt_live_device.c": "patched/v2/protocol/mt_live_device.c",
                 "source/firmware/protocol/mt_batch1024.c": "patched/v2/protocol/mt_batch1024.c",
@@ -414,8 +423,8 @@ def main():
         objects.append(reset)
         compile_c("board", "generated/board.c", standard)
         compile_c("timing", "generated/timing.c", standard)
-        # N adds one compact progress observer; legacy136 remains a separate object.
-        require(len(objects) == 33 + int(config["active_profile_enabled"]), "Unexpected link input count")
+        # Legacy136/N64 and one24B gate observer are separate fixed objects.
+        require(len(objects) == 34 + int(config["active_profile_enabled"]), "Unexpected link input count")
         checker = load(source / "tests/boot-link/tools/run_boot_link_tests.py")
         vectors_path = source / "tests/boot-link/vector_map.json"
         require(digest(vectors_path) == checker.VECTOR_SHA, "Vector map differs")

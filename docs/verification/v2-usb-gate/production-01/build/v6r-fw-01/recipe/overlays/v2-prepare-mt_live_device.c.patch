@@ -1,0 +1,163 @@
+--- v2/protocol/mt_live_device.c
++++ v2/protocol/mt_live_device.c
+@@ -299,9 +299,10 @@
+     }
+     return crc;
+ }
+-static int build_tx(mt_live_device *d) {
++static int build_tx(mt_live_device *d,unsigned *error) {
+     mt_wire_message m; mt_sample_block block;
+     uint8_t type=0; uint32_t request=0;
++    *error=MT_LIVE_ERR_NONE;
+     if(d->tx_length)return 1;
+     memset(&m,0,sizeof m);
+     m.session=d->nonce;
+@@ -341,10 +342,10 @@
+         w32(m.payload,d->generation); w64(m.payload+4,d->prefix_end); w32(m.payload+12,d->end_sequence); w32(m.payload+16,d->terminal_flags);
+     } else return 0;
+     m.type=type; m.request=request; m.sequence=(type==HELLO_ACK)?1u:d->tx_next;
+-    if(!m.sequence || (type!=HELLO_ACK && d->tx_exhausted)) { recover(d,MT_LIVE_ERR_PROTOCOL); return 0; }
++    if(!m.sequence || (type!=HELLO_ACK && d->tx_exhausted)) { *error=MT_LIVE_ERR_PROTOCOL; return 0; }
+     d->tx_sequence=m.sequence; d->tx_nonce=m.session; d->tx_type=type; d->tx_offset=0;
+     if(mt_wire_encode_revision(&m,0,2,d->tx,sizeof d->tx,&d->tx_length)!=MT_WIRE_OK) {
+-        recover(d,MT_LIVE_ERR_ARGUMENT); return 0;
++        *error=MT_LIVE_ERR_ARGUMENT; return 0;
+     }
+     return 1;
+ }
+@@ -399,12 +400,113 @@
+     }
+     d->tx_length=d->tx_offset=0;
+ }
+-int mt_live_device_step(mt_live_device *d) {
+-    uint64_t n,bound,after; size_t offer,accepted; unsigned first,hello_complete=0;
++/* No callbacks or time reads: byte staging is the only prepared state.
++ * Every ticket field is compared explicitly, so padding is never observed. */
++static unsigned tx_intents(const mt_live_device *d) {
++    return d->want_caps | (d->want_start<<1) | (d->want_error<<2) |
++        (d->want_end<<3) | (d->want_ack<<4) | (d->needs_delimiter<<5) |
++        (d->hardware_off<<6) | (d->produced_known<<7) |
++        (d->end_started<<8) | (d->end_complete<<9) | (d->stop_seen<<10);
++}
++static void ticket_capture(const mt_live_device *d,mt_live_tx_ticket *t,
++                           mt_live_prepare_result result,unsigned error) {
++    t->result=result; t->error=error;
++    t->state=d->state;
++    t->nonce=d->nonce;
++    t->pending_nonce=d->pending_nonce;
++    t->prefix_end=d->prefix_end;
++    t->produced_end=d->produced_end;
++    t->head_index=d->queue.head_index;
++    t->next_index=d->queue.next_index;
++    t->tx_nonce=d->tx_nonce;
++    t->tx_first_index=d->tx_first_index;
++    t->generation=d->generation;
++    t->tx_next=d->tx_next;
++    t->tx_sequence=d->tx_sequence;
++    t->prefix_crc_state=d->prefix_crc_state;
++    t->last_data_sequence=d->last_data_sequence;
++    t->caps_request=d->caps_request;
++    t->error_request=d->error_request;
++    t->stop_request=d->stop_request;
++    t->end_sequence=d->end_sequence;
++    t->tx_length=d->tx_length;
++    t->tx_offset=d->tx_offset;
++    t->queue_head=d->queue.head;
++    t->queue_used=d->queue.used;
++    t->tx_exhausted=d->tx_exhausted;
++    t->queue_sealed=d->queue.sealed;
++    t->intents=tx_intents(d);
++    t->tx_count=d->tx_count;
++    t->head_count=(d->queue.used?d->queue.counts[d->queue.head]:0u);
++    t->first_reason=d->first_reason;
++    t->terminal_flags=d->terminal_flags;
++    t->tx_type=d->tx_type;
++    t->error_type=d->error_type;
++    t->error_code=d->error_code;
++}
++static int ticket_matches(const mt_live_device *d,const mt_live_tx_ticket *t) {
++    return t->state==d->state &&
++        t->nonce==d->nonce &&
++        t->pending_nonce==d->pending_nonce &&
++        t->prefix_end==d->prefix_end &&
++        t->produced_end==d->produced_end &&
++        t->head_index==d->queue.head_index &&
++        t->next_index==d->queue.next_index &&
++        t->tx_nonce==d->tx_nonce &&
++        t->tx_first_index==d->tx_first_index &&
++        t->generation==d->generation &&
++        t->tx_next==d->tx_next &&
++        t->tx_sequence==d->tx_sequence &&
++        t->prefix_crc_state==d->prefix_crc_state &&
++        t->last_data_sequence==d->last_data_sequence &&
++        t->caps_request==d->caps_request &&
++        t->error_request==d->error_request &&
++        t->stop_request==d->stop_request &&
++        t->end_sequence==d->end_sequence &&
++        t->tx_length==d->tx_length &&
++        t->tx_offset==d->tx_offset &&
++        t->queue_head==d->queue.head &&
++        t->queue_used==d->queue.used &&
++        t->tx_exhausted==d->tx_exhausted &&
++        t->queue_sealed==d->queue.sealed &&
++        t->intents==tx_intents(d) &&
++        t->tx_count==d->tx_count &&
++        t->head_count==(d->queue.used?d->queue.counts[d->queue.head]:0u) &&
++        t->first_reason==d->first_reason &&
++        t->terminal_flags==d->terminal_flags &&
++        t->tx_type==d->tx_type &&
++        t->error_type==d->error_type &&
++        t->error_code==d->error_code;
++}
++mt_live_prepare_result mt_live_device_prepare_tx(mt_live_device *d,
++                                                mt_live_tx_ticket *t) {
++    unsigned error=MT_LIVE_ERR_NONE; int ready;
++    mt_live_prepare_result result;
++    if(!t)return MT_LIVE_TX_ERROR;
++    if(!d) { *t=(mt_live_tx_ticket){.result=MT_LIVE_TX_ERROR,.error=MT_LIVE_ERR_ARGUMENT}; return t->result; }
++    ready=build_tx(d,&error);
++    result=error?MT_LIVE_TX_ERROR:(ready?MT_LIVE_TX_PREPARED:MT_LIVE_TX_EMPTY);
++    ticket_capture(d,t,result,error); return result;
++}
++_Static_assert(sizeof(mt_live_tx_ticket)<=224u,"bounded foreground TX ticket");
++static int step_tx(mt_live_device *d,const mt_live_tx_ticket *ticket) {
++    uint64_t n,bound,after; size_t offer,accepted; unsigned first,hello_complete=0,error;
+     if(!d || !now(d,&n) || !expire(d,n))return 0;
+     if(d->state==MT_LIVE_FAULT || d->state==MT_LIVE_NO_SESSION)return 1;
+     if(d->tx_next>=RESERVE && (d->state==MT_LIVE_STARTING || d->state==MT_LIVE_STREAMING))terminate(d,4,n);
+-    if(!now(d,&n) || !expire(d,n) || !build_tx(d))return d->state!=MT_LIVE_FAULT;
++    if(!now(d,&n) || !expire(d,n))return d->state!=MT_LIVE_FAULT;
++    if(ticket) {
++        /* Current identity is checked BEFORE a deferred error can recover. */
++        if(!ticket_matches(d,ticket))return d->state!=MT_LIVE_FAULT;
++        if(ticket->result==MT_LIVE_TX_ERROR) {
++            if(ticket->error!=MT_LIVE_ERR_PROTOCOL && ticket->error!=MT_LIVE_ERR_ARGUMENT)return 0;
++            recover(d,ticket->error); return 0;
++        }
++        if(ticket->error || ticket->result!=MT_LIVE_TX_PREPARED)return d->state!=MT_LIVE_FAULT;
++    } else if(!build_tx(d,&error)) {
++        if(error)recover(d,error);
++        return d->state!=MT_LIVE_FAULT;
++    }
+     if(!now(d,&n) || !expire(d,n))return 0;
+     bound=deadline(d);
+     if(bound!=UINT64_MAX && (UINT64_MAX-n<d->io.transaction_bound_ms || n+d->io.transaction_bound_ms>=bound)) {
+@@ -412,6 +514,7 @@
+     }
+     offer=d->tx_length-d->tx_offset; if(offer>384u)offer=384u;
+     first=(d->tx_offset==0u);
++    if(ticket && !ticket_matches(d,ticket))return d->state!=MT_LIVE_FAULT;
+     accepted=d->io.write(d->io.context,d->tx+d->tx_offset,offer);
+     d->last_write_known=(accepted!=SIZE_MAX && accepted<=offer);
+     d->last_write_accepted=d->last_write_known?accepted:0;
+@@ -443,6 +546,10 @@
+      * transaction bound includes these final stores and queue initialization. */
+     if(hello_complete && d->state==MT_LIVE_HELLO_PENDING)commit_hello(d);
+     return d->state!=MT_LIVE_FAULT;
++}
++int mt_live_device_step(mt_live_device *d) { return step_tx(d,NULL); }
++int mt_live_device_step_prepared(mt_live_device *d,const mt_live_tx_ticket *t) {
++    return t?step_tx(d,t):0;
+ }
+ int mt_live_device_offer(mt_live_device *d,uint64_t first_index,const uint16_t *codes,uint16_t count) {
+     uint64_t n; mt_sample_queue_result q;

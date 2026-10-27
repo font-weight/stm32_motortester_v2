@@ -1,0 +1,107 @@
+
+objects/27-mt_acquisition_profile.o:     file format elf32-littlearm
+
+
+Disassembly of section .text.mt_acquisition_profile_get:
+
+00000000 <mt_acquisition_profile_get>:
+   0:	1e43      	subs	r3, r0, #1
+   2:	b29a      	uxth	r2, r3
+   4:	2a04      	cmp	r2, #4
+   6:	bf9d      	ittte	ls
+   8:	2218      	movls	r2, #24
+   a:	4802      	ldrls	r0, [pc, #8]	@ (14 <mt_acquisition_profile_get+0x14>)
+   c:	fb02 0003 	mlals	r0, r2, r3, r0
+  10:	2000      	movhi	r0, #0
+  12:	4770      	bx	lr
+  14:	00000000 	.word	0x00000000
+			14: R_ARM_ABS32	.rodata.profiles
+
+Disassembly of section .text.mt_acquisition_pack:
+
+00000000 <mt_acquisition_pack>:
+   0:	e92d 41f0 	stmdb	sp!, {r4, r5, r6, r7, r8, lr}
+   4:	4617      	mov	r7, r2
+   6:	461e      	mov	r6, r3
+   8:	4604      	mov	r4, r0
+   a:	2800      	cmp	r0, #0
+   c:	d05b      	beq.n	c6 <mt_acquisition_pack+0xc6>
+   e:	8900      	ldrh	r0, [r0, #8]
+  10:	f7ff fffe 	bl	0 <mt_acquisition_pack>
+			10: R_ARM_THM_CALL	mt_acquisition_profile_get
+  14:	42a0      	cmp	r0, r4
+  16:	d156      	bne.n	c6 <mt_acquisition_pack+0xc6>
+  18:	2900      	cmp	r1, #0
+  1a:	d054      	beq.n	c6 <mt_acquisition_pack+0xc6>
+  1c:	2e00      	cmp	r6, #0
+  1e:	d052      	beq.n	c6 <mt_acquisition_pack+0xc6>
+  20:	1e7b      	subs	r3, r7, #1
+  22:	2b7f      	cmp	r3, #127	@ 0x7f
+  24:	d84f      	bhi.n	c6 <mt_acquisition_pack+0xc6>
+  26:	7d42      	ldrb	r2, [r0, #21]
+  28:	9b06      	ldr	r3, [sp, #24]
+  2a:	2a02      	cmp	r2, #2
+  2c:	bf01      	itttt	eq
+  2e:	200a      	moveq	r0, #10
+  30:	4378      	muleq	r0, r7
+  32:	3007      	addeq	r0, #7
+  34:	08c0      	lsreq	r0, r0, #3
+  36:	bf18      	it	ne
+  38:	0078      	lslne	r0, r7, #1
+  3a:	4298      	cmp	r0, r3
+  3c:	d843      	bhi.n	c6 <mt_acquisition_pack+0xc6>
+  3e:	2300      	movs	r3, #0
+  40:	f831 4013 	ldrh.w	r4, [r1, r3, lsl #1]
+  44:	f5b4 5f80 	cmp.w	r4, #4096	@ 0x1000
+  48:	d23d      	bcs.n	c6 <mt_acquisition_pack+0xc6>
+  4a:	2a02      	cmp	r2, #2
+  4c:	d101      	bne.n	52 <mt_acquisition_pack+0x52>
+  4e:	07a4      	lsls	r4, r4, #30
+  50:	d139      	bne.n	c6 <mt_acquisition_pack+0xc6>
+  52:	3301      	adds	r3, #1
+  54:	429f      	cmp	r7, r3
+  56:	d8f3      	bhi.n	40 <mt_acquisition_pack+0x40>
+  58:	2a01      	cmp	r2, #1
+  5a:	d10f      	bne.n	7c <mt_acquisition_pack+0x7c>
+  5c:	2300      	movs	r3, #0
+  5e:	3902      	subs	r1, #2
+  60:	1c74      	adds	r4, r6, #1
+  62:	f831 2f02 	ldrh.w	r2, [r1, #2]!
+  66:	f806 2013 	strb.w	r2, [r6, r3, lsl #1]
+  6a:	880a      	ldrh	r2, [r1, #0]
+  6c:	0a12      	lsrs	r2, r2, #8
+  6e:	f804 2013 	strb.w	r2, [r4, r3, lsl #1]
+  72:	3301      	adds	r3, #1
+  74:	429f      	cmp	r7, r3
+  76:	d8f4      	bhi.n	62 <mt_acquisition_pack+0x62>
+  78:	e8bd 81f0 	ldmia.w	sp!, {r4, r5, r6, r7, r8, pc}
+  7c:	2400      	movs	r4, #0
+  7e:	f06f 0e07 	mvn.w	lr, #7
+  82:	4625      	mov	r5, r4
+  84:	46a4      	mov	ip, r4
+  86:	4623      	mov	r3, r4
+  88:	f831 201c 	ldrh.w	r2, [r1, ip, lsl #1]
+  8c:	eb06 0803 	add.w	r8, r6, r3
+  90:	0892      	lsrs	r2, r2, #2
+  92:	40aa      	lsls	r2, r5
+  94:	4314      	orrs	r4, r2
+  96:	f105 020a 	add.w	r2, r5, #10
+  9a:	3a08      	subs	r2, #8
+  9c:	2a07      	cmp	r2, #7
+  9e:	f808 4b01 	strb.w	r4, [r8], #1
+  a2:	ea4f 2414 	mov.w	r4, r4, lsr #8
+  a6:	d8f8      	bhi.n	9a <mt_acquisition_pack+0x9a>
+  a8:	3502      	adds	r5, #2
+  aa:	f10c 0c01 	add.w	ip, ip, #1
+  ae:	08ea      	lsrs	r2, r5, #3
+  b0:	3301      	adds	r3, #1
+  b2:	4567      	cmp	r7, ip
+  b4:	eb03 03d5 	add.w	r3, r3, r5, lsr #3
+  b8:	fb0e 5502 	mla	r5, lr, r2, r5
+  bc:	d8e4      	bhi.n	88 <mt_acquisition_pack+0x88>
+  be:	2d00      	cmp	r5, #0
+  c0:	d0da      	beq.n	78 <mt_acquisition_pack+0x78>
+  c2:	54f4      	strb	r4, [r6, r3]
+  c4:	e7d8      	b.n	78 <mt_acquisition_pack+0x78>
+  c6:	2000      	movs	r0, #0
+  c8:	e7d6      	b.n	78 <mt_acquisition_pack+0x78>

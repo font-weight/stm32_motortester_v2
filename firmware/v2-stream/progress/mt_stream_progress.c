@@ -1,6 +1,7 @@
 #include "mt_stream_progress.h"
 #include "mt_stream_diag.h"
 #include "mt_usb_ctr.h"
+#include "mt_usb_gate.h" /* R_GATE_INCLUDE */
 #include "../transport/mt_usb_bridge.h"
 #include "tusb.h"
 #if !CFG_MT_PROGRESS_TRACE || !CFG_MT_STREAM_DIAGNOSTICS
@@ -62,6 +63,7 @@ void mt_progress_begin(const mt_live_device *d) {
     start=cycle();mt_stream_progress.begin_cycle=start;
     mt_stream_progress.last_positive_cycle=start;
     mt_stream_progress.flags|=MT_N_START_ACK_PENDING;
+    mt_gate_begin(); /* R_GATE_INIT: before N ACTIVE, ISR hooks still forbidden. */
     state(MT_N_ACTIVE);
 }
 uint32_t mt_progress_prepare_begin(void) {
@@ -123,6 +125,7 @@ static void snapshot(const mt_live_device *d) {
      * the FIFO/task/gate snapshot coherent without dispatch or new health loops.
      * app_enter may refuse stale epoch/lifecycle; then USB fields stay unknown. */
     key=mt_usb_bridge_lock();
+    mt_gate_freeze(); /* R_GATE_FREEZE: even if app_enter below refuses. */
     if(mt_usb_bridge_app_enter(&scope)) {
         free_bytes=tud_cdc_n_write_available(0);
         if(free_bytes<=384u) {

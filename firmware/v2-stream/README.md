@@ -1,4 +1,30 @@
-# Кандидат V2SJ: сбор следующих отсчётов после TX commit
+# Кандидат V2SK:24B диагностика последнего gate-перехода USB
+
+V2-06r/build `0x5632534B`, product `Motortester V2 USB Gate SK` сохраняет
+рабочий SJ и добавляет только [gate observer](../../docs/streaming-usb-gate.md).
+Один24B bank хранит наблюдённую публикацию CDC0x82 и последний фактически
+вычисленный gate branch. Skipped TIME остаётся unknown; новый submit/grant/
+иной IRQ инвалидирует старую причинную применимость. Final mixed RX/SETUP
+не выдаётся за чистый FINAL. Serial не оборачивается, invalidity явная.
+
+Прежние64/136 ABI сохранены, common build identity генерируется из config.
+Все gate stores прекращаются после N CLOSING, затем bank замораживается под
+existing guard даже при отказе app scope. APPLICABLE означает episode до этой
+границы; поздний USB64 даже при HELD1 не доказывает тот же episode.
+SK не исправляет queue-full и не подтверждает150k.24B включают всю новую
+static память; exact ARM должен сохранить reserve8192. ISR stores и DWT reads
+имеют observer effect,500мкс не становится WCET. Wire/ADC/очередь/6/<500 и
+расписание SJ неизменны; новых фазовых timers, flush/task/grant нет.
+
+```powershell
+.\.venv\Scripts\python.exe -I -B firmware\v2-stream\build_windows.py --output build\v6r-fw-NEW
+```
+
+Сборка не открывает COM/SWD. Нужны один адресный transition/freeze/read-order
+model и exact resources, затем независимое ревью и отдельный аппаратный план.
+Точные результаты и установленная прошивка — только в progress/review.
+
+## Сохранённый V2SJ: сбор следующих отсчётов после TX commit
 
 V2-06q/build `0x5632534A`, product `Motortester V2 Prefetch SJ` проверяет
 одну гипотезу [post-commit prefetch](../../docs/streaming-postcommit-prefetch.md).

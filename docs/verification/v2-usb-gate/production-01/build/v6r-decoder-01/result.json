@@ -1,0 +1,298 @@
+{
+  "status": "PASS",
+  "scope": "One actual-C24/64/136 decode plus bounded synthetic evidence mutations.\n\nThe native legacy136 record is a synthetic setup, not a physical image witness.\nNo device, native model rerun, GUI, old suite or transport test is performed.\n",
+  "argv": [
+    "host/tests/usb_gate_decoder_check.py",
+    "--gate-fixture",
+    "build/v6r-native-01/actual-gate.bin",
+    "--progress-fixture",
+    "build/v6r-native-01/actual-progress.bin",
+    "--legacy-bin",
+    "build/v6r-native-01/actual-legacy.bin",
+    "--producer-receipt",
+    "build/v6r-native-01/result.json",
+    "--image-sha256",
+    "dd6e8322488a1d4ada50c2c722820f971b4b4782c303bdafb1410180e2efc8f1",
+    "--output",
+    "build/v6r-decoder-01"
+  ],
+  "python": "3.14.7 (tags/v3.14.7:823f032, Aug  5 2026, 10:51:32) [MSC v.1944 64 bit (AMD64)]",
+  "inputs": {
+    "C:\\Users\\Alexandr\\Desktop\\New folder\\\u0443\u043d\u0438\u0432\u0435\u0440\\\u043c\u043e\u0442\u043e\u0440\u0442\u0435\u0441\u0442\u0435\u0440 2\\host\\tests\\usb_gate_decoder_check.py": "956d3d76a6565c8e55c2d37ed38e726fd7a2ec5be909565c4f3708a5b92c03cf",
+    "C:\\Users\\Alexandr\\Desktop\\New folder\\\u0443\u043d\u0438\u0432\u0435\u0440\\\u043c\u043e\u0442\u043e\u0440\u0442\u0435\u0441\u0442\u0435\u0440 2\\host\\tools\\decode_usb_gate.py": "fc9d6a93507f4f5fd224d3cc6562e2257e69b9291e0782d9e06f310f4ecdd1ba",
+    "C:\\Users\\Alexandr\\Desktop\\New folder\\\u0443\u043d\u0438\u0432\u0435\u0440\\\u043c\u043e\u0442\u043e\u0440\u0442\u0435\u0441\u0442\u0435\u0440 2\\host\\tools\\decode_stream_progress.py": "cf2f936637e50b3d38daac3530ea1f6ec78fd172068afc7063d03010686a39f4",
+    "C:\\Users\\Alexandr\\Desktop\\New folder\\\u0443\u043d\u0438\u0432\u0435\u0440\\\u043c\u043e\u0442\u043e\u0440\u0442\u0435\u0441\u0442\u0435\u0440 2\\docs\\streaming-usb-gate.md": "c543d4adaaa2cdf9b609722ca5cb514c520ab6f71d9e539ef8f88329f8c49995",
+    "C:\\Users\\Alexandr\\Desktop\\New folder\\\u0443\u043d\u0438\u0432\u0435\u0440\\\u043c\u043e\u0442\u043e\u0440\u0442\u0435\u0441\u0442\u0435\u0440 2\\host\\tests\\stream_progress_decoder_check.py": "8270c2e3fd5270fd92e6fcd328c96e2d6577c548f5ccf0c6a0ed8e5a35e56a9c",
+    "C:\\Users\\Alexandr\\Desktop\\New folder\\\u0443\u043d\u0438\u0432\u0435\u0440\\\u043c\u043e\u0442\u043e\u0440\u0442\u0435\u0441\u0442\u0435\u0440 2\\build\\v6r-native-01\\actual-gate.bin": "1d36b20e36aea27d4fbc2a1ce1705dd201e53e8cc21e6dfdd38273e8cf28eb44",
+    "C:\\Users\\Alexandr\\Desktop\\New folder\\\u0443\u043d\u0438\u0432\u0435\u0440\\\u043c\u043e\u0442\u043e\u0440\u0442\u0435\u0441\u0442\u0435\u0440 2\\build\\v6r-native-01\\actual-progress.bin": "f5e6178675f0a43733c099abb4c0c85504536d7e70e5f5dc9692d754ee1c75aa",
+    "C:\\Users\\Alexandr\\Desktop\\New folder\\\u0443\u043d\u0438\u0432\u0435\u0440\\\u043c\u043e\u0442\u043e\u0440\u0442\u0435\u0441\u0442\u0435\u0440 2\\build\\v6r-native-01\\actual-legacy.bin": "0ecef68e042a61e93c5dbbac31853f68a5ed007189a9840944d153dab38c93fc",
+    "C:\\Users\\Alexandr\\Desktop\\New folder\\\u0443\u043d\u0438\u0432\u0435\u0440\\\u043c\u043e\u0442\u043e\u0440\u0442\u0435\u0441\u0442\u0435\u0440 2\\build\\v6r-native-01\\result.json": "d9112d935c2c54f9ab39b4160937edaa5c4a225eeebac33fed66f3ac347f72d0",
+    "C:\\Users\\Alexandr\\Desktop\\New folder\\\u0443\u043d\u0438\u0432\u0435\u0440\\\u043c\u043e\u0442\u043e\u0440\u0442\u0435\u0441\u0442\u0435\u0440 2\\build\\v6r-native-01\\companion.json": "58931e913be5e0f99f1c5d52ed7341ff809f6c277c5e169586b927082a2e9f4d"
+  },
+  "checks": [
+    {
+      "case": "actual_native_C24_C64_C136",
+      "kind": "valid_with_limits"
+    },
+    {
+      "case": "truncated_gate",
+      "kind": "reject",
+      "errors": [
+        "first_size_not_24",
+        "second_size_not_24"
+      ]
+    },
+    {
+      "case": "changed_gate_pair",
+      "kind": "reject",
+      "errors": [
+        "repeated_gate_dump_mismatch"
+      ]
+    },
+    {
+      "case": "changed_progress_pair",
+      "kind": "reject",
+      "errors": [
+        "paired_progress_session_image_binding_invalid"
+      ]
+    },
+    {
+      "case": "foreign_session",
+      "kind": "reject",
+      "errors": [
+        "paired_progress_session_image_binding_invalid"
+      ]
+    },
+    {
+      "case": "foreign_generation",
+      "kind": "reject",
+      "errors": [
+        "paired_progress_session_image_binding_invalid"
+      ]
+    },
+    {
+      "case": "foreign_image",
+      "kind": "reject",
+      "errors": [
+        "paired_progress_session_image_binding_invalid"
+      ]
+    },
+    {
+      "case": "SJ_not_SK",
+      "kind": "reject",
+      "errors": [
+        "unsupported_expected_gate_build",
+        "paired_progress_session_image_binding_invalid"
+      ]
+    },
+    {
+      "case": "unsupported_future_build",
+      "kind": "reject",
+      "errors": [
+        "unsupported_expected_gate_build",
+        "paired_progress_session_image_binding_invalid"
+      ]
+    },
+    {
+      "case": "not_frozen",
+      "kind": "reject",
+      "errors": [
+        "gate_not_frozen"
+      ]
+    },
+    {
+      "case": "wrong_magic",
+      "kind": "reject",
+      "errors": [
+        "gate_magic_version_mismatch"
+      ]
+    },
+    {
+      "case": "undefined_bits",
+      "kind": "reject",
+      "errors": [
+        "undefined_gate_flags"
+      ]
+    },
+    {
+      "case": "unknown_decision",
+      "kind": "reject",
+      "errors": [
+        "gate_decision_invalid",
+        "applicability_without_hold_decision"
+      ]
+    },
+    {
+      "case": "event_after_first_close",
+      "kind": "reject",
+      "errors": [
+        "gate_event_outside_paired_active_window"
+      ]
+    },
+    {
+      "case": "time_below_threshold",
+      "kind": "reject",
+      "errors": [
+        "time_row_inconsistent"
+      ]
+    },
+    {
+      "case": "time_zero_budget",
+      "kind": "reject",
+      "errors": [
+        "time_row_inconsistent"
+      ]
+    },
+    {
+      "case": "not_intermediate",
+      "kind": "reject",
+      "errors": [
+        "intermediate_tuple_invalid"
+      ]
+    },
+    {
+      "case": "OTHER_impossible_PRE_packet_tuple",
+      "kind": "reject",
+      "errors": [
+        "evaluated_PRE_tuple_not_PMA_packet_boundary"
+      ]
+    },
+    {
+      "case": "sentinel_without_flag",
+      "kind": "reject",
+      "errors": [
+        "unknown_age_not_sentinel",
+        "time_row_inconsistent"
+      ]
+    },
+    {
+      "case": "unbound_cap",
+      "kind": "reject",
+      "errors": [
+        "cap_marker_disagrees_with_progress"
+      ]
+    },
+    {
+      "case": "saturation_not_max",
+      "kind": "reject",
+      "errors": [
+        "serial_saturation_inconsistent"
+      ]
+    },
+    {
+      "case": "sticky_active",
+      "kind": "reject",
+      "errors": [
+        "sticky_invalid_with_active_association"
+      ]
+    },
+    {
+      "case": "later64_HELD0_is_skew",
+      "kind": "valid_with_limits"
+    },
+    {
+      "case": "later64_unavailable",
+      "kind": "valid_with_limits"
+    },
+    {
+      "case": "historical_after_grant",
+      "kind": "valid_with_limits"
+    },
+    {
+      "case": "historical_after_failed_submit",
+      "kind": "valid_with_limits"
+    },
+    {
+      "case": "age65535_is_valid_with_flag",
+      "kind": "valid_with_limits"
+    },
+    {
+      "case": "DWT_zero_is_valid_event",
+      "kind": "valid_with_limits"
+    },
+    {
+      "case": "unobserved_initial",
+      "kind": "valid_with_limits"
+    },
+    {
+      "case": "sticky_metadata_U",
+      "kind": "valid_with_limits"
+    },
+    {
+      "case": "sticky_lifecycle_history",
+      "kind": "valid_with_limits"
+    },
+    {
+      "case": "sticky_serial_saturation",
+      "kind": "valid_with_limits"
+    },
+    {
+      "case": "ZLP_published",
+      "kind": "valid_with_limits"
+    },
+    {
+      "case": "ZLP_final",
+      "kind": "valid_with_limits"
+    },
+    {
+      "case": "status_before_TIME",
+      "kind": "valid_with_limits"
+    },
+    {
+      "case": "status_after_TIME",
+      "kind": "valid_with_limits"
+    },
+    {
+      "case": "paired_DWT_invalid_no_window_attribution",
+      "kind": "valid_with_limits"
+    },
+    {
+      "case": "CAP_not_later_fault",
+      "kind": "valid_with_limits"
+    },
+    {
+      "case": "NO_ACTIVE_unknown_only",
+      "kind": "valid_with_limits"
+    },
+    {
+      "case": "NO_ACTIVE_fabricated_history",
+      "kind": "reject",
+      "errors": [
+        "publication_identity_inconsistent",
+        "no_active_record_has_history_flags"
+      ]
+    }
+  ],
+  "hardware_executed": false,
+  "physical_throughput_claim": false,
+  "native_producer_rerun": false,
+  "legacy_binding_is_synthetic": true,
+  "native_companion": {
+    "origin": "SYNTHETIC_NATIVE_C_SETUP_NOT_PHYSICAL",
+    "firmware_build": "0x5632534b",
+    "generation": 7,
+    "nonce_hex": "0123456789abcdef",
+    "image_bin_sha256": "dd6e8322488a1d4ada50c2c722820f971b4b4782c303bdafb1410180e2efc8f1",
+    "generated_header_sha256": "1de425e142230bd4bd24bb2d6b1d739fc0e6bfa4a9f82a0f31520e5f33c120e6",
+    "fixtures": {
+      "actual-gate.bin": "1d36b20e36aea27d4fbc2a1ce1705dd201e53e8cc21e6dfdd38273e8cf28eb44",
+      "actual-progress.bin": "f5e6178675f0a43733c099abb4c0c85504536d7e70e5f5dc9692d754ee1c75aa",
+      "actual-legacy.bin": "0ecef68e042a61e93c5dbbac31853f68a5ed007189a9840944d153dab38c93fc"
+    },
+    "legacy_module_not_executed": true
+  },
+  "actual_C_known_fields": {
+    "magic": 1297368881,
+    "flags": 63,
+    "publication_serial": 1,
+    "event_cycle": 3000,
+    "total_len": 384,
+    "queued_len": 64,
+    "evaluated_age_us": 501,
+    "remaining_budget": 5,
+    "decision": 6
+  },
+  "synthetic_mutations_start_after_actual_fixture": true,
+  "old_progress_builds_preserved_SK_requires_explicit_build": true,
+  "input_drift": []
+}

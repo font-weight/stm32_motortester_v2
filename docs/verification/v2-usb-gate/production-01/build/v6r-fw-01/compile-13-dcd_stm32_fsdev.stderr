@@ -1,0 +1,31 @@
+In file included from patched/dcd_stm32_fsdev.c:101:
+patched/fsdev_common.h: In function 'btable_set_count':
+patched/fsdev_common.h:434:18: warning: conversion from 'unsigned int' to 'uint16_t' {aka 'short unsigned int'} changes the value of '4294966272' [-Wconversion]
+  434 |   cnt          = (cnt & ~0x3FFU) | (byte_count & 0x3FFU);
+      |                  ^
+patched/dcd_stm32_fsdev.c: In function 'mt_gate_continue':
+patched/dcd_stm32_fsdev.c:174:55: error: implicit declaration of function 'mt_usb_fsdev_lifecycle_pending' [-Werror=implicit-function-declaration]
+  174 |       mt_gate_condition(decision,MT_G_HOLD_LIFECYCLE,!mt_usb_fsdev_lifecycle_pending()) &&
+      |                                                       ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+patched/dcd_stm32_fsdev.c: At top level:
+patched/dcd_stm32_fsdev.c:183:6: error: conflicting types for 'mt_usb_fsdev_lifecycle_pending'; have '_Bool(void)'
+  183 | bool mt_usb_fsdev_lifecycle_pending(void) {
+      |      ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+patched/dcd_stm32_fsdev.c:174:55: note: previous implicit declaration of 'mt_usb_fsdev_lifecycle_pending' with type 'int()'
+  174 |       mt_gate_condition(decision,MT_G_HOLD_LIFECYCLE,!mt_usb_fsdev_lifecycle_pending()) &&
+      |                                                       ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+patched/dcd_stm32_fsdev.c: In function 'dcd_sof_enable':
+patched/dcd_stm32_fsdev.c:309:24: warning: conversion from 'unsigned int' to 'fsdev_bus_t' {aka 'short unsigned int'} changes the value of '4294966783' [-Wconversion]
+  309 |     FSDEV_REG->CNTR &= ~U_CNTR_SOFM;
+      |                        ^
+patched/dcd_stm32_fsdev.c: In function 'dcd_int_handler':
+patched/dcd_stm32_fsdev.c:545:24: warning: conversion from 'unsigned int' to 'fsdev_bus_t' {aka 'short unsigned int'} changes the value of '4294967291' [-Wconversion]
+  545 |     FSDEV_REG->CNTR &= ~U_CNTR_LPMODE;
+      |                        ^
+patched/dcd_stm32_fsdev.c:546:24: warning: conversion from 'unsigned int' to 'fsdev_bus_t' {aka 'short unsigned int'} changes the value of '4294967287' [-Wconversion]
+  546 |     FSDEV_REG->CNTR &= ~U_CNTR_FSUSP;
+      |                        ^
+patched/dcd_stm32_fsdev.c:567:26: warning: conversion from 'unsigned int' to 'fsdev_bus_t' {aka 'short unsigned int'} changes the value of '4294967279' [-Wconversion]
+  567 |       FSDEV_REG->CNTR &= ~U_CNTR_RESUME;
+      |                          ^
+cc1.exe: all warnings being treated as errors

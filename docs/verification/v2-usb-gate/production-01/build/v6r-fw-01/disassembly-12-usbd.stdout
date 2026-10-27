@@ -1,0 +1,1998 @@
+
+objects/12-usbd.o:     file format elf32-littlearm
+
+
+Disassembly of section .text.tud_vendor_control_xfer_cb:
+
+00000000 <tud_vendor_control_xfer_cb>:
+   0:	2000      	movs	r0, #0
+   2:	4770      	bx	lr
+
+Disassembly of section .text.configuration_reset:
+
+00000000 <configuration_reset>:
+   0:	e92d 41f0 	stmdb	sp!, {r4, r5, r6, r7, r8, lr}
+   4:	4605      	mov	r5, r0
+   6:	2400      	movs	r4, #0
+   8:	4e19      	ldr	r6, [pc, #100]	@ (70 <configuration_reset+0x70>)
+   a:	4f1a      	ldr	r7, [pc, #104]	@ (74 <configuration_reset+0x74>)
+   c:	f8df 8068 	ldr.w	r8, [pc, #104]	@ 78 <configuration_reset+0x78>
+  10:	7831      	ldrb	r1, [r6, #0]
+  12:	b2e2      	uxtb	r2, r4
+  14:	1c4b      	adds	r3, r1, #1
+  16:	b2db      	uxtb	r3, r3
+  18:	4293      	cmp	r3, r2
+  1a:	d810      	bhi.n	3e <configuration_reset+0x3e>
+  1c:	222c      	movs	r2, #44	@ 0x2c
+  1e:	2100      	movs	r1, #0
+  20:	4816      	ldr	r0, [pc, #88]	@ (7c <configuration_reset+0x7c>)
+  22:	f7ff fffe 	bl	0 <memset>
+			22: R_ARM_THM_CALL	memset
+  26:	2202      	movs	r2, #2
+  28:	21ff      	movs	r1, #255	@ 0xff
+  2a:	4815      	ldr	r0, [pc, #84]	@ (80 <configuration_reset+0x80>)
+  2c:	f7ff fffe 	bl	0 <memset>
+			2c: R_ARM_THM_CALL	memset
+  30:	e8bd 41f0 	ldmia.w	sp!, {r4, r5, r6, r7, r8, lr}
+  34:	2206      	movs	r2, #6
+  36:	21ff      	movs	r1, #255	@ 0xff
+  38:	4812      	ldr	r0, [pc, #72]	@ (84 <configuration_reset+0x84>)
+  3a:	f7ff bffe 	b.w	0 <memset>
+			3a: R_ARM_THM_JUMP24	memset
+  3e:	4291      	cmp	r1, r2
+  40:	d90e      	bls.n	60 <configuration_reset+0x60>
+  42:	2124      	movs	r1, #36	@ 0x24
+  44:	f8d8 3000 	ldr.w	r3, [r8]
+  48:	fb01 3302 	mla	r3, r1, r2, r3
+  4c:	b953      	cbnz	r3, 64 <configuration_reset+0x64>
+  4e:	f04f 23e0 	mov.w	r3, #3758153728	@ 0xe000e000
+  52:	f8d3 3df0 	ldr.w	r3, [r3, #3568]	@ 0xdf0
+  56:	07db      	lsls	r3, r3, #31
+  58:	d500      	bpl.n	5c <configuration_reset+0x5c>
+  5a:	be00      	bkpt	0x0000
+  5c:	e8bd 81f0 	ldmia.w	sp!, {r4, r5, r6, r7, r8, pc}
+  60:	d1f5      	bne.n	4e <configuration_reset+0x4e>
+  62:	463b      	mov	r3, r7
+  64:	4628      	mov	r0, r5
+  66:	68db      	ldr	r3, [r3, #12]
+  68:	4798      	blx	r3
+  6a:	3401      	adds	r4, #1
+  6c:	e7d0      	b.n	10 <configuration_reset+0x10>
+  6e:	bf00      	nop
+	...
+			70: R_ARM_ABS32	.bss._app_driver_count
+			74: R_ARM_ABS32	.rodata._usbd_driver
+			78: R_ARM_ABS32	.bss._app_driver
+			7c: R_ARM_ABS32	.bss._usbd_dev
+  80:	0000001b 	.word	0x0000001b
+			80: R_ARM_ABS32	.bss._usbd_dev
+  84:	0000001d 	.word	0x0000001d
+			84: R_ARM_ABS32	.bss._usbd_dev
+
+Disassembly of section .text.usbd_int_set:
+
+00000000 <usbd_int_set>:
+   0:	4603      	mov	r3, r0
+   2:	4a03      	ldr	r2, [pc, #12]	@ (10 <usbd_int_set+0x10>)
+   4:	7810      	ldrb	r0, [r2, #0]
+   6:	b10b      	cbz	r3, c <usbd_int_set+0xc>
+   8:	f7ff bffe 	b.w	0 <dcd_int_enable>
+			8: R_ARM_THM_JUMP24	dcd_int_enable
+   c:	f7ff bffe 	b.w	0 <dcd_int_disable>
+			c: R_ARM_THM_JUMP24	dcd_int_disable
+  10:	00000000 	.word	0x00000000
+			10: R_ARM_ABS32	.data._usbd_rhport
+
+Disassembly of section .text.invoke_class_control.constprop.0.isra.0:
+
+00000000 <invoke_class_control.constprop.0.isra.0>:
+   0:	4a02      	ldr	r2, [pc, #8]	@ (c <invoke_class_control.constprop.0.isra.0+0xc>)
+   2:	460b      	mov	r3, r1
+   4:	6111      	str	r1, [r2, #16]
+   6:	2101      	movs	r1, #1
+   8:	4718      	bx	r3
+   a:	bf00      	nop
+   c:	00000000 	.word	0x00000000
+			c: R_ARM_ABS32	.bss._usbd_dev
+
+Disassembly of section .text.tud_event_hook_cb:
+
+00000000 <tud_event_hook_cb>:
+   0:	4770      	bx	lr
+
+Disassembly of section .text.queue_event_epoch.isra.0:
+
+00000000 <queue_event_epoch.isra.0>:
+   0:	e92d 47ff 	stmdb	sp!, {r0, r1, r2, r3, r4, r5, r6, r7, r8, r9, sl, lr}
+   4:	4617      	mov	r7, r2
+   6:	4604      	mov	r4, r0
+   8:	460d      	mov	r5, r1
+   a:	466e      	mov	r6, sp
+   c:	f7ff fffe 	bl	0 <mt_usb_bridge_lock>
+			c: R_ARM_THM_CALL	mt_usb_bridge_lock
+  10:	4b1e      	ldr	r3, [pc, #120]	@ (8c <queue_event_epoch.isra.0+0x8c>)
+  12:	4680      	mov	r8, r0
+  14:	e894 0007 	ldmia.w	r4, {r0, r1, r2}
+  18:	f8d3 a000 	ldr.w	sl, [r3]
+  1c:	e886 0007 	stmia.w	r6, {r0, r1, r2}
+  20:	9703      	str	r7, [sp, #12]
+  22:	b91d      	cbnz	r5, 2c <queue_event_epoch.isra.0+0x2c>
+  24:	4628      	mov	r0, r5
+  26:	f8da 3000 	ldr.w	r3, [sl]
+  2a:	4798      	blx	r3
+  2c:	4631      	mov	r1, r6
+  2e:	2300      	movs	r3, #0
+  30:	f8ba 2004 	ldrh.w	r2, [sl, #4]
+  34:	f10a 0008 	add.w	r0, sl, #8
+  38:	f7ff fffe 	bl	0 <tu_fifo_write_n_access_mode>
+			38: R_ARM_THM_CALL	tu_fifo_write_n_access_mode
+  3c:	f1b0 0900 	subs.w	r9, r0, #0
+  40:	4606      	mov	r6, r0
+  42:	bf18      	it	ne
+  44:	f04f 0901 	movne.w	r9, #1
+  48:	b91d      	cbnz	r5, 52 <queue_event_epoch.isra.0+0x52>
+  4a:	2001      	movs	r0, #1
+  4c:	f8da 3000 	ldr.w	r3, [sl]
+  50:	4798      	blx	r3
+  52:	7861      	ldrb	r1, [r4, #1]
+  54:	b136      	cbz	r6, 64 <queue_event_epoch.isra.0+0x64>
+  56:	2906      	cmp	r1, #6
+  58:	d104      	bne.n	64 <queue_event_epoch.isra.0+0x64>
+  5a:	4a0d      	ldr	r2, [pc, #52]	@ (90 <queue_event_epoch.isra.0+0x90>)
+  5c:	7813      	ldrb	r3, [r2, #0]
+  5e:	3301      	adds	r3, #1
+  60:	b2db      	uxtb	r3, r3
+  62:	7013      	strb	r3, [r2, #0]
+  64:	1e4b      	subs	r3, r1, #1
+  66:	4259      	negs	r1, r3
+  68:	4638      	mov	r0, r7
+  6a:	4159      	adcs	r1, r3
+  6c:	464a      	mov	r2, r9
+  6e:	f7ff fffe 	bl	0 <mt_usb_bridge_enqueued>
+			6e: R_ARM_THM_CALL	mt_usb_bridge_enqueued
+  72:	4640      	mov	r0, r8
+  74:	f7ff fffe 	bl	0 <mt_usb_bridge_unlock>
+			74: R_ARM_THM_CALL	mt_usb_bridge_unlock
+  78:	b126      	cbz	r6, 84 <queue_event_epoch.isra.0+0x84>
+  7a:	462a      	mov	r2, r5
+  7c:	7861      	ldrb	r1, [r4, #1]
+  7e:	7820      	ldrb	r0, [r4, #0]
+  80:	f7ff fffe 	bl	0 <queue_event_epoch.isra.0>
+			80: R_ARM_THM_CALL	tud_event_hook_cb
+  84:	b004      	add	sp, #16
+  86:	e8bd 87f0 	ldmia.w	sp!, {r4, r5, r6, r7, r8, r9, sl, pc}
+  8a:	bf00      	nop
+	...
+			8c: R_ARM_ABS32	.bss._usbd_q
+			90: R_ARM_ABS32	.bss._usbd_queued_setup
+
+Disassembly of section .text.tud_sof_cb:
+
+00000000 <tud_sof_cb>:
+   0:	4770      	bx	lr
+
+Disassembly of section .text.tud_descriptor_bos_cb:
+
+00000000 <tud_descriptor_bos_cb>:
+   0:	2000      	movs	r0, #0
+   2:	4770      	bx	lr
+
+Disassembly of section .text.tud_descriptor_device_qualifier_cb:
+
+00000000 <tud_descriptor_device_qualifier_cb>:
+   0:	2000      	movs	r0, #0
+   2:	4770      	bx	lr
+
+Disassembly of section .text.tud_descriptor_other_speed_configuration_cb:
+
+00000000 <tud_descriptor_other_speed_configuration_cb>:
+   0:	2000      	movs	r0, #0
+   2:	4770      	bx	lr
+
+Disassembly of section .text.tud_mount_cb:
+
+00000000 <tud_mount_cb>:
+   0:	4770      	bx	lr
+
+Disassembly of section .text.tud_umount_cb:
+
+00000000 <tud_umount_cb>:
+   0:	4770      	bx	lr
+
+Disassembly of section .text.tud_suspend_cb:
+
+00000000 <tud_suspend_cb>:
+   0:	4770      	bx	lr
+
+Disassembly of section .text.tud_resume_cb:
+
+00000000 <tud_resume_cb>:
+   0:	4770      	bx	lr
+
+Disassembly of section .text.dcd_deinit:
+
+00000000 <dcd_deinit>:
+   0:	2000      	movs	r0, #0
+   2:	4770      	bx	lr
+
+Disassembly of section .text.dcd_connect:
+
+00000000 <dcd_connect>:
+   0:	4770      	bx	lr
+
+Disassembly of section .text.dcd_disconnect:
+
+00000000 <dcd_disconnect>:
+   0:	4770      	bx	lr
+
+Disassembly of section .text.dcd_dcache_clean:
+
+00000000 <dcd_dcache_clean>:
+   0:	2001      	movs	r0, #1
+   2:	4770      	bx	lr
+
+Disassembly of section .text.dcd_dcache_invalidate:
+
+00000000 <dcd_dcache_invalidate>:
+   0:	2001      	movs	r0, #1
+   2:	4770      	bx	lr
+
+Disassembly of section .text.dcd_dcache_clean_invalidate:
+
+00000000 <dcd_dcache_clean_invalidate>:
+   0:	2001      	movs	r0, #1
+   2:	4770      	bx	lr
+
+Disassembly of section .text.usbd_app_driver_get_cb:
+
+00000000 <usbd_app_driver_get_cb>:
+   0:	4603      	mov	r3, r0
+   2:	2000      	movs	r0, #0
+   4:	7018      	strb	r0, [r3, #0]
+   6:	4770      	bx	lr
+
+Disassembly of section .text.dcd_edpt_xfer_fifo:
+
+00000000 <dcd_edpt_xfer_fifo>:
+   0:	2000      	movs	r0, #0
+   2:	4770      	bx	lr
+
+Disassembly of section .text.dcd_configure:
+
+00000000 <dcd_configure>:
+   0:	2000      	movs	r0, #0
+   2:	4770      	bx	lr
+
+Disassembly of section .text.tud_speed_get:
+
+00000000 <tud_speed_get>:
+   0:	4b01      	ldr	r3, [pc, #4]	@ (8 <tud_speed_get+0x8>)
+   2:	7e58      	ldrb	r0, [r3, #25]
+   4:	4770      	bx	lr
+   6:	bf00      	nop
+   8:	00000000 	.word	0x00000000
+			8: R_ARM_ABS32	.bss._usbd_dev
+
+Disassembly of section .text.tud_connected:
+
+00000000 <tud_connected>:
+   0:	4b02      	ldr	r3, [pc, #8]	@ (c <tud_connected+0xc>)
+   2:	7d18      	ldrb	r0, [r3, #20]
+   4:	3800      	subs	r0, #0
+   6:	bf18      	it	ne
+   8:	2001      	movne	r0, #1
+   a:	4770      	bx	lr
+   c:	00000000 	.word	0x00000000
+			c: R_ARM_ABS32	.bss._usbd_dev
+
+Disassembly of section .text.tud_mounted:
+
+00000000 <tud_mounted>:
+   0:	4b02      	ldr	r3, [pc, #8]	@ (c <tud_mounted+0xc>)
+   2:	7e18      	ldrb	r0, [r3, #24]
+   4:	3800      	subs	r0, #0
+   6:	bf18      	it	ne
+   8:	2001      	movne	r0, #1
+   a:	4770      	bx	lr
+   c:	00000000 	.word	0x00000000
+			c: R_ARM_ABS32	.bss._usbd_dev
+
+Disassembly of section .text.tud_suspended:
+
+00000000 <tud_suspended>:
+   0:	4b02      	ldr	r3, [pc, #8]	@ (c <tud_suspended+0xc>)
+   2:	7d98      	ldrb	r0, [r3, #22]
+   4:	3800      	subs	r0, #0
+   6:	bf18      	it	ne
+   8:	2001      	movne	r0, #1
+   a:	4770      	bx	lr
+   c:	00000000 	.word	0x00000000
+			c: R_ARM_ABS32	.bss._usbd_dev
+
+Disassembly of section .text.tud_remote_wakeup:
+
+00000000 <tud_remote_wakeup>:
+   0:	b508      	push	{r3, lr}
+   2:	4b07      	ldr	r3, [pc, #28]	@ (20 <tud_remote_wakeup+0x20>)
+   4:	7d9a      	ldrb	r2, [r3, #22]
+   6:	f002 00ff 	and.w	r0, r2, #255	@ 0xff
+   a:	b142      	cbz	r2, 1e <tud_remote_wakeup+0x1e>
+   c:	7dd8      	ldrb	r0, [r3, #23]
+   e:	f010 0002 	ands.w	r0, r0, #2
+  12:	d004      	beq.n	1e <tud_remote_wakeup+0x1e>
+  14:	4b03      	ldr	r3, [pc, #12]	@ (24 <tud_remote_wakeup+0x24>)
+  16:	7818      	ldrb	r0, [r3, #0]
+  18:	f7ff fffe 	bl	0 <dcd_remote_wakeup>
+			18: R_ARM_THM_CALL	dcd_remote_wakeup
+  1c:	2001      	movs	r0, #1
+  1e:	bd08      	pop	{r3, pc}
+	...
+			20: R_ARM_ABS32	.bss._usbd_dev
+			24: R_ARM_ABS32	.data._usbd_rhport
+
+Disassembly of section .text.tud_disconnect:
+
+00000000 <tud_disconnect>:
+   0:	b508      	push	{r3, lr}
+   2:	4b03      	ldr	r3, [pc, #12]	@ (10 <tud_disconnect+0x10>)
+   4:	7818      	ldrb	r0, [r3, #0]
+   6:	f7ff fffe 	bl	0 <tud_disconnect>
+			6: R_ARM_THM_CALL	dcd_disconnect
+   a:	2001      	movs	r0, #1
+   c:	bd08      	pop	{r3, pc}
+   e:	bf00      	nop
+  10:	00000000 	.word	0x00000000
+			10: R_ARM_ABS32	.data._usbd_rhport
+
+Disassembly of section .text.tud_connect:
+
+00000000 <tud_connect>:
+   0:	b508      	push	{r3, lr}
+   2:	4b03      	ldr	r3, [pc, #12]	@ (10 <tud_connect+0x10>)
+   4:	7818      	ldrb	r0, [r3, #0]
+   6:	f7ff fffe 	bl	0 <tud_connect>
+			6: R_ARM_THM_CALL	dcd_connect
+   a:	2001      	movs	r0, #1
+   c:	bd08      	pop	{r3, pc}
+   e:	bf00      	nop
+  10:	00000000 	.word	0x00000000
+			10: R_ARM_ABS32	.data._usbd_rhport
+
+Disassembly of section .text.tud_inited:
+
+00000000 <tud_inited>:
+   0:	4b02      	ldr	r3, [pc, #8]	@ (c <tud_inited+0xc>)
+   2:	7818      	ldrb	r0, [r3, #0]
+   4:	38ff      	subs	r0, #255	@ 0xff
+   6:	bf18      	it	ne
+   8:	2001      	movne	r0, #1
+   a:	4770      	bx	lr
+   c:	00000000 	.word	0x00000000
+			c: R_ARM_ABS32	.data._usbd_rhport
+
+Disassembly of section .text.tud_configure:
+
+00000000 <tud_configure>:
+   0:	b508      	push	{r3, lr}
+   2:	f7ff fffe 	bl	0 <tud_configure>
+			2: R_ARM_THM_CALL	dcd_configure
+   6:	bd08      	pop	{r3, pc}
+
+Disassembly of section .text.tud_rhport_init:
+
+00000000 <tud_rhport_init>:
+   0:	e92d 4ff8 	stmdb	sp!, {r3, r4, r5, r6, r7, r8, r9, sl, fp, lr}
+   4:	f8df 80a8 	ldr.w	r8, [pc, #168]	@ b0 <tud_rhport_init+0xb0>
+   8:	4605      	mov	r5, r0
+   a:	f898 3000 	ldrb.w	r3, [r8]
+   e:	460e      	mov	r6, r1
+  10:	2bff      	cmp	r3, #255	@ 0xff
+  12:	d148      	bne.n	a6 <tud_rhport_init+0xa6>
+  14:	b949      	cbnz	r1, 2a <tud_rhport_init+0x2a>
+  16:	f04f 23e0 	mov.w	r3, #3758153728	@ 0xe000e000
+  1a:	f8d3 3df0 	ldr.w	r3, [r3, #3568]	@ 0xdf0
+  1e:	07db      	lsls	r3, r3, #31
+  20:	d500      	bpl.n	24 <tud_rhport_init+0x24>
+  22:	be00      	bkpt	0x0000
+  24:	2000      	movs	r0, #0
+  26:	e8bd 8ff8 	ldmia.w	sp!, {r3, r4, r5, r6, r7, r8, r9, sl, fp, pc}
+  2a:	2100      	movs	r1, #0
+  2c:	222c      	movs	r2, #44	@ 0x2c
+  2e:	4821      	ldr	r0, [pc, #132]	@ (b4 <tud_rhport_init+0xb4>)
+  30:	f7ff fffe 	bl	0 <memset>
+			30: R_ARM_THM_CALL	memset
+  34:	2300      	movs	r3, #0
+  36:	4a20      	ldr	r2, [pc, #128]	@ (b8 <tud_rhport_init+0xb8>)
+  38:	4820      	ldr	r0, [pc, #128]	@ (bc <tud_rhport_init+0xbc>)
+  3a:	7013      	strb	r3, [r2, #0]
+  3c:	4a20      	ldr	r2, [pc, #128]	@ (c0 <tud_rhport_init+0xc0>)
+  3e:	4f21      	ldr	r7, [pc, #132]	@ (c4 <tud_rhport_init+0xc4>)
+  40:	7013      	strb	r3, [r2, #0]
+  42:	f7ff fffe 	bl	0 <tu_fifo_clear>
+			42: R_ARM_THM_CALL	tu_fifo_clear
+  46:	4b20      	ldr	r3, [pc, #128]	@ (c8 <tud_rhport_init+0xc8>)
+  48:	4a20      	ldr	r2, [pc, #128]	@ (cc <tud_rhport_init+0xcc>)
+  4a:	4638      	mov	r0, r7
+  4c:	601a      	str	r2, [r3, #0]
+  4e:	f7ff fffe 	bl	0 <tud_rhport_init>
+			4e: R_ARM_THM_CALL	usbd_app_driver_get_cb
+  52:	f8df 907c 	ldr.w	r9, [pc, #124]	@ d0 <tud_rhport_init+0xd0>
+  56:	783c      	ldrb	r4, [r7, #0]
+  58:	f8c9 0000 	str.w	r0, [r9]
+  5c:	2c00      	cmp	r4, #0
+  5e:	d1da      	bne.n	16 <tud_rhport_init+0x16>
+  60:	f04f 0b24 	mov.w	fp, #36	@ 0x24
+  64:	f8df a06c 	ldr.w	sl, [pc, #108]	@ d4 <tud_rhport_init+0xd4>
+  68:	e00c      	b.n	84 <tud_rhport_init+0x84>
+  6a:	4291      	cmp	r1, r2
+  6c:	d91d      	bls.n	aa <tud_rhport_init+0xaa>
+  6e:	f8d9 3000 	ldr.w	r3, [r9]
+  72:	fb0b 3302 	mla	r3, fp, r2, r3
+  76:	2b00      	cmp	r3, #0
+  78:	d0cd      	beq.n	16 <tud_rhport_init+0x16>
+  7a:	685b      	ldr	r3, [r3, #4]
+  7c:	3401      	adds	r4, #1
+  7e:	2b00      	cmp	r3, #0
+  80:	d0c9      	beq.n	16 <tud_rhport_init+0x16>
+  82:	4798      	blx	r3
+  84:	7839      	ldrb	r1, [r7, #0]
+  86:	b2e2      	uxtb	r2, r4
+  88:	1c4b      	adds	r3, r1, #1
+  8a:	b2db      	uxtb	r3, r3
+  8c:	4293      	cmp	r3, r2
+  8e:	d8ec      	bhi.n	6a <tud_rhport_init+0x6a>
+  90:	4631      	mov	r1, r6
+  92:	4628      	mov	r0, r5
+  94:	f888 5000 	strb.w	r5, [r8]
+  98:	f7ff fffe 	bl	0 <dcd_init>
+			98: R_ARM_THM_CALL	dcd_init
+  9c:	2800      	cmp	r0, #0
+  9e:	d0ba      	beq.n	16 <tud_rhport_init+0x16>
+  a0:	4628      	mov	r0, r5
+  a2:	f7ff fffe 	bl	0 <dcd_int_enable>
+			a2: R_ARM_THM_CALL	dcd_int_enable
+  a6:	2001      	movs	r0, #1
+  a8:	e7bd      	b.n	26 <tud_rhport_init+0x26>
+  aa:	d1b4      	bne.n	16 <tud_rhport_init+0x16>
+  ac:	4653      	mov	r3, sl
+  ae:	e7e4      	b.n	7a <tud_rhport_init+0x7a>
+	...
+			b0: R_ARM_ABS32	.data._usbd_rhport
+			b4: R_ARM_ABS32	.bss._usbd_dev
+			b8: R_ARM_ABS32	.bss._usbd_queued_setup
+  bc:	00000008 	.word	0x00000008
+			bc: R_ARM_ABS32	_usbd_qdef
+	...
+			c0: R_ARM_ABS32	.bss.mt_has_held
+			c4: R_ARM_ABS32	.bss._app_driver_count
+			c8: R_ARM_ABS32	.bss._usbd_q
+			cc: R_ARM_ABS32	_usbd_qdef
+			d0: R_ARM_ABS32	.bss._app_driver
+			d4: R_ARM_ABS32	.rodata._usbd_driver
+
+Disassembly of section .text.tud_deinit:
+
+00000000 <tud_deinit>:
+   0:	e92d 43f8 	stmdb	sp!, {r3, r4, r5, r6, r7, r8, r9, lr}
+   4:	4d22      	ldr	r5, [pc, #136]	@ (90 <tud_deinit+0x90>)
+   6:	4604      	mov	r4, r0
+   8:	782b      	ldrb	r3, [r5, #0]
+   a:	2bff      	cmp	r3, #255	@ 0xff
+   c:	d02f      	beq.n	6e <tud_deinit+0x6e>
+   e:	4b21      	ldr	r3, [pc, #132]	@ (94 <tud_deinit+0x94>)
+  10:	7e1e      	ldrb	r6, [r3, #24]
+  12:	f7ff fffe 	bl	0 <dcd_int_disable>
+			12: R_ARM_THM_CALL	dcd_int_disable
+  16:	4620      	mov	r0, r4
+  18:	f7ff fffe 	bl	0 <tud_deinit>
+			18: R_ARM_THM_CALL	dcd_disconnect
+  1c:	4620      	mov	r0, r4
+  1e:	f7ff fffe 	bl	0 <tud_deinit>
+			1e: R_ARM_THM_CALL	dcd_deinit
+  22:	bb68      	cbnz	r0, 80 <tud_deinit+0x80>
+  24:	f04f 23e0 	mov.w	r3, #3758153728	@ 0xe000e000
+  28:	f8d3 3df0 	ldr.w	r3, [r3, #3568]	@ 0xdf0
+  2c:	07db      	lsls	r3, r3, #31
+  2e:	d500      	bpl.n	32 <tud_deinit+0x32>
+  30:	be00      	bkpt	0x0000
+  32:	e8bd 83f8 	ldmia.w	sp!, {r3, r4, r5, r6, r7, r8, r9, pc}
+  36:	4291      	cmp	r1, r2
+  38:	d91b      	bls.n	72 <tud_deinit+0x72>
+  3a:	2124      	movs	r1, #36	@ 0x24
+  3c:	f8d9 3000 	ldr.w	r3, [r9]
+  40:	fb01 3302 	mla	r3, r1, r2, r3
+  44:	b9bb      	cbnz	r3, 76 <tud_deinit+0x76>
+  46:	3401      	adds	r4, #1
+  48:	7839      	ldrb	r1, [r7, #0]
+  4a:	b2e2      	uxtb	r2, r4
+  4c:	1c4b      	adds	r3, r1, #1
+  4e:	b2db      	uxtb	r3, r3
+  50:	4293      	cmp	r3, r2
+  52:	d8f0      	bhi.n	36 <tud_deinit+0x36>
+  54:	222c      	movs	r2, #44	@ 0x2c
+  56:	2100      	movs	r1, #0
+  58:	480e      	ldr	r0, [pc, #56]	@ (94 <tud_deinit+0x94>)
+  5a:	f7ff fffe 	bl	0 <memset>
+			5a: R_ARM_THM_CALL	memset
+  5e:	2200      	movs	r2, #0
+  60:	4b0d      	ldr	r3, [pc, #52]	@ (98 <tud_deinit+0x98>)
+  62:	601a      	str	r2, [r3, #0]
+  64:	23ff      	movs	r3, #255	@ 0xff
+  66:	702b      	strb	r3, [r5, #0]
+  68:	b10e      	cbz	r6, 6e <tud_deinit+0x6e>
+  6a:	f7ff fffe 	bl	0 <tud_deinit>
+			6a: R_ARM_THM_CALL	tud_umount_cb
+  6e:	2001      	movs	r0, #1
+  70:	e7df      	b.n	32 <tud_deinit+0x32>
+  72:	d1e8      	bne.n	46 <tud_deinit+0x46>
+  74:	4643      	mov	r3, r8
+  76:	689b      	ldr	r3, [r3, #8]
+  78:	2b00      	cmp	r3, #0
+  7a:	d0e4      	beq.n	46 <tud_deinit+0x46>
+  7c:	4798      	blx	r3
+  7e:	e7e2      	b.n	46 <tud_deinit+0x46>
+  80:	2400      	movs	r4, #0
+  82:	4f06      	ldr	r7, [pc, #24]	@ (9c <tud_deinit+0x9c>)
+  84:	f8df 8018 	ldr.w	r8, [pc, #24]	@ a0 <tud_deinit+0xa0>
+  88:	f8df 9018 	ldr.w	r9, [pc, #24]	@ a4 <tud_deinit+0xa4>
+  8c:	e7dc      	b.n	48 <tud_deinit+0x48>
+  8e:	bf00      	nop
+	...
+			90: R_ARM_ABS32	.data._usbd_rhport
+			94: R_ARM_ABS32	.bss._usbd_dev
+			98: R_ARM_ABS32	.bss._usbd_q
+			9c: R_ARM_ABS32	.bss._app_driver_count
+			a0: R_ARM_ABS32	.rodata._usbd_driver
+			a4: R_ARM_ABS32	.bss._app_driver
+
+Disassembly of section .text.tud_task_event_ready:
+
+00000000 <tud_task_event_ready>:
+   0:	4b0a      	ldr	r3, [pc, #40]	@ (2c <tud_task_event_ready+0x2c>)
+   2:	781b      	ldrb	r3, [r3, #0]
+   4:	2bff      	cmp	r3, #255	@ 0xff
+   6:	d00e      	beq.n	26 <tud_task_event_ready+0x26>
+   8:	4b09      	ldr	r3, [pc, #36]	@ (30 <tud_task_event_ready+0x30>)
+   a:	781b      	ldrb	r3, [r3, #0]
+   c:	b94b      	cbnz	r3, 22 <tud_task_event_ready+0x22>
+   e:	4b09      	ldr	r3, [pc, #36]	@ (34 <tud_task_event_ready+0x34>)
+  10:	681b      	ldr	r3, [r3, #0]
+  12:	8a18      	ldrh	r0, [r3, #16]
+  14:	8a5b      	ldrh	r3, [r3, #18]
+  16:	b280      	uxth	r0, r0
+  18:	b29b      	uxth	r3, r3
+  1a:	1ac0      	subs	r0, r0, r3
+  1c:	bf18      	it	ne
+  1e:	2001      	movne	r0, #1
+  20:	4770      	bx	lr
+  22:	2001      	movs	r0, #1
+  24:	4770      	bx	lr
+  26:	2000      	movs	r0, #0
+  28:	4770      	bx	lr
+  2a:	bf00      	nop
+	...
+			2c: R_ARM_ABS32	.data._usbd_rhport
+			30: R_ARM_ABS32	.bss.mt_has_held
+			34: R_ARM_ABS32	.bss._usbd_q
+
+Disassembly of section .text.dcd_edpt0_status_complete:
+
+00000000 <dcd_edpt0_status_complete>:
+   0:	4770      	bx	lr
+
+Disassembly of section .text.usbd_get_ctrl_buf:
+
+00000000 <usbd_get_ctrl_buf>:
+   0:	4800      	ldr	r0, [pc, #0]	@ (4 <usbd_get_ctrl_buf+0x4>)
+   2:	4770      	bx	lr
+   4:	00000000 	.word	0x00000000
+			4: R_ARM_ABS32	.bss._ctrl_epbuf
+
+Disassembly of section .text.dcd_event_handler:
+
+00000000 <dcd_event_handler>:
+   0:	e92d 41ff 	stmdb	sp!, {r0, r1, r2, r3, r4, r5, r6, r7, r8, lr}
+   4:	4604      	mov	r4, r0
+   6:	460e      	mov	r6, r1
+   8:	f7ff fffe 	bl	0 <mt_usb_bridge_lock>
+			8: R_ARM_THM_CALL	mt_usb_bridge_lock
+   c:	4605      	mov	r5, r0
+   e:	4620      	mov	r0, r4
+  10:	f7ff fffe 	bl	0 <mt_usb_bridge_ingress>
+			10: R_ARM_THM_CALL	mt_usb_bridge_ingress
+  14:	4607      	mov	r7, r0
+  16:	4628      	mov	r0, r5
+  18:	f7ff fffe 	bl	0 <mt_usb_bridge_unlock>
+			18: R_ARM_THM_CALL	mt_usb_bridge_unlock
+  1c:	7863      	ldrb	r3, [r4, #1]
+  1e:	2b04      	cmp	r3, #4
+  20:	d04c      	beq.n	bc <dcd_event_handler+0xbc>
+  22:	d80c      	bhi.n	3e <dcd_event_handler+0x3e>
+  24:	2b02      	cmp	r3, #2
+  26:	d042      	beq.n	ae <dcd_event_handler+0xae>
+  28:	2b03      	cmp	r3, #3
+  2a:	f000 809d 	beq.w	168 <dcd_event_handler+0x168>
+  2e:	463a      	mov	r2, r7
+  30:	4631      	mov	r1, r6
+  32:	4620      	mov	r0, r4
+  34:	b004      	add	sp, #16
+  36:	e8bd 41f0 	ldmia.w	sp!, {r4, r5, r6, r7, r8, lr}
+  3a:	f7ff bffe 	b.w	0 <dcd_event_handler>
+			3a: R_ARM_THM_JUMP24	queue_event_epoch.isra.0
+  3e:	2b05      	cmp	r3, #5
+  40:	d042      	beq.n	c8 <dcd_event_handler+0xc8>
+  42:	2b07      	cmp	r3, #7
+  44:	d1f3      	bne.n	2e <dcd_event_handler+0x2e>
+  46:	7921      	ldrb	r1, [r4, #4]
+  48:	f011 030f 	ands.w	r3, r1, #15
+  4c:	d0ef      	beq.n	2e <dcd_event_handler+0x2e>
+  4e:	4d4a      	ldr	r5, [pc, #296]	@ (178 <dcd_event_handler+0x178>)
+  50:	ea4f 0c43 	mov.w	ip, r3, lsl #1
+  54:	eb05 0343 	add.w	r3, r5, r3, lsl #1
+  58:	eb03 13d1 	add.w	r3, r3, r1, lsr #7
+  5c:	7f5a      	ldrb	r2, [r3, #29]
+  5e:	4b47      	ldr	r3, [pc, #284]	@ (17c <dcd_event_handler+0x17c>)
+  60:	09c8      	lsrs	r0, r1, #7
+  62:	781b      	ldrb	r3, [r3, #0]
+  64:	429a      	cmp	r2, r3
+  66:	f080 8083 	bcs.w	170 <dcd_event_handler+0x170>
+  6a:	f04f 0e24 	mov.w	lr, #36	@ 0x24
+  6e:	4b44      	ldr	r3, [pc, #272]	@ (180 <dcd_event_handler+0x180>)
+  70:	681b      	ldr	r3, [r3, #0]
+  72:	fb0e 3302 	mla	r3, lr, r2, r3
+  76:	2b00      	cmp	r3, #0
+  78:	d0d9      	beq.n	2e <dcd_event_handler+0x2e>
+  7a:	f8d3 801c 	ldr.w	r8, [r3, #28]
+  7e:	f1b8 0f00 	cmp.w	r8, #0
+  82:	d0d4      	beq.n	2e <dcd_event_handler+0x2e>
+  84:	4465      	add	r5, ip
+  86:	4405      	add	r5, r0
+  88:	f895 3023 	ldrb.w	r3, [r5, #35]	@ 0x23
+  8c:	f003 03fa 	and.w	r3, r3, #250	@ 0xfa
+  90:	f885 3023 	strb.w	r3, [r5, #35]	@ 0x23
+  94:	68a3      	ldr	r3, [r4, #8]
+  96:	7962      	ldrb	r2, [r4, #5]
+  98:	7820      	ldrb	r0, [r4, #0]
+  9a:	47c0      	blx	r8
+  9c:	2800      	cmp	r0, #0
+  9e:	d157      	bne.n	150 <dcd_event_handler+0x150>
+  a0:	f895 3023 	ldrb.w	r3, [r5, #35]	@ 0x23
+  a4:	f043 0305 	orr.w	r3, r3, #5
+  a8:	f885 3023 	strb.w	r3, [r5, #35]	@ 0x23
+  ac:	e7bf      	b.n	2e <dcd_event_handler+0x2e>
+  ae:	2200      	movs	r2, #0
+  b0:	4b31      	ldr	r3, [pc, #196]	@ (178 <dcd_event_handler+0x178>)
+  b2:	751a      	strb	r2, [r3, #20]
+  b4:	761a      	strb	r2, [r3, #24]
+  b6:	755a      	strb	r2, [r3, #21]
+  b8:	759a      	strb	r2, [r3, #22]
+  ba:	e7b8      	b.n	2e <dcd_event_handler+0x2e>
+  bc:	4b2e      	ldr	r3, [pc, #184]	@ (178 <dcd_event_handler+0x178>)
+  be:	7d1a      	ldrb	r2, [r3, #20]
+  c0:	2a00      	cmp	r2, #0
+  c2:	d045      	beq.n	150 <dcd_event_handler+0x150>
+  c4:	2201      	movs	r2, #1
+  c6:	e7f7      	b.n	b8 <dcd_event_handler+0xb8>
+  c8:	4b2b      	ldr	r3, [pc, #172]	@ (178 <dcd_event_handler+0x178>)
+  ca:	7d1a      	ldrb	r2, [r3, #20]
+  cc:	2a00      	cmp	r2, #0
+  ce:	d03f      	beq.n	150 <dcd_event_handler+0x150>
+  d0:	2200      	movs	r2, #0
+  d2:	e7f1      	b.n	b8 <dcd_event_handler+0xb8>
+  d4:	4291      	cmp	r1, r2
+  d6:	d93e      	bls.n	156 <dcd_event_handler+0x156>
+  d8:	2124      	movs	r1, #36	@ 0x24
+  da:	4b29      	ldr	r3, [pc, #164]	@ (180 <dcd_event_handler+0x180>)
+  dc:	681b      	ldr	r3, [r3, #0]
+  de:	fb01 3302 	mla	r3, r1, r2, r3
+  e2:	2b00      	cmp	r3, #0
+  e4:	d139      	bne.n	15a <dcd_event_handler+0x15a>
+  e6:	3501      	adds	r5, #1
+  e8:	f898 1000 	ldrb.w	r1, [r8]
+  ec:	b2ea      	uxtb	r2, r5
+  ee:	1c4b      	adds	r3, r1, #1
+  f0:	b2db      	uxtb	r3, r3
+  f2:	4293      	cmp	r3, r2
+  f4:	d8ee      	bhi.n	d4 <dcd_event_handler+0xd4>
+  f6:	4d20      	ldr	r5, [pc, #128]	@ (178 <dcd_event_handler+0x178>)
+  f8:	7dab      	ldrb	r3, [r5, #22]
+  fa:	b193      	cbz	r3, 122 <dcd_event_handler+0x122>
+  fc:	2300      	movs	r3, #0
+  fe:	75ab      	strb	r3, [r5, #22]
+ 100:	f8cd 3006 	str.w	r3, [sp, #6]
+ 104:	f8cd 300a 	str.w	r3, [sp, #10]
+ 108:	f8ad 300e 	strh.w	r3, [sp, #14]
+ 10c:	7823      	ldrb	r3, [r4, #0]
+ 10e:	463a      	mov	r2, r7
+ 110:	f88d 3004 	strb.w	r3, [sp, #4]
+ 114:	2305      	movs	r3, #5
+ 116:	4631      	mov	r1, r6
+ 118:	a801      	add	r0, sp, #4
+ 11a:	f88d 3005 	strb.w	r3, [sp, #5]
+ 11e:	f7ff fffe 	bl	0 <dcd_event_handler>
+			11e: R_ARM_THM_CALL	queue_event_epoch.isra.0
+ 122:	7eab      	ldrb	r3, [r5, #26]
+ 124:	07db      	lsls	r3, r3, #31
+ 126:	d513      	bpl.n	150 <dcd_event_handler+0x150>
+ 128:	2300      	movs	r3, #0
+ 12a:	f8cd 3006 	str.w	r3, [sp, #6]
+ 12e:	f8cd 300a 	str.w	r3, [sp, #10]
+ 132:	f8ad 300e 	strh.w	r3, [sp, #14]
+ 136:	7823      	ldrb	r3, [r4, #0]
+ 138:	463a      	mov	r2, r7
+ 13a:	f88d 3004 	strb.w	r3, [sp, #4]
+ 13e:	2303      	movs	r3, #3
+ 140:	f88d 3005 	strb.w	r3, [sp, #5]
+ 144:	6863      	ldr	r3, [r4, #4]
+ 146:	4631      	mov	r1, r6
+ 148:	a801      	add	r0, sp, #4
+ 14a:	9302      	str	r3, [sp, #8]
+ 14c:	f7ff fffe 	bl	0 <dcd_event_handler>
+			14c: R_ARM_THM_CALL	queue_event_epoch.isra.0
+ 150:	b004      	add	sp, #16
+ 152:	e8bd 81f0 	ldmia.w	sp!, {r4, r5, r6, r7, r8, pc}
+ 156:	d1c6      	bne.n	e6 <dcd_event_handler+0xe6>
+ 158:	4b0a      	ldr	r3, [pc, #40]	@ (184 <dcd_event_handler+0x184>)
+ 15a:	6a1b      	ldr	r3, [r3, #32]
+ 15c:	2b00      	cmp	r3, #0
+ 15e:	d0c2      	beq.n	e6 <dcd_event_handler+0xe6>
+ 160:	6861      	ldr	r1, [r4, #4]
+ 162:	7820      	ldrb	r0, [r4, #0]
+ 164:	4798      	blx	r3
+ 166:	e7be      	b.n	e6 <dcd_event_handler+0xe6>
+ 168:	2500      	movs	r5, #0
+ 16a:	f8df 8010 	ldr.w	r8, [pc, #16]	@ 17c <dcd_event_handler+0x17c>
+ 16e:	e7bb      	b.n	e8 <dcd_event_handler+0xe8>
+ 170:	f47f af5d 	bne.w	2e <dcd_event_handler+0x2e>
+ 174:	4b03      	ldr	r3, [pc, #12]	@ (184 <dcd_event_handler+0x184>)
+ 176:	e780      	b.n	7a <dcd_event_handler+0x7a>
+	...
+			178: R_ARM_ABS32	.bss._usbd_dev
+			17c: R_ARM_ABS32	.bss._app_driver_count
+			180: R_ARM_ABS32	.bss._app_driver
+			184: R_ARM_ABS32	.rodata._usbd_driver
+
+Disassembly of section .text.usbd_spin_lock:
+
+00000000 <usbd_spin_lock>:
+   0:	b510      	push	{r4, lr}
+   2:	4c05      	ldr	r4, [pc, #20]	@ (18 <usbd_spin_lock+0x18>)
+   4:	b918      	cbnz	r0, e <usbd_spin_lock+0xe>
+   6:	6863      	ldr	r3, [r4, #4]
+   8:	b90b      	cbnz	r3, e <usbd_spin_lock+0xe>
+   a:	6823      	ldr	r3, [r4, #0]
+   c:	4798      	blx	r3
+   e:	6863      	ldr	r3, [r4, #4]
+  10:	3301      	adds	r3, #1
+  12:	6063      	str	r3, [r4, #4]
+  14:	bd10      	pop	{r4, pc}
+  16:	bf00      	nop
+  18:	00000000 	.word	0x00000000
+			18: R_ARM_ABS32	.data._usbd_spin
+
+Disassembly of section .text.usbd_spin_unlock:
+
+00000000 <usbd_spin_unlock>:
+   0:	4a05      	ldr	r2, [pc, #20]	@ (18 <usbd_spin_unlock+0x18>)
+   2:	6853      	ldr	r3, [r2, #4]
+   4:	b133      	cbz	r3, 14 <usbd_spin_unlock+0x14>
+   6:	3b01      	subs	r3, #1
+   8:	6053      	str	r3, [r2, #4]
+   a:	b918      	cbnz	r0, 14 <usbd_spin_unlock+0x14>
+   c:	b913      	cbnz	r3, 14 <usbd_spin_unlock+0x14>
+   e:	2001      	movs	r0, #1
+  10:	6813      	ldr	r3, [r2, #0]
+  12:	4718      	bx	r3
+  14:	4770      	bx	lr
+  16:	bf00      	nop
+  18:	00000000 	.word	0x00000000
+			18: R_ARM_ABS32	.data._usbd_spin
+
+Disassembly of section .text.usbd_defer_func:
+
+00000000 <usbd_defer_func>:
+   0:	b57f      	push	{r0, r1, r2, r3, r4, r5, r6, lr}
+   2:	f44f 6300 	mov.w	r3, #2048	@ 0x800
+   6:	4615      	mov	r5, r2
+   8:	e9cd 3001 	strd	r3, r0, [sp, #4]
+   c:	9103      	str	r1, [sp, #12]
+   e:	f7ff fffe 	bl	0 <mt_usb_bridge_lock>
+			e: R_ARM_THM_CALL	mt_usb_bridge_lock
+  12:	4606      	mov	r6, r0
+  14:	f7ff fffe 	bl	0 <mt_usb_bridge_actor>
+			14: R_ARM_THM_CALL	mt_usb_bridge_actor
+  18:	4604      	mov	r4, r0
+  1a:	4630      	mov	r0, r6
+  1c:	f7ff fffe 	bl	0 <mt_usb_bridge_unlock>
+			1c: R_ARM_THM_CALL	mt_usb_bridge_unlock
+  20:	b124      	cbz	r4, 2c <usbd_defer_func+0x2c>
+  22:	4622      	mov	r2, r4
+  24:	4629      	mov	r1, r5
+  26:	a801      	add	r0, sp, #4
+  28:	f7ff fffe 	bl	0 <usbd_defer_func>
+			28: R_ARM_THM_CALL	queue_event_epoch.isra.0
+  2c:	b004      	add	sp, #16
+  2e:	bd70      	pop	{r4, r5, r6, pc}
+
+Disassembly of section .text.usbd_edpt_open:
+
+00000000 <usbd_edpt_open>:
+   0:	4a0b      	ldr	r2, [pc, #44]	@ (30 <usbd_edpt_open+0x30>)
+   2:	7810      	ldrb	r0, [r2, #0]
+   4:	788a      	ldrb	r2, [r1, #2]
+   6:	f002 020f 	and.w	r2, r2, #15
+   a:	2a02      	cmp	r2, #2
+   c:	d908      	bls.n	20 <usbd_edpt_open+0x20>
+   e:	f04f 23e0 	mov.w	r3, #3758153728	@ 0xe000e000
+  12:	f8d3 3df0 	ldr.w	r3, [r3, #3568]	@ 0xdf0
+  16:	07db      	lsls	r3, r3, #31
+  18:	d500      	bpl.n	1c <usbd_edpt_open+0x1c>
+  1a:	be00      	bkpt	0x0000
+  1c:	2000      	movs	r0, #0
+  1e:	4770      	bx	lr
+  20:	888b      	ldrh	r3, [r1, #4]
+  22:	f3c3 030a 	ubfx	r3, r3, #0, #11
+  26:	2b00      	cmp	r3, #0
+  28:	d0f1      	beq.n	e <usbd_edpt_open+0xe>
+  2a:	f7ff bffe 	b.w	0 <mt_usb_bridge_open>
+			2a: R_ARM_THM_JUMP24	mt_usb_bridge_open
+  2e:	bf00      	nop
+  30:	00000000 	.word	0x00000000
+			30: R_ARM_ABS32	.data._usbd_rhport
+
+Disassembly of section .text.usbd_open_edpt_pair:
+
+00000000 <usbd_open_edpt_pair>:
+   0:	e92d 47f0 	stmdb	sp!, {r4, r5, r6, r7, r8, r9, sl, lr}
+   4:	4681      	mov	r9, r0
+   6:	e9dd 6708 	ldrd	r6, r7, [sp, #32]
+   a:	460c      	mov	r4, r1
+   c:	4690      	mov	r8, r2
+   e:	469a      	mov	sl, r3
+  10:	2500      	movs	r5, #0
+  12:	45a8      	cmp	r8, r5
+  14:	dc01      	bgt.n	1a <usbd_open_edpt_pair+0x1a>
+  16:	2001      	movs	r0, #1
+  18:	e00f      	b.n	3a <usbd_open_edpt_pair+0x3a>
+  1a:	7863      	ldrb	r3, [r4, #1]
+  1c:	2b05      	cmp	r3, #5
+  1e:	d104      	bne.n	2a <usbd_open_edpt_pair+0x2a>
+  20:	78e3      	ldrb	r3, [r4, #3]
+  22:	f003 0303 	and.w	r3, r3, #3
+  26:	4553      	cmp	r3, sl
+  28:	d009      	beq.n	3e <usbd_open_edpt_pair+0x3e>
+  2a:	f04f 23e0 	mov.w	r3, #3758153728	@ 0xe000e000
+  2e:	f8d3 3df0 	ldr.w	r3, [r3, #3568]	@ 0xdf0
+  32:	07db      	lsls	r3, r3, #31
+  34:	d500      	bpl.n	38 <usbd_open_edpt_pair+0x38>
+  36:	be00      	bkpt	0x0000
+  38:	2000      	movs	r0, #0
+  3a:	e8bd 87f0 	ldmia.w	sp!, {r4, r5, r6, r7, r8, r9, sl, pc}
+  3e:	4621      	mov	r1, r4
+  40:	4648      	mov	r0, r9
+  42:	f7ff fffe 	bl	0 <usbd_open_edpt_pair>
+			42: R_ARM_THM_CALL	usbd_edpt_open
+  46:	2800      	cmp	r0, #0
+  48:	d0ef      	beq.n	2a <usbd_open_edpt_pair+0x2a>
+  4a:	78a3      	ldrb	r3, [r4, #2]
+  4c:	3501      	adds	r5, #1
+  4e:	09da      	lsrs	r2, r3, #7
+  50:	bf14      	ite	ne
+  52:	703b      	strbne	r3, [r7, #0]
+  54:	7033      	strbeq	r3, [r6, #0]
+  56:	7823      	ldrb	r3, [r4, #0]
+  58:	441c      	add	r4, r3
+  5a:	e7da      	b.n	12 <usbd_open_edpt_pair+0x12>
+
+Disassembly of section .text.usbd_edpt_claim:
+
+00000000 <usbd_edpt_claim>:
+   0:	09cb      	lsrs	r3, r1, #7
+   2:	f001 020f 	and.w	r2, r1, #15
+   6:	4804      	ldr	r0, [pc, #16]	@ (18 <usbd_edpt_claim+0x18>)
+   8:	3323      	adds	r3, #35	@ 0x23
+   a:	eb03 0342 	add.w	r3, r3, r2, lsl #1
+   e:	2100      	movs	r1, #0
+  10:	4418      	add	r0, r3
+  12:	f7ff bffe 	b.w	0 <tu_edpt_claim>
+			12: R_ARM_THM_JUMP24	tu_edpt_claim
+  16:	bf00      	nop
+  18:	00000000 	.word	0x00000000
+			18: R_ARM_ABS32	.bss._usbd_dev
+
+Disassembly of section .text.usbd_edpt_release:
+
+00000000 <usbd_edpt_release>:
+   0:	09cb      	lsrs	r3, r1, #7
+   2:	f001 020f 	and.w	r2, r1, #15
+   6:	4804      	ldr	r0, [pc, #16]	@ (18 <usbd_edpt_release+0x18>)
+   8:	3323      	adds	r3, #35	@ 0x23
+   a:	eb03 0342 	add.w	r3, r3, r2, lsl #1
+   e:	2100      	movs	r1, #0
+  10:	4418      	add	r0, r3
+  12:	f7ff bffe 	b.w	0 <tu_edpt_release>
+			12: R_ARM_THM_JUMP24	tu_edpt_release
+  16:	bf00      	nop
+  18:	00000000 	.word	0x00000000
+			18: R_ARM_ABS32	.bss._usbd_dev
+
+Disassembly of section .text.usbd_edpt_xfer:
+
+00000000 <usbd_edpt_xfer>:
+   0:	b573      	push	{r0, r1, r4, r5, r6, lr}
+   2:	4c15      	ldr	r4, [pc, #84]	@ (58 <usbd_edpt_xfer+0x58>)
+   4:	f001 060f 	and.w	r6, r1, #15
+   8:	eb04 0446 	add.w	r4, r4, r6, lsl #1
+   c:	eb04 14d1 	add.w	r4, r4, r1, lsr #7
+  10:	f894 5023 	ldrb.w	r5, [r4, #35]	@ 0x23
+  14:	4811      	ldr	r0, [pc, #68]	@ (5c <usbd_edpt_xfer+0x5c>)
+  16:	07ed      	lsls	r5, r5, #31
+  18:	7800      	ldrb	r0, [r0, #0]
+  1a:	d509      	bpl.n	30 <usbd_edpt_xfer+0x30>
+  1c:	f04f 23e0 	mov.w	r3, #3758153728	@ 0xe000e000
+  20:	f8d3 3df0 	ldr.w	r3, [r3, #3568]	@ 0xdf0
+  24:	07db      	lsls	r3, r3, #31
+  26:	d500      	bpl.n	2a <usbd_edpt_xfer+0x2a>
+  28:	be00      	bkpt	0x0000
+  2a:	2000      	movs	r0, #0
+  2c:	b002      	add	sp, #8
+  2e:	bd70      	pop	{r4, r5, r6, pc}
+  30:	f894 5023 	ldrb.w	r5, [r4, #35]	@ 0x23
+  34:	f045 0501 	orr.w	r5, r5, #1
+  38:	f884 5023 	strb.w	r5, [r4, #35]	@ 0x23
+  3c:	f89d 5018 	ldrb.w	r5, [sp, #24]
+  40:	9500      	str	r5, [sp, #0]
+  42:	f7ff fffe 	bl	0 <mt_usb_bridge_xfer>
+			42: R_ARM_THM_CALL	mt_usb_bridge_xfer
+  46:	2800      	cmp	r0, #0
+  48:	d1f0      	bne.n	2c <usbd_edpt_xfer+0x2c>
+  4a:	f894 3023 	ldrb.w	r3, [r4, #35]	@ 0x23
+  4e:	f003 03fa 	and.w	r3, r3, #250	@ 0xfa
+  52:	f884 3023 	strb.w	r3, [r4, #35]	@ 0x23
+  56:	e7e1      	b.n	1c <usbd_edpt_xfer+0x1c>
+	...
+			58: R_ARM_ABS32	.bss._usbd_dev
+			5c: R_ARM_ABS32	.data._usbd_rhport
+
+Disassembly of section .text.tud_control_status:
+
+00000000 <tud_control_status>:
+   0:	4b08      	ldr	r3, [pc, #32]	@ (24 <tud_control_status+0x24>)
+   2:	b507      	push	{r0, r1, r2, lr}
+   4:	88da      	ldrh	r2, [r3, #6]
+   6:	b15a      	cbz	r2, 20 <tud_control_status+0x20>
+   8:	7819      	ldrb	r1, [r3, #0]
+   a:	43c9      	mvns	r1, r1
+   c:	f001 0180 	and.w	r1, r1, #128	@ 0x80
+  10:	2300      	movs	r3, #0
+  12:	461a      	mov	r2, r3
+  14:	9300      	str	r3, [sp, #0]
+  16:	f7ff fffe 	bl	0 <tud_control_status>
+			16: R_ARM_THM_CALL	usbd_edpt_xfer
+  1a:	b003      	add	sp, #12
+  1c:	f85d fb04 	ldr.w	pc, [sp], #4
+  20:	2180      	movs	r1, #128	@ 0x80
+  22:	e7f5      	b.n	10 <tud_control_status+0x10>
+  24:	00000000 	.word	0x00000000
+			24: R_ARM_ABS32	.bss._usbd_dev
+
+Disassembly of section .text.data_stage_xact:
+
+00000000 <data_stage_xact>:
+   0:	4b16      	ldr	r3, [pc, #88]	@ (5c <data_stage_xact+0x5c>)
+   2:	b537      	push	{r0, r1, r2, r4, r5, lr}
+   4:	8999      	ldrh	r1, [r3, #12]
+   6:	89da      	ldrh	r2, [r3, #14]
+   8:	4605      	mov	r5, r0
+   a:	1a8c      	subs	r4, r1, r2
+   c:	b2a4      	uxth	r4, r4
+   e:	f993 0000 	ldrsb.w	r0, [r3]
+  12:	2c40      	cmp	r4, #64	@ 0x40
+  14:	bf28      	it	cs
+  16:	2440      	movcs	r4, #64	@ 0x40
+  18:	2800      	cmp	r0, #0
+  1a:	da0b      	bge.n	34 <data_stage_xact+0x34>
+  1c:	4291      	cmp	r1, r2
+  1e:	d00f      	beq.n	40 <data_stage_xact+0x40>
+  20:	6899      	ldr	r1, [r3, #8]
+  22:	480f      	ldr	r0, [pc, #60]	@ (60 <data_stage_xact+0x60>)
+  24:	4281      	cmp	r1, r0
+  26:	d003      	beq.n	30 <data_stage_xact+0x30>
+  28:	b1b1      	cbz	r1, 58 <data_stage_xact+0x58>
+  2a:	4622      	mov	r2, r4
+  2c:	f7ff fffe 	bl	0 <memcpy>
+			2c: R_ARM_THM_CALL	memcpy
+  30:	2180      	movs	r1, #128	@ 0x80
+  32:	e003      	b.n	3c <data_stage_xact+0x3c>
+  34:	4291      	cmp	r1, r2
+  36:	f04f 0100 	mov.w	r1, #0
+  3a:	d00b      	beq.n	54 <data_stage_xact+0x54>
+  3c:	4a08      	ldr	r2, [pc, #32]	@ (60 <data_stage_xact+0x60>)
+  3e:	e001      	b.n	44 <data_stage_xact+0x44>
+  40:	2180      	movs	r1, #128	@ 0x80
+  42:	2200      	movs	r2, #0
+  44:	2300      	movs	r3, #0
+  46:	4628      	mov	r0, r5
+  48:	9300      	str	r3, [sp, #0]
+  4a:	4623      	mov	r3, r4
+  4c:	f7ff fffe 	bl	0 <data_stage_xact>
+			4c: R_ARM_THM_CALL	usbd_edpt_xfer
+  50:	b003      	add	sp, #12
+  52:	bd30      	pop	{r4, r5, pc}
+  54:	460a      	mov	r2, r1
+  56:	e7f5      	b.n	44 <data_stage_xact+0x44>
+  58:	4608      	mov	r0, r1
+  5a:	e7f9      	b.n	50 <data_stage_xact+0x50>
+	...
+			5c: R_ARM_ABS32	.bss._usbd_dev
+			60: R_ARM_ABS32	.bss._ctrl_epbuf
+
+Disassembly of section .text.tud_control_xfer:
+
+00000000 <tud_control_xfer>:
+   0:	b537      	push	{r0, r1, r2, r4, r5, lr}
+   2:	4d11      	ldr	r5, [pc, #68]	@ (48 <tud_control_xfer+0x48>)
+   4:	4604      	mov	r4, r0
+   6:	88e9      	ldrh	r1, [r5, #6]
+   8:	60aa      	str	r2, [r5, #8]
+   a:	428b      	cmp	r3, r1
+   c:	bf28      	it	cs
+   e:	460b      	movcs	r3, r1
+  10:	81ab      	strh	r3, [r5, #12]
+  12:	b191      	cbz	r1, 3a <tud_control_xfer+0x3a>
+  14:	b14b      	cbz	r3, 2a <tud_control_xfer+0x2a>
+  16:	b942      	cbnz	r2, 2a <tud_control_xfer+0x2a>
+  18:	f04f 23e0 	mov.w	r3, #3758153728	@ 0xe000e000
+  1c:	f8d3 3df0 	ldr.w	r3, [r3, #3568]	@ 0xdf0
+  20:	07db      	lsls	r3, r3, #31
+  22:	d500      	bpl.n	26 <tud_control_xfer+0x26>
+  24:	be00      	bkpt	0x0000
+  26:	2000      	movs	r0, #0
+  28:	e005      	b.n	36 <tud_control_xfer+0x36>
+  2a:	4620      	mov	r0, r4
+  2c:	f7ff fffe 	bl	0 <tud_control_xfer>
+			2c: R_ARM_THM_CALL	data_stage_xact
+  30:	2800      	cmp	r0, #0
+  32:	d0f1      	beq.n	18 <tud_control_xfer+0x18>
+  34:	2001      	movs	r0, #1
+  36:	b003      	add	sp, #12
+  38:	bd30      	pop	{r4, r5, pc}
+  3a:	460b      	mov	r3, r1
+  3c:	460a      	mov	r2, r1
+  3e:	9100      	str	r1, [sp, #0]
+  40:	2180      	movs	r1, #128	@ 0x80
+  42:	f7ff fffe 	bl	0 <tud_control_xfer>
+			42: R_ARM_THM_CALL	usbd_edpt_xfer
+  46:	e7f3      	b.n	30 <tud_control_xfer+0x30>
+  48:	00000000 	.word	0x00000000
+			48: R_ARM_ABS32	.bss._usbd_dev
+
+Disassembly of section .text.usbd_edpt_xfer_fifo:
+
+00000000 <usbd_edpt_xfer_fifo>:
+   0:	b573      	push	{r0, r1, r4, r5, r6, lr}
+   2:	4c15      	ldr	r4, [pc, #84]	@ (58 <usbd_edpt_xfer_fifo+0x58>)
+   4:	f001 060f 	and.w	r6, r1, #15
+   8:	eb04 0446 	add.w	r4, r4, r6, lsl #1
+   c:	eb04 14d1 	add.w	r4, r4, r1, lsr #7
+  10:	f894 5023 	ldrb.w	r5, [r4, #35]	@ 0x23
+  14:	4811      	ldr	r0, [pc, #68]	@ (5c <usbd_edpt_xfer_fifo+0x5c>)
+  16:	07ed      	lsls	r5, r5, #31
+  18:	7800      	ldrb	r0, [r0, #0]
+  1a:	d509      	bpl.n	30 <usbd_edpt_xfer_fifo+0x30>
+  1c:	f04f 23e0 	mov.w	r3, #3758153728	@ 0xe000e000
+  20:	f8d3 3df0 	ldr.w	r3, [r3, #3568]	@ 0xdf0
+  24:	07db      	lsls	r3, r3, #31
+  26:	d500      	bpl.n	2a <usbd_edpt_xfer_fifo+0x2a>
+  28:	be00      	bkpt	0x0000
+  2a:	2000      	movs	r0, #0
+  2c:	b002      	add	sp, #8
+  2e:	bd70      	pop	{r4, r5, r6, pc}
+  30:	f894 5023 	ldrb.w	r5, [r4, #35]	@ 0x23
+  34:	f045 0501 	orr.w	r5, r5, #1
+  38:	f884 5023 	strb.w	r5, [r4, #35]	@ 0x23
+  3c:	f89d 5018 	ldrb.w	r5, [sp, #24]
+  40:	9500      	str	r5, [sp, #0]
+  42:	f7ff fffe 	bl	0 <mt_usb_bridge_fifo>
+			42: R_ARM_THM_CALL	mt_usb_bridge_fifo
+  46:	2800      	cmp	r0, #0
+  48:	d1f0      	bne.n	2c <usbd_edpt_xfer_fifo+0x2c>
+  4a:	f894 3023 	ldrb.w	r3, [r4, #35]	@ 0x23
+  4e:	f003 03fa 	and.w	r3, r3, #250	@ 0xfa
+  52:	f884 3023 	strb.w	r3, [r4, #35]	@ 0x23
+  56:	e7e1      	b.n	1c <usbd_edpt_xfer_fifo+0x1c>
+	...
+			58: R_ARM_ABS32	.bss._usbd_dev
+			5c: R_ARM_ABS32	.data._usbd_rhport
+
+Disassembly of section .text.usbd_edpt_busy:
+
+00000000 <usbd_edpt_busy>:
+   0:	4b05      	ldr	r3, [pc, #20]	@ (18 <usbd_edpt_busy+0x18>)
+   2:	f001 020f 	and.w	r2, r1, #15
+   6:	eb03 0342 	add.w	r3, r3, r2, lsl #1
+   a:	eb03 11d1 	add.w	r1, r3, r1, lsr #7
+   e:	f891 0023 	ldrb.w	r0, [r1, #35]	@ 0x23
+  12:	f000 0001 	and.w	r0, r0, #1
+  16:	4770      	bx	lr
+  18:	00000000 	.word	0x00000000
+			18: R_ARM_ABS32	.bss._usbd_dev
+
+Disassembly of section .text.usbd_edpt_stall:
+
+00000000 <usbd_edpt_stall>:
+   0:	b510      	push	{r4, lr}
+   2:	460c      	mov	r4, r1
+   4:	4b08      	ldr	r3, [pc, #32]	@ (28 <usbd_edpt_stall+0x28>)
+   6:	7818      	ldrb	r0, [r3, #0]
+   8:	f7ff fffe 	bl	0 <mt_usb_bridge_stall>
+			8: R_ARM_THM_CALL	mt_usb_bridge_stall
+   c:	4b07      	ldr	r3, [pc, #28]	@ (2c <usbd_edpt_stall+0x2c>)
+   e:	f004 020f 	and.w	r2, r4, #15
+  12:	eb03 0342 	add.w	r3, r3, r2, lsl #1
+  16:	eb03 11d4 	add.w	r1, r3, r4, lsr #7
+  1a:	f891 3023 	ldrb.w	r3, [r1, #35]	@ 0x23
+  1e:	f043 0303 	orr.w	r3, r3, #3
+  22:	f881 3023 	strb.w	r3, [r1, #35]	@ 0x23
+  26:	bd10      	pop	{r4, pc}
+	...
+			28: R_ARM_ABS32	.data._usbd_rhport
+			2c: R_ARM_ABS32	.bss._usbd_dev
+
+Disassembly of section .text.usbd_edpt_clear_stall:
+
+00000000 <usbd_edpt_clear_stall>:
+   0:	b510      	push	{r4, lr}
+   2:	460c      	mov	r4, r1
+   4:	4b08      	ldr	r3, [pc, #32]	@ (28 <usbd_edpt_clear_stall+0x28>)
+   6:	7818      	ldrb	r0, [r3, #0]
+   8:	f7ff fffe 	bl	0 <mt_usb_bridge_clear_stall>
+			8: R_ARM_THM_CALL	mt_usb_bridge_clear_stall
+   c:	4b07      	ldr	r3, [pc, #28]	@ (2c <usbd_edpt_clear_stall+0x2c>)
+   e:	f004 020f 	and.w	r2, r4, #15
+  12:	eb03 0342 	add.w	r3, r3, r2, lsl #1
+  16:	eb03 11d4 	add.w	r1, r3, r4, lsr #7
+  1a:	f891 3023 	ldrb.w	r3, [r1, #35]	@ 0x23
+  1e:	f003 03fc 	and.w	r3, r3, #252	@ 0xfc
+  22:	f881 3023 	strb.w	r3, [r1, #35]	@ 0x23
+  26:	bd10      	pop	{r4, pc}
+	...
+			28: R_ARM_ABS32	.data._usbd_rhport
+			2c: R_ARM_ABS32	.bss._usbd_dev
+
+Disassembly of section .text.usbd_edpt_stalled:
+
+00000000 <usbd_edpt_stalled>:
+   0:	4b05      	ldr	r3, [pc, #20]	@ (18 <usbd_edpt_stalled+0x18>)
+   2:	f001 020f 	and.w	r2, r1, #15
+   6:	eb03 0342 	add.w	r3, r3, r2, lsl #1
+   a:	eb03 11d1 	add.w	r1, r3, r1, lsr #7
+   e:	f891 0023 	ldrb.w	r0, [r1, #35]	@ 0x23
+  12:	f3c0 0040 	ubfx	r0, r0, #1, #1
+  16:	4770      	bx	lr
+  18:	00000000 	.word	0x00000000
+			18: R_ARM_ABS32	.bss._usbd_dev
+
+Disassembly of section .text.tud_task_ext:
+
+00000000 <tud_task_ext>:
+   0:	e92d 4ff0 	stmdb	sp!, {r4, r5, r6, r7, r8, r9, sl, fp, lr}
+   4:	4b98      	ldr	r3, [pc, #608]	@ (268 <tud_task_ext+0x268>)
+   6:	b08f      	sub	sp, #60	@ 0x3c
+   8:	781b      	ldrb	r3, [r3, #0]
+   a:	2bff      	cmp	r3, #255	@ 0xff
+   c:	f000 80a2 	beq.w	154 <tud_task_ext+0x154>
+  10:	f7ff fffe 	bl	0 <mt_usb_bridge_lock>
+			10: R_ARM_THM_CALL	mt_usb_bridge_lock
+  14:	4604      	mov	r4, r0
+  16:	f7ff fffe 	bl	0 <mt_usb_bridge_actor>
+			16: R_ARM_THM_CALL	mt_usb_bridge_actor
+  1a:	b128      	cbz	r0, 28 <tud_task_ext+0x28>
+  1c:	4620      	mov	r0, r4
+  1e:	b00f      	add	sp, #60	@ 0x3c
+  20:	e8bd 4ff0 	ldmia.w	sp!, {r4, r5, r6, r7, r8, r9, sl, fp, lr}
+  24:	f7ff bffe 	b.w	0 <mt_usb_bridge_unlock>
+			24: R_ARM_THM_JUMP24	mt_usb_bridge_unlock
+  28:	4f90      	ldr	r7, [pc, #576]	@ (26c <tud_task_ext+0x26c>)
+  2a:	783e      	ldrb	r6, [r7, #0]
+  2c:	bb0e      	cbnz	r6, 72 <tud_task_ext+0x72>
+  2e:	4b90      	ldr	r3, [pc, #576]	@ (270 <tud_task_ext+0x270>)
+  30:	f8df 8240 	ldr.w	r8, [pc, #576]	@ 274 <tud_task_ext+0x274>
+  34:	681d      	ldr	r5, [r3, #0]
+  36:	682b      	ldr	r3, [r5, #0]
+  38:	4798      	blx	r3
+  3a:	4633      	mov	r3, r6
+  3c:	4641      	mov	r1, r8
+  3e:	88aa      	ldrh	r2, [r5, #4]
+  40:	f105 0008 	add.w	r0, r5, #8
+  44:	f7ff fffe 	bl	0 <tu_fifo_read_n_access_mode>
+			44: R_ARM_THM_CALL	tu_fifo_read_n_access_mode
+  48:	4606      	mov	r6, r0
+  4a:	682b      	ldr	r3, [r5, #0]
+  4c:	2001      	movs	r0, #1
+  4e:	4798      	blx	r3
+  50:	2e00      	cmp	r6, #0
+  52:	bf14      	ite	ne
+  54:	2301      	movne	r3, #1
+  56:	2300      	moveq	r3, #0
+  58:	703b      	strb	r3, [r7, #0]
+  5a:	d00a      	beq.n	72 <tud_task_ext+0x72>
+  5c:	f898 3001 	ldrb.w	r3, [r8, #1]
+  60:	2b06      	cmp	r3, #6
+  62:	d106      	bne.n	72 <tud_task_ext+0x72>
+  64:	4a84      	ldr	r2, [pc, #528]	@ (278 <tud_task_ext+0x278>)
+  66:	7813      	ldrb	r3, [r2, #0]
+  68:	b11b      	cbz	r3, 72 <tud_task_ext+0x72>
+  6a:	7813      	ldrb	r3, [r2, #0]
+  6c:	3b01      	subs	r3, #1
+  6e:	b2db      	uxtb	r3, r3
+  70:	7013      	strb	r3, [r2, #0]
+  72:	4620      	mov	r0, r4
+  74:	f7ff fffe 	bl	0 <mt_usb_bridge_unlock>
+			74: R_ARM_THM_CALL	mt_usb_bridge_unlock
+  78:	783b      	ldrb	r3, [r7, #0]
+  7a:	2b00      	cmp	r3, #0
+  7c:	d06a      	beq.n	154 <tud_task_ext+0x154>
+  7e:	4d7d      	ldr	r5, [pc, #500]	@ (274 <tud_task_ext+0x274>)
+  80:	aa05      	add	r2, sp, #20
+  82:	7869      	ldrb	r1, [r5, #1]
+  84:	68e8      	ldr	r0, [r5, #12]
+  86:	f101 3cff 	add.w	ip, r1, #4294967295
+  8a:	f1dc 0100 	rsbs	r1, ip, #0
+  8e:	eb41 010c 	adc.w	r1, r1, ip
+  92:	f7ff fffe 	bl	0 <mt_usb_bridge_dispatch>
+			92: R_ARM_THM_CALL	mt_usb_bridge_dispatch
+  96:	2801      	cmp	r0, #1
+  98:	4606      	mov	r6, r0
+  9a:	d05b      	beq.n	154 <tud_task_ext+0x154>
+  9c:	e895 000f 	ldmia.w	r5, {r0, r1, r2, r3}
+  a0:	ac0a      	add	r4, sp, #40	@ 0x28
+  a2:	4698      	mov	r8, r3
+  a4:	e884 000f 	stmia.w	r4, {r0, r1, r2, r3}
+  a8:	2300      	movs	r3, #0
+  aa:	2e02      	cmp	r6, #2
+  ac:	703b      	strb	r3, [r7, #0]
+  ae:	d151      	bne.n	154 <tud_task_ext+0x154>
+  b0:	ab07      	add	r3, sp, #28
+  b2:	e883 0007 	stmia.w	r3, {r0, r1, r2}
+  b6:	f89d 2029 	ldrb.w	r2, [sp, #41]	@ 0x29
+  ba:	f89d 5028 	ldrb.w	r5, [sp, #40]	@ 0x28
+  be:	2a05      	cmp	r2, #5
+  c0:	9e0c      	ldr	r6, [sp, #48]	@ 0x30
+  c2:	f000 82bd 	beq.w	640 <tud_task_ext+0x640>
+  c6:	d811      	bhi.n	ec <tud_task_ext+0xec>
+  c8:	2a03      	cmp	r2, #3
+  ca:	f000 82c8 	beq.w	65e <tud_task_ext+0x65e>
+  ce:	2a04      	cmp	r2, #4
+  d0:	f000 82ab 	beq.w	62a <tud_task_ext+0x62a>
+  d4:	2a01      	cmp	r2, #1
+  d6:	d031      	beq.n	13c <tud_task_ext+0x13c>
+  d8:	2a02      	cmp	r2, #2
+  da:	d03e      	beq.n	15a <tud_task_ext+0x15a>
+  dc:	f04f 23e0 	mov.w	r3, #3758153728	@ 0xe000e000
+  e0:	f8d3 3df0 	ldr.w	r3, [r3, #3568]	@ 0xdf0
+  e4:	07db      	lsls	r3, r3, #31
+  e6:	d532      	bpl.n	14e <tud_task_ext+0x14e>
+  e8:	be00      	bkpt	0x0000
+  ea:	e030      	b.n	14e <tud_task_ext+0x14e>
+  ec:	2a07      	cmp	r2, #7
+  ee:	f000 8216 	beq.w	51e <tud_task_ext+0x51e>
+  f2:	2a08      	cmp	r2, #8
+  f4:	f000 82ac 	beq.w	650 <tud_task_ext+0x650>
+  f8:	2a06      	cmp	r2, #6
+  fa:	d1ef      	bne.n	dc <tud_task_ext+0xdc>
+  fc:	4b5e      	ldr	r3, [pc, #376]	@ (278 <tud_task_ext+0x278>)
+  fe:	781a      	ldrb	r2, [r3, #0]
+ 100:	f002 03ff 	and.w	r3, r2, #255	@ 0xff
+ 104:	bb1a      	cbnz	r2, 14e <tud_task_ext+0x14e>
+ 106:	e9dd 0108 	ldrd	r0, r1, [sp, #32]
+ 10a:	2201      	movs	r2, #1
+ 10c:	4c5b      	ldr	r4, [pc, #364]	@ (27c <tud_task_ext+0x27c>)
+ 10e:	e884 0003 	stmia.w	r4, {r0, r1}
+ 112:	7522      	strb	r2, [r4, #20]
+ 114:	e9c4 3302 	strd	r3, r3, [r4, #8]
+ 118:	f884 3023 	strb.w	r3, [r4, #35]	@ 0x23
+ 11c:	6123      	str	r3, [r4, #16]
+ 11e:	f884 3024 	strb.w	r3, [r4, #36]	@ 0x24
+ 122:	7823      	ldrb	r3, [r4, #0]
+ 124:	f003 0360 	and.w	r3, r3, #96	@ 0x60
+ 128:	2b60      	cmp	r3, #96	@ 0x60
+ 12a:	d11c      	bne.n	166 <tud_task_ext+0x166>
+ 12c:	f04f 23e0 	mov.w	r3, #3758153728	@ 0xe000e000
+ 130:	f8d3 3df0 	ldr.w	r3, [r3, #3568]	@ 0xdf0
+ 134:	07d9      	lsls	r1, r3, #31
+ 136:	d53d      	bpl.n	1b4 <tud_task_ext+0x1b4>
+ 138:	be00      	bkpt	0x0000
+ 13a:	e03b      	b.n	1b4 <tud_task_ext+0x1b4>
+ 13c:	4628      	mov	r0, r5
+ 13e:	f7ff fffe 	bl	0 <tud_task_ext>
+			13e: R_ARM_THM_CALL	configuration_reset
+ 142:	4b4e      	ldr	r3, [pc, #312]	@ (27c <tud_task_ext+0x27c>)
+ 144:	9a08      	ldr	r2, [sp, #32]
+ 146:	4640      	mov	r0, r8
+ 148:	765a      	strb	r2, [r3, #25]
+ 14a:	f7ff fffe 	bl	0 <mt_usb_bridge_reset_done>
+			14a: R_ARM_THM_CALL	mt_usb_bridge_reset_done
+ 14e:	a805      	add	r0, sp, #20
+ 150:	f7ff fffe 	bl	0 <mt_usb_bridge_leave>
+			150: R_ARM_THM_CALL	mt_usb_bridge_leave
+ 154:	b00f      	add	sp, #60	@ 0x3c
+ 156:	e8bd 8ff0 	ldmia.w	sp!, {r4, r5, r6, r7, r8, r9, sl, fp, pc}
+ 15a:	4628      	mov	r0, r5
+ 15c:	f7ff fffe 	bl	0 <tud_task_ext>
+			15c: R_ARM_THM_CALL	configuration_reset
+ 160:	f7ff fffe 	bl	0 <tud_task_ext>
+			160: R_ARM_THM_CALL	tud_umount_cb
+ 164:	e7f3      	b.n	14e <tud_task_ext+0x14e>
+ 166:	2b40      	cmp	r3, #64	@ 0x40
+ 168:	d108      	bne.n	17c <tud_task_ext+0x17c>
+ 16a:	4b45      	ldr	r3, [pc, #276]	@ (280 <tud_task_ext+0x280>)
+ 16c:	2101      	movs	r1, #1
+ 16e:	4628      	mov	r0, r5
+ 170:	4a42      	ldr	r2, [pc, #264]	@ (27c <tud_task_ext+0x27c>)
+ 172:	6123      	str	r3, [r4, #16]
+ 174:	f7ff fffe 	bl	0 <tud_task_ext>
+			174: R_ARM_THM_CALL	tud_vendor_control_xfer_cb
+ 178:	4604      	mov	r4, r0
+ 17a:	e0bd      	b.n	2f8 <tud_task_ext+0x2f8>
+ 17c:	7822      	ldrb	r2, [r4, #0]
+ 17e:	f002 021f 	and.w	r2, r2, #31
+ 182:	2a01      	cmp	r2, #1
+ 184:	f000 8159 	beq.w	43a <tud_task_ext+0x43a>
+ 188:	2a02      	cmp	r2, #2
+ 18a:	f000 8180 	beq.w	48e <tud_task_ext+0x48e>
+ 18e:	2a00      	cmp	r2, #0
+ 190:	d1cc      	bne.n	12c <tud_task_ext+0x12c>
+ 192:	2b20      	cmp	r3, #32
+ 194:	d11e      	bne.n	1d4 <tud_task_ext+0x1d4>
+ 196:	7923      	ldrb	r3, [r4, #4]
+ 198:	2b01      	cmp	r3, #1
+ 19a:	d80b      	bhi.n	1b4 <tud_task_ext+0x1b4>
+ 19c:	4423      	add	r3, r4
+ 19e:	7eda      	ldrb	r2, [r3, #27]
+ 1a0:	4b38      	ldr	r3, [pc, #224]	@ (284 <tud_task_ext+0x284>)
+ 1a2:	781b      	ldrb	r3, [r3, #0]
+ 1a4:	429a      	cmp	r2, r3
+ 1a6:	d20e      	bcs.n	1c6 <tud_task_ext+0x1c6>
+ 1a8:	2124      	movs	r1, #36	@ 0x24
+ 1aa:	4b37      	ldr	r3, [pc, #220]	@ (288 <tud_task_ext+0x288>)
+ 1ac:	681b      	ldr	r3, [r3, #0]
+ 1ae:	fb01 3302 	mla	r3, r1, r2, r3
+ 1b2:	b953      	cbnz	r3, 1ca <tud_task_ext+0x1ca>
+ 1b4:	2100      	movs	r1, #0
+ 1b6:	4628      	mov	r0, r5
+ 1b8:	f7ff fffe 	bl	0 <mt_usb_bridge_stall>
+			1b8: R_ARM_THM_CALL	mt_usb_bridge_stall
+ 1bc:	2180      	movs	r1, #128	@ 0x80
+ 1be:	4628      	mov	r0, r5
+ 1c0:	f7ff fffe 	bl	0 <mt_usb_bridge_stall>
+			1c0: R_ARM_THM_CALL	mt_usb_bridge_stall
+ 1c4:	e7c3      	b.n	14e <tud_task_ext+0x14e>
+ 1c6:	d1f5      	bne.n	1b4 <tud_task_ext+0x1b4>
+ 1c8:	4b30      	ldr	r3, [pc, #192]	@ (28c <tud_task_ext+0x28c>)
+ 1ca:	6959      	ldr	r1, [r3, #20]
+ 1cc:	4628      	mov	r0, r5
+ 1ce:	f7ff fffe 	bl	0 <tud_task_ext>
+			1ce: R_ARM_THM_CALL	invoke_class_control.constprop.0.isra.0
+ 1d2:	e7d1      	b.n	178 <tud_task_ext+0x178>
+ 1d4:	2b00      	cmp	r3, #0
+ 1d6:	d1a9      	bne.n	12c <tud_task_ext+0x12c>
+ 1d8:	7863      	ldrb	r3, [r4, #1]
+ 1da:	2b05      	cmp	r3, #5
+ 1dc:	d02f      	beq.n	23e <tud_task_ext+0x23e>
+ 1de:	d80c      	bhi.n	1fa <tud_task_ext+0x1fa>
+ 1e0:	2b01      	cmp	r3, #1
+ 1e2:	f000 8122 	beq.w	42a <tud_task_ext+0x42a>
+ 1e6:	2b03      	cmp	r3, #3
+ 1e8:	f000 8112 	beq.w	410 <tud_task_ext+0x410>
+ 1ec:	2b00      	cmp	r3, #0
+ 1ee:	d19d      	bne.n	12c <tud_task_ext+0x12c>
+ 1f0:	7de3      	ldrb	r3, [r4, #23]
+ 1f2:	f8ad 3012 	strh.w	r3, [sp, #18]
+ 1f6:	2302      	movs	r3, #2
+ 1f8:	e02e      	b.n	258 <tud_task_ext+0x258>
+ 1fa:	2b08      	cmp	r3, #8
+ 1fc:	d028      	beq.n	250 <tud_task_ext+0x250>
+ 1fe:	2b09      	cmp	r3, #9
+ 200:	d046      	beq.n	290 <tud_task_ext+0x290>
+ 202:	2b06      	cmp	r3, #6
+ 204:	d192      	bne.n	12c <tud_task_ext+0x12c>
+ 206:	8860      	ldrh	r0, [r4, #2]
+ 208:	0a03      	lsrs	r3, r0, #8
+ 20a:	2b06      	cmp	r3, #6
+ 20c:	b2c0      	uxtb	r0, r0
+ 20e:	f000 80fc 	beq.w	40a <tud_task_ext+0x40a>
+ 212:	f200 80dc 	bhi.w	3ce <tud_task_ext+0x3ce>
+ 216:	2b02      	cmp	r3, #2
+ 218:	f000 80e3 	beq.w	3e2 <tud_task_ext+0x3e2>
+ 21c:	2b03      	cmp	r3, #3
+ 21e:	f000 80eb 	beq.w	3f8 <tud_task_ext+0x3f8>
+ 222:	2b01      	cmp	r3, #1
+ 224:	d1c6      	bne.n	1b4 <tud_task_ext+0x1b4>
+ 226:	f7ff fffe 	bl	0 <tud_descriptor_device_cb>
+			226: R_ARM_THM_CALL	tud_descriptor_device_cb
+ 22a:	4602      	mov	r2, r0
+ 22c:	2800      	cmp	r0, #0
+ 22e:	f43f af7d 	beq.w	12c <tud_task_ext+0x12c>
+ 232:	2312      	movs	r3, #18
+ 234:	4628      	mov	r0, r5
+ 236:	4911      	ldr	r1, [pc, #68]	@ (27c <tud_task_ext+0x27c>)
+ 238:	f7ff fffe 	bl	0 <tud_task_ext>
+			238: R_ARM_THM_CALL	tud_control_xfer
+ 23c:	e79c      	b.n	178 <tud_task_ext+0x178>
+ 23e:	4628      	mov	r0, r5
+ 240:	78a1      	ldrb	r1, [r4, #2]
+ 242:	f7ff fffe 	bl	0 <mt_usb_bridge_address>
+			242: R_ARM_THM_CALL	mt_usb_bridge_address
+ 246:	2800      	cmp	r0, #0
+ 248:	d0b4      	beq.n	1b4 <tud_task_ext+0x1b4>
+ 24a:	2301      	movs	r3, #1
+ 24c:	7563      	strb	r3, [r4, #21]
+ 24e:	e77e      	b.n	14e <tud_task_ext+0x14e>
+ 250:	7e23      	ldrb	r3, [r4, #24]
+ 252:	f88d 3012 	strb.w	r3, [sp, #18]
+ 256:	2301      	movs	r3, #1
+ 258:	4628      	mov	r0, r5
+ 25a:	4908      	ldr	r1, [pc, #32]	@ (27c <tud_task_ext+0x27c>)
+ 25c:	f10d 0212 	add.w	r2, sp, #18
+ 260:	f7ff fffe 	bl	0 <tud_task_ext>
+			260: R_ARM_THM_CALL	tud_control_xfer
+ 264:	e773      	b.n	14e <tud_task_ext+0x14e>
+ 266:	bf00      	nop
+	...
+			268: R_ARM_ABS32	.data._usbd_rhport
+			26c: R_ARM_ABS32	.bss.mt_has_held
+			270: R_ARM_ABS32	.bss._usbd_q
+			274: R_ARM_ABS32	.bss.mt_held
+			278: R_ARM_ABS32	.bss._usbd_queued_setup
+			27c: R_ARM_ABS32	.bss._usbd_dev
+			280: R_ARM_ABS32	tud_vendor_control_xfer_cb
+			284: R_ARM_ABS32	.bss._app_driver_count
+			288: R_ARM_ABS32	.bss._app_driver
+			28c: R_ARM_ABS32	.rodata._usbd_driver
+ 290:	f8b4 8002 	ldrh.w	r8, [r4, #2]
+ 294:	f1b8 0f01 	cmp.w	r8, #1
+ 298:	d88c      	bhi.n	1b4 <tud_task_ext+0x1b4>
+ 29a:	88a6      	ldrh	r6, [r4, #4]
+ 29c:	88e3      	ldrh	r3, [r4, #6]
+ 29e:	431e      	orrs	r6, r3
+ 2a0:	b2b6      	uxth	r6, r6
+ 2a2:	2e00      	cmp	r6, #0
+ 2a4:	d186      	bne.n	1b4 <tud_task_ext+0x1b4>
+ 2a6:	fa5f f888 	uxtb.w	r8, r8
+ 2aa:	4641      	mov	r1, r8
+ 2ac:	7e20      	ldrb	r0, [r4, #24]
+ 2ae:	f7ff fffe 	bl	0 <mt_usb_bridge_config_begin>
+			2ae: R_ARM_THM_CALL	mt_usb_bridge_config_begin
+ 2b2:	2800      	cmp	r0, #0
+ 2b4:	f43f af7e 	beq.w	1b4 <tud_task_ext+0x1b4>
+ 2b8:	7e23      	ldrb	r3, [r4, #24]
+ 2ba:	4598      	cmp	r8, r3
+ 2bc:	d013      	beq.n	2e6 <tud_task_ext+0x2e6>
+ 2be:	b15b      	cbz	r3, 2d8 <tud_task_ext+0x2d8>
+ 2c0:	4631      	mov	r1, r6
+ 2c2:	4628      	mov	r0, r5
+ 2c4:	f7ff fffe 	bl	0 <mt_usb_bridge_sof>
+			2c4: R_ARM_THM_CALL	mt_usb_bridge_sof
+ 2c8:	4628      	mov	r0, r5
+ 2ca:	f7ff fffe 	bl	0 <mt_usb_bridge_close_all>
+			2ca: R_ARM_THM_CALL	mt_usb_bridge_close_all
+ 2ce:	7e66      	ldrb	r6, [r4, #25]
+ 2d0:	4628      	mov	r0, r5
+ 2d2:	f7ff fffe 	bl	0 <tud_task_ext>
+			2d2: R_ARM_THM_CALL	configuration_reset
+ 2d6:	7666      	strb	r6, [r4, #25]
+ 2d8:	f884 8018 	strb.w	r8, [r4, #24]
+ 2dc:	f1b8 0f00 	cmp.w	r8, #0
+ 2e0:	d10e      	bne.n	300 <tud_task_ext+0x300>
+ 2e2:	f7ff fffe 	bl	0 <tud_task_ext>
+			2e2: R_ARM_THM_CALL	tud_umount_cb
+ 2e6:	49a3      	ldr	r1, [pc, #652]	@ (574 <tud_task_ext+0x574>)
+ 2e8:	4628      	mov	r0, r5
+ 2ea:	f7ff fffe 	bl	0 <tud_task_ext>
+			2ea: R_ARM_THM_CALL	tud_control_status
+ 2ee:	4604      	mov	r4, r0
+ 2f0:	4601      	mov	r1, r0
+ 2f2:	4640      	mov	r0, r8
+ 2f4:	f7ff fffe 	bl	0 <mt_usb_bridge_config_done>
+			2f4: R_ARM_THM_CALL	mt_usb_bridge_config_done
+ 2f8:	2c00      	cmp	r4, #0
+ 2fa:	f47f af28 	bne.w	14e <tud_task_ext+0x14e>
+ 2fe:	e759      	b.n	1b4 <tud_task_ext+0x1b4>
+ 300:	2000      	movs	r0, #0
+ 302:	f7ff fffe 	bl	0 <tud_descriptor_configuration_cb>
+			302: R_ARM_THM_CALL	tud_descriptor_configuration_cb
+ 306:	b110      	cbz	r0, 30e <tud_task_ext+0x30e>
+ 308:	7843      	ldrb	r3, [r0, #1]
+ 30a:	2b02      	cmp	r3, #2
+ 30c:	d008      	beq.n	320 <tud_task_ext+0x320>
+ 30e:	f04f 23e0 	mov.w	r3, #3758153728	@ 0xe000e000
+ 312:	f8d3 3df0 	ldr.w	r3, [r3, #3568]	@ 0xdf0
+ 316:	07de      	lsls	r6, r3, #31
+ 318:	d454      	bmi.n	3c4 <tud_task_ext+0x3c4>
+ 31a:	2300      	movs	r3, #0
+ 31c:	7623      	strb	r3, [r4, #24]
+ 31e:	e705      	b.n	12c <tud_task_ext+0x12c>
+ 320:	79c3      	ldrb	r3, [r0, #7]
+ 322:	7de2      	ldrb	r2, [r4, #23]
+ 324:	119b      	asrs	r3, r3, #6
+ 326:	f363 0200 	bfi	r2, r3, #0, #1
+ 32a:	75e2      	strb	r2, [r4, #23]
+ 32c:	8843      	ldrh	r3, [r0, #2]
+ 32e:	f100 0709 	add.w	r7, r0, #9
+ 332:	18c6      	adds	r6, r0, r3
+ 334:	42be      	cmp	r6, r7
+ 336:	d947      	bls.n	3c8 <tud_task_ext+0x3c8>
+ 338:	783b      	ldrb	r3, [r7, #0]
+ 33a:	443b      	add	r3, r7
+ 33c:	429e      	cmp	r6, r3
+ 33e:	d343      	bcc.n	3c8 <tud_task_ext+0x3c8>
+ 340:	787a      	ldrb	r2, [r7, #1]
+ 342:	2a0b      	cmp	r2, #11
+ 344:	d101      	bne.n	34a <tud_task_ext+0x34a>
+ 346:	461f      	mov	r7, r3
+ 348:	e7f4      	b.n	334 <tud_task_ext+0x334>
+ 34a:	2a04      	cmp	r2, #4
+ 34c:	d1df      	bne.n	30e <tud_task_ext+0x30e>
+ 34e:	2300      	movs	r3, #0
+ 350:	1bf2      	subs	r2, r6, r7
+ 352:	f8df b224 	ldr.w	fp, [pc, #548]	@ 578 <tud_task_ext+0x578>
+ 356:	b292      	uxth	r2, r2
+ 358:	f89b 0000 	ldrb.w	r0, [fp]
+ 35c:	fa5f fa83 	uxtb.w	sl, r3
+ 360:	1c41      	adds	r1, r0, #1
+ 362:	b2c9      	uxtb	r1, r1
+ 364:	4551      	cmp	r1, sl
+ 366:	d9d2      	bls.n	30e <tud_task_ext+0x30e>
+ 368:	4550      	cmp	r0, sl
+ 36a:	d926      	bls.n	3ba <tud_task_ext+0x3ba>
+ 36c:	2024      	movs	r0, #36	@ 0x24
+ 36e:	4983      	ldr	r1, [pc, #524]	@ (57c <tud_task_ext+0x57c>)
+ 370:	6809      	ldr	r1, [r1, #0]
+ 372:	fb00 110a 	mla	r1, r0, sl, r1
+ 376:	2900      	cmp	r1, #0
+ 378:	d0c9      	beq.n	30e <tud_task_ext+0x30e>
+ 37a:	f8d1 9010 	ldr.w	r9, [r1, #16]
+ 37e:	4628      	mov	r0, r5
+ 380:	4639      	mov	r1, r7
+ 382:	9303      	str	r3, [sp, #12]
+ 384:	9202      	str	r2, [sp, #8]
+ 386:	47c8      	blx	r9
+ 388:	e9dd 2302 	ldrd	r2, r3, [sp, #8]
+ 38c:	2808      	cmp	r0, #8
+ 38e:	4681      	mov	r9, r0
+ 390:	d916      	bls.n	3c0 <tud_task_ext+0x3c0>
+ 392:	4282      	cmp	r2, r0
+ 394:	d314      	bcc.n	3c0 <tud_task_ext+0x3c0>
+ 396:	2302      	movs	r3, #2
+ 398:	4a79      	ldr	r2, [pc, #484]	@ (580 <tud_task_ext+0x580>)
+ 39a:	e9cd 7000 	strd	r7, r0, [sp]
+ 39e:	18d1      	adds	r1, r2, r3
+ 3a0:	4650      	mov	r0, sl
+ 3a2:	f7ff fffe 	bl	0 <tu_bind_driver_to_ep_itf>
+			3a2: R_ARM_THM_CALL	tu_bind_driver_to_ep_itf
+ 3a6:	2800      	cmp	r0, #0
+ 3a8:	d0b1      	beq.n	30e <tud_task_ext+0x30e>
+ 3aa:	f89b 3000 	ldrb.w	r3, [fp]
+ 3ae:	444f      	add	r7, r9
+ 3b0:	3301      	adds	r3, #1
+ 3b2:	b2db      	uxtb	r3, r3
+ 3b4:	4553      	cmp	r3, sl
+ 3b6:	d8bd      	bhi.n	334 <tud_task_ext+0x334>
+ 3b8:	e7a9      	b.n	30e <tud_task_ext+0x30e>
+ 3ba:	d1a8      	bne.n	30e <tud_task_ext+0x30e>
+ 3bc:	4971      	ldr	r1, [pc, #452]	@ (584 <tud_task_ext+0x584>)
+ 3be:	e7dc      	b.n	37a <tud_task_ext+0x37a>
+ 3c0:	3301      	adds	r3, #1
+ 3c2:	e7c9      	b.n	358 <tud_task_ext+0x358>
+ 3c4:	be00      	bkpt	0x0000
+ 3c6:	e7a8      	b.n	31a <tud_task_ext+0x31a>
+ 3c8:	f7ff fffe 	bl	0 <tud_task_ext>
+			3c8: R_ARM_THM_CALL	tud_mount_cb
+ 3cc:	e78b      	b.n	2e6 <tud_task_ext+0x2e6>
+ 3ce:	2b07      	cmp	r3, #7
+ 3d0:	d00f      	beq.n	3f2 <tud_task_ext+0x3f2>
+ 3d2:	2b0f      	cmp	r3, #15
+ 3d4:	f47f aeee 	bne.w	1b4 <tud_task_ext+0x1b4>
+ 3d8:	f7ff fffe 	bl	0 <tud_task_ext>
+			3d8: R_ARM_THM_CALL	tud_descriptor_bos_cb
+ 3dc:	4602      	mov	r2, r0
+ 3de:	b930      	cbnz	r0, 3ee <tud_task_ext+0x3ee>
+ 3e0:	e6e8      	b.n	1b4 <tud_task_ext+0x1b4>
+ 3e2:	f7ff fffe 	bl	0 <tud_descriptor_configuration_cb>
+			3e2: R_ARM_THM_CALL	tud_descriptor_configuration_cb
+ 3e6:	4602      	mov	r2, r0
+ 3e8:	2800      	cmp	r0, #0
+ 3ea:	f43f ae9f 	beq.w	12c <tud_task_ext+0x12c>
+ 3ee:	8853      	ldrh	r3, [r2, #2]
+ 3f0:	e720      	b.n	234 <tud_task_ext+0x234>
+ 3f2:	f7ff fffe 	bl	0 <tud_task_ext>
+			3f2: R_ARM_THM_CALL	tud_descriptor_other_speed_configuration_cb
+ 3f6:	e7f1      	b.n	3dc <tud_task_ext+0x3dc>
+ 3f8:	88a1      	ldrh	r1, [r4, #4]
+ 3fa:	f7ff fffe 	bl	0 <tud_descriptor_string_cb>
+			3fa: R_ARM_THM_CALL	tud_descriptor_string_cb
+ 3fe:	4602      	mov	r2, r0
+ 400:	2800      	cmp	r0, #0
+ 402:	f43f aed7 	beq.w	1b4 <tud_task_ext+0x1b4>
+ 406:	7803      	ldrb	r3, [r0, #0]
+ 408:	e714      	b.n	234 <tud_task_ext+0x234>
+ 40a:	f7ff fffe 	bl	0 <tud_task_ext>
+			40a: R_ARM_THM_CALL	tud_descriptor_device_qualifier_cb
+ 40e:	e7f6      	b.n	3fe <tud_task_ext+0x3fe>
+ 410:	8863      	ldrh	r3, [r4, #2]
+ 412:	2b01      	cmp	r3, #1
+ 414:	f47f aece 	bne.w	1b4 <tud_task_ext+0x1b4>
+ 418:	7de3      	ldrb	r3, [r4, #23]
+ 41a:	f043 0302 	orr.w	r3, r3, #2
+ 41e:	75e3      	strb	r3, [r4, #23]
+ 420:	4628      	mov	r0, r5
+ 422:	4954      	ldr	r1, [pc, #336]	@ (574 <tud_task_ext+0x574>)
+ 424:	f7ff fffe 	bl	0 <tud_task_ext>
+			424: R_ARM_THM_CALL	tud_control_status
+ 428:	e691      	b.n	14e <tud_task_ext+0x14e>
+ 42a:	8863      	ldrh	r3, [r4, #2]
+ 42c:	2b01      	cmp	r3, #1
+ 42e:	f47f aec1 	bne.w	1b4 <tud_task_ext+0x1b4>
+ 432:	7de3      	ldrb	r3, [r4, #23]
+ 434:	f36f 0341 	bfc	r3, #1, #1
+ 438:	e7f1      	b.n	41e <tud_task_ext+0x41e>
+ 43a:	7923      	ldrb	r3, [r4, #4]
+ 43c:	2b01      	cmp	r3, #1
+ 43e:	f63f aeb9 	bhi.w	1b4 <tud_task_ext+0x1b4>
+ 442:	4423      	add	r3, r4
+ 444:	7eda      	ldrb	r2, [r3, #27]
+ 446:	4b4c      	ldr	r3, [pc, #304]	@ (578 <tud_task_ext+0x578>)
+ 448:	781b      	ldrb	r3, [r3, #0]
+ 44a:	429a      	cmp	r2, r3
+ 44c:	d21b      	bcs.n	486 <tud_task_ext+0x486>
+ 44e:	2124      	movs	r1, #36	@ 0x24
+ 450:	4b4a      	ldr	r3, [pc, #296]	@ (57c <tud_task_ext+0x57c>)
+ 452:	681b      	ldr	r3, [r3, #0]
+ 454:	fb01 3302 	mla	r3, r1, r2, r3
+ 458:	2b00      	cmp	r3, #0
+ 45a:	f43f aeab 	beq.w	1b4 <tud_task_ext+0x1b4>
+ 45e:	4628      	mov	r0, r5
+ 460:	6959      	ldr	r1, [r3, #20]
+ 462:	f7ff fffe 	bl	0 <tud_task_ext>
+			462: R_ARM_THM_CALL	invoke_class_control.constprop.0.isra.0
+ 466:	2800      	cmp	r0, #0
+ 468:	f47f ae71 	bne.w	14e <tud_task_ext+0x14e>
+ 46c:	7823      	ldrb	r3, [r4, #0]
+ 46e:	f013 0360 	ands.w	r3, r3, #96	@ 0x60
+ 472:	f47f ae9f 	bne.w	1b4 <tud_task_ext+0x1b4>
+ 476:	7862      	ldrb	r2, [r4, #1]
+ 478:	6123      	str	r3, [r4, #16]
+ 47a:	2a0a      	cmp	r2, #10
+ 47c:	f43f aee9 	beq.w	252 <tud_task_ext+0x252>
+ 480:	2a0b      	cmp	r2, #11
+ 482:	d0cd      	beq.n	420 <tud_task_ext+0x420>
+ 484:	e696      	b.n	1b4 <tud_task_ext+0x1b4>
+ 486:	f47f ae95 	bne.w	1b4 <tud_task_ext+0x1b4>
+ 48a:	4b3e      	ldr	r3, [pc, #248]	@ (584 <tud_task_ext+0x584>)
+ 48c:	e7e7      	b.n	45e <tud_task_ext+0x45e>
+ 48e:	7921      	ldrb	r1, [r4, #4]
+ 490:	f001 020f 	and.w	r2, r1, #15
+ 494:	2a02      	cmp	r2, #2
+ 496:	f63f ae49 	bhi.w	12c <tud_task_ext+0x12c>
+ 49a:	4837      	ldr	r0, [pc, #220]	@ (578 <tud_task_ext+0x578>)
+ 49c:	eb04 0242 	add.w	r2, r4, r2, lsl #1
+ 4a0:	eb02 12d1 	add.w	r2, r2, r1, lsr #7
+ 4a4:	7f52      	ldrb	r2, [r2, #29]
+ 4a6:	7800      	ldrb	r0, [r0, #0]
+ 4a8:	4282      	cmp	r2, r0
+ 4aa:	d213      	bcs.n	4d4 <tud_task_ext+0x4d4>
+ 4ac:	4833      	ldr	r0, [pc, #204]	@ (57c <tud_task_ext+0x57c>)
+ 4ae:	6806      	ldr	r6, [r0, #0]
+ 4b0:	2024      	movs	r0, #36	@ 0x24
+ 4b2:	fb00 6602 	mla	r6, r0, r2, r6
+ 4b6:	b9a3      	cbnz	r3, 4e2 <tud_task_ext+0x4e2>
+ 4b8:	7863      	ldrb	r3, [r4, #1]
+ 4ba:	f003 02fd 	and.w	r2, r3, #253	@ 0xfd
+ 4be:	2a01      	cmp	r2, #1
+ 4c0:	d014      	beq.n	4ec <tud_task_ext+0x4ec>
+ 4c2:	2b00      	cmp	r3, #0
+ 4c4:	f47f ae32 	bne.w	12c <tud_task_ext+0x12c>
+ 4c8:	4628      	mov	r0, r5
+ 4ca:	f7ff fffe 	bl	0 <tud_task_ext>
+			4ca: R_ARM_THM_CALL	usbd_edpt_stalled
+ 4ce:	f8ad 0012 	strh.w	r0, [sp, #18]
+ 4d2:	e690      	b.n	1f6 <tud_task_ext+0x1f6>
+ 4d4:	f000 80cc 	beq.w	670 <tud_task_ext+0x670>
+ 4d8:	2b00      	cmp	r3, #0
+ 4da:	f47f ae6b 	bne.w	1b4 <tud_task_ext+0x1b4>
+ 4de:	461e      	mov	r6, r3
+ 4e0:	e7ea      	b.n	4b8 <tud_task_ext+0x4b8>
+ 4e2:	2e00      	cmp	r6, #0
+ 4e4:	f43f ae66 	beq.w	1b4 <tud_task_ext+0x1b4>
+ 4e8:	6971      	ldr	r1, [r6, #20]
+ 4ea:	e66f      	b.n	1cc <tud_task_ext+0x1cc>
+ 4ec:	8862      	ldrh	r2, [r4, #2]
+ 4ee:	b922      	cbnz	r2, 4fa <tud_task_ext+0x4fa>
+ 4f0:	2b01      	cmp	r3, #1
+ 4f2:	4628      	mov	r0, r5
+ 4f4:	d110      	bne.n	518 <tud_task_ext+0x518>
+ 4f6:	f7ff fffe 	bl	0 <tud_task_ext>
+			4f6: R_ARM_THM_CALL	usbd_edpt_clear_stall
+ 4fa:	2e00      	cmp	r6, #0
+ 4fc:	f43f ae27 	beq.w	14e <tud_task_ext+0x14e>
+ 500:	4628      	mov	r0, r5
+ 502:	6971      	ldr	r1, [r6, #20]
+ 504:	f7ff fffe 	bl	0 <tud_task_ext>
+			504: R_ARM_THM_CALL	invoke_class_control.constprop.0.isra.0
+ 508:	2300      	movs	r3, #0
+ 50a:	6123      	str	r3, [r4, #16]
+ 50c:	f894 3024 	ldrb.w	r3, [r4, #36]	@ 0x24
+ 510:	07d8      	lsls	r0, r3, #31
+ 512:	f53f ae1c 	bmi.w	14e <tud_task_ext+0x14e>
+ 516:	e783      	b.n	420 <tud_task_ext+0x420>
+ 518:	f7ff fffe 	bl	0 <tud_task_ext>
+			518: R_ARM_THM_CALL	usbd_edpt_stall
+ 51c:	e7ed      	b.n	4fa <tud_task_ext+0x4fa>
+ 51e:	f89d 1020 	ldrb.w	r1, [sp, #32]
+ 522:	4c14      	ldr	r4, [pc, #80]	@ (574 <tud_task_ext+0x574>)
+ 524:	f001 000f 	and.w	r0, r1, #15
+ 528:	eb04 0340 	add.w	r3, r4, r0, lsl #1
+ 52c:	eb03 13d1 	add.w	r3, r3, r1, lsr #7
+ 530:	f893 2023 	ldrb.w	r2, [r3, #35]	@ 0x23
+ 534:	f002 02fa 	and.w	r2, r2, #250	@ 0xfa
+ 538:	f883 2023 	strb.w	r2, [r3, #35]	@ 0x23
+ 53c:	2800      	cmp	r0, #0
+ 53e:	d15c      	bne.n	5fa <tud_task_ext+0x5fa>
+ 540:	88e3      	ldrh	r3, [r4, #6]
+ 542:	b1ab      	cbz	r3, 570 <tud_task_ext+0x570>
+ 544:	7827      	ldrb	r7, [r4, #0]
+ 546:	43ff      	mvns	r7, r7
+ 548:	f007 0780 	and.w	r7, r7, #128	@ 0x80
+ 54c:	42b9      	cmp	r1, r7
+ 54e:	d11b      	bne.n	588 <tud_task_ext+0x588>
+ 550:	2e00      	cmp	r6, #0
+ 552:	f47f adc3 	bne.w	dc <tud_task_ext+0xdc>
+ 556:	4628      	mov	r0, r5
+ 558:	4906      	ldr	r1, [pc, #24]	@ (574 <tud_task_ext+0x574>)
+ 55a:	f7ff fffe 	bl	0 <mt_usb_bridge_status>
+			55a: R_ARM_THM_CALL	mt_usb_bridge_status
+ 55e:	6923      	ldr	r3, [r4, #16]
+ 560:	2b00      	cmp	r3, #0
+ 562:	f43f adf4 	beq.w	14e <tud_task_ext+0x14e>
+ 566:	2103      	movs	r1, #3
+ 568:	4628      	mov	r0, r5
+ 56a:	4a02      	ldr	r2, [pc, #8]	@ (574 <tud_task_ext+0x574>)
+ 56c:	4798      	blx	r3
+ 56e:	e5ee      	b.n	14e <tud_task_ext+0x14e>
+ 570:	2780      	movs	r7, #128	@ 0x80
+ 572:	e7eb      	b.n	54c <tud_task_ext+0x54c>
+	...
+			574: R_ARM_ABS32	.bss._usbd_dev
+			578: R_ARM_ABS32	.bss._app_driver_count
+			57c: R_ARM_ABS32	.bss._app_driver
+ 580:	0000001b 	.word	0x0000001b
+			580: R_ARM_ABS32	.bss._usbd_dev
+ 584:	00000000 	.word	0x00000000
+			584: R_ARM_ABS32	.rodata._usbd_driver
+ 588:	f994 3000 	ldrsb.w	r3, [r4]
+ 58c:	68a0      	ldr	r0, [r4, #8]
+ 58e:	2b00      	cmp	r3, #0
+ 590:	db0e      	blt.n	5b0 <tud_task_ext+0x5b0>
+ 592:	2800      	cmp	r0, #0
+ 594:	f43f addb 	beq.w	14e <tud_task_ext+0x14e>
+ 598:	89a3      	ldrh	r3, [r4, #12]
+ 59a:	89e2      	ldrh	r2, [r4, #14]
+ 59c:	4937      	ldr	r1, [pc, #220]	@ (67c <tud_task_ext+0x67c>)
+ 59e:	1a9b      	subs	r3, r3, r2
+ 5a0:	429e      	cmp	r6, r3
+ 5a2:	bf28      	it	cs
+ 5a4:	461e      	movcs	r6, r3
+ 5a6:	4288      	cmp	r0, r1
+ 5a8:	d002      	beq.n	5b0 <tud_task_ext+0x5b0>
+ 5aa:	4632      	mov	r2, r6
+ 5ac:	f7ff fffe 	bl	0 <memcpy>
+			5ac: R_ARM_THM_CALL	memcpy
+ 5b0:	68a2      	ldr	r2, [r4, #8]
+ 5b2:	89e3      	ldrh	r3, [r4, #14]
+ 5b4:	4432      	add	r2, r6
+ 5b6:	4433      	add	r3, r6
+ 5b8:	60a2      	str	r2, [r4, #8]
+ 5ba:	88e2      	ldrh	r2, [r4, #6]
+ 5bc:	b29b      	uxth	r3, r3
+ 5be:	429a      	cmp	r2, r3
+ 5c0:	81e3      	strh	r3, [r4, #14]
+ 5c2:	d001      	beq.n	5c8 <tud_task_ext+0x5c8>
+ 5c4:	2e3f      	cmp	r6, #63	@ 0x3f
+ 5c6:	d814      	bhi.n	5f2 <tud_task_ext+0x5f2>
+ 5c8:	6923      	ldr	r3, [r4, #16]
+ 5ca:	b953      	cbnz	r3, 5e2 <tud_task_ext+0x5e2>
+ 5cc:	2300      	movs	r3, #0
+ 5ce:	4639      	mov	r1, r7
+ 5d0:	461a      	mov	r2, r3
+ 5d2:	4628      	mov	r0, r5
+ 5d4:	9300      	str	r3, [sp, #0]
+ 5d6:	f7ff fffe 	bl	0 <tud_task_ext>
+			5d6: R_ARM_THM_CALL	usbd_edpt_xfer
+ 5da:	2800      	cmp	r0, #0
+ 5dc:	f47f adb7 	bne.w	14e <tud_task_ext+0x14e>
+ 5e0:	e57c      	b.n	dc <tud_task_ext+0xdc>
+ 5e2:	2102      	movs	r1, #2
+ 5e4:	4628      	mov	r0, r5
+ 5e6:	4a26      	ldr	r2, [pc, #152]	@ (680 <tud_task_ext+0x680>)
+ 5e8:	4798      	blx	r3
+ 5ea:	4601      	mov	r1, r0
+ 5ec:	2800      	cmp	r0, #0
+ 5ee:	d1ed      	bne.n	5cc <tud_task_ext+0x5cc>
+ 5f0:	e5e1      	b.n	1b6 <tud_task_ext+0x1b6>
+ 5f2:	4628      	mov	r0, r5
+ 5f4:	f7ff fffe 	bl	0 <tud_task_ext>
+			5f4: R_ARM_THM_CALL	data_stage_xact
+ 5f8:	e7ef      	b.n	5da <tud_task_ext+0x5da>
+ 5fa:	7f5a      	ldrb	r2, [r3, #29]
+ 5fc:	4b21      	ldr	r3, [pc, #132]	@ (684 <tud_task_ext+0x684>)
+ 5fe:	781b      	ldrb	r3, [r3, #0]
+ 600:	429a      	cmp	r2, r3
+ 602:	d20e      	bcs.n	622 <tud_task_ext+0x622>
+ 604:	2024      	movs	r0, #36	@ 0x24
+ 606:	4b20      	ldr	r3, [pc, #128]	@ (688 <tud_task_ext+0x688>)
+ 608:	681b      	ldr	r3, [r3, #0]
+ 60a:	fb00 3302 	mla	r3, r0, r2, r3
+ 60e:	2b00      	cmp	r3, #0
+ 610:	f43f ad64 	beq.w	dc <tud_task_ext+0xdc>
+ 614:	699c      	ldr	r4, [r3, #24]
+ 616:	4628      	mov	r0, r5
+ 618:	4633      	mov	r3, r6
+ 61a:	f89d 2021 	ldrb.w	r2, [sp, #33]	@ 0x21
+ 61e:	47a0      	blx	r4
+ 620:	e595      	b.n	14e <tud_task_ext+0x14e>
+ 622:	f47f ad5b 	bne.w	dc <tud_task_ext+0xdc>
+ 626:	4b19      	ldr	r3, [pc, #100]	@ (68c <tud_task_ext+0x68c>)
+ 628:	e7f4      	b.n	614 <tud_task_ext+0x614>
+ 62a:	4b15      	ldr	r3, [pc, #84]	@ (680 <tud_task_ext+0x680>)
+ 62c:	7d1a      	ldrb	r2, [r3, #20]
+ 62e:	2a00      	cmp	r2, #0
+ 630:	f43f ad8d 	beq.w	14e <tud_task_ext+0x14e>
+ 634:	7dd8      	ldrb	r0, [r3, #23]
+ 636:	f3c0 0040 	ubfx	r0, r0, #1, #1
+ 63a:	f7ff fffe 	bl	0 <tud_task_ext>
+			63a: R_ARM_THM_CALL	tud_suspend_cb
+ 63e:	e586      	b.n	14e <tud_task_ext+0x14e>
+ 640:	4b0f      	ldr	r3, [pc, #60]	@ (680 <tud_task_ext+0x680>)
+ 642:	7d1b      	ldrb	r3, [r3, #20]
+ 644:	2b00      	cmp	r3, #0
+ 646:	f43f ad82 	beq.w	14e <tud_task_ext+0x14e>
+ 64a:	f7ff fffe 	bl	0 <tud_task_ext>
+			64a: R_ARM_THM_CALL	tud_resume_cb
+ 64e:	e57e      	b.n	14e <tud_task_ext+0x14e>
+ 650:	9b08      	ldr	r3, [sp, #32]
+ 652:	2b00      	cmp	r3, #0
+ 654:	f43f ad7b 	beq.w	14e <tud_task_ext+0x14e>
+ 658:	4630      	mov	r0, r6
+ 65a:	4798      	blx	r3
+ 65c:	e577      	b.n	14e <tud_task_ext+0x14e>
+ 65e:	4b08      	ldr	r3, [pc, #32]	@ (680 <tud_task_ext+0x680>)
+ 660:	7e9b      	ldrb	r3, [r3, #26]
+ 662:	07da      	lsls	r2, r3, #31
+ 664:	f57f ad73 	bpl.w	14e <tud_task_ext+0x14e>
+ 668:	9808      	ldr	r0, [sp, #32]
+ 66a:	f7ff fffe 	bl	0 <tud_task_ext>
+			66a: R_ARM_THM_CALL	tud_sof_cb
+ 66e:	e56e      	b.n	14e <tud_task_ext+0x14e>
+ 670:	4e06      	ldr	r6, [pc, #24]	@ (68c <tud_task_ext+0x68c>)
+ 672:	2b00      	cmp	r3, #0
+ 674:	f47f af38 	bne.w	4e8 <tud_task_ext+0x4e8>
+ 678:	e71e      	b.n	4b8 <tud_task_ext+0x4b8>
+ 67a:	bf00      	nop
+	...
+			67c: R_ARM_ABS32	.bss._ctrl_epbuf
+			680: R_ARM_ABS32	.bss._usbd_dev
+			684: R_ARM_ABS32	.bss._app_driver_count
+			688: R_ARM_ABS32	.bss._app_driver
+			68c: R_ARM_ABS32	.rodata._usbd_driver
+
+Disassembly of section .text.usbd_edpt_close:
+
+00000000 <usbd_edpt_close>:
+   0:	4770      	bx	lr
+
+Disassembly of section .text.usbd_sof_enable:
+
+00000000 <usbd_sof_enable>:
+   0:	b430      	push	{r4, r5}
+   2:	2501      	movs	r5, #1
+   4:	4b10      	ldr	r3, [pc, #64]	@ (48 <usbd_sof_enable+0x48>)
+   6:	fa05 f101 	lsl.w	r1, r5, r1
+   a:	7818      	ldrb	r0, [r3, #0]
+   c:	4b0f      	ldr	r3, [pc, #60]	@ (4c <usbd_sof_enable+0x4c>)
+   e:	b2c9      	uxtb	r1, r1
+  10:	7e9c      	ldrb	r4, [r3, #26]
+  12:	b2e4      	uxtb	r4, r4
+  14:	b192      	cbz	r2, 3c <usbd_sof_enable+0x3c>
+  16:	7e9a      	ldrb	r2, [r3, #26]
+  18:	430a      	orrs	r2, r1
+  1a:	769a      	strb	r2, [r3, #26]
+  1c:	7e99      	ldrb	r1, [r3, #26]
+  1e:	fab4 f284 	clz	r2, r4
+  22:	fab1 f181 	clz	r1, r1
+  26:	0952      	lsrs	r2, r2, #5
+  28:	0949      	lsrs	r1, r1, #5
+  2a:	4291      	cmp	r1, r2
+  2c:	d00a      	beq.n	44 <usbd_sof_enable+0x44>
+  2e:	bc30      	pop	{r4, r5}
+  30:	7e99      	ldrb	r1, [r3, #26]
+  32:	3900      	subs	r1, #0
+  34:	bf18      	it	ne
+  36:	2101      	movne	r1, #1
+  38:	f7ff bffe 	b.w	0 <mt_usb_bridge_sof>
+			38: R_ARM_THM_JUMP24	mt_usb_bridge_sof
+  3c:	7e9a      	ldrb	r2, [r3, #26]
+  3e:	ea22 0201 	bic.w	r2, r2, r1
+  42:	e7ea      	b.n	1a <usbd_sof_enable+0x1a>
+  44:	bc30      	pop	{r4, r5}
+  46:	4770      	bx	lr
+	...
+			48: R_ARM_ABS32	.data._usbd_rhport
+			4c: R_ARM_ABS32	.bss._usbd_dev
+
+Disassembly of section .text.tud_sof_cb_enable:
+
+00000000 <tud_sof_cb_enable>:
+   0:	4b02      	ldr	r3, [pc, #8]	@ (c <tud_sof_cb_enable+0xc>)
+   2:	4602      	mov	r2, r0
+   4:	2100      	movs	r1, #0
+   6:	7818      	ldrb	r0, [r3, #0]
+   8:	f7ff bffe 	b.w	0 <tud_sof_cb_enable>
+			8: R_ARM_THM_JUMP24	usbd_sof_enable
+   c:	00000000 	.word	0x00000000
+			c: R_ARM_ABS32	.data._usbd_rhport
+
+Disassembly of section .text.usbd_edpt_iso_alloc:
+
+00000000 <usbd_edpt_iso_alloc>:
+   0:	4b08      	ldr	r3, [pc, #32]	@ (24 <usbd_edpt_iso_alloc+0x24>)
+   2:	7818      	ldrb	r0, [r3, #0]
+   4:	f001 030f 	and.w	r3, r1, #15
+   8:	2b02      	cmp	r3, #2
+   a:	d908      	bls.n	1e <usbd_edpt_iso_alloc+0x1e>
+   c:	f04f 23e0 	mov.w	r3, #3758153728	@ 0xe000e000
+  10:	f8d3 3df0 	ldr.w	r3, [r3, #3568]	@ 0xdf0
+  14:	07db      	lsls	r3, r3, #31
+  16:	d500      	bpl.n	1a <usbd_edpt_iso_alloc+0x1a>
+  18:	be00      	bkpt	0x0000
+  1a:	2000      	movs	r0, #0
+  1c:	4770      	bx	lr
+  1e:	f7ff bffe 	b.w	0 <dcd_edpt_iso_alloc>
+			1e: R_ARM_THM_JUMP24	dcd_edpt_iso_alloc
+  22:	bf00      	nop
+  24:	00000000 	.word	0x00000000
+			24: R_ARM_ABS32	.data._usbd_rhport
+
+Disassembly of section .text.usbd_edpt_iso_activate:
+
+00000000 <usbd_edpt_iso_activate>:
+   0:	b410      	push	{r4}
+   2:	4a10      	ldr	r2, [pc, #64]	@ (44 <usbd_edpt_iso_activate+0x44>)
+   4:	7810      	ldrb	r0, [r2, #0]
+   6:	788a      	ldrb	r2, [r1, #2]
+   8:	f002 040f 	and.w	r4, r2, #15
+   c:	2c02      	cmp	r4, #2
+   e:	d909      	bls.n	24 <usbd_edpt_iso_activate+0x24>
+  10:	f04f 23e0 	mov.w	r3, #3758153728	@ 0xe000e000
+  14:	f8d3 3df0 	ldr.w	r3, [r3, #3568]	@ 0xdf0
+  18:	07db      	lsls	r3, r3, #31
+  1a:	d500      	bpl.n	1e <usbd_edpt_iso_activate+0x1e>
+  1c:	be00      	bkpt	0x0000
+  1e:	2000      	movs	r0, #0
+  20:	bc10      	pop	{r4}
+  22:	4770      	bx	lr
+  24:	888b      	ldrh	r3, [r1, #4]
+  26:	f3c3 030a 	ubfx	r3, r3, #0, #11
+  2a:	2b00      	cmp	r3, #0
+  2c:	d0f0      	beq.n	10 <usbd_edpt_iso_activate+0x10>
+  2e:	4b06      	ldr	r3, [pc, #24]	@ (48 <usbd_edpt_iso_activate+0x48>)
+  30:	eb03 0344 	add.w	r3, r3, r4, lsl #1
+  34:	eb03 13d2 	add.w	r3, r3, r2, lsr #7
+  38:	2200      	movs	r2, #0
+  3a:	f883 2023 	strb.w	r2, [r3, #35]	@ 0x23
+  3e:	bc10      	pop	{r4}
+  40:	f7ff bffe 	b.w	0 <dcd_edpt_iso_activate>
+			40: R_ARM_THM_JUMP24	dcd_edpt_iso_activate
+	...
+			44: R_ARM_ABS32	.data._usbd_rhport
+			48: R_ARM_ABS32	.bss._usbd_dev

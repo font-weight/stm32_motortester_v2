@@ -1,0 +1,419 @@
+
+objects/30-mt_usb_gate.o:     file format elf32-littlearm
+
+
+Disassembly of section .text.live:
+
+00000000 <live>:
+   0:	4b07      	ldr	r3, [pc, #28]	@ (20 <live+0x20>)
+   2:	685b      	ldr	r3, [r3, #4]
+   4:	f003 0307 	and.w	r3, r3, #7
+   8:	2b02      	cmp	r3, #2
+   a:	d107      	bne.n	1c <live+0x1c>
+   c:	4b05      	ldr	r3, [pc, #20]	@ (24 <live+0x24>)
+   e:	6858      	ldr	r0, [r3, #4]
+  10:	f000 0003 	and.w	r0, r0, #3
+  14:	1e43      	subs	r3, r0, #1
+  16:	4258      	negs	r0, r3
+  18:	4158      	adcs	r0, r3
+  1a:	4770      	bx	lr
+  1c:	2000      	movs	r0, #0
+  1e:	4770      	bx	lr
+	...
+			20: R_ARM_ABS32	mt_stream_progress
+			24: R_ARM_ABS32	mt_usb_gate
+
+Disassembly of section .text.writable:
+
+00000000 <writable>:
+   0:	b508      	push	{r3, lr}
+   2:	f7ff fffe 	bl	0 <writable>
+			2: R_ARM_THM_CALL	live
+   6:	b130      	cbz	r0, 16 <writable+0x16>
+   8:	4b03      	ldr	r3, [pc, #12]	@ (18 <writable+0x18>)
+   a:	685b      	ldr	r3, [r3, #4]
+   c:	f413 7fe0 	tst.w	r3, #448	@ 0x1c0
+  10:	bf0c      	ite	eq
+  12:	2001      	moveq	r0, #1
+  14:	2000      	movne	r0, #0
+  16:	bd08      	pop	{r3, pc}
+  18:	00000000 	.word	0x00000000
+			18: R_ARM_ABS32	mt_usb_gate
+
+Disassembly of section .text.initialize:
+
+00000000 <initialize>:
+   0:	f240 2301 	movw	r3, #513	@ 0x201
+   4:	b530      	push	{r4, r5, lr}
+   6:	4a0b      	ldr	r2, [pc, #44]	@ (34 <initialize+0x34>)
+   8:	b087      	sub	sp, #28
+   a:	e9cd 2300 	strd	r2, r3, [sp]
+   e:	2300      	movs	r3, #0
+  10:	f04f 31ff 	mov.w	r1, #4294967295
+  14:	e9cd 3302 	strd	r3, r3, [sp, #8]
+  18:	f06f 437f 	mvn.w	r3, #4278190080	@ 0xff000000
+  1c:	466d      	mov	r5, sp
+  1e:	e9cd 1304 	strd	r1, r3, [sp, #16]
+  22:	4c05      	ldr	r4, [pc, #20]	@ (38 <initialize+0x38>)
+  24:	cd0f      	ldmia	r5!, {r0, r1, r2, r3}
+  26:	c40f      	stmia	r4!, {r0, r1, r2, r3}
+  28:	e895 0003 	ldmia.w	r5, {r0, r1}
+  2c:	e884 0003 	stmia.w	r4, {r0, r1}
+  30:	b007      	add	sp, #28
+  32:	bd30      	pop	{r4, r5, pc}
+  34:	4d544731 	.word	0x4d544731
+  38:	00000000 	.word	0x00000000
+			38: R_ARM_ABS32	mt_usb_gate
+
+Disassembly of section .text.bad:
+
+00000000 <bad>:
+   0:	4b0b      	ldr	r3, [pc, #44]	@ (30 <bad+0x30>)
+   2:	685a      	ldr	r2, [r3, #4]
+   4:	f422 5285 	bic.w	r2, r2, #4256	@ 0x10a0
+   8:	f022 0218 	bic.w	r2, r2, #24
+   c:	f042 0280 	orr.w	r2, r2, #128	@ 0x80
+  10:	605a      	str	r2, [r3, #4]
+  12:	f64f 72ff 	movw	r2, #65535	@ 0xffff
+  16:	829a      	strh	r2, [r3, #20]
+  18:	825a      	strh	r2, [r3, #18]
+  1a:	821a      	strh	r2, [r3, #16]
+  1c:	759a      	strb	r2, [r3, #22]
+  1e:	685a      	ldr	r2, [r3, #4]
+  20:	0752      	lsls	r2, r2, #29
+  22:	d504      	bpl.n	2e <bad+0x2e>
+  24:	2204      	movs	r2, #4
+  26:	75da      	strb	r2, [r3, #23]
+  28:	4a02      	ldr	r2, [pc, #8]	@ (34 <bad+0x34>)
+  2a:	6852      	ldr	r2, [r2, #4]
+  2c:	60da      	str	r2, [r3, #12]
+  2e:	4770      	bx	lr
+  30:	00000000 	.word	0x00000000
+			30: R_ARM_ABS32	mt_usb_gate
+  34:	e0001000 	.word	0xe0001000
+
+Disassembly of section .text.mt_gate_begin:
+
+00000000 <mt_gate_begin>:
+   0:	4b05      	ldr	r3, [pc, #20]	@ (18 <mt_gate_begin+0x18>)
+   2:	685b      	ldr	r3, [r3, #4]
+   4:	f003 0307 	and.w	r3, r3, #7
+   8:	2b01      	cmp	r3, #1
+   a:	d104      	bne.n	16 <mt_gate_begin+0x16>
+   c:	4b03      	ldr	r3, [pc, #12]	@ (1c <mt_gate_begin+0x1c>)
+   e:	681b      	ldr	r3, [r3, #0]
+  10:	b90b      	cbnz	r3, 16 <mt_gate_begin+0x16>
+  12:	f7ff bffe 	b.w	0 <mt_gate_begin>
+			12: R_ARM_THM_JUMP24	initialize
+  16:	4770      	bx	lr
+	...
+			18: R_ARM_ABS32	mt_stream_progress
+			1c: R_ARM_ABS32	mt_usb_gate
+
+Disassembly of section .text.mt_gate_freeze:
+
+00000000 <mt_gate_freeze>:
+   0:	b5f0      	push	{r4, r5, r6, r7, lr}
+   2:	4f1f      	ldr	r7, [pc, #124]	@ (80 <mt_gate_freeze+0x80>)
+   4:	b087      	sub	sp, #28
+   6:	687b      	ldr	r3, [r7, #4]
+   8:	f003 0307 	and.w	r3, r3, #7
+   c:	2b03      	cmp	r3, #3
+   e:	d11d      	bne.n	4c <mt_gate_freeze+0x4c>
+  10:	4e1c      	ldr	r6, [pc, #112]	@ (84 <mt_gate_freeze+0x84>)
+  12:	6873      	ldr	r3, [r6, #4]
+  14:	f003 0303 	and.w	r3, r3, #3
+  18:	2b03      	cmp	r3, #3
+  1a:	d017      	beq.n	4c <mt_gate_freeze+0x4c>
+  1c:	6833      	ldr	r3, [r6, #0]
+  1e:	b90b      	cbnz	r3, 24 <mt_gate_freeze+0x24>
+  20:	f7ff fffe 	bl	0 <mt_gate_freeze>
+			20: R_ARM_THM_CALL	initialize
+  24:	6873      	ldr	r3, [r6, #4]
+  26:	687a      	ldr	r2, [r7, #4]
+  28:	0550      	lsls	r0, r2, #21
+  2a:	d411      	bmi.n	50 <mt_gate_freeze+0x50>
+  2c:	f023 0303 	bic.w	r3, r3, #3
+  30:	f043 0302 	orr.w	r3, r3, #2
+  34:	f897 203f 	ldrb.w	r2, [r7, #63]	@ 0x3f
+  38:	2a05      	cmp	r2, #5
+  3a:	bf08      	it	eq
+  3c:	f443 6300 	orreq.w	r3, r3, #2048	@ 0x800
+  40:	6073      	str	r3, [r6, #4]
+  42:	f3bf 8f5f 	dmb	sy
+  46:	f043 0303 	orr.w	r3, r3, #3
+  4a:	6073      	str	r3, [r6, #4]
+  4c:	b007      	add	sp, #28
+  4e:	bdf0      	pop	{r4, r5, r6, r7, pc}
+  50:	f240 6302 	movw	r3, #1538	@ 0x602
+  54:	4a0c      	ldr	r2, [pc, #48]	@ (88 <mt_gate_freeze+0x88>)
+  56:	f04f 31ff 	mov.w	r1, #4294967295
+  5a:	e9cd 2300 	strd	r2, r3, [sp]
+  5e:	2300      	movs	r3, #0
+  60:	e9cd 3302 	strd	r3, r3, [sp, #8]
+  64:	f06f 437f 	mvn.w	r3, #4278190080	@ 0xff000000
+  68:	466d      	mov	r5, sp
+  6a:	e9cd 1304 	strd	r1, r3, [sp, #16]
+  6e:	4c05      	ldr	r4, [pc, #20]	@ (84 <mt_gate_freeze+0x84>)
+  70:	cd0f      	ldmia	r5!, {r0, r1, r2, r3}
+  72:	c40f      	stmia	r4!, {r0, r1, r2, r3}
+  74:	e895 0003 	ldmia.w	r5, {r0, r1}
+  78:	e884 0003 	stmia.w	r4, {r0, r1}
+  7c:	6873      	ldr	r3, [r6, #4]
+  7e:	e7d9      	b.n	34 <mt_gate_freeze+0x34>
+	...
+			80: R_ARM_ABS32	mt_stream_progress
+			84: R_ARM_ABS32	mt_usb_gate
+  88:	4d544731 	.word	0x4d544731
+
+Disassembly of section .text.mt_gate_invalidate:
+
+00000000 <mt_gate_invalidate>:
+   0:	b508      	push	{r3, lr}
+   2:	4602      	mov	r2, r0
+   4:	f7ff fffe 	bl	0 <mt_gate_invalidate>
+			4: R_ARM_THM_CALL	live
+   8:	b168      	cbz	r0, 26 <mt_gate_invalidate+0x26>
+   a:	4b07      	ldr	r3, [pc, #28]	@ (28 <mt_gate_invalidate+0x28>)
+   c:	6859      	ldr	r1, [r3, #4]
+   e:	f021 0110 	bic.w	r1, r1, #16
+  12:	6059      	str	r1, [r3, #4]
+  14:	b13a      	cbz	r2, 26 <mt_gate_invalidate+0x26>
+  16:	685a      	ldr	r2, [r3, #4]
+  18:	f022 0208 	bic.w	r2, r2, #8
+  1c:	605a      	str	r2, [r3, #4]
+  1e:	685a      	ldr	r2, [r3, #4]
+  20:	f442 7280 	orr.w	r2, r2, #256	@ 0x100
+  24:	605a      	str	r2, [r3, #4]
+  26:	bd08      	pop	{r3, pc}
+  28:	00000000 	.word	0x00000000
+			28: R_ARM_ABS32	mt_usb_gate
+
+Disassembly of section .text.mt_gate_submit_begin:
+
+00000000 <mt_gate_submit_begin>:
+   0:	2882      	cmp	r0, #130	@ 0x82
+   2:	b508      	push	{r3, lr}
+   4:	d107      	bne.n	16 <mt_gate_submit_begin+0x16>
+   6:	f7ff fffe 	bl	0 <mt_gate_submit_begin>
+			6: R_ARM_THM_CALL	live
+   a:	b120      	cbz	r0, 16 <mt_gate_submit_begin+0x16>
+   c:	4a02      	ldr	r2, [pc, #8]	@ (18 <mt_gate_submit_begin+0x18>)
+   e:	6853      	ldr	r3, [r2, #4]
+  10:	f023 0318 	bic.w	r3, r3, #24
+  14:	6053      	str	r3, [r2, #4]
+  16:	bd08      	pop	{r3, pc}
+  18:	00000000 	.word	0x00000000
+			18: R_ARM_ABS32	mt_usb_gate
+
+Disassembly of section .text.mt_gate_submit_done:
+
+00000000 <mt_gate_submit_done>:
+   0:	b5f8      	push	{r3, r4, r5, r6, r7, lr}
+   2:	2882      	cmp	r0, #130	@ 0x82
+   4:	461c      	mov	r4, r3
+   6:	e9dd 6506 	ldrd	r6, r5, [sp, #24]
+   a:	9f08      	ldr	r7, [sp, #32]
+   c:	d121      	bne.n	52 <mt_gate_submit_done+0x52>
+   e:	b301      	cbz	r1, 52 <mt_gate_submit_done+0x52>
+  10:	f7ff fffe 	bl	0 <mt_gate_submit_done>
+			10: R_ARM_THM_CALL	writable
+  14:	b1e8      	cbz	r0, 52 <mt_gate_submit_done+0x52>
+  16:	b977      	cbnz	r7, 36 <mt_gate_submit_done+0x36>
+  18:	2e40      	cmp	r6, #64	@ 0x40
+  1a:	d10c      	bne.n	36 <mt_gate_submit_done+0x36>
+  1c:	f5b2 7fc0 	cmp.w	r2, #384	@ 0x180
+  20:	d809      	bhi.n	36 <mt_gate_submit_done+0x36>
+  22:	2a40      	cmp	r2, #64	@ 0x40
+  24:	4613      	mov	r3, r2
+  26:	bf28      	it	cs
+  28:	2340      	movcs	r3, #64	@ 0x40
+  2a:	42a3      	cmp	r3, r4
+  2c:	d103      	bne.n	36 <mt_gate_submit_done+0x36>
+  2e:	2d02      	cmp	r5, #2
+  30:	d801      	bhi.n	36 <mt_gate_submit_done+0x36>
+  32:	b122      	cbz	r2, 3e <mt_gate_submit_done+0x3e>
+  34:	b91d      	cbnz	r5, 3e <mt_gate_submit_done+0x3e>
+  36:	e8bd 40f8 	ldmia.w	sp!, {r3, r4, r5, r6, r7, lr}
+  3a:	f7ff bffe 	b.w	0 <mt_gate_submit_done>
+			3a: R_ARM_THM_JUMP24	bad
+  3e:	4914      	ldr	r1, [pc, #80]	@ (90 <mt_gate_submit_done+0x90>)
+  40:	688b      	ldr	r3, [r1, #8]
+  42:	3301      	adds	r3, #1
+  44:	d106      	bne.n	54 <mt_gate_submit_done+0x54>
+  46:	684b      	ldr	r3, [r1, #4]
+  48:	f023 0358 	bic.w	r3, r3, #88	@ 0x58
+  4c:	f043 0340 	orr.w	r3, r3, #64	@ 0x40
+  50:	604b      	str	r3, [r1, #4]
+  52:	bdf8      	pop	{r3, r4, r5, r6, r7, pc}
+  54:	688b      	ldr	r3, [r1, #8]
+  56:	3301      	adds	r3, #1
+  58:	608b      	str	r3, [r1, #8]
+  5a:	6848      	ldr	r0, [r1, #4]
+  5c:	f420 5091 	bic.w	r0, r0, #4640	@ 0x1220
+  60:	f020 001c 	bic.w	r0, r0, #28
+  64:	b182      	cbz	r2, 88 <mt_gate_submit_done+0x88>
+  66:	f64f 73ff 	movw	r3, #65535	@ 0xffff
+  6a:	f040 000c 	orr.w	r0, r0, #12
+  6e:	b292      	uxth	r2, r2
+  70:	b2a4      	uxth	r4, r4
+  72:	6048      	str	r0, [r1, #4]
+  74:	820a      	strh	r2, [r1, #16]
+  76:	824c      	strh	r4, [r1, #18]
+  78:	828b      	strh	r3, [r1, #20]
+  7a:	758b      	strb	r3, [r1, #22]
+  7c:	2301      	movs	r3, #1
+  7e:	75cb      	strb	r3, [r1, #23]
+  80:	4b04      	ldr	r3, [pc, #16]	@ (94 <mt_gate_submit_done+0x94>)
+  82:	685b      	ldr	r3, [r3, #4]
+  84:	60cb      	str	r3, [r1, #12]
+  86:	e7e4      	b.n	52 <mt_gate_submit_done+0x52>
+  88:	f440 5080 	orr.w	r0, r0, #4096	@ 0x1000
+  8c:	e7eb      	b.n	66 <mt_gate_submit_done+0x66>
+  8e:	bf00      	nop
+  90:	00000000 	.word	0x00000000
+			90: R_ARM_ABS32	mt_usb_gate
+  94:	e0001000 	.word	0xe0001000
+
+Disassembly of section .text.mt_gate_note:
+
+00000000 <mt_gate_note>:
+   0:	e92d 41f0 	stmdb	sp!, {r4, r5, r6, r7, r8, lr}
+   4:	4604      	mov	r4, r0
+   6:	e9dd 6806 	ldrd	r6, r8, [sp, #24]
+   a:	461f      	mov	r7, r3
+   c:	f7ff fffe 	bl	0 <mt_gate_note>
+			c: R_ARM_THM_CALL	writable
+  10:	2800      	cmp	r0, #0
+  12:	d054      	beq.n	be <mt_gate_note+0xbe>
+  14:	4d43      	ldr	r5, [pc, #268]	@ (124 <mt_gate_note+0x124>)
+  16:	686b      	ldr	r3, [r5, #4]
+  18:	071b      	lsls	r3, r3, #28
+  1a:	d550      	bpl.n	be <mt_gate_note+0xbe>
+  1c:	686b      	ldr	r3, [r5, #4]
+  1e:	0758      	lsls	r0, r3, #29
+  20:	d54d      	bpl.n	be <mt_gate_note+0xbe>
+  22:	2a00      	cmp	r2, #0
+  24:	d04d      	beq.n	c2 <mt_gate_note+0xc2>
+  26:	428a      	cmp	r2, r1
+  28:	d24b      	bcs.n	c2 <mt_gate_note+0xc2>
+  2a:	f012 0f3f 	tst.w	r2, #63	@ 0x3f
+  2e:	bf0c      	ite	eq
+  30:	2301      	moveq	r3, #1
+  32:	2300      	movne	r3, #0
+  34:	f1b8 0f00 	cmp.w	r8, #0
+  38:	d06f      	beq.n	11a <mt_gate_note+0x11a>
+  3a:	8a28      	ldrh	r0, [r5, #16]
+  3c:	b280      	uxth	r0, r0
+  3e:	4288      	cmp	r0, r1
+  40:	d16b      	bne.n	11a <mt_gate_note+0x11a>
+  42:	428a      	cmp	r2, r1
+  44:	d869      	bhi.n	11a <mt_gate_note+0x11a>
+  46:	f5b1 7fc0 	cmp.w	r1, #384	@ 0x180
+  4a:	d866      	bhi.n	11a <mt_gate_note+0x11a>
+  4c:	2f05      	cmp	r7, #5
+  4e:	d864      	bhi.n	11a <mt_gate_note+0x11a>
+  50:	1ea0      	subs	r0, r4, #2
+  52:	2807      	cmp	r0, #7
+  54:	d861      	bhi.n	11a <mt_gate_note+0x11a>
+  56:	2c03      	cmp	r4, #3
+  58:	d135      	bne.n	c6 <mt_gate_note+0xc6>
+  5a:	428a      	cmp	r2, r1
+  5c:	d15d      	bne.n	11a <mt_gate_note+0x11a>
+  5e:	f5a6 3380 	sub.w	r3, r6, #65536	@ 0x10000
+  62:	f113 1f01 	cmn.w	r3, #65537	@ 0x10001
+  66:	d358      	bcc.n	11a <mt_gate_note+0x11a>
+  68:	2c06      	cmp	r4, #6
+  6a:	d13c      	bne.n	e6 <mt_gate_note+0xe6>
+  6c:	f5a6 73fa 	sub.w	r3, r6, #500	@ 0x1f4
+  70:	f513 7ffb 	cmn.w	r3, #502	@ 0x1f6
+  74:	d851      	bhi.n	11a <mt_gate_note+0x11a>
+  76:	6868      	ldr	r0, [r5, #4]
+  78:	2c02      	cmp	r4, #2
+  7a:	f020 0030 	bic.w	r0, r0, #48	@ 0x30
+  7e:	bf18      	it	ne
+  80:	f040 0010 	orrne.w	r0, r0, #16
+  84:	428a      	cmp	r2, r1
+  86:	bf08      	it	eq
+  88:	f020 0008 	biceq.w	r0, r0, #8
+  8c:	1c73      	adds	r3, r6, #1
+  8e:	bf18      	it	ne
+  90:	f040 0020 	orrne.w	r0, r0, #32
+  94:	2c08      	cmp	r4, #8
+  96:	bf08      	it	eq
+  98:	f420 708c 	biceq.w	r0, r0, #280	@ 0x118
+  9c:	4b22      	ldr	r3, [pc, #136]	@ (128 <mt_gate_note+0x128>)
+  9e:	bf08      	it	eq
+  a0:	f440 7080 	orreq.w	r0, r0, #256	@ 0x100
+  a4:	b289      	uxth	r1, r1
+  a6:	b292      	uxth	r2, r2
+  a8:	b2b6      	uxth	r6, r6
+  aa:	b2ff      	uxtb	r7, r7
+  ac:	b2e4      	uxtb	r4, r4
+  ae:	6068      	str	r0, [r5, #4]
+  b0:	8229      	strh	r1, [r5, #16]
+  b2:	826a      	strh	r2, [r5, #18]
+  b4:	82ae      	strh	r6, [r5, #20]
+  b6:	75af      	strb	r7, [r5, #22]
+  b8:	75ec      	strb	r4, [r5, #23]
+  ba:	685b      	ldr	r3, [r3, #4]
+  bc:	60eb      	str	r3, [r5, #12]
+  be:	e8bd 81f0 	ldmia.w	sp!, {r4, r5, r6, r7, r8, pc}
+  c2:	2300      	movs	r3, #0
+  c4:	e7b6      	b.n	34 <mt_gate_note+0x34>
+  c6:	2c02      	cmp	r4, #2
+  c8:	d009      	beq.n	de <mt_gate_note+0xde>
+  ca:	2c05      	cmp	r4, #5
+  cc:	d022      	beq.n	114 <mt_gate_note+0x114>
+  ce:	2c06      	cmp	r4, #6
+  d0:	d005      	beq.n	de <mt_gate_note+0xde>
+  d2:	2c07      	cmp	r4, #7
+  d4:	d003      	beq.n	de <mt_gate_note+0xde>
+  d6:	2c08      	cmp	r4, #8
+  d8:	d001      	beq.n	de <mt_gate_note+0xde>
+  da:	2c09      	cmp	r4, #9
+  dc:	d1bf      	bne.n	5e <mt_gate_note+0x5e>
+  de:	b1e3      	cbz	r3, 11a <mt_gate_note+0x11a>
+  e0:	2f00      	cmp	r7, #0
+  e2:	d1bc      	bne.n	5e <mt_gate_note+0x5e>
+  e4:	e019      	b.n	11a <mt_gate_note+0x11a>
+  e6:	2c02      	cmp	r4, #2
+  e8:	d103      	bne.n	f2 <mt_gate_note+0xf2>
+  ea:	f5b6 7ffa 	cmp.w	r6, #500	@ 0x1f4
+  ee:	d3c2      	bcc.n	76 <mt_gate_note+0x76>
+  f0:	e013      	b.n	11a <mt_gate_note+0x11a>
+  f2:	1ee3      	subs	r3, r4, #3
+  f4:	2b02      	cmp	r3, #2
+  f6:	d901      	bls.n	fc <mt_gate_note+0xfc>
+  f8:	2c07      	cmp	r4, #7
+  fa:	d105      	bne.n	108 <mt_gate_note+0x108>
+  fc:	1c70      	adds	r0, r6, #1
+  fe:	d10c      	bne.n	11a <mt_gate_note+0x11a>
+ 100:	f1a4 0308 	sub.w	r3, r4, #8
+ 104:	2b01      	cmp	r3, #1
+ 106:	d8b6      	bhi.n	76 <mt_gate_note+0x76>
+ 108:	f5a6 73fa 	sub.w	r3, r6, #500	@ 0x1f4
+ 10c:	f513 7ffb 	cmn.w	r3, #502	@ 0x1f6
+ 110:	d903      	bls.n	11a <mt_gate_note+0x11a>
+ 112:	e7b0      	b.n	76 <mt_gate_note+0x76>
+ 114:	b10b      	cbz	r3, 11a <mt_gate_note+0x11a>
+ 116:	2f00      	cmp	r7, #0
+ 118:	d0a1      	beq.n	5e <mt_gate_note+0x5e>
+ 11a:	e8bd 41f0 	ldmia.w	sp!, {r4, r5, r6, r7, r8, lr}
+ 11e:	f7ff bffe 	b.w	0 <mt_gate_note>
+			11e: R_ARM_THM_JUMP24	bad
+ 122:	bf00      	nop
+ 124:	00000000 	.word	0x00000000
+			124: R_ARM_ABS32	mt_usb_gate
+ 128:	e0001000 	.word	0xe0001000
+
+Disassembly of section .text.mt_gate_condition:
+
+00000000 <mt_gate_condition>:
+   0:	4603      	mov	r3, r0
+   2:	4610      	mov	r0, r2
+   4:	b912      	cbnz	r2, c <mt_gate_condition+0xc>
+   6:	681a      	ldr	r2, [r3, #0]
+   8:	b902      	cbnz	r2, c <mt_gate_condition+0xc>
+   a:	6019      	str	r1, [r3, #0]
+   c:	4770      	bx	lr

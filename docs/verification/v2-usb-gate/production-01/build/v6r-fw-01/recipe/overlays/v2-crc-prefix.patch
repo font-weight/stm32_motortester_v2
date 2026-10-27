@@ -1,0 +1,23 @@
+--- a/v2/protocol/mt_live_device.c
++++ b/v2/protocol/mt_live_device.c
+@@ -1,4 +1,5 @@
+ #include "mt_live_device.h"
++#include "mt_v2_crc32.h"
+ #include <string.h>
+ 
+ #define RESERVE UINT32_C(0xffffff00)
+@@ -283,10 +284,10 @@
+     return 1;
+ }
+ static uint32_t crc_codes(uint32_t crc,const uint16_t *p,uint16_t count) {
+-    unsigned i,b,k;
+-    for(i=0;i<count;i++)for(b=0;b<2;b++) {
+-        crc^=(uint8_t)(p[i]>>(8u*b));
+-        for(k=0;k<8;k++)crc=(crc>>1)^((crc&1u)?UINT32_C(0xedb88320):0u);
++    unsigned i;
++    for(i=0;i<count;i++) {
++        crc=mt_v2_crc32_byte(crc,(uint8_t)p[i]);
++        crc=mt_v2_crc32_byte(crc,(uint8_t)(p[i]>>8));
+     }
+     return crc;
+ }

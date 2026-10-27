@@ -1,0 +1,59 @@
+--- a/app/mt_live_runtime.c
++++ b/app/mt_live_runtime.c
+@@ -229,6 +229,45 @@
+         mt_usb_bridge_unlock(key);
+     }
+ }
++/* Invoked only AFTER the existing flush and its final clock/loss barrier.
++ * No new grant or task dispatch: an already armed tail may overlap collect.
++ * The observer span includes this ownership work; it is not CPU-only time. */
++static mt_live_runtime_result prefetch_after_tx(mt_live_runtime *r,mt_live_tx_ticket *ticket,
++        uint32_t prepared_epoch,uint32_t prepared_soft_serial) {
++    mt_usb_scope scope;uint32_t key;
++    mt_live_prepare_result result;int ok;
++    if(!mt_live_device_prefetch_ready(&r->device,ticket))return MT_LIVE_RUNTIME_OK;
++    if(live_time(r)==UINT64_MAX)return time_fault(r);
++    if(!synchronize_loss(r))return loss_result(r);
++    if(!usable(r) || r->epoch!=prepared_epoch || r->soft_serial!=prepared_soft_serial)
++        return MT_LIVE_RUNTIME_IDLE;
++    if(!mt_usb_bridge_app_enter(&scope))return MT_LIVE_RUNTIME_IDLE;
++    if(!stable(r)) { mt_usb_bridge_leave(&scope); (void)synchronize_loss(r); return loss_result(r); }
++    if(r->epoch!=prepared_epoch || r->soft_serial!=prepared_soft_serial) {
++        mt_usb_bridge_leave(&scope);return MT_LIVE_RUNTIME_IDLE;
++    }
++#if CFG_MT_PROGRESS_TRACE /* Q_PREFETCH_SPAN */
++    uint32_t progress_prepare=mt_progress_prepare_begin();
++#endif
++    result=mt_live_device_prefetch_tx(&r->device,ticket);
++#if CFG_MT_PROGRESS_TRACE /* Q_PREFETCH_SPAN */
++    mt_progress_prepare_end(progress_prepare);
++#endif
++    if(live_time(r)==UINT64_MAX) { mt_usb_bridge_leave(&scope); return time_fault(r); }
++    if(!stable(r) || r->epoch!=prepared_epoch || r->soft_serial!=prepared_soft_serial) {
++        mt_usb_bridge_leave(&scope);(void)synchronize_loss(r);return loss_result(r);
++    }
++    mt_usb_bridge_leave(&scope);
++    if(result!=MT_LIVE_TX_ERROR)return MT_LIVE_RUNTIME_OK;
++    /* A second guarded call is allowed ONLY for this matching deferred error.
++     * EMPTY/COLLECT can never enter another DATA submit in this pass. */
++    key=mt_usb_bridge_lock();
++    ok=prepared_tx_step(r,ticket,prepared_epoch,prepared_soft_serial);
++    mt_usb_bridge_unlock(key);
++    if(live_time(r)==UINT64_MAX)return time_fault(r);
++    if(!synchronize_loss(r))return loss_result(r);
++    return ok?MT_LIVE_RUNTIME_OK:MT_LIVE_RUNTIME_RECOVERY;
++}
+ /* Scheduling hint only: the existing prepare and guarded ticket remain the
+  * authority. Delay no cached/collect-only/control or modes1..4 opportunity.
+  * Streaming queue blocks have128 samples; malformed metadata cannot grant TX. */
+@@ -355,6 +394,10 @@
+     }
+     if(live_time(r)==UINT64_MAX)return time_fault(r);
+     if(!synchronize_loss(r))return loss_result(r);
++    if(tx_ok && ticket.tx_mode==5u && ticket.tx_type==152u &&
++       ticket.tx_count==1024u && ticket.tx_offset && !r->device.tx_length &&
++       r->device.batch.phase==MT_BATCH1024_EMPTY)
++        return prefetch_after_tx(r,&ticket,prepared_epoch,prepared_soft_serial);
+     return tx_ok ? MT_LIVE_RUNTIME_OK : MT_LIVE_RUNTIME_RECOVERY;
+ }
+ mt_live_runtime_result mt_live_runtime_step(mt_live_runtime *r) {

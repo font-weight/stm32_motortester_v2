@@ -1,0 +1,144 @@
+{
+  "schema": "motortester-sk-usb-gate-v1-offline",
+  "status": "VALID_WITH_LIMITS",
+  "accepted_frozen_record": true,
+  "errors": [],
+  "warnings": [],
+  "physical_identity_verified": false,
+  "timing_qualified": false,
+  "raw": {
+    "magic": 1297368881,
+    "flags": 63,
+    "publication_serial": 1,
+    "event_cycle": 3000,
+    "total_len": 384,
+    "queued_len": 64,
+    "evaluated_age_us": 501,
+    "remaining_budget": 5,
+    "decision": 6
+  },
+  "history": {
+    "publication_serial": 1,
+    "decision": "hold_time",
+    "transfer_association_active_before_N_CLOSING": true,
+    "total_len": 384,
+    "queued_len_before_IN_handler_or_after_publication": 64,
+    "evaluated_TIM2_age_us": 501,
+    "remaining_budget": 5,
+    "zlp": false,
+    "metadata_valid": true
+  },
+  "nominal_event_timing": {
+    "event_from_begin_cycles": 2000,
+    "event_to_N_close_cycles": 2000,
+    "event_to_N_close_us_at_assumed_72MHz": 27.77777777777778,
+    "qualification": "Conditional no-halt, no-reset, less-than-one-DWT-wrap arithmetic. Event stamp follows publication/decision; not IRQ duration, calibrated time or atomic bank sampling."
+  },
+  "pre_closing_episode_applicable": true,
+  "current64_causal_attribution_available": false,
+  "same_episode_as_later64_proven": false,
+  "first_sha256": "1d36b20e36aea27d4fbc2a1ce1705dd201e53e8cc21e6dfdd38273e8cf28eb44",
+  "second_sha256": "1d36b20e36aea27d4fbc2a1ce1705dd201e53e8cc21e6dfdd38273e8cf28eb44",
+  "paired_progress": {
+    "schema": "motortester-sg-progress-v1-offline",
+    "errors": [],
+    "warnings": [],
+    "accepted_frozen_record": true,
+    "physical_identity_verified": false,
+    "timing_qualified": false,
+    "raw": {
+      "magic": 1297370673,
+      "flags": 66060,
+      "generation": 7,
+      "nonce_low": 2309737967,
+      "nonce_high": 19088743,
+      "begin_cycle": 1000,
+      "end_cycle": 5000,
+      "prepare_cycles": 400,
+      "positive_bytes": 401,
+      "last_positive_cycle": 2400,
+      "max_positive_gap_cycles": 2600,
+      "prepare_count": 1,
+      "positive_count": 2,
+      "zero_space_count": 1,
+      "zero_other_count": 1,
+      "tx_offset": 384,
+      "tx_length": 1335,
+      "stage_count": 1024,
+      "fifo_free": 128,
+      "stage_phase": 4,
+      "queue_used": 8,
+      "snapshot_bits": 15,
+      "close_kind": 1
+    },
+    "nominal_timing": {
+      "elapsed_cycles": 4000,
+      "elapsed_ms_at_assumed_72MHz": 0.05555555555555555,
+      "completed_prepare_us_at_assumed_72MHz": 5.555555555555555,
+      "max_no_positive_us_at_assumed_72MHz": 36.111111111111114,
+      "close_tail_no_positive_cycles": 2600,
+      "qualification": "Conditional modulo arithmetic: assumes uninterrupted DWT and less than one wrap. Includes IRQ and observer work; not CPU share, calibrated time or WCET."
+    },
+    "first_sha256": "f5e6178675f0a43733c099abb4c0c85504536d7e70e5f5dc9692d754ee1c75aa",
+    "second_sha256": "f5e6178675f0a43733c099abb4c0c85504536d7e70e5f5dc9692d754ee1c75aa",
+    "nonce_hex": "0123456789abcdef",
+    "raw_flag_names": [
+      "have_positive",
+      "core_snapshot"
+    ],
+    "close_kind": "queue",
+    "primary_reason": 1,
+    "expected_build": "0x5632534b",
+    "declared_image_sha256": "dd6e8322488a1d4ada50c2c722820f971b4b4782c303bdafb1410180e2efc8f1",
+    "core_snapshot": {
+      "tx_offset": 384,
+      "tx_length": 1335,
+      "stage_count": 1024,
+      "queue_used": 8,
+      "stage_phase": "ready",
+      "start_ack_pending": false
+    },
+    "USB_snapshot": {
+      "fifo_free_bytes": 128,
+      "held": true,
+      "deferred": true,
+      "task_ready": true
+    },
+    "status": "VALID_WITH_LIMITS",
+    "limits": [
+      "These are saved bytes and declared identity pins; physical image/readback and operator chronology are separate evidence.",
+      "positive_bytes are known DATA FIFO acceptance before freeze, not USB delivery, complete frames or committed sample prefix.",
+      "Unknown writes and unsaved partial prepare time cannot be reconstructed from zero counts.",
+      "The final no-positive interval includes the tail through first close; without positives it starts at begin.",
+      "250ms cap is a checkpoint for observation only; actual end and overshoot are retained.",
+      "No throughput fix, losslessness, analog accuracy or calibrated sampling rate follows from a valid record."
+    ]
+  },
+  "expected_build": "0x5632534b",
+  "declared_image_sha256": "dd6e8322488a1d4ada50c2c722820f971b4b4782c303bdafb1410180e2efc8f1",
+  "nonce_hex": "0123456789abcdef",
+  "generation": 7,
+  "raw_flag_names": [
+    "has_publication",
+    "transfer_active",
+    "decision_applicable_to_held",
+    "age_valid"
+  ],
+  "decision": "hold_time",
+  "later_USB64_snapshot": {
+    "fifo_free_bytes": 128,
+    "held": true,
+    "deferred": true,
+    "task_ready": true
+  },
+  "later_snapshot_relation": "held_compatible_but_same_episode_unproven",
+  "limits": [
+    "Gate24 has no embedded session/image identity: saved64/136, declared pins, exact source/readback and single-boot chronology are separate evidence.",
+    "The publication serial is an EP0x82 transfer cookie, not DATA sequence, sample count or USB packet count; queued bytes are staged in PMA, not host delivery.",
+    "APPLICABLE names the last episode before N CLOSING only. USB64 is later: HELD0 exposes skew, HELD1 never proves the same episode. Current64 attribution is always unavailable.",
+    "Grant, other ISR, failed submit, lifecycle and sticky-invalid history cannot be treated as the current held cause. Unknown fields stay unknown.",
+    "CAP is an observation checkpoint, not acquisition stop; this bank cannot explain a later failure.",
+    "Evaluated age is the existing modulo TIM2 decision operand, not a fresh freeze-time measurement or a 500us WCET guarantee.",
+    "No stable sampling/USB throughput, losslessness or analog accuracy follows from a valid diagnostic record."
+  ]
+}

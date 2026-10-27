@@ -1,0 +1,864 @@
+#include "mt_live_device.h"
+#include "mt_v2_crc32.h"
+#include "../platform/mt_stream_progress.h" /* N_PROGRESS_INCLUDE */
+#include <string.h>
+
+#define RESERVE UINT32_C(0xffffff00)
+#define LIMIT_MS UINT64_C(500)
+enum { HELLO=1, CAPS=2, STOP=5, START=8, HELLO_ACK=129, CAPS_REPLY=130,
+       STOP_ACK=133, START_ACK=136, DATA=152, END=153, ERROR_REPLY=255 };
+
+static uint16_t r16(const uint8_t *p) { return (uint16_t)((uint16_t)p[0] | (uint16_t)((uint16_t)p[1]<<8)); }
+static uint32_t r32(const uint8_t *p) { uint32_t v=0; unsigned i; for(i=0;i<4;i++)v|=(uint32_t)p[i]<<(8u*i); return v; }
+static uint64_t r64(const uint8_t *p) { return (uint64_t)r32(p)|((uint64_t)r32(p+4)<<32); }
+static void w16(uint8_t *p,uint16_t v) { p[0]=(uint8_t)v; p[1]=(uint8_t)(v>>8); }
+static void w32(uint8_t *p,uint32_t v) { unsigned i; for(i=0;i<4;i++)p[i]=(uint8_t)(v>>(8u*i)); }
+static void w64(uint8_t *p,uint64_t v) { unsigned i; for(i=0;i<8;i++)p[i]=(uint8_t)(v>>(8u*i)); }
+static void cause(mt_live_device *d,uint16_t reason) { if(!d->first_reason)d->first_reason=reason; }
+static void local_cause(mt_live_device *d,unsigned reason) { if(!d->local_error)d->local_error=reason; }
+static void clear_wants(mt_live_device *d) {
+    d->want_caps=d->want_start=d->want_error=d->want_end=d->want_ack=0;
+}
+static int batch_idle(const mt_live_device *d) {
+    return d->batch.phase==MT_BATCH1024_EMPTY;
+}
+static void batch_discard(mt_live_device *d) {
+    d->batch=(mt_batch1024_state){0};
+}
+static void abandon_tx(mt_live_device *d) {
+    if(d->tx_offset)d->needs_delimiter=1;
+    d->tx_length=d->tx_offset=0;
+    batch_discard(d);
+    clear_wants(d);
+}
+static void raw_barrier(mt_live_device *d) {
+    mt_live_snapshot s;
+    memset(&s,0,sizeof s);
+    d->io.quiesce(d->io.context,&s);
+    d->hardware_off=(s.hardware_off==1u);
+    /* Raw recovery discards tails (including a legitimate cached old tail),
+     * but retains the bounded acquisition diagnostic before later failures. */
+    if(s.acquisition_reason>0u && s.acquisition_reason<=6u)cause(d,s.acquisition_reason);
+}
+static void recover(mt_live_device *d,unsigned reason) {
+#if CFG_MT_PROGRESS_TRACE /* N_PROGRESS */
+    mt_progress_close(d,reason==MT_LIVE_ERR_CLOCK?MT_N_CLOSE_TIME:MT_N_CLOSE_RECOVERY,reason);
+#endif
+    local_cause(d,reason);
+    if(d->state==MT_LIVE_STARTING || d->state==MT_LIVE_STREAMING)
+        raw_barrier(d);
+    mt_sample_queue_seal(&d->queue);
+    abandon_tx(d);
+    d->stop_budget=d->hello_budget=d->inherited_budget=0;
+    d->state=MT_LIVE_FAULT;
+}
+static int now(mt_live_device *d,uint64_t *value) {
+    uint64_t n=d->io.clock_ms(d->io.context);
+    if(n<d->last_time || n>(uint64_t)INT64_MAX-LIMIT_MS) {
+        d->clock_failed=1;
+        if(d->state==MT_LIVE_STARTING || d->state==MT_LIVE_STREAMING)cause(d,3);
+        recover(d,MT_LIVE_ERR_CLOCK); return 0;
+    }
+    d->last_time=n; *value=n; return 1;
+}
+static uint64_t deadline(const mt_live_device *d) {
+    uint64_t n=UINT64_MAX;
+    if(d->stop_budget && d->stop_deadline<n)n=d->stop_deadline;
+    if(d->hello_budget && d->hello_deadline<n)n=d->hello_deadline;
+    if(d->inherited_budget && d->inherited_deadline<n)n=d->inherited_deadline;
+    return n;
+}
+static int expire(mt_live_device *d,uint64_t n) {
+    if(n>=deadline(d)) { recover(d,MT_LIVE_ERR_DEADLINE); return 0; }
+    return 1;
+}
+static void error_reply(mt_live_device *d,uint8_t type,uint8_t code,uint32_t request) {
+    if(d->want_error || d->want_caps || d->want_start) { recover(d,MT_LIVE_ERR_PROTOCOL); return; }
+    d->error_type=type; d->error_code=code; d->error_request=request; d->want_error=1;
+}
+
+/* Keep the large preliminary Stop scratch out of accept_frame's frame.
+ * Its lifetime ends before START/terminate/recovery may allocate another.
+ * noinline is intentional: the exact linked stack analysis checks this split. */
+static __attribute__((noinline)) int quiesce_before_start(mt_live_device *d) {
+    mt_live_snapshot s;
+    memset(&s,0,sizeof s);
+    d->io.quiesce(d->io.context,&s);
+    return s.hardware_off==1u;
+}
+
+/* Validate all snapshot fields before publishing any tail sample. A known
+ * produced endpoint can exceed the retained prefix after a certified loss. */
+static int snapshot_valid(const mt_live_device *d,const mt_live_snapshot *s) {
+    uint64_t end=d->queue.next_index;
+    unsigned b,i;
+    if(s->hardware_off>1u || s->produced_known>1u || s->tail_count>8u ||
+       s->acquisition_reason>6u)return 0;
+    for(b=0;b<s->tail_count;b++) {
+        const mt_live_tail *t=&s->tail[b];
+        if(!t->count || t->count>128u || (b+1u<s->tail_count && t->count!=128u))return 0;
+        if(b==0u) {
+            if(t->first_index<end)return 0;
+            if(!d->queue.sealed && t->first_index!=end)return 0;
+        } else if(t->first_index!=end)return 0;
+        if(UINT64_MAX-t->first_index<t->count)return 0;
+        end=t->first_index+t->count;
+        for(i=0;i<t->count;i++)if(t->codes[i]>4095u)return 0;
+    }
+    if(s->produced_known && s->produced_end<end)return 0;
+    if(!s->produced_known && s->produced_end!=0u)return 0;
+    return 1;
+}
+static unsigned discarded_lsb(const mt_live_device *d) {
+    const mt_acquisition_profile *p=mt_acquisition_profile_get(d->mode);
+    return p && p->retained_bits==10u?2u:0u;
+}
+static void terminate(mt_live_device *d,uint16_t reason,uint64_t n) {
+    mt_live_snapshot s;
+    unsigned b;
+    uint64_t after;
+    int valid_snapshot;
+    if(reason)cause(d,reason);
+    if(d->state==MT_LIVE_DRAINING || d->state==MT_LIVE_TERMINAL)return;
+    if(d->state!=MT_LIVE_STARTING && d->state!=MT_LIVE_STREAMING) {
+        recover(d,MT_LIVE_ERR_PROTOCOL); return;
+    }
+#if CFG_MT_PROGRESS_TRACE /* N_PROGRESS */
+    mt_progress_close(d,reason?MT_N_CLOSE_SOURCE:MT_N_CLOSE_STOP,reason);
+#endif
+    if(!now(d,&n))return;
+    d->stop_budget=1; d->stop_deadline=n+LIMIT_MS;
+    d->state=MT_LIVE_DRAINING;
+    memset(&s,0,sizeof s);
+    d->io.quiesce(d->io.context,&s);
+    d->hardware_off=(s.hardware_off==1u);
+    valid_snapshot=snapshot_valid(d,&s);
+    /* Quiesce observed its acquisition cause before the following clock read.
+     * Preserve diagnostics now; tail/prefix publication still waits for time. */
+    if(!valid_snapshot)cause(d,2);
+    else if(s.acquisition_reason)cause(d,s.acquisition_reason);
+    if(!now(d,&after) || !expire(d,after))return;
+    if(!valid_snapshot) {
+        cause(d,2); d->produced_known=0; d->produced_end=0;
+    } else {
+        if(s.acquisition_reason)cause(d,s.acquisition_reason);
+        d->produced_known=s.produced_known; d->produced_end=s.produced_end;
+        /* A sealed queue already records a gap; never append across that gap. */
+        if(!d->queue.sealed) {
+            for(b=0;b<s.tail_count;b++) {
+                mt_sample_queue_result q=mt_sample_queue_push_quantized(&d->queue,s.tail[b].first_index,
+                    s.tail[b].codes,s.tail[b].count,b+1u==s.tail_count,discarded_lsb(d));
+                if(q!=MT_SAMPLE_QUEUE_OK) { cause(d,q==MT_SAMPLE_QUEUE_FULL?1u:2u); break; }
+            }
+        }
+    }
+    mt_sample_queue_seal(&d->queue);
+    if(!d->hardware_off) {
+        cause(d,5);
+        /* A still-unquiesced producer has no certified final endpoint. */
+        d->produced_known=0; d->produced_end=0;
+    }
+    d->want_end=1;
+}
+static uint16_t flags(const mt_live_device *d) {
+    uint16_t f=0;
+    if(!d->produced_known)f=3;
+    else if(d->produced_end!=d->prefix_end)f=2;
+    if(!d->hardware_off)f=(uint16_t)(f|4u);
+    return f;
+}
+static void begin_hello(mt_live_device *d,uint64_t nonce,uint64_t n,uint8_t revision,uint16_t mode) {
+    uint64_t inherited=deadline(d),after;
+    int isolation;
+    if(nonce==d->nonce || nonce==d->attempted_nonce)return;
+    if(!now(d,&n) || !expire(d,n))return;
+#if CFG_MT_PROGRESS_TRACE /* N_PROGRESS */
+    mt_progress_close(d,MT_N_CLOSE_HELLO,0u);
+#endif
+    d->attempted_nonce=nonce; d->pending_nonce=nonce;
+    d->pending_revision=revision;d->pending_mode=mode;
+    if(d->tx_offset && inherited!=UINT64_MAX) {
+        d->inherited_budget=1; d->inherited_deadline=inherited;
+    } else if(!d->tx_offset)d->inherited_budget=0;
+    if(!d->tx_offset) { d->tx_length=0;batch_discard(d); }
+    clear_wants(d);
+    d->stop_budget=0;
+    d->hello_budget=1; d->hello_deadline=n+LIMIT_MS;
+    d->state=MT_LIVE_HELLO_PENDING;
+    raw_barrier(d);
+    if(!now(d,&after) || !expire(d,after))return;
+    if(!d->hardware_off) { recover(d,MT_LIVE_ERR_CALLBACK); return; }
+    isolation=d->io.isolate_tx(d->io.context);
+    if(!now(d,&after) || !expire(d,after))return;
+    if(isolation!=1) { recover(d,MT_LIVE_ERR_TRANSPORT); return; }
+}
+static void accept_frame(mt_live_device *d,const uint8_t *frame,size_t length,uint64_t n) {
+    mt_wire_message m; uint8_t major,minor;
+    mt_wire_result result=mt_wire_decode_envelope(frame,length,&m,&major,&minor);
+    if(result!=MT_WIRE_OK)return;
+    if(m.type==HELLO) {
+        uint16_t mode=0u;
+        if(m.session || m.sequence!=1u || m.request!=1u || m.payload_length<8u || !r64(m.payload))return;
+        if(r64(m.payload)==d->nonce || r64(m.payload)==d->attempted_nonce)return;
+        if(major!=0u || (minor!=2u && minor!=3u)) {
+            d->incompatible_seen=1;recover(d,MT_LIVE_ERR_INCOMPATIBLE);return;
+        }
+        if(minor==2u) { if(m.payload_length!=8u)return; }
+        else {
+            if(m.payload_length!=12u || r16(m.payload+10)!=0u)return;
+            mode=r16(m.payload+8);
+            if(!mt_acquisition_profile_get(mode))return;
+        }
+        begin_hello(d,r64(m.payload),n,minor,mode);return;
+    }
+    /* A validated stale session cannot reconfigure or fault the current mode.
+     * A wrong revision of THIS session is a real compatibility failure. */
+    if(m.session!=d->nonce || !d->nonce)return;
+    if(major!=0u || minor!=d->revision || d->revision!=3u || !d->mode) {
+        d->incompatible_seen=1;recover(d,MT_LIVE_ERR_INCOMPATIBLE);return;
+    }
+    if(m.type>=128u) { recover(d,MT_LIVE_ERR_PROTOCOL); return; }
+    if(m.type!=CAPS && m.type!=START && m.type!=STOP &&
+       (d->state==MT_LIVE_STARTING || d->state==MT_LIVE_STREAMING || d->state==MT_LIVE_DRAINING)) {
+        recover(d,MT_LIVE_ERR_PROTOCOL); return;
+    }
+    if(d->state==MT_LIVE_NO_SESSION || d->state==MT_LIVE_HELLO_PENDING ||
+       d->state==MT_LIVE_FAULT || d->state==MT_LIVE_NEEDS_HELLO)return;
+    if(d->have_previous && length==d->previous_length &&
+       memcmp(frame,d->previous,length)==0)return;
+    if(d->rx_exhausted || m.sequence!=d->rx_next || m.request<=d->last_request || !m.request) { recover(d,MT_LIVE_ERR_PROTOCOL); return; }
+    if(m.type!=STOP && (m.sequence>=RESERVE || m.request>=RESERVE)) {
+        if(d->state==MT_LIVE_STARTING || d->state==MT_LIVE_STREAMING)terminate(d,4,n);
+        else recover(d,MT_LIVE_ERR_PROTOCOL);
+        return;
+    }
+    memcpy(d->previous,frame,length); d->previous_length=length; d->have_previous=1;
+    if(m.sequence==UINT32_MAX)d->rx_exhausted=1;
+    else d->rx_next=m.sequence+1u;
+    d->last_request=m.request;
+    if(d->state==MT_LIVE_DRAINING && m.type!=STOP) { recover(d,MT_LIVE_ERR_PROTOCOL); return; }
+    if(m.type==CAPS) {
+        if(d->state!=MT_LIVE_STOPPED) { recover(d,MT_LIVE_ERR_PROTOCOL); return; }
+        if(m.payload_length) { error_reply(d,m.type,1,m.request); return; }
+        if(d->want_caps || d->want_error) { recover(d,MT_LIVE_ERR_PROTOCOL); return; }
+        d->want_caps=1; d->caps_request=m.request; return;
+    }
+    if(m.type==START) {
+        uint64_t after;
+        int started;
+        if(d->state!=MT_LIVE_STOPPED) { recover(d,MT_LIVE_ERR_PROTOCOL); return; }
+        if(!d->caps_ready || d->want_caps || d->want_error) {
+            error_reply(d,m.type,2,m.request); return;
+        }
+        if(m.payload_length!=4u || r32(m.payload)!=(uint32_t)d->mode) {
+            error_reply(d,m.type,1,m.request); return;
+        }
+        if(d->tx_next>=RESERVE) { recover(d,MT_LIVE_ERR_PROTOCOL); return; }
+        d->generation=m.request;
+        d->want_start=1; /* Reserve the response before any hardware call. */
+        d->hardware_off=(unsigned)quiesce_before_start(d);
+        if(!now(d,&after))return;
+        d->state=MT_LIVE_STARTING;
+        if(d->hardware_off) {
+            d->hardware_off=0;
+            started=d->io.start(d->io.context,d->generation);
+#if CFG_MT_PROGRESS_TRACE /* N_PROGRESS */
+            if(started==1)mt_progress_begin(d);
+#endif
+        } else started=0;
+#if CFG_MT_PROGRESS_TRACE /* N_PROGRESS */
+        if(started!=1)mt_progress_close(d,MT_N_CLOSE_NO_START,0u);
+#endif
+        if(!now(d,&after))return;
+        if(started!=1) {
+            d->want_start=0;
+            /* Failed-start cleanup is a failed termination, never a stream END.
+             * Bound its barrier and sole reserved error before calling cleanup. */
+            d->stop_budget=1; d->stop_deadline=after+LIMIT_MS;
+            d->state=MT_LIVE_NEEDS_HELLO;
+            raw_barrier(d);
+            if(!now(d,&after) || !expire(d,after))return;
+            d->error_type=START; d->error_code=4; d->error_request=m.request; d->want_error=1;
+            return;
+        }
+        d->hardware_off=0; mt_sample_queue_init(&d->queue,0);
+        d->state=MT_LIVE_STARTING; return;
+    }
+    if(m.type==STOP) {
+        if(m.payload_length!=4u || r32(m.payload)!=d->generation || !d->generation || d->stop_seen ||
+           (d->state!=MT_LIVE_STARTING && d->state!=MT_LIVE_STREAMING &&
+            d->state!=MT_LIVE_DRAINING && d->state!=MT_LIVE_TERMINAL)) {
+            recover(d,MT_LIVE_ERR_PROTOCOL); return;
+        }
+        d->stop_seen=1; d->stop_request=m.request;
+        if(d->end_complete) {
+            if(!d->hardware_off || (d->terminal_flags&4u)) { recover(d,MT_LIVE_ERR_CALLBACK); return; }
+            if(!now(d,&n))return;
+            d->stop_budget=1; d->stop_deadline=n+LIMIT_MS; d->want_ack=1;
+        } else if(d->state==MT_LIVE_DRAINING) {
+            if(d->tx_type==END && d->tx_length && !d->tx_offset)d->tx_length=0;
+        } else terminate(d,0,n);
+        return;
+    }
+    if(d->state==MT_LIVE_STOPPED)error_reply(d,m.type,5,m.request);
+    else recover(d,MT_LIVE_ERR_PROTOCOL);
+}
+
+int mt_live_device_init(mt_live_device *d,const mt_live_io *io) {
+    if(!d || !io || !io->clock_ms || !io->start || !io->quiesce || !io->write ||
+       !io->isolate_tx || !io->transaction_bound_ms || io->transaction_bound_ms>=500u)return 0;
+    memset(d,0,sizeof *d); d->io=*io; d->state=MT_LIVE_NO_SESSION;
+    d->prefix_crc_state=UINT32_C(0xffffffff); mt_sample_queue_init(&d->queue,0);
+    return 1;
+}
+int mt_live_device_receive(mt_live_device *d,const uint8_t *bytes,size_t length) {
+    uint64_t n; size_t i;
+    if(!d || (!bytes && length) || length>MT_WIRE_FRAME_MAX)return 0;
+    if(!now(d,&n))return 0;
+    (void)expire(d,n);
+    for(i=0;i<length;i++) {
+        uint8_t b=bytes[i];
+        if(!b) {
+            if(!d->rx_discarding && d->rx_used)accept_frame(d,d->rx,d->rx_used,n);
+            d->rx_used=0; d->rx_discarding=0;
+            if(!now(d,&n))return 0;
+            (void)expire(d,n);
+        } else if(!d->rx_discarding) {
+            if(d->rx_used==sizeof d->rx) { d->rx_used=0; d->rx_discarding=1; }
+            else d->rx[d->rx_used++]=b;
+        }
+    }
+    return 1;
+}
+static uint32_t crc_codes(uint32_t crc,const uint16_t *p,uint16_t count) {
+    unsigned i;
+    for(i=0;i<count;i++) {
+        crc=mt_v2_crc32_byte(crc,(uint8_t)p[i]);
+        crc=mt_v2_crc32_byte(crc,(uint8_t)(p[i]>>8));
+    }
+    return crc;
+}
+static int stage_data(mt_live_device *d,mt_wire_message *m,unsigned *error) {
+    const mt_acquisition_profile *p=mt_acquisition_profile_get(d->mode);
+    mt_sample_block b[2];unsigned blocks=1u;size_t packed,second=0u;uint16_t count;
+    if(!p || mt_sample_queue_peek(&d->queue,&b[0])!=MT_SAMPLE_QUEUE_OK) {
+        *error=MT_LIVE_ERR_ARGUMENT;return 0;
+    }
+    count=b[0].count;
+    if(p->max_block_samples==256u) {
+        if(d->queue.used>=2u) {
+            if(mt_sample_queue_peek_offset(&d->queue,1u,&b[1])!=MT_SAMPLE_QUEUE_OK ||
+               b[0].count!=128u || !b[1].count || b[1].count>128u ||
+               b[1].first_index!=b[0].first_index+b[0].count) {
+                *error=MT_LIVE_ERR_ARGUMENT;return 0;
+            }
+            blocks=2u;count=(uint16_t)(count+b[1].count);
+        }
+        if(count<256u && !(d->state==MT_LIVE_DRAINING && d->queue.sealed &&
+                          d->queue.used==blocks))return 0; /* keep ADC/TIME/USB running */
+    }
+    packed=mt_acquisition_pack(p,b[0].samples,b[0].count,m->payload+20,sizeof m->payload-20u);
+    if(blocks==2u)second=mt_acquisition_pack(p,b[1].samples,b[1].count,
+        m->payload+20u+packed,sizeof m->payload-20u-packed);
+    if(!packed || (blocks==2u && !second)) { *error=MT_LIVE_ERR_ARGUMENT;return 0; }
+    m->payload_length=(uint16_t)(20u+packed+second);
+    w32(m->payload,d->generation);w32(m->payload+4,d->mode);
+    w64(m->payload+8,b[0].first_index);w16(m->payload+16,count);
+    d->tx_count=count;d->tx_first_index=b[0].first_index;d->tx_blocks=(uint16_t)blocks;
+    d->tx_first_slot=(uint16_t)d->queue.head;d->tx_first_count=b[0].count;
+    d->tx_second_slot=blocks==2u?(uint16_t)((d->queue.head+1u)%MT_SAMPLE_QUEUE_SLOTS):0u;
+    d->tx_second_count=blocks==2u?b[1].count:0u;
+    d->tx_second_first_index=blocks==2u?b[1].first_index:0u;
+    return 1;
+}
+static int completed_data(mt_live_device *d) {
+    mt_sample_block b[2];uint32_t crc;unsigned i;
+    if(!d->tx_blocks || d->tx_blocks>2u || d->queue.head!=d->tx_first_slot ||
+       mt_sample_queue_peek(&d->queue,&b[0])!=MT_SAMPLE_QUEUE_OK ||
+       b[0].first_index!=d->tx_first_index || b[0].count!=d->tx_first_count)return 0;
+    if(d->tx_blocks==2u) {
+        if(d->tx_second_slot!=(d->queue.head+1u)%MT_SAMPLE_QUEUE_SLOTS ||
+           mt_sample_queue_peek_offset(&d->queue,1u,&b[1])!=MT_SAMPLE_QUEUE_OK ||
+           b[0].count!=128u || b[1].count!=d->tx_second_count ||
+           b[1].first_index!=d->tx_second_first_index ||
+           b[1].first_index!=b[0].first_index+b[0].count ||
+           d->tx_count!=b[0].count+b[1].count)return 0;
+    } else if(d->tx_count!=b[0].count || d->tx_second_count || d->tx_second_slot ||
+              d->tx_second_first_index)return 0;
+    /* Both selected views are current BEFORE any CRC/prefix/queue mutation.
+     * Compute locally, then atomically pop the validated span, publish once. */
+    crc=d->prefix_crc_state;
+    for(i=0;i<d->tx_blocks;i++)crc=crc_codes(crc,b[i].samples,b[i].count);
+    if(mt_sample_queue_pop_span(&d->queue,b,d->tx_blocks)!=MT_SAMPLE_QUEUE_OK)return 0;
+    d->prefix_crc_state=crc;d->prefix_end=d->tx_first_index+d->tx_count;
+    d->last_data_sequence=d->tx_sequence;return 1;
+}
+/* Mode5 foreground preparation transfers queue ownership to packed TX.
+ * No callback/TIME/accepted-prefix mutation. ISR cannot modify queue/storage.
+ * A stale transport epoch later discards this entire in-flight interval. */
+/* Keep view/work-copy lifetime outside completion/error callback frames.
+ * Both ordinary prepare and post-flush prefetch own at most512 samples here. */
+static __attribute__((noinline)) int batch_collect(mt_live_device *d,unsigned *error) {
+    mt_sample_block views[4];mt_batch1024_state work;unsigned blocks,i,j,room;
+    if(d->tx_exhausted || !d->tx_next) { *error=MT_LIVE_ERR_PROTOCOL;return 0; }
+    if(d->state==MT_LIVE_STREAMING && d->tx_next>=RESERVE)return 0;
+    if(batch_idle(d)) {
+        mt_batch1024_identity id;
+        if(!d->queue.used)return 0;
+        if(d->queue.head_index!=d->prefix_end) { *error=MT_LIVE_ERR_ARGUMENT;return 0; }
+        id=(mt_batch1024_identity){d->nonce,d->prefix_end,d->generation,d->mode,d->tx_next};
+        if(!mt_batch1024_begin(&d->batch,d->tx,&id,d->prefix_crc_state)) { *error=MT_LIVE_ERR_ARGUMENT;return 0; }
+        d->tx_type=DATA;d->tx_nonce=d->nonce;d->tx_mode=d->mode;d->tx_revision=d->revision;
+        d->tx_first_index=d->prefix_end;d->tx_sequence=d->tx_next;
+        d->tx_offset=d->tx_length=0;d->tx_count=d->tx_blocks=0;
+        d->tx_first_slot=d->tx_second_slot=d->tx_first_count=d->tx_second_count=0;
+        d->tx_second_first_index=0;
+    }
+    if(d->tx_nonce!=d->nonce || d->tx_mode!=5u || d->tx_revision!=d->revision ||
+       d->batch.count>1024u || UINT64_MAX-d->tx_first_index<d->batch.count ||
+       d->tx_first_index!=d->prefix_end || d->batch.prefix_seed!=d->prefix_crc_state ||
+       d->queue.head_index!=d->tx_first_index+d->batch.count) { *error=MT_LIVE_ERR_ARGUMENT;return 0; }
+    if(d->batch.phase==MT_BATCH1024_COLLECT) {
+        work=d->batch;room=1024u-work.count;blocks=(unsigned)d->queue.used;
+        if(blocks>4u)blocks=4u;
+        if(blocks>room/128u)blocks=room/128u;
+        if(d->queue.used && !blocks) { *error=MT_LIVE_ERR_ARGUMENT;return 0; }
+        if(blocks) {
+            if(mt_sample_queue_peek_many(&d->queue,views,blocks)!=MT_SAMPLE_QUEUE_OK) { *error=MT_LIVE_ERR_ARGUMENT;return 0; }
+            for(i=0;i<blocks;i++)for(j=0;j<views[i].count;j++)
+                if(views[i].samples[j]>4095u || (views[i].samples[j]&3u)) { *error=MT_LIVE_ERR_ARGUMENT;return 0; }
+            for(i=0;i<blocks;i++)
+                if(!mt_batch1024_collect(&work,d->tx,views[i].first_index,views[i].samples,views[i].count)) {
+                    *error=MT_LIVE_ERR_ARGUMENT;return 0;
+                }
+            if(mt_sample_queue_pop_many(&d->queue,views,blocks)!=MT_SAMPLE_QUEUE_OK) { *error=MT_LIVE_ERR_ARGUMENT;return 0; }
+            d->batch=work;d->tx_count=work.count; /* queue->staging, NOT wire prefix */
+        }
+    }
+    return 1;
+}
+static int batch_prepare(mt_live_device *d,unsigned *error) {
+    unsigned turns;
+    if(!batch_collect(d,error))return 0;
+    if(d->batch.phase==MT_BATCH1024_COLLECT) {
+        if(d->batch.count==1024u || (d->state==MT_LIVE_DRAINING && d->queue.sealed && !d->queue.used)) {
+            if(!mt_batch1024_seal(&d->batch,d->tx)) { *error=MT_LIVE_ERR_ARGUMENT;return 0; }
+        } else return 0;
+    }
+    /* At most1324 CRC+1328 COBS inputbytes, in bounded internal quanta.
+     * This is not six full runtime loops and is NOT a measured time bound. */
+    for(turns=0;turns<6u && d->batch.phase!=MT_BATCH1024_READY;turns++)
+        if(mt_batch1024_step(&d->batch,d->tx,512u)<=0) { *error=MT_LIVE_ERR_ARGUMENT;return 0; }
+    if(d->batch.phase!=MT_BATCH1024_READY) { *error=MT_LIVE_ERR_ARGUMENT;return 0; }
+    d->tx_length=d->batch.length;d->tx_count=d->batch.count;return 1;
+}
+typedef struct {
+    uint64_t end;
+    uint32_t crc,sequence;
+    unsigned hello_pending;
+} mt_live_batch_completion;
+/* Pure result preparation; module commit touches LOCAL copies only.
+ * Global accepted prefix must wait for step_tx's LAST now/bound check. */
+static int batch_completion_prepare(const mt_live_device *d,mt_live_batch_completion *p) {
+    mt_batch1024_state work;uint64_t end;uint32_t crc;
+    if(d->mode!=5u || d->tx_mode!=5u || d->tx_type!=DATA || d->tx_nonce!=d->nonce ||
+       d->tx_revision!=d->revision || d->batch.phase!=MT_BATCH1024_READY ||
+       d->batch.length!=d->tx_length || d->batch.count!=d->tx_count ||
+       d->tx_offset!=d->tx_length || d->tx_first_index!=d->prefix_end ||
+       (d->state!=MT_LIVE_STREAMING && d->state!=MT_LIVE_DRAINING && d->state!=MT_LIVE_HELLO_PENDING))return 0;
+    work=d->batch;work.offset=(uint16_t)d->tx_offset;end=d->prefix_end;crc=d->prefix_crc_state;
+    if(!mt_batch1024_commit(&work,d->tx_first_index,1,&end,&crc))return 0;
+    *p=(mt_live_batch_completion){end,crc,d->tx_sequence,d->state==MT_LIVE_HELLO_PENDING?1u:0u};return 1;
+}
+static void batch_completion_publish(mt_live_device *d,const mt_live_batch_completion *p) {
+    d->prefix_end=p->end;d->prefix_crc_state=p->crc;d->last_data_sequence=p->sequence;
+    d->batch.phase=MT_BATCH1024_EMPTY;d->batch.count=0;d->batch.length=0;d->batch.offset=0;
+    d->tx_length=d->tx_offset=0;
+    if(p->hello_pending)d->inherited_budget=0;
+}
+static int batch_matches(const mt_batch1024_state *a,const mt_batch1024_state *b) {
+    return a->prefix_crc==b->prefix_crc && a->frame_crc==b->frame_crc &&
+        a->count==b->count && a->raw_length==b->raw_length && a->read==b->read &&
+        a->write==b->write && a->mark==b->mark && a->code==b->code &&
+        a->phase==b->phase && a->packed_bytes==b->packed_bytes &&
+        a->offset==b->offset && a->length==b->length && a->prefix_seed==b->prefix_seed;
+}
+
+static int build_tx(mt_live_device *d,unsigned *error) {
+    mt_wire_message m; mt_sample_block block;
+    uint8_t type=0; uint32_t request=0;
+    *error=MT_LIVE_ERR_NONE;
+    if(d->tx_length)return 1;
+    if(d->mode==5u && (d->state==MT_LIVE_STREAMING || d->state==MT_LIVE_DRAINING) &&
+       (!batch_idle(d) || (d->queue.used && !d->want_error && !d->want_caps && !d->want_start)))
+        return batch_prepare(d,error);
+    memset(&m,0,sizeof m);
+    m.session=d->nonce;
+    if(d->state==MT_LIVE_HELLO_PENDING) {
+        if(!d->hardware_off)return 0;
+        if(d->needs_delimiter) {
+            d->tx[0]=0; d->tx_length=1; d->tx_type=0; d->tx_offset=0; return 1;
+        }
+        type=HELLO_ACK; request=1; m.session=d->pending_nonce;
+        m.payload_length=16; m.payload[1]=d->pending_revision; m.payload[2]=1; m.payload[3]=12;
+        const mt_acquisition_profile *p=mt_acquisition_profile_get(d->pending_mode);
+        if(d->pending_revision!=2u && !p) { *error=MT_LIVE_ERR_ARGUMENT;return 0; }
+        w16(m.payload+4,d->pending_revision==2u || d->pending_mode==5u?1300u:512u); w16(m.payload+6,d->pending_revision==2u?1024u:p->max_block_samples);
+        w32(m.payload+8,d->io.firmware_build);w32(m.payload+12,d->pending_revision==2u?15u:1u);
+    } else if(d->want_error) {
+        type=ERROR_REPLY; request=d->error_request; m.payload_length=8;
+        m.payload[0]=d->error_type; m.payload[1]=d->error_code; w32(m.payload+4,d->generation);
+    } else if(d->want_caps) {
+        type=CAPS_REPLY; request=d->caps_request; m.payload_length=24;
+        const mt_acquisition_profile *p=mt_acquisition_profile_get(d->mode);
+        if(!p) { *error=MT_LIVE_ERR_ARGUMENT;return 0; }
+        w32(m.payload,d->mode); w16(m.payload+4,d->mode); m.payload[7]=12;
+        w32(m.payload+8,p->rate_hz); w32(m.payload+12,1); w16(m.payload+16,p->max_block_samples);
+        m.payload[18]=p->retained_bits;m.payload[19]=p->encoding;w32(m.payload+20,1);
+    } else if(d->want_start) {
+        type=START_ACK; request=d->generation; m.payload_length=16;
+        w32(m.payload,d->generation); w32(m.payload+4,d->mode);
+    } else if((d->state==MT_LIVE_STREAMING || d->state==MT_LIVE_DRAINING) &&
+              mt_sample_queue_peek(&d->queue,&block)==MT_SAMPLE_QUEUE_OK) {
+        if(!stage_data(d,&m,error))return 0;
+        type=DATA;
+    } else if(d->want_end) {
+        if(d->mode==5u && (!d->hardware_off || d->queue.used || !batch_idle(d)))return 0;
+        type=END; m.payload_length=40;
+        w32(m.payload,d->generation); w32(m.payload+4,d->mode); w64(m.payload+8,d->prefix_end);
+        w64(m.payload+16,d->produced_known?d->produced_end:0);
+        w32(m.payload+24,d->last_data_sequence); w32(m.payload+28,d->prefix_crc_state^UINT32_C(0xffffffff));
+        w16(m.payload+32,d->first_reason); w16(m.payload+34,flags(d)); w32(m.payload+36,d->stop_request);
+    } else if(d->want_ack) {
+        type=STOP_ACK; request=d->stop_request; m.payload_length=20;
+        w32(m.payload,d->generation); w64(m.payload+4,d->prefix_end); w32(m.payload+12,d->end_sequence); w32(m.payload+16,d->terminal_flags);
+    } else return 0;
+    m.type=type; m.request=request; m.sequence=(type==HELLO_ACK)?1u:d->tx_next;
+    if(!m.sequence || (type!=HELLO_ACK && d->tx_exhausted)) { *error=MT_LIVE_ERR_PROTOCOL; return 0; }
+    d->tx_sequence=m.sequence; d->tx_nonce=m.session; d->tx_type=type; d->tx_offset=0;
+    d->tx_revision=type==HELLO_ACK?d->pending_revision:d->revision;
+    d->tx_mode=type==HELLO_ACK?d->pending_mode:d->mode;
+    if(mt_wire_encode_revision(&m,0,d->tx_revision,d->tx,sizeof d->tx,&d->tx_length)!=MT_WIRE_OK) {
+        *error=MT_LIVE_ERR_ARGUMENT; return 0;
+    }
+    return 1;
+}
+static void commit_hello(mt_live_device *d) {
+        d->nonce=d->pending_nonce;d->revision=d->pending_revision;d->mode=d->pending_mode;
+        d->state=MT_LIVE_STOPPED;
+        d->hello_budget=d->inherited_budget=d->stop_budget=0;
+        d->rx_next=2; d->last_request=1; d->tx_next=2; d->have_previous=0;
+        d->rx_exhausted=d->tx_exhausted=0;
+        d->generation=0; d->caps_ready=0; d->first_reason=0; d->local_error=0; d->clock_failed=0;
+        d->incompatible_seen=0;
+        d->prefix_end=0; d->prefix_crc_state=UINT32_C(0xffffffff); d->last_data_sequence=0;
+        d->produced_known=0; d->produced_end=0; d->stop_request=0; d->stop_seen=0;
+        d->end_started=d->end_complete=0; d->terminal_flags=0;
+        mt_sample_queue_init(&d->queue,0);batch_discard(d);
+}
+static void completed(mt_live_device *d) {
+    uint8_t type=d->tx_type;
+    if(type==DATA) {
+        if(!completed_data(d)) { recover(d,MT_LIVE_ERR_CALLBACK);return; }
+    }
+    if(d->state==MT_LIVE_HELLO_PENDING && type!=HELLO_ACK && type!=0u) {
+        d->inherited_budget=0; d->tx_length=d->tx_offset=0; return;
+    }
+    if(type==HELLO_ACK && (d->tx_nonce!=d->pending_nonce || d->tx_revision!=d->pending_revision || d->tx_mode!=d->pending_mode)) {
+        d->inherited_budget=0; d->tx_length=d->tx_offset=0; return;
+    }
+    switch(type) {
+    case 0: d->needs_delimiter=0; break;
+    case HELLO_ACK:
+        /* Commit only after the final timing observation in step(). */
+        break;
+    case CAPS_REPLY: d->want_caps=0; d->caps_ready=1; break;
+    case START_ACK: d->want_start=0; if(d->state==MT_LIVE_STARTING)d->state=MT_LIVE_STREAMING; break;
+    case ERROR_REPLY:
+        d->want_error=0;
+        if(d->state==MT_LIVE_NEEDS_HELLO && d->error_type==START && d->error_code==4u)
+            d->stop_budget=0; /* The failed attempt is closed, not accepted. */
+        break;
+    case END:
+        d->want_end=0; d->end_complete=1; d->end_sequence=d->tx_sequence; d->terminal_flags=flags(d);
+        d->state=MT_LIVE_TERMINAL;
+        if(d->stop_seen && d->hardware_off && !(d->terminal_flags&4u))d->want_ack=1;
+        else d->stop_budget=0;
+        break;
+    case STOP_ACK: d->want_ack=0; d->stop_budget=0; d->state=MT_LIVE_NEEDS_HELLO; break;
+    default: break;
+    }
+    d->tx_length=d->tx_offset=0;
+}
+/* No callbacks or time reads. Mode5 also transfers queue ownership into TX,
+ * without accepted-prefix publication; other modes only stage bytes.
+ * Every ticket field is compared explicitly, so padding is never observed. */
+static unsigned tx_intents(const mt_live_device *d) {
+    return d->want_caps | (d->want_start<<1) | (d->want_error<<2) |
+        (d->want_end<<3) | (d->want_ack<<4) | (d->needs_delimiter<<5) |
+        (d->hardware_off<<6) | (d->produced_known<<7) |
+        (d->end_started<<8) | (d->end_complete<<9) | (d->stop_seen<<10);
+}
+static void ticket_capture(const mt_live_device *d,mt_live_tx_ticket *t,
+                           mt_live_prepare_result result,unsigned error) {
+    t->result=result; t->error=error;
+    t->state=d->state;
+    t->mode=d->mode;
+    t->pending_mode=d->pending_mode;
+    t->tx_mode=d->tx_mode;
+    t->revision=d->revision;
+    t->pending_revision=d->pending_revision;
+    t->tx_revision=d->tx_revision;
+    t->nonce=d->nonce;
+    t->pending_nonce=d->pending_nonce;
+    t->prefix_end=d->prefix_end;
+    t->produced_end=d->produced_end;
+    t->head_index=d->queue.head_index;
+    t->next_index=d->queue.next_index;
+    t->tx_nonce=d->tx_nonce;
+    t->tx_first_index=d->tx_first_index;
+    t->generation=d->generation;
+    t->tx_next=d->tx_next;
+    t->tx_sequence=d->tx_sequence;
+    t->prefix_crc_state=d->prefix_crc_state;
+    t->last_data_sequence=d->last_data_sequence;
+    t->caps_request=d->caps_request;
+    t->error_request=d->error_request;
+    t->stop_request=d->stop_request;
+    t->end_sequence=d->end_sequence;
+    t->tx_length=d->tx_length;
+    t->tx_offset=d->tx_offset;
+    t->queue_head=d->queue.head;
+    t->queue_used=d->queue.used;
+    t->tx_exhausted=d->tx_exhausted;
+    t->queue_sealed=d->queue.sealed;
+    t->intents=tx_intents(d);
+    t->tx_count=d->tx_count;
+    t->tx_blocks=d->tx_blocks;
+    t->tx_first_slot=d->tx_first_slot;
+    t->tx_second_slot=d->tx_second_slot;
+    t->tx_first_count=d->tx_first_count;
+    t->tx_second_count=d->tx_second_count;
+    t->tx_second_first_index=d->tx_second_first_index;
+    t->head_count=(d->queue.used?d->queue.counts[d->queue.head]:0u);
+    t->second_slot=d->queue.used>1u?(uint16_t)((d->queue.head+1u)%MT_SAMPLE_QUEUE_SLOTS):0u;
+    t->second_count=d->queue.used>1u?d->queue.counts[t->second_slot]:0u;
+    t->second_first_index=d->queue.used>1u?d->queue.head_index+t->head_count:0u;
+    t->first_reason=d->first_reason;
+    t->terminal_flags=d->terminal_flags;
+    t->tx_type=d->tx_type;
+    t->error_type=d->error_type;
+    t->error_code=d->error_code;
+    t->batch=d->batch;
+}
+static int ticket_matches(const mt_live_device *d,const mt_live_tx_ticket *t) {
+    return t->state==d->state &&
+        t->mode==d->mode &&
+        t->pending_mode==d->pending_mode &&
+        t->tx_mode==d->tx_mode &&
+        t->revision==d->revision &&
+        t->pending_revision==d->pending_revision &&
+        t->tx_revision==d->tx_revision &&
+        t->nonce==d->nonce &&
+        t->pending_nonce==d->pending_nonce &&
+        t->prefix_end==d->prefix_end &&
+        t->produced_end==d->produced_end &&
+        t->head_index==d->queue.head_index &&
+        t->next_index==d->queue.next_index &&
+        t->tx_nonce==d->tx_nonce &&
+        t->tx_first_index==d->tx_first_index &&
+        t->generation==d->generation &&
+        t->tx_next==d->tx_next &&
+        t->tx_sequence==d->tx_sequence &&
+        t->prefix_crc_state==d->prefix_crc_state &&
+        t->last_data_sequence==d->last_data_sequence &&
+        t->caps_request==d->caps_request &&
+        t->error_request==d->error_request &&
+        t->stop_request==d->stop_request &&
+        t->end_sequence==d->end_sequence &&
+        t->tx_length==d->tx_length &&
+        t->tx_offset==d->tx_offset &&
+        t->queue_head==d->queue.head &&
+        t->queue_used==d->queue.used &&
+        t->tx_exhausted==d->tx_exhausted &&
+        t->queue_sealed==d->queue.sealed &&
+        t->intents==tx_intents(d) &&
+        t->tx_count==d->tx_count &&
+        t->tx_blocks==d->tx_blocks &&
+        t->tx_first_slot==d->tx_first_slot &&
+        t->tx_second_slot==d->tx_second_slot &&
+        t->tx_first_count==d->tx_first_count &&
+        t->tx_second_count==d->tx_second_count &&
+        t->tx_second_first_index==d->tx_second_first_index &&
+        t->head_count==(d->queue.used?d->queue.counts[d->queue.head]:0u) &&
+        t->second_slot==(d->queue.used>1u?(d->queue.head+1u)%MT_SAMPLE_QUEUE_SLOTS:0u) &&
+        t->second_count==(d->queue.used>1u?d->queue.counts[(d->queue.head+1u)%MT_SAMPLE_QUEUE_SLOTS]:0u) &&
+        t->second_first_index==(d->queue.used>1u?d->queue.head_index+d->queue.counts[d->queue.head]:0u) &&
+        t->first_reason==d->first_reason &&
+        t->terminal_flags==d->terminal_flags &&
+        t->tx_type==d->tx_type &&
+        t->error_type==d->error_type &&
+        t->error_code==d->error_code && batch_matches(&t->batch,&d->batch);
+}
+/* A published result certificate, not tx_ok or an empty buffer alone.
+ * Inspect every old field BEFORE reusing the caller's non-aliasing ticket. */
+int mt_live_device_prefetch_ready(const mt_live_device *d,const mt_live_tx_ticket *t) {
+    if(!d || !t || t->result!=MT_LIVE_TX_PREPARED || t->error ||
+       t->state!=MT_LIVE_STREAMING || t->mode!=5u || t->tx_mode!=5u ||
+       t->tx_type!=DATA || t->tx_count!=1024u || !t->tx_offset ||
+       t->tx_offset>=t->tx_length || t->tx_length<=384u || t->tx_length>1335u ||
+       t->batch.phase!=MT_BATCH1024_READY || t->batch.count!=1024u ||
+       t->batch.length!=t->tx_length || t->tx_first_index!=t->prefix_end ||
+       UINT64_MAX-t->tx_first_index<1024u || !t->tx_sequence ||
+       t->tx_sequence>=RESERVE || t->tx_exhausted)return 0;
+    return d->state==MT_LIVE_STREAMING && d->mode==5u && !d->hardware_off &&
+        !d->clock_failed && !d->local_error && !d->first_reason &&
+        d->nonce==t->nonce && d->nonce==t->tx_nonce && d->generation==t->generation &&
+        d->revision==t->revision && d->revision==t->tx_revision &&
+        d->tx_mode==t->tx_mode && d->tx_nonce==t->tx_nonce &&
+        d->tx_type==DATA && d->tx_sequence==t->tx_sequence && d->tx_count==1024u &&
+        !d->tx_length && !d->tx_offset && d->last_write_known &&
+        d->last_write_accepted==t->tx_length-t->tx_offset &&
+        d->batch.phase==MT_BATCH1024_EMPTY && !d->batch.count &&
+        !d->batch.length && !d->batch.offset &&
+        d->prefix_end==t->tx_first_index+1024u &&
+        d->prefix_crc_state==t->batch.prefix_crc && d->last_data_sequence==t->tx_sequence &&
+        !d->tx_exhausted && d->tx_next && d->tx_next<RESERVE &&
+        d->tx_next==t->tx_next && d->tx_next==t->tx_sequence+1u &&
+        !d->want_start && !d->want_caps && !d->want_error && !d->want_end && !d->want_ack &&
+        !d->stop_seen && !d->stop_budget && !d->hello_budget && !d->inherited_budget &&
+        !d->queue.sealed && d->queue.used && d->queue.used<=MT_SAMPLE_QUEUE_SLOTS &&
+        d->queue.head==t->queue_head && d->queue.used==t->queue_used &&
+        d->queue.head_index==t->head_index && d->queue.next_index==t->next_index;
+}
+mt_live_prepare_result mt_live_device_prefetch_tx(mt_live_device *d,mt_live_tx_ticket *t) {
+    unsigned error=MT_LIVE_ERR_NONE;
+    if(!mt_live_device_prefetch_ready(d,t))return MT_LIVE_TX_EMPTY;
+    /* No seal/frame-CRC/COBS/write or callback, even when collection fills up.
+     * Queue pop transfers ownership; the published prefix remains unchanged. */
+    (void)batch_collect(d,&error);
+    ticket_capture(d,t,error?MT_LIVE_TX_ERROR:MT_LIVE_TX_EMPTY,error);
+    return t->result;
+}
+mt_live_prepare_result mt_live_device_prepare_tx(mt_live_device *d,
+                                                mt_live_tx_ticket *t) {
+    unsigned error=MT_LIVE_ERR_NONE; int ready;
+    mt_live_prepare_result result;
+    if(!t)return MT_LIVE_TX_ERROR;
+    if(!d) { *t=(mt_live_tx_ticket){.result=MT_LIVE_TX_ERROR,.error=MT_LIVE_ERR_ARGUMENT}; return t->result; }
+    ready=build_tx(d,&error);
+    result=error?MT_LIVE_TX_ERROR:(ready?MT_LIVE_TX_PREPARED:MT_LIVE_TX_EMPTY);
+    ticket_capture(d,t,result,error); return result;
+}
+_Static_assert(sizeof(mt_live_tx_ticket)<=256u,"bounded foreground TX ticket");
+static int step_tx(mt_live_device *d,const mt_live_tx_ticket *ticket) {
+    uint64_t n,bound,after; size_t offer,accepted; unsigned first,hello_complete=0,error;
+    mt_live_batch_completion pending;unsigned batch_pending=0;
+    if(!d || !now(d,&n) || !expire(d,n))return 0;
+    if(d->state==MT_LIVE_FAULT || d->state==MT_LIVE_NO_SESSION)return 1;
+    if(d->tx_next>=RESERVE && (d->state==MT_LIVE_STARTING || d->state==MT_LIVE_STREAMING))terminate(d,4,n);
+    if(!now(d,&n) || !expire(d,n))return d->state!=MT_LIVE_FAULT;
+    if(ticket) {
+        /* Current identity is checked BEFORE a deferred error can recover. */
+        if(!ticket_matches(d,ticket))return d->state!=MT_LIVE_FAULT;
+        if(ticket->result==MT_LIVE_TX_ERROR) {
+            if(ticket->error!=MT_LIVE_ERR_PROTOCOL && ticket->error!=MT_LIVE_ERR_ARGUMENT)return 0;
+            recover(d,ticket->error); return 0;
+        }
+        if(ticket->error || ticket->result!=MT_LIVE_TX_PREPARED)return d->state!=MT_LIVE_FAULT;
+    } else if(!build_tx(d,&error)) {
+        if(error)recover(d,error);
+        return d->state!=MT_LIVE_FAULT;
+    }
+    if(!now(d,&n) || !expire(d,n))return 0;
+    bound=deadline(d);
+    if(bound!=UINT64_MAX && (UINT64_MAX-n<d->io.transaction_bound_ms || n+d->io.transaction_bound_ms>=bound)) {
+        recover(d,MT_LIVE_ERR_DEADLINE); return 0;
+    }
+    offer=d->tx_length-d->tx_offset; if(offer>384u)offer=384u;
+    first=(d->tx_offset==0u);
+    if(ticket && !ticket_matches(d,ticket))return d->state!=MT_LIVE_FAULT;
+#if CFG_MT_PROGRESS_TRACE /* N_PROGRESS */
+    if(d->tx_type==DATA)mt_progress_write_begin();
+#endif
+    accepted=d->io.write(d->io.context,d->tx+d->tx_offset,offer);
+#if CFG_MT_PROGRESS_TRACE /* N_PROGRESS */
+    if(d->tx_type==DATA)mt_progress_write_end(offer,accepted);
+#endif
+    d->last_write_known=(accepted!=SIZE_MAX && accepted<=offer);
+    d->last_write_accepted=d->last_write_known?accepted:0;
+    if(!d->last_write_known) { d->needs_delimiter=1; recover(d,MT_LIVE_ERR_TRANSPORT); return 0; }
+    if(!now(d,&after) || !expire(d,after)) {
+        /* Accepted bytes are irreversible even when their completion is late.
+         * In particular a first partial write has not advanced tx_offset yet. */
+        if(accepted)d->needs_delimiter=1;
+        return 0;
+    }
+    if(accepted) {
+        if(first && d->tx_type!=HELLO_ACK && d->tx_type!=0u) {
+            if(d->tx_sequence==UINT32_MAX)d->tx_exhausted=1;
+            else d->tx_next=d->tx_sequence+1u;
+        }
+        if(first && d->tx_type==END)d->end_started=1;
+        d->tx_offset+=accepted;
+        if(d->tx_offset==d->tx_length) {
+            hello_complete=(d->tx_type==HELLO_ACK && d->tx_nonce==d->pending_nonce &&
+                            d->tx_revision==d->pending_revision && d->tx_mode==d->pending_mode &&
+                            d->state==MT_LIVE_HELLO_PENDING);
+            if(d->tx_type==DATA && d->tx_mode==5u) {
+                if(!batch_completion_prepare(d,&pending)) { recover(d,MT_LIVE_ERR_CALLBACK);return 0; }
+                batch_pending=1;
+            } else completed(d);
+        }
+    }
+    /* The configured bound includes this completion path and final observation.
+     * A violation is a local contract failure, not a retractable remote ACK. */
+    if(!now(d,&after))return 0;
+    if(bound!=UINT64_MAX && after>=bound) { recover(d,MT_LIVE_ERR_CALLBACK); return 0; }
+    /* No fallible operation or callback after this observation. The qualified
+     * transaction bound includes these final stores and queue initialization. */
+    if(batch_pending)batch_completion_publish(d,&pending);
+    if(hello_complete && d->state==MT_LIVE_HELLO_PENDING)commit_hello(d);
+    return d->state!=MT_LIVE_FAULT;
+}
+int mt_live_device_step(mt_live_device *d) { return step_tx(d,NULL); }
+int mt_live_device_step_prepared(mt_live_device *d,const mt_live_tx_ticket *t) {
+    return t?step_tx(d,t):0;
+}
+int mt_live_device_offer(mt_live_device *d,uint64_t first_index,const uint16_t *codes,uint16_t count) {
+    uint64_t n; mt_sample_queue_result q;
+    if(!d || !now(d,&n) || !expire(d,n))return 0;
+    if(d->state!=MT_LIVE_STARTING && d->state!=MT_LIVE_STREAMING)return 0;
+    q=mt_sample_queue_push_quantized(&d->queue,first_index,codes,count,0,discarded_lsb(d));
+    if(q!=MT_SAMPLE_QUEUE_OK) {
+#if CFG_MT_PROGRESS_TRACE /* N_PROGRESS */
+        mt_progress_close(d,q==MT_SAMPLE_QUEUE_FULL?MT_N_CLOSE_QUEUE:MT_N_CLOSE_SOURCE,q==MT_SAMPLE_QUEUE_FULL?1u:2u);
+#endif
+        terminate(d,q==MT_SAMPLE_QUEUE_FULL?1u:2u,n); return 0; }
+    return 1;
+}
+void mt_live_device_fault(mt_live_device *d,uint16_t reason) {
+    uint64_t n;
+    if(!d || reason==0u || reason>6u)return;
+    /* The caller has already observed this acquisition fault. A later clock
+     * failure during recovery must not replace that earlier cause. */
+    if(d->state==MT_LIVE_STARTING || d->state==MT_LIVE_STREAMING ||
+       d->state==MT_LIVE_DRAINING || d->state==MT_LIVE_TERMINAL)cause(d,reason);
+#if CFG_MT_PROGRESS_TRACE /* N_PROGRESS */
+    mt_progress_close(d,MT_N_CLOSE_SOURCE,reason);
+#endif
+    if(!now(d,&n) || !expire(d,n))return;
+    if(d->end_started) { cause(d,reason); recover(d,MT_LIVE_ERR_CALLBACK); return; }
+    if(d->tx_type==END && d->tx_length && !d->tx_offset)d->tx_length=0;
+    terminate(d,reason,n);
+}
+void mt_live_device_transport_lost(mt_live_device *d) {
+    if(!d)return;
+#if CFG_MT_PROGRESS_TRACE /* N_PROGRESS */
+    mt_progress_close(d,MT_N_CLOSE_TRANSPORT,MT_LIVE_ERR_TRANSPORT);
+#endif
+    raw_barrier(d);
+    d->state=MT_LIVE_FAULT;
+    recover(d,MT_LIVE_ERR_TRANSPORT);
+    d->rx_used=0; d->rx_discarding=0; d->needs_delimiter=1;
+}

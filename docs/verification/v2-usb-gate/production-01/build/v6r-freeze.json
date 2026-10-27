@@ -1,0 +1,394 @@
+{
+  "schema": "motortester-V2-06r-source-freeze-1",
+  "date": "2026-10-27",
+  "status": "USB_GATE_DIAGNOSTIC_CANDIDATE_FROZEN_FOR_INDEPENDENT_REVIEW",
+  "firmware_build": "0x5632534b",
+  "baseline_build": "0x5632534a",
+  "product": "Motortester V2 USB Gate SK",
+  "production_files": [
+    {
+      "path": "firmware/v2-stream/README.md",
+      "bytes": 62512,
+      "sha256": "761bcc8048968c54f385fb9ca4c3ff640addc7b87c6cc7c95d0ee771deb1765a"
+    },
+    {
+      "path": "firmware/v2-stream/build_windows.py",
+      "bytes": 30188,
+      "sha256": "590a3031ac4677ce9e64b294e882417a864249872186684658c5cc7c3ac0e5fb"
+    },
+    {
+      "path": "firmware/v2-stream/config.json",
+      "bytes": 1034,
+      "sha256": "89d53959ac7d3747ad191f224207ba986de2929c70774ed68e8657170eab4178"
+    },
+    {
+      "path": "firmware/v2-stream/check_static.py",
+      "bytes": 18935,
+      "sha256": "1810437a79183f45f6437111623788e9a4c9c3366adb03909e175978517a9360"
+    },
+    {
+      "path": "firmware/v2-stream/overlays/board_inputs.py",
+      "bytes": 4228,
+      "sha256": "cff5c137634f723554fd7948aa7092747454180a92f45a57e2f805c68f8b3875"
+    },
+    {
+      "path": "firmware/v2-stream/overlays/usb-gate.json",
+      "bytes": 491,
+      "sha256": "10aec805e0c6552d4cf0040b9c6e9f1f45d84956babd04d109a2f866dea5e4bd"
+    },
+    {
+      "path": "firmware/v2-stream/overlays/v2-usb-gate-dcd_stm32_fsdev.c.patch",
+      "bytes": 8586,
+      "sha256": "ff6cd5122f2c3a6100826f6411c03b06fc0383bf3ad02f5888170f4e9e85babe"
+    },
+    {
+      "path": "firmware/v2-stream/progress/mt_usb_gate.c",
+      "bytes": 6090,
+      "sha256": "a0c6cf54c0f9e8a322143a3e7ecbaa7b32db9ab3d046525c2ff0fb278e65e31b"
+    },
+    {
+      "path": "firmware/v2-stream/progress/mt_usb_gate.h",
+      "bytes": 2296,
+      "sha256": "2128cff35f6ac01dcc684f50b6fc2acd5dffed2161e89c9e04bf1ad4f62ca04d"
+    },
+    {
+      "path": "firmware/v2-stream/progress/mt_stream_progress.c",
+      "bytes": 8062,
+      "sha256": "938666ea04c46583e31173ed741dc3e1f10a38c7fad7db0149718e6242d0c31b"
+    },
+    {
+      "path": "firmware/v2-stream/progress/mt_stream_progress.h",
+      "bytes": 3316,
+      "sha256": "7cc64b97266496ff053163d78cc155ae5a8aeb168755ad23be6a5517f938c881"
+    }
+  ],
+  "native_source_files": [
+    {
+      "path": "tests/v2-stream-firmware/check_usb_gate_trace.py",
+      "bytes": 15623,
+      "sha256": "2217294bb929fce746cfb00af15cea9599fc2bc60439421b8d2fba6619883a40"
+    },
+    {
+      "path": "tests/v2-stream-firmware/usb_gate_trace_model.c",
+      "bytes": 15967,
+      "sha256": "639438d221ea2806c8a84a455ffd3ebea01e7ff1f55a040ed02dc615a116b212"
+    }
+  ],
+  "protected_legacy_tests_byte_identical_HEAD": [
+    {
+      "path": "tests/v2-stream-firmware/usb_gate_model.c",
+      "bytes": 7425,
+      "sha256": "e2134af1fc6e92cc36c86c1ffd615f8c8cb778269e581a98e6274beec0b158d1"
+    },
+    {
+      "path": "tests/v2-stream-firmware/check_usb_gate.py",
+      "bytes": 7216,
+      "sha256": "067de6afbaa2faa1c60828b4fdc46d1e5bd8f1344f78efba9ca70c87181f9ad7"
+    }
+  ],
+  "ARM_evidence": [
+    {
+      "path": "build/v6r-fw-02/receipt.json",
+      "bytes": 433201,
+      "sha256": "1960b03be4791999db9efad89678c5bee467379ef828f3db966162f6a7f8def5"
+    },
+    {
+      "path": "build/v6r-fw-02/static-bound.json",
+      "bytes": 201784,
+      "sha256": "3c0879684fa9640c76a9265c995960ea4a2b6762b01990d1640e81a33eb4a052"
+    },
+    {
+      "path": "build/v6r-fw-02/config.json",
+      "bytes": 1034,
+      "sha256": "89d53959ac7d3747ad191f224207ba986de2929c70774ed68e8657170eab4178"
+    },
+    {
+      "path": "build/v6r-fw-02/generated/mt_firmware_build.h",
+      "bytes": 130,
+      "sha256": "1de425e142230bd4bd24bb2d6b1d739fc0e6bfa4a9f82a0f31520e5f33c120e6"
+    },
+    {
+      "path": "build/v6r-fw-02/generated/board.c",
+      "bytes": 944,
+      "sha256": "7aac5cf31caab6e525e18d0d4d52ef431d2bd20a0e86fa0a7c9c64807fe99b45"
+    },
+    {
+      "path": "build/v6r-fw-02/objects/board.d",
+      "bytes": 599,
+      "sha256": "e3b6c5e54d43c8de96fb7c19cc0f3d471dcf11243e9c9878fda75b31701546d7"
+    },
+    {
+      "path": "build/v6r-fw-02/objects/29-mt_stream_progress.d",
+      "bytes": 6823,
+      "sha256": "423a90f6fbe8216b14dca829ad1ebdf101bde4daed1dfb970d2701aedd3fac71"
+    },
+    {
+      "path": "build/v6r-fw-02/objects/30-mt_usb_gate.d",
+      "bytes": 1080,
+      "sha256": "12760cda8dd53f1bc92d55601e3e070a94a83c028eaf0e215cc89d2e4ca6c134"
+    },
+    {
+      "path": "build/v6r-fw-02/objects/30-mt_usb_gate.su",
+      "bytes": 716,
+      "sha256": "655bdc9ba56c4d58b81f8bad63b7d2ef59e4099047f59b60671e7d3260cf0bff"
+    },
+    {
+      "path": "build/v6r-fw-02/objects/13-dcd_stm32_fsdev.su",
+      "bytes": 2776,
+      "sha256": "fe8314ab61131594b4d6770787f6d35e91dd7b24460c66f9fd590a4c3cdbaa6c"
+    },
+    {
+      "path": "build/v6r-fw-02/image.map",
+      "bytes": 85376,
+      "sha256": "b5b43c1a500e48233979ffea03517e88823e37ef20e49370d43b49e98fffaaba"
+    },
+    {
+      "path": "build/v6r-fw-02/image.dis",
+      "bytes": 776374,
+      "sha256": "24109fe16503df4f46bc6efbe3c0fceaec36c5be7902fefae8170b66a84373d7"
+    },
+    {
+      "path": "build/v6r-fw-02/image.nm",
+      "bytes": 20048,
+      "sha256": "fc2379cadb3ee7b59a1c3c888f0597106ff5576a9a422957f3f89b2f84008407"
+    },
+    {
+      "path": "build/v6r-fw-02/MotortesterV2-stream-candidate.bin",
+      "bytes": 46820,
+      "sha256": "dd6e8322488a1d4ada50c2c722820f971b4b4782c303bdafb1410180e2efc8f1"
+    },
+    {
+      "path": "build/v6r-fw-02/MotortesterV2-stream-candidate.elf",
+      "bytes": 84552,
+      "sha256": "fa7307ac6a6c30a58e8fd54223bfa7692b8cf65417288d99e51a45b85030593f"
+    },
+    {
+      "path": "build/v6r-fw-02/patched/dcd_stm32_fsdev.c",
+      "bytes": 40873,
+      "sha256": "2aa4c4ab8511790ab8e693553ebb6ad55b5ca4ea1f4ea09c89eea8c9bfbc79d1"
+    },
+    {
+      "path": "build/v6r-fw-02/patched/v2/platform/mt_usb_gate.c",
+      "bytes": 6090,
+      "sha256": "a0c6cf54c0f9e8a322143a3e7ecbaa7b32db9ab3d046525c2ff0fb278e65e31b"
+    },
+    {
+      "path": "build/v6r-fw-02/patched/v2/platform/mt_usb_gate.h",
+      "bytes": 2296,
+      "sha256": "2128cff35f6ac01dcc684f50b6fc2acd5dffed2161e89c9e04bf1ad4f62ca04d"
+    },
+    {
+      "path": "build/v6r-fw-02/patched/v2/platform/mt_stream_progress.c",
+      "bytes": 8062,
+      "sha256": "938666ea04c46583e31173ed741dc3e1f10a38c7fad7db0149718e6242d0c31b"
+    }
+  ],
+  "native_evidence": [
+    {
+      "path": "build/v6r-native-01/result.json",
+      "bytes": 38215,
+      "sha256": "d9112d935c2c54f9ab39b4160937edaa5c4a225eeebac33fed66f3ac347f72d0"
+    },
+    {
+      "path": "build/v6r-native-01/source-equivalence.json",
+      "bytes": 13301,
+      "sha256": "741b46098dd010656b5a6538d543db6eb700524c62198feb4b36d53be2a3feba"
+    },
+    {
+      "path": "build/v6r-native-01/model.c",
+      "bytes": 21759,
+      "sha256": "39a0b8af7903489b1dd5f096b403ba41b71eda067f60f223dae8663e4b3b8123"
+    },
+    {
+      "path": "build/v6r-native-01/model.exe",
+      "bytes": 193024,
+      "sha256": "589ecf72d180410ae19de76d427da82a093091f6475ca17dd1c4d1e20f867e36"
+    },
+    {
+      "path": "build/v6r-native-01/model.stdout",
+      "bytes": 657,
+      "sha256": "84518e7de201bec3c39732f91ff276e590ad533c4c90bbeecfaeaf781e861fc6"
+    },
+    {
+      "path": "build/v6r-native-01/model.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "build/v6r-native-01/compile.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "build/v6r-native-01/compile.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "build/v6r-native-01/actual-gate.bin",
+      "bytes": 24,
+      "sha256": "1d36b20e36aea27d4fbc2a1ce1705dd201e53e8cc21e6dfdd38273e8cf28eb44"
+    },
+    {
+      "path": "build/v6r-native-01/actual-progress.bin",
+      "bytes": 64,
+      "sha256": "f5e6178675f0a43733c099abb4c0c85504536d7e70e5f5dc9692d754ee1c75aa"
+    },
+    {
+      "path": "build/v6r-native-01/actual-legacy.bin",
+      "bytes": 136,
+      "sha256": "0ecef68e042a61e93c5dbbac31853f68a5ed007189a9840944d153dab38c93fc"
+    },
+    {
+      "path": "build/v6r-native-01/companion.json",
+      "bytes": 682,
+      "sha256": "58931e913be5e0f99f1c5d52ed7341ff809f6c277c5e169586b927082a2e9f4d"
+    }
+  ],
+  "root_host_evidence": [
+    {
+      "path": "docs/streaming-usb-gate.md",
+      "bytes": 23617,
+      "sha256": "c543d4adaaa2cdf9b609722ca5cb514c520ab6f71d9e539ef8f88329f8c49995"
+    },
+    {
+      "path": "docs/reviews/v2-06r-contract-review.md",
+      "bytes": 11072,
+      "sha256": "5383964626a5c60859afd1a0112cf62faace4716f5bfa6f243371a8af56e5811"
+    },
+    {
+      "path": "host/tools/decode_usb_gate.py",
+      "bytes": 13239,
+      "sha256": "fc9d6a93507f4f5fd224d3cc6562e2257e69b9291e0782d9e06f310f4ecdd1ba"
+    },
+    {
+      "path": "host/tools/decode_stream_progress.py",
+      "bytes": 10837,
+      "sha256": "cf2f936637e50b3d38daac3530ea1f6ec78fd172068afc7063d03010686a39f4"
+    },
+    {
+      "path": "host/tests/usb_gate_decoder_check.py",
+      "bytes": 13904,
+      "sha256": "956d3d76a6565c8e55c2d37ed38e726fd7a2ec5be909565c4f3708a5b92c03cf"
+    },
+    {
+      "path": "build/v6r-decoder-01/result.json",
+      "bytes": 9959,
+      "sha256": "4b839f20c3cd3f2963534373e4b2f21664d0248765e63dd9a0fca890a199b9d0"
+    },
+    {
+      "path": "build/v6r-decoder-01/actual-fixture-decoded.json",
+      "bytes": 6023,
+      "sha256": "072d1f5f7223797101d99a12a67b62a346378eb5855f8e1e2652332f6e6b63af"
+    },
+    {
+      "path": "build/v6r-decoder-01/legacy-binding.json",
+      "bytes": 447,
+      "sha256": "51a724ff1b923dd03882cf3c96d73e3ba541a9dff0b58dc90e53eee9be19fb1b"
+    }
+  ],
+  "author_evidence": [
+    {
+      "path": "build/v6r-analysis/prepare_gate.py",
+      "bytes": 7197,
+      "sha256": "6a98141d35cde94e3daa14302f1fc2dd85a5fc663906e2f1a779e99b50a38388"
+    },
+    {
+      "path": "build/v6r-analysis/author-audit.md",
+      "bytes": 5587,
+      "sha256": "02cfc572a8b50b237758321bcc2841d89959432e97797210b5015fcc6c38ff84"
+    },
+    {
+      "path": "build/v6r-analysis/make_freeze.py",
+      "bytes": 6761,
+      "sha256": "4e5bf190b50b14d261a04a7bea59864fb5f53fef007d4087f665b88c3c0761b9"
+    }
+  ],
+  "failed_attempts": {
+    "ARM01": {
+      "status": "FAILED",
+      "reason": "New continuation helper preceded existing lifecycle function definition; missing prototype caused compile13 rejection. Only forward declaration added before repaired ARM02.",
+      "evidence": [
+        {
+          "path": "build/v6r-fw-01/receipt.json",
+          "bytes": 261508,
+          "sha256": "5d05d7d0f1d4c944ba56b2a049c4bc81e9330b075540c48d54420316bff920f7"
+        },
+        {
+          "path": "build/v6r-fw-01/compile-13-dcd_stm32_fsdev.stderr",
+          "bytes": 2479,
+          "sha256": "d254674028cf6fb6c5e117755756d50e07c506730f4103fcb131d6f2b3e59705"
+        },
+        {
+          "path": "build/v6r-fw-01/recipe/overlays/usb-gate.json",
+          "bytes": 491,
+          "sha256": "d5933b57ee2656e7253cbc3a173f8460c20ab64e41401c67d6604bca1bda7960"
+        },
+        {
+          "path": "build/v6r-fw-01/recipe/overlays/v2-usb-gate-dcd_stm32_fsdev.c.patch",
+          "bytes": 8523,
+          "sha256": "2d21687474ebc3c4c4515c843291935853955d9c8d951058ff7f03ec7be7e8bc"
+        }
+      ]
+    },
+    "native_failed_attempts": []
+  },
+  "resources": {
+    "BIN_bytes": 46820,
+    "BIN_sha256": "dd6e8322488a1d4ada50c2c722820f971b4b4782c303bdafb1410180e2efc8f1",
+    "ELF_sha256": "fa7307ac6a6c30a58e8fd54223bfa7692b8cf65417288d99e51a45b85030593f",
+    "text": 46692,
+    "data": 128,
+    "bss": 12156,
+    "all_new_static_private_alignment_bytes": 24,
+    "whole_gate_symbol_bytes": 24,
+    "legacy136_address": "0x20002f1c",
+    "progress64_address": "0x20002fa4",
+    "gate24_address": "0x20002fe4",
+    "ram_bytes": 20480,
+    "stack_reserve_bytes": 8192,
+    "static_plus_stack_reserved_bytes": 20476,
+    "spare_bytes": 4,
+    "conditional_stack_upper_bytes": 6196,
+    "conditional_stack_aligned_bytes": 6200,
+    "physical_stack_or_WCET_verified": false
+  },
+  "verification": {
+    "ARM_attempts": 2,
+    "successful_ARM_builds": 1,
+    "native_executions": 1,
+    "offline_host_decoder_checks": 1,
+    "source_equivalence_sha256": "741b46098dd010656b5a6538d543db6eb700524c62198feb4b36d53be2a3feba",
+    "new_hardware_GUI_package_wire_tests": 0,
+    "common_config_generated_SK_board_N_gate_binding": true,
+    "N64_legacy136_layouts_unchanged": true,
+    "SJ_functional_sources_objects_unchanged_except_DCD_observation_N_hooks": true,
+    "working_DCD_MMIO_conditions_order_preserved": true
+  },
+  "hook_map": {
+    "initialize": "Actual N begin before N ACTIVE",
+    "freeze": "Actual N snapshot outer lock, before app_enter, even refused scope",
+    "publication": "DCD EP82 submit_begin before xfer field overwrite; success publication after original edpt_xfer and before existing caller guard release",
+    "grant_and_other_ISR": "Invalidate applicability within existing PRIMASK boundaries",
+    "lifecycle_cancel": "Existing observed ISR status/stall/clearstall/closeall invalidation; generic disconnect/deinit remain unreachable",
+    "decision": "First evaluated false of old continuation expression; actual CNT value exposed only when read; pureFINAL/backing and mixed metadata use original post-RX selection"
+  },
+  "fixture_scope": {
+    "producer": "Actual N/G modules and extracted DCD publishers/grant/timer/continuation/metadata blocks",
+    "legacy136": "Explicit synthetic native setup with exact common SK header, not legacy-module execution or physical identity",
+    "gate": "Serial1,HOLD_TIME,event3000,total384,PREqueued64,age501,budget5",
+    "progress": "Clean begin1000/end5000,prepare400,positive401,last2400,gap2600",
+    "paired_identity": "gen7,nonce0123456789abcdef,build5632534b"
+  },
+  "limits": [
+    "Pre-CLOSING last applicable gate episode only; later HELD64=1 does not prove the same episode.",
+    "Native USB read journal uses common base access; exact fields/order separately source-proven.",
+    "PMA/register/DWT and legacy pairing are synthetic; no complete USB/DMA/runtime/hardware execution.",
+    "24B bank plus annotation calls/stores change execution time;500us is not whole-IRQ WCET.",
+    "Only4bytes remain above reserved8192 stack; no further private buffer/counter added.",
+    "Instrumentation PASS is not queue-full correction, continuous150k qualification, analogue accuracy or Flash permission."
+  ],
+  "independent_source_review": "PENDING",
+  "hardware_executed": false,
+  "flash_approved": false
+}

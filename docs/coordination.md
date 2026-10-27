@@ -4,7 +4,8 @@ R1: higher_fs_review — firmware/v2-stream/**, tests/v2-stream-firmware/**,
 build/v6r-* кроме root board/decoder/archive; только24B gate observer по
 принятому контракту. Host_200k — host/tools/decode_usb_gate.py,
 host/tools/decode_stream_progress.py (явный SK), host/tests/usb_gate_decoder_check.py
-и build/v6r-decoder-*. Root — канонические документы, архивы и единолично
+и build/v6r-decoder-*. Также разрешена одна строка negative-build fixture
+в host/tests/stream_progress_decoder_check.py (SK теперь поддержан). Root — канонические документы, архивы и единолично
 аппаратура. Stream200_critic — независимое ревью contract/source/plan/result,
 не пишет реализацию. До отдельного плана новых START/Flash/Reset нет.
 

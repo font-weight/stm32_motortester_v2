@@ -1,0 +1,33 @@
+--- a/protocol/mt_live_device.h
++++ b/protocol/mt_live_device.h
+@@ -103,8 +103,8 @@
+     uint8_t tx[MT_WIRE_FRAME_MAX];
+     size_t tx_length, tx_offset;
+     uint8_t tx_type;
+-    uint64_t tx_nonce, tx_first_index;
+-    uint16_t tx_count;
++    uint64_t tx_nonce, tx_first_index, tx_second_first_index;
++    uint16_t tx_count,tx_blocks,tx_first_slot,tx_second_slot,tx_first_count,tx_second_count;
+     uint32_t tx_sequence;
+     size_t last_write_accepted;
+     unsigned last_write_known;
+@@ -129,7 +129,7 @@
+     uint64_t head_index;
+     uint64_t next_index;
+     uint64_t tx_nonce;
+-    uint64_t tx_first_index;
++    uint64_t tx_first_index,tx_second_first_index,second_first_index;
+     uint32_t generation;
+     uint32_t tx_next;
+     uint32_t tx_sequence;
+@@ -146,8 +146,8 @@
+     unsigned tx_exhausted;
+     unsigned queue_sealed;
+     unsigned intents;
+-    uint16_t tx_count;
+-    uint16_t head_count;
++    uint16_t tx_count,tx_blocks,tx_first_slot,tx_second_slot,tx_first_count,tx_second_count;
++    uint16_t head_count,second_count,second_slot;
+     uint16_t first_reason;
+     uint16_t terminal_flags;
+     uint8_t tx_type;

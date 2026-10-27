@@ -1,0 +1,13 @@
+--- a/protocol/mt_wire.h
++++ b/protocol/mt_wire.h
+@@ -49,4 +49,10 @@
+ mt_wire_result mt_wire_decode_revision(const uint8_t *frame, size_t length,
+                                       uint8_t major, uint8_t minor,
+                                       mt_wire_message *message);
++/* Negotiation-only envelope decode. Revision outputs and message are published
++ * together after length/CRC/reserved validation, unchanged on any failure.
++ * All output objects must be nonoverlapping and must not alias frame storage.
++ * Payload/session compatibility remains the caller's responsibility. */
++mt_wire_result mt_wire_decode_envelope(const uint8_t *frame,size_t length,
++    mt_wire_message *message,uint8_t *major,uint8_t *minor);
+ #endif

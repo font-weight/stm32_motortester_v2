@@ -1,0 +1,113 @@
+
+objects/14-fsdev_common.o:     file format elf32-littlearm
+
+
+Disassembly of section .text.fsdev_core_reset:
+
+00000000 <fsdev_core_reset>:
+   0:	2303      	movs	r3, #3
+   2:	4a12      	ldr	r2, [pc, #72]	@ (4c <fsdev_core_reset+0x4c>)
+   4:	b082      	sub	sp, #8
+   6:	f8a2 3040 	strh.w	r3, [r2, #64]	@ 0x40
+   a:	2300      	movs	r3, #0
+   c:	9300      	str	r3, [sp, #0]
+   e:	9b00      	ldr	r3, [sp, #0]
+  10:	2bc7      	cmp	r3, #199	@ 0xc7
+  12:	d912      	bls.n	3a <fsdev_core_reset+0x3a>
+  14:	f8b2 3040 	ldrh.w	r3, [r2, #64]	@ 0x40
+  18:	f023 0302 	bic.w	r3, r3, #2
+  1c:	041b      	lsls	r3, r3, #16
+  1e:	0c1b      	lsrs	r3, r3, #16
+  20:	f8a2 3040 	strh.w	r3, [r2, #64]	@ 0x40
+  24:	2300      	movs	r3, #0
+  26:	9301      	str	r3, [sp, #4]
+  28:	9b01      	ldr	r3, [sp, #4]
+  2a:	2bc7      	cmp	r3, #199	@ 0xc7
+  2c:	d909      	bls.n	42 <fsdev_core_reset+0x42>
+  2e:	2200      	movs	r2, #0
+  30:	4b06      	ldr	r3, [pc, #24]	@ (4c <fsdev_core_reset+0x4c>)
+  32:	f8a3 2044 	strh.w	r2, [r3, #68]	@ 0x44
+  36:	b002      	add	sp, #8
+  38:	4770      	bx	lr
+  3a:	bf00      	nop
+  3c:	9b00      	ldr	r3, [sp, #0]
+  3e:	3301      	adds	r3, #1
+  40:	e7e4      	b.n	c <fsdev_core_reset+0xc>
+  42:	bf00      	nop
+  44:	9b01      	ldr	r3, [sp, #4]
+  46:	3301      	adds	r3, #1
+  48:	e7ed      	b.n	26 <fsdev_core_reset+0x26>
+  4a:	bf00      	nop
+  4c:	40005c00 	.word	0x40005c00
+
+Disassembly of section .text.fsdev_deinit:
+
+00000000 <fsdev_deinit>:
+   0:	2201      	movs	r2, #1
+   2:	4b0a      	ldr	r3, [pc, #40]	@ (2c <fsdev_deinit+0x2c>)
+   4:	2103      	movs	r1, #3
+   6:	f8a3 2040 	strh.w	r2, [r3, #64]	@ 0x40
+   a:	2200      	movs	r2, #0
+   c:	b082      	sub	sp, #8
+   e:	f8a3 2044 	strh.w	r2, [r3, #68]	@ 0x44
+  12:	f8a3 1040 	strh.w	r1, [r3, #64]	@ 0x40
+  16:	9201      	str	r2, [sp, #4]
+  18:	9b01      	ldr	r3, [sp, #4]
+  1a:	2bc7      	cmp	r3, #199	@ 0xc7
+  1c:	d901      	bls.n	22 <fsdev_deinit+0x22>
+  1e:	b002      	add	sp, #8
+  20:	4770      	bx	lr
+  22:	bf00      	nop
+  24:	9b01      	ldr	r3, [sp, #4]
+  26:	3301      	adds	r3, #1
+  28:	9301      	str	r3, [sp, #4]
+  2a:	e7f5      	b.n	18 <fsdev_deinit+0x18>
+  2c:	40005c00 	.word	0x40005c00
+
+Disassembly of section .text.pma_align_buffer_size:
+
+00000000 <pma_align_buffer_size>:
+   0:	283e      	cmp	r0, #62	@ 0x3e
+   2:	b510      	push	{r4, lr}
+   4:	bf87      	ittee	hi
+   6:	2320      	movhi	r3, #32
+   8:	2401      	movhi	r4, #1
+   a:	2400      	movls	r4, #0
+   c:	2302      	movls	r3, #2
+   e:	bf8b      	itete	hi
+  10:	301f      	addhi	r0, #31
+  12:	3001      	addls	r0, #1
+  14:	f3c0 1047 	ubfxhi	r0, r0, #5, #8
+  18:	f3c0 0047 	ubfxls	r0, r0, #1, #8
+  1c:	700c      	strb	r4, [r1, #0]
+  1e:	7010      	strb	r0, [r2, #0]
+  20:	4358      	muls	r0, r3
+  22:	bd10      	pop	{r4, pc}
+
+Disassembly of section .text.btable_set_rx_bufsize:
+
+00000000 <btable_set_rx_bufsize>:
+   0:	b537      	push	{r0, r1, r2, r4, r5, lr}
+   2:	4605      	mov	r5, r0
+   4:	460c      	mov	r4, r1
+   6:	4610      	mov	r0, r2
+   8:	f10d 0106 	add.w	r1, sp, #6
+   c:	f10d 0207 	add.w	r2, sp, #7
+  10:	f7ff fffe 	bl	0 <btable_set_rx_bufsize>
+			10: R_ARM_THM_CALL	pma_align_buffer_size
+  14:	f89d 2006 	ldrb.w	r2, [sp, #6]
+  18:	f89d 3007 	ldrb.w	r3, [sp, #7]
+  1c:	1a9b      	subs	r3, r3, r2
+  1e:	03d2      	lsls	r2, r2, #15
+  20:	ea42 2283 	orr.w	r2, r2, r3, lsl #10
+  24:	b292      	uxth	r2, r2
+  26:	2a00      	cmp	r2, #0
+  28:	bf08      	it	eq
+  2a:	f44f 4200 	moveq.w	r2, #32768	@ 0x8000
+  2e:	eb04 0345 	add.w	r3, r4, r5, lsl #1
+  32:	00db      	lsls	r3, r3, #3
+  34:	f103 4380 	add.w	r3, r3, #1073741824	@ 0x40000000
+  38:	f503 43c0 	add.w	r3, r3, #24576	@ 0x6000
+  3c:	809a      	strh	r2, [r3, #4]
+  3e:	b003      	add	sp, #12
+  40:	bd30      	pop	{r4, r5, pc}

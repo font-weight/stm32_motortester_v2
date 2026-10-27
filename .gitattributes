@@ -132,6 +132,11 @@ docs/verification/v2-usb-gate/**/*.stdout -whitespace
 docs/verification/v2-usb-gate/**/*.stderr -whitespace
 docs/verification/v2-usb-gate/**/*.map -whitespace
 docs/verification/v2-usb-gate/**/*.patch -whitespace
+firmware/v2-stream/overlays/usb-gate.json -text
+tests/v2-stream-firmware/usb_gate_trace_model.c -text
+tests/v2-stream-firmware/check_usb_gate_trace.py -text
+host/tools/decode_usb_gate.py -text
+host/tests/usb_gate_decoder_check.py -text
 tests/v2-stream-firmware/prefetch_model.c -text
 tests/v2-stream-firmware/check_prefetch.py -text
 firmware/v2-stream/overlays/prefetch.json -text
@@ -155,3 +160,11 @@ docs/verification/v2-200ksps-board2/attempt-02/*.txt -whitespace
 # V2 firmware overlays are applied only after an exact byte-hash check.
 firmware/v2-stream/overlays/*.patch -text whitespace=-blank-at-eol,-blank-at-eof
 firmware/v2-stream/overlays/mt_v2_crc32.h -text
+
+firmware/v2-stream/README.md -text
+
+firmware/v2-stream/build_windows.py -text
+
+firmware/v2-stream/config.json -text
+
+firmware/v2-stream/overlays/board_inputs.py -text

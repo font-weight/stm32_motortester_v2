@@ -1,0 +1,77 @@
+{
+  "schema": "motortester-v2-selectable-overlay-1",
+  "patches": [
+    {
+      "source": "patched/v2/acquisition/mt_sample_queue.h",
+      "target": "v2/acquisition/mt_sample_queue.h",
+      "patch": "v2-selectable-acquisition-mt_sample_queue.h.patch",
+      "source_sha256": "929eedaaff900286fc07b8bbffa6794fc5d044e12a4ce25dee3fb1297180b393",
+      "patch_sha256": "a1fb04e70a3bf5b2c4f96ddc646fb0b50de83d042750d833e289fab4b07f98d0",
+      "result_sha256": "87931cd550c6f32e54ff0f1c66ee5843b423b0f93848f706386d2ae47ae9e7c2"
+    },
+    {
+      "source": "patched/v2/acquisition/mt_sample_queue.c",
+      "target": "v2/acquisition/mt_sample_queue.c",
+      "patch": "v2-selectable-acquisition-mt_sample_queue.c.patch",
+      "source_sha256": "49a1232056101f57423947e266d6bd398eab6b9cae86f3e1d9babf0eb311dc7f",
+      "patch_sha256": "1f30e45374606c9c08c1313cc1d420dc534580f3807e91c5ca70202b0c503f47",
+      "result_sha256": "bf4994cc329e44cce5d6bbe79225539e60daa53bab76335538ee894bf0b82a7f"
+    },
+    {
+      "source": "patched/v2/protocol/mt_wire.h",
+      "target": "v2/protocol/mt_wire.h",
+      "patch": "v2-selectable-protocol-mt_wire.h.patch",
+      "source_sha256": "e8edcb0aea5cdc946106db3146d358ff9061970313efaf67102b216653c0273d",
+      "patch_sha256": "314cb3641db0b7ebdda9d77435714da6ebbfb1dd15080c6e61d685d7d2695a03",
+      "result_sha256": "d806649d10360398e031b84e830071fb9b62728feae9fe1c44264aa8d0237f38"
+    },
+    {
+      "source": "patched/v2/protocol/mt_wire.c",
+      "target": "v2/protocol/mt_wire.c",
+      "patch": "v2-selectable-protocol-mt_wire.c.patch",
+      "source_sha256": "db75cb70135ecde3c4f3aaefb032a55cb59808e7541fe232955d302043382d8d",
+      "patch_sha256": "6c8ead57943dc3d6f19dfd3338240db65298ac73d8a2fcd11297b4c15a755556",
+      "result_sha256": "f8bf4f55f2e4fc769aae0cb57b826dc116486ebefd78279ec130e133cb520fbf"
+    },
+    {
+      "source": "patched/v2/protocol/mt_live_device.h",
+      "target": "v2/protocol/mt_live_device.h",
+      "patch": "v2-selectable-protocol-mt_live_device.h.patch",
+      "source_sha256": "4576dcdf81aaabde281af9613de6ff1d296787afda60138c83f783a570a6f75f",
+      "patch_sha256": "8e5dc4179f189908d943f127855f90bbc2987d6728cd1d61a9b624a5e6337c7a",
+      "result_sha256": "bf86fd103437175a782d987ce95e712021061126e6c7c8cada16b20e8930ab19"
+    },
+    {
+      "source": "patched/v2/protocol/mt_live_device.c",
+      "target": "v2/protocol/mt_live_device.c",
+      "patch": "v2-selectable-protocol-mt_live_device.c.patch",
+      "source_sha256": "9b952cd8e19eaa3ff4879429b1e925ca20ff7114c5a1d6d037afd1ed0baa3f33",
+      "patch_sha256": "3184d86b8d93c778134e9b4508a8b7c3eb5c642bce047bef4973313ccfae289c",
+      "result_sha256": "d2b1eb83b41f4bb89b6dba09495dbd37e16451a464545f51939f1bd6659f035c"
+    },
+    {
+      "source": "patched/v2/platform/adc_timer_dma.h",
+      "target": "v2/platform/adc_timer_dma.h",
+      "patch": "v2-selectable-platform-adc_timer_dma.h.patch",
+      "source_sha256": "8c16e9f23255f34b5503d2aab418cda16022cf5bf6f7b6dedccd5e83950505ca",
+      "patch_sha256": "74ff78fd077e003f6d97226b39f3496f1cde216a14e81a596dee18b3ad10e352",
+      "result_sha256": "6efbf2deab099513e9df6654b687cc322e4685053abf53957972d67cc23061a2"
+    },
+    {
+      "source": "patched/v2/platform/adc_timer_dma.c",
+      "target": "v2/platform/adc_timer_dma.c",
+      "patch": "v2-selectable-platform-adc_timer_dma.c.patch",
+      "source_sha256": "2fdd4c15116ba2840e647d4111c76747cec1f217543a60c01582a8c5ae0f503d",
+      "patch_sha256": "4bd6492f4e4cf76c28135736f4256e7fff9d7191d3bcddfbde36423d3fe3cd5d",
+      "result_sha256": "7030ca808b3f2edb9f7943af616cf99f73de35820a1169701142c829118896b9"
+    },
+    {
+      "source": "patched/v2/app/mt_live_adc.c",
+      "target": "v2/app/mt_live_adc.c",
+      "patch": "v2-selectable-app-mt_live_adc.c.patch",
+      "source_sha256": "5995b7d664e4b9446e9e29400f34b5dd9a2e4c33acb50f32a35db802c55c930a",
+      "patch_sha256": "0d0f6e24a87484f593774fe34cdd244d802d5cfc331eb111f7976ea2478b7ff7",
+      "result_sha256": "49e7048249d6fa4053e7504ce4657f7819878dc2c61c027cbdc3c596e812b6cf"
+    }
+  ]
+}

@@ -1,0 +1,15 @@
+ M .gitattributes
+ M firmware/v2-stream/README.md
+ M firmware/v2-stream/build_windows.py
+ M firmware/v2-stream/config.json
+ M firmware/v2-stream/overlays/board_inputs.py
+ M firmware/v2-stream/progress/mt_stream_progress.c
+ M host/tests/stream_progress_decoder_check.py
+ M host/tools/decode_stream_progress.py
+?? firmware/v2-stream/overlays/usb-gate.json
+?? firmware/v2-stream/overlays/v2-usb-gate-dcd_stm32_fsdev.c.patch
+?? firmware/v2-stream/progress/mt_usb_gate.c
+?? firmware/v2-stream/progress/mt_usb_gate.h
+?? host/tests/usb_gate_decoder_check.py
+?? host/tools/decode_usb_gate.py
+?? tests/v2-stream-firmware/usb_gate_trace_model.c

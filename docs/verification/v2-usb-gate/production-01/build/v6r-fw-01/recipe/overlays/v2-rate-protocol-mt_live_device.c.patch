@@ -1,0 +1,53 @@
+--- a/protocol/mt_live_device.c
++++ b/protocol/mt_live_device.c
+@@ -66,12 +66,22 @@
+     d->error_type=type; d->error_code=code; d->error_request=request; d->want_error=1;
+ }
+ 
++/* Keep the large preliminary Stop scratch out of accept_frame's frame.
++ * Its lifetime ends before START/terminate/recovery may allocate another.
++ * noinline is intentional: the exact linked stack analysis checks this split. */
++static __attribute__((noinline)) int quiesce_before_start(mt_live_device *d) {
++    mt_live_snapshot s;
++    memset(&s,0,sizeof s);
++    d->io.quiesce(d->io.context,&s);
++    return s.hardware_off==1u;
++}
++
+ /* Validate all snapshot fields before publishing any tail sample. A known
+  * produced endpoint can exceed the retained prefix after a certified loss. */
+ static int snapshot_valid(const mt_live_device *d,const mt_live_snapshot *s) {
+     uint64_t end=d->queue.next_index;
+     unsigned b,i;
+-    if(s->hardware_off>1u || s->produced_known>1u || s->tail_count>2u ||
++    if(s->hardware_off>1u || s->produced_known>1u || s->tail_count>8u ||
+        s->acquisition_reason>6u)return 0;
+     for(b=0;b<s->tail_count;b++) {
+         const mt_live_tail *t=&s->tail[b];
+@@ -201,7 +211,6 @@
+         d->want_caps=1; d->caps_request=m.request; return;
+     }
+     if(m.type==START) {
+-        mt_live_snapshot s;
+         uint64_t after;
+         int started;
+         if(d->state!=MT_LIVE_STOPPED) { recover(d,MT_LIVE_ERR_PROTOCOL); return; }
+@@ -214,8 +223,7 @@
+         if(d->tx_next>=RESERVE) { recover(d,MT_LIVE_ERR_PROTOCOL); return; }
+         d->generation=m.request;
+         d->want_start=1; /* Reserve the response before any hardware call. */
+-        memset(&s,0,sizeof s); d->io.quiesce(d->io.context,&s);
+-        d->hardware_off=(s.hardware_off==1u);
++        d->hardware_off=(unsigned)quiesce_before_start(d);
+         if(!now(d,&after))return;
+         d->state=MT_LIVE_STARTING;
+         if(d->hardware_off) {
+@@ -311,7 +319,7 @@
+     } else if(d->want_caps) {
+         type=CAPS_REPLY; request=d->caps_request; m.payload_length=24;
+         w32(m.payload,1); w16(m.payload+4,1); m.payload[7]=12;
+-        w32(m.payload+8,50000); w32(m.payload+12,1); w16(m.payload+16,128); w32(m.payload+20,1);
++        w32(m.payload+8,200000); w32(m.payload+12,1); w16(m.payload+16,128); w32(m.payload+20,1);
+     } else if(d->want_start) {
+         type=START_ACK; request=d->generation; m.payload_length=16;
+         w32(m.payload,d->generation); w32(m.payload+4,1);

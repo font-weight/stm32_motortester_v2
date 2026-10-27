@@ -1,0 +1,13 @@
+{
+  "schema": "motortester-v2-usb-gate-overlay-1",
+  "patches": [
+    {
+      "source": "patched/dcd_stm32_fsdev.c",
+      "target": "dcd_stm32_fsdev.c",
+      "patch": "v2-usb-gate-dcd_stm32_fsdev.c.patch",
+      "source_sha256": "b763cceef6be395782aa621a65d9cbbdfe9d5fe61bddcc3d44dc143254c30356",
+      "patch_sha256": "2d21687474ebc3c4c4515c843291935853955d9c8d951058ff7f03ec7be7e8bc",
+      "result_sha256": "7e8e0201cd9f0e8ef89d80dce3af0d20974f6037ef2e2354bee1a7a21aa4c2ab"
+    }
+  ]
+}
