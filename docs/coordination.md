@@ -1,5 +1,13 @@
 # Координация самостоятельного V2
 
+R1: higher_fs_review — firmware/v2-stream/**, tests/v2-stream-firmware/**,
+build/v6r-* кроме root board/decoder/archive; только24B gate observer по
+принятому контракту. Host_200k — host/tools/decode_usb_gate.py,
+host/tools/decode_stream_progress.py (явный SK), host/tests/usb_gate_decoder_check.py
+и build/v6r-decoder-*. Root — канонические документы, архивы и единолично
+аппаратура. Stream200_critic — независимое ревью contract/source/plan/result,
+не пишет реализацию. До отдельного плана новых START/Flash/Reset нет.
+
 После Q2: root — архив физического результата, канонические документы и
 единолично аппаратура; новых START/Reset/Flash сейчас нет. Higher_fs_review —
 только build/v6q-followup/analysis.* с offline-разбором последнего фрагмента,

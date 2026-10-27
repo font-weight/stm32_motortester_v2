@@ -1,0 +1,67 @@
+{
+  "schema": "motortester-v2-06r-independent-contract-review-1",
+  "date": "2026-10-27",
+  "critic": "/root/stream200_critic",
+  "independent_non_author": true,
+  "status": "PASS",
+  "score": 9.6,
+  "scope": "Exact R3/SK diagnostic contract only; implementation-ready design, not source/image/hardware acceptance",
+  "implementation_design_accepted": true,
+  "bounded_implementation_start_allowed": true,
+  "production_source_accepted": false,
+  "firmware_image_accepted": false,
+  "hardware_approved": false,
+  "contract_path": "docs/streaming-usb-gate.md",
+  "contract_bytes": 23617,
+  "contract_sha256": "c543d4adaaa2cdf9b609722ca5cb514c520ab6f71d9e539ef8f88329f8c49995",
+  "archive_manifest": "docs/verification/v2-usb-gate/design-02/manifest.json",
+  "archive_manifest_sha256": "ad0ee03d6298034c606408ead916850db81c8603b62dcd00f5affdf9f05d4eb2",
+  "contract_copies_personally_verified": 3,
+  "contract_copies_byte_equal": true,
+  "prior_unaccepted_r2_sha256": "d2cbff0f82b040413544a7e249443f195822c5ef32f1bb764a5d9ac4fb1ebfa9",
+  "analysis_sha256": "89237d63cd7e161d9ad4a8154014d60c1b029d7132ecdabe61a1c9aa1d007641",
+  "source_base": "b8d72a76f623a53cea5f3fa308965ea48f852799",
+  "candidate_build_id": "0x5632534B",
+  "rubric": {
+    "C1": {"weight": 0.3, "score": 9.7},
+    "C2": {"weight": 0.2, "score": 9.6},
+    "C3": {"weight": 0.25, "score": 9.5},
+    "C4": {"weight": 0.15, "score": 9.5},
+    "C5": {"weight": 0.1, "score": 9.7}
+  },
+  "personal_verification": [
+    "Passive exact contract/delta/source and existing saved callgraph reads",
+    "Source/canonical/archive byte and SHA comparison",
+    "ABI24 byte arithmetic and conditional spare28 minus24 equals4; no new ARM claim",
+    "Existing bridge publication/cancel and runtime grant guards, whole-DCD PRIMASK wrapper",
+    "Saved SJ callgraph traversal:319 reachable addresses; listed disconnect/deinit functions not reachable from saved roots",
+    "F103 FSDEV ISO_ALLOC excludes standalone dcd_edpt_close path"
+  ],
+  "resolved_material_points": [
+    "Observed successful publication identity, failed-submit invalidation, initial unknown and sticky saturation",
+    "Pure FINAL eligibility distinct from mixed RX/TX and metadata errors; explicit ZLP",
+    "Normative sentinel/flags/decision matrix, PUBLISHED budget unknown, valid modulo age65535",
+    "First actually evaluated branch; no recomputed or extra TIME/endpoint MMIO",
+    "Init before N ACTIVE and freeze outside successful app scope under existing guard",
+    "APPLICABLE means episode before N CLOSING; later HELD64 cannot prove same episode"
+  ],
+  "implementation_obligations": [
+    "One targeted actual-C transition/hook/freeze runner with declared seams, no broad suite",
+    "Preserve original MMIO order/count, callback/rearm decisions and6/<500us budget",
+    "Exact shared generated SK identity and valid paired24/64/136 binding",
+    "Exact ARM whole-static growth<=24 and stack audit with8192 reserve; no hidden persistent fields",
+    "Strict offline decoder with historical versus later snapshot separation and observer-effect limits"
+  ],
+  "limitations": [
+    "No implementation, model, ARM, decoder or hardware executed by critic",
+    "New record measures evaluated gate history, not bandwidth or unique root cause",
+    "No atomic24/64 snapshot or no-intervening-event witness",
+    "Diagnostic stores and DWT reads can change timing; physical throughput unknown",
+    "A later CAP snapshot does not describe a fault after that cap"
+  ],
+  "open_p0_p1_in_contract_scope": [],
+  "open_physical_requirement": {"id": "P1-M2-01", "status": "OPEN", "requirement": "stable150k/30s"},
+  "previous_physical_review_unchanged": "docs/reviews/v2-06q-physical-review.md",
+  "previous_preliminary_review_unchanged": "docs/reviews/v2-06q-followup-review.md",
+  "report": "docs/reviews/v2-06r-contract-review.md"
+}

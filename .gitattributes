@@ -120,6 +120,18 @@ docs/verification/v2-postcommit-prefetch/**/*.map -whitespace
 docs/verification/v2-postcommit-prefetch/**/*.patch -whitespace
 docs/reviews/v2-06q*.md -text
 docs/streaming-postcommit-prefetch.md -text whitespace=cr-at-eol
+docs/streaming-usb-gate.md -text whitespace=cr-at-eol
+docs/reviews/v2-06r*.md -text
+docs/verification/v2-usb-gate/** -text whitespace=cr-at-eol
+docs/verification/v2-usb-gate/**/*.bin binary
+docs/verification/v2-usb-gate/**/*.o binary
+docs/verification/v2-usb-gate/**/*.elf binary
+docs/verification/v2-usb-gate/**/*.txt -whitespace
+docs/verification/v2-usb-gate/**/*.log -whitespace
+docs/verification/v2-usb-gate/**/*.stdout -whitespace
+docs/verification/v2-usb-gate/**/*.stderr -whitespace
+docs/verification/v2-usb-gate/**/*.map -whitespace
+docs/verification/v2-usb-gate/**/*.patch -whitespace
 tests/v2-stream-firmware/prefetch_model.c -text
 tests/v2-stream-firmware/check_prefetch.py -text
 firmware/v2-stream/overlays/prefetch.json -text
