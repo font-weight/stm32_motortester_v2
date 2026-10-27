@@ -1,0 +1,62 @@
+{
+  "scope": "Offline preparation only, no hardware",
+  "files": [
+    {
+      "source": "build/v6p-board-01/analyze_physical.py",
+      "source_sha256": "e2fa2076ca112f8dd0cb4c4aa484aff018884c416925e6b34a8a3549b0b7cb39",
+      "output": "build/v6q-board-01/analyze_physical.py",
+      "output_sha256": "444afb81fb1017dc5cdbae0fba00b9051423d541191727a3347fcf314904f44a",
+      "initial_output_sha256": "444afb81fb1017dc5cdbae0fba00b9051423d541191727a3347fcf314904f44a"
+    },
+    {
+      "source": "build/v6p-board-01/decode_diagnostics.py",
+      "source_sha256": "d7d4d462b6fece50f38f896e329478caeee0db2b5cb3105442606f281592e1b1",
+      "output": "build/v6q-board-01/decode_diagnostics.py",
+      "output_sha256": "df7f518d34025e314dde9d67ab254a6e6af355fad82c59921e66f0b2a2cd6e20",
+      "initial_output_sha256": "df7f518d34025e314dde9d67ab254a6e6af355fad82c59921e66f0b2a2cd6e20"
+    },
+    {
+      "source": "build/v6p-board-01/save_stopped_state.py",
+      "source_sha256": "d7ac3699fc100384e253713c8d8bf384d5012a266ce671e37fdafbb3c9a2e76e",
+      "output": "build/v6q-board-01/save_stopped_state.py",
+      "output_sha256": "3e08eae8e53406cc794cefe98a330bc60ced52b284bf01f13d6ebe8189f4580e",
+      "initial_output_sha256": "3e08eae8e53406cc794cefe98a330bc60ced52b284bf01f13d6ebe8189f4580e"
+    },
+    {
+      "source": "build/v6p-board-01/program_and_verify.py",
+      "source_sha256": "de8f0ee7702e7efc5116c59a67cc97993eb76dda7bce539af3ab765e161a9c3b",
+      "output": "build/v6q-board-01/program_and_verify.py",
+      "output_sha256": "a80f65c703207312f0f60d8f52a3efa7f3b944c63f28d6fdba52d0a5e2ec4ad8",
+      "initial_output_sha256": "a80f65c703207312f0f60d8f52a3efa7f3b944c63f28d6fdba52d0a5e2ec4ad8"
+    },
+    {
+      "source": "build/v6p-board-01/run_trial.py",
+      "source_sha256": "14f343b2c4a5d55a4630009edb52ed0078d366e95c86c828435159104603b08b",
+      "output": "build/v6q-board-01/run_trial.py",
+      "output_sha256": "990e074b6db6497cb7a735c503d2d10893e634113a5a6fd856d9cd5e85087bf8",
+      "initial_output_sha256": "990e074b6db6497cb7a735c503d2d10893e634113a5a6fd856d9cd5e85087bf8"
+    },
+    {
+      "source": "build/v6p-board-01/root_read_closed.py",
+      "source_sha256": "075c5522e2b20ae163e89ade8adbc4322f6ab92bf963246d6b16373ecccfe633",
+      "output": "build/v6q-board-01/root_read_closed.py",
+      "output_sha256": "9c10e93f11061b7095c41d7d37df1a36d10f5ef5894828dac82b9db7188352fd",
+      "initial_output_sha256": "9c10e93f11061b7095c41d7d37df1a36d10f5ef5894828dac82b9db7188352fd"
+    },
+    {
+      "source": "build/v6p-board-01/save_current_backup.py",
+      "source_sha256": "b3e8641812ed905a9fa1c8c8c9ab2191466ef166503699a8591136483e6d52e2",
+      "output": "build/v6q-board-01/save_current_backup.py",
+      "output_sha256": "e414f9392a5d6eb108b927d7adebaf5b9b499c98b88c9e29ba78afb21e5a4335",
+      "initial_output_sha256": "e414f9392a5d6eb108b927d7adebaf5b9b499c98b88c9e29ba78afb21e5a4335"
+    },
+    {
+      "source": "build/v6p-board-01/make_plan.py",
+      "source_sha256": "0728803e915b7dd8499f0bdbd4724d933fb023608b77f73a8b16cf62e17315c2",
+      "output": "build/v6q-board-01/make_plan.py",
+      "output_sha256": "e1dba3b94d9d883bf3eea0762c67e9f26b8da03cee71fd923d7e30ed7a3c3af0",
+      "initial_output_sha256": "60f85694907b1fb36f62ba6327b488792e8dcb1184fb1698128a2411fbb66b94"
+    }
+  ],
+  "final_note": "Root corrected joined SI textual labels in Q make_plan before any plan generation; behavioral build checks already expected SJ. Previous evidence untouched."
+}

@@ -1,0 +1,20 @@
+{
+  "scope": "Read-only pre-START boot flags after enumeration failure; not a stream test",
+  "expected_image": "5041ae67ccc25eda8d0003121370baed1120b025399099d4c3f42abfee61ca88",
+  "nm_sha256": "d6defc45efc9325fd690dac114743bb6ed8251084d1e8607977ee1b388c61ae3",
+  "address": "0x200005bc",
+  "bytes": 16,
+  "sha256": "c4cbcdbb1fa3e79478b09fa602c9eb149edb56b3cf1f343cc82daff59650bd55",
+  "values": {
+    "mt_main_last_runtime": 1,
+    "mt_main_usb_init_result": 1,
+    "mt_main_irq_admitted": 1,
+    "mt_main_boot_failure": 0
+  },
+  "START_sent": false,
+  "COM_opened": false,
+  "Reset_Flash_halt_performed": false,
+  "actual_user_reply": "готово",
+  "question_item_id": "[\"request_user_input_async\",\"call_59decd1ac5554adda09f2363acf9f9a4\",0]",
+  "outcome": "No COM6; do not consume the one permitted acquisition. Need USB enumeration recovery."
+}

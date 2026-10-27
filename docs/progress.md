@@ -1,5 +1,52 @@
 # Прогресс Мотортестера V2
 
+## 27.10.2026 — Q2 завершён: SJ получила18432 кода,150k снова queue-full
+
+Первое подтверждённое USB-replug после SJ не дало COM6: Windows показала
+ошибку дескриптора43, владельцев не было. COM и START не открывались.
+Отдельное read-only HOTPLUG чтение16байт boot flags до захвата показало
+runtime IDLE1, USB init1, IRQ admitted1, boot failure0. Это не проверка
+полноценного USB обмена. Сведения сохранены в connection-01 физического
+архива. После нового фактического ответа на просьбу выключить оба USB
+(платы и ST-Link), затем включить плату первой и ST-Link через5с, появился
+ожидаемый COM6/code0. Причина ошибки43 этим не установлена; прошивка не менялась.
+
+Единственный START точного плана Q2:17:39:09.282–17:39:10.369UTC,
+whole command1,0868004с, **FAIL reason1 queue-full**. Запрошенные30с не
+достигнуты. Получены18 полных DATA1024/18432 кода, Record14336 `[4096,18432)`.
+Nonce`71d28b8a72c1f51a`, generation3, SJ/0x5632534A. Offline wire/индексы/
+CRC/raw/fresh Open — PASS для сохранённого префикса. ENDseq22/flags3/
+prefix18432/CRC3873357665 пришёл до STOPreq4, matching ACKseq23.
+Record wall≈0,099517с — host interval, не измеренная Fs. Произведённый хвост
+и количество потерянных отсчётов неизвестны; рост18 против12 пакетов P2 не
+доказывает устойчивость или изолированный эффект Q.
+
+После закрытия COM и offline END/ACK проверки прочитаны парные136/64 и
+stopped регистры, без SWD во время захвата. Legacy136 одинаковы SHA256
+`62494d534800af5dd54e52e8b89055bc0603c7dd33f6d92a03d88cc3bbbe62a2`:
+первый reason1, queue8/8, ADCfault0, maxpoll2952мкс, copy184мкс.
+TIM3 CEN0/PSC47/ARR9, ADC_CR2=0, DMA EN0 и clock/reset checks — все true.
+Обе64B записи одинаковы SHA256
+`a2b33237f8b7458fde2dd8a2fc5e06fd9fb4653c28a72815712a75690d429419`;
+VALID_WITH_LIMITS, без errors/warnings, identity совпала. First-close:
+queue8, stage READY1024, TX1152/1335, FIFO free64, held/deferred=true,
+task-ready=false. До close9119434cycles, prepare145/3483366cycles,
+positive FIFO22512байт/67callback, zero-space47/other0, maxgap700232cycles,
+close tail29403cycles. Это inclusive nominal cycles, не CPU share/WCET;
+FIFO acceptance не означает доставку, снимок предшествует drain.
+
+[Физический архив Q2](verification/v2-postcommit-prefetch/physical-01/manifest.json):
+91файл318520байт, SHA256
+`ced3b2e6bae7c310404b1c6eea5ee8b9d4cf227f910383046ac2195c1e282013`.
+[Независимое ревью результата](reviews/v2-06q-physical-review.md): физическая
+цель150k/30с — **REWORK6,375/10**, достоверность сохранённой диагностики
+отдельно — **PASS9,60/10**. Критик пассивно сверил91 пару файлов, точный
+readback и обе пары136/64; новых запусков не было. P1-M2-01 stable150k
+остаётся открытым, диагностический балл его не закрывает.
+Новых START/Flash/software Reset/50/100k/отката после опыта не было.
+**На плате оставлена остановленная SJ.** Следующий шаг — offline-разбор
+ожидания последнего183-байтового фрагмента, без новой прошивки/опыта вслепую.
+
 ## 27.10.2026 — Q2: SJ установлена, требуется новый фактический USB-replug
 
 Source`b8d72a76f623a53cea5f3fa308965ea48f852799` опубликован только в V2.

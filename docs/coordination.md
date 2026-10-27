@@ -1,5 +1,11 @@
 # Координация самостоятельного V2
 
+После Q2: root — архив физического результата, канонические документы и
+единолично аппаратура; новых START/Reset/Flash сейчас нет. Higher_fs_review —
+только build/v6q-followup/analysis.* с offline-разбором последнего фрагмента,
+без кода/сборок/тестов. Stream200_critic — независимый physical-review точного
+Q2, без повторных опытов. Host_200k завершил модель Q1. SJ оставлена на плате.
+
 Q: higher_fs_review — firmware/v2-stream/**, tests/v2-stream-firmware/**,
 build/v6q-* кроме root board/decoder/archive. Один узкий collect-only после
 полного cached DATA1024 commit и прежнего flush, одна адресная actual-C
