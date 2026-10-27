@@ -1,0 +1,43 @@
+{
+  "schema": "motortester-v2-06q-independent-followup-review-1",
+  "date": "2026-10-27",
+  "critic": "/root/stream200_critic",
+  "independent_non_author": true,
+  "status": "BLOCKED_EVIDENCE",
+  "score": null,
+  "status_scope": "Acceptance of an exact implementation contract remains pending ABI/hooks/serialization; preliminary direction review completed",
+  "draft_design_allowed": true,
+  "diagnostic_direction_justified": true,
+  "production_implementation_accepted": false,
+  "hardware_approved": false,
+  "proposal": "build/v6q-followup/analysis.md",
+  "proposal_bytes": 15459,
+  "proposal_sha256": "89237d63cd7e161d9ad4a8154014d60c1b029d7132ecdabe61a1c9aa1d007641",
+  "source_base": "b8d72a76f623a53cea5f3fa308965ea48f852799",
+  "image_base_sha256": "5041ae67ccc25eda8d0003121370baed1120b025399099d4c3f42abfee61ca88",
+  "physical_review_unchanged": "docs/reviews/v2-06q-physical-review.md",
+  "personal_scope": "Read frozen proposal, current exact SJ DCD/progress lifecycle, previously reviewed Q2 evidence and saved F2 USB counters; no new product runs",
+  "conclusions": [
+    "Q2 proves ready-frame backpressure at queue-full but does not identify unique hold/turnover cause",
+    "Old S9/F2 cumulative100k DATA128 observations are examples of instrumentation, not current Q2 causal evidence",
+    "Unconditional pre-ADC grant or partial64byte acceptance is not justified as a fix by present evidence",
+    "A minimal evaluated-transition record may distinguish hypotheses if applicability and freeze are explicit"
+  ],
+  "decisions_required_before_implementation": [
+    "Exact ABI offsets/widths/sentinels, serial saturation and current-transfer definition; unknown until first observed successful publication",
+    "Applicability invalidation on new publication/cancel/reset and same-transfer regrant/nonCDC events; historical reason cannot masquerade as current held cause",
+    "First actually evaluated branch only, unchanged MMIO order/count, pre/post handler snapshot semantics and not-evaluated TIME sentinel",
+    "Per-field FG/ISR owner/guard and CLOSING linearization; immutable frozen with memory ordering, no competing ISR writes to64B flags",
+    "Exact generated-build/64/136 binding and NO_ACTIVE/UNAVAILABLE/CAP/clock/wrap limits",
+    "All new static fields/alignment at most24bytes, exact SRAM/stack audit; observer effect disclosed without new scheduling/health loops"
+  ],
+  "minimum_later_verification": [
+    "One actual-C runner for transition/freshness/invalidation/saturation, evaluated branches and freeze interleavings with explicit seams",
+    "Source equivalence of original gate decisions/MMIO order and6/<500 schedule",
+    "One exact ARM/resource audit; no broad legacy/GUI suites requested"
+  ],
+  "open_physical_requirement": "P1-M2-01 stable150k remains OPEN",
+  "additional_physical_fact": "Initial Code43 enumeration cause unknown; recovery by user powercycle is not a firmware repair proof",
+  "hardware_tests_builds_executed_by_critic": false,
+  "report": "docs/reviews/v2-06q-followup-review.md"
+}
