@@ -1,0 +1,82 @@
+
+objects/23-mt_live_clock.o:     file format elf32-littlearm
+
+
+Disassembly of section .text.mt_live_clock_init:
+
+00000000 <mt_live_clock_init>:
+   0:	b573      	push	{r0, r1, r4, r5, r6, lr}
+   2:	460e      	mov	r6, r1
+   4:	4604      	mov	r4, r0
+   6:	b910      	cbnz	r0, e <mt_live_clock_init+0xe>
+   8:	2000      	movs	r0, #0
+   a:	b002      	add	sp, #8
+   c:	bd70      	pop	{r4, r5, r6, pc}
+   e:	2501      	movs	r5, #1
+  10:	2220      	movs	r2, #32
+  12:	2100      	movs	r1, #0
+  14:	f7ff fffe 	bl	0 <memset>
+			14: R_ARM_THM_CALL	memset
+  18:	6026      	str	r6, [r4, #0]
+  1a:	61a5      	str	r5, [r4, #24]
+  1c:	2e00      	cmp	r6, #0
+  1e:	d0f3      	beq.n	8 <mt_live_clock_init+0x8>
+  20:	4669      	mov	r1, sp
+  22:	4630      	mov	r0, r6
+  24:	aa01      	add	r2, sp, #4
+  26:	f7ff fffe 	bl	0 <mt_timebase_snapshot>
+			26: R_ARM_THM_CALL	mt_timebase_snapshot
+  2a:	2800      	cmp	r0, #0
+  2c:	d0ec      	beq.n	8 <mt_live_clock_init+0x8>
+  2e:	9b00      	ldr	r3, [sp, #0]
+  30:	9a01      	ldr	r2, [sp, #4]
+  32:	6163      	str	r3, [r4, #20]
+  34:	2300      	movs	r3, #0
+  36:	4628      	mov	r0, r5
+  38:	e9c4 2302 	strd	r2, r3, [r4, #8]
+  3c:	6122      	str	r2, [r4, #16]
+  3e:	61a3      	str	r3, [r4, #24]
+  40:	e7e3      	b.n	a <mt_live_clock_init+0xa>
+
+Disassembly of section .text.mt_live_clock_now:
+
+00000000 <mt_live_clock_now>:
+   0:	b573      	push	{r0, r1, r4, r5, r6, lr}
+   2:	4604      	mov	r4, r0
+   4:	b150      	cbz	r0, 1c <mt_live_clock_now+0x1c>
+   6:	6983      	ldr	r3, [r0, #24]
+   8:	b943      	cbnz	r3, 1c <mt_live_clock_now+0x1c>
+   a:	6800      	ldr	r0, [r0, #0]
+   c:	b130      	cbz	r0, 1c <mt_live_clock_now+0x1c>
+   e:	4669      	mov	r1, sp
+  10:	aa01      	add	r2, sp, #4
+  12:	f7ff fffe 	bl	0 <mt_timebase_snapshot>
+			12: R_ARM_THM_CALL	mt_timebase_snapshot
+  16:	b930      	cbnz	r0, 26 <mt_live_clock_now+0x26>
+  18:	2301      	movs	r3, #1
+  1a:	61a3      	str	r3, [r4, #24]
+  1c:	f04f 30ff 	mov.w	r0, #4294967295
+  20:	4601      	mov	r1, r0
+  22:	b002      	add	sp, #8
+  24:	bd70      	pop	{r4, r5, r6, pc}
+  26:	9d00      	ldr	r5, [sp, #0]
+  28:	6962      	ldr	r2, [r4, #20]
+  2a:	9e01      	ldr	r6, [sp, #4]
+  2c:	6923      	ldr	r3, [r4, #16]
+  2e:	1aaa      	subs	r2, r5, r2
+  30:	f5b2 4ffa 	cmp.w	r2, #32000	@ 0x7d00
+  34:	eba6 0303 	sub.w	r3, r6, r3
+  38:	d8ee      	bhi.n	18 <mt_live_clock_now+0x18>
+  3a:	2b20      	cmp	r3, #32
+  3c:	d8ec      	bhi.n	18 <mt_live_clock_now+0x18>
+  3e:	e9d4 0102 	ldrd	r0, r1, [r4, #8]
+  42:	43da      	mvns	r2, r3
+  44:	4282      	cmp	r2, r0
+  46:	f06f 4200 	mvn.w	r2, #2147483648	@ 0x80000000
+  4a:	418a      	sbcs	r2, r1
+  4c:	d3e4      	bcc.n	18 <mt_live_clock_now+0x18>
+  4e:	18c0      	adds	r0, r0, r3
+  50:	f141 0100 	adc.w	r1, r1, #0
+  54:	e9c4 0102 	strd	r0, r1, [r4, #8]
+  58:	e9c4 6504 	strd	r6, r5, [r4, #16]
+  5c:	e7e1      	b.n	22 <mt_live_clock_now+0x22>

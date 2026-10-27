@@ -24,14 +24,24 @@ the target reads DWT_CYCCNT directly, never adds TIME health loops.
 
 Normative masks/enums are in `mt_stream_progress.h`. Build is deliberately
 not repeated in64B: require the companion136B record matching nonce/generation,
-build0x56325347, exact image/ELF/source pins and two identical frozen copies.
+the generated target build, exact image/ELF/source pins and two identical frozen copies.
 An unpaired record cannot authenticate build or hardware. Core snapshot flag
 is independent of USB_VALID bit. Invalid/unavailable snapshot fields use
 tx_offset/tx_length/stage_count/fifo_free=65535 and phase/queue=255. No valid
 FIFO snapshot must be presented as zero free bytes. USB bits other than0..3
-are invalid. Typed close kinds distinguish queue/source/local recovery/Stop/
-cap/transport/ADC/HELLO/no-start/unavailable; high16 is the passed primary
-reason in that kind's domain, not a universal fault enum:
+are invalid.
+
+SI build binding: `config.json.firmware_build` generates the sole shared
+`mt_firmware_build.h` used by board.c and this observer. With the observer
+enabled, missing header/macro is a compilation error; no SG/default fallback.
+`MT_N_BUILD` is an alias of that generated value, not a second independent id.
+Record layout, counters, first-close/late-write and one-attempt-per-boot rules
+are unchanged. Saved SG/SH sources/images remain immutable: SH's compiled
+SG build gate rejected binding, so its zero64 cannot be decoded as valid data.
+
+Typed close kinds distinguish queue/source/local recovery/Stop/cap/transport/
+ADC/HELLO/no-start/unavailable; high16 is the passed primary reason in that
+kind's domain, not a universal fault enum:
 
 | Kind | Primary domain and admitted values |
 |---|---|

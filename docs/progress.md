@@ -1,5 +1,46 @@
 # Прогресс Мотортестера V2
 
+## 27.10.2026 — P1: SI собрана, actual observer binding проверен
+
+SI/0x56325349: config порождает общий generated header, board и observer
+используют его вместо отдельнойSG-константы. Одна ARM01 — PASS: BIN44216байт,
+SHA256`aeccdce0a5c2705e5fc77338595655a1f8d20367de486cbc83250f85a3a2d9c7`.
+Data128+bss12132+8192reserve=20452/20480, новых static bytes0;
+conditional stack6156/aligned6160 сохранён.52 остальных patched файла и31
+не связанных с binding object совпали с SH. В compiled bind сравнение
+изменилось SG→SI; board word и header dependencies проверены отдельно.
+
+Native01 actual C model выполнился успешно и сохранил64/136 fixture.
+Агрегат native01 **FAILED** сохранён: последующая отрицательная compile-проба
+остановилась на внутреннем unused `-c`/Werror Zig, до требуемого#error.
+Исправлена только эта команда; targeted native02 получил ожидаемый отказ
+из-за отсутствия build definition и PASS. Actual C и ARM не повторялись.
+Composition pins связывают01 и02. Rootdecoder01 один раз — PASS19 negative
+cases на actualC64/136; legacy setup synthetic, полный legacy модуль/decoder
+здесь не исполнялся. Эти данные не аппаратный замер.
+
+Freeze SHA256`c68906cc65fc7e4216443c90dab030da198058bd811ec038d474d9630446c4d9`.
+[Архив P1](verification/v2-progress-identity/production-01/manifest.json):
+551файл4384338байт, SHA256
+`18912ebad03af71c4c24dc718c1407c38c46fde9dc1d057544251c7fe60191b0`.
+Независимое [source-review P](reviews/v2-06p-review.md) — **PASS9,625**:
+551 архивная пара и46 freeze pins проверены критиком; shared header,
+compiled board/bind и восстановленный negative case подтверждены.
+Это software repair observer; физического P опыта ещё нет.
+На плате остановленная SH; stable150k и physical64 остаются открытыми.
+
+## 27.10.2026 — P начата: устраняется отдельная build-константа observer
+
+O2/REWORK сохранены и опубликованы commit`34a3f827db5362fac4d8f85abfa89b79756b17f1`.
+Готовится SI с общей build identity из config для board и observer;
+расписание SH и очереди не меняются. Actual native проверка должна включить
+observer с exact generated ID и отклонитьSG/SH. Root добавил явнуюSI identity
+в offline decoder; его проверка ждёт actualC64/136 fixture.
+Снят свежий SH64КиБ backup без Reset/COM/START, SHA256
+`ddaf7a51d41f5fd6ee01590dbfb13aa60b6ea1358edf7cb945983a20cdcf5a02`;
+prefix44212 совпал с образом99fcd…ddf2. На плате по-прежнему остановленнаяSH.
+Новых P аппаратных опытов нет; программная приёмка и stable150k открыты.
+
 ## 27.10.2026 — O2: SH получила20480 кодов, но снова queue-full;64B диагностика не включилась
 
 Source`08196d8c0db477c2b567262eb01e56af3663a79e` опубликован в V2.

@@ -1,0 +1,11 @@
+In file included from platform/mt_stream_progress.c:1:
+platform/mt_stream_progress.h:17:2: error: "Progress trace requires generated target build identity"
+   17 | #error "Progress trace requires generated target build identity"
+      |  ^
+platform/mt_stream_progress.c:41:47: error: use of undeclared identifier 'MT_FIRMWARE_BUILD'
+   41 |         mt_stream_diagnostics.firmware_build==MT_N_BUILD &&
+      |                                               ^
+platform/mt_stream_progress.h:19:20: note: expanded from macro 'MT_N_BUILD'
+   19 | #define MT_N_BUILD MT_FIRMWARE_BUILD /* Same config-derived identity as mt_board. */
+      |                    ^
+2 errors generated.

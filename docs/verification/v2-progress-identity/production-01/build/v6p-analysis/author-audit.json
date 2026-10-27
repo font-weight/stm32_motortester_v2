@@ -1,0 +1,107 @@
+{
+  "schema": "motortester-V2-06p-author-audit-1",
+  "date": "2026-10-27",
+  "status": "OBSERVER_BINDING_SOFTWARE_CANDIDATE_NOT_THROUGHPUT_FIX",
+  "motivation": {
+    "path": "build/v6o-followup/analysis.md",
+    "bytes": 11182,
+    "sha256": "f06a65d4323dd4884ba9ea5aa760b944a60e7ed72e9b3dbdb07e3e7f7b3cf075"
+  },
+  "single_identity": {
+    "source": "Validated config.json.firmware_build",
+    "generated_header": {
+      "path": "build/v6p-fw-01/generated/mt_firmware_build.h",
+      "bytes": 130,
+      "sha256": "7676635e6914927df4650c0ddfc0b30c6e417326702aa91a2534b197adbe9676"
+    },
+    "consumers": [
+      "generated/board.c",
+      "patched/v2/platform/mt_stream_progress.h included by actual mt_stream_progress.c"
+    ],
+    "no_independent_observer_literal": true,
+    "missing_macro_no_default": true,
+    "allowlist_is_review_constraint_not_separate_compiled_id": true
+  },
+  "source_and_machine_proof": {
+    "evidence": {
+      "path": "build/v6p-native-01/source-equivalence.json",
+      "bytes": 13309,
+      "sha256": "0e7349160cda43687b652ca68ac4254d27909d1e87799de02e4b55b9415b9f09"
+    },
+    "SH_unchanged_patched_files": 52,
+    "SH_unchanged_nonbinding_objects": 31,
+    "observer_C_body_byte_identical_SH": true,
+    "bind_allocated_machine_bytes": "Identical SH except one0x56325347 literal replaced by exact config0x56325349",
+    "other_observer_alloc_sections_geometry_and_bytes_preserved": true,
+    "board_linked_build_matches_config": true,
+    "shared_header_compiler_dependencies_both_consumers_checked": true
+  },
+  "resources": {
+    "bin_bytes": 44216,
+    "data_bytes": 128,
+    "bss_bytes": 12132,
+    "new_static_bytes": 0,
+    "stack_reserve_bytes": 8192,
+    "static_plus_reserve": 20452,
+    "RAM_bytes": 20480,
+    "spare_above_reserve": 28,
+    "conditional_stack": {
+      "report_sha256": "81ef578619db02f57a3cec9949c5360ec096d26ffe902dcf78e5262883d77a62",
+      "status": "CONDITIONAL_EXACT_IMAGE_STATIC_BOUND",
+      "upper_bound_bytes": 6156,
+      "aligned_minimum_bytes": 6160
+    },
+    "not_physical_stack_high_water": true
+  },
+  "records": {
+    "progress64": {
+      "address": "0x20002FA4",
+      "bytes": 64
+    },
+    "legacy136": {
+      "address": "0x20002F1C",
+      "bytes": 136
+    },
+    "layout_counters_flags_frozen_semantics_unchanged": true
+  },
+  "verification": {
+    "ARM": "build/v6p-fw-01 PASS first execution; not repeated.",
+    "actual_C": "One actual observer model execution in native01: SI accepted, SG/SH/foreign/gen/nonce rejected; FIFO count classes, known partial/unknown handling and CLOSING/FROZEN immutability pass. Exact ARM generated header used.",
+    "preserved_failure": "native01 aggregate FAILED solely because Zig wrapper rejected -fsyntax-only with implicit-c under Werror before the intended #error. Native C model/fixtures and source proof succeeded. Original runner archived byte-exact in analysis/check_progress_binding-r1.py.",
+    "addressed_repair": "native02 repeated ONLY the missing-macro compiler probe using -c/-o; required #error observed. It pins native01 C/fixtures/inputs and archived/current runner delta. No actual C or ARM rerun.",
+    "root_decoder": "Root-owned decoder01 PASS once on actual SI C64 plus synthetic C legacy136, clean profile and19 negatives. Not actual legacy module execution or hardware identity.",
+    "counts": {
+      "ARM": 1,
+      "actual_C_model": 1,
+      "negative_compiler_probe_attempts": 2,
+      "root_decoder": 1
+    },
+    "full_runtime_ADC_USB_not_executed": true,
+    "COM_SWD_Reset_Flash_by_author": false
+  },
+  "native_fixture": {
+    "record64": {
+      "path": "build/v6p-native-01/actual-progress.bin",
+      "bytes": 64,
+      "sha256": "f5e6178675f0a43733c099abb4c0c85504536d7e70e5f5dc9692d754ee1c75aa"
+    },
+    "companion136": {
+      "path": "build/v6p-native-01/actual-legacy.bin",
+      "bytes": 136,
+      "sha256": "98d55e3cb60310e4a990cc7b1c159c48c803bd60d777a68986c80433688446f9"
+    },
+    "companion_identity": {
+      "path": "build/v6p-native-01/companion.json",
+      "bytes": 778,
+      "sha256": "4c3103919adeaa1a2e3f7e464b8803e85a7f684daa93a20db9b7fd6729fa7733"
+    },
+    "origin": "Actual observer C output and explicit synthetic native legacy setup; DWT/USB seams, no physical session"
+  },
+  "limits": [
+    "Correct observer binding does not fix queue-full or establish stable150k.",
+    "SI reactivates observer hot-path work absent from SH/O2; timing overhead is not subtracted or ignored.",
+    "Conditional ELF stack/RAM evidence is not physical high-water or WCET.",
+    "O2 zero64 remains INVALID; prior PASS/failed physical outputs stay preserved.",
+    "Fresh source/physical-plan review and separate hardware evidence are still required."
+  ]
+}

@@ -1,0 +1,38 @@
+--- a/v2/transport/mt_usb_bridge.c
++++ b/v2/transport/mt_usb_bridge.c
+@@ -1,4 +1,5 @@
+ #include "mt_usb_bridge.h"
++#include "../platform/mt_usb_ctr.h"
+ #include <stddef.h>
+ 
+ static mt_usb_epoch state;
+@@ -17,7 +18,8 @@
+ uint32_t mt_usb_bridge_lock(void) { return lock_fn ? lock_fn() : 0; }
+ void mt_usb_bridge_unlock(uint32_t previous) { if (unlock_fn) unlock_fn(previous); }
+ static int permitted(void) {
+-    return lock_fn && unlock_fn && mt_usb_epoch_core_io(&state, actor);
++    return lock_fn && unlock_fn && !mt_usb_fsdev_lifecycle_pending() &&
++        mt_usb_epoch_core_io(&state, actor);
+ }
+ static bool result(bool ok) {
+     if (!ok) (void)mt_usb_epoch_fail(&state, actor, MT_USB_EPOCH_SUBMIT_FAILED);
+@@ -61,7 +63,8 @@
+     *scope = (mt_usb_scope){0};
+     if (lock_fn && unlock_fn && !actor && token && token == state.current &&
+         !state.exhausted && !state.faults) {
+-        if (state.cleaned != token || (!reset && state.pending_soft)) verdict = MT_USB_DEFER;
++        if (mt_usb_fsdev_lifecycle_pending() || state.cleaned != token ||
++            (!reset && state.pending_soft)) verdict = MT_USB_DEFER;
+         else if (mt_usb_epoch_dispatch(&state, token, reset)) {
+             scope->previous = actor; scope->entered = 1;
+             actor = token; verdict = MT_USB_DISPATCH;
+@@ -73,7 +76,8 @@
+     uint32_t key = mt_usb_bridge_lock();
+     uint32_t token = actor ? actor : state.current;
+     *scope = (mt_usb_scope){0};
+-    if (lock_fn && unlock_fn && mt_usb_epoch_app_io(&state, token)) {
++    if (lock_fn && unlock_fn && !mt_usb_fsdev_lifecycle_pending() &&
++        mt_usb_epoch_app_io(&state, token)) {
+         scope->previous = actor; scope->entered = 1; actor = token;
+     }
+     mt_usb_bridge_unlock(key); return (int)scope->entered;

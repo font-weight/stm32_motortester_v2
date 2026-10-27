@@ -1,5 +1,12 @@
 # Координация самостоятельного V2
 
+P: higher_fs_review — firmware/v2-stream/**, tests/v2-stream-firmware/**,
+build/v6p-* кроме board/decoder; общий generated build id и одна адресная
+actual-C/ARM проверка. Root — decoder/checker, документы, архивы, подготовка
+плана и единолично COM/SWD. Stream200_critic — независимый exact result и
+последующий отдельный аппаратный план/результат, без реализации.
+O2 завершён, SH оставлена остановленной; дополнительных START старого плана нет.
+
 O: higher_fs_review — firmware/v2-stream/**, tests/v2-stream-firmware/**,
 build/v6o-* кроме board/decoder; одна корректировка late grant, адресный
 actual-runtime model, ARM/resource audit, freeze. Root — offline decoder

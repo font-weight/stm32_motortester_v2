@@ -1,0 +1,4 @@
+PASS actual paired/bind rejects SG, SH, foreign build, generation and nonce mismatches; no default record or late writes
+PASS exact SI generated identity reaches ACTIVE/FROZEN; known FIFO bytes and zero classes; CLOSING/FROZEN immutable; actual64 plus synthetic companion136 written
+PASS partial known acceptance counted once; unknown acceptance never fabricated as bytes; late positive cannot mutate first frozen cause
+build=0x56325349; record_bytes=64; legacy_bytes=136; synthetic_native=1; hardware_executed=0; throughput_claim=0

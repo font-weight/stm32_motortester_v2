@@ -1,0 +1,106 @@
+{
+  "schema": "motortester-v2-06p-independent-source-review-1",
+  "date": "2026-10-27",
+  "critic": "/root/stream200_critic",
+  "independent_non_author": true,
+  "status": "PASS",
+  "score": 9.625,
+  "threshold": 9.5,
+  "scope": "SI shared config-generated board/observer build identity; exact ARM/native/decoder software repair only",
+  "base_sha": "34a3f827db5362fac4d8f85abfa89b79756b17f1",
+  "functional_SH_source_sha": "08196d8c0db477c2b567262eb01e56af3663a79e",
+  "candidate_identity": {
+    "build": "0x56325349",
+    "freeze": "build/v6p-freeze.json",
+    "freeze_sha256": "c68906cc65fc7e4216443c90dab030da198058bd811ec038d474d9630446c4d9",
+    "archive": "docs/verification/v2-progress-identity/production-01/manifest.json",
+    "archive_sha256": "18912ebad03af71c4c24dc718c1407c38c46fde9dc1d057544251c7fe60191b0",
+    "bin_bytes": 44216,
+    "bin_sha256": "aeccdce0a5c2705e5fc77338595655a1f8d20367de486cbc83250f85a3a2d9c7",
+    "elf_sha256": "2f6d507f0629407d2f79f04dceff1bf45bbd69226327c3909f57b4347a4e5613"
+  },
+  "personal_passive_verification": {
+    "archive_pairs": 551,
+    "archive_bytes": 4384338,
+    "freeze_pins": 46,
+    "ARM_inputs": 566,
+    "compiler_dependencies": 119,
+    "objects": 33,
+    "analysis_inputs": 35,
+    "artifacts": 3,
+    "native01_inputs_with_archived_original_runner": 120,
+    "native02_inputs": 134,
+    "unchanged_SH_patched_files": 52,
+    "unchanged_SH_nonbinding_objects": 31,
+    "drift": [],
+    "ELF_board_build_word": "0x56325349 at mt_board+12; mt_board=0x0800ABC0",
+    "ELF_bind_literal": "0x56325349 at 0x0800A2D0",
+    "observer_bind_section": "Exactly SH bytes except old SG build literal replaced by SI",
+    "board_observer_shared_generated_dependency": true,
+    "method": "Read-only source/Git/rg and Python pathlib/hashlib/json/struct; no build, test executable, decoder run or hardware by critic"
+  },
+  "resources": {
+    "data_bytes": 128,
+    "bss_bytes": 12132,
+    "new_static_bytes": 0,
+    "stack_reserve_bytes": 8192,
+    "static_plus_reserve_bytes": 20452,
+    "RAM_bytes": 20480,
+    "spare_bytes": 28,
+    "conditional_stack_upper_bytes": 6156,
+    "aligned_stack_bytes": 6160,
+    "physical_high_water_measured": false,
+    "legacy136_address": "0x20002F1C",
+    "progress64_address": "0x20002FA4"
+  },
+  "evidence": {
+    "ARM01": {
+      "status": "BUILT_STATIC_CHECKED_TRANSPORT_CANDIDATE",
+      "receipt_sha256": "5263fe24b1e6329e10d51e2c0d4eb50aef0ab66bcf9f30035f860cdf20b57791",
+      "static_bound_sha256": "81ef578619db02f57a3cec9949c5360ec096d26ffe902dcf78e5262883d77a62",
+      "generated_header_sha256": "7676635e6914927df4650c0ddfc0b30c6e417326702aa91a2534b197adbe9676"
+    },
+    "native01": {
+      "aggregate_status": "FAILED",
+      "result_sha256": "d2678dbc424477c6065fafb08ab9b2f5b396ea16596cee33df050a9338e38e48",
+      "actual_C_exit_code": 0,
+      "actual_C_groups_passed": 3,
+      "preserved_failure": "Zig -fsyntax-only negative compile failed for wrong reason before required #error",
+      "source_equivalence_sha256": "0e7349160cda43687b652ca68ac4254d27909d1e87799de02e4b55b9415b9f09"
+    },
+    "native02": {
+      "status": "PASS",
+      "result_sha256": "4a981e572cab5e6246ef382467c9c8e73fec1369adcf16794142cd29b7b6461e",
+      "scope": "Only corrected missing-macro -c/-o compiler probe; required #error present, no object created; composition pins native01 evidence",
+      "actual_C_or_ARM_rerun": false
+    },
+    "decoder01": {
+      "status": "PASS",
+      "result_sha256": "70ee37ea565a3c808d9b9fb85dcc0e98b1d3968a31e372a793a3301ea185f284",
+      "negative_cases": 19,
+      "actual_C64_sha256": "f5e6178675f0a43733c099abb4c0c85504536d7e70e5f5dc9692d754ee1c75aa",
+      "synthetic_C136_sha256": "98d55e3cb60310e4a990cc7b1c159c48c803bd60d777a68986c80433688446f9",
+      "full_legacy_module_or_decoder_executed": false,
+      "physical_identity_verified": false,
+      "timing_qualified": false
+    },
+    "execution_counts_reported": {"ARM": 1, "actual_C_model": 1, "negative_compiler_probe": 2, "root_decoder": 1}
+  },
+  "findings": {
+    "open_P0_P1_in_bounded_software_scope": [],
+    "P1_O2_02": "Software cause repaired for exact SI only; physical nonzero coherent64 remains pending. Historical SH/O2 and superseded O1 claims unchanged.",
+    "P1_M2_01": "OPEN: stable150k not established",
+    "observer_effect": "SI restores observer work absent from SH/O2; no causal throughput comparison or overhead subtraction permitted"
+  },
+  "rubric": [
+    {"criterion": "C1", "weight": 0.30, "score": 9.8, "basis": "One validated ID reaches both linked board and actual observer; mismatches rejected"},
+    {"criterion": "C2", "weight": 0.20, "score": 9.5, "basis": "No fallback; immutable freeze/late APIs and unchanged bounded resources; physical assumptions remain explicit"},
+    {"criterion": "C3", "weight": 0.25, "score": 9.5, "basis": "Actual C plus ARM integration and decoder evidence; failed command preserved and narrow repair composed without rerunning model"},
+    {"criterion": "C4", "weight": 0.15, "score": 9.6, "basis": "Single generated header and unchanged functional bodies; clear observer limits"},
+    {"criterion": "C5", "weight": 0.10, "score": 9.7, "basis": "Exact archived inputs/generated files/failure/completion support reproducibility"}
+  ],
+  "flash_approved": false,
+  "hardware_verified": false,
+  "stable150k_established": false,
+  "report": "docs/reviews/v2-06p-review.md"
+}

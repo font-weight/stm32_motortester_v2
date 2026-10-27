@@ -1,0 +1,297 @@
+{
+  "schema": "motortester-V2-06p-source-freeze-1",
+  "date": "2026-10-27",
+  "status": "OBSERVER_BINDING_CANDIDATE_FROZEN_FOR_INDEPENDENT_REVIEW",
+  "firmware_build": "0x56325349",
+  "baseline_build": "0x56325348",
+  "product": "Motortester V2 Build Binding SI",
+  "production_files": [
+    {
+      "path": "firmware/v2-stream/README.md",
+      "bytes": 58551,
+      "sha256": "22e84e5127654748812a68381613fc65cc0600ca52931773c78dffc2328fc371"
+    },
+    {
+      "path": "firmware/v2-stream/build_windows.py",
+      "bytes": 29056,
+      "sha256": "bb6f3c498e50b530ee3b30a65df1ef866f8dbbb241658568acffb1f1f15770dd"
+    },
+    {
+      "path": "firmware/v2-stream/config.json",
+      "bytes": 1039,
+      "sha256": "ee435e8db42ed5323ae429b0bae79d9ea9025eacb481e45e885f6f30f175c562"
+    },
+    {
+      "path": "firmware/v2-stream/overlays/board_inputs.py",
+      "bytes": 4228,
+      "sha256": "8315e974cd4c09c7d51d3396323f9df74903a7ded65999a8eb80fe7c5e0e6e3f"
+    },
+    {
+      "path": "firmware/v2-stream/progress/mt_stream_progress.h",
+      "bytes": 3316,
+      "sha256": "7cc64b97266496ff053163d78cc155ae5a8aeb168755ad23be6a5517f938c881"
+    },
+    {
+      "path": "firmware/v2-stream/progress/mt_stream_progress.c",
+      "bytes": 7856,
+      "sha256": "eada6c8ee4996e96bf7e3749ce1ab7604d8d700fdedf356beed5f35293f10e77"
+    },
+    {
+      "path": "firmware/v2-stream/progress/ABI.md",
+      "bytes": 6960,
+      "sha256": "ab85234377132107a247d6378bb34cc73709c9eb88b612e139bfe03af656ab39"
+    }
+  ],
+  "native_source_files": [
+    {
+      "path": "tests/v2-stream-firmware/progress_binding_model.c",
+      "bytes": 8010,
+      "sha256": "85dd7a7d23b65dac7597e5d392fe852dba0bd3bda70eb213281f7c7cc6310f30"
+    },
+    {
+      "path": "tests/v2-stream-firmware/check_progress_binding.py",
+      "bytes": 12031,
+      "sha256": "7b8eb963c58a47fa4a86c0d51f16368a273b00e5e555af56077b34f4dea835c2"
+    }
+  ],
+  "ARM_evidence": [
+    {
+      "path": "build/v6p-fw-01/receipt.json",
+      "bytes": 422748,
+      "sha256": "5263fe24b1e6329e10d51e2c0d4eb50aef0ab66bcf9f30035f860cdf20b57791"
+    },
+    {
+      "path": "build/v6p-fw-01/static-bound.json",
+      "bytes": 194390,
+      "sha256": "81ef578619db02f57a3cec9949c5360ec096d26ffe902dcf78e5262883d77a62"
+    },
+    {
+      "path": "build/v6p-fw-01/generated/mt_firmware_build.h",
+      "bytes": 130,
+      "sha256": "7676635e6914927df4650c0ddfc0b30c6e417326702aa91a2534b197adbe9676"
+    },
+    {
+      "path": "build/v6p-fw-01/generated/board.c",
+      "bytes": 972,
+      "sha256": "49d9cd94a1675c6811d83b14e2a7140c712eb97e597ab3cc97312f8c62614cf0"
+    },
+    {
+      "path": "build/v6p-fw-01/objects/board.d",
+      "bytes": 599,
+      "sha256": "e3b6c5e54d43c8de96fb7c19cc0f3d471dcf11243e9c9878fda75b31701546d7"
+    },
+    {
+      "path": "build/v6p-fw-01/objects/29-mt_stream_progress.d",
+      "bytes": 6785,
+      "sha256": "39ac1f1558d98604721774b8370806971216917456a17c43e994908434c67cd1"
+    },
+    {
+      "path": "build/v6p-fw-01/objects/29-mt_stream_progress.su",
+      "bytes": 781,
+      "sha256": "e44c8f1f50bd785c5f9cdfdace8496499dff4b467ccbb5e438563b266c7ea1b8"
+    },
+    {
+      "path": "build/v6p-fw-01/image.nm",
+      "bytes": 19453,
+      "sha256": "abbee5da23ad586a990de42a994223cf661c5f3279108b9e63b739bfa684d493"
+    },
+    {
+      "path": "build/v6p-fw-01/image.map",
+      "bytes": 82869,
+      "sha256": "2a7b934bbb47f1a5ac88445f425475875b03c2529718cf314a5c870662bce0d7"
+    },
+    {
+      "path": "build/v6p-fw-01/image.dis",
+      "bytes": 729599,
+      "sha256": "9b808277c6625fb44d33ed7c6573ad9d9ee50b178f0f532096acb2c5c6a1311f"
+    },
+    {
+      "path": "build/v6p-fw-01/MotortesterV2-stream-candidate.bin",
+      "bytes": 44216,
+      "sha256": "aeccdce0a5c2705e5fc77338595655a1f8d20367de486cbc83250f85a3a2d9c7"
+    },
+    {
+      "path": "build/v6p-fw-01/MotortesterV2-stream-candidate.elf",
+      "bytes": 80964,
+      "sha256": "2f6d507f0629407d2f79f04dceff1bf45bbd69226327c3909f57b4347a4e5613"
+    }
+  ],
+  "native_evidence": [
+    {
+      "path": "build/v6p-native-01/result.json",
+      "bytes": 36558,
+      "sha256": "d2678dbc424477c6065fafb08ab9b2f5b396ea16596cee33df050a9338e38e48"
+    },
+    {
+      "path": "build/v6p-native-01/source-equivalence.json",
+      "bytes": 13309,
+      "sha256": "0e7349160cda43687b652ca68ac4254d27909d1e87799de02e4b55b9415b9f09"
+    },
+    {
+      "path": "build/v6p-native-01/model.c",
+      "bytes": 8010,
+      "sha256": "85dd7a7d23b65dac7597e5d392fe852dba0bd3bda70eb213281f7c7cc6310f30"
+    },
+    {
+      "path": "build/v6p-native-01/model.exe",
+      "bytes": 181248,
+      "sha256": "d6247bd7042e7e20c350e48f1981fcbd38df8f206826c02e7f9af5ebfe8fc6ef"
+    },
+    {
+      "path": "build/v6p-native-01/model.stdout",
+      "bytes": 537,
+      "sha256": "9e27d8e68df2852c98861638f650cb27887a2716eafe1029b927a5138edf7797"
+    },
+    {
+      "path": "build/v6p-native-01/model.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "build/v6p-native-01/compile.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "build/v6p-native-01/compile.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "build/v6p-native-01/compile-missing-build-negative.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "build/v6p-native-01/compile-missing-build-negative.stderr",
+      "bytes": 95,
+      "sha256": "7de7a62716a045336b3950da0f3e8433524f07409b81c4910d99f8b724ccd1e9"
+    },
+    {
+      "path": "build/v6p-native-01/actual-progress.bin",
+      "bytes": 64,
+      "sha256": "f5e6178675f0a43733c099abb4c0c85504536d7e70e5f5dc9692d754ee1c75aa"
+    },
+    {
+      "path": "build/v6p-native-01/actual-legacy.bin",
+      "bytes": 136,
+      "sha256": "98d55e3cb60310e4a990cc7b1c159c48c803bd60d777a68986c80433688446f9"
+    },
+    {
+      "path": "build/v6p-native-01/companion.json",
+      "bytes": 778,
+      "sha256": "4c3103919adeaa1a2e3f7e464b8803e85a7f684daa93a20db9b7fd6729fa7733"
+    },
+    {
+      "path": "build/v6p-native-02/result.json",
+      "bytes": 40979,
+      "sha256": "4a981e572cab5e6246ef382467c9c8e73fec1369adcf16794142cd29b7b6461e"
+    },
+    {
+      "path": "build/v6p-native-02/compile-missing-build-negative.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "build/v6p-native-02/compile-missing-build-negative.stderr",
+      "bytes": 686,
+      "sha256": "9c237887844e4cda446c783744c24cae03635acf8618cfe4765f6e7dfa952b78"
+    }
+  ],
+  "root_owned_evidence": [
+    {
+      "path": "docs/streaming-progress-identity.md",
+      "bytes": 3184,
+      "sha256": "264f420ccc643e776811842c8c5e0a480250b509976b88cb0cb23a71a86ecd57"
+    },
+    {
+      "path": "host/tools/decode_stream_progress.py",
+      "bytes": 10807,
+      "sha256": "9b8decfa03b2d5098ddd31d3996e38e65e8ebe0ba4557faaa43ddf2dab989a0c"
+    },
+    {
+      "path": "host/tests/stream_progress_decoder_check.py",
+      "bytes": 7878,
+      "sha256": "ded57f1f048c011f2999f6eadadc0a1e79b66069ab8a3423d6521cf95a2d2c3e"
+    },
+    {
+      "path": "build/v6p-decoder-01/result.json",
+      "bytes": 4067,
+      "sha256": "70ee37ea565a3c808d9b9fb85dcc0e98b1d3968a31e372a793a3301ea185f284"
+    },
+    {
+      "path": "build/v6p-decoder-01/fixture-decoded.json",
+      "bytes": 2788,
+      "sha256": "e9993726b36112c766afc0b408349bbb6a16fafbdd26d42f18e0b58af3500f6e"
+    }
+  ],
+  "generation_and_repair_scripts": [
+    {
+      "path": "build/v6p-analysis/check_progress_binding-r1.py",
+      "bytes": 12022,
+      "sha256": "2924a40c0943d4ca4e55062e14441bc9139c51d974511c2d37827e6d87886f2a"
+    },
+    {
+      "path": "build/v6p-analysis/complete_negative_probe.py",
+      "bytes": 3853,
+      "sha256": "c7e0187240c4bc5ac69fe7cb16114e2908ae11bac8b4347bd3f1461a571fa365"
+    },
+    {
+      "path": "build/v6p-analysis/freeze_candidate.py",
+      "bytes": 8186,
+      "sha256": "742e9c994c7e6ebc6b9bbec2371d07198d14d14910db04ebb4551d3bc0c45e76"
+    }
+  ],
+  "author_audit": {
+    "path": "build/v6p-analysis/author-audit.json",
+    "bytes": 4740,
+    "sha256": "790de206f3c517bc728394eec21bcc0d88f15823e55f88b314cc532fa87dbaa6"
+  },
+  "resources": {
+    "bin_bytes": 44216,
+    "data_bytes": 128,
+    "bss_bytes": 12132,
+    "new_static_bytes": 0,
+    "stack_reserve_bytes": 8192,
+    "static_plus_reserve": 20452,
+    "RAM_bytes": 20480,
+    "spare_above_reserve": 28,
+    "conditional_stack": {
+      "report_sha256": "81ef578619db02f57a3cec9949c5360ec096d26ffe902dcf78e5262883d77a62",
+      "status": "CONDITIONAL_EXACT_IMAGE_STATIC_BOUND",
+      "upper_bound_bytes": 6156,
+      "aligned_minimum_bytes": 6160
+    },
+    "not_physical_stack_high_water": true
+  },
+  "records": {
+    "progress64": {
+      "address": "0x20002FA4",
+      "bytes": 64
+    },
+    "legacy136": {
+      "address": "0x20002F1C",
+      "bytes": 136
+    },
+    "layout_counters_flags_frozen_semantics_unchanged": true
+  },
+  "verification": {
+    "ARM": "build/v6p-fw-01 PASS first execution; not repeated.",
+    "actual_C": "One actual observer model execution in native01: SI accepted, SG/SH/foreign/gen/nonce rejected; FIFO count classes, known partial/unknown handling and CLOSING/FROZEN immutability pass. Exact ARM generated header used.",
+    "preserved_failure": "native01 aggregate FAILED solely because Zig wrapper rejected -fsyntax-only with implicit-c under Werror before the intended #error. Native C model/fixtures and source proof succeeded. Original runner archived byte-exact in analysis/check_progress_binding-r1.py.",
+    "addressed_repair": "native02 repeated ONLY the missing-macro compiler probe using -c/-o; required #error observed. It pins native01 C/fixtures/inputs and archived/current runner delta. No actual C or ARM rerun.",
+    "root_decoder": "Root-owned decoder01 PASS once on actual SI C64 plus synthetic C legacy136, clean profile and19 negatives. Not actual legacy module execution or hardware identity.",
+    "counts": {
+      "ARM": 1,
+      "actual_C_model": 1,
+      "negative_compiler_probe_attempts": 2,
+      "root_decoder": 1
+    },
+    "full_runtime_ADC_USB_not_executed": true,
+    "COM_SWD_Reset_Flash_by_author": false
+  },
+  "exact_inputs": "Full compiler/toolchain/generated header/board/observer dependencies and image analysis in ARM receipt; actual C inputs in preserved native01 and addressed-completion02. Archived r1 runner explains intentional current-runner delta. All current ARM/completion input pins rechecked at freeze.",
+  "hardware_verified": false,
+  "stable150k_established": false,
+  "flash_approved": false
+}

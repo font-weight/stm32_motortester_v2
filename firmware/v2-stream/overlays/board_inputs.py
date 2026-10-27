@@ -17,7 +17,7 @@ def generate(raw):
     if set(config) != expected or config["schema"] != "motortester-v2-stream-build-1":
         raise ValueError("Unsupported V2 build configuration")
     fixed = {
-        "firmware_build": 0x56325348, "flash_bytes": 65536, "ram_bytes": 20480,
+        "firmware_build": 0x56325349, "flash_bytes": 65536, "ram_bytes": 20480,
         "cdc_tx_fifo_bytes": 384, "cdc_tx_transfer_bytes": 384,
         "usb_tx_burst_packets": 6, "usb_tx_burst_limit_us": 500,
         "nominal_sample_rate_hz": 100000, "adc_sample_cycles_x2": 83, "acquisition_modes": [1,2,3,4,5],
@@ -52,6 +52,7 @@ def generate(raw):
         "/* V2 transport candidate. Board/clock assumptions NOT VERIFIED. */",
         "/* Legacy verified_* names below carry configuration, not measurements. */",
         '#include "mt_board_inputs.h"',
+        '#include "mt_firmware_build.h"',
     ]
     for name in ("manufacturer", "product", "serial"):
         values = ", ".join(str(ord(c)) for c in usb[name]) + ", 0"
@@ -60,7 +61,7 @@ def generate(raw):
         "const mt_board_inputs mt_board = {",
         " .verified_hse_hz = 8000000u, .hse_mode = MT_CLOCK_CRYSTAL,",
         " .clock_poll_budget = 1000000u, .usb_irq_priority = 0u,",
-        " .firmware_build = 0x56325348u, .require_dtr = 1u,",
+        " .firmware_build = MT_FIRMWARE_BUILD, .require_dtr = 1u,",
         " .verified_fixed_pullup = 1u,",
         " .usb = {.vid = 0x1209u, .pid = 1u, .bcd_device = 0x0200u,",
         " .bus_power_ma = 100u, .manufacturer = v2_manufacturer,",

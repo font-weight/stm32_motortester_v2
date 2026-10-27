@@ -1,0 +1,53 @@
+--- a/app/mt_live_runtime.c
++++ b/app/mt_live_runtime.c
+@@ -1,5 +1,6 @@
+ #include "mt_live_runtime.h"
+ #include "../platform/mt_stream_diag.h"
++#include "../platform/mt_stream_progress.h" /* N_PROGRESS_INCLUDE */
+ #include "../platform/mt_usb_ctr.h"
+ #include "tusb.h"
+ #include <stddef.h>
+@@ -108,6 +109,9 @@
+      * arm that fragment before its remainder is admitted. Insufficient room
+      * means known zero acceptance and leaves FIFO/core prefix unchanged. */
+     if(tud_cdc_n_write_available(0)<length) {
++#if CFG_MT_PROGRESS_TRACE /* N_PROGRESS */
++        if(r->device.tx_type==152u)mt_progress_zero_space();
++#endif
+         mt_usb_bridge_leave(&scope); return 0;
+     }
+     r->writer_active=1;
+@@ -197,6 +201,9 @@
+     mt_usb_bridge_cleaned(r->epoch); return 1;
+ }
+ static mt_live_runtime_result time_fault(mt_live_runtime *r) {
++#if CFG_MT_PROGRESS_TRACE /* N_PROGRESS */
++    mt_progress_close(&r->device,MT_N_CLOSE_TIME,MT_LIVE_ERR_CLOCK);
++#endif
+     r->clock_fault=1; r->open=0; r->pending=2;
+     r->carry_offset=r->carry_used=0;
+     mt_adc_dma_invalidate_stream_history(&r->adc,MT_ADC_DMA_FAULT_CLOCK);
+@@ -282,7 +289,13 @@
+      * foreground owner retains queue/core bytes; ISR may only change USB epoch.
+      * No new frame buffer, callbacks, or irreversible acceptance occurs here. */
+     prepared_epoch=r->epoch; prepared_soft_serial=r->soft_serial;
++#if CFG_MT_PROGRESS_TRACE /* N_PROGRESS */
++    uint32_t progress_prepare=mt_progress_prepare_begin();
++#endif
+     (void)mt_live_device_prepare_tx(&r->device,&ticket);
++#if CFG_MT_PROGRESS_TRACE /* N_PROGRESS */
++    mt_progress_prepare_end(progress_prepare);
++#endif
+     MT_DIAG_STAMP(diag_tx);
+     key=mt_usb_bridge_lock();
+     tx_ok=prepared_tx_step(r,&ticket,prepared_epoch,prepared_soft_serial);
+@@ -304,6 +317,9 @@
+     MT_DIAG_STAMP(diag_step);
+     r->in_step=1; result=step(r,&grant_attempted);
+     if(!grant_attempted)grant_irq(r);
++#if CFG_MT_PROGRESS_TRACE /* N_PROGRESS */
++    mt_progress_checkpoint(&r->device);
++#endif
+ #if CFG_MT_STREAM_DIAGNOSTICS
+     if(quiescent(r) && (r->device.state==MT_LIVE_HELLO_PENDING || r->device.state==MT_LIVE_STOPPED)) {
+         mt_stream_diag_note((uint32_t)result,r->epoch,(uint32_t)r->device.queue.used,

@@ -1,0 +1,10 @@
+--- a/app/mt_live_adc.h
++++ b/app/mt_live_adc.h
+@@ -34,6 +34,6 @@
+  * accepted,0 no block/inactive,-1 acquisition fault/queue rejection,-2 badarg.
+  * A failed offer can synchronously quiesce: never use the old BLOCK view after.
+  * Caller owns USB epoch admission and independent TIME/live timer servicing;
+- * operation count alone does not prove the <2560us ADC service requirement. */
++ * operation count alone does not prove the <5120us ADC service requirement. */
+ int mt_live_adc_service(mt_live_adc *binding);
+ #endif

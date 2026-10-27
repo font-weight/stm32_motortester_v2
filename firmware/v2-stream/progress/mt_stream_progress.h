@@ -11,7 +11,13 @@
 #error "Progress trace must be explicitly 0 or 1"
 #endif
 #define MT_N_MAGIC UINT32_C(0x4d544e31) /* MTN1: fixed layout/version1,64 bytes. */
-#define MT_N_BUILD UINT32_C(0x56325347)
+#if CFG_MT_PROGRESS_TRACE
+#include "mt_firmware_build.h"
+#ifndef MT_FIRMWARE_BUILD
+#error "Progress trace requires generated target build identity"
+#endif
+#define MT_N_BUILD MT_FIRMWARE_BUILD /* Same config-derived identity as mt_board. */
+#endif
 #define MT_N_CAP_CYCLES UINT32_C(18000000) /* Nominal250ms at72MHz, checkpoint only. */
 enum { MT_N_EMPTY, MT_N_ARMED, MT_N_ACTIVE, MT_N_CLOSING, MT_N_FROZEN };
 enum {
@@ -36,7 +42,7 @@ enum {
 
 /* Exactly ONE64B foreground-owned bank, including all persistent scratch.
  * Not self-authenticating: decode only paired with the unchanged136B record
- * matching nonce/generation/buildSG and an independently pinned image.
+ * matching nonce/generation/generated target build and an independently pinned image.
  * Cycle values/sums include IRQ time, assume <one DWT wrap, and are NOT CPU%.
  * Counts saturate; partial/unknown writes are explicit flags, not bytes lost.
  */

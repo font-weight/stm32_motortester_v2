@@ -1,4 +1,27 @@
-# Кандидат V2SH: поздний grant для нового полного DATA1024
+# Кандидат V2SI: единая build-привязка board и observer
+
+V2-06p/build `0x56325349`, product `Motortester V2 Build Binding SI` исправляет
+только P1-O2-02: `config.json.firmware_build` генерирует общий
+`generated/mt_firmware_build.h` для board и observer. При включённой диагностике
+нет fallback на старый SG id: отсутствие generated header/macro — ошибка сборки.
+Actual C binding должен принять SI и отвергнуть прежние SG/SH при той же
+session identity. Прежние64B/136B layout и first-close semantics сохраняются.
+
+В SH старая observer-константа SG отклоняла запуск записи64B; нулевой банк
+не является валидной диагностикой. Сохранённые SH source/image/результат O2
+не исправляются задним числом. SI сохраняет functional SH: late grant,
+ADC/TIME/USB, очереди, wire и сырой префикс. Исправление измерителя не означает
+исправление queue-full или подтверждение устойчивых150k.
+
+```powershell
+.\.venv\Scripts\python.exe -I -B firmware\v2-stream\build_windows.py --output build\v6p-fw-NEW
+```
+
+Нужны exact ARM/resource, одна адресная actual-C binding/freeze проверка и
+независимый review до отдельного физического плана. Сборка не обращается к плате.
+Точные результаты и установленная прошивка — только в progress/review.
+
+## Сохранённый V2SH: поздний grant для нового полного DATA1024
 
 V2-06o/build `0x56325348`, product `Motortester V2 Late Grant SH` проверяет
 одну гипотезу расписания USB по [границам O](../../docs/streaming-late-grant.md).

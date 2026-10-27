@@ -1,4 +1,4 @@
-"""Build V2SH with one deferred grant for new mode5 DATA; never flash hardware."""
+"""Build V2SI with one generated board/observer build identity; never flash hardware."""
 import argparse
 import hashlib
 import importlib.util
@@ -176,6 +176,16 @@ def main():
                 target.write_bytes(path.read_bytes())
         (out / "generated/board.c").write_text(board_c, encoding="ascii", newline="\n")
         (out / "generated/timing.c").write_text(timing_c, encoding="ascii", newline="\n")
+        # This validated config field is the sole compiled build identity for
+        # both the board declaration and the progress observer admission.
+        # No observer-specific literal/default may silently disable binding.
+        build_header = (
+            "#ifndef MT_FIRMWARE_BUILD_H\n#define MT_FIRMWARE_BUILD_H\n"
+            "#include <stdint.h>\n"
+            f"#define MT_FIRMWARE_BUILD UINT32_C(0x{config['firmware_build']:08x})\n"
+            "#endif\n"
+        )
+        (out / "generated/mt_firmware_build.h").write_text(build_header, encoding="ascii", newline="\n")
         (out / "config.json").write_bytes(config_raw)
         for name, path in tools.items():
             run("version-" + name, [path, "--version"])
@@ -335,7 +345,7 @@ def main():
         entries += [{"source": path, "flags": standard} for path in ADD]
         if config["active_profile_enabled"]:
             entries.append({"source":"firmware/platform/mt_stream_profile.c","flags":standard})
-        includes = ["-Ipatched/v2/" + p for p in
+        includes = ["-Igenerated"] + ["-Ipatched/v2/" + p for p in
                     ("boot", "platform", "app", "protocol", "transport", "acquisition")]
         includes += ["-Isource/firmware/" + p for p in
                     ("boot", "platform", "app", "protocol", "transport", "acquisition")]
