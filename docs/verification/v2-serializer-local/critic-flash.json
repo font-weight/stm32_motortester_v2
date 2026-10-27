@@ -1,0 +1,94 @@
+{
+  "schema": "v2-06m-exact-flash-plan-admission-1",
+  "date": "2026-10-27",
+  "reviewer": "stream200_critic",
+  "independent_non_author": true,
+  "status": "PASS",
+  "score": 9.6125,
+  "threshold": 9.5,
+  "plan_sha256": "6ee442f4ed92029233ab63bbc9c28d0a5e87a6a42d1994a4421db6b8f4cc9453",
+  "plan_path": "build/v6m-board-01/plan.json",
+  "source_commit": "bad4bfb4c39a0a2c5510b6305d033bd64eb48e03",
+  "base_commit": "878ee6fe3833269cb4aa9dfdec67173a7f19605b",
+  "source_review_sha256": "9115d57c7985b7adc39f9ce34eba68ff7bc26d4f57620df9f1872d32acbcce0e",
+  "scope": "New exact SF plan/helper/backup delta only; source/ARM/package accepted separately and not rerun",
+  "plan_archive_manifest_sha256": "84746e4508822a61a0959674eef368a30e6aaa63dab8400deae493db7cd7f564",
+  "candidate": {
+    "firmware_build": "0x56325346",
+    "bytes": 42480,
+    "BIN_sha256": "580cfaa40fd782a96d798285f3df7c9a3e2f2f0e126ec61023a89266207be29e",
+    "ELF_sha256": "73150965208b9c7c9c9790939601258e3ede8a63c207b2ef0ea11b66ca01cc75",
+    "readback_address": "0x08000000",
+    "readback_bytes_hex": "0xA5F0",
+    "diagnostics_address": "0x20002F1C",
+    "diagnostics_bytes": 136
+  },
+  "backup": {
+    "image": "V2SE/0x56325345",
+    "bytes": 65536,
+    "sha256": "31728252328cd9375aa39958590cd970c0ce98b74676527cc2f1529b4ffe0946",
+    "prefix_bytes": 42444,
+    "prefix_sha256": "c1d2c5909341b010d0869f6f7a818d8dd46525bd18d6075e0dda780a9e23b9df",
+    "full_and_prefix_verified": true,
+    "backup_invocation_started_UTC": "2026-10-26T16:34:24.144490+00:00",
+    "expected_probe_SN_in_backup_log": "57005400120000393333574E"
+  },
+  "retained_Windows_package": {
+    "previous_score": 9.62,
+    "ZIP_sha256": "436cdaf1f27322e8ff7e90809f6c091950edcf7a599a97766c128c6e19a6dbfe",
+    "EXE_sha256": "582cb37eb508746953b7200c2955aff5fb62b4263b6c734fdb7495e09a404e37",
+    "build_report_sha256": "6f9f22d27664d5a0a726c240eeaff751eb1f7d6b57cd7e3afea47752a3f729ac",
+    "rerun": false,
+    "reason": "Host/wire unchanged; actual-core fixture byte-identical as accepted in M source review"
+  },
+  "helper_delta": {
+    "six_prior_helpers": "Paths/build/report labels only; guards preserved",
+    "run_trial_sha256": "f07da594aa397e8579c59cdc4f09038b36c6b9e9441e062c758d5fceca123cd1",
+    "run_trial_reviewed": true,
+    "guards": [
+      "Exact PASS/score/plan hash and execution pins",
+      "Readback equal candidate",
+      "Selected Fs and actual user reply record tied to selected reset.log hash",
+      "All preceding wire/diagnostic/register PASS gates",
+      "Fresh output directory to prevent automatic repeat"
+    ],
+    "limits": "A reset-log hash or helper-generated procedural fact does not independently prove a reboot, fresh human reply or absence of active SWD; root must record actual chronology."
+  },
+  "admitted_sessions": [
+    {"order":1,"Fs":150000,"mode":5,"seconds":30,"deadline_us_exclusive":3413,"PSC":47,"ARR":9},
+    {"order":2,"Fs":50000,"mode":1,"seconds":5,"deadline_us_exclusive":10240,"PSC":71,"ARR":19},
+    {"order":3,"Fs":100000,"mode":2,"seconds":5,"deadline_us_exclusive":5120,"PSC":71,"ARR":9}
+  ],
+  "conditions": [
+    "Expected single probe/COM6 and no application/capture owner before action; user-confirmed PA0 empty, power only board USB remains true.",
+    "One program/verify then independent full42480-byte readback equality before Reset/Run.",
+    "Fresh successful Reset/Run plus actual new USB-board replug reply before every START; never reuse earlier reply.",
+    "One START per session; next Fs only after all prior gates PASS; any failure stops plan.",
+    "No SWD/halt while owner active; require closed plus normal END/ACK, or closed fault reason1 with matching ACK for fault-reader.",
+    "Current paired136 identity,flags0,poll/copy deadlines and stopped PSC/ARR/ADC/DMA for PASS; never read ADC_DR.",
+    "Preserve unknown tail and all negative evidence; no automatic retry/rollback; concrete boot/link/stop necessity required for SE restore.",
+    "No analog accuracy, calibrated Fs, bandwidth or ignition acceptance."
+  ],
+  "personal_verification": {
+    "execution_pins": 27,
+    "CLI_hash_match": true,
+    "all_execution_pins_match": true,
+    "archive_pairs": 18,
+    "archive_bytes": 150850,
+    "all_archive_bytes_match": true,
+    "product_or_source_tests_rerun": 0,
+    "COM_SWD_Reset_Flash_calls": 0
+  },
+  "criteria": [
+    {"id":"C1","weight":0.30,"score":9.65,"basis":"Exact SF/readback and ordered sessions bind accepted source."},
+    {"id":"C2","weight":0.20,"score":9.60,"basis":"Complete SE backup, single START, owner-close before SWD, failure-stop."},
+    {"id":"C3","weight":0.25,"score":9.60,"basis":"Pins/archive/new guards verified; no future physical success inferred."},
+    {"id":"C4","weight":0.15,"score":9.55,"basis":"Fresh reset/reply and procedural evidence limits explicit."},
+    {"id":"C5","weight":0.10,"score":9.65,"basis":"Exact plan hash/helpers/backup and retained package pinned."}
+  ],
+  "open_P0_P1_in_admission_scope": [],
+  "outside_scope_failure": "P1-L2-01 remains open; SE150k FAIL and SE50/100 NOT_RUN unchanged",
+  "physical_status_at_admission": "ALL_SF_SESSIONS_NOT_RUN",
+  "physical150k_accepted": false,
+  "flash_approved_only_for_exact_plan": true
+}
