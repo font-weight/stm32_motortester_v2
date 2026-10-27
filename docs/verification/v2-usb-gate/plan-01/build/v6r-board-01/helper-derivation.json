@@ -1,0 +1,41 @@
+{
+  "scope": "Offline R helper preparation only; no imports or hardware execution",
+  "files": [
+    {
+      "source": "build/v6q-board-01/analyze_physical.py",
+      "source_sha256": "444afb81fb1017dc5cdbae0fba00b9051423d541191727a3347fcf314904f44a",
+      "output": "build/v6r-board-01/analyze_physical.py",
+      "output_sha256": "70ca8f48aa8b022613956e3020503ce7d4f06f1868d6d1e62cac209793390ebd"
+    },
+    {
+      "source": "build/v6q-board-01/decode_diagnostics.py",
+      "source_sha256": "df7f518d34025e314dde9d67ab254a6e6af355fad82c59921e66f0b2a2cd6e20",
+      "output": "build/v6r-board-01/decode_diagnostics.py",
+      "output_sha256": "e7802d0b68cd49640525ce7afc753201d75f60f67c3ed853fe9b4566d5cd49c5"
+    },
+    {
+      "source": "build/v6q-board-01/save_stopped_state.py",
+      "source_sha256": "3e08eae8e53406cc794cefe98a330bc60ced52b284bf01f13d6ebe8189f4580e",
+      "output": "build/v6r-board-01/save_stopped_state.py",
+      "output_sha256": "2380b7548efde1aea3603bf9beebbe3f6fa2edc4213c1a64751bd98cbf112366"
+    },
+    {
+      "source": "build/v6q-board-01/program_and_verify.py",
+      "source_sha256": "a80f65c703207312f0f60d8f52a3efa7f3b944c63f28d6fdba52d0a5e2ec4ad8",
+      "output": "build/v6r-board-01/program_and_verify.py",
+      "output_sha256": "3e2c42d42bceb788ed8a75eb0590dde0158a2ab200d09914f8f9246b121e8115"
+    },
+    {
+      "source": "build/v6q-board-01/run_trial.py",
+      "source_sha256": "990e074b6db6497cb7a735c503d2d10893e634113a5a6fd856d9cd5e85087bf8",
+      "output": "build/v6r-board-01/run_trial.py",
+      "output_sha256": "79e86c876e70f00e4debbe6f464449c0cf8dea60e89eba23a561b18eae98c441"
+    },
+    {
+      "source": "build/v6q-board-01/save_current_backup.py",
+      "source_sha256": "e414f9392a5d6eb108b927d7adebaf5b9b499c98b88c9e29ba78afb21e5a4335",
+      "output": "build/v6r-board-01/save_current_backup.py",
+      "output_sha256": "1f1fb410d04c8722da7e266f25b34fa7c2e57286dfba8fae5745788a2fc6feb8"
+    }
+  ]
+}

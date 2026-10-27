@@ -1,0 +1,71 @@
+{
+  "schema": "v2-06r-independent-exact-plan-review-1",
+  "date": "2026-10-27",
+  "reviewer": "stream200_critic",
+  "independent_of_implementation_and_hardware": true,
+  "status": "PASS",
+  "score": 9.60,
+  "scope": "Conditional admission of one exact R2 SK Flash/readback/reset and one150k mode5 requested30s trial; not physical acceptance",
+  "plan_sha256": "f7d751dcc2a52e6046cbfaeacd7e4bdc0aa4d97a89e32d2249f5dc95e10ec8ec",
+  "source_commit": "bc851d6ee7b16663db95acb32733cacff7a50f36",
+  "plan_archive_sha256": "7742bb5e26d25e7b2053f4983312a456c557e3eee8ce1e814f8775a470243d24",
+  "source_review_sha256": "80561927a75684d1f9dfefcd15fcbaa5387e9177a1ba2d96ebe78a3761e80d2e",
+  "image": {
+    "build": "0x5632534b",
+    "bytes": 46820,
+    "sha256": "dd6e8322488a1d4ada50c2c722820f971b4b4782c303bdafb1410180e2efc8f1",
+    "elf_sha256": "fa7307ac6a6c30a58e8fd54223bfa7692b8cf65417288d99e51a45b85030593f"
+  },
+  "backup": {
+    "bytes": 65536,
+    "sha256": "eb6b98b30914cc5917ecdf7593a4b700a65a3dc8cf2fca6827a5de472f7a34d9",
+    "SJ_prefix_bytes": 45372,
+    "SJ_prefix_sha256": "5041ae67ccc25eda8d0003121370baed1120b025399099d4c3f42abfee61ca88",
+    "prefix_byte_equal_personally_verified": true
+  },
+  "passive_checks": {
+    "archive_pairs": 16,
+    "archive_bytes": 147379,
+    "execution_input_pins": 28,
+    "all_pins_and_copies_equal": true,
+    "CLI_hash_equal": true,
+    "candidate_readback_length_equal": true,
+    "program_run_read_helpers_reviewed": true,
+    "paired_dump_addresses_and_no_ADC_DR_checked": true,
+    "source_package_tests_rerun": 0,
+    "hardware_actions_by_critic": 0
+  },
+  "limits": {
+    "program": 1,
+    "software_Reset_Run_after_readback": 1,
+    "START": 1,
+    "sample_rate": 150000,
+    "mode": 5,
+    "requested_Record_seconds": 30,
+    "further_50_100_trials": 0,
+    "automatic_retry": false,
+    "automatic_rollback": false
+  },
+  "mandatory_execution_conditions": [
+    "Root fresh preflash expected probe/COM6 code0 and owners=[]; same PA0-empty USB-only low-voltage setup.",
+    "Exact program/verify and independent full46820-byte readback equality before Reset/Run.",
+    "New actual user response after SK Reset: both USBs off10s, board first, ST-Link5s later; bind response to reset log and preserve fresh inventory/chronology.",
+    "One START only after exact build/CAPS and fresh selected-mode nonce; any failure terminates this plan.",
+    "No SWD/halt while COM active. Paired136/64/24 and stopped registers only after actual owner closure and offline coherent END/STOP/ACK.",
+    "Root records external no-SWD/boot chronology; helper output is not independent proof of those actions.",
+    "No same-episode attribution from later HELD64; preserve unknown, CAP, invalidity and negative physical results."
+  ],
+  "rubric": {
+    "C1": {"weight": 0.30, "score": 9.70, "reason": "Exact SK/profile/addresses and bounded one-trial scope"},
+    "C2": {"weight": 0.20, "score": 9.55, "reason": "Backup/readback/closure/fail-stop; external operator conditions remain mandatory"},
+    "C3": {"weight": 0.25, "score": 9.60, "reason": "Passive exact evidence verification; future physical result not presumed"},
+    "C4": {"weight": 0.15, "score": 9.40, "reason": "Clear sequence with explicit manual chronology and harmless inherited labels"},
+    "C5": {"weight": 0.10, "score": 9.70, "reason": "Commit/argv/hash/exclusive outputs and failure preservation"}
+  },
+  "nonblocking_notes": ["Two offline helper docstrings still say SJ; actual identity is bound to exact SK plan and must be reported as such."],
+  "open_scope_P0_P1": [],
+  "external_P1_M2_01": "OPEN",
+  "physical_150k_accepted": false,
+  "future_diagnostic_evidence_accepted": false,
+  "report_path": "docs/reviews/v2-06r-flash-review.md"
+}
