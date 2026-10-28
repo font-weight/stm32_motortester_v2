@@ -1,0 +1,546 @@
+{
+  "schema": "v2-06r-physical-evidence-1",
+  "scope": "Preserved exact evidence; archive operation is not another test or acceptance",
+  "files": [
+    {
+      "source": "build/v6r-board-01/150000/adc.bin",
+      "archive": "docs/verification/v2-usb-gate/physical-01/build/v6r-board-01/150000/adc.bin",
+      "bytes": 12,
+      "sha256": "b389a6884b289d4b53e9b36853b9a933c640fa7a5abe584f859a56c6768c01ba"
+    },
+    {
+      "source": "build/v6r-board-01/150000/adc.invocation.json",
+      "archive": "docs/verification/v2-usb-gate/physical-01/build/v6r-board-01/150000/adc.invocation.json",
+      "bytes": 382,
+      "sha256": "bf143524400d33a9f946ffd4ce9c49cf326988a4a5cb8dcf48b1fe522f3d11fd"
+    },
+    {
+      "source": "build/v6r-board-01/150000/adc.log",
+      "archive": "docs/verification/v2-usb-gate/physical-01/build/v6r-board-01/150000/adc.log",
+      "bytes": 881,
+      "sha256": "56739f223c7b42e9c1ab45d70a2036a3a09c3bc55e38616f099ccaa0f9d1b817"
+    },
+    {
+      "source": "build/v6r-board-01/150000/adc.stdout.bin",
+      "archive": "docs/verification/v2-usb-gate/physical-01/build/v6r-board-01/150000/adc.stdout.bin",
+      "bytes": 659,
+      "sha256": "65eb89840a4be260e8621f842139cf44397c727f598f46a4a7d683a1f9562e47"
+    },
+    {
+      "source": "build/v6r-board-01/150000/diagnostics-decoded.json",
+      "archive": "docs/verification/v2-usb-gate/physical-01/build/v6r-board-01/150000/diagnostics-decoded.json",
+      "bytes": 9300,
+      "sha256": "a94cf141aefd822ac483dd0b608977504dbbe24f184c28bd79bae25796031977"
+    },
+    {
+      "source": "build/v6r-board-01/150000/diagnostics-decoder-stderr.txt",
+      "archive": "docs/verification/v2-usb-gate/physical-01/build/v6r-board-01/150000/diagnostics-decoder-stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "source": "build/v6r-board-01/150000/diagnostics-first.bin",
+      "archive": "docs/verification/v2-usb-gate/physical-01/build/v6r-board-01/150000/diagnostics-first.bin",
+      "bytes": 136,
+      "sha256": "07f2fdd151164476e59abdeb5db0d891d9e6deeb404431c8cb8912b83d1cf471"
+    },
+    {
+      "source": "build/v6r-board-01/150000/diagnostics-first.invocation.json",
+      "archive": "docs/verification/v2-usb-gate/physical-01/build/v6r-board-01/150000/diagnostics-first.invocation.json",
+      "bytes": 397,
+      "sha256": "95acd2e695112a74ccf118e8ab54f723f64c549f2aec790c79a9f540a9b4335e"
+    },
+    {
+      "source": "build/v6r-board-01/150000/diagnostics-first.log",
+      "archive": "docs/verification/v2-usb-gate/physical-01/build/v6r-board-01/150000/diagnostics-first.log",
+      "bytes": 909,
+      "sha256": "1f9023b9088723b308ae5485abba55c117728c9fe2106aa57a000d675ec7733e"
+    },
+    {
+      "source": "build/v6r-board-01/150000/diagnostics-first.stdout.bin",
+      "archive": "docs/verification/v2-usb-gate/physical-01/build/v6r-board-01/150000/diagnostics-first.stdout.bin",
+      "bytes": 687,
+      "sha256": "8a88dca58fe152b59dba15641aacc3f4e8762900437ba61fb820a0f0e146cf8c"
+    },
+    {
+      "source": "build/v6r-board-01/150000/diagnostics-second.bin",
+      "archive": "docs/verification/v2-usb-gate/physical-01/build/v6r-board-01/150000/diagnostics-second.bin",
+      "bytes": 136,
+      "sha256": "07f2fdd151164476e59abdeb5db0d891d9e6deeb404431c8cb8912b83d1cf471"
+    },
+    {
+      "source": "build/v6r-board-01/150000/diagnostics-second.invocation.json",
+      "archive": "docs/verification/v2-usb-gate/physical-01/build/v6r-board-01/150000/diagnostics-second.invocation.json",
+      "bytes": 398,
+      "sha256": "3fd8b29774ab437d1830391ca0b5e33fcb8109150a8f962d218c480c39815d22"
+    },
+    {
+      "source": "build/v6r-board-01/150000/diagnostics-second.log",
+      "archive": "docs/verification/v2-usb-gate/physical-01/build/v6r-board-01/150000/diagnostics-second.log",
+      "bytes": 911,
+      "sha256": "fe9da25323ebf3b03765695642d1ae199adf355c22e3a7be4a9d69f268134453"
+    },
+    {
+      "source": "build/v6r-board-01/150000/diagnostics-second.stdout.bin",
+      "archive": "docs/verification/v2-usb-gate/physical-01/build/v6r-board-01/150000/diagnostics-second.stdout.bin",
+      "bytes": 689,
+      "sha256": "73d3e3efdca4fcb42ee09c9aec53287746dfc9cc3ac92e0a3f4c8031bd317caf"
+    },
+    {
+      "source": "build/v6r-board-01/150000/dma.bin",
+      "archive": "docs/verification/v2-usb-gate/physical-01/build/v6r-board-01/150000/dma.bin",
+      "bytes": 16,
+      "sha256": "8739b458009249800d9eed206beb4b83ef7b6e0b9eabcdca6650dbf859681bd5"
+    },
+    {
+      "source": "build/v6r-board-01/150000/dma.invocation.json",
+      "archive": "docs/verification/v2-usb-gate/physical-01/build/v6r-board-01/150000/dma.invocation.json",
+      "bytes": 383,
+      "sha256": "4ffe9ff24513a74c6462ec02dc090837ef536e779d457e3206d3cafb7112992d"
+    },
+    {
+      "source": "build/v6r-board-01/150000/dma.log",
+      "archive": "docs/verification/v2-usb-gate/physical-01/build/v6r-board-01/150000/dma.log",
+      "bytes": 881,
+      "sha256": "9012e0b30daeb9ba3ad4379d1d00a4897de703338ef753f7a4ba87c25e599164"
+    },
+    {
+      "source": "build/v6r-board-01/150000/dma.stdout.bin",
+      "archive": "docs/verification/v2-usb-gate/physical-01/build/v6r-board-01/150000/dma.stdout.bin",
+      "bytes": 659,
+      "sha256": "aea357e3c2f6945396708ed7a05ddc5de054a05bac2df73cdb31d9a69abd4a64"
+    },
+    {
+      "source": "build/v6r-board-01/150000/gate-decoded.json",
+      "archive": "docs/verification/v2-usb-gate/physical-01/build/v6r-board-01/150000/gate-decoded.json",
+      "bytes": 6181,
+      "sha256": "c190d55ee7c7818c0bc3b4f2e3480322013e8e881d60c4c87199d7b28c7ba263"
+    },
+    {
+      "source": "build/v6r-board-01/150000/gate-decoder-stderr.txt",
+      "archive": "docs/verification/v2-usb-gate/physical-01/build/v6r-board-01/150000/gate-decoder-stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "source": "build/v6r-board-01/150000/gate-first.bin",
+      "archive": "docs/verification/v2-usb-gate/physical-01/build/v6r-board-01/150000/gate-first.bin",
+      "bytes": 24,
+      "sha256": "1857ff62ab1e8fb96b5fe27ca6f24584c6f75a3851fc5b19a2fc2d1eddc22fb6"
+    },
+    {
+      "source": "build/v6r-board-01/150000/gate-first.invocation.json",
+      "archive": "docs/verification/v2-usb-gate/physical-01/build/v6r-board-01/150000/gate-first.invocation.json",
+      "bytes": 390,
+      "sha256": "b650a371d8f8d0e460352876b82a55cff5043f8c7aba08e1ac24241f4a43cfbc"
+    },
+    {
+      "source": "build/v6r-board-01/150000/gate-first.log",
+      "archive": "docs/verification/v2-usb-gate/physical-01/build/v6r-board-01/150000/gate-first.log",
+      "bytes": 895,
+      "sha256": "5d91790190cae239cb151c78a7d2de2fde40fcdd40fdd222e65bf7611fd511dc"
+    },
+    {
+      "source": "build/v6r-board-01/150000/gate-first.stdout.bin",
+      "archive": "docs/verification/v2-usb-gate/physical-01/build/v6r-board-01/150000/gate-first.stdout.bin",
+      "bytes": 673,
+      "sha256": "e366413ba6012ea6919d573377579b7fd685ed8494797479e7661485e878d446"
+    },
+    {
+      "source": "build/v6r-board-01/150000/gate-second.bin",
+      "archive": "docs/verification/v2-usb-gate/physical-01/build/v6r-board-01/150000/gate-second.bin",
+      "bytes": 24,
+      "sha256": "1857ff62ab1e8fb96b5fe27ca6f24584c6f75a3851fc5b19a2fc2d1eddc22fb6"
+    },
+    {
+      "source": "build/v6r-board-01/150000/gate-second.invocation.json",
+      "archive": "docs/verification/v2-usb-gate/physical-01/build/v6r-board-01/150000/gate-second.invocation.json",
+      "bytes": 391,
+      "sha256": "7fd80e880e19365af7bd0b2be60fd2df07ab5127d931b489be1cec7b2ce8feda"
+    },
+    {
+      "source": "build/v6r-board-01/150000/gate-second.log",
+      "archive": "docs/verification/v2-usb-gate/physical-01/build/v6r-board-01/150000/gate-second.log",
+      "bytes": 897,
+      "sha256": "9e116f635a0f39a210e735ee21d4245fd0401894e2328cb9866fc20d1047ba68"
+    },
+    {
+      "source": "build/v6r-board-01/150000/gate-second.stdout.bin",
+      "archive": "docs/verification/v2-usb-gate/physical-01/build/v6r-board-01/150000/gate-second.stdout.bin",
+      "bytes": 675,
+      "sha256": "3c94f20597ff46b447a4aef862029ca48267c12360242e4b5645b4934ba8c006"
+    },
+    {
+      "source": "build/v6r-board-01/150000/hardware-procedure-facts.json",
+      "archive": "docs/verification/v2-usb-gate/physical-01/build/v6r-board-01/150000/hardware-procedure-facts.json",
+      "bytes": 500,
+      "sha256": "e36d3a1e044a0f30b5a88c95da1cadde2fe273bfa35d132e004cea1be387c551"
+    },
+    {
+      "source": "build/v6r-board-01/150000/physical-analysis.json",
+      "archive": "docs/verification/v2-usb-gate/physical-01/build/v6r-board-01/150000/physical-analysis.json",
+      "bytes": 16343,
+      "sha256": "efa27ef946b3ae04d125beadf0c68d4b1a02ed331ba4e582494b4d378d72990f"
+    },
+    {
+      "source": "build/v6r-board-01/150000/physical-analysis.md",
+      "archive": "docs/verification/v2-usb-gate/physical-01/build/v6r-board-01/150000/physical-analysis.md",
+      "bytes": 2236,
+      "sha256": "2b6a78d4b4bfc4b7d89e7aa40cd1d42cdf6c4504ef1bc230e7a90e6342c09611"
+    },
+    {
+      "source": "build/v6r-board-01/150000/progress-decoded.json",
+      "archive": "docs/verification/v2-usb-gate/physical-01/build/v6r-board-01/150000/progress-decoded.json",
+      "bytes": 2820,
+      "sha256": "9f3328fc1605e38a678f3bf7056db0aa7a4253af1a50c54f052c3068be67cb06"
+    },
+    {
+      "source": "build/v6r-board-01/150000/progress-decoder-stderr.txt",
+      "archive": "docs/verification/v2-usb-gate/physical-01/build/v6r-board-01/150000/progress-decoder-stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "source": "build/v6r-board-01/150000/progress-first.bin",
+      "archive": "docs/verification/v2-usb-gate/physical-01/build/v6r-board-01/150000/progress-first.bin",
+      "bytes": 64,
+      "sha256": "8f118506e10303870f99e461e165dba34c7d61f7f8db4f35c22a13c4c9a7f462"
+    },
+    {
+      "source": "build/v6r-board-01/150000/progress-first.invocation.json",
+      "archive": "docs/verification/v2-usb-gate/physical-01/build/v6r-board-01/150000/progress-first.invocation.json",
+      "bytes": 394,
+      "sha256": "22462a0fd646b1de6c1b7828711dd9a2f3a5be539eca8d5778fd1cf950c645c5"
+    },
+    {
+      "source": "build/v6r-board-01/150000/progress-first.log",
+      "archive": "docs/verification/v2-usb-gate/physical-01/build/v6r-board-01/150000/progress-first.log",
+      "bytes": 903,
+      "sha256": "0ebb679e2a84a448e9d886812475d05999676a191f9f7c9688a591e3aef82edc"
+    },
+    {
+      "source": "build/v6r-board-01/150000/progress-first.stdout.bin",
+      "archive": "docs/verification/v2-usb-gate/physical-01/build/v6r-board-01/150000/progress-first.stdout.bin",
+      "bytes": 681,
+      "sha256": "3a91f2c8a5141ba0e256e37d533a027a1d91ff2fed2666dd4a6bec7fc043f956"
+    },
+    {
+      "source": "build/v6r-board-01/150000/progress-second.bin",
+      "archive": "docs/verification/v2-usb-gate/physical-01/build/v6r-board-01/150000/progress-second.bin",
+      "bytes": 64,
+      "sha256": "8f118506e10303870f99e461e165dba34c7d61f7f8db4f35c22a13c4c9a7f462"
+    },
+    {
+      "source": "build/v6r-board-01/150000/progress-second.invocation.json",
+      "archive": "docs/verification/v2-usb-gate/physical-01/build/v6r-board-01/150000/progress-second.invocation.json",
+      "bytes": 395,
+      "sha256": "d68ae95e081f84fc4adf53d1bbd8ad3fbbb6489bfd99a54fd1d0fa37088adeb7"
+    },
+    {
+      "source": "build/v6r-board-01/150000/progress-second.log",
+      "archive": "docs/verification/v2-usb-gate/physical-01/build/v6r-board-01/150000/progress-second.log",
+      "bytes": 905,
+      "sha256": "471b485c6b61bdccf73ed8fed8899f28cfcac85e89c286a558e2adcacb7b98a4"
+    },
+    {
+      "source": "build/v6r-board-01/150000/progress-second.stdout.bin",
+      "archive": "docs/verification/v2-usb-gate/physical-01/build/v6r-board-01/150000/progress-second.stdout.bin",
+      "bytes": 683,
+      "sha256": "98cfb4d70a31e69dffaa1d6541166acd45432f99736410bcf6324bb6cae08e7f"
+    },
+    {
+      "source": "build/v6r-board-01/150000/rcc.bin",
+      "archive": "docs/verification/v2-usb-gate/physical-01/build/v6r-board-01/150000/rcc.bin",
+      "bytes": 20,
+      "sha256": "1e24249e3619f46e4291c93fac339276c89ad2a136a324180aa83757fc71a367"
+    },
+    {
+      "source": "build/v6r-board-01/150000/rcc.invocation.json",
+      "archive": "docs/verification/v2-usb-gate/physical-01/build/v6r-board-01/150000/rcc.invocation.json",
+      "bytes": 383,
+      "sha256": "f2cb8e170d1e54f9d8034a2a3257d6458c1b50aefd9e56299dbf550b093b38aa"
+    },
+    {
+      "source": "build/v6r-board-01/150000/rcc.log",
+      "archive": "docs/verification/v2-usb-gate/physical-01/build/v6r-board-01/150000/rcc.log",
+      "bytes": 881,
+      "sha256": "52feec1bd6c7994b87ca30e79eacc3c8a32312de464aa12527fd1390776d0c85"
+    },
+    {
+      "source": "build/v6r-board-01/150000/rcc.stdout.bin",
+      "archive": "docs/verification/v2-usb-gate/physical-01/build/v6r-board-01/150000/rcc.stdout.bin",
+      "bytes": 659,
+      "sha256": "5e741bfea05e7f7fb4d29c2175c43719836b49f6afc51a0ce1bfe62e18d7d62e"
+    },
+    {
+      "source": "build/v6r-board-01/150000/register-decoder-console.txt",
+      "archive": "docs/verification/v2-usb-gate/physical-01/build/v6r-board-01/150000/register-decoder-console.txt",
+      "bytes": 237,
+      "sha256": "f88336820412c004de58d6864d3758e23192eb36719b15994fcc06195d70e103"
+    },
+    {
+      "source": "build/v6r-board-01/150000/registers-decoded.json",
+      "archive": "docs/verification/v2-usb-gate/physical-01/build/v6r-board-01/150000/registers-decoded.json",
+      "bytes": 2042,
+      "sha256": "7d4ad358576683f6a078158b33b8d590b9084cb42a08c6f5311d91aa8bd97799"
+    },
+    {
+      "source": "build/v6r-board-01/150000/root-observations.md",
+      "archive": "docs/verification/v2-usb-gate/physical-01/build/v6r-board-01/150000/root-observations.md",
+      "bytes": 4099,
+      "sha256": "2b03455e191b5dc3560dd29302408b8eab3388b6fe9304093fdf345aed949018"
+    },
+    {
+      "source": "build/v6r-board-01/150000/run/physical.mtstream",
+      "archive": "docs/verification/v2-usb-gate/physical-01/build/v6r-board-01/150000/run/physical.mtstream",
+      "bytes": 40759,
+      "sha256": "38624d4c6e39368b61ad312c1b1e7493717bb23305b5fa8d06b10df97b40b89a"
+    },
+    {
+      "source": "build/v6r-board-01/150000/run/physical.mtstream.v2.json",
+      "archive": "docs/verification/v2-usb-gate/physical-01/build/v6r-board-01/150000/run/physical.mtstream.v2.json",
+      "bytes": 2403,
+      "sha256": "2e665f55c97392c464f16fe3810887083f6fbb0b5e7748c9612f737526afac97"
+    },
+    {
+      "source": "build/v6r-board-01/150000/run/result.json",
+      "archive": "docs/verification/v2-usb-gate/physical-01/build/v6r-board-01/150000/run/result.json",
+      "bytes": 2975,
+      "sha256": "18b6799d912633b41877eaa8394b49e38064a8b543ab762fc659645956702feb"
+    },
+    {
+      "source": "build/v6r-board-01/150000/run/traffic.bin",
+      "archive": "docs/verification/v2-usb-gate/physical-01/build/v6r-board-01/150000/run/traffic.bin",
+      "bytes": 29475,
+      "sha256": "6e43153d229ab377309d43a43e1b6f29f541dd68e8d6a289ccbc413e53d133ef"
+    },
+    {
+      "source": "build/v6r-board-01/150000/tim3.bin",
+      "archive": "docs/verification/v2-usb-gate/physical-01/build/v6r-board-01/150000/tim3.bin",
+      "bytes": 48,
+      "sha256": "888ce88be0ba82e3a0fffb1786df96767cec962a1ef440e06f068f31ede0bb30"
+    },
+    {
+      "source": "build/v6r-board-01/150000/tim3.invocation.json",
+      "archive": "docs/verification/v2-usb-gate/physical-01/build/v6r-board-01/150000/tim3.invocation.json",
+      "bytes": 383,
+      "sha256": "fa81d133467a40d1076e7bb1cf521d96a190436807033946c31bf47b3147a4df"
+    },
+    {
+      "source": "build/v6r-board-01/150000/tim3.log",
+      "archive": "docs/verification/v2-usb-gate/physical-01/build/v6r-board-01/150000/tim3.log",
+      "bytes": 883,
+      "sha256": "b730cd74ef3ae332e0a83761967640f7c13f2e2685bdc0d32dfc77fff3eb2ff5"
+    },
+    {
+      "source": "build/v6r-board-01/150000/tim3.stdout.bin",
+      "archive": "docs/verification/v2-usb-gate/physical-01/build/v6r-board-01/150000/tim3.stdout.bin",
+      "bytes": 661,
+      "sha256": "3c2029daa8daeda6f62feb6d89a5068acef7f175489d5d158a0c1ea3a0168275"
+    },
+    {
+      "source": "build/v6r-board-01/150000/trial-console.txt",
+      "archive": "docs/verification/v2-usb-gate/physical-01/build/v6r-board-01/150000/trial-console.txt",
+      "bytes": 540,
+      "sha256": "312673b86f3c2f503598b422dc3aeb33a92c481700389f750154c2152912ed8c"
+    },
+    {
+      "source": "build/v6r-board-01/150000/trial-invocation.json",
+      "archive": "docs/verification/v2-usb-gate/physical-01/build/v6r-board-01/150000/trial-invocation.json",
+      "bytes": 926,
+      "sha256": "1702802b8b2fec7827ebe544cd714fc426b52cd7a5baead74e2d01bc59b572f3"
+    },
+    {
+      "source": "build/v6r-board-01/150000-user-replug.json",
+      "archive": "docs/verification/v2-usb-gate/physical-01/build/v6r-board-01/150000-user-replug.json",
+      "bytes": 624,
+      "sha256": "d2b057d51129f71d135e18792447d72c1b14373f6cda06418f6985bcd0049628"
+    },
+    {
+      "source": "build/v6r-board-01/analyze_physical.py",
+      "archive": "docs/verification/v2-usb-gate/physical-01/build/v6r-board-01/analyze_physical.py",
+      "bytes": 25836,
+      "sha256": "70ca8f48aa8b022613956e3020503ce7d4f06f1868d6d1e62cac209793390ebd"
+    },
+    {
+      "source": "build/v6r-board-01/backup-invocation.json",
+      "archive": "docs/verification/v2-usb-gate/physical-01/build/v6r-board-01/backup-invocation.json",
+      "bytes": 395,
+      "sha256": "32db957d9dc867b19c7f8b49d23f80d40c85856134b1283a50ae48ed449570ff"
+    },
+    {
+      "source": "build/v6r-board-01/backup-preflight.json",
+      "archive": "docs/verification/v2-usb-gate/physical-01/build/v6r-board-01/backup-preflight.json",
+      "bytes": 351,
+      "sha256": "79c1dc9a5fb32c3410f569b8dfc2ff60ec7bdeddf3613491c50dbc8a530ee2d9"
+    },
+    {
+      "source": "build/v6r-board-01/backup-verified.json",
+      "archive": "docs/verification/v2-usb-gate/physical-01/build/v6r-board-01/backup-verified.json",
+      "bytes": 531,
+      "sha256": "5f8a8fe787822fde3ba7d52ea84ae4a35dc3c674f625668037d3e6255f5e536c"
+    },
+    {
+      "source": "build/v6r-board-01/backup.log",
+      "archive": "docs/verification/v2-usb-gate/physical-01/build/v6r-board-01/backup.log",
+      "bytes": 893,
+      "sha256": "562b85944c5ace1a8b30db5efd66aec2c3ec130f4e8561b343ed87f0ee61a906"
+    },
+    {
+      "source": "build/v6r-board-01/backup.stdout.bin",
+      "archive": "docs/verification/v2-usb-gate/physical-01/build/v6r-board-01/backup.stdout.bin",
+      "bytes": 671,
+      "sha256": "ff27e48a591a8121af8895f976d55bb00bead1b2d62d81668dc68db079d2bfb2"
+    },
+    {
+      "source": "build/v6r-board-01/before-flash-64k.bin",
+      "archive": "docs/verification/v2-usb-gate/physical-01/build/v6r-board-01/before-flash-64k.bin",
+      "bytes": 65536,
+      "sha256": "eb6b98b30914cc5917ecdf7593a4b700a65a3dc8cf2fca6827a5de472f7a34d9"
+    },
+    {
+      "source": "build/v6r-board-01/com-inventory.json",
+      "archive": "docs/verification/v2-usb-gate/physical-01/build/v6r-board-01/com-inventory.json",
+      "bytes": 185,
+      "sha256": "8d787e28863597777e593f888e36c2060b827fea8855fede655910d781435388"
+    },
+    {
+      "source": "build/v6r-board-01/decode_diagnostics.py",
+      "archive": "docs/verification/v2-usb-gate/physical-01/build/v6r-board-01/decode_diagnostics.py",
+      "bytes": 15920,
+      "sha256": "e7802d0b68cd49640525ce7afc753201d75f60f67c3ed853fe9b4566d5cd49c5"
+    },
+    {
+      "source": "build/v6r-board-01/flash-ready-inventory.json",
+      "archive": "docs/verification/v2-usb-gate/physical-01/build/v6r-board-01/flash-ready-inventory.json",
+      "bytes": 342,
+      "sha256": "d7dc8a25a263b2ad95fdd9ca05c82622f01f030d2bdef32b10aadee6ab9d5bbd"
+    },
+    {
+      "source": "build/v6r-board-01/flash-ready-probe.log",
+      "archive": "docs/verification/v2-usb-gate/physical-01/build/v6r-board-01/flash-ready-probe.log",
+      "bytes": 357,
+      "sha256": "d8e7fbe0c580b1f2f5b2418514663c71cfdf28d0c5db7af64c5e9b4d1e35e1bf"
+    },
+    {
+      "source": "build/v6r-board-01/helper-derivation.json",
+      "archive": "docs/verification/v2-usb-gate/physical-01/build/v6r-board-01/helper-derivation.json",
+      "bytes": 2007,
+      "sha256": "62ac6f8c4c0045bf42290b0626c5aa573819f97f945fe22d47fa30340b4a0410"
+    },
+    {
+      "source": "build/v6r-board-01/make_plan.py",
+      "archive": "docs/verification/v2-usb-gate/physical-01/build/v6r-board-01/make_plan.py",
+      "bytes": 7452,
+      "sha256": "036f3a139dbba0524a94b7a7064a120f07f7ceee0a796828f1406334d5450b86"
+    },
+    {
+      "source": "build/v6r-board-01/plan.json",
+      "archive": "docs/verification/v2-usb-gate/physical-01/build/v6r-board-01/plan.json",
+      "bytes": 10288,
+      "sha256": "f7d751dcc2a52e6046cbfaeacd7e4bdc0aa4d97a89e32d2249f5dc95e10ec8ec"
+    },
+    {
+      "source": "build/v6r-board-01/program-invocation.json",
+      "archive": "docs/verification/v2-usb-gate/physical-01/build/v6r-board-01/program-invocation.json",
+      "bytes": 391,
+      "sha256": "12bd60c610229d2e19bfaf04f51cce9982ab79671fa094cc6bc5de705dca8d67"
+    },
+    {
+      "source": "build/v6r-board-01/program.log",
+      "archive": "docs/verification/v2-usb-gate/physical-01/build/v6r-board-01/program.log",
+      "bytes": 985,
+      "sha256": "b9bd0f46996f8e5818ebe00d6f2ef0b93bf50de5982bb63ad5fa236de0284e22"
+    },
+    {
+      "source": "build/v6r-board-01/program.stdout.bin",
+      "archive": "docs/verification/v2-usb-gate/physical-01/build/v6r-board-01/program.stdout.bin",
+      "bytes": 760,
+      "sha256": "66e7531d88f3ff329f6c5a372c3ef527c1d046f73e69cf984b8231c7a98f7fbb"
+    },
+    {
+      "source": "build/v6r-board-01/program_and_verify.py",
+      "archive": "docs/verification/v2-usb-gate/physical-01/build/v6r-board-01/program_and_verify.py",
+      "bytes": 2615,
+      "sha256": "3e2c42d42bceb788ed8a75eb0590dde0158a2ab200d09914f8f9246b121e8115"
+    },
+    {
+      "source": "build/v6r-board-01/readback-invocation.json",
+      "archive": "docs/verification/v2-usb-gate/physical-01/build/v6r-board-01/readback-invocation.json",
+      "bytes": 379,
+      "sha256": "b2e2764f592788c83c8bbddd61e0c8234a06272e99a9819466b4503f91823b73"
+    },
+    {
+      "source": "build/v6r-board-01/readback-verified.json",
+      "archive": "docs/verification/v2-usb-gate/physical-01/build/v6r-board-01/readback-verified.json",
+      "bytes": 326,
+      "sha256": "a1ff0cecb614f0d07690c87bef9f91254c6803a36e2d5ba6f2bfa90693c2c790"
+    },
+    {
+      "source": "build/v6r-board-01/readback.bin",
+      "archive": "docs/verification/v2-usb-gate/physical-01/build/v6r-board-01/readback.bin",
+      "bytes": 46820,
+      "sha256": "dd6e8322488a1d4ada50c2c722820f971b4b4782c303bdafb1410180e2efc8f1"
+    },
+    {
+      "source": "build/v6r-board-01/readback.log",
+      "archive": "docs/verification/v2-usb-gate/physical-01/build/v6r-board-01/readback.log",
+      "bytes": 877,
+      "sha256": "5eac97b82b57d10b97a4ef47e9a81abbd8e43021b90098a2849befd4a5d4bf85"
+    },
+    {
+      "source": "build/v6r-board-01/readback.stdout.bin",
+      "archive": "docs/verification/v2-usb-gate/physical-01/build/v6r-board-01/readback.stdout.bin",
+      "bytes": 655,
+      "sha256": "db6ae677e5ca1875f134cae05cef8ccdd5794608b051a18b9fed38ccbbb120e4"
+    },
+    {
+      "source": "build/v6r-board-01/reset-invocation.json",
+      "archive": "docs/verification/v2-usb-gate/physical-01/build/v6r-board-01/reset-invocation.json",
+      "bytes": 318,
+      "sha256": "658f5245e45d67435e1abcf0dd550aa769d50ec881c5367ccd4ec84b140e9c1e"
+    },
+    {
+      "source": "build/v6r-board-01/reset.log",
+      "archive": "docs/verification/v2-usb-gate/physical-01/build/v6r-board-01/reset.log",
+      "bytes": 439,
+      "sha256": "0bdf3581b5ad76c8ea2f518f0c4c702adff2fbf2ce77b5774ec19019a652aebe"
+    },
+    {
+      "source": "build/v6r-board-01/reset.stdout.bin",
+      "archive": "docs/verification/v2-usb-gate/physical-01/build/v6r-board-01/reset.stdout.bin",
+      "bytes": 420,
+      "sha256": "f8596a56771eed9f6bf4ebfd453433d8b7e7796ae747d34ca0eea8f480d620c9"
+    },
+    {
+      "source": "build/v6r-board-01/root_read_closed.py",
+      "archive": "docs/verification/v2-usb-gate/physical-01/build/v6r-board-01/root_read_closed.py",
+      "bytes": 5220,
+      "sha256": "588ac30872d6ecd1e57bab50069434aa6482935d99fe6b727ea3ef783613db1e"
+    },
+    {
+      "source": "build/v6r-board-01/run_trial.py",
+      "archive": "docs/verification/v2-usb-gate/physical-01/build/v6r-board-01/run_trial.py",
+      "bytes": 2149,
+      "sha256": "79e86c876e70f00e4debbe6f464449c0cf8dea60e89eba23a561b18eae98c441"
+    },
+    {
+      "source": "build/v6r-board-01/save_current_backup.py",
+      "archive": "docs/verification/v2-usb-gate/physical-01/build/v6r-board-01/save_current_backup.py",
+      "bytes": 2265,
+      "sha256": "1f1fb410d04c8722da7e266f25b34fa7c2e57286dfba8fae5745788a2fc6feb8"
+    },
+    {
+      "source": "build/v6r-board-01/save_stopped_state.py",
+      "archive": "docs/verification/v2-usb-gate/physical-01/build/v6r-board-01/save_stopped_state.py",
+      "bytes": 5250,
+      "sha256": "2380b7548efde1aea3603bf9beebbe3f6fa2edc4213c1a64751bd98cbf112366"
+    },
+    {
+      "source": "build/v6r-board-01/trial-preflight.json",
+      "archive": "docs/verification/v2-usb-gate/physical-01/build/v6r-board-01/trial-preflight.json",
+      "bytes": 750,
+      "sha256": "adf0b129ce9ab9d28deb51ee64323a60f354c258d09b5a6662b2e3529b3618ae"
+    }
+  ]
+}

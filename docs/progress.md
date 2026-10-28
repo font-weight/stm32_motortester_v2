@@ -1,5 +1,54 @@
 # Прогресс Мотортестера V2
 
+## 28.10.2026 — R2 завершён: SK, 21 пакет, очередь снова переполнена
+
+Новый фактический ответ «готово» на `call_2bb73a17ab2045fe8b6f8c0c91e97507`
+относился к холодному перезапуску обоих USB после SK. Fresh inventory
+03:50:58 UTC: ожидаемый COM6/code0, owners=[]. Ровно один START принятого
+R2: 03:51:17.400011–03:51:18.591850 UTC, whole command 1,1918345 с.
+**FAIL/device_1/queue-full; требуемые 30 с не достигнуты.**
+
+Получен 21 DATA1024 = 21504 кодов, Record [2048,21504) = 19456 кодов.
+Nonce `7266eaaa454327da`, generation3, SK/0x5632534b, mode5.
+ENDseq25/reason1/flags3/prefix21504/CRC2237768949 пришёл до STOPreq4;
+matching ACKseq26. Offline wire/индексы/CRC/raw/freshOpen — PASS для
+полученного префикса. Record host wall 0,1324487 с не является измерением Fs.
+Raw SHA256 `3fe40cc95a99437db46d6ca71ad8271444b28d41295766a80f70fcc46e78711c`,
+Record SHA256 `b63b051b7cdcc364dbc71c22be38028bf4b07c7ca2ec08e1dac77f3050eebae1`.
+Произведённый хвост и число потерянных измерений неизвестны.
+
+COM закрылся; только после offline END/STOP/ACK прочитаны парные 136/64/24
+и stopped TIM3/ADC/DMA/RCC. Во время захвата SWD/halt не использовались,
+ADC_DR не читался. Все stopped checks true, TIM3 PSC47/ARR9/CEN0,
+ADC_CR2=0, DMA EN0. Legacy136: queue8/8, firstreason1, ADCfault0,
+maxpoll2907мкс, copy166мкс; пара SHA256
+`07f2fdd151164476e59abdeb5db0d891d9e6deeb404431c8cb8912b83d1cf471`.
+
+Снимок64: q8, READY1024, TX1152/1335, FIFO free64, held/deferred=true,
+task_ready=false. First close10580665cycles (~146,95мс при номинальных72MHz),
+prepare4203334cycles/158, positive26517B/79, zero-space45/other0.
+Пара SHA256 `8f118506e10303870f99e461e165dba34c7d61f7f8db4f35c22a13c4c9a7f462`.
+Новая запись24 валидна с ограничениями: serial82, PUBLISHED384/queued64,
+ACTIVE1/APPLICABLE0, TIME/budget неизвестны; событие за18497cycles
+(~256,9мкс) до N CLOSING. Пара SHA256
+`1857ff62ab1e8fb96b5fe27ca6f24584c6f75a3851fc5b19a2fc2d1eddc22fb6`.
+Это историческая публикация, **не доказательство HOLD_TIME/FINAL/BUDGET**
+и не причина позднего HELD64. Наблюдение сужает offline-разбор к пути
+публикации/первого IN; root cause и устойчивость ещё не установлены.
+
+[Физический архив](verification/v2-usb-gate/physical-01/manifest.json):
+90 файлов, 342955 байт, SHA256
+`996a92f75e5e5bf0703a594bf5b1b33685e0c68d301c2685046b2fca81754b31`.
+[Независимое ревью](reviews/v2-06r-physical-review.md): физическая цель —
+REWORK 6,375/10; достоверность сохранённой истории отдельно PASS 9,60/10.
+Причина USB-задержки не установлена, P1-M2-01 открыт. Унаследованная подпись SJ в
+physical-analysis.md сохранена как вывод pinned helper; правильный build
+в нём и прочих свидетельствах — SK. Отдельный root-observations поясняет её.
+**SK оставлена остановленной. Новых START/Flash/Reset/50/100k/отката нет.**
+Следующий шаг — offline-разбор порядка private-copy → queue offer → USB,
+без повторения R2. P1-M2-01 stable150k остаётся открытым.
+
+
 ## 27.10.2026 — R2: SK установлена, ожидается новый холодный USB-перезапуск
 
 Программный R1 принят; [точный план R2](verification/v2-usb-gate/plan-01/build/v6r-board-01/plan.json)
