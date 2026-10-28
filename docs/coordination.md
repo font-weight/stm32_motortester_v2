@@ -1,3 +1,11 @@
+# S2 followup: области записи
+
+Higher_fs_review пишет только `build/v6s-followup/analysis.md`, offline source/
+evidence разбор; implementation/build/tests/аппаратура запрещены в этом scope.
+Stream200_critic — независимый physical report, затем отдельное чтение
+followup; root — canonical docs/архив/коммиты. S2 START уже использован,
+SL оставлена остановленной. Предыдущие области ниже — история.
+
 # S2: текущая область записи
 
 S1 source/native/host заморожены в `build/v6s-freeze.json` и production-01.

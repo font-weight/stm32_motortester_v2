@@ -1,0 +1,75 @@
+{
+  "schema": "motortester-sg-progress-v1-offline",
+  "errors": [],
+  "warnings": [],
+  "accepted_frozen_record": true,
+  "physical_identity_verified": false,
+  "timing_qualified": false,
+  "raw": {
+    "magic": 1297370673,
+    "flags": 66060,
+    "generation": 3,
+    "nonce_low": 4121483961,
+    "nonce_high": 3187430141,
+    "begin_cycle": 3109693021,
+    "end_cycle": 3120308954,
+    "prepare_cycles": 4207931,
+    "positive_bytes": 26517,
+    "last_positive_cycle": 3120241468,
+    "max_positive_gap_cycles": 698606,
+    "prepare_count": 159,
+    "positive_count": 79,
+    "zero_space_count": 45,
+    "zero_other_count": 0,
+    "tx_offset": 1152,
+    "tx_length": 1335,
+    "stage_count": 1024,
+    "fifo_free": 384,
+    "stage_phase": 4,
+    "queue_used": 8,
+    "snapshot_bits": 1,
+    "close_kind": 1
+  },
+  "nominal_timing": {
+    "elapsed_cycles": 10615933,
+    "elapsed_ms_at_assumed_72MHz": 147.4435138888889,
+    "completed_prepare_us_at_assumed_72MHz": 58443.48611111111,
+    "max_no_positive_us_at_assumed_72MHz": 9702.861111111111,
+    "close_tail_no_positive_cycles": 67486,
+    "qualification": "Conditional modulo arithmetic: assumes uninterrupted DWT and less than one wrap. Includes IRQ and observer work; not CPU share, calibrated time or WCET."
+  },
+  "first_sha256": "c0c04191fb9f6dba4f6d2b50ef84ec6d0036e89bc357a18e8da252589c33c553",
+  "second_sha256": "c0c04191fb9f6dba4f6d2b50ef84ec6d0036e89bc357a18e8da252589c33c553",
+  "nonce_hex": "bdfc52fdf5a8dab9",
+  "raw_flag_names": [
+    "have_positive",
+    "core_snapshot"
+  ],
+  "close_kind": "queue",
+  "primary_reason": 1,
+  "expected_build": "0x5632534c",
+  "declared_image_sha256": "f82311cde2ce0a3e735543006b2bc7890e8761434c73e7adc7fa332f86cb8cb2",
+  "core_snapshot": {
+    "tx_offset": 1152,
+    "tx_length": 1335,
+    "stage_count": 1024,
+    "queue_used": 8,
+    "stage_phase": "ready",
+    "start_ack_pending": false
+  },
+  "USB_snapshot": {
+    "fifo_free_bytes": 384,
+    "held": false,
+    "deferred": false,
+    "task_ready": false
+  },
+  "status": "VALID_WITH_LIMITS",
+  "limits": [
+    "These are saved bytes and declared identity pins; physical image/readback and operator chronology are separate evidence.",
+    "positive_bytes are known DATA FIFO acceptance before freeze, not USB delivery, complete frames or committed sample prefix.",
+    "Unknown writes and unsaved partial prepare time cannot be reconstructed from zero counts.",
+    "The final no-positive interval includes the tail through first close; without positives it starts at begin.",
+    "250ms cap is a checkpoint for observation only; actual end and overshoot are retained.",
+    "No throughput fix, losslessness, analog accuracy or calibrated sampling rate follows from a valid record."
+  ]
+}

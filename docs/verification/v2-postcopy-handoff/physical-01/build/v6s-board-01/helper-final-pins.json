@@ -1,0 +1,62 @@
+{
+  "scope": "Exact S helper files statically read and parsed; this does not run hardware or data checks.",
+  "changes": "Derived R helpers: S paths/SL identity and scheduling description; backup expects installed SK; explicit firmware dir for plan; obsolete SJ text corrected. Original helpers preserved.",
+  "files": [
+    {
+      "path": "build/v6s-board-01/analyze_physical.py",
+      "bytes": 26216,
+      "sha256": "e9cc49d7ab848ab5403d212c1632dddb8e189407c8cf08ab4b52228c0913c907",
+      "origin": "build/v6r-board-01/analyze_physical.py",
+      "origin_sha256": "70ca8f48aa8b022613956e3020503ce7d4f06f1868d6d1e62cac209793390ebd"
+    },
+    {
+      "path": "build/v6s-board-01/decode_diagnostics.py",
+      "bytes": 16011,
+      "sha256": "02260ba3d7172aed02b638cca3ee9d7914d199ba3dc3487cdd3474c4d15f9cf9",
+      "origin": "build/v6r-board-01/decode_diagnostics.py",
+      "origin_sha256": "e7802d0b68cd49640525ce7afc753201d75f60f67c3ed853fe9b4566d5cd49c5"
+    },
+    {
+      "path": "build/v6s-board-01/make_plan.py",
+      "bytes": 7692,
+      "sha256": "7298fbea2c4e6a69bb215776ef7f51449e0530bdda262c7885da17178fb88faf",
+      "origin": "build/v6r-board-01/make_plan.py",
+      "origin_sha256": "036f3a139dbba0524a94b7a7064a120f07f7ceee0a796828f1406334d5450b86"
+    },
+    {
+      "path": "build/v6s-board-01/program_and_verify.py",
+      "bytes": 2642,
+      "sha256": "06e7b37e77878d99eea8f23a7058b60cbb660499e34c736ce2c493f99ced6e36",
+      "origin": "build/v6r-board-01/program_and_verify.py",
+      "origin_sha256": "3e2c42d42bceb788ed8a75eb0590dde0158a2ab200d09914f8f9246b121e8115"
+    },
+    {
+      "path": "build/v6s-board-01/root_read_closed.py",
+      "bytes": 5275,
+      "sha256": "39a588b279a147c8b95d3b9b849b2affb9cfb6fb7aecb0141026db6bf057f633",
+      "origin": "build/v6r-board-01/root_read_closed.py",
+      "origin_sha256": "588ac30872d6ecd1e57bab50069434aa6482935d99fe6b727ea3ef783613db1e"
+    },
+    {
+      "path": "build/v6s-board-01/run_trial.py",
+      "bytes": 2187,
+      "sha256": "99206b6ba85ff4a4e29f5a58cb087f4bd65d0aef35f2ca04bf7bb1d9a22186c6",
+      "origin": "build/v6r-board-01/run_trial.py",
+      "origin_sha256": "79e86c876e70f00e4debbe6f464449c0cf8dea60e89eba23a561b18eae98c441"
+    },
+    {
+      "path": "build/v6s-board-01/save_current_backup.py",
+      "bytes": 2298,
+      "sha256": "7677ad92f0a77a04cc3cda4bac5cc5873d05879f851446391257d98d3a3b837d",
+      "origin": "build/v6r-board-01/save_current_backup.py",
+      "origin_sha256": "1f1fb410d04c8722da7e266f25b34fa7c2e57286dfba8fae5745788a2fc6feb8"
+    },
+    {
+      "path": "build/v6s-board-01/save_stopped_state.py",
+      "bytes": 5250,
+      "sha256": "e9de30a1611632c99f4d850a286eee1dff5540f3369b15a1e7b4a30d14cdf827",
+      "origin": "build/v6r-board-01/save_stopped_state.py",
+      "origin_sha256": "2380b7548efde1aea3603bf9beebbe3f6fa2edc4213c1a64751bd98cbf112366"
+    }
+  ]
+}

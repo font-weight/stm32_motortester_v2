@@ -1,5 +1,60 @@
 # Прогресс Мотортестера V2
 
+## 28.10.2026 — S2 завершён: SL снова остановилась по переполнению очереди
+
+Новый фактический ответ «готово» на `call_54921eaab0c84269b90897c379be9ab0`
+сохранён с hash SL reset.log. Fresh inventory18:11:10.2039213UTC:
+ожидаемый COM6/code0, owners=[]. Ровно один START принятого плана:
+18:11:27.695157–18:11:28.933361UTC, whole command1,2381999с.
+**FAIL/source_error/device_1/queue-full; требуемые30с не достигнуты.**
+
+SL/0x5632534c, mode5, nonce`bdfc52fdf5a8dab9`, generation3.
+21DATA1024=21504 кодов; Record[1024,21504)=20480 кодов.
+ENDseq25/reason1/flags3/prefix21504/CRC1998538068 раньше STOPreq4;
+matching ACKseq26/terminal25. Offline wire/indices/CRC/raw/freshOpen — PASS
+только для сохранённого префикса. Record host wall0,141745900с не измеряет Fs.
+RawSHA `6e6dd49ef64aa628f72a65f2ab9d1754aa42b5b03db8ea70be070b6be681be1d`;
+recordrawSHA `d59252abd379b0d950503e65bb12a8c923341c26a7768d176b6d65991ac0fd78`.
+Произведённый хвост и число потерянных измерений неизвестны.
+
+После cleanup_finished/phaseclosed и coherent offline END/ACK только
+в18:12:00.128988UTC начаты отдельные read-only SWD пары136/64/24, затем
+TIM3/ADC/DMA/RCC. Пары совпали; decoder accepted/errors[]; все stoppedchecks true:
+TIM3CEN0 PSC47 ARR9, ADC_CR2=0, DMAEN0. SWD/halt во время COM не было,
+ADC_DR не читался. На плате остаётся **остановленная SL**; новых START/Reset/
+Flash/50/100/автоматического rollback после опыта не выполнялось.
+
+Legacy136: qhigh8, firstreason1, ADCfault0, maxpoll2939мкс, copy167мкс/43.
+N64: q8/READY1024/TX1152of1335, FIFO384/held0/deferred0/taskready0;
+elapsed10615933cycles≈147,443514мс при условных72MHz, inclusiveprepare4207931/159,
+positive26517B/79, zerospace45/other0, maxgap698606, lastpositive→close67486cycles.
+G24: RESUMED, serial82/total384/prequeued320/age460/budget1,
+ACTIVE1/APPLICABLE0; event→Nclose224cycles≈3,111111мкс. Это историческая
+запись; поздний FIFO384 не доказывает свободное место в момент попыткиwrite,
+входpostcopy_hint или единственную причину отказа. Сравнение с R2 не является
+контролируемым измерением улучшения/ухудшения. Физические150k остаются OPEN.
+
+[Physical archive](verification/v2-postcopy-handoff/physical-01/manifest.json):
+95файлов/420939байт, manifest SHA256
+`aa0838b9243f22d7ef1d1f77800b7ff943e14c88b7569bae0bc84caa24f1a212`.
+Root chronology и исходные неудачные данные сохранены.
+[Независимое physical ревью](reviews/v2-06s-physical-review.md): **REWORK6,375**,
+P1-M2-01 OPEN; сохранность префикса/limited diagnostics отдельно PASS9,60.
+Report SHA256 `c00a7ba2a19c258e3289de88ab68574d0694396746d161d205680c8df3038430`,
+[JSON](verification/v2-postcopy-handoff/critic-physical.json) SHA256
+`aa39a36fe250370109c8468972e78c8855ef0bae2bb100dcadabbb7cbe1d609d`.
+Критик лично сверил95 архивных пар; физическую цель не принял.
+
+Offline followup final `build/v6s-followup/analysis.md` SHA256
+`f739c06f06cff169f2ca943345734e7802e5e9ec0df2bd0ad5ff9bad1a5a616e`:
+[архив](verification/v2-postcopy-handoff/followup-01/manifest.json) SHA256
+`92fec6d376aacb33d044d9a263a52fbd0cda00663076b8d26ea594844cc25254`.
+Прежний draft сохранён; исправлен только слишком категоричный заголовок.
+Предложение — один preflush buffered bytes перед solegrant/TX, сохраняя
+старый postflush/Q и всеSграницы. Это гипотеза для отдельного компактного
+T-контракта, не исправление/установленная причина. Followup ревью и draft
+контракта идут offline; implementation/новых тестов/Flash/START нет.
+
 ## 28.10.2026 — S2: SL записана и сверена, ожидается новый холодный перезапуск USB
 
 Source `695efd95e7c4ba72bfa6fb5fb511b85186be6266` опубликован только в V2.

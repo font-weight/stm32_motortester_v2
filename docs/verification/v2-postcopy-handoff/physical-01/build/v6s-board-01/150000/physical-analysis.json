@@ -1,0 +1,556 @@
+{
+  "schema": "v2-06s-physical-offline-analysis-1",
+  "probe_status": "FAIL",
+  "offline_validation_status": "PASS",
+  "issues": [],
+  "physical_qualification_complete": false,
+  "scope": "One saved trial; no hardware access, no CPU/ADC-clock qualification or inference from host I/O time",
+  "expected_build": 1446138700,
+  "declared_source_commit": "695efd95e7c4ba72bfa6fb5fb511b85186be6266",
+  "local_candidate_sha256": "f82311cde2ce0a3e735543006b2bc7890e8761434c73e7adc7fa332f86cb8cb2",
+  "requested_sample_rate_hz": 150000,
+  "mode": 5,
+  "retained_bits": 10,
+  "discovery_nonce": "da01086e8fb478c3",
+  "nonce_hex": "bdfc52fdf5a8dab9",
+  "generation": 3,
+  "observed_caps": {
+    "config_id": 5,
+    "profile": 5,
+    "channel": 0,
+    "adc_bits": 12,
+    "fs_num": 150000,
+    "fs_den": 1,
+    "max_block": 1024,
+    "flags": 1,
+    "retained_bits": 10,
+    "encoding": 2,
+    "revision": "0.3"
+  },
+  "HELLOs": [
+    {
+      "order": 0,
+      "nonce": "da01086e8fb478c3",
+      "revision": "0.2",
+      "mode": 0
+    },
+    {
+      "order": 2,
+      "nonce": "bdfc52fdf5a8dab9",
+      "revision": "0.3",
+      "mode": 5
+    }
+  ],
+  "session_sequences": {
+    "da01086e8fb478c3": {
+      "revision": "0.2",
+      "host_end": 1,
+      "device_end": 1,
+      "frames": 2,
+      "ACK_observed": true
+    },
+    "bdfc52fdf5a8dab9": {
+      "revision": "0.3",
+      "host_end": 4,
+      "device_end": 26,
+      "frames": 30,
+      "ACK_observed": true
+    }
+  },
+  "other_foreign_nonce_frames": 0,
+  "owners_closed": true,
+  "wire": {
+    "chunks": 73,
+    "host_bytes": 178,
+    "device_bytes": 28348,
+    "empty_delimiters": 1,
+    "decode_errors": [],
+    "trailing_partial_bytes": [
+      0,
+      0
+    ],
+    "trailing_oversized_frame": [
+      false,
+      false
+    ]
+  },
+  "wire_complete": true,
+  "kind_counts": {
+    "host/HELLO": 2,
+    "device/HELLO_ACK": 2,
+    "host/GET_CAPS": 1,
+    "device/CAPS": 1,
+    "host/START": 1,
+    "device/START_ACK": 1,
+    "device/DATA": 21,
+    "device/END": 1,
+    "host/STOP": 1,
+    "device/STOP_ACK": 1
+  },
+  "batch": {
+    "mode": 5,
+    "negotiated_max_block": 1024,
+    "negotiated_max_payload": 1300,
+    "DATA_frames": 21,
+    "full_negotiated_DATA_frames": 21,
+    "full_DATA1024_frames": 21,
+    "first_DATA_samples": 1024,
+    "DATA_sample_count_histogram": {
+      "1024": 21
+    },
+    "short_tail_frames": 0,
+    "terminal_short_samples": null,
+    "short_frames": [],
+    "short_is_unique_final": true,
+    "largest_DATA_frame_bytes": 1335,
+    "largest_selected_session_frame_bytes": 1335,
+    "length_includes_COBS_delimiter": true,
+    "scope": "Only complete CRC-valid decoded selected-session frames; partial or corrupt tails are separate wire fields, not published DATA"
+  },
+  "control_timeline": [
+    {
+      "order": 0,
+      "direction": "host",
+      "kind": "HELLO",
+      "revision": "0.2",
+      "nonce": "da01086e8fb478c3",
+      "sequence": 1,
+      "request_id": 1,
+      "host_relative_seconds": 0.0,
+      "payload": {
+        "nonce": 15708846246195394755,
+        "mode": 0
+      }
+    },
+    {
+      "order": 1,
+      "direction": "device",
+      "kind": "HELLO_ACK",
+      "revision": "0.2",
+      "nonce": "da01086e8fb478c3",
+      "sequence": 1,
+      "request_id": 1,
+      "host_relative_seconds": 0.004453799920156598,
+      "payload": {
+        "firmware_build": 1446138700,
+        "capabilities": 15,
+        "max_block": 1024,
+        "max_payload": 1300
+      }
+    },
+    {
+      "order": 2,
+      "direction": "host",
+      "kind": "HELLO",
+      "revision": "0.3",
+      "nonce": "bdfc52fdf5a8dab9",
+      "sequence": 1,
+      "request_id": 1,
+      "host_relative_seconds": 0.005566200008615851,
+      "payload": {
+        "nonce": 13689908218001152697,
+        "mode": 5
+      }
+    },
+    {
+      "order": 3,
+      "direction": "device",
+      "kind": "HELLO_ACK",
+      "revision": "0.3",
+      "nonce": "bdfc52fdf5a8dab9",
+      "sequence": 1,
+      "request_id": 1,
+      "host_relative_seconds": 0.009403300005942583,
+      "payload": {
+        "firmware_build": 1446138700,
+        "capabilities": 1,
+        "max_block": 1024,
+        "max_payload": 1300
+      }
+    },
+    {
+      "order": 4,
+      "direction": "host",
+      "kind": "GET_CAPS",
+      "revision": "0.3",
+      "nonce": "bdfc52fdf5a8dab9",
+      "sequence": 2,
+      "request_id": 2,
+      "host_relative_seconds": 0.011463499860838056,
+      "payload": null
+    },
+    {
+      "order": 5,
+      "direction": "device",
+      "kind": "CAPS",
+      "revision": "0.3",
+      "nonce": "bdfc52fdf5a8dab9",
+      "sequence": 2,
+      "request_id": 2,
+      "host_relative_seconds": 0.01442350004799664,
+      "payload": {
+        "config_id": 5,
+        "profile": 5,
+        "channel": 0,
+        "adc_bits": 12,
+        "fs_num": 150000,
+        "fs_den": 1,
+        "max_block": 1024,
+        "flags": 1,
+        "retained_bits": 10,
+        "encoding": 2,
+        "revision": "0.3"
+      }
+    },
+    {
+      "order": 6,
+      "direction": "host",
+      "kind": "START",
+      "revision": "0.3",
+      "nonce": "bdfc52fdf5a8dab9",
+      "sequence": 3,
+      "request_id": 3,
+      "host_relative_seconds": 0.024263500003144145,
+      "payload": 5
+    },
+    {
+      "order": 7,
+      "direction": "device",
+      "kind": "START_ACK",
+      "revision": "0.3",
+      "nonce": "bdfc52fdf5a8dab9",
+      "sequence": 3,
+      "request_id": 3,
+      "host_relative_seconds": 0.029493700014427304,
+      "payload": {
+        "generation": 3,
+        "config_id": 5,
+        "first_index": 0
+      }
+    },
+    {
+      "order": 29,
+      "direction": "device",
+      "kind": "END",
+      "revision": "0.3",
+      "nonce": "bdfc52fdf5a8dab9",
+      "sequence": 25,
+      "request_id": 0,
+      "host_relative_seconds": 0.18476019985973835,
+      "payload": {
+        "generation": 3,
+        "config_id": 5,
+        "prefix_end": 21504,
+        "produced_end": null,
+        "last_data_sequence": 24,
+        "prefix_crc32": 1998538068,
+        "reason": 1,
+        "flags": 3,
+        "stop_request_id": 0
+      }
+    },
+    {
+      "order": 30,
+      "direction": "host",
+      "kind": "STOP",
+      "revision": "0.3",
+      "nonce": "bdfc52fdf5a8dab9",
+      "sequence": 4,
+      "request_id": 4,
+      "host_relative_seconds": 0.18832860002294183,
+      "payload": 3
+    },
+    {
+      "order": 31,
+      "direction": "device",
+      "kind": "STOP_ACK",
+      "revision": "0.3",
+      "nonce": "bdfc52fdf5a8dab9",
+      "sequence": 26,
+      "request_id": 4,
+      "host_relative_seconds": 0.19174999999813735,
+      "payload": {
+        "generation": 3,
+        "prefix_end": 21504,
+        "terminal_sequence": 25,
+        "flags": 3
+      }
+    }
+  ],
+  "timeline_units": "host I/O monotonic seconds, not ADC or USB IN/NAK timing",
+  "received_prefix": {
+    "samples": 21504,
+    "end_index": 21504,
+    "bytes": 43008,
+    "sha256": "6e6dd49ef64aa628f72a65f2ab9d1754aa42b5b03db8ea70be070b6be681be1d",
+    "crc32": 1998538068,
+    "DATA_blocks": 21,
+    "contiguous": true,
+    "nominal_sample_interval_seconds": 6.666666666666667e-06,
+    "sample_interval_microseconds_rational": [
+      20,
+      3
+    ],
+    "canonical_encoding": "u16le_adc12_scale",
+    "original_ADC12_complete": false,
+    "normalization": "left_shift_2",
+    "quantization": "truncate_lsb"
+  },
+  "terminal": {
+    "order": 29,
+    "direction": "device",
+    "kind": "END",
+    "revision": "0.3",
+    "nonce": "bdfc52fdf5a8dab9",
+    "sequence": 25,
+    "request_id": 0,
+    "host_relative_seconds": 0.18476019985973835,
+    "payload": {
+      "generation": 3,
+      "config_id": 5,
+      "prefix_end": 21504,
+      "produced_end": null,
+      "last_data_sequence": 24,
+      "prefix_crc32": 1998538068,
+      "reason": 1,
+      "flags": 3,
+      "stop_request_id": 0
+    }
+  },
+  "stop": {
+    "order": 30,
+    "direction": "host",
+    "kind": "STOP",
+    "revision": "0.3",
+    "nonce": "bdfc52fdf5a8dab9",
+    "sequence": 4,
+    "request_id": 4,
+    "host_relative_seconds": 0.18832860002294183,
+    "payload": 3
+  },
+  "ack": {
+    "order": 31,
+    "direction": "device",
+    "kind": "STOP_ACK",
+    "revision": "0.3",
+    "nonce": "bdfc52fdf5a8dab9",
+    "sequence": 26,
+    "request_id": 4,
+    "host_relative_seconds": 0.19174999999813735,
+    "payload": {
+      "generation": 3,
+      "prefix_end": 21504,
+      "terminal_sequence": 25,
+      "flags": 3
+    }
+  },
+  "END_before_STOP": true,
+  "normal_stop_exchange": false,
+  "unknown_produced_tail": true,
+  "selected_journal_analysis": {
+    "schema": "motortester-v2-wire-verification-1",
+    "status": "PASS",
+    "scope": "Offline equality of saved selected raw range and captured wire DATA",
+    "tool_sha256": "b32552a3283fb6043cfcc0b207f66bfaedb2a8978b4f0edb69a51c30295caf67",
+    "traffic_sha256": "9ea00389dfbed2fc82a1fc56933e750ef6559c20bfc4defe3fc672518e8c0b65",
+    "journal_sha256": "5c1a76adddf3f865b56f9356091dd3c2a5df1934440b02d95c76bd3db4d47e14",
+    "identity": {
+      "session_id": "wire-0.3:bdfc52fdf5a8dab9",
+      "generation": 3,
+      "config_id": 5,
+      "nominal_fs_hz": 150000,
+      "origin": "device",
+      "protocol_revision": "0.3-batch1024-20261025",
+      "firmware_version": "build:5632534c",
+      "application_version": "v2-serial-unknown-accounting:physical",
+      "acquisition_mode": 5,
+      "source_adc_bits": 12,
+      "retained_bits": 10,
+      "discarded_lsb": 2,
+      "wire_sample_encoding": "u10packed_le",
+      "normalization": "left_shift_2",
+      "quantization": "truncate_lsb",
+      "stored_sample_encoding": "u16le",
+      "stored_code_domain": "adc12"
+    },
+    "nonce_hex": "0xbdfc52fdf5a8dab9",
+    "generation": 3,
+    "R": 1024,
+    "end": 21504,
+    "recording_recovery_issue": null,
+    "discarded_journal_tail_bytes": 0,
+    "journal_terminal": {
+      "identity": {
+        "session_id": "wire-0.3:bdfc52fdf5a8dab9",
+        "generation": 3,
+        "config_id": 5,
+        "nominal_fs_hz": 150000,
+        "origin": "device",
+        "protocol_revision": "0.3-batch1024-20261025",
+        "firmware_version": "build:5632534c",
+        "application_version": "v2-serial-unknown-accounting:physical",
+        "acquisition_mode": 5,
+        "source_adc_bits": 12,
+        "retained_bits": 10,
+        "discarded_lsb": 2,
+        "wire_sample_encoding": "u10packed_le",
+        "normalization": "left_shift_2",
+        "quantization": "truncate_lsb",
+        "stored_sample_encoding": "u16le",
+        "stored_code_domain": "adc12"
+      },
+      "end_sample_index": 21504,
+      "reason": "source_failure",
+      "terminal_observed": true,
+      "device_generated_end_sample_index": null,
+      "device_transmitted_end_sample_index": 21504,
+      "loss_samples": null,
+      "boundary_evidence": "host_selected_prefix",
+      "failure": {
+        "code": "source_error",
+        "detail": "wire device_1; ordinary=None; stop=None",
+        "operation": null,
+        "request_id": null,
+        "source_code": 1
+      },
+      "stop_requested": true,
+      "stop_request_id": null
+    },
+    "clean_stop_reported": false,
+    "physical_identity_verified": false,
+    "timing_qualified": false,
+    "adc_losslessness_verified": false,
+    "wire": {
+      "chunks": 73,
+      "host_bytes": 178,
+      "device_bytes": 28348,
+      "empty_delimiters": 1,
+      "decode_errors": [],
+      "trailing_partial_bytes": [
+        0,
+        0
+      ],
+      "trailing_oversized_frame": [
+        false,
+        false
+      ]
+    },
+    "observed_build_id": 1446138700,
+    "observed_caps": {
+      "config_id": 5,
+      "profile": 5,
+      "channel": 0,
+      "adc_bits": 12,
+      "fs_num": 150000,
+      "fs_den": 1,
+      "max_block": 1024,
+      "flags": 1,
+      "retained_bits": 10,
+      "encoding": 2,
+      "revision": "0.3"
+    },
+    "selected_samples": 20480,
+    "selected_bytes": 40960,
+    "wire_selected_samples": 20480,
+    "wire_selected_sha256": "d59252abd379b0d950503e65bb12a8c923341c26a7768d176b6d65991ac0fd78",
+    "journal_selected_sha256": "d59252abd379b0d950503e65bb12a8c923341c26a7768d176b6d65991ac0fd78",
+    "selected_range_byte_equal": true,
+    "first_mismatch_sample": null,
+    "selected_gaps": [],
+    "selected_overlaps": [],
+    "decoded_data_samples": 21504,
+    "decoded_data_sha256": "6e6dd49ef64aa628f72a65f2ab9d1754aa42b5b03db8ea70be070b6be681be1d",
+    "contiguous_prefix_crc32": "0x771f4554",
+    "decoded_prefix_end": 21504,
+    "raw_gaps": [],
+    "raw_overlaps": [],
+    "kinds": {
+      "host/HELLO": 1,
+      "device/HELLO_ACK": 1,
+      "host/GET_CAPS": 1,
+      "device/CAPS": 1,
+      "host/START": 1,
+      "device/START_ACK": 1,
+      "device/DATA": 21,
+      "device/END": 1,
+      "host/STOP": 1,
+      "device/STOP_ACK": 1
+    },
+    "immediate_duplicates": 0,
+    "unrelated_frames": 2,
+    "protocol_issues": [],
+    "ends": [
+      {
+        "generation": 3,
+        "config_id": 5,
+        "prefix_end": 21504,
+        "produced_end": null,
+        "last_data_sequence": 24,
+        "prefix_crc32": 1998538068,
+        "reason": 1,
+        "flags": 3,
+        "stop_request_id": 0,
+        "sequence": 25,
+        "host_monotonic": 1773020.6116846,
+        "prefix_crc_verified": true
+      }
+    ],
+    "stop_acks": [
+      {
+        "generation": 3,
+        "prefix_end": 21504,
+        "terminal_sequence": 25,
+        "flags": 3,
+        "sequence": 26,
+        "host_monotonic": 1773020.6186744
+      }
+    ],
+    "unknown_produced_end": true,
+    "limits": [
+      "This is a narrow offline observation check, not a full endpoint deadline replay.",
+      "Matching bytes verify the selected retained range, not unobserved ADC conversions.",
+      "Missing END or produced_end=null retains an unknown tail; no zero-loss inference.",
+      "Host monotonic timestamps are I/O observations, not calibrated sample timing.",
+      "Source/image provenance and the physical board require separate evidence."
+    ],
+    "fresh_open_companion_verified": true
+  },
+  "unbound_journal": null,
+  "record_observation": {
+    "seconds_requested": 30.0,
+    "wall_seconds": 0.14174590003676713,
+    "first_received": 2048,
+    "before_STOP_received": 21504,
+    "rough_delta_received_per_second": 137259.70200868847,
+    "rough_within_90_110_percent": true,
+    "target_duration_met": false,
+    "qualified_clock_measurement": false,
+    "FAIL_short_prefix_is_not_sustained_rate": true
+  },
+  "input_condition": "PA0 unconnected, as reported by user",
+  "original_files_sha256_before": {
+    "150000/run/result.json": "477c0e60867996013abdf14acb953642628136574eab5cd1afe2644d8791176d",
+    "150000/run/traffic.bin": "9ea00389dfbed2fc82a1fc56933e750ef6559c20bfc4defe3fc672518e8c0b65",
+    "150000/run/physical.mtstream": "5c1a76adddf3f865b56f9356091dd3c2a5df1934440b02d95c76bd3db4d47e14",
+    "150000/run/physical.mtstream.v2.json": "576e15b3841d55c3f8731a6e6fb2962bc5ac027b62af4b6a2ce8ebda619efe98",
+    "plan.json": "477b133fe1a2e7924e7414f2a7a9b38f469b70ebdee19650b0193df7a616bf0e"
+  },
+  "original_files_sha256_after": {
+    "150000/run/result.json": "477c0e60867996013abdf14acb953642628136574eab5cd1afe2644d8791176d",
+    "150000/run/traffic.bin": "9ea00389dfbed2fc82a1fc56933e750ef6559c20bfc4defe3fc672518e8c0b65",
+    "150000/run/physical.mtstream": "5c1a76adddf3f865b56f9356091dd3c2a5df1934440b02d95c76bd3db4d47e14",
+    "150000/run/physical.mtstream.v2.json": "576e15b3841d55c3f8731a6e6fb2962bc5ac027b62af4b6a2ce8ebda619efe98",
+    "plan.json": "477b133fe1a2e7924e7414f2a7a9b38f469b70ebdee19650b0193df7a616bf0e"
+  },
+  "original_files_unchanged": true,
+  "analysis_tool_sha256": "e9cc49d7ab848ab5403d212c1632dddb8e189407c8cf08ab4b52228c0913c907",
+  "wire_verifier_sha256": "b32552a3283fb6043cfcc0b207f66bfaedb2a8978b4f0edb69a51c30295caf67",
+  "limits": [
+    "Canonical10 retains all transmitted information, not the discarded ADC12 low2 bits.",
+    "Quantization edge bins0/4092 do not prove original ADC saturation0/4095.",
+    "Matching retained bytes do not prove zero ADC loss or the unobserved produced tail.",
+    "FAIL remains FAIL even if its retained prefix is byte-exact; a short-prefix slope is not sustained rate.",
+    "Normal END reason0 and unknown produced end do not establish a complete measured ADC tail.",
+    "Diagnostics/registers/readback and independent hardware review remain separate."
+  ]
+}
