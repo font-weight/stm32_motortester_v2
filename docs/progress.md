@@ -31,7 +31,17 @@ Static128+12156 прежние, reserve8192, spare4; условный stack6348/
 Freeze `fe206f96e8c7d5ea6704542870f051278dda18be9570f50faca393e3d4f6cf95`.
 Native result `c56182f6ce5f41923be88a8016cd0b7fe26fca3702b894064eae820e2cc098f0`;
 host `bf86604726dff97fbef2622c39de157ec9c4cc3c1aeb081f40b45d0f50236f15`.
-Независимое source-ревью готового U ещё ожидается; stable150k не заявлены.
+[Независимое source-ревью U](reviews/v2-06u-source-review.md) — **PASS9,625**,
+source `308406d8627fc2aedc6e8eb7abd833e1f229102f`; critic JSON
+`a1a31b3b3cd92d34cd896315cc92cc707bf1f1f848816d058727146cd8f6a3e7`.
+Stable150k и аппаратный допуск этим программным баллом не закрыты.
+
+Подготовлен отдельный [план U2](verification/v2-collect-local/plan-01/build/v6u-board-01/plan.json)
+SHA256 `392a2321858e9524b8b2760cad6454d65f9f0af7d08bdbd5057063119dd2f6c5`:
+одна установка SN с full readback, новый фактический cold-cycle reply,
+один150k/30с. Plan archive16files148922B, manifest
+`a714469107e2f2c34250617cb25da19e2503b83b3d0cd2dc6014416fec82928f`.
+Независимое рассмотрение exact плана ожидается; установка ещё не выполнялась.
 
 Root18:50UTC проверил COM6/ST-Link, владельцев приложения/захвата нет,
 прочитал текущие64КиБ **без Reset/Flash/START**: backupSHA

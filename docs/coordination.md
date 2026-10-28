@@ -1,4 +1,12 @@
-# U/SN: текущие области записи
+# U2: текущая область записи
+
+U1 production/native/host заморожены и приняты отдельно. Root владеет
+build/v6u-board-01, exact планом/архивом/документами и единолично COM/SWD.
+Stream200_critic проверяет план, затем фактический результат; source PASS
+не переносится на стабильные150k. Никаких повторных проверок U1 без новой
+причины; старое «готово» SL уже использовано. Ниже — предыдущие области.
+
+# U/SN: области записи U1
 
 Higher_fs_review — firmware/v2-stream/**, новый runner
 tests/v2-stream-firmware/check_collect_local.py, build/v6u-* кроме root

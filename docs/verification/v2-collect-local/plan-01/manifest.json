@@ -1,0 +1,102 @@
+{
+  "schema": "v2-06u-plan-evidence-1",
+  "scope": "Prepared exact plan, helpers and saved current SL backup; not flash admission",
+  "files": [
+    {
+      "source": "build/v6u-board-01/analyze_physical.py",
+      "archive": "docs/verification/v2-collect-local/plan-01/build/v6u-board-01/analyze_physical.py",
+      "bytes": 25836,
+      "sha256": "166c6cc068f34a9a557c096a7b9eeb38566941ea9e30da69285f75e0a0830448"
+    },
+    {
+      "source": "build/v6u-board-01/backup-invocation.json",
+      "archive": "docs/verification/v2-collect-local/plan-01/build/v6u-board-01/backup-invocation.json",
+      "bytes": 395,
+      "sha256": "27fce24e8ea4c983e2a8beb8c2422e0b0f65c54885de9b7dfb5e79b2327dd0a5"
+    },
+    {
+      "source": "build/v6u-board-01/backup-verified.json",
+      "archive": "docs/verification/v2-collect-local/plan-01/build/v6u-board-01/backup-verified.json",
+      "bytes": 531,
+      "sha256": "d9ba4c9091392c45398da50ae05d08096aa0ccea3b13c3fffdb9a71a07d830be"
+    },
+    {
+      "source": "build/v6u-board-01/backup.log",
+      "archive": "docs/verification/v2-collect-local/plan-01/build/v6u-board-01/backup.log",
+      "bytes": 893,
+      "sha256": "d28b79a0fe8003978b472fad701145876d0b4ca0145d916f7715993fedc0c239"
+    },
+    {
+      "source": "build/v6u-board-01/backup.stdout.bin",
+      "archive": "docs/verification/v2-collect-local/plan-01/build/v6u-board-01/backup.stdout.bin",
+      "bytes": 671,
+      "sha256": "f62a8481c85eab73aced54272aebbf45615ad3c13b077b3947f005faf5a2ccf2"
+    },
+    {
+      "source": "build/v6u-board-01/before-flash-64k.bin",
+      "archive": "docs/verification/v2-collect-local/plan-01/build/v6u-board-01/before-flash-64k.bin",
+      "bytes": 65536,
+      "sha256": "82fd17bd0004786957afbb0f0ef350f80dc5ba331a0980e0575c251534fe36c7"
+    },
+    {
+      "source": "build/v6u-board-01/decode_diagnostics.py",
+      "archive": "docs/verification/v2-collect-local/plan-01/build/v6u-board-01/decode_diagnostics.py",
+      "bytes": 16045,
+      "sha256": "87286186963a4fc2440d455faa70297a4053ba48c0451105895aeb2443eeb518"
+    },
+    {
+      "source": "build/v6u-board-01/helper-origin.json",
+      "archive": "docs/verification/v2-collect-local/plan-01/build/v6u-board-01/helper-origin.json",
+      "bytes": 2599,
+      "sha256": "29cfbbeeb8ecbc020588db76b0fc86cd055faee2ea40a6ea833e99773685cb0a"
+    },
+    {
+      "source": "build/v6u-board-01/make_plan.py",
+      "archive": "docs/verification/v2-collect-local/plan-01/build/v6u-board-01/make_plan.py",
+      "bytes": 7688,
+      "sha256": "9f8f417603b35047999801423521e6398dc191127f79eff7019e36b7413d50e1"
+    },
+    {
+      "source": "build/v6u-board-01/plan.json",
+      "archive": "docs/verification/v2-collect-local/plan-01/build/v6u-board-01/plan.json",
+      "bytes": 10413,
+      "sha256": "392a2321858e9524b8b2760cad6454d65f9f0af7d08bdbd5057063119dd2f6c5"
+    },
+    {
+      "source": "build/v6u-board-01/preflight.json",
+      "archive": "docs/verification/v2-collect-local/plan-01/build/v6u-board-01/preflight.json",
+      "bytes": 787,
+      "sha256": "5ffaf8e5322ddb7edabe39109517be4373ca417518f1d73dbcd991320479ade5"
+    },
+    {
+      "source": "build/v6u-board-01/program_and_verify.py",
+      "archive": "docs/verification/v2-collect-local/plan-01/build/v6u-board-01/program_and_verify.py",
+      "bytes": 2639,
+      "sha256": "65b601b56c3bf72d896f13bba1738c26464bbdca8a4d7951c8b61a1492a6ac1d"
+    },
+    {
+      "source": "build/v6u-board-01/root_read_closed.py",
+      "archive": "docs/verification/v2-collect-local/plan-01/build/v6u-board-01/root_read_closed.py",
+      "bytes": 5220,
+      "sha256": "8d152a71e57d1dad11fccfd1f75c8b21b5393c6471c3fcbffa8311ef03361875"
+    },
+    {
+      "source": "build/v6u-board-01/run_trial.py",
+      "archive": "docs/verification/v2-collect-local/plan-01/build/v6u-board-01/run_trial.py",
+      "bytes": 2154,
+      "sha256": "cde9bb5967c9a12e6c8b2d8809c7b7ac326bc4e8c6c1911e1fb8e6a777f1057e"
+    },
+    {
+      "source": "build/v6u-board-01/save_current_backup.py",
+      "archive": "docs/verification/v2-collect-local/plan-01/build/v6u-board-01/save_current_backup.py",
+      "bytes": 2265,
+      "sha256": "e739a5901b5cadeb84832f2f1a6f0323f123d06bcf44d86ddfd0dae12f7fa22c"
+    },
+    {
+      "source": "build/v6u-board-01/save_stopped_state.py",
+      "archive": "docs/verification/v2-collect-local/plan-01/build/v6u-board-01/save_stopped_state.py",
+      "bytes": 5250,
+      "sha256": "6a590267b2babaeb08358e332d71e323295b25e6a2655b917109c20a80126b7f"
+    }
+  ]
+}

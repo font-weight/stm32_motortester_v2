@@ -1,0 +1,53 @@
+{
+  "scope": "Draft helpers only; not executed or admitted for hardware",
+  "files": [
+    {
+      "source": "build/v6s-board-01/make_plan.py",
+      "source_sha256": "7298fbea2c4e6a69bb215776ef7f51449e0530bdda262c7885da17178fb88faf",
+      "destination": "build/v6u-board-01/make_plan.py",
+      "sha256": "1919c322a3a18b674f947b78b78600764d5001ac48be7bab677aeefe5ffb3f6d"
+    },
+    {
+      "source": "build/v6s-board-01/program_and_verify.py",
+      "source_sha256": "06e7b37e77878d99eea8f23a7058b60cbb660499e34c736ce2c493f99ced6e36",
+      "destination": "build/v6u-board-01/program_and_verify.py",
+      "sha256": "65b601b56c3bf72d896f13bba1738c26464bbdca8a4d7951c8b61a1492a6ac1d"
+    },
+    {
+      "source": "build/v6s-board-01/run_trial.py",
+      "source_sha256": "99206b6ba85ff4a4e29f5a58cb087f4bd65d0aef35f2ca04bf7bb1d9a22186c6",
+      "destination": "build/v6u-board-01/run_trial.py",
+      "sha256": "cde9bb5967c9a12e6c8b2d8809c7b7ac326bc4e8c6c1911e1fb8e6a777f1057e"
+    },
+    {
+      "source": "build/v6s-board-01/analyze_physical.py",
+      "source_sha256": "e9cc49d7ab848ab5403d212c1632dddb8e189407c8cf08ab4b52228c0913c907",
+      "destination": "build/v6u-board-01/analyze_physical.py",
+      "sha256": "d204bfe130b3077836b2ba74091b26ab18809ddf24be792e39718a6d45fb4837"
+    },
+    {
+      "source": "build/v6s-board-01/decode_diagnostics.py",
+      "source_sha256": "02260ba3d7172aed02b638cca3ee9d7914d199ba3dc3487cdd3474c4d15f9cf9",
+      "destination": "build/v6u-board-01/decode_diagnostics.py",
+      "sha256": "87286186963a4fc2440d455faa70297a4053ba48c0451105895aeb2443eeb518"
+    },
+    {
+      "source": "build/v6s-board-01/save_stopped_state.py",
+      "source_sha256": "e9de30a1611632c99f4d850a286eee1dff5540f3369b15a1e7b4a30d14cdf827",
+      "destination": "build/v6u-board-01/save_stopped_state.py",
+      "sha256": "1b1794b8a2913bf354d7e56f7ac13047f0fadeb5cdcac769a56a7339e3a01773"
+    },
+    {
+      "source": "build/v6s-board-01/root_read_closed.py",
+      "source_sha256": "39a588b279a147c8b95d3b9b849b2affb9cfb6fb7aecb0141026db6bf057f633",
+      "destination": "build/v6u-board-01/root_read_closed.py",
+      "sha256": "8d152a71e57d1dad11fccfd1f75c8b21b5393c6471c3fcbffa8311ef03361875"
+    },
+    {
+      "source": "build/v6s-board-01/save_current_backup.py",
+      "source_sha256": "7677ad92f0a77a04cc3cda4bac5cc5873d05879f851446391257d98d3a3b837d",
+      "destination": "build/v6u-board-01/save_current_backup.py",
+      "sha256": "e739a5901b5cadeb84832f2f1a6f0323f123d06bcf44d86ddfd0dae12f7fa22c"
+    }
+  ]
+}
