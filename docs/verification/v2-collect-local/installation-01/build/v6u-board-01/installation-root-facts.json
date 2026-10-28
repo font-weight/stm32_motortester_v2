@@ -1,0 +1,27 @@
+{
+  "schema": "v2-06u-installation-root-facts-1",
+  "recorded_utc": "2026-10-28T19:14:07.284904+00:00",
+  "operator": "root",
+  "source_commit": "308406d8627fc2aedc6e8eb7abd833e1f229102f",
+  "plan_sha256": "392a2321858e9524b8b2760cad6454d65f9f0af7d08bdbd5057063119dd2f6c5",
+  "plan_review_sha256": "76b016c1a8eea1cca64c88a08bef4200b37953d81f0ea36f1e7fc2cde0004d09",
+  "fresh_inventory": "preflash-inventory.json",
+  "fresh_probe": "preflash-probe-verified.json",
+  "sequence": [
+    "Fresh Windows inventory: expected COM6/code0, one ST-Link, no app/capture owners",
+    "Read-only full64KiB current SL and probe serial: equal saved backup",
+    "One SN program with verification",
+    "One separate full49744-byte readback: byte-equal SN",
+    "One Reset/Run",
+    "New actual cold-cycle question sent to user"
+  ],
+  "reset_log_sha256": "0bdf3581b5ad76c8ea2f518f0c4c702adff2fbf2ce77b5774ec19019a652aebe",
+  "START_sent": false,
+  "COM_opened": false,
+  "automatic_rollback": false,
+  "new_user_reply_received_at_this_record": false,
+  "new_user_question_text_whitespace_normalized": "SN записана: все 49 744 байта совпали при чтении памяти. Отключите от компьютера USB платы и USB ST-Link на 10 секунд. Затем подключите USB платы, подождите 5 секунд и подключите USB ST-Link. Провода между ними не трогайте, PA0 оставьте пустым, приложение пока не открывайте. Напишите «готово» — после этого выполню одну 30-секундную запись на 150 000 отсчётов/с с пакетами по 1024. Это нужно, чтобы Windows обновила USB-соединение после новой прошивки.",
+  "prior_SL_ready_not_reused": true,
+  "physical150k_accepted": false,
+  "next": "Wait for new actual reply after SN Reset; preserve chronology and fresh inventory, then one150k30s trial only."
+}

@@ -1,0 +1,142 @@
+{
+  "schema": "v2-06u-installation-delta-1",
+  "scope": "One SN program/full readback/reset. No START or physical150k result. Fresh user cold-cycle reply pending at archive creation.",
+  "plan_archive": {
+    "path": "docs/verification/v2-collect-local/plan-01/manifest.json",
+    "sha256": "a714469107e2f2c34250617cb25da19e2503b83b3d0cd2dc6014416fec82928f"
+  },
+  "files": [
+    {
+      "source": "build/v6u-board-01/preflash_probe.py",
+      "archive": "docs/verification/v2-collect-local/installation-01/build/v6u-board-01/preflash_probe.py",
+      "bytes": 2069,
+      "sha256": "b307c343cf2c2f89cb534ab99f6cde9f399f1048cc026e8bc0f2631ae26463a1"
+    },
+    {
+      "source": "build/v6u-board-01/preflash-current64k.bin",
+      "archive": "docs/verification/v2-collect-local/installation-01/build/v6u-board-01/preflash-current64k.bin",
+      "bytes": 65536,
+      "sha256": "82fd17bd0004786957afbb0f0ef350f80dc5ba331a0980e0575c251534fe36c7"
+    },
+    {
+      "source": "build/v6u-board-01/preflash-inventory.json",
+      "archive": "docs/verification/v2-collect-local/installation-01/build/v6u-board-01/preflash-inventory.json",
+      "bytes": 823,
+      "sha256": "6ed24e03e0baa6b1b1d6063efcc2b25ea5607fde62cb575f19547147202e7752"
+    },
+    {
+      "source": "build/v6u-board-01/preflash-probe-invocation.json",
+      "archive": "docs/verification/v2-collect-local/installation-01/build/v6u-board-01/preflash-probe-invocation.json",
+      "bytes": 392,
+      "sha256": "998467360418c3b24cbfaf2a9df1635796cb95e7ba9d4041c57e107b876a4709"
+    },
+    {
+      "source": "build/v6u-board-01/preflash-probe-verified.json",
+      "archive": "docs/verification/v2-collect-local/installation-01/build/v6u-board-01/preflash-probe-verified.json",
+      "bytes": 350,
+      "sha256": "c0cd84caf91b4f63b65e4e64e4e6aac6b4448cee0472af04f71719e3801b2f79"
+    },
+    {
+      "source": "build/v6u-board-01/preflash-probe.log",
+      "archive": "docs/verification/v2-collect-local/installation-01/build/v6u-board-01/preflash-probe.log",
+      "bytes": 899,
+      "sha256": "93e7a9b99e9f1cb5d674ecd60e424e68a89c43910d9cab4ed16bc65ea57b00be"
+    },
+    {
+      "source": "build/v6u-board-01/preflash-probe.stdout.bin",
+      "archive": "docs/verification/v2-collect-local/installation-01/build/v6u-board-01/preflash-probe.stdout.bin",
+      "bytes": 677,
+      "sha256": "370a19fd07f28df747e5270bc5b1866859c92c80197fb4d42df41cfcfc536aa1"
+    },
+    {
+      "source": "build/v6u-board-01/program-invocation.json",
+      "archive": "docs/verification/v2-collect-local/installation-01/build/v6u-board-01/program-invocation.json",
+      "bytes": 391,
+      "sha256": "c3fbc8e16df238125388f9ea945291ebf4f0eb0df9107700d56d332bf6c7ad63"
+    },
+    {
+      "source": "build/v6u-board-01/program.log",
+      "archive": "docs/verification/v2-collect-local/installation-01/build/v6u-board-01/program.log",
+      "bytes": 985,
+      "sha256": "c71b7019bb7f9fc0cbb490fdf7bb75a7b941bb5eb2ed9850a1f91b5e692c4003"
+    },
+    {
+      "source": "build/v6u-board-01/program.stdout.bin",
+      "archive": "docs/verification/v2-collect-local/installation-01/build/v6u-board-01/program.stdout.bin",
+      "bytes": 760,
+      "sha256": "cbd63bfe89ac19595438367375efada252e25b047347641a6392c125e70139d7"
+    },
+    {
+      "source": "build/v6u-board-01/readback-invocation.json",
+      "archive": "docs/verification/v2-collect-local/installation-01/build/v6u-board-01/readback-invocation.json",
+      "bytes": 379,
+      "sha256": "ee960583d8d308e8f3492f8ef6efaca9aacbbb86438ff01627970069f005db54"
+    },
+    {
+      "source": "build/v6u-board-01/readback-verified.json",
+      "archive": "docs/verification/v2-collect-local/installation-01/build/v6u-board-01/readback-verified.json",
+      "bytes": 326,
+      "sha256": "b2a3c31ded76f20b6176c1ca837bf1ce0994fb339e75002534aaf9f2b4c32ec5"
+    },
+    {
+      "source": "build/v6u-board-01/readback.bin",
+      "archive": "docs/verification/v2-collect-local/installation-01/build/v6u-board-01/readback.bin",
+      "bytes": 49744,
+      "sha256": "abc20c98a870c082fce3cb6fab8e0789aa7bd42e53c5bf342861d0c9d3c37714"
+    },
+    {
+      "source": "build/v6u-board-01/readback.log",
+      "archive": "docs/verification/v2-collect-local/installation-01/build/v6u-board-01/readback.log",
+      "bytes": 877,
+      "sha256": "b587cb25c8eed04a722cccb6eb3c632492b49e3ed97b49a6834738bf47c50097"
+    },
+    {
+      "source": "build/v6u-board-01/readback.stdout.bin",
+      "archive": "docs/verification/v2-collect-local/installation-01/build/v6u-board-01/readback.stdout.bin",
+      "bytes": 655,
+      "sha256": "3905d18acef4f8f12a0385ecd61d76771bc43af9af85f124e47bdfd262850aff"
+    },
+    {
+      "source": "build/v6u-board-01/reset-invocation.json",
+      "archive": "docs/verification/v2-collect-local/installation-01/build/v6u-board-01/reset-invocation.json",
+      "bytes": 317,
+      "sha256": "7277ec495549a4022f0cebb9bfdc2bf74c07f75666c0ff684e3bc5de15562250"
+    },
+    {
+      "source": "build/v6u-board-01/reset.log",
+      "archive": "docs/verification/v2-collect-local/installation-01/build/v6u-board-01/reset.log",
+      "bytes": 439,
+      "sha256": "0bdf3581b5ad76c8ea2f518f0c4c702adff2fbf2ce77b5774ec19019a652aebe"
+    },
+    {
+      "source": "build/v6u-board-01/reset.stdout.bin",
+      "archive": "docs/verification/v2-collect-local/installation-01/build/v6u-board-01/reset.stdout.bin",
+      "bytes": 420,
+      "sha256": "f8596a56771eed9f6bf4ebfd453433d8b7e7796ae747d34ca0eea8f480d620c9"
+    },
+    {
+      "source": "build/v6u-board-01/installation-root-facts.json",
+      "archive": "docs/verification/v2-collect-local/installation-01/build/v6u-board-01/installation-root-facts.json",
+      "bytes": 2075,
+      "sha256": "72bacf700b649d493a705e8d7d7608143df9a8fe71bf3bb8922001f6444cc435"
+    },
+    {
+      "source": "build/v6u-installation-archive.py",
+      "archive": "docs/verification/v2-collect-local/installation-01/build/v6u-installation-archive.py",
+      "bytes": 3943,
+      "sha256": "9f8791b4e5e47666fa787118998970ca71cec6370e09e4ac7d4348c196ccd626"
+    },
+    {
+      "source": "docs/reviews/v2-06u-flash-review.md",
+      "archive": "docs/verification/v2-collect-local/installation-01/docs/reviews/v2-06u-flash-review.md",
+      "bytes": 8893,
+      "sha256": "461f12335e0691f2211434ee11fa892bacad7d9194b13ab1635d8b338b0a2a59"
+    },
+    {
+      "source": "docs/verification/v2-collect-local/critic-flash.json",
+      "archive": "docs/verification/v2-collect-local/installation-01/docs/verification/v2-collect-local/critic-flash.json",
+      "bytes": 5000,
+      "sha256": "76b016c1a8eea1cca64c88a08bef4200b37953d81f0ea36f1e7fc2cde0004d09"
+    }
+  ]
+}
