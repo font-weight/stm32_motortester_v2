@@ -1,0 +1,4 @@
+PASS all4 starting and all4 append-tail alignments; canonical0/max/mixed; 1/128/512/full1024; exact state/storage/frame/prefix CRC and immutable accepted frame
+PASS null/count0/count513/phase/count1025/index/overflow/full-capacity and last-code4096 reject before any state or storage mutation
+PASS rejected-work retry at shifts2/4/6 replaces speculative shared-byte high bits and preserves owned low bits; whole storage exactly matches clean append
+differential_calls=4707; completed_frames=28; hardware=0; throughput_claim=0

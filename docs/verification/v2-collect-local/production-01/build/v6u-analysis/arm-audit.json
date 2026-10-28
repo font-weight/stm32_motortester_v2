@@ -1,0 +1,616 @@
+{
+  "status": "PASS_MATERIAL_COMPILED_WORK_REDUCTION_NOT_WCET",
+  "scope": "Saved ARM artifact analysis, no native replay/ISA execution/timing estimate",
+  "firmware_build": "0x5632534e",
+  "baseline_build": "0x5632534c",
+  "inputs": {
+    "build\\v6s-fw-02\\disassembly-28-mt_batch1024.stdout": "b4e7d7b7d417a9d2ce4446dda79577d0cb953ed26b4159083844c162a7fe23ef",
+    "build\\v6u-fw-01\\disassembly-28-mt_batch1024.stdout": "ff12f00e8a67ac7dc3ccd5ba33b6636bbe6dce56b12cb618846aa79e39b7dede",
+    "build\\v6s-fw-02\\receipt.json": "8cbc2b57d83e8b610277de5bf41dfb6ff32a538905862481ed11f9b19fced5a9",
+    "build\\v6u-fw-01\\receipt.json": "b794a50bdb50025cbc37d4ed9132d975fcd97de313395ec626a3dfe954e543cc",
+    "build\\v6u-fw-01\\static-bound.json": "7dccfc42ca204a19c2f142dfd9e0673322d7ea602a0d90b63dbeb4ad1db7ebdd",
+    "build\\v6u-fw-01\\size.stdout": "739853de5f01a311469ddbdb08e050da1cd42e929d5ab15344f754fa33d08621",
+    "build\\v6u-fw-01\\image.nm": "d2b98c55ff668a8b4cfed5438a2c91f2cfe1a46e4b8214dd04fef9be757db2b0",
+    "build\\v6u-fw-01\\MotortesterV2-stream-candidate.bin": "abc20c98a870c082fce3cb6fab8e0789aa7bd42e53c5bf342861d0c9d3c37714",
+    "build\\v6u-fw-01\\generated\\mt_firmware_build.h": "d70350aec7a6d27f4e2c3541d08481742fa9022045a515aa3c3a3cc167ce38d0",
+    "build\\v6u-fw-01\\objects\\board.d": "e3b6c5e54d43c8de96fb7c19cc0f3d471dcf11243e9c9878fda75b31701546d7",
+    "build\\v6u-fw-01\\objects\\29-mt_stream_progress.d": "423a90f6fbe8216b14dca829ad1ebdf101bde4daed1dfb970d2701aedd3fac71",
+    "build\\v6s-fw-02\\objects\\29-mt_stream_progress.o": "770450c87ed3cdc02a6acad6539542e0461d40bffae5ae695a1d06e502168d2c",
+    "build\\v6u-fw-01\\objects\\29-mt_stream_progress.o": "1b834d3619e9f1f17a3bb3fcc1193778eb9aae5ebc320c5790e17aa5e2011569",
+    "build\\v6s-fw-02\\objects\\28-mt_batch1024.su": "dbe8ed921ab5b007da811640af04eac958cf63164fcfbe373aaf762253b9af12",
+    "build\\v6u-fw-01\\objects\\28-mt_batch1024.su": "ff7a6e4ac15ce49c041389594fe73911b20dcd1e0b906440d6379255bd01c852",
+    "build\\v6u-native-01\\result.json": "c56182f6ce5f41923be88a8016cd0b7fe26fca3702b894064eae820e2cc098f0",
+    "build\\v6u-native-01\\source-equivalence.json": "2cfc1ba4ca7a3a0c411067189a99f37412bbcb464c38e71064e07bae5a10c8bc"
+  },
+  "hot_path": {
+    "SL_body_inclusive": [
+      "0x000000cc",
+      "0x0000014a"
+    ],
+    "SN_aligned4_body_inclusive": [
+      "0x00000102",
+      "0x000001dc"
+    ],
+    "SL_listing_slots_per_sample": 40,
+    "SN_listing_slots_per_four_samples": 61,
+    "SL_listing_slots_for_four_iterations": 160,
+    "listing_limit": "Static listed instruction slots include IT/predicated slots and branch tests; not retired instructions, cycles or WCET. Entry validation/prologue/epilogue and scalar tails excluded.",
+    "packed_byte_stores_per_four_samples": {
+      "SL": 8,
+      "SN": 5
+    },
+    "count_state_loads_per_four_samples": {
+      "SL": 4,
+      "SN": 0
+    },
+    "count_to_bit_multiply_per_four_samples": {
+      "SL": 4,
+      "SN": 0
+    },
+    "SL_owned_byte_RMW_loads_for_shifts_2_4_6": 3,
+    "SN_aligned_group_owned_byte_RMW_loads": 0,
+    "canonical_crc_table_loads_per_four_samples": {
+      "SL": 8,
+      "SN": 8
+    },
+    "CRC_was_already_local": true,
+    "ARM_compile_argv_exactly_unchanged": true,
+    "optimization": "-Os",
+    "SL_rows": [
+      {
+        "address": 204,
+        "mnemonic": "movs",
+        "operand": "r0, #10"
+      },
+      {
+        "address": 206,
+        "mnemonic": "ldrh",
+        "operand": "r3, [r5, #8]"
+      },
+      {
+        "address": 208,
+        "mnemonic": "ldrh.w",
+        "operand": "r2, [lr, ip, lsl #1]"
+      },
+      {
+        "address": 212,
+        "mnemonic": "add",
+        "operand": "r3, ip"
+      },
+      {
+        "address": 214,
+        "mnemonic": "muls",
+        "operand": "r3, r0"
+      },
+      {
+        "address": 216,
+        "mnemonic": "lsrs",
+        "operand": "r0, r3, #3"
+      },
+      {
+        "address": 218,
+        "mnemonic": "ands.w",
+        "operand": "r3, r3, #7"
+      },
+      {
+        "address": 222,
+        "mnemonic": "ite",
+        "operand": "ne"
+      },
+      {
+        "address": 224,
+        "mnemonic": "movne",
+        "operand": "r7, #1"
+      },
+      {
+        "address": 226,
+        "mnemonic": "moveq",
+        "operand": "r7, r3"
+      },
+      {
+        "address": 228,
+        "mnemonic": "bic.w",
+        "operand": "r2, r2, #3"
+      },
+      {
+        "address": 232,
+        "mnemonic": "add.w",
+        "operand": "sl, r0, #51\t@ 0x33"
+      },
+      {
+        "address": 236,
+        "mnemonic": "mov.w",
+        "operand": "r2, r2, lsl #20"
+      },
+      {
+        "address": 240,
+        "mnemonic": "it",
+        "operand": "ne"
+      },
+      {
+        "address": 242,
+        "mnemonic": "lslne.w",
+        "operand": "fp, r7, r3"
+      },
+      {
+        "address": 246,
+        "mnemonic": "mov.w",
+        "operand": "r2, r2, lsr #20"
+      },
+      {
+        "address": 250,
+        "mnemonic": "it",
+        "operand": "ne"
+      },
+      {
+        "address": 252,
+        "mnemonic": "ldrbne.w",
+        "operand": "r7, [r1, sl]"
+      },
+      {
+        "address": 256,
+        "mnemonic": "mov.w",
+        "operand": "r8, r2, lsr #2"
+      },
+      {
+        "address": 260,
+        "mnemonic": "itt",
+        "operand": "ne"
+      },
+      {
+        "address": 262,
+        "mnemonic": "addne.w",
+        "operand": "fp, fp, #4294967295"
+      },
+      {
+        "address": 266,
+        "mnemonic": "andne.w",
+        "operand": "r7, fp, r7"
+      },
+      {
+        "address": 270,
+        "mnemonic": "lsl.w",
+        "operand": "fp, r8, r3"
+      },
+      {
+        "address": 274,
+        "mnemonic": "rsb",
+        "operand": "r3, r3, #8"
+      },
+      {
+        "address": 278,
+        "mnemonic": "asr.w",
+        "operand": "r8, r8, r3"
+      },
+      {
+        "address": 282,
+        "mnemonic": "eor.w",
+        "operand": "r3, r2, r6"
+      },
+      {
+        "address": 286,
+        "mnemonic": "uxtb",
+        "operand": "r3, r3"
+      },
+      {
+        "address": 288,
+        "mnemonic": "ldr.w",
+        "operand": "r3, [r9, r3, lsl #2]"
+      },
+      {
+        "address": 292,
+        "mnemonic": "add.w",
+        "operand": "ip, ip, #1"
+      },
+      {
+        "address": 296,
+        "mnemonic": "eor.w",
+        "operand": "r3, r3, r6, lsr #8"
+      },
+      {
+        "address": 300,
+        "mnemonic": "eor.w",
+        "operand": "r2, r3, r2, lsr #8"
+      },
+      {
+        "address": 304,
+        "mnemonic": "uxtb",
+        "operand": "r2, r2"
+      },
+      {
+        "address": 306,
+        "mnemonic": "ldr.w",
+        "operand": "r6, [r9, r2, lsl #2]"
+      },
+      {
+        "address": 310,
+        "mnemonic": "orr.w",
+        "operand": "r7, r7, fp"
+      },
+      {
+        "address": 314,
+        "mnemonic": "add",
+        "operand": "r0, r1"
+      },
+      {
+        "address": 316,
+        "mnemonic": "cmp",
+        "operand": "r4, ip"
+      },
+      {
+        "address": 318,
+        "mnemonic": "strb.w",
+        "operand": "r7, [r1, sl]"
+      },
+      {
+        "address": 322,
+        "mnemonic": "eor.w",
+        "operand": "r6, r6, r3, lsr #8"
+      },
+      {
+        "address": 326,
+        "mnemonic": "strb.w",
+        "operand": "r8, [r0, #52]\t@ 0x34"
+      },
+      {
+        "address": 330,
+        "mnemonic": "bhi.n",
+        "operand": "cc <mt_batch1024_collect+0xcc>"
+      }
+    ],
+    "SN_rows": [
+      {
+        "address": 258,
+        "mnemonic": "ldrh.w",
+        "operand": "ip, [r4]"
+      },
+      {
+        "address": 262,
+        "mnemonic": "and.w",
+        "operand": "ip, r9, ip"
+      },
+      {
+        "address": 266,
+        "mnemonic": "eor.w",
+        "operand": "fp, ip, r5"
+      },
+      {
+        "address": 270,
+        "mnemonic": "uxtb.w",
+        "operand": "fp, fp"
+      },
+      {
+        "address": 274,
+        "mnemonic": "ldr.w",
+        "operand": "fp, [r7, fp, lsl #2]"
+      },
+      {
+        "address": 278,
+        "mnemonic": "mov.w",
+        "operand": "r8, ip, lsr #2"
+      },
+      {
+        "address": 282,
+        "mnemonic": "eor.w",
+        "operand": "fp, fp, r5, lsr #8"
+      },
+      {
+        "address": 286,
+        "mnemonic": "eor.w",
+        "operand": "r5, fp, ip, lsr #8"
+      },
+      {
+        "address": 290,
+        "mnemonic": "uxtb",
+        "operand": "r5, r5"
+      },
+      {
+        "address": 292,
+        "mnemonic": "ldr.w",
+        "operand": "r5, [r7, r5, lsl #2]"
+      },
+      {
+        "address": 296,
+        "mnemonic": "eor.w",
+        "operand": "r5, r5, fp, lsr #8"
+      },
+      {
+        "address": 300,
+        "mnemonic": "cmp",
+        "operand": "r1, #0"
+      },
+      {
+        "address": 302,
+        "mnemonic": "bne.n",
+        "operand": "1f8 <mt_batch1024_collect+0x1f8>"
+      },
+      {
+        "address": 304,
+        "mnemonic": "cmp",
+        "operand": "r0, #3"
+      },
+      {
+        "address": 306,
+        "mnemonic": "bls.n",
+        "operand": "230 <mt_batch1024_collect+0x230>"
+      },
+      {
+        "address": 308,
+        "mnemonic": "strb.w",
+        "operand": "r8, [r2]"
+      },
+      {
+        "address": 312,
+        "mnemonic": "ldrh.w",
+        "operand": "r8, [r4, #2]"
+      },
+      {
+        "address": 316,
+        "mnemonic": "adds",
+        "operand": "r2, #5"
+      },
+      {
+        "address": 318,
+        "mnemonic": "and.w",
+        "operand": "r8, r9, r8"
+      },
+      {
+        "address": 322,
+        "mnemonic": "orr.w",
+        "operand": "ip, r8, ip, lsr #10"
+      },
+      {
+        "address": 326,
+        "mnemonic": "strb.w",
+        "operand": "ip, [r2, #-4]"
+      },
+      {
+        "address": 330,
+        "mnemonic": "eor.w",
+        "operand": "ip, r8, r5"
+      },
+      {
+        "address": 334,
+        "mnemonic": "uxtb.w",
+        "operand": "ip, ip"
+      },
+      {
+        "address": 338,
+        "mnemonic": "ldr.w",
+        "operand": "ip, [r7, ip, lsl #2]"
+      },
+      {
+        "address": 342,
+        "mnemonic": "adds",
+        "operand": "r4, #8"
+      },
+      {
+        "address": 344,
+        "mnemonic": "eor.w",
+        "operand": "r5, ip, r5, lsr #8"
+      },
+      {
+        "address": 348,
+        "mnemonic": "eor.w",
+        "operand": "ip, r5, r8, lsr #8"
+      },
+      {
+        "address": 352,
+        "mnemonic": "uxtb.w",
+        "operand": "ip, ip"
+      },
+      {
+        "address": 356,
+        "mnemonic": "ldr.w",
+        "operand": "fp, [r7, ip, lsl #2]"
+      },
+      {
+        "address": 360,
+        "mnemonic": "ldrh.w",
+        "operand": "ip, [r4, #-4]"
+      },
+      {
+        "address": 364,
+        "mnemonic": "eor.w",
+        "operand": "fp, fp, r5, lsr #8"
+      },
+      {
+        "address": 368,
+        "mnemonic": "and.w",
+        "operand": "ip, r9, ip"
+      },
+      {
+        "address": 372,
+        "mnemonic": "mov.w",
+        "operand": "r5, ip, lsl #2"
+      },
+      {
+        "address": 376,
+        "mnemonic": "orr.w",
+        "operand": "r5, r5, r8, lsr #8"
+      },
+      {
+        "address": 380,
+        "mnemonic": "strb.w",
+        "operand": "r5, [r2, #-3]"
+      },
+      {
+        "address": 384,
+        "mnemonic": "eor.w",
+        "operand": "r5, ip, fp"
+      },
+      {
+        "address": 388,
+        "mnemonic": "uxtb",
+        "operand": "r5, r5"
+      },
+      {
+        "address": 390,
+        "mnemonic": "ldr.w",
+        "operand": "r5, [r7, r5, lsl #2]"
+      },
+      {
+        "address": 394,
+        "mnemonic": "subs",
+        "operand": "r0, #4"
+      },
+      {
+        "address": 396,
+        "mnemonic": "eor.w",
+        "operand": "r5, r5, fp, lsr #8"
+      },
+      {
+        "address": 400,
+        "mnemonic": "eor.w",
+        "operand": "r8, r5, ip, lsr #8"
+      },
+      {
+        "address": 404,
+        "mnemonic": "uxtb.w",
+        "operand": "r8, r8"
+      },
+      {
+        "address": 408,
+        "mnemonic": "ldr.w",
+        "operand": "r8, [r7, r8, lsl #2]"
+      },
+      {
+        "address": 412,
+        "mnemonic": "mov.w",
+        "operand": "ip, ip, lsr #6"
+      },
+      {
+        "address": 416,
+        "mnemonic": "eor.w",
+        "operand": "r8, r8, r5, lsr #8"
+      },
+      {
+        "address": 420,
+        "mnemonic": "ldrh.w",
+        "operand": "r5, [r4, #-2]"
+      },
+      {
+        "address": 424,
+        "mnemonic": "and.w",
+        "operand": "r5, r9, r5"
+      },
+      {
+        "address": 428,
+        "mnemonic": "orr.w",
+        "operand": "ip, ip, r5, lsl #4"
+      },
+      {
+        "address": 432,
+        "mnemonic": "strb.w",
+        "operand": "ip, [r2, #-2]"
+      },
+      {
+        "address": 436,
+        "mnemonic": "mov.w",
+        "operand": "ip, r5, lsr #4"
+      },
+      {
+        "address": 440,
+        "mnemonic": "strb.w",
+        "operand": "ip, [r2, #-1]"
+      },
+      {
+        "address": 444,
+        "mnemonic": "eor.w",
+        "operand": "ip, r5, r8"
+      },
+      {
+        "address": 448,
+        "mnemonic": "uxtb.w",
+        "operand": "ip, ip"
+      },
+      {
+        "address": 452,
+        "mnemonic": "ldr.w",
+        "operand": "ip, [r7, ip, lsl #2]"
+      },
+      {
+        "address": 456,
+        "mnemonic": "eor.w",
+        "operand": "ip, ip, r8, lsr #8"
+      },
+      {
+        "address": 460,
+        "mnemonic": "eor.w",
+        "operand": "r5, ip, r5, lsr #8"
+      },
+      {
+        "address": 464,
+        "mnemonic": "uxtb",
+        "operand": "r5, r5"
+      },
+      {
+        "address": 466,
+        "mnemonic": "ldr.w",
+        "operand": "r5, [r7, r5, lsl #2]"
+      },
+      {
+        "address": 470,
+        "mnemonic": "eor.w",
+        "operand": "r5, r5, ip, lsr #8"
+      },
+      {
+        "address": 474,
+        "mnemonic": "cmp",
+        "operand": "r0, #0"
+      },
+      {
+        "address": 476,
+        "mnemonic": "bne.n",
+        "operand": "102 <mt_batch1024_collect+0x102>"
+      }
+    ]
+  },
+  "resources": {
+    "BIN_bytes": 49744,
+    "BIN_sha256": "abc20c98a870c082fce3cb6fab8e0789aa7bd42e53c5bf342861d0c9d3c37714",
+    "ELF_sha256": "bb479dc312f68c4636a5dc1b79514393f0a31a4eb17e6ed3581a7db4946322f1",
+    "text_bytes": 49616,
+    "data_bytes": 128,
+    "bss_bytes": 12156,
+    "all_extra_static_bytes": 0,
+    "stack_reserve_bytes": 8192,
+    "RAM_bytes": 20480,
+    "static_plus_stack_reserve": 20476,
+    "spare_bytes": 4,
+    "SL_collect_frame_bytes": 36,
+    "SN_collect_frame_bytes": 48,
+    "collect_stack_delta_bytes": 12,
+    "conditional_stack_upper_bytes": 6348,
+    "conditional_aligned_bytes": 6352
+  },
+  "common_identity": {
+    "board_address": "0x0800c158",
+    "build_member_offset": 12,
+    "BIN_word": "0x5632534e",
+    "board_and_observer_depend_on_same_generated_header": true,
+    "observer_object_only_one_common_literal_changed": true
+  },
+  "observer_addresses": {
+    "mt_stream_diagnostics": {
+      "address": "0x20002f1c",
+      "bytes": 136
+    },
+    "mt_stream_progress": {
+      "address": "0x20002fa4",
+      "bytes": 64
+    },
+    "mt_usb_gate": {
+      "address": "0x20002fe4",
+      "bytes": 24
+    }
+  },
+  "unchanged_compiled_objects_exact_bytes": 31,
+  "unchanged_patched_sources": 54,
+  "limits": [
+    "No measured CPU share, SRAM watermark, IRQ/ADC WCET or sustainable150k claim.",
+    "Prepare58ms/147ms from S2 is inclusive wall time and does not rank CPU versus USB latency.",
+    "Raw/wire/runtime/source identity unchanged except common SN build/product; physical evidence remains SL failure.",
+    "Four spare SRAM bytes are arithmetic after the8192 reserve, not permission to add state."
+  ]
+}

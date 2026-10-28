@@ -1,0 +1,460 @@
+{
+  "schema": "motortester-V2-06u-source-freeze-1",
+  "date": "2026-10-28",
+  "status": "EQUIVALENT_COLLECT_CANDIDATE_FROZEN_FOR_INDEPENDENT_REVIEW",
+  "firmware_build": "0x5632534e",
+  "baseline_build": "0x5632534c",
+  "product": "Motortester V2 Collect Local SN",
+  "production_files": [
+    {
+      "path": "firmware/v2-stream/README.md",
+      "bytes": 65571,
+      "sha256": "ab456558c4426e17e587e201deecbe3ef783279d1fe63702c88972975a41fc89"
+    },
+    {
+      "path": "firmware/v2-stream/config.json",
+      "bytes": 1039,
+      "sha256": "ca5d8ae2ae0465fcb85cbae7319cdac66d81ff8a9a3e7bf45eede87451129774"
+    },
+    {
+      "path": "firmware/v2-stream/overlays/board_inputs.py",
+      "bytes": 4228,
+      "sha256": "b642992a93428b72c7631def12b6f4cb2ebc205c79d2240bbdbf9e7a2118990a"
+    },
+    {
+      "path": "firmware/v2-stream/batch1024/production/mt_batch1024.c",
+      "bytes": 8054,
+      "sha256": "cfaa06114eefe41c36517a451673533aeae3bba17b090099f75375b04708c037"
+    }
+  ],
+  "native_source_files": [
+    {
+      "path": "tests/v2-stream-firmware/check_collect_local.py",
+      "bytes": 10276,
+      "sha256": "ed4e870bee19d55acd6a97740264dd5c724294968911c7cdfb850d30154c208e"
+    },
+    {
+      "path": "tests/v2-stream-firmware/collect_local_model.c",
+      "bytes": 11035,
+      "sha256": "52ca19d1630e61d101d56e7195d873eab81a5f1b52b02ec6ab039f4d09a844e7"
+    }
+  ],
+  "baseline_reference": {
+    "source_commit": "695efd95e7c4ba72bfa6fb5fb511b85186be6266",
+    "archive": "docs/verification/v2-postcopy-handoff/production-01/",
+    "copy_policy": "Reference frozen SL inputs; do not duplicate the hundreds of unchanged recipe/base files in U delta archive.",
+    "pins": [
+      {
+        "path": "build/v6s-freeze.json",
+        "bytes": 14923,
+        "sha256": "0a0f0124e6e597791ab7f525981c12432ebf8229cf00d9ad4b8aad0f72c7bb8c"
+      },
+      {
+        "path": "build/v6s-fw-02/receipt.json",
+        "bytes": 435709,
+        "sha256": "8cbc2b57d83e8b610277de5bf41dfb6ff32a538905862481ed11f9b19fced5a9"
+      },
+      {
+        "path": "build/v6s-fw-02/patched/v2/protocol/mt_batch1024.c",
+        "bytes": 6634,
+        "sha256": "d0d19b559fdf7558827d0eda1c2de33dbfc04dab9bfa0235b6b3a237ff4f37f7"
+      },
+      {
+        "path": "build/v6s-fw-02/disassembly-28-mt_batch1024.stdout",
+        "bytes": 19351,
+        "sha256": "b4e7d7b7d417a9d2ce4446dda79577d0cb953ed26b4159083844c162a7fe23ef"
+      }
+    ],
+    "unchanged_recipe_files": [
+      {
+        "path": "firmware/v2-stream/build_windows.py",
+        "bytes": 30704,
+        "sha256": "65ef9897bed5835f7a5a03abbd2ae000915d0520629935c019e5806f666d7c6d"
+      },
+      {
+        "path": "firmware/v2-stream/check_static.py",
+        "bytes": 18935,
+        "sha256": "1810437a79183f45f6437111623788e9a4c9c3366adb03909e175978517a9360"
+      },
+      {
+        "path": "firmware/v2-stream/batch1024/production/mt_batch1024.h",
+        "bytes": 4454,
+        "sha256": "4e885e7405bb681c9b2a93231ef5f100b0c3ed12f6a183fae8c457a8b1df1f14"
+      }
+    ]
+  },
+  "ARM_evidence": [
+    {
+      "path": "build/v6u-fw-01/receipt.json",
+      "bytes": 435313,
+      "sha256": "b794a50bdb50025cbc37d4ed9132d975fcd97de313395ec626a3dfe954e543cc"
+    },
+    {
+      "path": "build/v6u-fw-01/static-bound.json",
+      "bytes": 209618,
+      "sha256": "7dccfc42ca204a19c2f142dfd9e0673322d7ea602a0d90b63dbeb4ad1db7ebdd"
+    },
+    {
+      "path": "build/v6u-fw-01/config.json",
+      "bytes": 1039,
+      "sha256": "ca5d8ae2ae0465fcb85cbae7319cdac66d81ff8a9a3e7bf45eede87451129774"
+    },
+    {
+      "path": "build/v6u-fw-01/generated/mt_firmware_build.h",
+      "bytes": 130,
+      "sha256": "d70350aec7a6d27f4e2c3541d08481742fa9022045a515aa3c3a3cc167ce38d0"
+    },
+    {
+      "path": "build/v6u-fw-01/generated/board.c",
+      "bytes": 969,
+      "sha256": "b5fdf8e94f131bd2b933b9de45bfea9ed5b62d2efd846af6a38507419a9ca665"
+    },
+    {
+      "path": "build/v6u-fw-01/MotortesterV2-stream-candidate.bin",
+      "bytes": 49744,
+      "sha256": "abc20c98a870c082fce3cb6fab8e0789aa7bd42e53c5bf342861d0c9d3c37714"
+    },
+    {
+      "path": "build/v6u-fw-01/MotortesterV2-stream-candidate.elf",
+      "bytes": 88032,
+      "sha256": "bb479dc312f68c4636a5dc1b79514393f0a31a4eb17e6ed3581a7db4946322f1"
+    },
+    {
+      "path": "build/v6u-fw-01/image.map",
+      "bytes": 86450,
+      "sha256": "424c951af126d5bd8eced4b3227e6b4b8250275bec04951d5e09fcc8e488a605"
+    },
+    {
+      "path": "build/v6u-fw-01/image.nm",
+      "bytes": 20482,
+      "sha256": "d2b98c55ff668a8b4cfed5438a2c91f2cfe1a46e4b8214dd04fef9be757db2b0"
+    },
+    {
+      "path": "build/v6u-fw-01/size.stdout",
+      "bytes": 126,
+      "sha256": "739853de5f01a311469ddbdb08e050da1cd42e929d5ab15344f754fa33d08621"
+    },
+    {
+      "path": "build/v6u-fw-01/patched/v2/protocol/mt_batch1024.c",
+      "bytes": 8054,
+      "sha256": "cfaa06114eefe41c36517a451673533aeae3bba17b090099f75375b04708c037"
+    },
+    {
+      "path": "build/v6u-fw-01/patched/v2/protocol/mt_batch1024.h",
+      "bytes": 4454,
+      "sha256": "4e885e7405bb681c9b2a93231ef5f100b0c3ed12f6a183fae8c457a8b1df1f14"
+    },
+    {
+      "path": "build/v6u-fw-01/objects/28-mt_batch1024.o",
+      "bytes": 3716,
+      "sha256": "f0a33b3ad1400da4549cbf0dd8d20a00989a1119fcef8859ad61f63cd6892794"
+    },
+    {
+      "path": "build/v6u-fw-01/objects/28-mt_batch1024.su",
+      "bytes": 622,
+      "sha256": "ff7a6e4ac15ce49c041389594fe73911b20dcd1e0b906440d6379255bd01c852"
+    },
+    {
+      "path": "build/v6u-fw-01/objects/board.d",
+      "bytes": 599,
+      "sha256": "e3b6c5e54d43c8de96fb7c19cc0f3d471dcf11243e9c9878fda75b31701546d7"
+    },
+    {
+      "path": "build/v6u-fw-01/objects/29-mt_stream_progress.d",
+      "bytes": 6823,
+      "sha256": "423a90f6fbe8216b14dca829ad1ebdf101bde4daed1dfb970d2701aedd3fac71"
+    },
+    {
+      "path": "build/v6u-fw-01/objects/29-mt_stream_progress.o",
+      "bytes": 4724,
+      "sha256": "1b834d3619e9f1f17a3bb3fcc1193778eb9aae5ebc320c5790e17aa5e2011569"
+    },
+    {
+      "path": "build/v6u-fw-01/disassembly-28-mt_batch1024.stdout",
+      "bytes": 21496,
+      "sha256": "ff12f00e8a67ac7dc3ccd5ba33b6636bbe6dce56b12cb618846aa79e39b7dede"
+    },
+    {
+      "path": "build/v6u-fw-01/compile-28-mt_batch1024.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  ],
+  "native_evidence": [
+    {
+      "path": "build/v6u-native-01/result.json",
+      "bytes": 57717,
+      "sha256": "c56182f6ce5f41923be88a8016cd0b7fe26fca3702b894064eae820e2cc098f0"
+    },
+    {
+      "path": "build/v6u-native-01/source-equivalence.json",
+      "bytes": 17135,
+      "sha256": "2cfc1ba4ca7a3a0c411067189a99f37412bbcb464c38e71064e07bae5a10c8bc"
+    },
+    {
+      "path": "build/v6u-native-01/sl.c",
+      "bytes": 6634,
+      "sha256": "d0d19b559fdf7558827d0eda1c2de33dbfc04dab9bfa0235b6b3a237ff4f37f7"
+    },
+    {
+      "path": "build/v6u-native-01/sn.c",
+      "bytes": 8054,
+      "sha256": "cfaa06114eefe41c36517a451673533aeae3bba17b090099f75375b04708c037"
+    },
+    {
+      "path": "build/v6u-native-01/mt_batch1024.h",
+      "bytes": 4454,
+      "sha256": "4e885e7405bb681c9b2a93231ef5f100b0c3ed12f6a183fae8c457a8b1df1f14"
+    },
+    {
+      "path": "build/v6u-native-01/model.c",
+      "bytes": 11035,
+      "sha256": "52ca19d1630e61d101d56e7195d873eab81a5f1b52b02ec6ab039f4d09a844e7"
+    },
+    {
+      "path": "build/v6u-native-01/mt_wire.c",
+      "bytes": 11344,
+      "sha256": "f8bf4f55f2e4fc769aae0cb57b826dc116486ebefd78279ec130e133cb520fbf"
+    },
+    {
+      "path": "build/v6u-native-01/mt_wire.h",
+      "bytes": 3072,
+      "sha256": "d806649d10360398e031b84e830071fb9b62728feae9fe1c44264aa8d0237f38"
+    },
+    {
+      "path": "build/v6u-native-01/mt_v2_crc32.h",
+      "bytes": 528,
+      "sha256": "48f29791e8b0595dabdc70ec06807f4dc064a56e66db514df24dd04ea9222a2f"
+    },
+    {
+      "path": "build/v6u-native-01/model.exe",
+      "bytes": 195072,
+      "sha256": "3546e5a7c416dbbd594e63bab7c451d5bd3fd370e9fbf85ed44d5614200be37a"
+    },
+    {
+      "path": "build/v6u-native-01/model.stdout",
+      "bytes": 530,
+      "sha256": "8ef4475f83da858be7320163a6c5c2fe2fc47958951839dd7226b3e5c30cc7a3"
+    },
+    {
+      "path": "build/v6u-native-01/model.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "build/v6u-native-01/compile-sl.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "build/v6u-native-01/compile-sl.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "build/v6u-native-01/compile-sn.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "build/v6u-native-01/compile-sn.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "build/v6u-native-01/compile-model.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "build/v6u-native-01/compile-model.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  ],
+  "host_evidence": [
+    {
+      "path": "host/tools/decode_stream_progress.py",
+      "bytes": 10867,
+      "sha256": "544155c5e3f1d2bb21439af30fd7d3dc70e99a6e2d382450b89698b156a21de2"
+    },
+    {
+      "path": "host/tools/decode_usb_gate.py",
+      "bytes": 13319,
+      "sha256": "af099133d3239bc66149e42c80d123afd398cbe2c85e0ad43c470c1886f9280a"
+    },
+    {
+      "path": "host/tests/collect_identity_check.py",
+      "bytes": 10971,
+      "sha256": "15da518e4792f6902341edea14fafb756804ec2af2f2e24b4b40c2e261043b34"
+    },
+    {
+      "path": "build/v6u-host-identity-01/result.json",
+      "bytes": 9530,
+      "sha256": "bf86604726dff97fbef2622c39de157ec9c4cc3c1aeb081f40b45d0f50236f15"
+    },
+    {
+      "path": "build/v6u-host-identity-01/sn-synthetic-derived/derivation.json",
+      "bytes": 468,
+      "sha256": "77e568d6ef6aeda8686cb4d3a7ee5e56d24ee443a39cd23d45433cba0a19a08f"
+    },
+    {
+      "path": "build/v6u-host-identity-01/sn-synthetic-derived/decoded.json",
+      "bytes": 6032,
+      "sha256": "5d9a74b3270083d43d842cfa7f5fb0e114ab02a00541db7a0bb3c5f59940c65e"
+    }
+  ],
+  "author_evidence": [
+    {
+      "path": "build/v6u-analysis/notes.md",
+      "bytes": 3565,
+      "sha256": "c095f7a1eb99108b0d5f7bb4e3e921783886c17d8bb2b537e6014bebccb178d9"
+    },
+    {
+      "path": "build/v6u-analysis/author-audit.md",
+      "bytes": 4551,
+      "sha256": "50c302f7ea86b4358f41d02ebff739ea12a6e99681644c45bf762fdc2a683bd8"
+    },
+    {
+      "path": "build/v6u-analysis/analyze_arm.py",
+      "bytes": 6633,
+      "sha256": "2cfcd75eeae94d8267a24c3c0063b5e742c0316e6b0603e127aeb4e0a027d362"
+    },
+    {
+      "path": "build/v6u-analysis/arm-audit.json",
+      "bytes": 15588,
+      "sha256": "970b79d073aadd0aecd9f03fa0b491539b6f5da4ad1f62068c0b042baed7caff"
+    },
+    {
+      "path": "build/v6u-analysis/make_freeze.py",
+      "bytes": 6797,
+      "sha256": "2935d100c1cb6ae4307d376061b87813e30ed0344053b7447a66fc2ddbf3db83"
+    }
+  ],
+  "failed_attempts": {
+    "ARM": [],
+    "native": [],
+    "successful_ARM_builds": 1,
+    "native_executions": 1,
+    "offline_analysis": [
+      {
+        "status": "FAILED_OFFLINE_ANALYSIS_PARSER",
+        "reason": "CRLF nm text was not normalized before end-anchored mt_board regex; no production/build/native change.",
+        "preserved": [
+          {
+            "path": "build/v6u-analysis/analyze_arm-attempt-01.py",
+            "bytes": 6612,
+            "sha256": "ce48ee1720fbb25516df2a1e1dd51de284d908d9dfe249d41490065fa2fc22cc"
+          },
+          {
+            "path": "build/v6u-analysis/arm-audit-attempt-01.json",
+            "bytes": 370,
+            "sha256": "d3ede58d28abaef64c517c14f2f9279d6805acaff67075089e1738e497f976e3"
+          }
+        ]
+      }
+    ],
+    "offline_analysis_runs": 2,
+    "repair": "Normalize CRLF for parser only; rerun saved-artifact analysis, not ARM/native."
+  },
+  "resources": {
+    "BIN_bytes": 49744,
+    "BIN_sha256": "abc20c98a870c082fce3cb6fab8e0789aa7bd42e53c5bf342861d0c9d3c37714",
+    "ELF_sha256": "bb479dc312f68c4636a5dc1b79514393f0a31a4eb17e6ed3581a7db4946322f1",
+    "text_bytes": 49616,
+    "data_bytes": 128,
+    "bss_bytes": 12156,
+    "all_extra_static_bytes": 0,
+    "stack_reserve_bytes": 8192,
+    "RAM_bytes": 20480,
+    "static_plus_stack_reserve": 20476,
+    "spare_bytes": 4,
+    "SL_collect_frame_bytes": 36,
+    "SN_collect_frame_bytes": 48,
+    "collect_stack_delta_bytes": 12,
+    "conditional_stack_upper_bytes": 6348,
+    "conditional_aligned_bytes": 6352,
+    "BIN_path": "build/v6u-fw-01/MotortesterV2-stream-candidate.bin",
+    "ELF_path": "build/v6u-fw-01/MotortesterV2-stream-candidate.elf",
+    "observer_addresses": {
+      "mt_stream_diagnostics": {
+        "address": "0x20002f1c",
+        "bytes": 136
+      },
+      "mt_stream_progress": {
+        "address": "0x20002fa4",
+        "bytes": 64
+      },
+      "mt_usb_gate": {
+        "address": "0x20002fe4",
+        "bytes": 24
+      }
+    }
+  },
+  "compiled_reduction": {
+    "SL_loop": [
+      "0x000000cc",
+      "0x0000014a"
+    ],
+    "SN_aligned4_loop": [
+      "0x00000102",
+      "0x000001dc"
+    ],
+    "listed_instruction_slots_per4": {
+      "SL": 160,
+      "SN": 61
+    },
+    "packed_STRB_per4": {
+      "SL": 8,
+      "SN": 5
+    },
+    "count_reloads_per4": {
+      "SL": 4,
+      "SN": 0
+    },
+    "count_bit_MUL_per4": {
+      "SL": 4,
+      "SN": 0
+    },
+    "canonical_CRC_table_loads_per4": {
+      "SL": 8,
+      "SN": 8
+    },
+    "CRC_already_local_in_SL": true,
+    "optimization": "-Os unchanged",
+    "scope": "Static listing/work reduction, not ISA retirement/cycles/WCET; validation/prologue/epilogue/tails excluded."
+  },
+  "verification": {
+    "native_status": "PASS",
+    "native_calls": 4707,
+    "completed_frames": 28,
+    "native_input_drift": [],
+    "ARM_input_drift": [],
+    "unchanged_other_serializer_APIs": 7,
+    "unchanged_other_patched_files": 54,
+    "unchanged_objects_exact_bytes": 31,
+    "observer_object_delta": "Exactly one common build-ID literal",
+    "generated_board_delta": "Common build ID and product only",
+    "compiled_board_build_word": {
+      "board_address": "0x0800c158",
+      "build_member_offset": 12,
+      "BIN_word": "0x5632534e",
+      "board_and_observer_depend_on_same_generated_header": true,
+      "observer_object_only_one_common_literal_changed": true
+    },
+    "host_identity_status": "PASS",
+    "host_fixture_origin": "EXPLICIT_SYNTHETIC_DERIVATION_OF_ARCHIVED_SL_ACTUAL_C_TRIO",
+    "new_actual_SN_observer_execution": false,
+    "old_broad_suites_repeated": false
+  },
+  "limits": [
+    "Physical sustained150k remains open; no COM/SWD/Reset/Flash by the author.",
+    "Prepare58/147ms S2 was inclusive wall; no CPU share or sufficient throughput improvement inferred.",
+    "Static stack bound is conditional, not physical watermark; only4B beyond8192 reserve, no newstatic.",
+    "Host SN identity fixture is derived synthetic data; actual common SN binding is established by ARM inputs/deps/object/BIN.",
+    "T/preflush was NO-GO and has no image; U does not change whole-fit/grants/runtime/wire/ADC/TIME/queues."
+  ],
+  "independent_source_review": "PENDING_SEPARATE_GATE",
+  "hardware_executed": false,
+  "flash_approved": false
+}

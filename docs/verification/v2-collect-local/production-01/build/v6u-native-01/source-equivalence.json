@@ -1,0 +1,426 @@
+{
+  "status": "PASS",
+  "changed_function": "mt_batch1024_collect",
+  "other_seven_serializer_functions_and_all_other_text_exact_equal": true,
+  "unchanged_patched_sources": [
+    {
+      "path": "dcd_stm32_fsdev.c",
+      "sha256": "2aa4c4ab8511790ab8e693553ebb6ad55b5ca4ea1f4ea09c89eea8c9bfbc79d1"
+    },
+    {
+      "path": "fsdev_common.h",
+      "sha256": "83bd242c95387e0ba2158d9d4525ffd3bc3304533ea8d3ba3b78186dc57da3cb"
+    },
+    {
+      "path": "fsdev_stm32.h",
+      "sha256": "d4a32d1b7c5ec2c7698c1b0c2e175ecb0ff00bdb96314b007d0d6a866de391a0"
+    },
+    {
+      "path": "usbd.c",
+      "sha256": "f500d3477ef628c15e8ebb117570da64d34d4b6d638cfa47886422b9a04091fe"
+    },
+    {
+      "path": "v2/acquisition/acquisition.h",
+      "sha256": "e7b51ef6df7e12279b708e7e7543de99096250dd8b0a495aeca3cf451c21adad"
+    },
+    {
+      "path": "v2/acquisition/mt_acquisition_profile.c",
+      "sha256": "df8ccaf78a1979db7a259be6fabc2c75e38cdba410c508b2cd1bebe65091a368"
+    },
+    {
+      "path": "v2/acquisition/mt_acquisition_profile.h",
+      "sha256": "0241c4f990852d8dbe466070599c109bba20a566f32a182b06be5ca5907e9eb1"
+    },
+    {
+      "path": "v2/acquisition/mt_sample_queue.c",
+      "sha256": "7ada308d948457cc5e57d53c79feec7cfa400203da98bb74fb8dff103cfe9896"
+    },
+    {
+      "path": "v2/acquisition/mt_sample_queue.h",
+      "sha256": "f96c252c129e8c96df955180fedcb4cc87341651c638899abea15e439399a47a"
+    },
+    {
+      "path": "v2/app/mt_adc_control.h",
+      "sha256": "e015e753e47f1dd6d311a6e80d8625201c90e31b6a27727b31bf7ec660a7a7b3"
+    },
+    {
+      "path": "v2/app/mt_capture_link.h",
+      "sha256": "9dcdd4f8119c8ccd8a7f79c6b16406ad686c4e53084c57a8fe55e8c5655be4d5"
+    },
+    {
+      "path": "v2/app/mt_control.h",
+      "sha256": "c435bd5cfe55cfbeac8f93b766a2c1ddfb3208c13e250f6740d9459a63bcb172"
+    },
+    {
+      "path": "v2/app/mt_control_rx.h",
+      "sha256": "67fc3dfa8b41aae941b13f968e76fcd4d21bba8619ee38defbf4a22975223943"
+    },
+    {
+      "path": "v2/app/mt_live_adc.c",
+      "sha256": "c6b4422075a5bc81943be920ea93fff63693a966ad31becb2e34d6d2ee27155a"
+    },
+    {
+      "path": "v2/app/mt_live_adc.h",
+      "sha256": "c0499074a50b7e359a909c4e4146ff7e5ee9f3c876ac262bfcd527765f2cecce"
+    },
+    {
+      "path": "v2/app/mt_live_runtime.c",
+      "sha256": "d1060d7cecabe32b68ae5539d6957b52349f56376bc9813ae2ee98098869fdbb"
+    },
+    {
+      "path": "v2/app/mt_live_runtime.h",
+      "sha256": "900f229fe02997e7d8c2e1dbe12c8386923fb46b7a3a4f8666e9044d9edd2562"
+    },
+    {
+      "path": "v2/app/mt_runtime.h",
+      "sha256": "2c41e5cb875828a07e5d3bae4c3318b996ff1108e25a26bbdf1405a87cf8b95a"
+    },
+    {
+      "path": "v2/boot/mt_board_inputs.h",
+      "sha256": "45119dbca2ce9d7de62cbadb93835c86ceff3e3a44a8e65a4cc327f27a2bf5a5"
+    },
+    {
+      "path": "v2/boot/mt_boot_cpu.h",
+      "sha256": "182b02a66981a33f39b5a3e1427ca83dabef55711450ec83e9da094f113c6680"
+    },
+    {
+      "path": "v2/boot/mt_boot_time.h",
+      "sha256": "ba0f26042f97303f0fe9f3e6e4109f079a30b23f80381cec007a355fe79b5f53"
+    },
+    {
+      "path": "v2/boot/mt_boot_usb.h",
+      "sha256": "2ea620b7a8318d52ddc4559d1f0c4f22b423c1b6596a688adafe2dafac83e1ff"
+    },
+    {
+      "path": "v2/boot/mt_stream_timing.h",
+      "sha256": "de68d690626284e040cd67af2ed96ebd18f8e305d676942e5d19f9b35855c1c0"
+    },
+    {
+      "path": "v2/boot/tusb_config.h",
+      "sha256": "7886bfbd42563b0e8f8cd4db6af8ab17691b64a03223c1f247c3633aedef43c3"
+    },
+    {
+      "path": "v2/platform/adc_timer_dma.c",
+      "sha256": "a0acc99437cad4cc6fcbee12569f853923ed0d8d5d7a4fdd59a6814b647955df"
+    },
+    {
+      "path": "v2/platform/adc_timer_dma.h",
+      "sha256": "6efbf2deab099513e9df6654b687cc322e4685053abf53957972d67cc23061a2"
+    },
+    {
+      "path": "v2/platform/mt_clock_startup.h",
+      "sha256": "8c6a62dbb14096b48a00336003dbded7187f479e3a7187703f365ad40a8e1da3"
+    },
+    {
+      "path": "v2/platform/mt_irq_guard.h",
+      "sha256": "677b9880972c99b7ede19f8b6d5a89fab75a3d360c3a8ac4980f8d177d765c4c"
+    },
+    {
+      "path": "v2/platform/mt_live_clock.h",
+      "sha256": "403108fd56d9cf66b2dd3eab4ca59d40db23bfefe66e7a289322c8c67e34db93"
+    },
+    {
+      "path": "v2/platform/mt_stream_diag.h",
+      "sha256": "a2dc9c01d5a1ca9168e776e33c719ec727f0e0e301aad755d12b3280931774e5"
+    },
+    {
+      "path": "v2/platform/mt_stream_progress.c",
+      "sha256": "938666ea04c46583e31173ed741dc3e1f10a38c7fad7db0149718e6242d0c31b"
+    },
+    {
+      "path": "v2/platform/mt_stream_progress.h",
+      "sha256": "7cc64b97266496ff053163d78cc155ae5a8aeb168755ad23be6a5517f938c881"
+    },
+    {
+      "path": "v2/platform/mt_timebase.h",
+      "sha256": "b41cc0a080ddae68bffd5a1b7f4af31da7900bb29f3939c2bd2c2e690026ad39"
+    },
+    {
+      "path": "v2/platform/mt_usb_ctr.h",
+      "sha256": "dfc05ed468745b07752807642682c4f4618dddf8c2de57573e11b6a21dfbad64"
+    },
+    {
+      "path": "v2/platform/mt_usb_gate.c",
+      "sha256": "a0c6cf54c0f9e8a322143a3e7ecbaa7b32db9ab3d046525c2ff0fb278e65e31b"
+    },
+    {
+      "path": "v2/platform/mt_usb_gate.h",
+      "sha256": "2128cff35f6ac01dcc684f50b6fc2acd5dffed2161e89c9e04bf1ad4f62ca04d"
+    },
+    {
+      "path": "v2/platform/mt_usb_irq.h",
+      "sha256": "1dce13b98392277dd515cff3e35ad36b9da9dc713d5b60dd922871bdf02146f4"
+    },
+    {
+      "path": "v2/platform/mt_usb_time.h",
+      "sha256": "58f5f27dd9aacfdb2f84c6457fd8ad046bec924fbf84fcf8bcc3b37dcb9d67ab"
+    },
+    {
+      "path": "v2/protocol/mt_batch1024.h",
+      "sha256": "4e885e7405bb681c9b2a93231ef5f100b0c3ed12f6a183fae8c457a8b1df1f14"
+    },
+    {
+      "path": "v2/protocol/mt_command.h",
+      "sha256": "90db22b0f135ae0e78e8645c8c99bc90cfec215366e8a3d23c9300a5eca6fb84"
+    },
+    {
+      "path": "v2/protocol/mt_live_device.c",
+      "sha256": "96cfa960b6692d985b7b42f9a7cb50dd44126e969f4c22166f8fec6411a6d60e"
+    },
+    {
+      "path": "v2/protocol/mt_live_device.h",
+      "sha256": "cb9651e050f84a686ea6237fbf3b7125e7fd19c323ec638b4591e33de64cb19e"
+    },
+    {
+      "path": "v2/protocol/mt_session.h",
+      "sha256": "4484dd2b0dd7f705d13c6747cd5c10992df6be76e2b950796e746125a463565c"
+    },
+    {
+      "path": "v2/protocol/mt_stream.h",
+      "sha256": "b3183b32df2e8d665a154efee25ee8167c5554806f2a811bb9175506190431a3"
+    },
+    {
+      "path": "v2/protocol/mt_v2_crc32.h",
+      "sha256": "48f29791e8b0595dabdc70ec06807f4dc064a56e66db514df24dd04ea9222a2f"
+    },
+    {
+      "path": "v2/protocol/mt_wire.c",
+      "sha256": "f8bf4f55f2e4fc769aae0cb57b826dc116486ebefd78279ec130e133cb520fbf"
+    },
+    {
+      "path": "v2/protocol/mt_wire.h",
+      "sha256": "d806649d10360398e031b84e830071fb9b62728feae9fe1c44264aa8d0237f38"
+    },
+    {
+      "path": "v2/transport/mt_tx.h",
+      "sha256": "6f008a8645dc53130ad2ecce39184ed4a563f71c812800dcf81954af102e2de8"
+    },
+    {
+      "path": "v2/transport/mt_usb_bridge.c",
+      "sha256": "dad3783c3497f601a55d9d9d02c54500856b84beb3a2c99628ca7146b98eea10"
+    },
+    {
+      "path": "v2/transport/mt_usb_bridge.h",
+      "sha256": "08fd79a9fc5e256e9708d9c0c43a5dbf2ec467a3a7875128e28a868523c5da6b"
+    },
+    {
+      "path": "v2/transport/mt_usb_cdc.h",
+      "sha256": "4f7d054f5ec14c4b04b6b28240c93af2e9894e16c72db7a369f2d3221800563b"
+    },
+    {
+      "path": "v2/transport/mt_usb_descriptors.c",
+      "sha256": "cc0ada207e46acde8d72eb988257cbc61b7d294103f1c452257c40b7a3e30e25"
+    },
+    {
+      "path": "v2/transport/mt_usb_descriptors.h",
+      "sha256": "f35ca537b41dd5b2c47e4c589b06545a0da59ed0d8a9be27f6ef10b78848437d"
+    },
+    {
+      "path": "v2/transport/mt_usb_epoch.h",
+      "sha256": "21498b42c3cfa3f03fe78e6567cf996d4b1892a0d3d23ef90e097a6e858f9954"
+    }
+  ],
+  "compiled_SL_objects": [
+    {
+      "object": "00-mt_boot_cpu.o",
+      "baseline_sha256": "5589ef4519101a8b07b3728ec807e35504e0d61296df45a357acc4402cee4675",
+      "candidate_sha256": "5589ef4519101a8b07b3728ec807e35504e0d61296df45a357acc4402cee4675",
+      "verdict": "EXACT_BYTES"
+    },
+    {
+      "object": "01-adc_timer_dma.o",
+      "baseline_sha256": "2f5911520f1f469766027705c25b2a5bdb6472fbf363bb9522f3044bff1ecfc8",
+      "candidate_sha256": "2f5911520f1f469766027705c25b2a5bdb6472fbf363bb9522f3044bff1ecfc8",
+      "verdict": "EXACT_BYTES"
+    },
+    {
+      "object": "02-mt_timebase.o",
+      "baseline_sha256": "3c6b2ebc4a614354bdb09fc8945fa297f48ac3354bf603f90db35ea309a8716c",
+      "candidate_sha256": "3c6b2ebc4a614354bdb09fc8945fa297f48ac3354bf603f90db35ea309a8716c",
+      "verdict": "EXACT_BYTES"
+    },
+    {
+      "object": "03-mt_irq_guard.o",
+      "baseline_sha256": "c3237e6f1453df04e85bfdd5f3c1b803439157a35d3259103a3bf47037a7d8f9",
+      "candidate_sha256": "c3237e6f1453df04e85bfdd5f3c1b803439157a35d3259103a3bf47037a7d8f9",
+      "verdict": "EXACT_BYTES"
+    },
+    {
+      "object": "04-mt_wire.o",
+      "baseline_sha256": "2a5cc0258ac8aedb73eff89ca3dcd83ab1d82e0b5e5faef7795efc10d40e4040",
+      "candidate_sha256": "2a5cc0258ac8aedb73eff89ca3dcd83ab1d82e0b5e5faef7795efc10d40e4040",
+      "verdict": "EXACT_BYTES"
+    },
+    {
+      "object": "05-mt_usb_epoch.o",
+      "baseline_sha256": "5188caebc3bfb4cf9f803892918956ba03879a3607b1f31433084bcae4710538",
+      "candidate_sha256": "5188caebc3bfb4cf9f803892918956ba03879a3607b1f31433084bcae4710538",
+      "verdict": "EXACT_BYTES"
+    },
+    {
+      "object": "06-mt_usb_bridge.o",
+      "baseline_sha256": "53611ee9dd883dee317ac4abf59d1301eea9a1bbc8147166d5385541b8002327",
+      "candidate_sha256": "53611ee9dd883dee317ac4abf59d1301eea9a1bbc8147166d5385541b8002327",
+      "verdict": "EXACT_BYTES"
+    },
+    {
+      "object": "07-mt_usb_descriptors.o",
+      "baseline_sha256": "490524dfa262b6e2a550ea9a8ea2da49331114fe64f8c170fc62c7f14647e7a5",
+      "candidate_sha256": "490524dfa262b6e2a550ea9a8ea2da49331114fe64f8c170fc62c7f14647e7a5",
+      "verdict": "EXACT_BYTES"
+    },
+    {
+      "object": "08-mt_memory.o",
+      "baseline_sha256": "b51d6cfe3da41ef17823392ac7fea644c45d859422a2d308e57561f2cc85dd6f",
+      "candidate_sha256": "b51d6cfe3da41ef17823392ac7fea644c45d859422a2d308e57561f2cc85dd6f",
+      "verdict": "EXACT_BYTES"
+    },
+    {
+      "object": "09-tusb.o",
+      "baseline_sha256": "4c2ac9edc53ec3f762bd86845bb689f70e0ffce5364d08ccfa6903f0ccde909c",
+      "candidate_sha256": "4c2ac9edc53ec3f762bd86845bb689f70e0ffce5364d08ccfa6903f0ccde909c",
+      "verdict": "EXACT_BYTES"
+    },
+    {
+      "object": "10-tusb_fifo.o",
+      "baseline_sha256": "c2ca0c06adf9da81ce1eaee86dc7e5522a3ee8eeee2c50693430aac41f55c260",
+      "candidate_sha256": "c2ca0c06adf9da81ce1eaee86dc7e5522a3ee8eeee2c50693430aac41f55c260",
+      "verdict": "EXACT_BYTES"
+    },
+    {
+      "object": "11-cdc_device.o",
+      "baseline_sha256": "de34ba9a5e62356dda4594cb6773f6c482a1576d86244ae19714b7ad02b97219",
+      "candidate_sha256": "de34ba9a5e62356dda4594cb6773f6c482a1576d86244ae19714b7ad02b97219",
+      "verdict": "EXACT_BYTES"
+    },
+    {
+      "object": "12-usbd.o",
+      "baseline_sha256": "38bfcb2466325738b73883146e927c2d02859a3d7e72a0516fb440dcd0a9611e",
+      "candidate_sha256": "38bfcb2466325738b73883146e927c2d02859a3d7e72a0516fb440dcd0a9611e",
+      "verdict": "EXACT_BYTES"
+    },
+    {
+      "object": "13-dcd_stm32_fsdev.o",
+      "baseline_sha256": "1d00df6bd8e07119bd85c1a29ad8927ec422862c0caa561cb7d5894e5a005154",
+      "candidate_sha256": "1d00df6bd8e07119bd85c1a29ad8927ec422862c0caa561cb7d5894e5a005154",
+      "verdict": "EXACT_BYTES"
+    },
+    {
+      "object": "14-fsdev_common.o",
+      "baseline_sha256": "a0a6fd7859a830e5e968879bbeba2d8b14b9406b160a1459f7398668898735ea",
+      "candidate_sha256": "a0a6fd7859a830e5e968879bbeba2d8b14b9406b160a1459f7398668898735ea",
+      "verdict": "EXACT_BYTES"
+    },
+    {
+      "object": "15-mt_clock_startup.o",
+      "baseline_sha256": "c66123eacf8a91b5f1efc78c04c6dcd077dbd34c95b0026061e0a287873421df",
+      "candidate_sha256": "c66123eacf8a91b5f1efc78c04c6dcd077dbd34c95b0026061e0a287873421df",
+      "verdict": "EXACT_BYTES"
+    },
+    {
+      "object": "16-mt_boot_time.o",
+      "baseline_sha256": "19c880afb8af5be741357b1f5fb3ca88dbb9a87403a4385ce4fc051d55797414",
+      "candidate_sha256": "19c880afb8af5be741357b1f5fb3ca88dbb9a87403a4385ce4fc051d55797414",
+      "verdict": "EXACT_BYTES"
+    },
+    {
+      "object": "17-mt_boot_usb.o",
+      "baseline_sha256": "613f6daedf4fedbcfdaf0ab142b9315189959605fc8032126f9ee9d3da19b03a",
+      "candidate_sha256": "613f6daedf4fedbcfdaf0ab142b9315189959605fc8032126f9ee9d3da19b03a",
+      "verdict": "EXACT_BYTES"
+    },
+    {
+      "object": "18-mt_usb_time.o",
+      "baseline_sha256": "97d0795909cb628e6df264c53fdc8a12c198531613034e3334e799036a413aa3",
+      "candidate_sha256": "97d0795909cb628e6df264c53fdc8a12c198531613034e3334e799036a413aa3",
+      "verdict": "EXACT_BYTES"
+    },
+    {
+      "object": "19-mt_usb_irq.o",
+      "baseline_sha256": "a94953b1f7d27a5a6ff1b021fd34000114fbcaeac540c654faac01146a2dac16",
+      "candidate_sha256": "a94953b1f7d27a5a6ff1b021fd34000114fbcaeac540c654faac01146a2dac16",
+      "verdict": "EXACT_BYTES"
+    },
+    {
+      "object": "20-mt_stream_main.o",
+      "baseline_sha256": "bc0b1e64989921d01635ad4fd91b902b12eae0e0e777fa2a6dc83f429dbe61b9",
+      "candidate_sha256": "bc0b1e64989921d01635ad4fd91b902b12eae0e0e777fa2a6dc83f429dbe61b9",
+      "verdict": "EXACT_BYTES"
+    },
+    {
+      "object": "21-mt_live_runtime.o",
+      "baseline_sha256": "0e43eca7310ead731469c8c8237dd4adcda1f85d44ecc57415e2775bda23f0b4",
+      "candidate_sha256": "0e43eca7310ead731469c8c8237dd4adcda1f85d44ecc57415e2775bda23f0b4",
+      "verdict": "EXACT_BYTES"
+    },
+    {
+      "object": "22-mt_live_adc.o",
+      "baseline_sha256": "9f92feaaa873f6a25da7254ba91b3f7425a9b10489b97c8dc1b3f08f915f0460",
+      "candidate_sha256": "9f92feaaa873f6a25da7254ba91b3f7425a9b10489b97c8dc1b3f08f915f0460",
+      "verdict": "EXACT_BYTES"
+    },
+    {
+      "object": "23-mt_live_clock.o",
+      "baseline_sha256": "393cace98eaee8c45b18715f365e95b8a1f8794676fb2653b3d22ec1bcaee1ab",
+      "candidate_sha256": "393cace98eaee8c45b18715f365e95b8a1f8794676fb2653b3d22ec1bcaee1ab",
+      "verdict": "EXACT_BYTES"
+    },
+    {
+      "object": "24-mt_live_device.o",
+      "baseline_sha256": "4aada5cf6e0f423550623f933272e3130a7d4a6c1cbc3cd3e283266c2d642709",
+      "candidate_sha256": "4aada5cf6e0f423550623f933272e3130a7d4a6c1cbc3cd3e283266c2d642709",
+      "verdict": "EXACT_BYTES"
+    },
+    {
+      "object": "25-mt_sample_queue.o",
+      "baseline_sha256": "59cd67b4dadb5ee639d360859aba7000263cdb18db3a7fc48ab8c4973b978d2e",
+      "candidate_sha256": "59cd67b4dadb5ee639d360859aba7000263cdb18db3a7fc48ab8c4973b978d2e",
+      "verdict": "EXACT_BYTES"
+    },
+    {
+      "object": "26-mt_stream_diag.o",
+      "baseline_sha256": "5467e9097b97f53c279c93437d2d26a41f2aa55b65f99bd3b7a31c608a029339",
+      "candidate_sha256": "5467e9097b97f53c279c93437d2d26a41f2aa55b65f99bd3b7a31c608a029339",
+      "verdict": "EXACT_BYTES"
+    },
+    {
+      "object": "27-mt_acquisition_profile.o",
+      "baseline_sha256": "dd974b51467ef3e51712096224a39f774297b6c7212c6dd498a2433a73cc5819",
+      "candidate_sha256": "dd974b51467ef3e51712096224a39f774297b6c7212c6dd498a2433a73cc5819",
+      "verdict": "EXACT_BYTES"
+    },
+    {
+      "object": "29-mt_stream_progress.o",
+      "baseline_sha256": "770450c87ed3cdc02a6acad6539542e0461d40bffae5ae695a1d06e502168d2c",
+      "candidate_sha256": "1b834d3619e9f1f17a3bb3fcc1193778eb9aae5ebc320c5790e17aa5e2011569",
+      "verdict": "EXACT_AFTER_ONE_COMMON_ID_LITERAL"
+    },
+    {
+      "object": "30-mt_usb_gate.o",
+      "baseline_sha256": "53e86ca03b2f0fa9fcb2197c8f58f57a151c91967e86cda23c90abdc4971b2de",
+      "candidate_sha256": "53e86ca03b2f0fa9fcb2197c8f58f57a151c91967e86cda23c90abdc4971b2de",
+      "verdict": "EXACT_BYTES"
+    },
+    {
+      "object": "board.o",
+      "baseline_sha256": "60855741f0accea18f5719675db086512d083b8972d687f9f295b377fdda0b60",
+      "candidate_sha256": "b1aa29b942e2617ea0856fa0465bc95e624102e01f3e44ab3286e18251b30ef2",
+      "verdict": "GENERATED_BOARD_ID_AND_PRODUCT"
+    },
+    {
+      "object": "reset.o",
+      "baseline_sha256": "f75537d14e550be418ec5ab5225d5750cf56e19bc5a4b7beedc54c03643e920c",
+      "candidate_sha256": "f75537d14e550be418ec5ab5225d5750cf56e19bc5a4b7beedc54c03643e920c",
+      "verdict": "EXACT_BYTES"
+    },
+    {
+      "object": "timing.o",
+      "baseline_sha256": "bd6c12c149126ee8b4c1f57cadfa61200afc13c473f4cc2cb0766065d6b6cda9",
+      "candidate_sha256": "bd6c12c149126ee8b4c1f57cadfa61200afc13c473f4cc2cb0766065d6b6cda9",
+      "verdict": "EXACT_BYTES"
+    }
+  ],
+  "config_delta_only_common_ID_and_product": true,
+  "ARM_optimization_Os_unchanged": true,
+  "no_performance_or_hardware_claim": true
+}

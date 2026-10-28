@@ -23,27 +23,49 @@ int mt_batch1024_begin(mt_batch1024_state*s,uint8_t*b,
 
 int mt_batch1024_collect(mt_batch1024_state*s,uint8_t*b,uint64_t first,
     const uint16_t*p,uint16_t count){
-    uint64_t origin;uint32_t crc;unsigned i,bit,byte,shift;uint16_t canonical,q;
+    uint64_t origin;uint32_t crc;unsigned i,start,remaining,shift,carry;
+    uint16_t canonical,q;uint8_t*cursor;const uint16_t*src;
     if(!s || !b || !p || s->phase!=MT_BATCH1024_COLLECT || !count ||
        count>MT_BATCH1024_QUANTUM_MAX || s->count>1024u || count>1024u-s->count)return 0;
     origin=get64(b+RAW_BASE+32u);
     if(UINT64_MAX-origin<s->count || first!=origin+s->count || UINT64_MAX-first<count)return 0;
     for(i=0;i<count;i++)if(p[i]>4095u)return 0; /* BEFORE any mask/copy */
-    crc=s->prefix_crc;
-    for(i=0;i<count;i++){
-        canonical=(uint16_t)(p[i]&4092u);q=(uint16_t)(canonical>>2);
-        bit=((unsigned)s->count+i)*10u;byte=bit>>3;shift=bit&7u;
-        /* shift is0/2/4/6. Preserve ONLY already-owned low bits, replacing
-         * speculative high bits even after a rejected work-copy admission.
-         * This makes retry with different input safe across a shared byte. */
-        if(shift)b[SAMPLES_BASE+byte]&=(uint8_t)((1u<<shift)-1u);
-        else b[SAMPLES_BASE+byte]=0;
-        b[SAMPLES_BASE+byte]|=(uint8_t)(q<<shift);
-        b[SAMPLES_BASE+byte+1u]=(uint8_t)(q>>(8u-shift));
+    start=s->count;remaining=count;src=p;crc=s->prefix_crc;
+    cursor=b+SAMPLES_BASE+(start*10u>>3);shift=(start&3u)*2u;
+    while(remaining){
+        if(!shift && remaining>=4u){
+            /* Four10-bit samples occupy exactly five bytes. Keep the cursor
+             * local: byte stores cannot force repeated state/count reloads.
+             * CRC retains the canonical u16le sample order, not packed bytes. */
+            canonical=(uint16_t)(src[0]&4092u);q=(uint16_t)(canonical>>2);
+            cursor[0]=(uint8_t)q;carry=(unsigned)q>>8;
+            crc=mt_v2_crc32_byte(crc,(uint8_t)canonical);
+            crc=mt_v2_crc32_byte(crc,(uint8_t)(canonical>>8));
+            canonical=(uint16_t)(src[1]&4092u);q=(uint16_t)(canonical>>2);
+            cursor[1]=(uint8_t)(carry|((unsigned)q<<2));carry=(unsigned)q>>6;
+            crc=mt_v2_crc32_byte(crc,(uint8_t)canonical);
+            crc=mt_v2_crc32_byte(crc,(uint8_t)(canonical>>8));
+            canonical=(uint16_t)(src[2]&4092u);q=(uint16_t)(canonical>>2);
+            cursor[2]=(uint8_t)(carry|((unsigned)q<<4));carry=(unsigned)q>>4;
+            crc=mt_v2_crc32_byte(crc,(uint8_t)canonical);
+            crc=mt_v2_crc32_byte(crc,(uint8_t)(canonical>>8));
+            canonical=(uint16_t)(src[3]&4092u);q=(uint16_t)(canonical>>2);
+            cursor[3]=(uint8_t)(carry|((unsigned)q<<6));cursor[4]=(uint8_t)(q>>2);
+            crc=mt_v2_crc32_byte(crc,(uint8_t)canonical);
+            crc=mt_v2_crc32_byte(crc,(uint8_t)(canonical>>8));
+            cursor+=5;src+=4;remaining-=4u;continue;
+        }
+        canonical=(uint16_t)(*src++&4092u);q=(uint16_t)(canonical>>2);
+        /* Unaligned prefix/tail preserves only owned low bits. Speculative
+         * high bits from rejected work-copy admissions must be replaced. */
+        if(shift)cursor[0]&=(uint8_t)((1u<<shift)-1u);
+        else cursor[0]=0;
+        cursor[0]|=(uint8_t)(q<<shift);cursor[1]=(uint8_t)(q>>(8u-shift));
         crc=mt_v2_crc32_byte(crc,(uint8_t)canonical);
         crc=mt_v2_crc32_byte(crc,(uint8_t)(canonical>>8));
+        shift+=10u;cursor+=shift>>3;shift&=7u;--remaining;
     }
-    s->count=(uint16_t)(s->count+count);
+    s->count=(uint16_t)(start+count);
     s->packed_bytes=(uint16_t)(((unsigned)s->count*10u+7u)/8u);
     s->prefix_crc=crc;return 1;
 }

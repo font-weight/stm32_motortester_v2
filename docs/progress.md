@@ -10,11 +10,34 @@ score:null: полезное buffered+claimable состояние для preflu
 не создавались. Exact draft SHA256
 `2dc153f9e24dc852e45c0928cfdaea0a0cfc5caa74d292991d03fc65b2b76d97`.
 
-Начата U/SN: эквивалентная оптимизация collect. По SL ARM-коду цикл
-перечитывает count и пересчитывает bit/byte/shift для каждого отсчёта;
-CRC уже локальный. Пока нет результата сборки/тестов/ускорения.
-S2 physical REWORK/P1-M2-01 сохраняются. После S2 дополнительных
-аппаратных обращений не было, плата остаётся остановленной SL.
+U/SN: production collect использует локальный cursor/count и4×10→5байт.
+Первый ARM01 и один native01 прошли:28 кадров/4707 API-сравнений, весь
+storage/state/CRC совпал с SL, input_drift=[]. Один host identity check —
+PASS10; SN fixture явно синтетически выведен из SL, не исполнение SN.
+Другие54 patched files и31 ARM object совпали; observer отличается одним
+common-ID literal, board — ID/product. Runtime/USB/ADC/TIME не менялись.
+
+BIN49744B SHA256 `abc20c98a870c082fce3cb6fab8e0789aa7bd42e53c5bf342861d0c9d3c37714`;
+ELF `bb479dc312f68c4636a5dc1b79514393f0a31a4eb17e6ed3581a7db4946322f1`.
+На aligned группе4: ARM STRB8→5, count loads4→0, MUL4→0; CRC уже был local.
+61 listing slot вместо160 на4 прежних итерации — не cycles/WCET/измерениеFs.
+Static128+12156 прежние, reserve8192, spare4; условный stack6348/aligned6352.
+Первый offline ARM-audit не распознал CRLF в nm; сохранены ошибочный script
+и errorJSON, исправлен только parser. ARM/native не повторялись.
+
+[U delta archive](verification/v2-collect-local/production-01/manifest.json):
+81 строка (48 новых копий2693095B,33 ссылки на exact S evidence), manifest
+`d4de6d4830efdc7372f7db3bda452b5a1b7cdaf959d7bcf8d2a85759754ac11d`.
+Freeze `fe206f96e8c7d5ea6704542870f051278dda18be9570f50faca393e3d4f6cf95`.
+Native result `c56182f6ce5f41923be88a8016cd0b7fe26fca3702b894064eae820e2cc098f0`;
+host `bf86604726dff97fbef2622c39de157ec9c4cc3c1aeb081f40b45d0f50236f15`.
+Независимое source-ревью готового U ещё ожидается; stable150k не заявлены.
+
+Root18:50UTC проверил COM6/ST-Link, владельцев приложения/захвата нет,
+прочитал текущие64КиБ **без Reset/Flash/START**: backupSHA
+`82fd17bd0004786957afbb0f0ef350f80dc5ba331a0980e0575c251534fe36c7`,
+первые49532B побайтно соответствуют SL по SHA256. Плата остаётся остановленной
+SL. S2 physical REWORK/P1-M2-01 сохраняются; нового захвата не было.
 
 ## 28.10.2026 — S2 завершён: SL снова остановилась по переполнению очереди
 

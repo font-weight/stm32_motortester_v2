@@ -201,3 +201,20 @@ host/tests/postcopy_identity_check.py -text
 
 firmware/v2-stream/overlays/postcopy-handoff.json -text
 docs/verification/v2-postcopy-handoff/production-01/build/v6s-design/contract-draft.md whitespace=-blank-at-eof
+docs/verification/v2-preflush-rejected/** -text whitespace=cr-at-eol
+docs/reviews/v2-06t*.md -text
+docs/verification/v2-collect-local/** -text whitespace=cr-at-eol
+docs/verification/v2-collect-local/**/*.bin binary
+docs/verification/v2-collect-local/**/*.elf binary
+docs/verification/v2-collect-local/**/*.o binary
+docs/verification/v2-collect-local/**/*.u16le binary
+docs/verification/v2-collect-local/**/*.txt -whitespace
+docs/verification/v2-collect-local/**/*.log -whitespace
+docs/verification/v2-collect-local/**/*.stdout -whitespace
+docs/verification/v2-collect-local/**/*.stderr -whitespace
+docs/verification/v2-collect-local/**/*.map -whitespace
+docs/verification/v2-collect-local/**/*.patch -whitespace
+docs/reviews/v2-06u*.md -text
+tests/v2-stream-firmware/collect_local_model.c -text
+tests/v2-stream-firmware/check_collect_local.py -text
+host/tests/collect_identity_check.py -text

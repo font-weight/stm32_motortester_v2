@@ -1,4 +1,4 @@
-"""Strict offline SK/SL USB-gate-v1 decoder; no COM, SWD, UI or live reads.
+"""Strict offline SK/SL/SN USB-gate-v1 decoder; no COM, SWD, UI or live reads.
 
 Contract: docs/streaming-usb-gate.md. Gate24 stops at N CLOSING, whereas the
 USB fields in progress64 are sampled later. Even equal HELD booleans do not
@@ -17,7 +17,7 @@ progress_decoder = importlib.util.module_from_spec(_spec)
 _spec.loader.exec_module(progress_decoder)
 
 BUILD = 0x5632534B
-SUPPORTED_BUILDS = (BUILD, 0x5632534C)
+SUPPORTED_BUILDS = (BUILD, 0x5632534C, 0x5632534E)
 MAGIC = 0x4D544731
 LAYOUT = struct.Struct('<4I3H2B')
 FIELDS = ('magic', 'flags', 'publication_serial', 'event_cycle', 'total_len',

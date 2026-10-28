@@ -1,4 +1,25 @@
-# Кандидат V2SL: передача после private ADC copy
+# Кандидат V2SN: эквивалентная упаковка collect
+
+V2-06u/build `0x5632534E`, product `Motortester V2 Collect Local SN` меняет
+только production `mt_batch1024_collect`: локальный cursor/count и упаковка
+четырёх10-битных samples в пять bytes. Произвольные tails, shared-byte retry,
+canonical u16le CRC и invalid-before-write сохраняются. Оптимизация CRC/COBS
+step из M остаётся прежней, `-Os` не меняется.
+
+Расписание S, ownership, whole-fit384, queue8, wire, ABI136/64/24,
+deadline3413 и6/<500 сохранены; нет новых static bytes. Сравнение actual C
+и ARM loop/resources предшествует independent source review и отдельному
+аппаратному плану. Меньше инструкций не означает WCET или устойчивые150k.
+Фактические результаты — только progress/review.
+
+```powershell
+.\.venv\Scripts\python.exe -I -B firmware\v2-stream\build_windows.py --output build\v6u-fw-NEW
+```
+
+Сборка не открывает COM/SWD. Common build ID берётся из config/generated
+header; offline decode SN требует явного ожидаемого build.
+
+## Сохранённый V2SL: передача после private ADC copy
 
 V2-06s/build `0x5632534C`, product `Motortester V2 Postcopy SL` проверяет
 одну гипотезу [post-copy handoff](../../docs/streaming-postcopy-handoff.md).
