@@ -1,3 +1,15 @@
+# U/SN: текущие области записи
+
+Higher_fs_review — firmware/v2-stream/**, новый runner
+tests/v2-stream-firmware/check_collect_local.py, build/v6u-* кроме root
+archive/board и host outputs. Host_200k — только collect_local_model.c,
+два offline diagnostic decoder, новый collect_identity_check.py и
+build/v6u-host-*. Native/ARM запускает автор; host выполняет только свой
+узкий identity check. Stream200_critic — независимая проверка готового
+точного результата, без правок реализации. Root — canonical документы,
+архивы/интеграция и единолично аппаратные действия. До принятия образа
+новых Flash/Reset/START нет. Остальные области ниже — история.
+
 # S2 followup: области записи
 
 Higher_fs_review пишет только `build/v6s-followup/analysis.md`, offline source/

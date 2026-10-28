@@ -1,0 +1,52 @@
+{
+  "schema": "motortester-v2-06t-independent-rejection-review-1",
+  "date": "2026-10-28",
+  "critic": "/root/stream200_critic",
+  "independent_non_author": true,
+  "status": "PASS",
+  "score": 9.6,
+  "accepted_result": "Reasoned NO-GO for preflush hypothesis under examined healthy selected S/CDC transitions",
+  "hypothesis_decision": "NO_GO",
+  "implementation_accepted": false,
+  "conditional_delta_implementation_ready": false,
+  "hardware_approved": false,
+  "source_base": "695efd95e7c4ba72bfa6fb5fb511b85186be6266",
+  "reviewed_head": "39af5cd5bbc101a88c44614c4488502298162b53",
+  "draft": "build/v6t-design/contract-draft.md",
+  "draft_bytes": 10610,
+  "draft_sha256": "2dc153f9e24dc852e45c0928cfdaea0a0cfc5caa74d292991d03fc65b2b76d97",
+  "prior_source_reasoning": {
+    "report": "docs/reviews/v2-06s-followup-review.md",
+    "report_sha256": "1a33ba0f65f080e3a533e6e97b9b7460fd005d8bccfbbbd52742cebb14d5463d",
+    "pins": "docs/verification/v2-postcopy-handoff/critic-followup.json",
+    "pins_sha256": "5444ba916a3ad3d796c475ecc0f0cddda8e4560eb20d689c3fafbb1e368bd1ea",
+    "resolution": "Do not implement hypothesis; no new positive witness or retroactive PASS of S proposal"
+  },
+  "reasoning": [
+    "Accepted CDC write auto-flushes at FIFO>=64; BUSY/CLAIMED deny new claim",
+    "CDC xfer_isr=NULL, so final IN ISR does not release BUSY for foreground preflush",
+    "Completion task clears BUSY then immediately invokes CDC callback, which flushes buffered FIFO or considers ZLP; weak TX callback has no SL override",
+    "S task precedes handoff, no other foreground producer intervenes; shortage for remaining183 implies FIFO>201, excluding small-FIFO exception",
+    "Late FIFO384 and historical RESUMED do not prove useful preflush entry state or S2 cause; manual BUSY0/FIFO320 is not a reachable witness"
+  ],
+  "reopen_condition": "A concrete healthy source counterexample and independent review, not a new hardware attempt or arbitrary model state",
+  "limitations": [
+    "Not a universal proof across erroneous or changed lifecycle/producer assumptions",
+    "No claim about timing effect of redundant API latency or unique queue-full cause",
+    "Conditional section3 is preserved history, not accepted implementation contract",
+    "S2 physical REWORK6.375 and P1-M2-01 remain unchanged; SL stays stopped"
+  ],
+  "rubric": {
+    "C1": {"weight": 0.30, "score": 9.7, "basis": "Bounded healthy-path conclusion, no physical qualification"},
+    "C2": {"weight": 0.20, "score": 9.6, "basis": "Unsupported change rejected before code or hardware"},
+    "C3": {"weight": 0.25, "score": 9.6, "basis": "Personally inspected source chain, no invented positive witness"},
+    "C4": {"weight": 0.15, "score": 9.4, "basis": "Clear rejection; conditional implementation section not accepted"},
+    "C5": {"weight": 0.10, "score": 9.6, "basis": "Exact draft and prior source pins preserved"}
+  },
+  "scope_open_P0_P1": [],
+  "physical_P1_M2_01": "OPEN",
+  "personal_checks": ["Read exact T rejection rationale", "Verify draft byte count and SHA", "Compare reasoning against personally inspected SL source chain"],
+  "product_tests_builds_decoders_hardware_executed": false,
+  "implementation_edits": false,
+  "report": "docs/reviews/v2-06t-preflush-review.md"
+}

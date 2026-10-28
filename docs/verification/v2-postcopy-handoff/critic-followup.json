@@ -1,0 +1,68 @@
+{
+  "schema": "motortester-v2-06s-independent-followup-review-1",
+  "date": "2026-10-28",
+  "critic": "/root/stream200_critic",
+  "independent_non_author": true,
+  "status": "BLOCKED_EVIDENCE",
+  "score": null,
+  "scope": "Offline selection of one preflush-before-sole-grant hypothesis; no implementation or throughput acceptance",
+  "source_base": "695efd95e7c4ba72bfa6fb5fb511b85186be6266",
+  "reviewed_head": "39af5cd5bbc101a88c44614c4488502298162b53",
+  "proposal": "docs/verification/v2-postcopy-handoff/followup-01/analysis.md",
+  "proposal_sha256": "f739c06f06cff169f2ca943345734e7802e5e9ec0df2bd0ad5ff9bad1a5a616e",
+  "manifest_sha256": "92fec6d376aacb33d044d9a263a52fbd0cda00663076b8d26ea594844cc25254",
+  "archive_audit": {"pairs": 2, "bytes": 31879, "all_source_copy_size_sha_equal": true},
+  "draft_design_allowed": true,
+  "draft_design_limit": "Establish or reject reachable healthy buffered-FIFO plus claimable-endpoint state before selected handoff; do not assume it as model initialization",
+  "implementation_accepted": false,
+  "hardware_approved": false,
+  "findings": [
+    {
+      "id": "S-FOLLOWUP-01",
+      "priority": "P1",
+      "status": "OPEN",
+      "scope": "Hypothesis-selection evidence, not a newly proven production defect",
+      "finding": "The favorable buffered+claimable preflush entry state is not established by a healthy source transition. Accepted writes auto-flush at FIFO>=64; CDC xfer_isr is NULL; task clears BUSY then immediately invokes a callback which flushes pending FIFO. Pending completion leaves BUSY and prevents claim. For observed remaining183 shortage implies FIFO>=202.",
+      "required": "Provide a healthy API/event trace including auto-flush/task completion/ZLP and bridge failure semantics. Manual BUSY=0/FIFO320 setup is insufficient. If unreachable, reject preflush before ARM/HW."
+    }
+  ],
+  "confirmed_limits": [
+    "Late FIFO free384 does not establish room at a prior whole-fit check; FIFO-to-PMA is not ACK or delivery",
+    "Historical RESUMED/APPLICABLE0 224 cycles before Nclose does not prove handoff hint entry, callsite, current episode or cause",
+    "Ordinary offers and selected handoff known0 are source-supported classes; neither establishes first publication by postflush",
+    "No controlled throughput conclusion follows from equal21 DATA in separate R2 and S2 trials"
+  ],
+  "required_T_contract": [
+    "Reachable healthy positive route before implementation; reject direction if absent",
+    "One preflush under existing nested scope; explicit refusal/zero/submit-loss pending disposition; original consumed marker and fresh clocks/epoch/raw lifecycle",
+    "Retain old postflush/Q, one grant/TX, original3413 poll origin,6/<500,whole-fit and final guarded commit; no spin, new static or wider IRQ mask",
+    "Only if justified, one focused actual-boundary model with claim/initial PMA64/IN progression and negative new boundary cases, plus exact source/resource audit; no magic FIFO freeing or throughput claim"
+  ],
+  "read_source_pins": {
+    "build/v6s-fw-02/patched/v2/app/mt_live_runtime.c": "d1060d7cecabe32b68ae5539d6957b52349f56376bc9813ae2ee98098869fdbb",
+    "build/v6s-fw-02/patched/v2/transport/mt_usb_bridge.c": "dad3783c3497f601a55d9d9d02c54500856b84beb3a2c99628ca7146b98eea10",
+    "build/v6s-fw-02/patched/usbd.c": "f500d3477ef628c15e8ebb117570da64d34d4b6d638cfa47886422b9a04091fe",
+    "build/v6s-fw-02/patched/dcd_stm32_fsdev.c": "2aa4c4ab8511790ab8e693553ebb6ad55b5ca4ea1f4ea09c89eea8c9bfbc79d1",
+    "build/v6s-fw-02/source/firmware/third_party/usb/vendor/tinyusb/src/tusb.c": "b5f0e8ca00ba6e63914583f7b4711c540a125c261b261216f89e5136fda2ac6f",
+    "build/v6s-fw-02/source/firmware/third_party/usb/vendor/tinyusb/src/class/cdc/cdc_device.c": "2ca9f63f5812e6fd58405e52b1bb282aa0752d1110fa577aca6442c1f67f4840"
+  },
+  "unchanged_physical_review": {
+    "report_sha256": "c00a7ba2a19c258e3289de88ab68574d0694396746d161d205680c8df3038430",
+    "json_sha256": "aa39a36fe250370109c8468972e78c8855ef0bae2bb100dcadabbb7cbe1d609d",
+    "status": "REWORK",
+    "score": 6.375,
+    "P1_M2_01": "OPEN",
+    "board": "SL retained, stopped"
+  },
+  "rubric": {
+    "C1": {"weight": 0.30, "score": null, "basis": "Useful healthy source route is not established"},
+    "C2": {"weight": 0.20, "score": null, "basis": "S guards proposed preserved; exact T disposition still required"},
+    "C3": {"weight": 0.25, "score": null, "basis": "Required reachable initial-state evidence absent"},
+    "C4": {"weight": 0.15, "score": null, "basis": "One bounded hypothesis and one consolidated blocker"},
+    "C5": {"weight": 0.10, "score": null, "basis": "Exact frozen proposal/archive and source pins verified"}
+  },
+  "personal_checks": ["Narrow source route inspection", "Two source/archive byte-size-SHA comparisons", "Previous S2 review pins unchanged"],
+  "product_tests_builds_decoders_hardware_executed": false,
+  "implementation_edits": false,
+  "report": "docs/reviews/v2-06s-followup-review.md"
+}
