@@ -1,18 +1,63 @@
 # Прогресс Мотортестера V2
 
-## 28.10.2026 — S1: контракт SL принят, начата ограниченная реализация
+## 28.10.2026 — S1 принят программно: SL post-copy handoff, физические150k открыты
 
 [Контракт S](streaming-postcopy-handoff.md), SHA256
 `521e91d88b8234be6f8db7cbecfd79b6f4bd4c47dbb38dd871242a0d97b1b149`,
 [независимо принят](reviews/v2-06s-contract-review.md) с 9,60/10 только как
 implementation-ready документ. Receipt/publish_next/observed-loss/markers/
-deadline закрывают шесть требований followup-review. Код, образ и физическая
-устойчивость пока не приняты; новых product/аппаратных запусков нет.
+deadline закрывают шесть требований followup-review. Программный результат теперь принят отдельно ниже; физическая
+устойчивость не подтверждена, нового захвата или перепрошивки нет.
 
 Начата SL/0x5632534c: mode5 cached-final handoff после validated private-copy,
 до fixed<=4 offers128. Ровно прежняя grant/TX opportunity, 0newstatic;
-старые50/100/noneligible и сроки сохраняются. Native/ARM и узкая SL offline
-identity проверка ещё не выполнялись. SK остаётся остановленной на плате.
+старые50/100/noneligible и сроки сохраняются. ARM-кандидат `build/v6s-fw-02`
+собран: BIN49532 байта, SHA256
+`f82311cde2ce0a3e735543006b2bc7890e8761434c73e7adc7fa332f86cb8cb2`;
+ELF `3034a77fa007f872f32ff145b58f39f21e2e3d62d79919eb7505d05d3c1313db`.
+data128/bss12156 и reserve8192 сохранены; условная stack bound6348,
+aligned6352, не физический high-water. Первая попытка fw01 остановилась
+до компиляции из-за старого expected-build pin; stderr/attempt сохранены,
+исправлен pin SK→SL.
+
+Один native `build/v6s-native-01/result.json` — PASS с первого исполнения,
+input_drift=[]; SHA256
+`08bc8e0460fa4c5c5ed58fa767313bd25c2853374406de7db35bbc0c330af919`.
+Actual adapter/driver/core/runtime/queue/serializer проверили q8→4→8,
+raw/packed CRC/индексы, сроки3412/3413/wrap, частичные/нулевые записи,
+потерю связи между offers и отсутствие повторной TX opportunity. MMIO,
+USB/TIME/IRQ — модель;136B legacy fixture synthetic, реальные N64/G24.
+Это не измерение USB/DMA throughput или физической частоты.
+
+Один offline host `build/v6s-host-identity-01/result.json` — PASS/11checks,
+input_drift=[]; SHA256
+`a9f9146a59c4e88eab9a9112d16050c9d6e6467e4a054a82dc3b81a8f27b4012`.
+SL и исторический SK различаются явно; SK decoded bytes прежние;
+crossed/future/default/nonce/image/generation отклоняются. Старые широкие
+suite/GUI/Windows-пакет и аппаратные режимы не повторялись.
+
+Root завершил подготовленный автором source freeze:
+`build/v6s-freeze.json` SHA256
+`0a0f0124e6e597791ab7f525981c12432ebf8229cf00d9ad4b8aad0f72c7bb8c`.
+[Production archive](verification/v2-postcopy-handoff/production-01/manifest.json):
+631файл/5378882байта, manifest SHA256
+`52d9583a07114eb7e9afb2de632a84701ffb2bab8efe1484006b933896ed7bb7`.
+Первичный неудачный preflight также сохранён.
+[Точное независимое source ревью](reviews/v2-06s-source-review.md) — **PASS9,60**;
+SHA256 `5c4b11b02597846a5a7b437536840eaacc4826dd9a9d2f7d971a25d145f1da57`,
+[JSON](verification/v2-postcopy-handoff/critic-source.json) SHA256
+`be611e772c391319df1fcd123a4784ca981d78db67e82ec6e5e3a57fcfdc0bc7`.
+Критик лично сверил631 архивную пару,62freeze pins,131native input,
+17host input. Оценка только программной области; P1-M2-01 физической150k
+остаётся OPEN. Следующий шаг — отдельный exact S2 план Flash/readback/30с;
+допуска Flash и новой аппаратной попытки пока нет.
+
+Root в04:33:07 UTC проверил ожидаемые COM6/code0 и ST-Link, owners=[].
+В04:33:18 только прочитал текущие64КиБ flash: SHA256
+`7aca301f54bddd10fb711152fc636c22b8dda1823ac71f116f8902387d6fde50`;
+первые46820байт побайтно соответствуют известной SK. Сохранено в
+`build/v6s-board-01/`. Ни Reset, ни Flash, ни START не выполнялись.
+SK остаётся остановленной на плате.
 
 
 ## 28.10.2026 — R2 завершён: SK, 21 пакет, очередь снова переполнена

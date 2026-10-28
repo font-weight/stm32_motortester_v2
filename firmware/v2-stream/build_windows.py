@@ -349,6 +349,13 @@ def main():
             target = out / "patched" / row["target"]
             target.write_bytes(apply_patch((out / row["source"]).read_bytes(),
                 (here / "overlays" / row["patch"]).read_bytes(), row))
+        postcopy = json.loads((here / "overlays/postcopy-handoff.json").read_text("utf-8"))
+        require(postcopy["schema"] == "motortester-v2-postcopy-handoff-overlay-1", "Unexpected postcopy handoff overlay")
+        receipt["v2_overlays"].extend(postcopy["patches"])
+        for row in postcopy["patches"]:
+            target = out / "patched" / row["target"]
+            target.write_bytes(apply_patch((out / row["source"]).read_bytes(),
+                (here / "overlays" / row["patch"]).read_bytes(), row))
         if config["active_profile_enabled"]:
             for name in ("mt_stream_profile.c", "mt_stream_profile.h"):
                 (out / "patched/v2/platform" / name).write_bytes((here / "profile" / name).read_bytes())

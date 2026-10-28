@@ -1,0 +1,29 @@
+{
+  "schema": "motortester-v2-postcopy-handoff-overlay-1",
+  "patches": [
+    {
+      "source": "patched/v2/app/mt_live_adc.h",
+      "target": "v2/app/mt_live_adc.h",
+      "patch": "v2-postcopy-app-mt_live_adc.h.patch",
+      "source_sha256": "a70201bc7375a5d762cd6bf904b66547a850417004d956a1740e9bd412d2d2e8",
+      "patch_sha256": "e77a0d7f7144921df86fd7f7aa4996d735e91e3446763d46aa2a72a9be2c8be7",
+      "result_sha256": "c0499074a50b7e359a909c4e4146ff7e5ee9f3c876ac262bfcd527765f2cecce"
+    },
+    {
+      "source": "patched/v2/app/mt_live_adc.c",
+      "target": "v2/app/mt_live_adc.c",
+      "patch": "v2-postcopy-app-mt_live_adc.c.patch",
+      "source_sha256": "49e7048249d6fa4053e7504ce4657f7819878dc2c61c027cbdc3c596e812b6cf",
+      "patch_sha256": "49e46973d104ccf6c4a06f149129988f04f9a041bf6d9c716e0646cc121f66de",
+      "result_sha256": "c6b4422075a5bc81943be920ea93fff63693a966ad31becb2e34d6d2ee27155a"
+    },
+    {
+      "source": "patched/v2/app/mt_live_runtime.c",
+      "target": "v2/app/mt_live_runtime.c",
+      "patch": "v2-postcopy-app-mt_live_runtime.c.patch",
+      "source_sha256": "91f3ffc157f853eb9bb7fdc0ced747b177e6906d1b13e611d3dc4c14a7407294",
+      "patch_sha256": "55b1676c4831f6cda130f937a9bdcdb2014fc21e820fa4807edd3542885103dd",
+      "result_sha256": "d1060d7cecabe32b68ae5539d6957b52349f56376bc9813ae2ee98098869fdbb"
+    }
+  ]
+}

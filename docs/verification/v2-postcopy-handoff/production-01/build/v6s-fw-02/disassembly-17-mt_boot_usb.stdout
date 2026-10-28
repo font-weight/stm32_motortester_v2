@@ -1,0 +1,402 @@
+
+objects/17-mt_boot_usb.o:     file format elf32-littlearm
+
+
+Disassembly of section .text.rd:
+
+00000000 <rd>:
+   0:	6803      	ldr	r3, [r0, #0]
+   2:	6880      	ldr	r0, [r0, #8]
+   4:	4718      	bx	r3
+
+Disassembly of section .text.wr:
+
+00000000 <wr>:
+   0:	e9d0 3001 	ldrd	r3, r0, [r0, #4]
+   4:	4718      	bx	r3
+
+Disassembly of section .text.same_clock:
+
+00000000 <same_clock>:
+   0:	b510      	push	{r4, lr}
+   2:	4604      	mov	r4, r0
+   4:	4912      	ldr	r1, [pc, #72]	@ (50 <same_clock+0x50>)
+   6:	f7ff fffe 	bl	0 <same_clock>
+			6: R_ARM_THM_CALL	rd
+   a:	6aa3      	ldr	r3, [r4, #40]	@ 0x28
+   c:	4058      	eors	r0, r3
+   e:	4b11      	ldr	r3, [pc, #68]	@ (54 <same_clock+0x54>)
+  10:	4003      	ands	r3, r0
+  12:	b10b      	cbz	r3, 18 <same_clock+0x18>
+  14:	2000      	movs	r0, #0
+  16:	bd10      	pop	{r4, pc}
+  18:	4620      	mov	r0, r4
+  1a:	490f      	ldr	r1, [pc, #60]	@ (58 <same_clock+0x58>)
+  1c:	f7ff fffe 	bl	0 <same_clock>
+			1c: R_ARM_THM_CALL	rd
+  20:	6ae3      	ldr	r3, [r4, #44]	@ 0x2c
+  22:	4058      	eors	r0, r3
+  24:	f020 4078 	bic.w	r0, r0, #4160749568	@ 0xf8000000
+  28:	f420 0000 	bic.w	r0, r0, #8388608	@ 0x800000
+  2c:	2800      	cmp	r0, #0
+  2e:	d1f1      	bne.n	14 <same_clock+0x14>
+  30:	4620      	mov	r0, r4
+  32:	490a      	ldr	r1, [pc, #40]	@ (5c <same_clock+0x5c>)
+  34:	f7ff fffe 	bl	0 <same_clock>
+			34: R_ARM_THM_CALL	rd
+  38:	f000 003f 	and.w	r0, r0, #63	@ 0x3f
+  3c:	2832      	cmp	r0, #50	@ 0x32
+  3e:	d1e9      	bne.n	14 <same_clock+0x14>
+  40:	6b20      	ldr	r0, [r4, #48]	@ 0x30
+  42:	f000 003f 	and.w	r0, r0, #63	@ 0x3f
+  46:	f1a0 0332 	sub.w	r3, r0, #50	@ 0x32
+  4a:	4258      	negs	r0, r3
+  4c:	4158      	adcs	r0, r3
+  4e:	e7e2      	b.n	16 <same_clock+0x16>
+  50:	40021000 	.word	0x40021000
+  54:	030f00fb 	.word	0x030f00fb
+  58:	40021004 	.word	0x40021004
+  5c:	40022000 	.word	0x40022000
+
+Disassembly of section .text.quiescent:
+
+00000000 <quiescent>:
+   0:	b538      	push	{r3, r4, r5, lr}
+   2:	4927      	ldr	r1, [pc, #156]	@ (a0 <quiescent+0xa0>)
+   4:	4605      	mov	r5, r0
+   6:	f7ff fffe 	bl	0 <quiescent>
+			6: R_ARM_THM_CALL	rd
+   a:	4926      	ldr	r1, [pc, #152]	@ (a4 <quiescent+0xa4>)
+   c:	4604      	mov	r4, r0
+   e:	4628      	mov	r0, r5
+  10:	f7ff fffe 	bl	0 <quiescent>
+			10: R_ARM_THM_CALL	rd
+  14:	4304      	orrs	r4, r0
+  16:	01a2      	lsls	r2, r4, #6
+  18:	d501      	bpl.n	1e <quiescent+0x1e>
+  1a:	2000      	movs	r0, #0
+  1c:	bd38      	pop	{r3, r4, r5, pc}
+  1e:	4922      	ldr	r1, [pc, #136]	@ (a8 <quiescent+0xa8>)
+  20:	4628      	mov	r0, r5
+  22:	f7ff fffe 	bl	0 <quiescent>
+			22: R_ARM_THM_CALL	rd
+  26:	4921      	ldr	r1, [pc, #132]	@ (ac <quiescent+0xac>)
+  28:	4604      	mov	r4, r0
+  2a:	4628      	mov	r0, r5
+  2c:	f7ff fffe 	bl	0 <quiescent>
+			2c: R_ARM_THM_CALL	rd
+  30:	491f      	ldr	r1, [pc, #124]	@ (b0 <quiescent+0xb0>)
+  32:	4304      	orrs	r4, r0
+  34:	4628      	mov	r0, r5
+  36:	f7ff fffe 	bl	0 <quiescent>
+			36: R_ARM_THM_CALL	rd
+  3a:	4304      	orrs	r4, r0
+  3c:	f414 0ff0 	tst.w	r4, #7864320	@ 0x780000
+  40:	d1eb      	bne.n	1a <quiescent+0x1a>
+  42:	491c      	ldr	r1, [pc, #112]	@ (b4 <quiescent+0xb4>)
+  44:	4628      	mov	r0, r5
+  46:	f7ff fffe 	bl	0 <quiescent>
+			46: R_ARM_THM_CALL	rd
+  4a:	491b      	ldr	r1, [pc, #108]	@ (b8 <quiescent+0xb8>)
+  4c:	4604      	mov	r4, r0
+  4e:	4628      	mov	r0, r5
+  50:	f7ff fffe 	bl	0 <quiescent>
+			50: R_ARM_THM_CALL	rd
+  54:	4919      	ldr	r1, [pc, #100]	@ (bc <quiescent+0xbc>)
+  56:	4304      	orrs	r4, r0
+  58:	4628      	mov	r0, r5
+  5a:	f7ff fffe 	bl	0 <quiescent>
+			5a: R_ARM_THM_CALL	rd
+  5e:	4304      	orrs	r4, r0
+  60:	0563      	lsls	r3, r4, #21
+  62:	d4da      	bmi.n	1a <quiescent+0x1a>
+  64:	4916      	ldr	r1, [pc, #88]	@ (c0 <quiescent+0xc0>)
+  66:	4628      	mov	r0, r5
+  68:	f7ff fffe 	bl	0 <quiescent>
+			68: R_ARM_THM_CALL	rd
+  6c:	4915      	ldr	r1, [pc, #84]	@ (c4 <quiescent+0xc4>)
+  6e:	4604      	mov	r4, r0
+  70:	4628      	mov	r0, r5
+  72:	f7ff fffe 	bl	0 <quiescent>
+			72: R_ARM_THM_CALL	rd
+  76:	4914      	ldr	r1, [pc, #80]	@ (c8 <quiescent+0xc8>)
+  78:	4304      	orrs	r4, r0
+  7a:	4628      	mov	r0, r5
+  7c:	f7ff fffe 	bl	0 <quiescent>
+			7c: R_ARM_THM_CALL	rd
+  80:	4912      	ldr	r1, [pc, #72]	@ (cc <quiescent+0xcc>)
+  82:	4304      	orrs	r4, r0
+  84:	4628      	mov	r0, r5
+  86:	f7ff fffe 	bl	0 <quiescent>
+			86: R_ARM_THM_CALL	rd
+  8a:	4911      	ldr	r1, [pc, #68]	@ (d0 <quiescent+0xd0>)
+  8c:	4304      	orrs	r4, r0
+  8e:	4628      	mov	r0, r5
+  90:	f7ff fffe 	bl	0 <quiescent>
+			90: R_ARM_THM_CALL	rd
+  94:	4320      	orrs	r0, r4
+  96:	f480 2080 	eor.w	r0, r0, #262144	@ 0x40000
+  9a:	f3c0 4080 	ubfx	r0, r0, #18, #1
+  9e:	e7bd      	b.n	1c <quiescent+0x1c>
+  a0:	4002101c 	.word	0x4002101c
+  a4:	40021010 	.word	0x40021010
+  a8:	e000e100 	.word	0xe000e100
+  ac:	e000e200 	.word	0xe000e200
+  b0:	e000e300 	.word	0xe000e300
+  b4:	e000e104 	.word	0xe000e104
+  b8:	e000e204 	.word	0xe000e204
+  bc:	e000e304 	.word	0xe000e304
+  c0:	40010400 	.word	0x40010400
+  c4:	40010404 	.word	0x40010404
+  c8:	40010408 	.word	0x40010408
+  cc:	4001040c 	.word	0x4001040c
+  d0:	40010410 	.word	0x40010410
+
+Disassembly of section .text.priorities_match:
+
+00000000 <priorities_match>:
+   0:	b538      	push	{r3, r4, r5, lr}
+   2:	460c      	mov	r4, r1
+   4:	490b      	ldr	r1, [pc, #44]	@ (34 <priorities_match+0x34>)
+   6:	4605      	mov	r5, r0
+   8:	f7ff fffe 	bl	0 <priorities_match>
+			8: R_ARM_THM_CALL	rd
+   c:	f000 4070 	and.w	r0, r0, #4026531840	@ 0xf0000000
+  10:	ebb0 7f04 	cmp.w	r0, r4, lsl #28
+  14:	d10b      	bne.n	2e <priorities_match+0x2e>
+  16:	4628      	mov	r0, r5
+  18:	4907      	ldr	r1, [pc, #28]	@ (38 <priorities_match+0x38>)
+  1a:	f7ff fffe 	bl	0 <priorities_match>
+			1a: R_ARM_THM_CALL	rd
+  1e:	f000 00f0 	and.w	r0, r0, #240	@ 0xf0
+  22:	ebb0 1f04 	cmp.w	r0, r4, lsl #4
+  26:	bf0c      	ite	eq
+  28:	2001      	moveq	r0, #1
+  2a:	2000      	movne	r0, #0
+  2c:	bd38      	pop	{r3, r4, r5, pc}
+  2e:	2000      	movs	r0, #0
+  30:	e7fc      	b.n	2c <priorities_match+0x2c>
+  32:	bf00      	nop
+  34:	e000e410 	.word	0xe000e410
+  38:	e000e414 	.word	0xe000e414
+
+Disassembly of section .text.mt_boot_usb_prepare:
+
+00000000 <mt_boot_usb_prepare>:
+   0:	e92d 47f0 	stmdb	sp!, {r4, r5, r6, r7, r8, r9, sl, lr}
+   4:	460d      	mov	r5, r1
+   6:	4616      	mov	r6, r2
+   8:	4604      	mov	r4, r0
+   a:	2800      	cmp	r0, #0
+   c:	f000 80e6 	beq.w	1dc <mt_boot_usb_prepare+0x1dc>
+  10:	2900      	cmp	r1, #0
+  12:	f000 80e3 	beq.w	1dc <mt_boot_usb_prepare+0x1dc>
+  16:	680b      	ldr	r3, [r1, #0]
+  18:	2b00      	cmp	r3, #0
+  1a:	f000 80df 	beq.w	1dc <mt_boot_usb_prepare+0x1dc>
+  1e:	684b      	ldr	r3, [r1, #4]
+  20:	2b00      	cmp	r3, #0
+  22:	f000 80db 	beq.w	1dc <mt_boot_usb_prepare+0x1dc>
+  26:	2a0f      	cmp	r2, #15
+  28:	f200 80d8 	bhi.w	1dc <mt_boot_usb_prepare+0x1dc>
+  2c:	6883      	ldr	r3, [r0, #8]
+  2e:	2b00      	cmp	r3, #0
+  30:	f040 80d6 	bne.w	1e0 <mt_boot_usb_prepare+0x1e0>
+  34:	6843      	ldr	r3, [r0, #4]
+  36:	2b00      	cmp	r3, #0
+  38:	f040 80d2 	bne.w	1e0 <mt_boot_usb_prepare+0x1e0>
+  3c:	2201      	movs	r2, #1
+  3e:	60c3      	str	r3, [r0, #12]
+  40:	6b4b      	ldr	r3, [r1, #52]	@ 0x34
+  42:	e9c0 2201 	strd	r2, r2, [r0, #4]
+  46:	b11b      	cbz	r3, 50 <mt_boot_usb_prepare+0x50>
+  48:	2003      	movs	r0, #3
+  4a:	2300      	movs	r3, #0
+  4c:	6020      	str	r0, [r4, #0]
+  4e:	e02e      	b.n	ae <mt_boot_usb_prepare+0xae>
+  50:	6b8b      	ldr	r3, [r1, #56]	@ 0x38
+  52:	2b01      	cmp	r3, #1
+  54:	d1f8      	bne.n	48 <mt_boot_usb_prepare+0x48>
+  56:	6bcb      	ldr	r3, [r1, #60]	@ 0x3c
+  58:	2b01      	cmp	r3, #1
+  5a:	d1f5      	bne.n	48 <mt_boot_usb_prepare+0x48>
+  5c:	6a0b      	ldr	r3, [r1, #32]
+  5e:	2b00      	cmp	r3, #0
+  60:	d1f2      	bne.n	48 <mt_boot_usb_prepare+0x48>
+  62:	f8d1 a024 	ldr.w	sl, [r1, #36]	@ 0x24
+  66:	f1ba 0f00 	cmp.w	sl, #0
+  6a:	d1ed      	bne.n	48 <mt_boot_usb_prepare+0x48>
+  6c:	4608      	mov	r0, r1
+  6e:	f7ff fffe 	bl	0 <mt_boot_usb_prepare>
+			6e: R_ARM_THM_CALL	same_clock
+  72:	2800      	cmp	r0, #0
+  74:	d0e8      	beq.n	48 <mt_boot_usb_prepare+0x48>
+  76:	495b      	ldr	r1, [pc, #364]	@ (1e4 <mt_boot_usb_prepare+0x1e4>)
+  78:	4628      	mov	r0, r5
+  7a:	f7ff fffe 	bl	0 <mt_boot_usb_prepare>
+			7a: R_ARM_THM_CALL	rd
+  7e:	495a      	ldr	r1, [pc, #360]	@ (1e8 <mt_boot_usb_prepare+0x1e8>)
+  80:	4681      	mov	r9, r0
+  82:	4628      	mov	r0, r5
+  84:	f7ff fffe 	bl	0 <mt_boot_usb_prepare>
+			84: R_ARM_THM_CALL	rd
+  88:	ea49 0800 	orr.w	r8, r9, r0
+  8c:	f418 0800 	ands.w	r8, r8, #8388608	@ 0x800000
+  90:	4607      	mov	r7, r0
+  92:	d005      	beq.n	a0 <mt_boot_usb_prepare+0xa0>
+  94:	2004      	movs	r0, #4
+  96:	e9c4 aa02 	strd	sl, sl, [r4, #8]
+  9a:	6020      	str	r0, [r4, #0]
+  9c:	e8bd 87f0 	ldmia.w	sp!, {r4, r5, r6, r7, r8, r9, sl, pc}
+  a0:	4628      	mov	r0, r5
+  a2:	f7ff fffe 	bl	0 <mt_boot_usb_prepare>
+			a2: R_ARM_THM_CALL	quiescent
+  a6:	4603      	mov	r3, r0
+  a8:	b920      	cbnz	r0, b4 <mt_boot_usb_prepare+0xb4>
+  aa:	2005      	movs	r0, #5
+  ac:	6020      	str	r0, [r4, #0]
+  ae:	e9c4 3302 	strd	r3, r3, [r4, #8]
+  b2:	e7f3      	b.n	9c <mt_boot_usb_prepare+0x9c>
+  b4:	f44f 2280 	mov.w	r2, #262144	@ 0x40000
+  b8:	4628      	mov	r0, r5
+  ba:	494c      	ldr	r1, [pc, #304]	@ (1ec <mt_boot_usb_prepare+0x1ec>)
+  bc:	f7ff fffe 	bl	0 <mt_boot_usb_prepare>
+			bc: R_ARM_THM_CALL	wr
+  c0:	494a      	ldr	r1, [pc, #296]	@ (1ec <mt_boot_usb_prepare+0x1ec>)
+  c2:	4628      	mov	r0, r5
+  c4:	f7ff fffe 	bl	0 <mt_boot_usb_prepare>
+			c4: R_ARM_THM_CALL	rd
+  c8:	4949      	ldr	r1, [pc, #292]	@ (1f0 <mt_boot_usb_prepare+0x1f0>)
+  ca:	4682      	mov	sl, r0
+  cc:	4628      	mov	r0, r5
+  ce:	f7ff fffe 	bl	0 <mt_boot_usb_prepare>
+			ce: R_ARM_THM_CALL	rd
+  d2:	ea4a 0a00 	orr.w	sl, sl, r0
+  d6:	f41a 2f80 	tst.w	sl, #262144	@ 0x40000
+  da:	d004      	beq.n	e6 <mt_boot_usb_prepare+0xe6>
+  dc:	2006      	movs	r0, #6
+  de:	e9c4 8802 	strd	r8, r8, [r4, #8]
+  e2:	6020      	str	r0, [r4, #0]
+  e4:	e7da      	b.n	9c <mt_boot_usb_prepare+0x9c>
+  e6:	4943      	ldr	r1, [pc, #268]	@ (1f4 <mt_boot_usb_prepare+0x1f4>)
+  e8:	4628      	mov	r0, r5
+  ea:	f7ff fffe 	bl	0 <mt_boot_usb_prepare>
+			ea: R_ARM_THM_CALL	rd
+  ee:	f020 4270 	bic.w	r2, r0, #4026531840	@ 0xf0000000
+  f2:	ea42 7206 	orr.w	r2, r2, r6, lsl #28
+  f6:	4628      	mov	r0, r5
+  f8:	493e      	ldr	r1, [pc, #248]	@ (1f4 <mt_boot_usb_prepare+0x1f4>)
+  fa:	f7ff fffe 	bl	0 <mt_boot_usb_prepare>
+			fa: R_ARM_THM_CALL	wr
+  fe:	493e      	ldr	r1, [pc, #248]	@ (1f8 <mt_boot_usb_prepare+0x1f8>)
+ 100:	4628      	mov	r0, r5
+ 102:	f7ff fffe 	bl	0 <mt_boot_usb_prepare>
+			102: R_ARM_THM_CALL	rd
+ 106:	f020 02f0 	bic.w	r2, r0, #240	@ 0xf0
+ 10a:	493b      	ldr	r1, [pc, #236]	@ (1f8 <mt_boot_usb_prepare+0x1f8>)
+ 10c:	4628      	mov	r0, r5
+ 10e:	ea42 1206 	orr.w	r2, r2, r6, lsl #4
+ 112:	f7ff fffe 	bl	0 <mt_boot_usb_prepare>
+			112: R_ARM_THM_CALL	wr
+ 116:	4631      	mov	r1, r6
+ 118:	4628      	mov	r0, r5
+ 11a:	f7ff fffe 	bl	0 <mt_boot_usb_prepare>
+			11a: R_ARM_THM_CALL	priorities_match
+ 11e:	4603      	mov	r3, r0
+ 120:	b908      	cbnz	r0, 126 <mt_boot_usb_prepare+0x126>
+ 122:	2007      	movs	r0, #7
+ 124:	e7c2      	b.n	ac <mt_boot_usb_prepare+0xac>
+ 126:	4628      	mov	r0, r5
+ 128:	492e      	ldr	r1, [pc, #184]	@ (1e4 <mt_boot_usb_prepare+0x1e4>)
+ 12a:	f449 0200 	orr.w	r2, r9, #8388608	@ 0x800000
+ 12e:	f7ff fffe 	bl	0 <mt_boot_usb_prepare>
+			12e: R_ARM_THM_CALL	wr
+ 132:	4628      	mov	r0, r5
+ 134:	492b      	ldr	r1, [pc, #172]	@ (1e4 <mt_boot_usb_prepare+0x1e4>)
+ 136:	f7ff fffe 	bl	0 <mt_boot_usb_prepare>
+			136: R_ARM_THM_CALL	rd
+ 13a:	f410 0300 	ands.w	r3, r0, #8388608	@ 0x800000
+ 13e:	d101      	bne.n	144 <mt_boot_usb_prepare+0x144>
+ 140:	2008      	movs	r0, #8
+ 142:	e7b3      	b.n	ac <mt_boot_usb_prepare+0xac>
+ 144:	4628      	mov	r0, r5
+ 146:	4928      	ldr	r1, [pc, #160]	@ (1e8 <mt_boot_usb_prepare+0x1e8>)
+ 148:	f447 0200 	orr.w	r2, r7, #8388608	@ 0x800000
+ 14c:	f7ff fffe 	bl	0 <mt_boot_usb_prepare>
+			14c: R_ARM_THM_CALL	wr
+ 150:	4628      	mov	r0, r5
+ 152:	4925      	ldr	r1, [pc, #148]	@ (1e8 <mt_boot_usb_prepare+0x1e8>)
+ 154:	f7ff fffe 	bl	0 <mt_boot_usb_prepare>
+			154: R_ARM_THM_CALL	rd
+ 158:	f410 0300 	ands.w	r3, r0, #8388608	@ 0x800000
+ 15c:	d101      	bne.n	162 <mt_boot_usb_prepare+0x162>
+ 15e:	2009      	movs	r0, #9
+ 160:	e7a4      	b.n	ac <mt_boot_usb_prepare+0xac>
+ 162:	4628      	mov	r0, r5
+ 164:	4920      	ldr	r1, [pc, #128]	@ (1e8 <mt_boot_usb_prepare+0x1e8>)
+ 166:	f427 0200 	bic.w	r2, r7, #8388608	@ 0x800000
+ 16a:	f7ff fffe 	bl	0 <mt_boot_usb_prepare>
+			16a: R_ARM_THM_CALL	wr
+ 16e:	4628      	mov	r0, r5
+ 170:	491d      	ldr	r1, [pc, #116]	@ (1e8 <mt_boot_usb_prepare+0x1e8>)
+ 172:	f7ff fffe 	bl	0 <mt_boot_usb_prepare>
+			172: R_ARM_THM_CALL	rd
+ 176:	0200      	lsls	r0, r0, #8
+ 178:	d501      	bpl.n	17e <mt_boot_usb_prepare+0x17e>
+ 17a:	200a      	movs	r0, #10
+ 17c:	e765      	b.n	4a <mt_boot_usb_prepare+0x4a>
+ 17e:	4919      	ldr	r1, [pc, #100]	@ (1e4 <mt_boot_usb_prepare+0x1e4>)
+ 180:	4628      	mov	r0, r5
+ 182:	f7ff fffe 	bl	0 <mt_boot_usb_prepare>
+			182: R_ARM_THM_CALL	rd
+ 186:	0201      	lsls	r1, r0, #8
+ 188:	d5f7      	bpl.n	17a <mt_boot_usb_prepare+0x17a>
+ 18a:	4628      	mov	r0, r5
+ 18c:	f7ff fffe 	bl	0 <mt_boot_usb_prepare>
+			18c: R_ARM_THM_CALL	same_clock
+ 190:	b908      	cbnz	r0, 196 <mt_boot_usb_prepare+0x196>
+ 192:	200b      	movs	r0, #11
+ 194:	e759      	b.n	4a <mt_boot_usb_prepare+0x4a>
+ 196:	4628      	mov	r0, r5
+ 198:	4912      	ldr	r1, [pc, #72]	@ (1e4 <mt_boot_usb_prepare+0x1e4>)
+ 19a:	f7ff fffe 	bl	0 <mt_boot_usb_prepare>
+			19a: R_ARM_THM_CALL	rd
+ 19e:	0202      	lsls	r2, r0, #8
+ 1a0:	d5f7      	bpl.n	192 <mt_boot_usb_prepare+0x192>
+ 1a2:	4628      	mov	r0, r5
+ 1a4:	4910      	ldr	r1, [pc, #64]	@ (1e8 <mt_boot_usb_prepare+0x1e8>)
+ 1a6:	f7ff fffe 	bl	0 <mt_boot_usb_prepare>
+			1a6: R_ARM_THM_CALL	rd
+ 1aa:	0203      	lsls	r3, r0, #8
+ 1ac:	d4f1      	bmi.n	192 <mt_boot_usb_prepare+0x192>
+ 1ae:	4628      	mov	r0, r5
+ 1b0:	f7ff fffe 	bl	0 <mt_boot_usb_prepare>
+			1b0: R_ARM_THM_CALL	quiescent
+ 1b4:	2800      	cmp	r0, #0
+ 1b6:	d0ec      	beq.n	192 <mt_boot_usb_prepare+0x192>
+ 1b8:	4631      	mov	r1, r6
+ 1ba:	4628      	mov	r0, r5
+ 1bc:	f7ff fffe 	bl	0 <mt_boot_usb_prepare>
+			1bc: R_ARM_THM_CALL	priorities_match
+ 1c0:	2800      	cmp	r0, #0
+ 1c2:	d0e6      	beq.n	192 <mt_boot_usb_prepare+0x192>
+ 1c4:	4628      	mov	r0, r5
+ 1c6:	4909      	ldr	r1, [pc, #36]	@ (1ec <mt_boot_usb_prepare+0x1ec>)
+ 1c8:	f7ff fffe 	bl	0 <mt_boot_usb_prepare>
+			1c8: R_ARM_THM_CALL	rd
+ 1cc:	f410 2080 	ands.w	r0, r0, #262144	@ 0x40000
+ 1d0:	d1df      	bne.n	192 <mt_boot_usb_prepare+0x192>
+ 1d2:	2301      	movs	r3, #1
+ 1d4:	6020      	str	r0, [r4, #0]
+ 1d6:	e9c4 0302 	strd	r0, r3, [r4, #8]
+ 1da:	e75f      	b.n	9c <mt_boot_usb_prepare+0x9c>
+ 1dc:	2001      	movs	r0, #1
+ 1de:	e75d      	b.n	9c <mt_boot_usb_prepare+0x9c>
+ 1e0:	2002      	movs	r0, #2
+ 1e2:	e75b      	b.n	9c <mt_boot_usb_prepare+0x9c>
+ 1e4:	4002101c 	.word	0x4002101c
+ 1e8:	40021010 	.word	0x40021010
+ 1ec:	40010414 	.word	0x40010414
+ 1f0:	40010410 	.word	0x40010410
+ 1f4:	e000e410 	.word	0xe000e410
+ 1f8:	e000e414 	.word	0xe000e414

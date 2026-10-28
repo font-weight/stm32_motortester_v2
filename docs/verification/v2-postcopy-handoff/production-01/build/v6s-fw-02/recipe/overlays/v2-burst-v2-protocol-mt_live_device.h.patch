@@ -1,0 +1,11 @@
+--- a/v2/protocol/mt_live_device.h
++++ b/v2/protocol/mt_live_device.h
+@@ -62,7 +62,7 @@
+     int (*isolate_tx)(void *context);
+     /* Qualified full write + completion/state-commit bound, including preemption.
+      * Synthetic seam only until independently proven on the actual target.
+-     * write copies <=64 bytes synchronously into an ordered FIFO, retains no
++     * write copies <=384 bytes synchronously into an ordered FIFO, retains no
+      * pointer, and returns exact accepted count; SIZE_MAX means unknown count.
+      * All callbacks must be bounded and non-reentrant. Clock is monotonic,
+      * non-wrapping, <=INT64_MAX. Init/start do not imply hardware qualification. */

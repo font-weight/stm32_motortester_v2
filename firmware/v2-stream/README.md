@@ -1,4 +1,28 @@
-# Кандидат V2SK:24B диагностика последнего gate-перехода USB
+# Кандидат V2SL: передача после private ADC copy
+
+V2-06s/build `0x5632534C`, product `Motortester V2 Postcopy SL` проверяет
+одну гипотезу [post-copy handoff](../../docs/streaming-postcopy-handoff.md).
+Только mode5 с cached final DATA1024 и недостатком queue slots: после
+проверенного private DMA512 copy существующая одна grant/TX opportunity и
+прежний flush/Q могут освободить slots до четырёх contiguous DATA128 offers.
+RX/новый read до разрешения pending блока запрещены. Healthy cancellation
+сохраняет original offers; loss требует explicit quarantine, а не skip512.
+
+Modes1–4, старый service/driver/DCD/core, wire, ABI136/64/24 и общий generated
+build ID сохраняются. Новых static bytes нет; local receipt/stack и сроки
+проверяются exact ARM. Deadline3413 и6/<500 не расширяются,500 не WCET.
+Новые TIME barriers требуют времени: программный результат не подтверждает
+устойчивый150k. Фактические результаты — только progress и review.
+
+```powershell
+.\.venv\Scripts\python.exe -I -B firmware\v2-stream\build_windows.py --output build\v6s-fw-NEW
+```
+
+Одна integrated actual-C boundary модель и exact resources предшествуют
+независимому source review и отдельному аппаратному плану. Сборка не открывает
+COM/SWD; offline decode SL требует явно переданного ожидаемого build.
+
+## Сохранённый V2SK:24B диагностика последнего gate-перехода USB
 
 V2-06r/build `0x5632534B`, product `Motortester V2 USB Gate SK` сохраняет
 рабочий SJ и добавляет только [gate observer](../../docs/streaming-usb-gate.md).

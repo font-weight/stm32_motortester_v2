@@ -1,0 +1,45 @@
+{
+  "schema": "motortester-v2-stream-profile-overlay-1",
+  "patches": [
+    {
+      "source": "patched/v2/app/mt_live_runtime.c",
+      "target": "v2/app/mt_live_runtime.c",
+      "patch": "v2-profile-v2-app-mt_live_runtime.c.patch",
+      "source_sha256": "210a48d3e561a42ba7724bf236ff4bec61e2ebd3f40793dc8178aaa3756805b4",
+      "patch_sha256": "d4ecb38bfa2711a53cde9cd733aaa2cd7ed736e5ff786bae4e731694a52d0a98",
+      "result_sha256": "1627406baef4a413b513d8c9c96cc6a9d873099afe2a40f3d94638ce4e5bc35c"
+    },
+    {
+      "source": "patched/v2/protocol/mt_live_device.c",
+      "target": "v2/protocol/mt_live_device.c",
+      "patch": "v2-profile-v2-protocol-mt_live_device.c.patch",
+      "source_sha256": "b10ddb2402fd20944b368208152aa22c63d441b8f2e46a342e0f677541528b9b",
+      "patch_sha256": "85df527b84eb554cabef2e2a5c16144c4f211a245c42a6a8e63c7dda39c92238",
+      "result_sha256": "7e9e1541d08feacdae8fd79daf3a9a15f68cd930f7395e1135d18fd2c2be31d2"
+    },
+    {
+      "source": "patched/v2/platform/adc_timer_dma.c",
+      "target": "v2/platform/adc_timer_dma.c",
+      "patch": "v2-profile-v2-platform-adc_timer_dma.c.patch",
+      "source_sha256": "2fdd4c15116ba2840e647d4111c76747cec1f217543a60c01582a8c5ae0f503d",
+      "patch_sha256": "7b3b623f146ade46d8b0d3450b338a66cb6234c0053a68571c111e167a02e5ee",
+      "result_sha256": "1fc100fb209e69eb31ab092426c5facf1273b54488897ac4fb9608a175f29786"
+    },
+    {
+      "source": "source/firmware/platform/mt_timebase.c",
+      "target": "v2/platform/mt_timebase.c",
+      "patch": "v2-profile-platform-mt_timebase.c.patch",
+      "source_sha256": "e9adfde14df828040bd665781ecbd737a3a27e8b3d396e8639d5e93a500ca774",
+      "patch_sha256": "3a6a3f2dc4762b70f28717db263178d1aef5102cb04f3b0e3a9078b06b2c7912",
+      "result_sha256": "d2b7b1825994f85fbce0cd706a6588ae98f082cc6cb7d3d13e48690a2bc4c5db"
+    },
+    {
+      "source": "patched/dcd_stm32_fsdev.c",
+      "target": "dcd_stm32_fsdev.c",
+      "patch": "v2-profile-dcd_stm32_fsdev.c.patch",
+      "source_sha256": "b763cceef6be395782aa621a65d9cbbdfe9d5fe61bddcc3d44dc143254c30356",
+      "patch_sha256": "cab77af2b56f63e5996d9b5864f7b8b333d6c2ee8e0d7c1fb1f8c8cc0ddd299e",
+      "result_sha256": "73688367e16c425dc65214cf7625040212d8b41120d54e412579d83a2c7ae9ff"
+    }
+  ]
+}

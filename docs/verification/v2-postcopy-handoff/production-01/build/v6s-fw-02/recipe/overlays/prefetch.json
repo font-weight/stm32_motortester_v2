@@ -1,0 +1,29 @@
+{
+  "schema": "motortester-v2-prefetch-overlay-1",
+  "patches": [
+    {
+      "source": "patched/v2/protocol/mt_live_device.c",
+      "target": "v2/protocol/mt_live_device.c",
+      "patch": "v2-prefetch-protocol-mt_live_device.c.patch",
+      "source_sha256": "ebd2826022fa3b538c7f59a31711c19370433056bdcf6b5f406f216de62da5e7",
+      "patch_sha256": "d583280e6721899d10fcd6d34682f70f5dc95a9e1d8b85cd1b2d9899fcda67ca",
+      "result_sha256": "96cfa960b6692d985b7b42f9a7cb50dd44126e969f4c22166f8fec6411a6d60e"
+    },
+    {
+      "source": "patched/v2/protocol/mt_live_device.h",
+      "target": "v2/protocol/mt_live_device.h",
+      "patch": "v2-prefetch-protocol-mt_live_device.h.patch",
+      "source_sha256": "cda319402a8338733d80c4fdf58e0a010871d2cdeb2cd78eac71b72c853a2b37",
+      "patch_sha256": "5a6395ac32bfad0915acade53e0b4c3d00227f422d31c0f1dbf0e6e7f1f875e7",
+      "result_sha256": "cb9651e050f84a686ea6237fbf3b7125e7fd19c323ec638b4591e33de64cb19e"
+    },
+    {
+      "source": "patched/v2/app/mt_live_runtime.c",
+      "target": "v2/app/mt_live_runtime.c",
+      "patch": "v2-prefetch-app-mt_live_runtime.c.patch",
+      "source_sha256": "31db9f366c635082cb80540e5f0028323c779a132e1fbf5e5aece8519be4f55d",
+      "patch_sha256": "cfcbcbf5b7350b3c17fd5ff7bc42b1e3448f98f47ec2dfe9ae5ed69cbbbe1250",
+      "result_sha256": "91f3ffc157f853eb9bb7fdc0ced747b177e6906d1b13e611d3dc4c14a7407294"
+    }
+  ]
+}

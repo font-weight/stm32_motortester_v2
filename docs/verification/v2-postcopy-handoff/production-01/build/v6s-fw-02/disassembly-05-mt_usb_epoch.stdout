@@ -1,0 +1,288 @@
+
+objects/05-mt_usb_epoch.o:     file format elf32-littlearm
+
+
+Disassembly of section .text.current:
+
+00000000 <current>:
+   0:	b148      	cbz	r0, 16 <current+0x16>
+   2:	b139      	cbz	r1, 14 <current+0x14>
+   4:	6803      	ldr	r3, [r0, #0]
+   6:	428b      	cmp	r3, r1
+   8:	d104      	bne.n	14 <current+0x14>
+   a:	6ac0      	ldr	r0, [r0, #44]	@ 0x2c
+   c:	fab0 f080 	clz	r0, r0
+  10:	0940      	lsrs	r0, r0, #5
+  12:	4770      	bx	lr
+  14:	2000      	movs	r0, #0
+  16:	4770      	bx	lr
+
+Disassembly of section .text.mt_usb_epoch_init:
+
+00000000 <mt_usb_epoch_init>:
+   0:	b508      	push	{r3, lr}
+   2:	b118      	cbz	r0, c <mt_usb_epoch_init+0xc>
+   4:	2230      	movs	r2, #48	@ 0x30
+   6:	2100      	movs	r1, #0
+   8:	f7ff fffe 	bl	0 <memset>
+			8: R_ARM_THM_CALL	memset
+   c:	bd08      	pop	{r3, pc}
+
+Disassembly of section .text.mt_usb_epoch_reset:
+
+00000000 <mt_usb_epoch_reset>:
+   0:	4603      	mov	r3, r0
+   2:	b150      	cbz	r0, 1a <mt_usb_epoch_reset+0x1a>
+   4:	6ac2      	ldr	r2, [r0, #44]	@ 0x2c
+   6:	b942      	cbnz	r2, 1a <mt_usb_epoch_reset+0x1a>
+   8:	6800      	ldr	r0, [r0, #0]
+   a:	1c41      	adds	r1, r0, #1
+   c:	d107      	bne.n	1e <mt_usb_epoch_reset+0x1e>
+   e:	2201      	movs	r2, #1
+  10:	62da      	str	r2, [r3, #44]	@ 0x2c
+  12:	69da      	ldr	r2, [r3, #28]
+  14:	f042 0240 	orr.w	r2, r2, #64	@ 0x40
+  18:	61da      	str	r2, [r3, #28]
+  1a:	2000      	movs	r0, #0
+  1c:	4770      	bx	lr
+  1e:	2101      	movs	r1, #1
+  20:	3001      	adds	r0, #1
+  22:	e9c3 2203 	strd	r2, r2, [r3, #12]
+  26:	e9c3 2201 	strd	r2, r2, [r3, #4]
+  2a:	e9c3 2205 	strd	r2, r2, [r3, #20]
+  2e:	6018      	str	r0, [r3, #0]
+  30:	6299      	str	r1, [r3, #40]	@ 0x28
+  32:	61da      	str	r2, [r3, #28]
+  34:	4770      	bx	lr
+
+Disassembly of section .text.mt_usb_epoch_disconnect:
+
+00000000 <mt_usb_epoch_disconnect>:
+   0:	4603      	mov	r3, r0
+   2:	b150      	cbz	r0, 1a <mt_usb_epoch_disconnect+0x1a>
+   4:	6ac2      	ldr	r2, [r0, #44]	@ 0x2c
+   6:	b942      	cbnz	r2, 1a <mt_usb_epoch_disconnect+0x1a>
+   8:	6800      	ldr	r0, [r0, #0]
+   a:	1c41      	adds	r1, r0, #1
+   c:	d107      	bne.n	1e <mt_usb_epoch_disconnect+0x1e>
+   e:	2201      	movs	r2, #1
+  10:	62da      	str	r2, [r3, #44]	@ 0x2c
+  12:	69da      	ldr	r2, [r3, #28]
+  14:	f042 0240 	orr.w	r2, r2, #64	@ 0x40
+  18:	61da      	str	r2, [r3, #28]
+  1a:	2000      	movs	r0, #0
+  1c:	4770      	bx	lr
+  1e:	e9c3 2203 	strd	r2, r2, [r3, #12]
+  22:	e9c3 2201 	strd	r2, r2, [r3, #4]
+  26:	e9c3 2205 	strd	r2, r2, [r3, #20]
+  2a:	629a      	str	r2, [r3, #40]	@ 0x28
+  2c:	2210      	movs	r2, #16
+  2e:	3001      	adds	r0, #1
+  30:	6018      	str	r0, [r3, #0]
+  32:	61da      	str	r2, [r3, #28]
+  34:	4770      	bx	lr
+
+Disassembly of section .text.mt_usb_epoch_enqueued:
+
+00000000 <mt_usb_epoch_enqueued>:
+   0:	b570      	push	{r4, r5, r6, lr}
+   2:	4604      	mov	r4, r0
+   4:	461d      	mov	r5, r3
+   6:	f7ff fffe 	bl	0 <mt_usb_epoch_enqueued>
+			6: R_ARM_THM_CALL	current
+   a:	b168      	cbz	r0, 28 <mt_usb_epoch_enqueued+0x28>
+   c:	ea42 0305 	orr.w	r3, r2, r5
+  10:	2b01      	cmp	r3, #1
+  12:	d809      	bhi.n	28 <mt_usb_epoch_enqueued+0x28>
+  14:	69e0      	ldr	r0, [r4, #28]
+  16:	b94d      	cbnz	r5, 2c <mt_usb_epoch_enqueued+0x2c>
+  18:	6a23      	ldr	r3, [r4, #32]
+  1a:	f040 0001 	orr.w	r0, r0, #1
+  1e:	1c5a      	adds	r2, r3, #1
+  20:	bf1c      	itt	ne
+  22:	3301      	addne	r3, #1
+  24:	6223      	strne	r3, [r4, #32]
+  26:	61e0      	str	r0, [r4, #28]
+  28:	2000      	movs	r0, #0
+  2a:	bd70      	pop	{r4, r5, r6, pc}
+  2c:	2800      	cmp	r0, #0
+  2e:	d1fb      	bne.n	28 <mt_usb_epoch_enqueued+0x28>
+  30:	b90a      	cbnz	r2, 36 <mt_usb_epoch_enqueued+0x36>
+  32:	2001      	movs	r0, #1
+  34:	e7f9      	b.n	2a <mt_usb_epoch_enqueued+0x2a>
+  36:	6aa3      	ldr	r3, [r4, #40]	@ 0x28
+  38:	2b00      	cmp	r3, #0
+  3a:	d0f5      	beq.n	28 <mt_usb_epoch_enqueued+0x28>
+  3c:	6061      	str	r1, [r4, #4]
+  3e:	e7f8      	b.n	32 <mt_usb_epoch_enqueued+0x32>
+
+Disassembly of section .text.mt_usb_epoch_cleaned:
+
+00000000 <mt_usb_epoch_cleaned>:
+   0:	b510      	push	{r4, lr}
+   2:	4602      	mov	r2, r0
+   4:	f7ff fffe 	bl	0 <mt_usb_epoch_cleaned>
+			4: R_ARM_THM_CALL	current
+   8:	b108      	cbz	r0, e <mt_usb_epoch_cleaned+0xe>
+   a:	2001      	movs	r0, #1
+   c:	60d1      	str	r1, [r2, #12]
+   e:	bd10      	pop	{r4, pc}
+
+Disassembly of section .text.mt_usb_epoch_dispatch:
+
+00000000 <mt_usb_epoch_dispatch>:
+   0:	b538      	push	{r3, r4, r5, lr}
+   2:	4604      	mov	r4, r0
+   4:	f7ff fffe 	bl	0 <mt_usb_epoch_dispatch>
+			4: R_ARM_THM_CALL	current
+   8:	b180      	cbz	r0, 2c <mt_usb_epoch_dispatch+0x2c>
+   a:	69e0      	ldr	r0, [r4, #28]
+   c:	b9b8      	cbnz	r0, 3e <mt_usb_epoch_dispatch+0x3e>
+   e:	2a01      	cmp	r2, #1
+  10:	d80c      	bhi.n	2c <mt_usb_epoch_dispatch+0x2c>
+  12:	68e3      	ldr	r3, [r4, #12]
+  14:	428b      	cmp	r3, r1
+  16:	d109      	bne.n	2c <mt_usb_epoch_dispatch+0x2c>
+  18:	b14a      	cbz	r2, 2e <mt_usb_epoch_dispatch+0x2e>
+  1a:	6aa2      	ldr	r2, [r4, #40]	@ 0x28
+  1c:	b18a      	cbz	r2, 42 <mt_usb_epoch_dispatch+0x42>
+  1e:	6862      	ldr	r2, [r4, #4]
+  20:	429a      	cmp	r2, r3
+  22:	d103      	bne.n	2c <mt_usb_epoch_dispatch+0x2c>
+  24:	68a0      	ldr	r0, [r4, #8]
+  26:	1a80      	subs	r0, r0, r2
+  28:	bf18      	it	ne
+  2a:	2001      	movne	r0, #1
+  2c:	bd38      	pop	{r3, r4, r5, pc}
+  2e:	68a1      	ldr	r1, [r4, #8]
+  30:	4299      	cmp	r1, r3
+  32:	d106      	bne.n	42 <mt_usb_epoch_dispatch+0x42>
+  34:	69a0      	ldr	r0, [r4, #24]
+  36:	fab0 f080 	clz	r0, r0
+  3a:	0940      	lsrs	r0, r0, #5
+  3c:	e7f6      	b.n	2c <mt_usb_epoch_dispatch+0x2c>
+  3e:	2000      	movs	r0, #0
+  40:	e7f4      	b.n	2c <mt_usb_epoch_dispatch+0x2c>
+  42:	4610      	mov	r0, r2
+  44:	e7f2      	b.n	2c <mt_usb_epoch_dispatch+0x2c>
+
+Disassembly of section .text.mt_usb_epoch_reset_done:
+
+00000000 <mt_usb_epoch_reset_done>:
+   0:	b538      	push	{r3, r4, r5, lr}
+   2:	2201      	movs	r2, #1
+   4:	4604      	mov	r4, r0
+   6:	460d      	mov	r5, r1
+   8:	f7ff fffe 	bl	0 <mt_usb_epoch_reset_done>
+			8: R_ARM_THM_CALL	mt_usb_epoch_dispatch
+   c:	b108      	cbz	r0, 12 <mt_usb_epoch_reset_done+0x12>
+   e:	2001      	movs	r0, #1
+  10:	60a5      	str	r5, [r4, #8]
+  12:	bd38      	pop	{r3, r4, r5, pc}
+
+Disassembly of section .text.mt_usb_epoch_core_io:
+
+00000000 <mt_usb_epoch_core_io>:
+   0:	2200      	movs	r2, #0
+   2:	f7ff bffe 	b.w	0 <mt_usb_epoch_core_io>
+			2: R_ARM_THM_JUMP24	mt_usb_epoch_dispatch
+
+Disassembly of section .text.mt_usb_epoch_configured:
+
+00000000 <mt_usb_epoch_configured>:
+   0:	b538      	push	{r3, r4, r5, lr}
+   2:	4604      	mov	r4, r0
+   4:	460d      	mov	r5, r1
+   6:	f7ff fffe 	bl	0 <mt_usb_epoch_configured>
+			6: R_ARM_THM_CALL	mt_usb_epoch_core_io
+   a:	b108      	cbz	r0, 10 <mt_usb_epoch_configured+0x10>
+   c:	2001      	movs	r0, #1
+   e:	6125      	str	r5, [r4, #16]
+  10:	bd38      	pop	{r3, r4, r5, pc}
+
+Disassembly of section .text.mt_usb_epoch_app_io:
+
+00000000 <mt_usb_epoch_app_io>:
+   0:	b538      	push	{r3, r4, r5, lr}
+   2:	4605      	mov	r5, r0
+   4:	460c      	mov	r4, r1
+   6:	f7ff fffe 	bl	0 <mt_usb_epoch_app_io>
+			6: R_ARM_THM_CALL	mt_usb_epoch_core_io
+   a:	b118      	cbz	r0, 14 <mt_usb_epoch_app_io+0x14>
+   c:	6928      	ldr	r0, [r5, #16]
+   e:	1b03      	subs	r3, r0, r4
+  10:	4258      	negs	r0, r3
+  12:	4158      	adcs	r0, r3
+  14:	bd38      	pop	{r3, r4, r5, pc}
+
+Disassembly of section .text.mt_usb_epoch_fail:
+
+00000000 <mt_usb_epoch_fail>:
+   0:	b510      	push	{r4, lr}
+   2:	4604      	mov	r4, r0
+   4:	f7ff fffe 	bl	0 <mt_usb_epoch_fail>
+			4: R_ARM_THM_CALL	current
+   8:	b180      	cbz	r0, 2c <mt_usb_epoch_fail+0x2c>
+   a:	2a02      	cmp	r2, #2
+   c:	d005      	beq.n	1a <mt_usb_epoch_fail+0x1a>
+   e:	2a04      	cmp	r2, #4
+  10:	d003      	beq.n	1a <mt_usb_epoch_fail+0x1a>
+  12:	2a08      	cmp	r2, #8
+  14:	d006      	beq.n	24 <mt_usb_epoch_fail+0x24>
+  16:	2a80      	cmp	r2, #128	@ 0x80
+  18:	d109      	bne.n	2e <mt_usb_epoch_fail+0x2e>
+  1a:	6a63      	ldr	r3, [r4, #36]	@ 0x24
+  1c:	1c59      	adds	r1, r3, #1
+  1e:	bf1c      	itt	ne
+  20:	3301      	addne	r3, #1
+  22:	6263      	strne	r3, [r4, #36]	@ 0x24
+  24:	2001      	movs	r0, #1
+  26:	69e3      	ldr	r3, [r4, #28]
+  28:	4313      	orrs	r3, r2
+  2a:	61e3      	str	r3, [r4, #28]
+  2c:	bd10      	pop	{r4, pc}
+  2e:	2000      	movs	r0, #0
+  30:	e7fc      	b.n	2c <mt_usb_epoch_fail+0x2c>
+
+Disassembly of section .text.mt_usb_epoch_suspend:
+
+00000000 <mt_usb_epoch_suspend>:
+   0:	b508      	push	{r3, lr}
+   2:	4602      	mov	r2, r0
+   4:	f7ff fffe 	bl	0 <mt_usb_epoch_suspend>
+			4: R_ARM_THM_CALL	current
+   8:	b130      	cbz	r0, 18 <mt_usb_epoch_suspend+0x18>
+   a:	69d3      	ldr	r3, [r2, #28]
+   c:	b923      	cbnz	r3, 18 <mt_usb_epoch_suspend+0x18>
+   e:	6950      	ldr	r0, [r2, #20]
+  10:	1c43      	adds	r3, r0, #1
+  12:	d103      	bne.n	1c <mt_usb_epoch_suspend+0x1c>
+  14:	2320      	movs	r3, #32
+  16:	61d3      	str	r3, [r2, #28]
+  18:	2000      	movs	r0, #0
+  1a:	bd08      	pop	{r3, pc}
+  1c:	3001      	adds	r0, #1
+  1e:	e9c2 0005 	strd	r0, r0, [r2, #20]
+  22:	e7fa      	b.n	1a <mt_usb_epoch_suspend+0x1a>
+
+Disassembly of section .text.mt_usb_epoch_resume:
+
+00000000 <mt_usb_epoch_resume>:
+   0:	b510      	push	{r4, lr}
+   2:	4604      	mov	r4, r0
+   4:	f7ff fffe 	bl	0 <mt_usb_epoch_resume>
+			4: R_ARM_THM_CALL	current
+   8:	b138      	cbz	r0, 1a <mt_usb_epoch_resume+0x1a>
+   a:	69e0      	ldr	r0, [r4, #28]
+   c:	b930      	cbnz	r0, 1c <mt_usb_epoch_resume+0x1c>
+   e:	b13a      	cbz	r2, 20 <mt_usb_epoch_resume+0x20>
+  10:	69a3      	ldr	r3, [r4, #24]
+  12:	4293      	cmp	r3, r2
+  14:	d101      	bne.n	1a <mt_usb_epoch_resume+0x1a>
+  16:	61a0      	str	r0, [r4, #24]
+  18:	2001      	movs	r0, #1
+  1a:	bd10      	pop	{r4, pc}
+  1c:	2000      	movs	r0, #0
+  1e:	e7fc      	b.n	1a <mt_usb_epoch_resume+0x1a>
+  20:	4610      	mov	r0, r2
+  22:	e7fa      	b.n	1a <mt_usb_epoch_resume+0x1a>

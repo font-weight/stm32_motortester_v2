@@ -1,0 +1,250 @@
+{
+  "schema": "v2-06s-offline-identity-check-1",
+  "status": "PASS",
+  "argv": [
+    "host/tests/postcopy_identity_check.py",
+    "--sl-fixtures",
+    "build/v6s-native-01",
+    "--sk-image-sha256",
+    "dd6e8322488a1d4ada50c2c722820f971b4b4782c303bdafb1410180e2efc8f1",
+    "--sl-image-sha256",
+    "f82311cde2ce0a3e735543006b2bc7890e8761434c73e7adc7fa332f86cb8cb2",
+    "--output",
+    "build/v6s-host-identity-01"
+  ],
+  "python": "3.14.7 (tags/v3.14.7:823f032, Aug  5 2026, 10:51:32) [MSC v.1944 64 bit (AMD64)]",
+  "inputs": {
+    "C:\\Users\\Alexandr\\Desktop\\New folder\\\u0443\u043d\u0438\u0432\u0435\u0440\\\u043c\u043e\u0442\u043e\u0440\u0442\u0435\u0441\u0442\u0435\u0440 2\\host\\tests\\postcopy_identity_check.py": {
+      "bytes": 10978,
+      "sha256": "8cffc4129824e83a26445ea3cf7d10e8a91fc71eb3522095cba924e04b170e80"
+    },
+    "C:\\Users\\Alexandr\\Desktop\\New folder\\\u0443\u043d\u0438\u0432\u0435\u0440\\\u043c\u043e\u0442\u043e\u0440\u0442\u0435\u0441\u0442\u0435\u0440 2\\host\\tools\\decode_usb_gate.py": {
+      "bytes": 13304,
+      "sha256": "f568f4035190e2945af094237e66da014f0c739de3b1f572285e7059530e0b87"
+    },
+    "C:\\Users\\Alexandr\\Desktop\\New folder\\\u0443\u043d\u0438\u0432\u0435\u0440\\\u043c\u043e\u0442\u043e\u0440\u0442\u0435\u0441\u0442\u0435\u0440 2\\host\\tools\\decode_stream_progress.py": {
+      "bytes": 10852,
+      "sha256": "c7d39df435d156ce6d884869fe699a861ee3c369432c51522f01e9a8ab7e726f"
+    },
+    "C:\\Users\\Alexandr\\Desktop\\New folder\\\u0443\u043d\u0438\u0432\u0435\u0440\\\u043c\u043e\u0442\u043e\u0440\u0442\u0435\u0441\u0442\u0435\u0440 2\\host\\tests\\usb_gate_decoder_check.py": {
+      "bytes": 13904,
+      "sha256": "6d4a3a8bb48f3c76c574de6a3747155bac58732dd5974090e1f943f4f7db022c"
+    },
+    "C:\\Users\\Alexandr\\Desktop\\New folder\\\u0443\u043d\u0438\u0432\u0435\u0440\\\u043c\u043e\u0442\u043e\u0440\u0442\u0435\u0441\u0442\u0435\u0440 2\\host\\tests\\stream_progress_decoder_check.py": {
+      "bytes": 8128,
+      "sha256": "9d2734dbee3b6fb926355355c4d5dd887ff7ed05d127b2f9d3b64d93b4824c0b"
+    },
+    "C:\\Users\\Alexandr\\Desktop\\New folder\\\u0443\u043d\u0438\u0432\u0435\u0440\\\u043c\u043e\u0442\u043e\u0440\u0442\u0435\u0441\u0442\u0435\u0440 2\\docs\\streaming-postcopy-handoff.md": {
+      "bytes": 32164,
+      "sha256": "521e91d88b8234be6f8db7cbecfd79b6f4bd4c47dbb38dd871242a0d97b1b149"
+    },
+    "C:\\Users\\Alexandr\\Desktop\\New folder\\\u0443\u043d\u0438\u0432\u0435\u0440\\\u043c\u043e\u0442\u043e\u0440\u0442\u0435\u0441\u0442\u0435\u0440 2\\docs\\streaming-usb-gate.md": {
+      "bytes": 23617,
+      "sha256": "c543d4adaaa2cdf9b609722ca5cb514c520ab6f71d9e539ef8f88329f8c49995"
+    },
+    "C:\\Users\\Alexandr\\Desktop\\New folder\\\u0443\u043d\u0438\u0432\u0435\u0440\\\u043c\u043e\u0442\u043e\u0440\u0442\u0435\u0441\u0442\u0435\u0440 2\\docs\\verification\\v2-usb-gate\\production-01\\build\\v6r-native-01\\actual-gate.bin": {
+      "bytes": 24,
+      "sha256": "1d36b20e36aea27d4fbc2a1ce1705dd201e53e8cc21e6dfdd38273e8cf28eb44"
+    },
+    "C:\\Users\\Alexandr\\Desktop\\New folder\\\u0443\u043d\u0438\u0432\u0435\u0440\\\u043c\u043e\u0442\u043e\u0440\u0442\u0435\u0441\u0442\u0435\u0440 2\\docs\\verification\\v2-usb-gate\\production-01\\build\\v6r-native-01\\actual-progress.bin": {
+      "bytes": 64,
+      "sha256": "f5e6178675f0a43733c099abb4c0c85504536d7e70e5f5dc9692d754ee1c75aa"
+    },
+    "C:\\Users\\Alexandr\\Desktop\\New folder\\\u0443\u043d\u0438\u0432\u0435\u0440\\\u043c\u043e\u0442\u043e\u0440\u0442\u0435\u0441\u0442\u0435\u0440 2\\docs\\verification\\v2-usb-gate\\production-01\\build\\v6r-native-01\\actual-legacy.bin": {
+      "bytes": 136,
+      "sha256": "0ecef68e042a61e93c5dbbac31853f68a5ed007189a9840944d153dab38c93fc"
+    },
+    "C:\\Users\\Alexandr\\Desktop\\New folder\\\u0443\u043d\u0438\u0432\u0435\u0440\\\u043c\u043e\u0442\u043e\u0440\u0442\u0435\u0441\u0442\u0435\u0440 2\\docs\\verification\\v2-usb-gate\\production-01\\build\\v6r-native-01\\result.json": {
+      "bytes": 38215,
+      "sha256": "d9112d935c2c54f9ab39b4160937edaa5c4a225eeebac33fed66f3ac347f72d0"
+    },
+    "C:\\Users\\Alexandr\\Desktop\\New folder\\\u0443\u043d\u0438\u0432\u0435\u0440\\\u043c\u043e\u0442\u043e\u0440\u0442\u0435\u0441\u0442\u0435\u0440 2\\docs\\verification\\v2-usb-gate\\production-01\\build\\v6r-native-01\\companion.json": {
+      "bytes": 682,
+      "sha256": "58931e913be5e0f99f1c5d52ed7341ff809f6c277c5e169586b927082a2e9f4d"
+    },
+    "C:\\Users\\Alexandr\\Desktop\\New folder\\\u0443\u043d\u0438\u0432\u0435\u0440\\\u043c\u043e\u0442\u043e\u0440\u0442\u0435\u0441\u0442\u0435\u0440 2\\build\\v6s-native-01\\actual-gate.bin": {
+      "bytes": 24,
+      "sha256": "2aa983d6c2c8ea8951b39a27274486f9cf62c7edc2b139854978ab04e64898b3"
+    },
+    "C:\\Users\\Alexandr\\Desktop\\New folder\\\u0443\u043d\u0438\u0432\u0435\u0440\\\u043c\u043e\u0442\u043e\u0440\u0442\u0435\u0441\u0442\u0435\u0440 2\\build\\v6s-native-01\\actual-progress.bin": {
+      "bytes": 64,
+      "sha256": "37d17b307bd058f31e0c1aff577b316dd3bc4d6830e32e3f4d3a0cf3535f48f8"
+    },
+    "C:\\Users\\Alexandr\\Desktop\\New folder\\\u0443\u043d\u0438\u0432\u0435\u0440\\\u043c\u043e\u0442\u043e\u0440\u0442\u0435\u0441\u0442\u0435\u0440 2\\build\\v6s-native-01\\actual-legacy.bin": {
+      "bytes": 136,
+      "sha256": "0713c47cf0e29c538fa6c3c0fe44735c6fd3e6d96fd6e46d440f396da42241f1"
+    },
+    "C:\\Users\\Alexandr\\Desktop\\New folder\\\u0443\u043d\u0438\u0432\u0435\u0440\\\u043c\u043e\u0442\u043e\u0440\u0442\u0435\u0441\u0442\u0435\u0440 2\\build\\v6s-native-01\\result.json": {
+      "bytes": 41454,
+      "sha256": "08bc8e0460fa4c5c5ed58fa767313bd25c2853374406de7db35bbc0c330af919"
+    },
+    "C:\\Users\\Alexandr\\Desktop\\New folder\\\u0443\u043d\u0438\u0432\u0435\u0440\\\u043c\u043e\u0442\u043e\u0440\u0442\u0435\u0441\u0442\u0435\u0440 2\\build\\v6s-native-01\\companion.json": {
+      "bytes": 682,
+      "sha256": "38630ba746b3f0840c96ebb7f96955b09469072d0728eaf2a1990b4469f649ff"
+    }
+  },
+  "checks": [
+    {
+      "case": "SK_actual_C_explicit",
+      "kind": "valid_with_limits"
+    },
+    {
+      "case": "SK_crossed_build",
+      "kind": "reject",
+      "errors": [
+        "paired_progress_session_image_binding_invalid"
+      ]
+    },
+    {
+      "case": "SL_actual_C_explicit",
+      "kind": "valid_with_limits"
+    },
+    {
+      "case": "SL_crossed_build",
+      "kind": "reject",
+      "errors": [
+        "paired_progress_session_image_binding_invalid"
+      ]
+    },
+    {
+      "case": "SL_foreign_image",
+      "kind": "reject",
+      "errors": [
+        "paired_progress_session_image_binding_invalid"
+      ]
+    },
+    {
+      "case": "SL_foreign_nonce",
+      "kind": "reject",
+      "errors": [
+        "paired_progress_session_image_binding_invalid"
+      ]
+    },
+    {
+      "case": "SL_foreign_generation",
+      "kind": "reject",
+      "errors": [
+        "paired_progress_session_image_binding_invalid"
+      ]
+    },
+    {
+      "case": "SM_gate_unsupported",
+      "kind": "reject",
+      "errors": [
+        "unsupported_expected_gate_build",
+        "paired_progress_session_image_binding_invalid"
+      ]
+    },
+    {
+      "case": "SM_progress_unsupported",
+      "kind": "reject",
+      "errors": [
+        "unsupported_expected_build",
+        "legacy_build_session_image_binding_invalid"
+      ]
+    },
+    {
+      "case": "SL_requires_explicit_progress_build",
+      "kind": "reject",
+      "errors": [
+        "legacy_build_session_image_binding_invalid"
+      ]
+    },
+    {
+      "case": "gate_CLI_requires_explicit_build",
+      "kind": "reject_before_file_read"
+    }
+  ],
+  "hardware_executed": false,
+  "native_producer_rerun": false,
+  "legacy_binding_is_synthetic": true,
+  "physical_throughput_claim": false,
+  "limits": [
+    "Repeated fixture bytes are API inputs, not two independent RAM reads.",
+    "Gate24 has no embedded build/session; paired evidence and declared pins are not authentication.",
+    "N_CLOSING/history/CAP/skew restrictions remain those of the R decoder."
+  ],
+  "sk": {
+    "firmware_build": "0x5632534b",
+    "nonce_hex": "0123456789abcdef",
+    "generation": 7,
+    "image_sha256": "dd6e8322488a1d4ada50c2c722820f971b4b4782c303bdafb1410180e2efc8f1",
+    "generated_header_sha256": "1de425e142230bd4bd24bb2d6b1d739fc0e6bfa4a9f82a0f31520e5f33c120e6",
+    "fixture_sha256": {
+      "actual-gate.bin": "1d36b20e36aea27d4fbc2a1ce1705dd201e53e8cc21e6dfdd38273e8cf28eb44",
+      "actual-progress.bin": "f5e6178675f0a43733c099abb4c0c85504536d7e70e5f5dc9692d754ee1c75aa",
+      "actual-legacy.bin": "0ecef68e042a61e93c5dbbac31853f68a5ed007189a9840944d153dab38c93fc"
+    }
+  },
+  "sl": {
+    "firmware_build": "0x5632534c",
+    "nonce_hex": "00000000000001f7",
+    "generation": 3,
+    "image_sha256": "f82311cde2ce0a3e735543006b2bc7890e8761434c73e7adc7fa332f86cb8cb2",
+    "generated_header_sha256": "32f833249e9720cc46f7db48238a255c667db6f47d1c6e7e5af86a80eabea85c",
+    "fixture_sha256": {
+      "actual-gate.bin": "2aa983d6c2c8ea8951b39a27274486f9cf62c7edc2b139854978ab04e64898b3",
+      "actual-progress.bin": "37d17b307bd058f31e0c1aff577b316dd3bc4d6830e32e3f4d3a0cf3535f48f8",
+      "actual-legacy.bin": "0713c47cf0e29c538fa6c3c0fe44735c6fd3e6d96fd6e46d440f396da42241f1"
+    }
+  },
+  "input_drift": [],
+  "outputs": {
+    "sk\\actual-gate.bin": {
+      "bytes": 24,
+      "sha256": "1d36b20e36aea27d4fbc2a1ce1705dd201e53e8cc21e6dfdd38273e8cf28eb44"
+    },
+    "sk\\actual-legacy.bin": {
+      "bytes": 136,
+      "sha256": "0ecef68e042a61e93c5dbbac31853f68a5ed007189a9840944d153dab38c93fc"
+    },
+    "sk\\actual-progress.bin": {
+      "bytes": 64,
+      "sha256": "f5e6178675f0a43733c099abb4c0c85504536d7e70e5f5dc9692d754ee1c75aa"
+    },
+    "sk\\companion.json": {
+      "bytes": 682,
+      "sha256": "58931e913be5e0f99f1c5d52ed7341ff809f6c277c5e169586b927082a2e9f4d"
+    },
+    "sk\\decoded.json": {
+      "bytes": 6023,
+      "sha256": "072d1f5f7223797101d99a12a67b62a346378eb5855f8e1e2652332f6e6b63af"
+    },
+    "sk\\legacy-binding.json": {
+      "bytes": 434,
+      "sha256": "38b42cfe4ceb1cb0a8ee7f6c584787888c5603f9d1b1779965a0ce7471ca1546"
+    },
+    "sk\\producer-result.json": {
+      "bytes": 38215,
+      "sha256": "d9112d935c2c54f9ab39b4160937edaa5c4a225eeebac33fed66f3ac347f72d0"
+    },
+    "sl\\actual-gate.bin": {
+      "bytes": 24,
+      "sha256": "2aa983d6c2c8ea8951b39a27274486f9cf62c7edc2b139854978ab04e64898b3"
+    },
+    "sl\\actual-legacy.bin": {
+      "bytes": 136,
+      "sha256": "0713c47cf0e29c538fa6c3c0fe44735c6fd3e6d96fd6e46d440f396da42241f1"
+    },
+    "sl\\actual-progress.bin": {
+      "bytes": 64,
+      "sha256": "37d17b307bd058f31e0c1aff577b316dd3bc4d6830e32e3f4d3a0cf3535f48f8"
+    },
+    "sl\\companion.json": {
+      "bytes": 682,
+      "sha256": "38630ba746b3f0840c96ebb7f96955b09469072d0728eaf2a1990b4469f649ff"
+    },
+    "sl\\decoded.json": {
+      "bytes": 6032,
+      "sha256": "f3851cd9662c6a14d3b65e41de75ad458f51518657ac89548e2ea3c94224fc31"
+    },
+    "sl\\legacy-binding.json": {
+      "bytes": 420,
+      "sha256": "74761dfa1b866b2b26d166cdca769af9ff2a5a9a8ebace09dae6efcf01d1b0f9"
+    },
+    "sl\\producer-result.json": {
+      "bytes": 41454,
+      "sha256": "08bc8e0460fa4c5c5ed58fa767313bd25c2853374406de7db35bbc0c330af919"
+    }
+  }
+}

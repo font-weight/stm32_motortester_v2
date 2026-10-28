@@ -1,0 +1,30 @@
+--- a/v2/app/mt_live_adc.c
++++ b/v2/app/mt_live_adc.c
+@@ -34,16 +34,25 @@
+                      .guard=*guard, .initialized=1u};
+     return 1;
+ }
+-int mt_live_adc_start(void *context, uint32_t generation)
++static int start_binding(void *context, uint32_t generation,
++                          mt_adc_dma_start_transaction_fn transaction)
+ {
+     mt_live_adc *b = context;
+     mt_adc_dma_result_t result;
+     if (!valid(b) || !generation || b->device->generation != generation ||
+         b->device->state != MT_LIVE_STARTING || !clock_ok(b) ||
+         !mt_adc_dma_profile1_ready(b->driver)) return 0;
+-    result = mt_adc_dma_start_guarded(b->driver, &b->guard);
++    result = transaction ? mt_adc_dma_start_transaction(b->driver, &b->guard, transaction)
++                         : mt_adc_dma_start_guarded(b->driver, &b->guard);
+     if (!clock_ok(b)) return 0;
+     return result == MT_ADC_DMA_OK;
++}
++int mt_live_adc_start(void *context, uint32_t generation) {
++    return start_binding(context, generation, NULL);
++}
++int mt_live_adc_start_transaction(void *context, uint32_t generation,
++                                 mt_adc_dma_start_transaction_fn transaction) {
++    return transaction && start_binding(context, generation, transaction);
+ }
+ void mt_live_adc_quiesce(void *context, mt_live_snapshot *out)
+ {

@@ -1,0 +1,42 @@
+--- a/mt_live_adc.h
++++ b/mt_live_adc.h
+@@ -36,4 +36,39 @@
+  * Caller owns USB epoch admission and independent TIME/live timer servicing;
+  * operation count alone does not prove the <5120us ADC service requirement. */
+ int mt_live_adc_service(mt_live_adc *binding);
++
++/* One stack-only borrowed private half. No view survives a runtime pass.
++ * Queue acceptance is distinct from accepted wire prefix. */
++typedef enum {
++    MT_LIVE_ADC_SPLIT_BAD_ARGUMENT=-2, MT_LIVE_ADC_SPLIT_FAILED=-1,
++    MT_LIVE_ADC_SPLIT_EMPTY=0, MT_LIVE_ADC_SPLIT_OWNED=1,
++    MT_LIVE_ADC_SPLIT_PUBLISHED=2, MT_LIVE_ADC_SPLIT_STALE=-3,
++    MT_LIVE_ADC_SPLIT_DEADLINE=-4
++} mt_live_adc_split_result;
++enum { MT_LIVE_ADC_PENDING_NONE, MT_LIVE_ADC_PENDING_OWNED,
++       MT_LIVE_ADC_PENDING_PUBLISHED, MT_LIVE_ADC_PENDING_ABORTED };
++typedef struct {
++    uint64_t nonce;
++    mt_adc_dma_block_t block;
++    mt_live_adc *owner;
++    const mt_acquisition_profile *profile;
++    uint32_t generation,epoch,soft_serial,actor;
++    uint32_t poll_origin_us,deadline_us;
++    uint16_t mode;
++    uint8_t revision,entry_state,expected_next_half,phase;
++    uint16_t published;
++} mt_live_adc_pending;
++#if UINTPTR_MAX==UINT32_MAX
++_Static_assert(sizeof(mt_live_adc_pending)<=96u,"Pending half uses at most stack96B only");
+ #endif
++/* acquire performs one original read/copy, never an offer. Runtime retains
++ * original transport identity and forbids RX/next read until disposition. */
++mt_live_adc_split_result mt_live_adc_acquire(mt_live_adc *binding,
++    mt_live_adc_pending *pending,uint32_t epoch,uint32_t soft_serial,uint32_t actor);
++/* One contiguous128 offer. Runtime supplies fresh pre/post transport admission
++ * between <=4 calls; adapter checks source identity and original us deadline.
++ * OWNED means one more chunk accepted, not permission to retry that chunk.
++ * STALE requires explicit runtime quarantine; it cannot silently mean EMPTY. */
++mt_live_adc_split_result mt_live_adc_publish_next(mt_live_adc *binding,
++    mt_live_adc_pending *pending);
++#endif

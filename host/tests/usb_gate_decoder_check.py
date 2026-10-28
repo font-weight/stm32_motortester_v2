@@ -133,7 +133,7 @@ def main():
         rejected('foreign_generation', run(generation=generation + 1))
         rejected('foreign_image', run(image='0' * 64))
         rejected('SJ_not_SK', run(build=0x5632534a))
-        rejected('unsupported_future_build', run(build=0x5632534c))
+        rejected('unsupported_future_build', run(build=0x5632534d))
         rejected('not_frozen', run(change(flags=(flags & ~3) | 1)))
         rejected('wrong_magic', run(change(magic=decoder.MAGIC ^ 1)))
         rejected('undefined_bits', run(change(flags=flags | (1 << 13))))
@@ -202,7 +202,7 @@ def main():
                                                 generation, args.image_sha256)
         need(not value['accepted_frozen_record'], 'SK must not use the legacy default')
         value = decoder.progress_decoder.decode(progress, progress, legacy, nonce,
-                                                generation, args.image_sha256, 0x5632534c)
+                                                generation, args.image_sha256, 0x5632534d)
         need(not value['accepted_frozen_record'] and 'unsupported_expected_build' in value['errors'],
              'Future progress build must remain unsupported')
         report['old_progress_builds_preserved_SK_requires_explicit_build'] = True

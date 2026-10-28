@@ -1,0 +1,58 @@
+--- v2/protocol/mt_live_device.h
++++ v2/protocol/mt_live_device.h
+@@ -107,6 +107,55 @@
+     unsigned last_write_known;
+ } mt_live_device;
+ 
++/* Foreground-only staging transaction. Ticket and device must not alias;
++ * no other core operation or callback may intervene before guarded submit.
++ * Preparation owns only existing tx bytes/metadata, never an accepted prefix.
++ * Transport epoch/lifecycle are revalidated separately by the runtime guard. */
++typedef enum { MT_LIVE_TX_EMPTY, MT_LIVE_TX_PREPARED, MT_LIVE_TX_ERROR }
++    mt_live_prepare_result;
++typedef struct {
++    mt_live_prepare_result result;
++    unsigned error; /* Deferred mt_live_local_error; no callback in prepare. */
++    mt_live_state state;
++    uint64_t nonce;
++    uint64_t pending_nonce;
++    uint64_t prefix_end;
++    uint64_t produced_end;
++    uint64_t head_index;
++    uint64_t next_index;
++    uint64_t tx_nonce;
++    uint64_t tx_first_index;
++    uint32_t generation;
++    uint32_t tx_next;
++    uint32_t tx_sequence;
++    uint32_t prefix_crc_state;
++    uint32_t last_data_sequence;
++    uint32_t caps_request;
++    uint32_t error_request;
++    uint32_t stop_request;
++    uint32_t end_sequence;
++    size_t tx_length;
++    size_t tx_offset;
++    size_t queue_head;
++    size_t queue_used;
++    unsigned tx_exhausted;
++    unsigned queue_sealed;
++    unsigned intents;
++    uint16_t tx_count;
++    uint16_t head_count;
++    uint16_t first_reason;
++    uint16_t terminal_flags;
++    uint8_t tx_type;
++    uint8_t error_type;
++    uint8_t error_code;
++} mt_live_tx_ticket;
++mt_live_prepare_result mt_live_device_prepare_tx(mt_live_device *device,
++                                                mt_live_tx_ticket *ticket);
++/* Caller holds the original write-through-final-commit IRQ guard. A stale
++ * ticket means no write/sequence/pop; it is not unknown acceptance or recovery. */
++int mt_live_device_step_prepared(mt_live_device *device,
++                                  const mt_live_tx_ticket *ticket);
++
+ /* All operations are single-owner foreground calls on an initialized object.
+  * Caller input/output cannot alias device storage. No callbacks may re-enter.
+  * Init has no hardware side effects; it does not prove startup quiescence.

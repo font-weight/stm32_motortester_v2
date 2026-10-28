@@ -1,0 +1,505 @@
+
+objects/20-mt_stream_main.o:     file format elf32-littlearm
+
+
+Disassembly of section .text.rd:
+
+00000000 <rd>:
+   0:	4601      	mov	r1, r0
+   2:	2000      	movs	r0, #0
+   4:	f7ff bffe 	b.w	0 <mt_clock_mmio_read32>
+			4: R_ARM_THM_JUMP24	mt_clock_mmio_read32
+
+Disassembly of section .text.startup.main:
+
+00000000 <main>:
+   0:	e92d 4880 	stmdb	sp!, {r7, fp, lr}
+   4:	4b54      	ldr	r3, [pc, #336]	@ (158 <main+0x158>)
+   6:	b097      	sub	sp, #92	@ 0x5c
+   8:	e893 0007 	ldmia.w	r3, {r0, r1, r2}
+   c:	f10d 082c 	add.w	r8, sp, #44	@ 0x2c
+  10:	330c      	adds	r3, #12
+  12:	2401      	movs	r4, #1
+  14:	e888 0007 	stmia.w	r8, {r0, r1, r2}
+  18:	e893 0007 	ldmia.w	r3, {r0, r1, r2}
+  1c:	2300      	movs	r3, #0
+  1e:	af0e      	add	r7, sp, #56	@ 0x38
+  20:	e887 0007 	stmia.w	r7, {r0, r1, r2}
+  24:	e9cd 4309 	strd	r4, r3, [sp, #36]	@ 0x24
+  28:	f7ff fffe 	bl	0 <mt_boot_cpu_masked>
+			28: R_ARM_THM_CALL	mt_boot_cpu_masked
+  2c:	b918      	cbnz	r0, 36 <main+0x36>
+  2e:	4b4b      	ldr	r3, [pc, #300]	@ (15c <main+0x15c>)
+  30:	601c      	str	r4, [r3, #0]
+  32:	f7ff fffe 	bl	0 <mt_boot_cpu_halt>
+			32: R_ARM_THM_CALL	mt_boot_cpu_halt
+  36:	4b4a      	ldr	r3, [pc, #296]	@ (160 <main+0x160>)
+  38:	681a      	ldr	r2, [r3, #0]
+  3a:	2a01      	cmp	r2, #1
+  3c:	d003      	beq.n	46 <main+0x46>
+  3e:	2202      	movs	r2, #2
+  40:	4b46      	ldr	r3, [pc, #280]	@ (15c <main+0x15c>)
+  42:	601a      	str	r2, [r3, #0]
+  44:	e7f5      	b.n	32 <main+0x32>
+  46:	685a      	ldr	r2, [r3, #4]
+  48:	2a01      	cmp	r2, #1
+  4a:	d1f8      	bne.n	3e <main+0x3e>
+  4c:	f8d3 a008 	ldr.w	sl, [r3, #8]
+  50:	f10a 33ff 	add.w	r3, sl, #4294967295
+  54:	f5b3 7ff9 	cmp.w	r3, #498	@ 0x1f2
+  58:	d8f1      	bhi.n	3e <main+0x3e>
+  5a:	4d42      	ldr	r5, [pc, #264]	@ (164 <main+0x164>)
+  5c:	69ab      	ldr	r3, [r5, #24]
+  5e:	2b01      	cmp	r3, #1
+  60:	d1ed      	bne.n	3e <main+0x3e>
+  62:	696b      	ldr	r3, [r5, #20]
+  64:	2b01      	cmp	r3, #1
+  66:	9306      	str	r3, [sp, #24]
+  68:	d8e9      	bhi.n	3e <main+0x3e>
+  6a:	68ae      	ldr	r6, [r5, #8]
+  6c:	2e0f      	cmp	r6, #15
+  6e:	d8e6      	bhi.n	3e <main+0x3e>
+  70:	f8d5 b004 	ldr.w	fp, [r5, #4]
+  74:	4b3c      	ldr	r3, [pc, #240]	@ (168 <main+0x168>)
+  76:	f10b 32ff 	add.w	r2, fp, #4294967295
+  7a:	429a      	cmp	r2, r3
+  7c:	d8df      	bhi.n	3e <main+0x3e>
+  7e:	692b      	ldr	r3, [r5, #16]
+  80:	f8d5 9000 	ldr.w	r9, [r5]
+  84:	4619      	mov	r1, r3
+  86:	4648      	mov	r0, r9
+  88:	aa11      	add	r2, sp, #68	@ 0x44
+  8a:	9307      	str	r3, [sp, #28]
+  8c:	f7ff fffe 	bl	0 <mt_clock_plan_72>
+			8c: R_ARM_THM_CALL	mt_clock_plan_72
+  90:	2800      	cmp	r0, #0
+  92:	d1d4      	bne.n	3e <main+0x3e>
+  94:	f105 001c 	add.w	r0, r5, #28
+  98:	f7ff fffe 	bl	0 <mt_usb_descriptors_init>
+			98: R_ARM_THM_CALL	mt_usb_descriptors_init
+  9c:	b910      	cbnz	r0, a4 <main+0xa4>
+  9e:	2203      	movs	r2, #3
+  a0:	4b2e      	ldr	r3, [pc, #184]	@ (15c <main+0x15c>)
+  a2:	e7ce      	b.n	42 <main+0x42>
+  a4:	4c31      	ldr	r4, [pc, #196]	@ (16c <main+0x16c>)
+  a6:	464a      	mov	r2, r9
+  a8:	4641      	mov	r1, r8
+  aa:	4620      	mov	r0, r4
+  ac:	9b07      	ldr	r3, [sp, #28]
+  ae:	f8cd b000 	str.w	fp, [sp]
+  b2:	f7ff fffe 	bl	0 <mt_clock_apply>
+			b2: R_ARM_THM_CALL	mt_clock_apply
+  b6:	b110      	cbz	r0, be <main+0xbe>
+  b8:	2204      	movs	r2, #4
+  ba:	4b28      	ldr	r3, [pc, #160]	@ (15c <main+0x15c>)
+  bc:	e7c1      	b.n	42 <main+0x42>
+  be:	4621      	mov	r1, r4
+  c0:	4a2b      	ldr	r2, [pc, #172]	@ (170 <main+0x170>)
+  c2:	482c      	ldr	r0, [pc, #176]	@ (174 <main+0x174>)
+  c4:	f7ff fffe 	bl	0 <mt_boot_time_start>
+			c4: R_ARM_THM_CALL	mt_boot_time_start
+  c8:	4680      	mov	r8, r0
+  ca:	b110      	cbz	r0, d2 <main+0xd2>
+  cc:	2205      	movs	r2, #5
+  ce:	4b23      	ldr	r3, [pc, #140]	@ (15c <main+0x15c>)
+  d0:	e7b7      	b.n	42 <main+0x42>
+  d2:	4827      	ldr	r0, [pc, #156]	@ (170 <main+0x170>)
+  d4:	f7ff fffe 	bl	0 <mt_usb_time_bind>
+			d4: R_ARM_THM_CALL	mt_usb_time_bind
+  d8:	b910      	cbnz	r0, e0 <main+0xe0>
+  da:	2206      	movs	r2, #6
+  dc:	4b1f      	ldr	r3, [pc, #124]	@ (15c <main+0x15c>)
+  de:	e7b0      	b.n	42 <main+0x42>
+  e0:	68ed      	ldr	r5, [r5, #12]
+  e2:	4642      	mov	r2, r8
+  e4:	462b      	mov	r3, r5
+  e6:	4924      	ldr	r1, [pc, #144]	@ (178 <main+0x178>)
+  e8:	4824      	ldr	r0, [pc, #144]	@ (17c <main+0x17c>)
+  ea:	f7ff fffe 	bl	0 <mt_stream_diag_init>
+			ea: R_ARM_THM_CALL	mt_stream_diag_init
+  ee:	b910      	cbnz	r0, f6 <main+0xf6>
+  f0:	220c      	movs	r2, #12
+  f2:	4b1a      	ldr	r3, [pc, #104]	@ (15c <main+0x15c>)
+  f4:	e7a5      	b.n	42 <main+0x42>
+  f6:	9b06      	ldr	r3, [sp, #24]
+  f8:	463a      	mov	r2, r7
+  fa:	e9cd 5302 	strd	r5, r3, [sp, #8]
+  fe:	4b20      	ldr	r3, [pc, #128]	@ (180 <main+0x180>)
+ 100:	491b      	ldr	r1, [pc, #108]	@ (170 <main+0x170>)
+ 102:	9301      	str	r3, [sp, #4]
+ 104:	4b1f      	ldr	r3, [pc, #124]	@ (184 <main+0x184>)
+ 106:	4820      	ldr	r0, [pc, #128]	@ (188 <main+0x188>)
+ 108:	9300      	str	r3, [sp, #0]
+ 10a:	f8cd a010 	str.w	sl, [sp, #16]
+ 10e:	464b      	mov	r3, r9
+ 110:	f7ff fffe 	bl	0 <mt_live_runtime_init>
+			110: R_ARM_THM_CALL	mt_live_runtime_init
+ 114:	b110      	cbz	r0, 11c <main+0x11c>
+ 116:	2207      	movs	r2, #7
+ 118:	4b10      	ldr	r3, [pc, #64]	@ (15c <main+0x15c>)
+ 11a:	e792      	b.n	42 <main+0x42>
+ 11c:	4632      	mov	r2, r6
+ 11e:	4621      	mov	r1, r4
+ 120:	481a      	ldr	r0, [pc, #104]	@ (18c <main+0x18c>)
+ 122:	f7ff fffe 	bl	0 <mt_boot_usb_prepare>
+			122: R_ARM_THM_CALL	mt_boot_usb_prepare
+ 126:	b110      	cbz	r0, 12e <main+0x12e>
+ 128:	2208      	movs	r2, #8
+ 12a:	4b0c      	ldr	r3, [pc, #48]	@ (15c <main+0x15c>)
+ 12c:	e789      	b.n	42 <main+0x42>
+ 12e:	a909      	add	r1, sp, #36	@ 0x24
+ 130:	f7ff fffe 	bl	0 <tusb_rhport_init>
+			130: R_ARM_THM_CALL	tusb_rhport_init
+ 134:	4b16      	ldr	r3, [pc, #88]	@ (190 <main+0x190>)
+ 136:	6018      	str	r0, [r3, #0]
+ 138:	681b      	ldr	r3, [r3, #0]
+ 13a:	b913      	cbnz	r3, 142 <main+0x142>
+ 13c:	2209      	movs	r2, #9
+ 13e:	4b07      	ldr	r3, [pc, #28]	@ (15c <main+0x15c>)
+ 140:	e77f      	b.n	42 <main+0x42>
+ 142:	f7ff fffe 	bl	0 <tud_inited>
+			142: R_ARM_THM_CALL	tud_inited
+ 146:	2800      	cmp	r0, #0
+ 148:	d0f8      	beq.n	13c <main+0x13c>
+ 14a:	6ba3      	ldr	r3, [r4, #56]	@ 0x38
+ 14c:	2b01      	cmp	r3, #1
+ 14e:	d021      	beq.n	194 <main+0x194>
+ 150:	220a      	movs	r2, #10
+ 152:	4b02      	ldr	r3, [pc, #8]	@ (15c <main+0x15c>)
+ 154:	e775      	b.n	42 <main+0x42>
+ 156:	bf00      	nop
+	...
+			158: R_ARM_ABS32	.rodata
+			15c: R_ARM_ABS32	mt_main_boot_failure
+			160: R_ARM_ABS32	mt_stream_timing
+			164: R_ARM_ABS32	mt_board
+ 168:	000f423f 	.word	0x000f423f
+	...
+			16c: R_ARM_ABS32	.bss.startup
+			170: R_ARM_ABS32	.bss.timebase
+			174: R_ARM_ABS32	.bss.time_start
+			178: R_ARM_ABS32	mt_clock_mmio_write32
+			17c: R_ARM_ABS32	mt_clock_mmio_read32
+			180: R_ARM_ABS32	mt_irq_guard_leave
+			184: R_ARM_ABS32	mt_irq_guard_enter
+			188: R_ARM_ABS32	.bss.runtime
+			18c: R_ARM_ABS32	.bss.usb_start
+			190: R_ARM_ABS32	mt_main_usb_init_result
+ 194:	6be3      	ldr	r3, [r4, #60]	@ 0x3c
+ 196:	2b01      	cmp	r3, #1
+ 198:	d1da      	bne.n	150 <main+0x150>
+ 19a:	e9d4 e708 	ldrd	lr, r7, [r4, #32]
+ 19e:	6b22      	ldr	r2, [r4, #48]	@ 0x30
+ 1a0:	f8d4 c034 	ldr.w	ip, [r4, #52]	@ 0x34
+ 1a4:	f002 023f 	and.w	r2, r2, #63	@ 0x3f
+ 1a8:	2a32      	cmp	r2, #50	@ 0x32
+ 1aa:	d1d1      	bne.n	150 <main+0x150>
+ 1ac:	4aa9      	ldr	r2, [pc, #676]	@ (454 <main+0x454>)
+ 1ae:	6851      	ldr	r1, [r2, #4]
+ 1b0:	2901      	cmp	r1, #1
+ 1b2:	d1cd      	bne.n	150 <main+0x150>
+ 1b4:	e9d2 5102 	ldrd	r5, r1, [r2, #8]
+ 1b8:	2901      	cmp	r1, #1
+ 1ba:	d1c9      	bne.n	150 <main+0x150>
+ 1bc:	6810      	ldr	r0, [r2, #0]
+ 1be:	4aa6      	ldr	r2, [pc, #664]	@ (458 <main+0x458>)
+ 1c0:	6851      	ldr	r1, [r2, #4]
+ 1c2:	2901      	cmp	r1, #1
+ 1c4:	d1c4      	bne.n	150 <main+0x150>
+ 1c6:	e9d2 1302 	ldrd	r1, r3, [r2, #8]
+ 1ca:	2b01      	cmp	r3, #1
+ 1cc:	d1c0      	bne.n	150 <main+0x150>
+ 1ce:	ea4c 030e 	orr.w	r3, ip, lr
+ 1d2:	433b      	orrs	r3, r7
+ 1d4:	432b      	orrs	r3, r5
+ 1d6:	6812      	ldr	r2, [r2, #0]
+ 1d8:	4303      	orrs	r3, r0
+ 1da:	430b      	orrs	r3, r1
+ 1dc:	4313      	orrs	r3, r2
+ 1de:	d1b7      	bne.n	150 <main+0x150>
+ 1e0:	489e      	ldr	r0, [pc, #632]	@ (45c <main+0x45c>)
+ 1e2:	f7ff fffe 	bl	0 <main>
+			1e2: R_ARM_THM_CALL	rd
+ 1e6:	6aa3      	ldr	r3, [r4, #40]	@ 0x28
+ 1e8:	4058      	eors	r0, r3
+ 1ea:	4b9d      	ldr	r3, [pc, #628]	@ (460 <main+0x460>)
+ 1ec:	4003      	ands	r3, r0
+ 1ee:	2b00      	cmp	r3, #0
+ 1f0:	d1ae      	bne.n	150 <main+0x150>
+ 1f2:	489c      	ldr	r0, [pc, #624]	@ (464 <main+0x464>)
+ 1f4:	f7ff fffe 	bl	0 <main>
+			1f4: R_ARM_THM_CALL	rd
+ 1f8:	6ae3      	ldr	r3, [r4, #44]	@ 0x2c
+ 1fa:	4058      	eors	r0, r3
+ 1fc:	f020 4078 	bic.w	r0, r0, #4160749568	@ 0xf8000000
+ 200:	f420 0000 	bic.w	r0, r0, #8388608	@ 0x800000
+ 204:	2800      	cmp	r0, #0
+ 206:	d1a3      	bne.n	150 <main+0x150>
+ 208:	4897      	ldr	r0, [pc, #604]	@ (468 <main+0x468>)
+ 20a:	f7ff fffe 	bl	0 <main>
+			20a: R_ARM_THM_CALL	rd
+ 20e:	f000 003f 	and.w	r0, r0, #63	@ 0x3f
+ 212:	2832      	cmp	r0, #50	@ 0x32
+ 214:	d19c      	bne.n	150 <main+0x150>
+ 216:	4895      	ldr	r0, [pc, #596]	@ (46c <main+0x46c>)
+ 218:	f7ff fffe 	bl	0 <main>
+			218: R_ARM_THM_CALL	rd
+ 21c:	f000 7020 	and.w	r0, r0, #41943040	@ 0x2800000
+ 220:	f5b0 0f00 	cmp.w	r0, #8388608	@ 0x800000
+ 224:	d194      	bne.n	150 <main+0x150>
+ 226:	4892      	ldr	r0, [pc, #584]	@ (470 <main+0x470>)
+ 228:	f7ff fffe 	bl	0 <main>
+			228: R_ARM_THM_CALL	rd
+ 22c:	f010 7f20 	tst.w	r0, #41943040	@ 0x2800000
+ 230:	d18e      	bne.n	150 <main+0x150>
+ 232:	4890      	ldr	r0, [pc, #576]	@ (474 <main+0x474>)
+ 234:	f7ff fffe 	bl	0 <main>
+			234: R_ARM_THM_CALL	rd
+ 238:	f5b0 1fc0 	cmp.w	r0, #1572864	@ 0x180000
+ 23c:	d188      	bne.n	150 <main+0x150>
+ 23e:	488e      	ldr	r0, [pc, #568]	@ (478 <main+0x478>)
+ 240:	f7ff fffe 	bl	0 <main>
+			240: R_ARM_THM_CALL	rd
+ 244:	f3c0 000a 	ubfx	r0, r0, #0, #11
+ 248:	2800      	cmp	r0, #0
+ 24a:	d181      	bne.n	150 <main+0x150>
+ 24c:	488b      	ldr	r0, [pc, #556]	@ (47c <main+0x47c>)
+ 24e:	f7ff fffe 	bl	0 <main>
+			24e: R_ARM_THM_CALL	rd
+ 252:	f410 0fc0 	tst.w	r0, #6291456	@ 0x600000
+ 256:	f47f af7b 	bne.w	150 <main+0x150>
+ 25a:	4889      	ldr	r0, [pc, #548]	@ (480 <main+0x480>)
+ 25c:	f7ff fffe 	bl	0 <main>
+			25c: R_ARM_THM_CALL	rd
+ 260:	f410 0ff0 	tst.w	r0, #7864320	@ 0x780000
+ 264:	f47f af74 	bne.w	150 <main+0x150>
+ 268:	4886      	ldr	r0, [pc, #536]	@ (484 <main+0x484>)
+ 26a:	f7ff fffe 	bl	0 <main>
+			26a: R_ARM_THM_CALL	rd
+ 26e:	4604      	mov	r4, r0
+ 270:	4885      	ldr	r0, [pc, #532]	@ (488 <main+0x488>)
+ 272:	f7ff fffe 	bl	0 <main>
+			272: R_ARM_THM_CALL	rd
+ 276:	4304      	orrs	r4, r0
+ 278:	0564      	lsls	r4, r4, #21
+ 27a:	f53f af69 	bmi.w	150 <main+0x150>
+ 27e:	4883      	ldr	r0, [pc, #524]	@ (48c <main+0x48c>)
+ 280:	f7ff fffe 	bl	0 <main>
+			280: R_ARM_THM_CALL	rd
+ 284:	f000 4070 	and.w	r0, r0, #4026531840	@ 0xf0000000
+ 288:	ebb0 7f06 	cmp.w	r0, r6, lsl #28
+ 28c:	f47f af60 	bne.w	150 <main+0x150>
+ 290:	487f      	ldr	r0, [pc, #508]	@ (490 <main+0x490>)
+ 292:	f7ff fffe 	bl	0 <main>
+			292: R_ARM_THM_CALL	rd
+ 296:	f000 00f0 	and.w	r0, r0, #240	@ 0xf0
+ 29a:	ebb0 1f06 	cmp.w	r0, r6, lsl #4
+ 29e:	f47f af57 	bne.w	150 <main+0x150>
+ 2a2:	487c      	ldr	r0, [pc, #496]	@ (494 <main+0x494>)
+ 2a4:	f7ff fffe 	bl	0 <main>
+			2a4: R_ARM_THM_CALL	rd
+ 2a8:	4604      	mov	r4, r0
+ 2aa:	487b      	ldr	r0, [pc, #492]	@ (498 <main+0x498>)
+ 2ac:	f7ff fffe 	bl	0 <main>
+			2ac: R_ARM_THM_CALL	rd
+ 2b0:	4304      	orrs	r4, r0
+ 2b2:	487a      	ldr	r0, [pc, #488]	@ (49c <main+0x49c>)
+ 2b4:	f7ff fffe 	bl	0 <main>
+			2b4: R_ARM_THM_CALL	rd
+ 2b8:	4304      	orrs	r4, r0
+ 2ba:	4879      	ldr	r0, [pc, #484]	@ (4a0 <main+0x4a0>)
+ 2bc:	f7ff fffe 	bl	0 <main>
+			2bc: R_ARM_THM_CALL	rd
+ 2c0:	4304      	orrs	r4, r0
+ 2c2:	4878      	ldr	r0, [pc, #480]	@ (4a4 <main+0x4a4>)
+ 2c4:	f7ff fffe 	bl	0 <main>
+			2c4: R_ARM_THM_CALL	rd
+ 2c8:	4304      	orrs	r4, r0
+ 2ca:	4877      	ldr	r0, [pc, #476]	@ (4a8 <main+0x4a8>)
+ 2cc:	f7ff fffe 	bl	0 <main>
+			2cc: R_ARM_THM_CALL	rd
+ 2d0:	4304      	orrs	r4, r0
+ 2d2:	0360      	lsls	r0, r4, #13
+ 2d4:	f53f af3c 	bmi.w	150 <main+0x150>
+ 2d8:	4874      	ldr	r0, [pc, #464]	@ (4ac <main+0x4ac>)
+ 2da:	f7ff fffe 	bl	0 <main>
+			2da: R_ARM_THM_CALL	rd
+ 2de:	f020 00e0 	bic.w	r0, r0, #224	@ 0xe0
+ 2e2:	0400      	lsls	r0, r0, #16
+ 2e4:	0c00      	lsrs	r0, r0, #16
+ 2e6:	f5b0 4f5d 	cmp.w	r0, #56576	@ 0xdd00
+ 2ea:	f47f af31 	bne.w	150 <main+0x150>
+ 2ee:	4c70      	ldr	r4, [pc, #448]	@ (4b0 <main+0x4b0>)
+ 2f0:	4870      	ldr	r0, [pc, #448]	@ (4b4 <main+0x4b4>)
+ 2f2:	f7ff fffe 	bl	0 <main>
+			2f2: R_ARM_THM_CALL	rd
+ 2f6:	f504 5200 	add.w	r2, r4, #8192	@ 0x2000
+ 2fa:	f8d2 3834 	ldr.w	r3, [r2, #2100]	@ 0x834
+ 2fe:	2b01      	cmp	r3, #1
+ 300:	f47f af26 	bne.w	150 <main+0x150>
+ 304:	f8d2 37e8 	ldr.w	r3, [r2, #2024]	@ 0x7e8
+ 308:	2b01      	cmp	r3, #1
+ 30a:	f47f af21 	bne.w	150 <main+0x150>
+ 30e:	f8d2 17f0 	ldr.w	r1, [r2, #2032]	@ 0x7f0
+ 312:	4d69      	ldr	r5, [pc, #420]	@ (4b8 <main+0x4b8>)
+ 314:	f8d2 3838 	ldr.w	r3, [r2, #2104]	@ 0x838
+ 318:	42a9      	cmp	r1, r5
+ 31a:	f8d2 c84c 	ldr.w	ip, [r2, #2124]	@ 0x84c
+ 31e:	f8d2 783c 	ldr.w	r7, [r2, #2108]	@ 0x83c
+ 322:	f8d2 6808 	ldr.w	r6, [r2, #2056]	@ 0x808
+ 326:	f47f af13 	bne.w	150 <main+0x150>
+ 32a:	f8d2 5810 	ldr.w	r5, [r2, #2064]	@ 0x810
+ 32e:	428d      	cmp	r5, r1
+ 330:	f47f af0e 	bne.w	150 <main+0x150>
+ 334:	f894 2c65 	ldrb.w	r2, [r4, #3173]	@ 0xc65
+ 338:	2a00      	cmp	r2, #0
+ 33a:	f43f af09 	beq.w	150 <main+0x150>
+ 33e:	f504 5180 	add.w	r1, r4, #4096	@ 0x1000
+ 342:	f8d1 2fa8 	ldr.w	r2, [r1, #4008]	@ 0xfa8
+ 346:	42a2      	cmp	r2, r4
+ 348:	f47f af02 	bne.w	150 <main+0x150>
+ 34c:	f8d1 4fac 	ldr.w	r4, [r1, #4012]	@ 0xfac
+ 350:	42ac      	cmp	r4, r5
+ 352:	f47f aefd 	bne.w	150 <main+0x150>
+ 356:	f8d1 4fb0 	ldr.w	r4, [r1, #4016]	@ 0xfb0
+ 35a:	f502 6549 	add.w	r5, r2, #3216	@ 0xc90
+ 35e:	42ac      	cmp	r4, r5
+ 360:	f47f aef6 	bne.w	150 <main+0x150>
+ 364:	f892 5c66 	ldrb.w	r5, [r2, #3174]	@ 0xc66
+ 368:	f8d2 4c5c 	ldr.w	r4, [r2, #3164]	@ 0xc5c
+ 36c:	2d00      	cmp	r5, #0
+ 36e:	f47f aeef 	bne.w	150 <main+0x150>
+ 372:	f892 2c67 	ldrb.w	r2, [r2, #3175]	@ 0xc67
+ 376:	2a00      	cmp	r2, #0
+ 378:	f43f aeea 	beq.w	150 <main+0x150>
+ 37c:	ea43 030c 	orr.w	r3, r3, ip
+ 380:	433b      	orrs	r3, r7
+ 382:	f8d1 24e0 	ldr.w	r2, [r1, #1248]	@ 0x4e0
+ 386:	4333      	orrs	r3, r6
+ 388:	f020 0007 	bic.w	r0, r0, #7
+ 38c:	4323      	orrs	r3, r4
+ 38e:	0400      	lsls	r0, r0, #16
+ 390:	4313      	orrs	r3, r2
+ 392:	0c00      	lsrs	r0, r0, #16
+ 394:	4303      	orrs	r3, r0
+ 396:	f47f aedb 	bne.w	150 <main+0x150>
+ 39a:	4848      	ldr	r0, [pc, #288]	@ (4bc <main+0x4bc>)
+ 39c:	f7ff fffe 	bl	0 <main>
+			39c: R_ARM_THM_CALL	rd
+ 3a0:	07c1      	lsls	r1, r0, #31
+ 3a2:	f57f aed5 	bpl.w	150 <main+0x150>
+ 3a6:	4846      	ldr	r0, [pc, #280]	@ (4c0 <main+0x4c0>)
+ 3a8:	f7ff fffe 	bl	0 <main>
+			3a8: R_ARM_THM_CALL	rd
+ 3ac:	f400 7001 	and.w	r0, r0, #516	@ 0x204
+ 3b0:	f5b0 7f01 	cmp.w	r0, #516	@ 0x204
+ 3b4:	f47f aecc 	bne.w	150 <main+0x150>
+ 3b8:	482c      	ldr	r0, [pc, #176]	@ (46c <main+0x46c>)
+ 3ba:	f7ff fffe 	bl	0 <main>
+			3ba: R_ARM_THM_CALL	rd
+ 3be:	4c41      	ldr	r4, [pc, #260]	@ (4c4 <main+0x4c4>)
+ 3c0:	4b41      	ldr	r3, [pc, #260]	@ (4c8 <main+0x4c8>)
+ 3c2:	4020      	ands	r0, r4
+ 3c4:	4298      	cmp	r0, r3
+ 3c6:	f47f aec3 	bne.w	150 <main+0x150>
+ 3ca:	4840      	ldr	r0, [pc, #256]	@ (4cc <main+0x4cc>)
+ 3cc:	f7ff fffe 	bl	0 <main>
+			3cc: R_ARM_THM_CALL	rd
+ 3d0:	f410 7f01 	tst.w	r0, #516	@ 0x204
+ 3d4:	f47f aebc 	bne.w	150 <main+0x150>
+ 3d8:	4825      	ldr	r0, [pc, #148]	@ (470 <main+0x470>)
+ 3da:	f7ff fffe 	bl	0 <main>
+			3da: R_ARM_THM_CALL	rd
+ 3de:	4220      	tst	r0, r4
+ 3e0:	f47f aeb6 	bne.w	150 <main+0x150>
+ 3e4:	483a      	ldr	r0, [pc, #232]	@ (4d0 <main+0x4d0>)
+ 3e6:	f7ff fffe 	bl	0 <main>
+			3e6: R_ARM_THM_CALL	rd
+ 3ea:	07c2      	lsls	r2, r0, #31
+ 3ec:	f53f aeb0 	bmi.w	150 <main+0x150>
+ 3f0:	4838      	ldr	r0, [pc, #224]	@ (4d4 <main+0x4d4>)
+ 3f2:	f7ff fffe 	bl	0 <main>
+			3f2: R_ARM_THM_CALL	rd
+ 3f6:	2800      	cmp	r0, #0
+ 3f8:	f47f aeaa 	bne.w	150 <main+0x150>
+ 3fc:	4836      	ldr	r0, [pc, #216]	@ (4d8 <main+0x4d8>)
+ 3fe:	f7ff fffe 	bl	0 <main>
+			3fe: R_ARM_THM_CALL	rd
+ 402:	07c3      	lsls	r3, r0, #31
+ 404:	f53f aea4 	bmi.w	150 <main+0x150>
+ 408:	4834      	ldr	r0, [pc, #208]	@ (4dc <main+0x4dc>)
+ 40a:	f7ff fffe 	bl	0 <mt_live_clock_now>
+			40a: R_ARM_THM_CALL	mt_live_clock_now
+ 40e:	f1b1 3fff 	cmp.w	r1, #4294967295
+ 412:	bf08      	it	eq
+ 414:	f1b0 3fff 	cmpeq.w	r0, #4294967295
+ 418:	f43f ae9a 	beq.w	150 <main+0x150>
+ 41c:	4826      	ldr	r0, [pc, #152]	@ (4b8 <main+0x4b8>)
+ 41e:	f7ff fffe 	bl	0 <mt_timebase_update>
+			41e: R_ARM_THM_CALL	mt_timebase_update
+ 422:	2800      	cmp	r0, #0
+ 424:	f43f ae94 	beq.w	150 <main+0x150>
+ 428:	f7ff fffe 	bl	0 <mt_usb_time_valid>
+			428: R_ARM_THM_CALL	mt_usb_time_valid
+ 42c:	2800      	cmp	r0, #0
+ 42e:	f43f ae8f 	beq.w	150 <main+0x150>
+ 432:	f7ff fffe 	bl	0 <mt_boot_cpu_admit>
+			432: R_ARM_THM_CALL	mt_boot_cpu_admit
+ 436:	b910      	cbnz	r0, 43e <main+0x43e>
+ 438:	220b      	movs	r2, #11
+ 43a:	4b29      	ldr	r3, [pc, #164]	@ (4e0 <main+0x4e0>)
+ 43c:	e601      	b.n	42 <main+0x42>
+ 43e:	2201      	movs	r2, #1
+ 440:	4b28      	ldr	r3, [pc, #160]	@ (4e4 <main+0x4e4>)
+ 442:	4d1b      	ldr	r5, [pc, #108]	@ (4b0 <main+0x4b0>)
+ 444:	4c28      	ldr	r4, [pc, #160]	@ (4e8 <main+0x4e8>)
+ 446:	601a      	str	r2, [r3, #0]
+ 448:	4628      	mov	r0, r5
+ 44a:	f7ff fffe 	bl	0 <mt_live_runtime_step>
+			44a: R_ARM_THM_CALL	mt_live_runtime_step
+ 44e:	6020      	str	r0, [r4, #0]
+ 450:	e7fa      	b.n	448 <main+0x448>
+ 452:	bf00      	nop
+	...
+			454: R_ARM_ABS32	.bss.time_start
+			458: R_ARM_ABS32	.bss.usb_start
+ 45c:	40021000 	.word	0x40021000
+ 460:	030f00fb 	.word	0x030f00fb
+ 464:	40021004 	.word	0x40021004
+ 468:	40022000 	.word	0x40022000
+ 46c:	4002101c 	.word	0x4002101c
+ 470:	40021010 	.word	0x40021010
+ 474:	e000e100 	.word	0xe000e100
+ 478:	e000e104 	.word	0xe000e104
+ 47c:	e000e200 	.word	0xe000e200
+ 480:	e000e300 	.word	0xe000e300
+ 484:	e000e204 	.word	0xe000e204
+ 488:	e000e304 	.word	0xe000e304
+ 48c:	e000e410 	.word	0xe000e410
+ 490:	e000e414 	.word	0xe000e414
+ 494:	40010400 	.word	0x40010400
+ 498:	40010404 	.word	0x40010404
+ 49c:	40010408 	.word	0x40010408
+ 4a0:	4001040c 	.word	0x4001040c
+ 4a4:	40010410 	.word	0x40010410
+ 4a8:	40010414 	.word	0x40010414
+ 4ac:	40005c40 	.word	0x40005c40
+ 4b0:	00000000 	.word	0x00000000
+			4b0: R_ARM_ABS32	.bss.runtime
+ 4b4:	40005c50 	.word	0x40005c50
+ 4b8:	00000000 	.word	0x00000000
+			4b8: R_ARM_ABS32	.bss.timebase
+ 4bc:	40021014 	.word	0x40021014
+ 4c0:	40021018 	.word	0x40021018
+ 4c4:	02800003 	.word	0x02800003
+ 4c8:	00800003 	.word	0x00800003
+ 4cc:	4002100c 	.word	0x4002100c
+ 4d0:	40000400 	.word	0x40000400
+ 4d4:	40012408 	.word	0x40012408
+ 4d8:	40020008 	.word	0x40020008
+ 4dc:	000027f0 	.word	0x000027f0
+			4dc: R_ARM_ABS32	.bss.runtime
+	...
+			4e0: R_ARM_ABS32	mt_main_boot_failure
+			4e4: R_ARM_ABS32	mt_main_irq_admitted
+			4e8: R_ARM_ABS32	mt_main_last_runtime

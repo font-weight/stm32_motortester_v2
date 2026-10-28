@@ -1,0 +1,181 @@
+--- a/mt_live_runtime.c
++++ b/mt_live_runtime.c
+@@ -291,9 +291,145 @@
+         t->batch.phase==MT_BATCH1024_READY && t->batch.count==t->tx_count &&
+         t->batch.length==t->tx_length && t->tx_length && t->tx_length<=1335u;
+ }
++/* S_POSTCOPY: scheduling hint only; actual acquired view and TX ticket decide. */
++static int postcopy_hint(const mt_live_runtime *r)
++{
++    const mt_live_device *d=&r->device;
++    if(d->mode!=5u || d->state!=MT_LIVE_STREAMING || d->hardware_off ||
++       r->adc.state!=MT_ADC_DMA_RUNNING || !r->adc.owns_peripherals ||
++       !r->adc.stream_history_valid || r->adc.first_fault!=MT_ADC_DMA_FAULT_NONE ||
++       d->queue.used>MT_SAMPLE_QUEUE_SLOTS || MT_SAMPLE_QUEUE_SLOTS-d->queue.used>=4u ||
++       d->queue.sealed || d->clock_failed || d->local_error || d->first_reason ||
++       d->tx_type!=152u || d->tx_mode!=5u || d->tx_count!=1024u ||
++       !d->tx_offset || d->tx_offset>=d->tx_length || d->tx_length>1335u ||
++       d->tx_length-d->tx_offset>384u || d->tx_exhausted ||
++       !d->tx_next || d->tx_next>=UINT32_C(0xffffff00) ||
++       d->batch.phase!=MT_BATCH1024_READY || d->batch.count!=1024u ||
++       d->batch.length!=d->tx_length || d->want_start || d->want_caps ||
++       d->want_error || d->want_end || d->want_ack || d->stop_seen ||
++       d->stop_budget || d->hello_budget || d->inherited_budget ||
++       r->carry_offset!=r->carry_used || d->rx_used || d->rx_discarding ||
++       tud_cdc_n_available(0) || tud_task_event_ready())return 0;
++    return 1;
++}
++static int postcopy_identity(mt_live_runtime *r,const mt_live_adc_pending *p)
++{
++    return p->owner==&r->acquisition && r->epoch==p->epoch &&
++        r->soft_serial==p->soft_serial && mt_usb_bridge_actor()==p->actor &&
++        r->device.nonce==p->nonce && r->device.generation==p->generation &&
++        r->device.mode==p->mode && r->device.revision==p->revision &&
++        r->device.state==p->entry_state && r->device.state==MT_LIVE_STREAMING &&
++        !r->device.hardware_off && !r->device.queue.sealed && usable(r);
++}
++static mt_live_runtime_result postcopy_abort(mt_live_runtime *r,
++        mt_live_adc_pending *p,int clock_lost)
++{
++    p->phase=MT_LIVE_ADC_PENDING_ABORTED;
++    if(clock_lost)return time_fault(r);
++    /* Raw RESET may precede bridge epoch advancement. Explicit hard quarantine
++     * prevents synchronize_loss() returning healthy while a view is forgotten. */
++    r->pending=2u;
++    if(!synchronize_loss(r))return loss_result(r);
++    return MT_LIVE_RUNTIME_RECOVERY;
++}
++static mt_live_runtime_result postcopy_publish(mt_live_runtime *r,mt_live_adc_pending *p)
++{
++    mt_live_adc_split_result result;
++    for(unsigned chunk=0u;chunk<4u;++chunk) {
++        if(live_time(r)==UINT64_MAX)return postcopy_abort(r,p,1);
++        if(!postcopy_identity(r,p))return postcopy_abort(r,p,0);
++        result=mt_live_adc_publish_next(&r->acquisition,p);
++        if(result==MT_LIVE_ADC_SPLIT_STALE || result==MT_LIVE_ADC_SPLIT_BAD_ARGUMENT)
++            return postcopy_abort(r,p,0);
++        if(result==MT_LIVE_ADC_SPLIT_FAILED || result==MT_LIVE_ADC_SPLIT_DEADLINE) {
++            /* Actual source failure has already closed before quiesce. It may
++             * drain its certified prefix next pass, never offer this view again. */
++            if(live_time(r)==UINT64_MAX)return time_fault(r);
++            if(!stable(r))return postcopy_abort(r,p,0);
++            return MT_LIVE_RUNTIME_RECOVERY;
++        }
++        if(live_time(r)==UINT64_MAX)return postcopy_abort(r,p,1);
++        if(!postcopy_identity(r,p))return postcopy_abort(r,p,0);
++        if(result==MT_LIVE_ADC_SPLIT_PUBLISHED)return MT_LIVE_RUNTIME_OK;
++        if(result!=MT_LIVE_ADC_SPLIT_OWNED || p->published!=(chunk+1u)*MT_SAMPLE_QUEUE_BLOCK)
++            return postcopy_abort(r,p,0);
++    }
++    return postcopy_abort(r,p,0);
++}
++static int postcopy_ticket(const mt_live_tx_ticket *t,const mt_live_adc_pending *p)
++{
++    return t->result==MT_LIVE_TX_PREPARED && !t->error &&
++        t->state==MT_LIVE_STREAMING && t->mode==5u && t->tx_mode==5u &&
++        t->nonce==p->nonce && t->tx_nonce==p->nonce && t->generation==p->generation &&
++        t->revision==p->revision && t->tx_revision==p->revision &&
++        t->tx_type==152u && t->tx_count==1024u && t->tx_offset &&
++        t->tx_offset<t->tx_length && t->tx_length<=1335u &&
++        t->tx_length-t->tx_offset<=384u && t->batch.phase==MT_BATCH1024_READY &&
++        t->batch.count==t->tx_count && t->batch.length==t->tx_length;
++}
++/* Own a private half only on this stack. No RX/task/second read is reachable
++ * before publish/abort. Existing nested app scopes restore the outer actor. */
++static mt_live_runtime_result postcopy_handoff(mt_live_runtime *r,mt_live_tx_ticket *ticket,
++        unsigned *grant_attempted,unsigned *handoff_consumed,int *serviced)
++{
++    mt_live_adc_pending pending={0};mt_live_adc_split_result acquired;
++    mt_usb_scope scope;uint32_t key;int tx_ok;
++    acquired=mt_live_adc_acquire(&r->acquisition,&pending,r->epoch,r->soft_serial,
++        mt_usb_bridge_actor());
++    *serviced=acquired==MT_LIVE_ADC_SPLIT_OWNED?1:0;
++    if(acquired==MT_LIVE_ADC_SPLIT_EMPTY)return MT_LIVE_RUNTIME_OK;
++    if(acquired==MT_LIVE_ADC_SPLIT_BAD_ARGUMENT)return postcopy_abort(r,&pending,0);
++    if(acquired!=MT_LIVE_ADC_SPLIT_OWNED) {
++        *serviced=-1;
++        if(live_time(r)==UINT64_MAX)return time_fault(r);
++        if(!stable(r))return postcopy_abort(r,&pending,0);
++        return MT_LIVE_RUNTIME_RECOVERY;
++    }
++    if(live_time(r)==UINT64_MAX)return postcopy_abort(r,&pending,1);
++    if(!postcopy_identity(r,&pending))return postcopy_abort(r,&pending,0);
++    if(!postcopy_hint(r))return postcopy_publish(r,&pending);
++#if CFG_MT_PROGRESS_TRACE /* S_POSTCOPY_PREPARE */
++    uint32_t progress_prepare=mt_progress_prepare_begin();
++#endif
++    (void)mt_live_device_prepare_tx(&r->device,ticket);
++#if CFG_MT_PROGRESS_TRACE /* S_POSTCOPY_PREPARE */
++    mt_progress_prepare_end(progress_prepare);
++#endif
++    if(!postcopy_ticket(ticket,&pending))return postcopy_publish(r,&pending);
++    /* Consumed means opportunity selected, NOT proof that a grant/write ran. */
++    *handoff_consumed=1u;*grant_attempted=1u;
++    if(live_time(r)==UINT64_MAX)return postcopy_abort(r,&pending,1);
++    if(!postcopy_identity(r,&pending))return postcopy_abort(r,&pending,0);
++    grant_irq(r);
++    if(live_time(r)==UINT64_MAX)return postcopy_abort(r,&pending,1);
++    if(!postcopy_identity(r,&pending))return postcopy_abort(r,&pending,0);
++    MT_DIAG_STAMP(diag_tx);
++    key=mt_usb_bridge_lock();
++    tx_ok=prepared_tx_step(r,ticket,pending.epoch,pending.soft_serial);
++    mt_usb_bridge_unlock(key);
++    MT_DIAG_TX_END(diag_tx);
++    if(live_time(r)==UINT64_MAX)return postcopy_abort(r,&pending,1);
++    if(!postcopy_identity(r,&pending))return postcopy_abort(r,&pending,0);
++    if(mt_usb_bridge_app_enter(&scope)) {
++        if(usable(r))(void)tud_cdc_n_write_flush(0);
++        mt_usb_bridge_leave(&scope);
++    }
++    if(live_time(r)==UINT64_MAX)return postcopy_abort(r,&pending,1);
++    if(!postcopy_identity(r,&pending))return postcopy_abort(r,&pending,0);
++    if(tx_ok && ticket->tx_mode==5u && ticket->tx_type==152u &&
++       ticket->tx_count==1024u && ticket->tx_offset && !r->device.tx_length &&
++       r->device.batch.phase==MT_BATCH1024_EMPTY) {
++        mt_live_runtime_result prefetched=prefetch_after_tx(r,ticket,pending.epoch,pending.soft_serial);
++        if(prefetched==MT_LIVE_RUNTIME_TIME_FAULT)return postcopy_abort(r,&pending,1);
++        /* IDLE is only an optimization refusal: a valid half still needs offers. */
++        if(!postcopy_identity(r,&pending))return postcopy_abort(r,&pending,0);
++    }
++    return postcopy_publish(r,&pending);
++}
++
+ static mt_live_runtime_result step(mt_live_runtime *r,unsigned *grant_attempted) {
+     mt_usb_scope scope; uint32_t key,prepared_epoch,prepared_soft_serial; int serviced,tx_ok;
+-    mt_live_tx_ticket ticket; unsigned deferred_grant;
++    mt_live_tx_ticket ticket; unsigned deferred_grant,handoff_consumed=0u;
+     if(live_time(r)==UINT64_MAX || r->clock_fault)return time_fault(r);
+     if(!synchronize_loss(r))return loss_result(r);
+     tud_task_ext(0,false);
+@@ -314,15 +450,18 @@
+         }
+         r->open=1;
+     }
+-    serviced=mt_live_adc_service(&r->acquisition);
++    if(postcopy_hint(r)) {
++        mt_live_runtime_result handoff=postcopy_handoff(r,&ticket,grant_attempted,&handoff_consumed,&serviced);
++        if(handoff!=MT_LIVE_RUNTIME_OK) { mt_usb_bridge_leave(&scope); return handoff; }
++    } else serviced=mt_live_adc_service(&r->acquisition);
+     if(live_time(r)==UINT64_MAX) { mt_usb_bridge_leave(&scope); return time_fault(r); }
+     if(!stable(r)) { mt_usb_bridge_leave(&scope); (void)synchronize_loss(r); return loss_result(r); }
+     if(serviced==-2) { mt_usb_bridge_leave(&scope); return MT_LIVE_RUNTIME_ARGUMENT; }
+     /* A task completion can already have armed the next IN transfer. Release
+      * it after validated ADC service, before expensive RX/TX preparation.
+      * The scope's actor remains owned; ISR may invalidate epoch/clock state. */
+-    deferred_grant=(unsigned)defer_data_grant(r);
+-    if(!deferred_grant) { *grant_attempted=1u; grant_irq(r); }
++    deferred_grant=handoff_consumed?0u:(unsigned)defer_data_grant(r);
++    if(!handoff_consumed && !deferred_grant) { *grant_attempted=1u; grant_irq(r); }
+     /* New preemption boundary: no old RX FIFO read/rearm, core consumption or
+      * TX is permitted before a fresh clock/epoch/lifecycle observation. */
+     if(live_time(r)==UINT64_MAX) { mt_usb_bridge_leave(&scope); return time_fault(r); }
+@@ -339,6 +478,9 @@
+     if(live_time(r)==UINT64_MAX)return time_fault(r);
+     if(!synchronize_loss(r))return loss_result(r);
+     if(!usable(r))return MT_LIVE_RUNTIME_IDLE;
++    /* S_POSTCOPY: even a refused write consumed this pass's TX opportunity.
++     * Pending half was resolved before RX; Stop/HELLO replies wait next pass. */
++    if(handoff_consumed)return MT_LIVE_RUNTIME_OK;
+     /* Preserve epoch and forbid USB ISR preemption through the core's final
+      * post-write observation and state publication. Bound still needs proof. */
+ #if CFG_MT_STREAM_DIAGNOSTICS

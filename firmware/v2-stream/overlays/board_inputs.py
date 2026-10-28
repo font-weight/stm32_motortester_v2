@@ -17,7 +17,7 @@ def generate(raw):
     if set(config) != expected or config["schema"] != "motortester-v2-stream-build-1":
         raise ValueError("Unsupported V2 build configuration")
     fixed = {
-        "firmware_build": 0x5632534B, "flash_bytes": 65536, "ram_bytes": 20480,
+        "firmware_build": 0x5632534C, "flash_bytes": 65536, "ram_bytes": 20480,
         "cdc_tx_fifo_bytes": 384, "cdc_tx_transfer_bytes": 384,
         "usb_tx_burst_packets": 6, "usb_tx_burst_limit_us": 500,
         "nominal_sample_rate_hz": 100000, "adc_sample_cycles_x2": 83, "acquisition_modes": [1,2,3,4,5],

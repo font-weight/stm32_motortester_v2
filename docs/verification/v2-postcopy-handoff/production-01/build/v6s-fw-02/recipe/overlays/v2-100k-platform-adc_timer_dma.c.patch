@@ -1,0 +1,20 @@
+--- a/platform/adc_timer_dma.c
++++ b/platform/adc_timer_dma.c
+@@ -154,7 +154,7 @@
+         p.timer_hz < UINT32_C(1000000) ||
+         p.timer_hz / UINT32_C(1000000) > 65536u) { return false; }
+     p.timer_psc = p.timer_hz / UINT32_C(1000000) - 1u;
+-    p.timer_arr = 4u;
++    p.timer_arr = 9u;
+     if (initial) {
+         d->clock = p;
+         d->clock_cfgr = cfgr & CLOCK_MASK;
+@@ -361,7 +361,7 @@
+         return 0;
+     if (!clock_plan(d, true)) return 0;
+     return d->clock.timer_hz == 72000000u && d->clock.timer_psc == 71u &&
+-        d->clock.timer_arr == 4u && d->clock.adc_hz == 12000000u &&
++        d->clock.timer_arr == 9u && d->clock.adc_hz == 12000000u &&
+         (rd(d, DMA_CCR) & DMA_EN) == 0u && (rd(d, TIM_CR1) & 1u) == 0u &&
+         (rd(d, ADC_CR2) & ADC_ADON) == 0u;
+ }

@@ -1,0 +1,9 @@
+{
+  "status": "FAILED_CONFIG_PREFLIGHT",
+  "command": [".venv/Scripts/python.exe", "-I", "-B", "firmware/v2-stream/build_windows.py", "--output", "build/v6s-fw-01"],
+  "error": "ValueError: Review required before changing configuration: firmware_build",
+  "cause": "The shared board_inputs.py expected-build pin still named SK while config.json selected authorized SL.",
+  "compiler_started": false,
+  "output_directory_created_by_builder": false,
+  "preservation": "This attempt is retained; repaired build must use a new directory."
+}

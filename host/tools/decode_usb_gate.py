@@ -1,4 +1,4 @@
-"""Strict offline SK USB-gate-v1 decoder; no COM, SWD, UI or live reads.
+"""Strict offline SK/SL USB-gate-v1 decoder; no COM, SWD, UI or live reads.
 
 Contract: docs/streaming-usb-gate.md. Gate24 stops at N CLOSING, whereas the
 USB fields in progress64 are sampled later. Even equal HELD booleans do not
@@ -17,6 +17,7 @@ progress_decoder = importlib.util.module_from_spec(_spec)
 _spec.loader.exec_module(progress_decoder)
 
 BUILD = 0x5632534B
+SUPPORTED_BUILDS = (BUILD, 0x5632534C)
 MAGIC = 0x4D544731
 LAYOUT = struct.Struct('<4I3H2B')
 FIELDS = ('magic', 'flags', 'publication_serial', 'event_cycle', 'total_len',
@@ -48,7 +49,7 @@ def decode(first, second, progress_first, progress_second, legacy, nonce,
         return out
     if first != second:
         errors.append('repeated_gate_dump_mismatch')
-    if expected_build != BUILD:
+    if expected_build not in SUPPORTED_BUILDS:
         errors.append('unsupported_expected_gate_build')
     if not isinstance(legacy, dict):
         errors.append('legacy_report_not_object')
@@ -218,7 +219,7 @@ def main():
     ap.add_argument('--nonce', type=progress_decoder.number, required=True)
     ap.add_argument('--generation', type=progress_decoder.number, required=True)
     ap.add_argument('--image-sha256', required=True)
-    ap.add_argument('--build-id', type=progress_decoder.number, choices=(BUILD,), required=True)
+    ap.add_argument('--build-id', type=progress_decoder.number, choices=SUPPORTED_BUILDS, required=True)
     args = ap.parse_args()
     try:
         legacy_raw = progress_decoder.saved(args.legacy, 1024 * 1024)

@@ -1,0 +1,189 @@
+--- a/dcd_stm32_fsdev.c
++++ b/dcd_stm32_fsdev.c
+@@ -99,6 +99,8 @@
+ 
+   #include "device/dcd.h"
+   #include "fsdev_common.h"
++#include "mt_usb_gate.h" /* R_GATE_INCLUDE */
++bool mt_usb_fsdev_lifecycle_pending(void); /* R_GATE_PROTO */
+ 
+ //--------------------------------------------------------------------+
+ // MACRO CONSTANT TYPEDEF
+@@ -153,11 +155,27 @@
+       mt_tx_timer_read(0x40000028u)==71u &&
+       mt_tx_timer_read(0x4000002cu)==65535u;
+ }
+-static bool mt_tx_burst_time_ok(void) {
+-  /* TIM2 is fully validated by the foreground owner before grant. These
+-   * checks only bound continuation; no wraps, debugger halt or WCET inferred. */
+-  return mt_tx_timer_ready() &&
+-      (uint16_t)((uint16_t)mt_tx_timer_read(0x40000024u)-mt_tx_burst_counter)<500u;
++static bool mt_tx_burst_time_ok(unsigned *age) {
++  /* Same ready/CNT reads and order; expose only the already evaluated age. */
++  if(!mt_tx_timer_ready())return false;
++  *age=(uint16_t)((uint16_t)mt_tx_timer_read(0x40000024u)-mt_tx_burst_counter);
++  return *age<500u;
++}
++static bool mt_gate_time(unsigned *decision,unsigned *age) {
++  const bool ok=mt_tx_burst_time_ok(age);
++  return mt_gate_condition(decision,*age==UINT32_MAX?MT_G_TIMER_UNAVAILABLE:MT_G_HOLD_TIME,ok)!=0;
++}
++static bool mt_gate_continue(unsigned *decision,unsigned *age,unsigned initial,
++                            bool can,unsigned left,uint32_t int_status) {
++  /* Same short-circuit hardware expression, first evaluated false only. */
++  return mt_gate_condition(decision,initial,can) &&
++      mt_gate_condition(decision,MT_G_HOLD_BUDGET,left!=0u) &&
++      mt_gate_condition(decision,MT_G_HOLD_LIFECYCLE,!(int_status&(U_ISTR_RESET|U_ISTR_PMAOVR|U_ISTR_SUSP|U_ISTR_WKUP|U_ISTR_ERR))) &&
++      mt_gate_condition(decision,MT_G_HOLD_STATUS,!(FSDEV_REG->ISTR&(U_ISTR_DIR|U_ISTR_ERR))) &&
++      mt_gate_condition(decision,MT_G_HOLD_LIFECYCLE,!mt_usb_fsdev_lifecycle_pending()) &&
++      mt_gate_time(decision,age) &&
++      mt_gate_condition(decision,MT_G_HOLD_LIFECYCLE,!(FSDEV_REG->CNTR&(U_CNTR_FRES|U_CNTR_PDWN|U_CNTR_FSUSP))) &&
++      mt_gate_condition(decision,MT_G_HOLD_LIFECYCLE,(FSDEV_REG->DADDR&U_DADDR_EF)!=0u);
+ }
+ 
+ bool mt_usb_fsdev_ctr_deferred(void) { return mt_ctr_deferred; }
+@@ -181,9 +199,13 @@
+   /* Sole foreground owner, under the save/restore IRQ guard, after TIME/ADC.
+    * Grant lifecycle even with held task work or pending_soft. Otherwise a
+    * masked RESET/RESUME could never release the condition blocking CTR. */
+-  if (FSDEV_REG->CNTR & (U_CNTR_FRES | U_CNTR_PDWN)) return false;
++  if (FSDEV_REG->CNTR & (U_CNTR_FRES | U_CNTR_PDWN)) {
++    mt_gate_invalidate(1u); /* R_GATE_FRES */
++    return false;
++  }
+   bool ctr = allow_ctr && !mt_usb_fsdev_lifecycle_pending() &&
+       !(FSDEV_REG->CNTR & U_CNTR_FSUSP) && (FSDEV_REG->DADDR & U_DADDR_EF);
++  mt_gate_invalidate(0u); /* R_GATE_GRANT: old reason becomes historical. */
+   mt_tx_burst_left=ctr && mt_tx_timer_ready() ? 6u : 0u;
+   mt_tx_burst_counter=(uint16_t)mt_tx_timer_read(0x40000024u);
+   mt_ctr_deferred = !ctr;
+@@ -483,8 +505,11 @@
+   /* Every entry consumes the foreground grant, including RESET-only entries.
+    * Pending endpoint flags survive; only bounded CDC IN continuation may rearm. */
+   mt_usb_fsdev_irq_hold();
++  mt_gate_invalidate(0u); /* R_GATE_ISR_ENTRY */
+ #endif
+   uint32_t int_status = FSDEV_REG->ISTR;
++  if(int_status&(U_ISTR_RESET|U_ISTR_PMAOVR|U_ISTR_SUSP|U_ISTR_WKUP))
++    mt_gate_invalidate(1u); /* R_GATE_LIFECYCLE */
+ 
+   /* Put SOF flag at the beginning of ISR in case to get least amount of jitter if it is used for timing purposes */
+   if ((int_status & U_ISTR_SOF) && (FSDEV_REG->CNTR & U_CNTR_SOFM)) {
+@@ -555,6 +580,9 @@
+   unsigned mt_ctr_budget = 1u;
+   bool mt_ctr_serviced = false;
+   bool mt_continue_tx = false;
++  bool gate_seen=false,gate_meta=false;
++  unsigned gate_total=UINT16_MAX,gate_queued=UINT16_MAX;
++  unsigned gate_initial=MT_G_HOLD_OTHER,gate_decision=0u,gate_age=UINT32_MAX;
+   while (!mt_ctr_deferred && mt_ctr_budget && (FSDEV_REG->ISTR & U_ISTR_CTR)) {
+     --mt_ctr_budget;
+     mt_ctr_serviced = true;
+@@ -593,6 +621,15 @@
+           mt_xfer->max_packet_size==64u &&
+           mt_total<=384u && mt_queued && mt_queued<mt_total && !(mt_queued&63u);
+ #endif
++      /* R_GATE_BEGIN: only existing post-RX endpoint selection/RAM tuple. */
++      gate_seen=ep_num==2u;gate_total=mt_total;gate_queued=mt_queued;
++      gate_meta=gate_seen && (ep_reg&U_EP_T_FIELD)==U_EP_BULK &&
++          mt_xfer->max_packet_size==64u && mt_total<=384u && mt_queued<=mt_total &&
++          !(mt_buffer && mt_fifo) && (!mt_total || mt_buffer || mt_fifo) &&
++          (!mt_total || (mt_queued && (mt_queued==mt_total || !(mt_queued&63u))));
++      if(gate_meta && !(ep_reg&(U_EP_CTR_RX|U_EP_SETUP)) && mt_queued==mt_total)
++        gate_initial=MT_G_HOLD_FINAL;
++      /* R_GATE_END */
+       ep_write_clear_ctr(ep_id, TUSB_DIR_IN);
+       handle_ctr_tx(ep_id);
+ #if CFG_MT_USB_CTR_FAIRNESS
+@@ -602,6 +639,11 @@
+       mt_continue_tx=mt_candidate && mt_xfer->buffer==mt_buffer &&
+           mt_xfer->ff==mt_fifo && mt_xfer->total_len==mt_total &&
+           mt_xfer->queued_len==mt_next;
++      /* R_GATE_BEGIN: extra RAM checks do not re-read endpoint/MMIO registers. */
++      gate_meta=gate_meta && mt_xfer->buffer==mt_buffer && mt_xfer->ff==mt_fifo &&
++          mt_xfer->total_len==mt_total &&
++          mt_xfer->queued_len==(mt_queued==mt_total?mt_queued:mt_next);
++      /* R_GATE_END */
+ #endif
+     }
+   }
+@@ -613,17 +655,16 @@
+     /* Only an intermediate data-IN packet may spend the remaining grant.
+      * Final/RX/SETUP/control/lifecycle/error paths stay held for foreground.
+      * Check hardware lifecycle again: it may arrive during PMA publication. */
+-    if(mt_continue_tx && mt_tx_burst_left &&
+-        !(int_status&(U_ISTR_RESET|U_ISTR_PMAOVR|U_ISTR_SUSP|U_ISTR_WKUP|U_ISTR_ERR)) &&
+-        !(FSDEV_REG->ISTR&(U_ISTR_DIR|U_ISTR_ERR)) &&
+-        !mt_usb_fsdev_lifecycle_pending() && mt_tx_burst_time_ok() &&
+-        !(FSDEV_REG->CNTR&(U_CNTR_FRES|U_CNTR_PDWN|U_CNTR_FSUSP)) &&
+-        (FSDEV_REG->DADDR&U_DADDR_EF)) {
++    if(mt_gate_continue(&gate_decision,&gate_age,gate_initial,
++                        mt_continue_tx,mt_tx_burst_left,int_status)) {
+       mt_ctr_deferred=false;
+       FSDEV_REG->CNTR|=U_CNTR_CTRM;
+       mt_irq_held=false;
+       fsdev_int_enable(0);
+-    }
++      gate_decision=MT_G_RESUMED; /* R_GATE_RESUME */
++    }
++    if(gate_seen)mt_gate_note(gate_decision,gate_total,gate_queued,
++        mt_tx_burst_left,gate_age,gate_meta); /* R_GATE_NOTE */
+   }
+ #endif
+ 
+@@ -797,6 +838,7 @@
+ }
+ 
+ void dcd_edpt_close_all(uint8_t rhport) {
++  mt_gate_invalidate(1u); /* R_GATE_CANCEL */
+   dcd_int_disable(rhport);
+ 
+   for (uint32_t i = 1; i < FSDEV_EP_COUNT; i++) {
+@@ -979,12 +1021,16 @@
+   const tusb_dir_t dir    = tu_edpt_dir(ep_addr);
+   xfer_ctl_t      *xfer   = xfer_ctl_ptr(ep_num, dir);
+ 
++  mt_gate_submit_begin(ep_addr); /* R_GATE_SUBMIT_BEGIN */
+   xfer->buffer     = buffer;
+   xfer->ff         = NULL;
+   xfer->total_len  = total_bytes;
+   xfer->queued_len = 0;
+ 
+-  return edpt_xfer(rhport, ep_num, dir);
++  const bool gate_ok=edpt_xfer(rhport, ep_num, dir);
++  mt_gate_submit_done(ep_addr,gate_ok,total_bytes,xfer->queued_len,
++      xfer->max_packet_size,(xfer->buffer?1u:0u)|(xfer->ff?2u:0u),is_isr);
++  return gate_ok; /* R_GATE_SUBMIT_DONE */
+ }
+ 
+ bool dcd_edpt_xfer_fifo(uint8_t rhport, uint8_t ep_addr, tu_fifo_t *ff, uint16_t total_bytes, bool is_isr) {
+@@ -993,15 +1039,20 @@
+   const tusb_dir_t dir    = tu_edpt_dir(ep_addr);
+   xfer_ctl_t      *xfer   = xfer_ctl_ptr(ep_num, dir);
+ 
++  mt_gate_submit_begin(ep_addr); /* R_GATE_SUBMIT_BEGIN */
+   xfer->buffer     = NULL;
+   xfer->ff         = ff;
+   xfer->total_len  = total_bytes;
+   xfer->queued_len = 0;
+ 
+-  return edpt_xfer(rhport, ep_num, dir);
++  const bool gate_ok=edpt_xfer(rhport, ep_num, dir);
++  mt_gate_submit_done(ep_addr,gate_ok,total_bytes,xfer->queued_len,
++      xfer->max_packet_size,(xfer->buffer?1u:0u)|(xfer->ff?2u:0u),is_isr);
++  return gate_ok; /* R_GATE_SUBMIT_DONE */
+ }
+ 
+ void dcd_edpt_stall(uint8_t rhport, uint8_t ep_addr) {
++  if(ep_addr==0x82u)mt_gate_invalidate(1u); /* R_GATE_CANCEL */
+   (void)rhport;
+   const uint8_t    ep_num = tu_edpt_number(ep_addr);
+   const tusb_dir_t dir    = tu_edpt_dir(ep_addr);
+@@ -1024,6 +1075,7 @@
+ }
+ 
+ void dcd_edpt_clear_stall(uint8_t rhport, uint8_t ep_addr) {
++  if(ep_addr==0x82u)mt_gate_invalidate(1u); /* R_GATE_CANCEL */
+   (void)rhport;
+ 
+   const uint8_t    ep_num = tu_edpt_number(ep_addr);

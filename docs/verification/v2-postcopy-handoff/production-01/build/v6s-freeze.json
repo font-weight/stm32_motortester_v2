@@ -1,0 +1,405 @@
+{
+  "schema": "motortester-V2-06s-source-freeze-1",
+  "date": "2026-10-28",
+  "status": "POSTCOPY_HANDOFF_CANDIDATE_FROZEN_FOR_INDEPENDENT_REVIEW",
+  "firmware_build": "0x5632534c",
+  "baseline_build": "0x5632534b",
+  "product": "Motortester V2 Postcopy SL",
+  "production_files": [
+    {
+      "path": "firmware/v2-stream/README.md",
+      "bytes": 64241,
+      "sha256": "fbd9dd6772d849fca02a93c7e481c5b9a49636f802e51a6f7109056e7f23e83a"
+    },
+    {
+      "path": "firmware/v2-stream/build_windows.py",
+      "bytes": 30704,
+      "sha256": "65ef9897bed5835f7a5a03abbd2ae000915d0520629935c019e5806f666d7c6d"
+    },
+    {
+      "path": "firmware/v2-stream/config.json",
+      "bytes": 1034,
+      "sha256": "4af6be6e2d1b3b5b764a5cceb0f56cc0d374c867ef5572fd17c92a9eda44a170"
+    },
+    {
+      "path": "firmware/v2-stream/check_static.py",
+      "bytes": 18935,
+      "sha256": "1810437a79183f45f6437111623788e9a4c9c3366adb03909e175978517a9360"
+    },
+    {
+      "path": "firmware/v2-stream/overlays/board_inputs.py",
+      "bytes": 4228,
+      "sha256": "d0c8fbe5258e4663653fbfe5a0311374832f01e80d95da32550f77d4b9c46d0e"
+    },
+    {
+      "path": "firmware/v2-stream/overlays/postcopy-handoff.json",
+      "bytes": 1369,
+      "sha256": "7a1111d47e1570da6fce7c5151cf87ad7f76a06047203343c3401d7b9fa49bcf"
+    },
+    {
+      "path": "firmware/v2-stream/overlays/v2-postcopy-app-mt_live_adc.h.patch",
+      "bytes": 2048,
+      "sha256": "e77a0d7f7144921df86fd7f7aa4996d735e91e3446763d46aa2a72a9be2c8be7"
+    },
+    {
+      "path": "firmware/v2-stream/overlays/v2-postcopy-app-mt_live_adc.c.patch",
+      "bytes": 6136,
+      "sha256": "49e46973d104ccf6c4a06f149129988f04f9a041bf6d9c716e0646cc121f66de"
+    },
+    {
+      "path": "firmware/v2-stream/overlays/v2-postcopy-app-mt_live_runtime.c.patch",
+      "bytes": 10264,
+      "sha256": "55b1676c4831f6cda130f937a9bdcdb2014fc21e820fa4807edd3542885103dd"
+    },
+    {
+      "path": "firmware/v2-stream/progress/mt_stream_progress.c",
+      "bytes": 8062,
+      "sha256": "938666ea04c46583e31173ed741dc3e1f10a38c7fad7db0149718e6242d0c31b"
+    },
+    {
+      "path": "firmware/v2-stream/progress/mt_stream_progress.h",
+      "bytes": 3316,
+      "sha256": "7cc64b97266496ff053163d78cc155ae5a8aeb168755ad23be6a5517f938c881"
+    },
+    {
+      "path": "firmware/v2-stream/progress/mt_usb_gate.c",
+      "bytes": 6090,
+      "sha256": "a0c6cf54c0f9e8a322143a3e7ecbaa7b32db9ab3d046525c2ff0fb278e65e31b"
+    },
+    {
+      "path": "firmware/v2-stream/progress/mt_usb_gate.h",
+      "bytes": 2296,
+      "sha256": "2128cff35f6ac01dcc684f50b6fc2acd5dffed2161e89c9e04bf1ad4f62ca04d"
+    }
+  ],
+  "native_source_files": [
+    {
+      "path": "tests/v2-stream-firmware/check_postcopy_handoff.py",
+      "bytes": 14379,
+      "sha256": "1bb278d586dcf4a53df18b6af5917373a01c1c868e23f633b02343d1fdbcf0cb"
+    },
+    {
+      "path": "tests/v2-stream-firmware/postcopy_handoff_model.c",
+      "bytes": 27868,
+      "sha256": "15180d4ae4bcd3a5c6122add5bca2d1af4c7333b5c069970eacc0b6622b296b3"
+    }
+  ],
+  "protected_legacy_tests": [
+    {
+      "path": "tests/v2-stream-firmware/check_usb_gate.py",
+      "bytes": 7216,
+      "sha256": "067de6afbaa2faa1c60828b4fdc46d1e5bd8f1344f78efba9ca70c87181f9ad7"
+    },
+    {
+      "path": "tests/v2-stream-firmware/usb_gate_model.c",
+      "bytes": 7425,
+      "sha256": "e2134af1fc6e92cc36c86c1ffd615f8c8cb778269e581a98e6274beec0b158d1"
+    }
+  ],
+  "ARM_evidence": [
+    {
+      "path": "build/v6s-fw-02/receipt.json",
+      "bytes": 435709,
+      "sha256": "8cbc2b57d83e8b610277de5bf41dfb6ff32a538905862481ed11f9b19fced5a9"
+    },
+    {
+      "path": "build/v6s-fw-02/static-bound.json",
+      "bytes": 209618,
+      "sha256": "a5343755b375b8ead8dc6926c4ef6111680affbe2fef28efda5ca1a5371fad49"
+    },
+    {
+      "path": "build/v6s-fw-02/config.json",
+      "bytes": 1034,
+      "sha256": "4af6be6e2d1b3b5b764a5cceb0f56cc0d374c867ef5572fd17c92a9eda44a170"
+    },
+    {
+      "path": "build/v6s-fw-02/generated/mt_firmware_build.h",
+      "bytes": 130,
+      "sha256": "32f833249e9720cc46f7db48238a255c667db6f47d1c6e7e5af86a80eabea85c"
+    },
+    {
+      "path": "build/v6s-fw-02/generated/board.c",
+      "bytes": 948,
+      "sha256": "91c5af37ef8a83a2518f7ff00f1e7bc736227740728808f7b838aa824c20503c"
+    },
+    {
+      "path": "build/v6s-fw-02/MotortesterV2-stream-candidate.bin",
+      "bytes": 49532,
+      "sha256": "f82311cde2ce0a3e735543006b2bc7890e8761434c73e7adc7fa332f86cb8cb2"
+    },
+    {
+      "path": "build/v6s-fw-02/MotortesterV2-stream-candidate.elf",
+      "bytes": 87820,
+      "sha256": "3034a77fa007f872f32ff145b58f39f21e2e3d62d79919eb7505d05d3c1313db"
+    },
+    {
+      "path": "build/v6s-fw-02/image.map",
+      "bytes": 86450,
+      "sha256": "565a4ecc13178c91fba0c5afeb961a722efae02a273b65d680b1056ca91b9f92"
+    },
+    {
+      "path": "build/v6s-fw-02/image.nm",
+      "bytes": 20482,
+      "sha256": "d2fe76ec6edb512ca81e18ef35ce053fbca88d51cf5f47ac01913a6d088eb83c"
+    },
+    {
+      "path": "build/v6s-fw-02/size.stdout",
+      "bytes": 126,
+      "sha256": "2fd90ed1495ce08e171c9818c321539d191f3df1686244d75ad7604bd1668d65"
+    },
+    {
+      "path": "build/v6s-fw-02/patched/v2/app/mt_live_adc.h",
+      "bytes": 3910,
+      "sha256": "c0499074a50b7e359a909c4e4146ff7e5ee9f3c876ac262bfcd527765f2cecce"
+    },
+    {
+      "path": "build/v6s-fw-02/patched/v2/app/mt_live_adc.c",
+      "bytes": 11001,
+      "sha256": "c6b4422075a5bc81943be920ea93fff63693a966ad31becb2e34d6d2ee27155a"
+    },
+    {
+      "path": "build/v6s-fw-02/patched/v2/app/mt_live_runtime.c",
+      "bytes": 30866,
+      "sha256": "d1060d7cecabe32b68ae5539d6957b52349f56376bc9813ae2ee98098869fdbb"
+    },
+    {
+      "path": "build/v6s-fw-02/objects/21-mt_live_runtime.su",
+      "bytes": 1781,
+      "sha256": "b5e986c07c51795dd0e43f382b95880244cc88235a460d315465935448060714"
+    },
+    {
+      "path": "build/v6s-fw-02/objects/22-mt_live_adc.su",
+      "bytes": 813,
+      "sha256": "c48052539ec745add788d957c1527b3f9709bcbc5b0f92572d9c4c2329a33c61"
+    },
+    {
+      "path": "build/v6s-fw-02/objects/board.d",
+      "bytes": 599,
+      "sha256": "e3b6c5e54d43c8de96fb7c19cc0f3d471dcf11243e9c9878fda75b31701546d7"
+    },
+    {
+      "path": "build/v6s-fw-02/objects/29-mt_stream_progress.d",
+      "bytes": 6823,
+      "sha256": "423a90f6fbe8216b14dca829ad1ebdf101bde4daed1dfb970d2701aedd3fac71"
+    },
+    {
+      "path": "build/v6s-fw-02/objects/30-mt_usb_gate.d",
+      "bytes": 1080,
+      "sha256": "12760cda8dd53f1bc92d55601e3e070a94a83c028eaf0e215cc89d2e4ca6c134"
+    },
+    {
+      "path": "build/v6s-fw-02/disassembly-21-mt_live_runtime.stdout",
+      "bytes": 88646,
+      "sha256": "987977418636213151191ac7b35f32f9cb0efac882e5a8de24cabe43cade60e4"
+    },
+    {
+      "path": "build/v6s-fw-02/disassembly-22-mt_live_adc.stdout",
+      "bytes": 32406,
+      "sha256": "6ac92db6dab5c311973d96b3c209e877124cd91fe761cee00014aa906957d944"
+    }
+  ],
+  "native_evidence": [
+    {
+      "path": "build/v6s-native-01/result.json",
+      "bytes": 41454,
+      "sha256": "08bc8e0460fa4c5c5ed58fa767313bd25c2853374406de7db35bbc0c330af919"
+    },
+    {
+      "path": "build/v6s-native-01/source-equivalence.json",
+      "bytes": 13031,
+      "sha256": "8d8023083bbf47f32f8f43ba0481fdec5fce12f1cc82adf4ad629b991651be01"
+    },
+    {
+      "path": "build/v6s-native-01/model.c",
+      "bytes": 50663,
+      "sha256": "98376dc82e740f72daab7db1b1d86a43cc125f49cf586fc3ef29bde9b07312cb"
+    },
+    {
+      "path": "build/v6s-native-01/compile.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "build/v6s-native-01/compile.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "build/v6s-native-01/model.stdout",
+      "bytes": 612,
+      "sha256": "b5280a4f13ee7b6ce2ef720cd495c0bafc1ee7246124c68cc7829507a2e6f9f2"
+    },
+    {
+      "path": "build/v6s-native-01/model.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "build/v6s-native-01/actual-gate.bin",
+      "bytes": 24,
+      "sha256": "2aa983d6c2c8ea8951b39a27274486f9cf62c7edc2b139854978ab04e64898b3"
+    },
+    {
+      "path": "build/v6s-native-01/actual-progress.bin",
+      "bytes": 64,
+      "sha256": "37d17b307bd058f31e0c1aff577b316dd3bc4d6830e32e3f4d3a0cf3535f48f8"
+    },
+    {
+      "path": "build/v6s-native-01/actual-legacy.bin",
+      "bytes": 136,
+      "sha256": "0713c47cf0e29c538fa6c3c0fe44735c6fd3e6d96fd6e46d440f396da42241f1"
+    },
+    {
+      "path": "build/v6s-native-01/companion.json",
+      "bytes": 682,
+      "sha256": "38630ba746b3f0840c96ebb7f96955b09469072d0728eaf2a1990b4469f649ff"
+    },
+    {
+      "path": "build/v6s-native-01/generated/mt_firmware_build.h",
+      "bytes": 130,
+      "sha256": "32f833249e9720cc46f7db48238a255c667db6f47d1c6e7e5af86a80eabea85c"
+    }
+  ],
+  "root_host_evidence": [
+    {
+      "path": "docs/streaming-postcopy-handoff.md",
+      "bytes": 32164,
+      "sha256": "521e91d88b8234be6f8db7cbecfd79b6f4bd4c47dbb38dd871242a0d97b1b149"
+    },
+    {
+      "path": "host/tools/decode_stream_progress.py",
+      "bytes": 10852,
+      "sha256": "c7d39df435d156ce6d884869fe699a861ee3c369432c51522f01e9a8ab7e726f"
+    },
+    {
+      "path": "host/tools/decode_usb_gate.py",
+      "bytes": 13304,
+      "sha256": "f568f4035190e2945af094237e66da014f0c739de3b1f572285e7059530e0b87"
+    },
+    {
+      "path": "host/tests/stream_progress_decoder_check.py",
+      "bytes": 8128,
+      "sha256": "9d2734dbee3b6fb926355355c4d5dd887ff7ed05d127b2f9d3b64d93b4824c0b"
+    },
+    {
+      "path": "host/tests/usb_gate_decoder_check.py",
+      "bytes": 13904,
+      "sha256": "6d4a3a8bb48f3c76c574de6a3747155bac58732dd5974090e1f943f4f7db022c"
+    },
+    {
+      "path": "host/tests/postcopy_identity_check.py",
+      "bytes": 10978,
+      "sha256": "8cffc4129824e83a26445ea3cf7d10e8a91fc71eb3522095cba924e04b170e80"
+    },
+    {
+      "path": "build/v6s-host-identity-01/result.json",
+      "bytes": 11526,
+      "sha256": "a9f9146a59c4e88eab9a9112d16050c9d6e6467e4a054a82dc3b81a8f27b4012"
+    }
+  ],
+  "author_evidence": [
+    {
+      "path": "build/v6s-design/contract-draft.md",
+      "bytes": 31043,
+      "sha256": "e4752a6c35f8cf101ab7e5937d29a06f74857f52fe27feebd0a9ad8992cf0be2"
+    },
+    {
+      "path": "build/v6s-design/implementation-plan.md",
+      "bytes": 10802,
+      "sha256": "e61bfda7f8f9f2a4cd28166263ed6141fa96c50f5d650288dc635a3bfad6a8ab"
+    },
+    {
+      "path": "build/v6s-analysis/author-audit.md",
+      "bytes": 6644,
+      "sha256": "99ceb5e4d1461a87218a7c9313fb8134534ba155e1e1b70026980bb382149525"
+    },
+    {
+      "path": "build/v6s-analysis/make_freeze.py",
+      "bytes": 6694,
+      "sha256": "2eee065522d0f4b9fac41240976085502d1c048536c5c557533ef342611f37f0"
+    }
+  ],
+  "failed_attempts": {
+    "ARM01": {
+      "status": "FAILED_CONFIG_PREFLIGHT",
+      "compiler_started": false,
+      "reason": "Config selected authorized SL while board_inputs expected-build pin remained SK; changed only reviewed pin then built new ARM02.",
+      "evidence": [
+        {
+          "path": "build/v6s-fw-01/attempt.json",
+          "bytes": 537,
+          "sha256": "4beac7c1bc0d958426845d26f363b9b8abcb2ab7a0e71e00e4a62794ae8febd0"
+        },
+        {
+          "path": "build/v6s-fw-01/preflight.stderr",
+          "bytes": 828,
+          "sha256": "2cb718c3c3a99eff14ad7a574f9862007b7746e9ca4a16d14294ba8f96447731"
+        }
+      ]
+    },
+    "native_failed_attempts": [],
+    "successful_ARM_builds": 1,
+    "native_executions": 1
+  },
+  "resources": {
+    "BIN_path": "build/v6s-fw-02/MotortesterV2-stream-candidate.bin",
+    "BIN_bytes": 49532,
+    "BIN_sha256": "f82311cde2ce0a3e735543006b2bc7890e8761434c73e7adc7fa332f86cb8cb2",
+    "ELF_path": "build/v6s-fw-02/MotortesterV2-stream-candidate.elf",
+    "ELF_sha256": "3034a77fa007f872f32ff145b58f39f21e2e3d62d79919eb7505d05d3c1313db",
+    "text": 49404,
+    "data": 128,
+    "bss": 12156,
+    "all_new_static_private_alignment_bytes": 0,
+    "legacy136_address": "0x20002f1c",
+    "progress64_address": "0x20002fa4",
+    "gate24_address": "0x20002fe4",
+    "ram_bytes": 20480,
+    "stack_reserve_bytes": 8192,
+    "static_plus_stack_reserved_bytes": 20476,
+    "spare_bytes": 4,
+    "pending_stack_receipt_bytes": 88,
+    "conditional_stack_upper_bytes": 6348,
+    "conditional_stack_aligned_bytes": 6352,
+    "physical_stack_or_WCET_verified": false
+  },
+  "verification": {
+    "ARM_status": "BUILT_STATIC_CHECKED_TRANSPORT_CANDIDATE",
+    "native_status": "PASS",
+    "native_input_drift": [],
+    "source_equality": "Old adapter/service and runtime helpers exact; original runtime after explicit new-block removal; all other source and objects SK unchanged except generated identity.",
+    "host_status": "PASS",
+    "hardware_executed": false,
+    "old_broad_suites_repeated": false
+  },
+  "hook_map": {
+    "selection": "postcopy_hint before original ADC service; modes1-4/noneligible still original service",
+    "ownership": "actual mt_live_adc_acquire -> private512 receipt -> <=4 publish_next128; no RX/read before terminal disposition",
+    "write": "selected handoff consumes grant/TX opportunity before barriers; actual guarded prepared step, old finalTIME+flush+Q certificate",
+    "loss": "fresh pre/post perchunk observed loss; raw lifecycle forces existing pending2 quarantine; never clean END or later TX from lost queue data",
+    "diagnostics": "Existing N prepare span, legacy TX stamp and Q span retained; existing firstclose136/64/24 ABIs unchanged"
+  },
+  "fixture_scope": {
+    "origin": "SYNTHETIC_NATIVE_C_SETUP_NOT_PHYSICAL",
+    "generation": 3,
+    "nonce_hex": "00000000000001f7",
+    "legacy_module_not_executed": true,
+    "actual_N64_G24": true,
+    "firmware_build": "0x5632534c",
+    "fixtures": {
+      "actual-gate.bin": "2aa983d6c2c8ea8951b39a27274486f9cf62c7edc2b139854978ab04e64898b3",
+      "actual-progress.bin": "37d17b307bd058f31e0c1aff577b316dd3bc4d6830e32e3f4d3a0cf3535f48f8",
+      "actual-legacy.bin": "0713c47cf0e29c538fa6c3c0fe44735c6fd3e6d96fd6e46d440f396da42241f1"
+    }
+  },
+  "limits": [
+    "Sustainable150k remains unverified; R2 failure is not repaired by software-test PASS.",
+    "Native MMIO/TIME/USB/IRQ/actor stimuli and legacy API/setup are synthetic, not physical identity or timing.",
+    "Deadline3413 and grant6/<500 unchanged;500 is continuation admission, not IRQ WCET.",
+    "Observed-loss allows old-session queue writes before next fresh check; quarantine prohibits later wire/new-session publication.",
+    "Exact-image stack bound is conditional, not physical watermark; no COM/SWD/Reset/Flash performed."
+  ],
+  "independent_source_review": "PENDING_SEPARATE_GATE",
+  "hardware_executed": false,
+  "flash_approved": false
+}

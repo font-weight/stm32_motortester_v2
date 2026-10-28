@@ -1,0 +1,10 @@
+Traceback (most recent call last):
+  File "C:\Users\Alexandr\Desktop\New folder\универ\мотортестер 2\firmware\v2-stream\build_windows.py", line 494, in <module>
+    main()
+    ~~~~^^
+  File "C:\Users\Alexandr\Desktop\New folder\универ\мотортестер 2\firmware\v2-stream\build_windows.py", line 107, in main
+    config, board_c, timing_c = load(here / "overlays/board_inputs.py").generate(config_raw)
+                                ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^
+  File "C:\Users\Alexandr\Desktop\New folder\универ\мотортестер 2\firmware\v2-stream\overlays\board_inputs.py", line 34, in generate
+    raise ValueError("Review required before changing configuration: " + name)
+ValueError: Review required before changing configuration: firmware_build

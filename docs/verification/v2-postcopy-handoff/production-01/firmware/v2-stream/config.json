@@ -1,0 +1,43 @@
+{
+  "schema": "motortester-v2-stream-build-1",
+  "firmware_build": 1446138700,
+  "cdc_tx_fifo_bytes": 384,
+  "cdc_tx_transfer_bytes": 384,
+  "usb_tx_burst_packets": 6,
+  "usb_tx_burst_limit_us": 500,
+  "nominal_sample_rate_hz": 100000,
+  "adc_sample_cycles_x2": 83,
+  "dma_samples": 1024,
+  "data_samples": 128,
+  "queue_slots": 8,
+  "flash_bytes": 65536,
+  "ram_bytes": 20480,
+  "stack_reserve_bytes": 8192,
+  "assumed_hse_hz": 8000000,
+  "assumed_hse_mode": "crystal",
+  "assumed_fixed_usb_pullup": true,
+  "board_assumptions_verified": false,
+  "clock_poll_budget": 1000000,
+  "usb_irq_priority": 0,
+  "require_dtr": true,
+  "provisional_transaction_bound_ms": 1,
+  "transaction_bound_measured": false,
+  "diagnostics": true,
+  "usb": {
+    "vid": 4617,
+    "pid": 1,
+    "bcd_device": 512,
+    "bus_power_ma": 100,
+    "manufacturer": "font-weight",
+    "product": "Motortester V2 Postcopy SL",
+    "serial": "AH20261017001"
+  },
+  "active_profile_enabled": false,
+  "acquisition_modes": [
+    1,
+    2,
+    3,
+    4,
+    5
+  ]
+}

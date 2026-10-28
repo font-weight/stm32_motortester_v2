@@ -1,0 +1,66 @@
+--- a/dcd_stm32_fsdev.c
++++ b/dcd_stm32_fsdev.c
+@@ -138,20 +138,37 @@
+ #error "CTR fairness requires the guarded STM32F103xB stream profile"
+ #endif
+ static volatile bool mt_ctr_deferred;
+-
+-bool mt_usb_fsdev_ctr_deferred(void) {
+-  return mt_ctr_deferred;
+-}
+-
+-// Foreground only, under the same save/restore guard as the DCD ISR. The owner
+-// must service ADC/TIME and empty queued USB work before granting a new quantum.
+-// This never clears pending CTR or fabricates completion/epoch evidence.
+-bool mt_usb_fsdev_ctr_rearm(void) {
+-  if ((FSDEV_REG->ISTR & (U_ISTR_RESET | U_ISTR_PMAOVR | U_ISTR_SUSP)) ||
+-      (FSDEV_REG->CNTR & (U_CNTR_FRES | U_CNTR_PDWN | U_CNTR_FSUSP)) ||
+-      !(FSDEV_REG->DADDR & U_DADDR_EF)) return false;
+-  mt_ctr_deferred = false;
+-  FSDEV_REG->CNTR |= U_CNTR_CTRM;
++static volatile bool mt_irq_held;
++
++bool mt_usb_fsdev_ctr_deferred(void) { return mt_ctr_deferred; }
++bool mt_usb_fsdev_irq_held(void) { return mt_irq_held; }
++
++bool mt_usb_fsdev_lifecycle_pending(void) {
++  /* No flag is consumed here. Until ISR publishes its epoch/soft loss, neither
++   * foreground dispatch nor application I/O may use the earlier observation. */
++  return (FSDEV_REG->ISTR & (U_ISTR_RESET | U_ISTR_PMAOVR |
++                            U_ISTR_SUSP | U_ISTR_WKUP)) != 0;
++}
++
++static void mt_usb_fsdev_irq_hold(void) {
++  /* RM0008: dedicated endpoint interrupt is independent of CNTR.CTRM.
++   * Mask both NVIC lines before any event/EP helper can re-enable them. */
++  mt_irq_held = true;
++  fsdev_int_disable(0);
++}
++
++bool mt_usb_fsdev_irq_grant(bool allow_ctr) {
++  /* Sole foreground owner, under the save/restore IRQ guard, after TIME/ADC.
++   * Grant lifecycle even with held task work or pending_soft. Otherwise a
++   * masked RESET/RESUME could never release the condition blocking CTR. */
++  if (FSDEV_REG->CNTR & (U_CNTR_FRES | U_CNTR_PDWN)) return false;
++  bool ctr = allow_ctr && !mt_usb_fsdev_lifecycle_pending() &&
++      !(FSDEV_REG->CNTR & U_CNTR_FSUSP) && (FSDEV_REG->DADDR & U_DADDR_EF);
++  mt_ctr_deferred = !ctr;
++  if (ctr) FSDEV_REG->CNTR |= U_CNTR_CTRM;
++  else FSDEV_REG->CNTR &= (fsdev_bus_t)~U_CNTR_CTRM;
++  mt_irq_held = false;
++  fsdev_int_enable(0);
+   return true;
+ }
+ #endif
+@@ -440,6 +457,11 @@
+ }
+ 
+ void dcd_int_handler(uint8_t rhport) {
++#if CFG_MT_USB_CTR_FAIRNESS
++  /* Every entry consumes the foreground grant, including RESET-only entries.
++   * Pending endpoint flags survive; no second IRQ may tail-chain this quantum. */
++  mt_usb_fsdev_irq_hold();
++#endif
+   uint32_t int_status = FSDEV_REG->ISTR;
+ 
+   /* Put SOF flag at the beginning of ISR in case to get least amount of jitter if it is used for timing purposes */

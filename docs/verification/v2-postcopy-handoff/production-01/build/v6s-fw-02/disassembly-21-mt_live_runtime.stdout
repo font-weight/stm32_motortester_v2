@@ -1,0 +1,2240 @@
+
+objects/21-mt_live_runtime.o:     file format elf32-littlearm
+
+
+Disassembly of section .text.adc_read:
+
+00000000 <adc_read>:
+   0:	f500 5000 	add.w	r0, r0, #8192	@ 0x2000
+   4:	f8d0 3814 	ldr.w	r3, [r0, #2068]	@ 0x814
+   8:	f8d0 081c 	ldr.w	r0, [r0, #2076]	@ 0x81c
+   c:	4718      	bx	r3
+
+Disassembly of section .text.adc_write:
+
+00000000 <adc_write>:
+   0:	f500 5000 	add.w	r0, r0, #8192	@ 0x2000
+   4:	f8d0 3818 	ldr.w	r3, [r0, #2072]	@ 0x818
+   8:	f8d0 081c 	ldr.w	r0, [r0, #2076]	@ 0x81c
+   c:	4718      	bx	r3
+
+Disassembly of section .text.quiescent:
+
+00000000 <quiescent>:
+   0:	f500 5280 	add.w	r2, r0, #4096	@ 0x1000
+   4:	4603      	mov	r3, r0
+   6:	f8d2 0534 	ldr.w	r0, [r2, #1332]	@ 0x534
+   a:	b148      	cbz	r0, 20 <quiescent+0x20>
+   c:	f893 2c66 	ldrb.w	r2, [r3, #3174]	@ 0xc66
+  10:	b92a      	cbnz	r2, 1e <quiescent+0x1e>
+  12:	f8d3 0c5c 	ldr.w	r0, [r3, #3164]	@ 0xc5c
+  16:	fab0 f080 	clz	r0, r0
+  1a:	0940      	lsrs	r0, r0, #5
+  1c:	4770      	bx	lr
+  1e:	2000      	movs	r0, #0
+  20:	4770      	bx	lr
+
+Disassembly of section .text.commit_enter:
+
+00000000 <commit_enter>:
+   0:	f7ff bffe 	b.w	0 <mt_usb_bridge_lock>
+			0: R_ARM_THM_JUMP24	mt_usb_bridge_lock
+
+Disassembly of section .text.commit_leave:
+
+00000000 <commit_leave>:
+   0:	4608      	mov	r0, r1
+   2:	f7ff bffe 	b.w	0 <mt_usb_bridge_unlock>
+			2: R_ARM_THM_JUMP24	mt_usb_bridge_unlock
+
+Disassembly of section .text.live_stop:
+
+00000000 <live_stop>:
+   0:	b538      	push	{r3, r4, r5, lr}
+   2:	460d      	mov	r5, r1
+   4:	f500 5180 	add.w	r1, r0, #4096	@ 0x1000
+   8:	f8d1 34e0 	ldr.w	r3, [r1, #1248]	@ 0x4e0
+   c:	4604      	mov	r4, r0
+   e:	2b02      	cmp	r3, #2
+  10:	d10a      	bne.n	28 <live_stop+0x28>
+  12:	f8d1 35a4 	ldr.w	r3, [r1, #1444]	@ 0x5a4
+  16:	b13b      	cbz	r3, 28 <live_stop+0x28>
+  18:	f500 53a8 	add.w	r3, r0, #5376	@ 0x1500
+  1c:	e953 2302 	ldrd	r2, r3, [r3, #-8]
+  20:	f8d1 0558 	ldr.w	r0, [r1, #1368]	@ 0x558
+  24:	f7ff fffe 	bl	0 <mt_stream_diag_begin>
+			24: R_ARM_THM_CALL	mt_stream_diag_begin
+  28:	f504 50fd 	add.w	r0, r4, #8096	@ 0x1fa0
+  2c:	4629      	mov	r1, r5
+  2e:	e8bd 4038 	ldmia.w	sp!, {r3, r4, r5, lr}
+  32:	3008      	adds	r0, #8
+  34:	f7ff bffe 	b.w	0 <mt_live_adc_quiesce>
+			34: R_ARM_THM_JUMP24	mt_live_adc_quiesce
+
+Disassembly of section .text.live_time:
+
+00000000 <live_time>:
+   0:	f500 501f 	add.w	r0, r0, #10176	@ 0x27c0
+   4:	3030      	adds	r0, #48	@ 0x30
+   6:	f7ff bffe 	b.w	0 <mt_live_clock_now>
+			6: R_ARM_THM_JUMP24	mt_live_clock_now
+
+Disassembly of section .text.adc_time:
+
+00000000 <adc_time>:
+   0:	f500 5000 	add.w	r0, r0, #8192	@ 0x2000
+   4:	f8d0 0810 	ldr.w	r0, [r0, #2064]	@ 0x810
+   8:	f7ff bffe 	b.w	0 <mt_timebase_now_us>
+			8: R_ARM_THM_JUMP24	mt_timebase_now_us
+
+Disassembly of section .text.postcopy_hint:
+
+00000000 <postcopy_hint>:
+   0:	b508      	push	{r3, lr}
+   2:	f500 5380 	add.w	r3, r0, #4096	@ 0x1000
+   6:	f8b3 24e4 	ldrh.w	r2, [r3, #1252]	@ 0x4e4
+   a:	2a05      	cmp	r2, #5
+   c:	d001      	beq.n	12 <postcopy_hint+0x12>
+   e:	2000      	movs	r0, #0
+  10:	bd08      	pop	{r3, pc}
+  12:	f8d3 24e0 	ldr.w	r2, [r3, #1248]	@ 0x4e0
+  16:	2a04      	cmp	r2, #4
+  18:	d1f9      	bne.n	e <postcopy_hint+0xe>
+  1a:	f8d3 2534 	ldr.w	r2, [r3, #1332]	@ 0x534
+  1e:	2a00      	cmp	r2, #0
+  20:	d1f5      	bne.n	e <postcopy_hint+0xe>
+  22:	f8d0 2c5c 	ldr.w	r2, [r0, #3164]	@ 0xc5c
+  26:	2a01      	cmp	r2, #1
+  28:	d1f1      	bne.n	e <postcopy_hint+0xe>
+  2a:	f890 2c66 	ldrb.w	r2, [r0, #3174]	@ 0xc66
+  2e:	2a00      	cmp	r2, #0
+  30:	d0ed      	beq.n	e <postcopy_hint+0xe>
+  32:	f890 2c68 	ldrb.w	r2, [r0, #3176]	@ 0xc68
+  36:	2a00      	cmp	r2, #0
+  38:	d0e9      	beq.n	e <postcopy_hint+0xe>
+  3a:	f8d0 2c88 	ldr.w	r2, [r0, #3208]	@ 0xc88
+  3e:	2a00      	cmp	r2, #0
+  40:	d1e5      	bne.n	e <postcopy_hint+0xe>
+  42:	f8d3 24d4 	ldr.w	r2, [r3, #1236]	@ 0x4d4
+  46:	2a08      	cmp	r2, #8
+  48:	d8e1      	bhi.n	e <postcopy_hint+0xe>
+  4a:	f1c2 0208 	rsb	r2, r2, #8
+  4e:	2a03      	cmp	r2, #3
+  50:	d8dd      	bhi.n	e <postcopy_hint+0xe>
+  52:	f8d3 24d8 	ldr.w	r2, [r3, #1240]	@ 0x4d8
+  56:	2a00      	cmp	r2, #0
+  58:	d1d9      	bne.n	e <postcopy_hint+0xe>
+  5a:	f8d3 2538 	ldr.w	r2, [r3, #1336]	@ 0x538
+  5e:	2a00      	cmp	r2, #0
+  60:	d1d5      	bne.n	e <postcopy_hint+0xe>
+  62:	f8d3 2568 	ldr.w	r2, [r3, #1384]	@ 0x568
+  66:	2a00      	cmp	r2, #0
+  68:	d1d1      	bne.n	e <postcopy_hint+0xe>
+  6a:	f8b3 2564 	ldrh.w	r2, [r3, #1380]	@ 0x564
+  6e:	2a00      	cmp	r2, #0
+  70:	d1cd      	bne.n	e <postcopy_hint+0xe>
+  72:	f893 2f54 	ldrb.w	r2, [r3, #3924]	@ 0xf54
+  76:	2a98      	cmp	r2, #152	@ 0x98
+  78:	d1c9      	bne.n	e <postcopy_hint+0xe>
+  7a:	f8b3 24e8 	ldrh.w	r2, [r3, #1256]	@ 0x4e8
+  7e:	2a05      	cmp	r2, #5
+  80:	d1c5      	bne.n	e <postcopy_hint+0xe>
+  82:	f8b3 2f70 	ldrh.w	r2, [r3, #3952]	@ 0xf70
+  86:	f5b2 6f80 	cmp.w	r2, #1024	@ 0x400
+  8a:	d1c0      	bne.n	e <postcopy_hint+0xe>
+  8c:	f8d3 2f50 	ldr.w	r2, [r3, #3920]	@ 0xf50
+  90:	2a00      	cmp	r2, #0
+  92:	d0bc      	beq.n	e <postcopy_hint+0xe>
+  94:	f8d3 1f4c 	ldr.w	r1, [r3, #3916]	@ 0xf4c
+  98:	428a      	cmp	r2, r1
+  9a:	d2b8      	bcs.n	e <postcopy_hint+0xe>
+  9c:	f5b1 6fa7 	cmp.w	r1, #1336	@ 0x538
+  a0:	d2b5      	bcs.n	e <postcopy_hint+0xe>
+  a2:	1a8a      	subs	r2, r1, r2
+  a4:	f5b2 7fc0 	cmp.w	r2, #384	@ 0x180
+  a8:	d8b1      	bhi.n	e <postcopy_hint+0xe>
+  aa:	f8d3 2560 	ldr.w	r2, [r3, #1376]	@ 0x560
+  ae:	2a00      	cmp	r2, #0
+  b0:	d1ad      	bne.n	e <postcopy_hint+0xe>
+  b2:	f8d3 2554 	ldr.w	r2, [r3, #1364]	@ 0x554
+  b6:	3a01      	subs	r2, #1
+  b8:	f512 7f81 	cmn.w	r2, #258	@ 0x102
+  bc:	d8a7      	bhi.n	e <postcopy_hint+0xe>
+  be:	f8b3 2f9c 	ldrh.w	r2, [r3, #3996]	@ 0xf9c
+  c2:	2a04      	cmp	r2, #4
+  c4:	d1a3      	bne.n	e <postcopy_hint+0xe>
+  c6:	f8b3 2f90 	ldrh.w	r2, [r3, #3984]	@ 0xf90
+  ca:	f5b2 6f80 	cmp.w	r2, #1024	@ 0x400
+  ce:	d19e      	bne.n	e <postcopy_hint+0xe>
+  d0:	f8b3 2fa2 	ldrh.w	r2, [r3, #4002]	@ 0xfa2
+  d4:	4291      	cmp	r1, r2
+  d6:	d19a      	bne.n	e <postcopy_hint+0xe>
+  d8:	f8d3 25a4 	ldr.w	r2, [r3, #1444]	@ 0x5a4
+  dc:	2a00      	cmp	r2, #0
+  de:	d196      	bne.n	e <postcopy_hint+0xe>
+  e0:	f8d3 25a0 	ldr.w	r2, [r3, #1440]	@ 0x5a0
+  e4:	2a00      	cmp	r2, #0
+  e6:	d192      	bne.n	e <postcopy_hint+0xe>
+  e8:	f8d3 25a8 	ldr.w	r2, [r3, #1448]	@ 0x5a8
+  ec:	2a00      	cmp	r2, #0
+  ee:	d18e      	bne.n	e <postcopy_hint+0xe>
+  f0:	f8d3 25ac 	ldr.w	r2, [r3, #1452]	@ 0x5ac
+  f4:	2a00      	cmp	r2, #0
+  f6:	d18a      	bne.n	e <postcopy_hint+0xe>
+  f8:	f8d3 25b0 	ldr.w	r2, [r3, #1456]	@ 0x5b0
+  fc:	2a00      	cmp	r2, #0
+  fe:	d186      	bne.n	e <postcopy_hint+0xe>
+ 100:	f8d3 259c 	ldr.w	r2, [r3, #1436]	@ 0x59c
+ 104:	2a00      	cmp	r2, #0
+ 106:	d182      	bne.n	e <postcopy_hint+0xe>
+ 108:	f8d3 2528 	ldr.w	r2, [r3, #1320]	@ 0x528
+ 10c:	2a00      	cmp	r2, #0
+ 10e:	f47f af7e 	bne.w	e <postcopy_hint+0xe>
+ 112:	f8d3 252c 	ldr.w	r2, [r3, #1324]	@ 0x52c
+ 116:	2a00      	cmp	r2, #0
+ 118:	f47f af79 	bne.w	e <postcopy_hint+0xe>
+ 11c:	f8d3 2530 	ldr.w	r2, [r3, #1328]	@ 0x530
+ 120:	2a00      	cmp	r2, #0
+ 122:	f47f af74 	bne.w	e <postcopy_hint+0xe>
+ 126:	f500 5000 	add.w	r0, r0, #8192	@ 0x2000
+ 12a:	f8d0 1894 	ldr.w	r1, [r0, #2196]	@ 0x894
+ 12e:	f8d0 2890 	ldr.w	r2, [r0, #2192]	@ 0x890
+ 132:	4291      	cmp	r1, r2
+ 134:	f47f af6b 	bne.w	e <postcopy_hint+0xe>
+ 138:	f8d3 27e0 	ldr.w	r2, [r3, #2016]	@ 0x7e0
+ 13c:	2a00      	cmp	r2, #0
+ 13e:	f47f af66 	bne.w	e <postcopy_hint+0xe>
+ 142:	f8d3 0548 	ldr.w	r0, [r3, #1352]	@ 0x548
+ 146:	2800      	cmp	r0, #0
+ 148:	f47f af61 	bne.w	e <postcopy_hint+0xe>
+ 14c:	f7ff fffe 	bl	0 <tud_cdc_n_available>
+			14c: R_ARM_THM_CALL	tud_cdc_n_available
+ 150:	2800      	cmp	r0, #0
+ 152:	f47f af5c 	bne.w	e <postcopy_hint+0xe>
+ 156:	f7ff fffe 	bl	0 <tud_task_event_ready>
+			156: R_ARM_THM_CALL	tud_task_event_ready
+ 15a:	f080 0001 	eor.w	r0, r0, #1
+ 15e:	b2c0      	uxtb	r0, r0
+ 160:	e756      	b.n	10 <postcopy_hint+0x10>
+
+Disassembly of section .text.time_fault:
+
+00000000 <time_fault>:
+   0:	b570      	push	{r4, r5, r6, lr}
+   2:	f500 6649 	add.w	r6, r0, #3216	@ 0xc90
+   6:	4604      	mov	r4, r0
+   8:	2202      	movs	r2, #2
+   a:	4630      	mov	r0, r6
+   c:	210b      	movs	r1, #11
+   e:	f7ff fffe 	bl	0 <mt_progress_close>
+			e: R_ARM_THM_CALL	mt_progress_close
+  12:	2500      	movs	r5, #0
+  14:	2101      	movs	r1, #1
+  16:	2202      	movs	r2, #2
+  18:	f504 5300 	add.w	r3, r4, #8192	@ 0x2000
+  1c:	f8c3 183c 	str.w	r1, [r3, #2108]	@ 0x83c
+  20:	f8c3 5844 	str.w	r5, [r3, #2116]	@ 0x844
+  24:	f8c3 2830 	str.w	r2, [r3, #2096]	@ 0x830
+  28:	f8c3 5890 	str.w	r5, [r3, #2192]	@ 0x890
+  2c:	f8c3 5894 	str.w	r5, [r3, #2196]	@ 0x894
+  30:	4620      	mov	r0, r4
+  32:	f7ff fffe 	bl	0 <mt_adc_dma_invalidate_stream_history>
+			32: R_ARM_THM_CALL	mt_adc_dma_invalidate_stream_history
+  36:	4630      	mov	r0, r6
+  38:	f7ff fffe 	bl	0 <mt_live_device_transport_lost>
+			38: R_ARM_THM_CALL	mt_live_device_transport_lost
+  3c:	4628      	mov	r0, r5
+  3e:	f7ff fffe 	bl	0 <tud_cdc_n_write_clear>
+			3e: R_ARM_THM_CALL	tud_cdc_n_write_clear
+  42:	2003      	movs	r0, #3
+  44:	bd70      	pop	{r4, r5, r6, pc}
+
+Disassembly of section .text.synchronize_loss:
+
+00000000 <synchronize_loss>:
+   0:	b570      	push	{r4, r5, r6, lr}
+   2:	4605      	mov	r5, r0
+   4:	b08c      	sub	sp, #48	@ 0x30
+   6:	4668      	mov	r0, sp
+   8:	f505 5400 	add.w	r4, r5, #8192	@ 0x2000
+   c:	f7ff fffe 	bl	0 <mt_usb_bridge_snapshot>
+			c: R_ARM_THM_CALL	mt_usb_bridge_snapshot
+  10:	9800      	ldr	r0, [sp, #0]
+  12:	f8d4 6820 	ldr.w	r6, [r4, #2080]	@ 0x820
+  16:	9b05      	ldr	r3, [sp, #20]
+  18:	4286      	cmp	r6, r0
+  1a:	9907      	ldr	r1, [sp, #28]
+  1c:	9a0b      	ldr	r2, [sp, #44]	@ 0x2c
+  1e:	d107      	bne.n	30 <synchronize_loss+0x30>
+  20:	f8d4 6828 	ldr.w	r6, [r4, #2088]	@ 0x828
+  24:	428e      	cmp	r6, r1
+  26:	d103      	bne.n	30 <synchronize_loss+0x30>
+  28:	f8d4 682c 	ldr.w	r6, [r4, #2092]	@ 0x82c
+  2c:	4296      	cmp	r6, r2
+  2e:	d039      	beq.n	a4 <synchronize_loss+0xa4>
+  30:	f8c4 3824 	str.w	r3, [r4, #2084]	@ 0x824
+  34:	2302      	movs	r3, #2
+  36:	f8c4 0820 	str.w	r0, [r4, #2080]	@ 0x820
+  3a:	f8c4 1828 	str.w	r1, [r4, #2088]	@ 0x828
+  3e:	f8c4 282c 	str.w	r2, [r4, #2092]	@ 0x82c
+  42:	f8c4 3830 	str.w	r3, [r4, #2096]	@ 0x830
+  46:	f8d4 3830 	ldr.w	r3, [r4, #2096]	@ 0x830
+  4a:	2b00      	cmp	r3, #0
+  4c:	d040      	beq.n	d0 <synchronize_loss+0xd0>
+  4e:	2600      	movs	r6, #0
+  50:	1e5a      	subs	r2, r3, #1
+  52:	4253      	negs	r3, r2
+  54:	4153      	adcs	r3, r2
+  56:	f8c4 3848 	str.w	r3, [r4, #2120]	@ 0x848
+  5a:	f8c4 6844 	str.w	r6, [r4, #2116]	@ 0x844
+  5e:	f8c4 6890 	str.w	r6, [r4, #2192]	@ 0x890
+  62:	f8c4 6894 	str.w	r6, [r4, #2196]	@ 0x894
+  66:	f505 6049 	add.w	r0, r5, #3216	@ 0xc90
+  6a:	f7ff fffe 	bl	0 <mt_live_device_transport_lost>
+			6a: R_ARM_THM_CALL	mt_live_device_transport_lost
+  6e:	f8d4 3830 	ldr.w	r3, [r4, #2096]	@ 0x830
+  72:	2b02      	cmp	r3, #2
+  74:	d102      	bne.n	7c <synchronize_loss+0x7c>
+  76:	4630      	mov	r0, r6
+  78:	f7ff fffe 	bl	0 <tud_cdc_n_write_clear>
+			78: R_ARM_THM_CALL	tud_cdc_n_write_clear
+  7c:	f505 501f 	add.w	r0, r5, #10176	@ 0x27c0
+  80:	3030      	adds	r0, #48	@ 0x30
+  82:	f7ff fffe 	bl	0 <mt_live_clock_now>
+			82: R_ARM_THM_CALL	mt_live_clock_now
+  86:	f1b1 3fff 	cmp.w	r1, #4294967295
+  8a:	bf08      	it	eq
+  8c:	f1b0 3fff 	cmpeq.w	r0, #4294967295
+  90:	4628      	mov	r0, r5
+  92:	d002      	beq.n	9a <synchronize_loss+0x9a>
+  94:	f8d4 183c 	ldr.w	r1, [r4, #2108]	@ 0x83c
+  98:	b181      	cbz	r1, bc <synchronize_loss+0xbc>
+  9a:	f7ff fffe 	bl	0 <synchronize_loss>
+			9a: R_ARM_THM_CALL	time_fault
+  9e:	2000      	movs	r0, #0
+  a0:	b00c      	add	sp, #48	@ 0x30
+  a2:	bd70      	pop	{r4, r5, r6, pc}
+  a4:	f8d4 1824 	ldr.w	r1, [r4, #2084]	@ 0x824
+  a8:	f8d4 2830 	ldr.w	r2, [r4, #2096]	@ 0x830
+  ac:	4299      	cmp	r1, r3
+  ae:	d0ca      	beq.n	46 <synchronize_loss+0x46>
+  b0:	f8c4 3824 	str.w	r3, [r4, #2084]	@ 0x824
+  b4:	2a00      	cmp	r2, #0
+  b6:	d1c6      	bne.n	46 <synchronize_loss+0x46>
+  b8:	2301      	movs	r3, #1
+  ba:	e7c2      	b.n	42 <synchronize_loss+0x42>
+  bc:	f7ff fffe 	bl	0 <synchronize_loss>
+			bc: R_ARM_THM_CALL	quiescent
+  c0:	2800      	cmp	r0, #0
+  c2:	d0ec      	beq.n	9e <synchronize_loss+0x9e>
+  c4:	f8d4 0820 	ldr.w	r0, [r4, #2080]	@ 0x820
+  c8:	f8c4 1830 	str.w	r1, [r4, #2096]	@ 0x830
+  cc:	f7ff fffe 	bl	0 <mt_usb_bridge_cleaned>
+			cc: R_ARM_THM_CALL	mt_usb_bridge_cleaned
+  d0:	2001      	movs	r0, #1
+  d2:	e7e5      	b.n	a0 <synchronize_loss+0xa0>
+
+Disassembly of section .text.stable:
+
+00000000 <stable>:
+   0:	b5f0      	push	{r4, r5, r6, r7, lr}
+   2:	b08d      	sub	sp, #52	@ 0x34
+   4:	b918      	cbnz	r0, e <stable+0xe>
+   6:	2400      	movs	r4, #0
+   8:	4620      	mov	r0, r4
+   a:	b00d      	add	sp, #52	@ 0x34
+   c:	bdf0      	pop	{r4, r5, r6, r7, pc}
+   e:	f500 5500 	add.w	r5, r0, #8192	@ 0x2000
+  12:	f8d5 3834 	ldr.w	r3, [r5, #2100]	@ 0x834
+  16:	2b00      	cmp	r3, #0
+  18:	d0f5      	beq.n	6 <stable+0x6>
+  1a:	f8d5 3830 	ldr.w	r3, [r5, #2096]	@ 0x830
+  1e:	2b00      	cmp	r3, #0
+  20:	d1f1      	bne.n	6 <stable+0x6>
+  22:	f8d5 383c 	ldr.w	r3, [r5, #2108]	@ 0x83c
+  26:	2b00      	cmp	r3, #0
+  28:	d1ed      	bne.n	6 <stable+0x6>
+  2a:	f8d5 3808 	ldr.w	r3, [r5, #2056]	@ 0x808
+  2e:	2b00      	cmp	r3, #0
+  30:	d1e9      	bne.n	6 <stable+0x6>
+  32:	f8d5 0810 	ldr.w	r0, [r5, #2064]	@ 0x810
+  36:	f7ff fffe 	bl	0 <mt_timebase_healthy>
+			36: R_ARM_THM_CALL	mt_timebase_healthy
+  3a:	2800      	cmp	r0, #0
+  3c:	d0e3      	beq.n	6 <stable+0x6>
+  3e:	f7ff fffe 	bl	0 <mt_usb_bridge_lock>
+			3e: R_ARM_THM_CALL	mt_usb_bridge_lock
+  42:	4607      	mov	r7, r0
+  44:	4668      	mov	r0, sp
+  46:	f7ff fffe 	bl	0 <mt_usb_bridge_snapshot>
+			46: R_ARM_THM_CALL	mt_usb_bridge_snapshot
+  4a:	f7ff fffe 	bl	0 <mt_usb_bridge_actor>
+			4a: R_ARM_THM_CALL	mt_usb_bridge_actor
+  4e:	4606      	mov	r6, r0
+  50:	b900      	cbnz	r0, 54 <stable+0x54>
+  52:	9e00      	ldr	r6, [sp, #0]
+  54:	f7ff fffe 	bl	0 <mt_usb_fsdev_lifecycle_pending>
+			54: R_ARM_THM_CALL	mt_usb_fsdev_lifecycle_pending
+  58:	4604      	mov	r4, r0
+  5a:	b998      	cbnz	r0, 84 <stable+0x84>
+  5c:	f8d5 3820 	ldr.w	r3, [r5, #2080]	@ 0x820
+  60:	42b3      	cmp	r3, r6
+  62:	d10b      	bne.n	7c <stable+0x7c>
+  64:	f8d5 3824 	ldr.w	r3, [r5, #2084]	@ 0x824
+  68:	9a05      	ldr	r2, [sp, #20]
+  6a:	429a      	cmp	r2, r3
+  6c:	d106      	bne.n	7c <stable+0x7c>
+  6e:	4631      	mov	r1, r6
+  70:	4668      	mov	r0, sp
+  72:	f7ff fffe 	bl	0 <mt_usb_epoch_app_io>
+			72: R_ARM_THM_CALL	mt_usb_epoch_app_io
+  76:	1e04      	subs	r4, r0, #0
+  78:	bf18      	it	ne
+  7a:	2401      	movne	r4, #1
+  7c:	4638      	mov	r0, r7
+  7e:	f7ff fffe 	bl	0 <mt_usb_bridge_unlock>
+			7e: R_ARM_THM_CALL	mt_usb_bridge_unlock
+  82:	e7c1      	b.n	8 <stable+0x8>
+  84:	2400      	movs	r4, #0
+  86:	e7f9      	b.n	7c <stable+0x7c>
+
+Disassembly of section .text.usable:
+
+00000000 <usable>:
+   0:	b510      	push	{r4, lr}
+   2:	f500 5400 	add.w	r4, r0, #8192	@ 0x2000
+   6:	f8d4 3844 	ldr.w	r3, [r4, #2116]	@ 0x844
+   a:	b90b      	cbnz	r3, 10 <usable+0x10>
+   c:	2000      	movs	r0, #0
+   e:	bd10      	pop	{r4, pc}
+  10:	f7ff fffe 	bl	0 <usable>
+			10: R_ARM_THM_CALL	stable
+  14:	2800      	cmp	r0, #0
+  16:	d0f9      	beq.n	c <usable+0xc>
+  18:	2000      	movs	r0, #0
+  1a:	f7ff fffe 	bl	0 <tud_cdc_n_ready>
+			1a: R_ARM_THM_CALL	tud_cdc_n_ready
+  1e:	2800      	cmp	r0, #0
+  20:	d0f4      	beq.n	c <usable+0xc>
+  22:	f8d4 3840 	ldr.w	r3, [r4, #2112]	@ 0x840
+  26:	b11b      	cbz	r3, 30 <usable+0x30>
+  28:	2000      	movs	r0, #0
+  2a:	f7ff fffe 	bl	0 <tud_cdc_n_connected>
+			2a: R_ARM_THM_CALL	tud_cdc_n_connected
+  2e:	e7ee      	b.n	e <usable+0xe>
+  30:	2001      	movs	r0, #1
+  32:	e7ec      	b.n	e <usable+0xe>
+
+Disassembly of section .text.live_isolate:
+
+00000000 <live_isolate>:
+   0:	b508      	push	{r3, lr}
+   2:	4603      	mov	r3, r0
+   4:	b178      	cbz	r0, 26 <live_isolate+0x26>
+   6:	f500 5200 	add.w	r2, r0, #8192	@ 0x2000
+   a:	f8d2 3834 	ldr.w	r3, [r2, #2100]	@ 0x834
+   e:	b153      	cbz	r3, 26 <live_isolate+0x26>
+  10:	f8d2 3838 	ldr.w	r3, [r2, #2104]	@ 0x838
+  14:	b13b      	cbz	r3, 26 <live_isolate+0x26>
+  16:	f8d2 384c 	ldr.w	r3, [r2, #2124]	@ 0x84c
+  1a:	b933      	cbnz	r3, 2a <live_isolate+0x2a>
+  1c:	f7ff fffe 	bl	0 <live_isolate>
+			1c: R_ARM_THM_CALL	usable
+  20:	1e03      	subs	r3, r0, #0
+  22:	bf18      	it	ne
+  24:	2301      	movne	r3, #1
+  26:	4618      	mov	r0, r3
+  28:	bd08      	pop	{r3, pc}
+  2a:	2300      	movs	r3, #0
+  2c:	e7fb      	b.n	26 <live_isolate+0x26>
+
+Disassembly of section .text.commit_allowed:
+
+00000000 <commit_allowed>:
+   0:	b510      	push	{r4, lr}
+   2:	4604      	mov	r4, r0
+   4:	f7ff fffe 	bl	0 <mt_usb_bridge_actor>
+			4: R_ARM_THM_CALL	mt_usb_bridge_actor
+   8:	b908      	cbnz	r0, e <commit_allowed+0xe>
+   a:	2000      	movs	r0, #0
+   c:	bd10      	pop	{r4, pc}
+   e:	f504 5300 	add.w	r3, r4, #8192	@ 0x2000
+  12:	f8d3 0810 	ldr.w	r0, [r3, #2064]	@ 0x810
+  16:	f7ff fffe 	bl	0 <mt_timebase_update>
+			16: R_ARM_THM_CALL	mt_timebase_update
+  1a:	2800      	cmp	r0, #0
+  1c:	d0f5      	beq.n	a <commit_allowed+0xa>
+  1e:	4620      	mov	r0, r4
+  20:	f7ff fffe 	bl	0 <commit_allowed>
+			20: R_ARM_THM_CALL	usable
+  24:	3800      	subs	r0, #0
+  26:	bf18      	it	ne
+  28:	2001      	movne	r0, #1
+  2a:	e7ef      	b.n	c <commit_allowed+0xc>
+
+Disassembly of section .text.postcopy_identity:
+
+00000000 <postcopy_identity>:
+   0:	b538      	push	{r3, r4, r5, lr}
+   2:	6b0a      	ldr	r2, [r1, #48]	@ 0x30
+   4:	f500 53fd 	add.w	r3, r0, #8096	@ 0x1fa0
+   8:	3308      	adds	r3, #8
+   a:	429a      	cmp	r2, r3
+   c:	4605      	mov	r5, r0
+   e:	460c      	mov	r4, r1
+  10:	d001      	beq.n	16 <postcopy_identity+0x16>
+  12:	2000      	movs	r0, #0
+  14:	bd38      	pop	{r3, r4, r5, pc}
+  16:	f500 5300 	add.w	r3, r0, #8192	@ 0x2000
+  1a:	f8d3 1820 	ldr.w	r1, [r3, #2080]	@ 0x820
+  1e:	6be2      	ldr	r2, [r4, #60]	@ 0x3c
+  20:	4291      	cmp	r1, r2
+  22:	d1f6      	bne.n	12 <postcopy_identity+0x12>
+  24:	f8d3 2824 	ldr.w	r2, [r3, #2084]	@ 0x824
+  28:	6c23      	ldr	r3, [r4, #64]	@ 0x40
+  2a:	429a      	cmp	r2, r3
+  2c:	d1f1      	bne.n	12 <postcopy_identity+0x12>
+  2e:	f7ff fffe 	bl	0 <mt_usb_bridge_actor>
+			2e: R_ARM_THM_CALL	mt_usb_bridge_actor
+  32:	6c63      	ldr	r3, [r4, #68]	@ 0x44
+  34:	4298      	cmp	r0, r3
+  36:	d1ec      	bne.n	12 <postcopy_identity+0x12>
+  38:	f505 53a8 	add.w	r3, r5, #5376	@ 0x1500
+  3c:	e953 0202 	ldrd	r0, r2, [r3, #-8]
+  40:	e9d4 1300 	ldrd	r1, r3, [r4]
+  44:	429a      	cmp	r2, r3
+  46:	bf08      	it	eq
+  48:	4288      	cmpeq	r0, r1
+  4a:	d1e2      	bne.n	12 <postcopy_identity+0x12>
+  4c:	f505 5380 	add.w	r3, r5, #4096	@ 0x1000
+  50:	f8d3 1558 	ldr.w	r1, [r3, #1368]	@ 0x558
+  54:	6ba2      	ldr	r2, [r4, #56]	@ 0x38
+  56:	4291      	cmp	r1, r2
+  58:	d1db      	bne.n	12 <postcopy_identity+0x12>
+  5a:	f8b3 14e4 	ldrh.w	r1, [r3, #1252]	@ 0x4e4
+  5e:	f8b4 2050 	ldrh.w	r2, [r4, #80]	@ 0x50
+  62:	4291      	cmp	r1, r2
+  64:	d1d5      	bne.n	12 <postcopy_identity+0x12>
+  66:	f893 14ea 	ldrb.w	r1, [r3, #1258]	@ 0x4ea
+  6a:	f894 2052 	ldrb.w	r2, [r4, #82]	@ 0x52
+  6e:	4291      	cmp	r1, r2
+  70:	d1cf      	bne.n	12 <postcopy_identity+0x12>
+  72:	f8d3 24e0 	ldr.w	r2, [r3, #1248]	@ 0x4e0
+  76:	f894 1053 	ldrb.w	r1, [r4, #83]	@ 0x53
+  7a:	428a      	cmp	r2, r1
+  7c:	d1c9      	bne.n	12 <postcopy_identity+0x12>
+  7e:	2a04      	cmp	r2, #4
+  80:	d1c7      	bne.n	12 <postcopy_identity+0x12>
+  82:	f8d3 2534 	ldr.w	r2, [r3, #1332]	@ 0x534
+  86:	2a00      	cmp	r2, #0
+  88:	d1c3      	bne.n	12 <postcopy_identity+0x12>
+  8a:	f8d3 34d8 	ldr.w	r3, [r3, #1240]	@ 0x4d8
+  8e:	2b00      	cmp	r3, #0
+  90:	d1bf      	bne.n	12 <postcopy_identity+0x12>
+  92:	4628      	mov	r0, r5
+  94:	f7ff fffe 	bl	0 <postcopy_identity>
+			94: R_ARM_THM_CALL	usable
+  98:	3800      	subs	r0, #0
+  9a:	bf18      	it	ne
+  9c:	2001      	movne	r0, #1
+  9e:	e7b9      	b.n	14 <postcopy_identity+0x14>
+
+Disassembly of section .text.live_start:
+
+00000000 <live_start>:
+   0:	b538      	push	{r3, r4, r5, lr}
+   2:	4604      	mov	r4, r0
+   4:	460d      	mov	r5, r1
+   6:	f7ff fffe 	bl	0 <live_start>
+			6: R_ARM_THM_CALL	usable
+   a:	b908      	cbnz	r0, 10 <live_start+0x10>
+   c:	2000      	movs	r0, #0
+   e:	bd38      	pop	{r3, r4, r5, pc}
+  10:	f7ff fffe 	bl	0 <mt_usb_bridge_actor>
+			10: R_ARM_THM_CALL	mt_usb_bridge_actor
+  14:	2800      	cmp	r0, #0
+  16:	d0f9      	beq.n	c <live_start+0xc>
+  18:	f504 50fd 	add.w	r0, r4, #8096	@ 0x1fa0
+  1c:	4629      	mov	r1, r5
+  1e:	4a04      	ldr	r2, [pc, #16]	@ (30 <live_start+0x30>)
+  20:	3008      	adds	r0, #8
+  22:	f7ff fffe 	bl	0 <mt_live_adc_start_transaction>
+			22: R_ARM_THM_CALL	mt_live_adc_start_transaction
+  26:	3800      	subs	r0, #0
+  28:	bf18      	it	ne
+  2a:	2001      	movne	r0, #1
+  2c:	e7ef      	b.n	e <live_start+0xe>
+  2e:	bf00      	nop
+  30:	00000000 	.word	0x00000000
+			30: R_ARM_ABS32	commit_timer
+
+Disassembly of section .text.commit_timer:
+
+00000000 <commit_timer>:
+   0:	e92d 4ff0 	stmdb	sp!, {r4, r5, r6, r7, r8, r9, sl, fp, lr}
+   4:	b085      	sub	sp, #20
+   6:	4680      	mov	r8, r0
+   8:	460f      	mov	r7, r1
+   a:	4616      	mov	r6, r2
+   c:	f7ff fffe 	bl	0 <mt_usb_bridge_actor>
+			c: R_ARM_THM_CALL	mt_usb_bridge_actor
+  10:	4683      	mov	fp, r0
+  12:	b918      	cbnz	r0, 1c <commit_timer+0x1c>
+  14:	2000      	movs	r0, #0
+  16:	b005      	add	sp, #20
+  18:	e8bd 8ff0 	ldmia.w	sp!, {r4, r5, r6, r7, r8, r9, sl, fp, pc}
+  1c:	f508 5a00 	add.w	sl, r8, #8192	@ 0x2000
+  20:	f8da 0810 	ldr.w	r0, [sl, #2064]	@ 0x810
+  24:	aa03      	add	r2, sp, #12
+  26:	a901      	add	r1, sp, #4
+  28:	f7ff fffe 	bl	0 <mt_timebase_snapshot>
+			28: R_ARM_THM_CALL	mt_timebase_snapshot
+  2c:	2800      	cmp	r0, #0
+  2e:	d0f1      	beq.n	14 <commit_timer+0x14>
+  30:	f8da 3810 	ldr.w	r3, [sl, #2064]	@ 0x810
+  34:	4640      	mov	r0, r8
+  36:	f8b3 9020 	ldrh.w	r9, [r3, #32]
+  3a:	f7ff fffe 	bl	0 <commit_timer>
+			3a: R_ARM_THM_CALL	usable
+  3e:	2800      	cmp	r0, #0
+  40:	d0e8      	beq.n	14 <commit_timer+0x14>
+  42:	f8da 3810 	ldr.w	r3, [sl, #2064]	@ 0x810
+  46:	4924      	ldr	r1, [pc, #144]	@ (d8 <commit_timer+0xd8>)
+  48:	681a      	ldr	r2, [r3, #0]
+  4a:	6898      	ldr	r0, [r3, #8]
+  4c:	4790      	blx	r2
+  4e:	2201      	movs	r2, #1
+  50:	4922      	ldr	r1, [pc, #136]	@ (dc <commit_timer+0xdc>)
+  52:	4604      	mov	r4, r0
+  54:	4640      	mov	r0, r8
+  56:	f7ff fffe 	bl	0 <commit_timer>
+			56: R_ARM_THM_CALL	adc_write
+  5a:	4640      	mov	r0, r8
+  5c:	491f      	ldr	r1, [pc, #124]	@ (dc <commit_timer+0xdc>)
+  5e:	f7ff fffe 	bl	0 <commit_timer>
+			5e: R_ARM_THM_CALL	adc_read
+  62:	2801      	cmp	r0, #1
+  64:	d1d6      	bne.n	14 <commit_timer+0x14>
+  66:	f8da 3810 	ldr.w	r3, [sl, #2064]	@ 0x810
+  6a:	491b      	ldr	r1, [pc, #108]	@ (d8 <commit_timer+0xd8>)
+  6c:	681a      	ldr	r2, [r3, #0]
+  6e:	6898      	ldr	r0, [r3, #8]
+  70:	4790      	blx	r2
+  72:	aa03      	add	r2, sp, #12
+  74:	4605      	mov	r5, r0
+  76:	a902      	add	r1, sp, #8
+  78:	f8da 0810 	ldr.w	r0, [sl, #2064]	@ 0x810
+  7c:	f7ff fffe 	bl	0 <mt_timebase_snapshot>
+			7c: R_ARM_THM_CALL	mt_timebase_snapshot
+  80:	2800      	cmp	r0, #0
+  82:	d0c7      	beq.n	14 <commit_timer+0x14>
+  84:	f7ff fffe 	bl	0 <mt_usb_bridge_actor>
+			84: R_ARM_THM_CALL	mt_usb_bridge_actor
+  88:	4558      	cmp	r0, fp
+  8a:	d1c3      	bne.n	14 <commit_timer+0x14>
+  8c:	4640      	mov	r0, r8
+  8e:	f7ff fffe 	bl	0 <commit_timer>
+			8e: R_ARM_THM_CALL	usable
+  92:	2800      	cmp	r0, #0
+  94:	d0be      	beq.n	14 <commit_timer+0x14>
+  96:	e9dd 1201 	ldrd	r1, r2, [sp, #4]
+  9a:	f8da 3810 	ldr.w	r3, [sl, #2064]	@ 0x810
+  9e:	1a52      	subs	r2, r2, r1
+  a0:	f5b2 4ffa 	cmp.w	r2, #32000	@ 0x7d00
+  a4:	8c1b      	ldrh	r3, [r3, #32]
+  a6:	d8b5      	bhi.n	14 <commit_timer+0x14>
+  a8:	eba3 0309 	sub.w	r3, r3, r9
+  ac:	b29b      	uxth	r3, r3
+  ae:	4293      	cmp	r3, r2
+  b0:	d1b0      	bne.n	14 <commit_timer+0x14>
+  b2:	eba4 0309 	sub.w	r3, r4, r9
+  b6:	b29b      	uxth	r3, r3
+  b8:	4293      	cmp	r3, r2
+  ba:	d8ab      	bhi.n	14 <commit_timer+0x14>
+  bc:	eba5 0009 	sub.w	r0, r5, r9
+  c0:	b280      	uxth	r0, r0
+  c2:	4283      	cmp	r3, r0
+  c4:	d8a6      	bhi.n	14 <commit_timer+0x14>
+  c6:	4290      	cmp	r0, r2
+  c8:	d8a4      	bhi.n	14 <commit_timer+0x14>
+  ca:	440b      	add	r3, r1
+  cc:	4401      	add	r1, r0
+  ce:	603b      	str	r3, [r7, #0]
+  d0:	2001      	movs	r0, #1
+  d2:	6031      	str	r1, [r6, #0]
+  d4:	e79f      	b.n	16 <commit_timer+0x16>
+  d6:	bf00      	nop
+  d8:	40000024 	.word	0x40000024
+  dc:	40000400 	.word	0x40000400
+
+Disassembly of section .text.commit_timed:
+
+00000000 <commit_timed>:
+   0:	b537      	push	{r0, r1, r2, r4, r5, lr}
+   2:	4604      	mov	r4, r0
+   4:	460d      	mov	r5, r1
+   6:	f7ff fffe 	bl	0 <mt_usb_bridge_actor>
+			6: R_ARM_THM_CALL	mt_usb_bridge_actor
+   a:	b910      	cbnz	r0, 12 <commit_timed+0x12>
+   c:	2000      	movs	r0, #0
+   e:	b003      	add	sp, #12
+  10:	bd30      	pop	{r4, r5, pc}
+  12:	f504 5300 	add.w	r3, r4, #8192	@ 0x2000
+  16:	4669      	mov	r1, sp
+  18:	f8d3 0810 	ldr.w	r0, [r3, #2064]	@ 0x810
+  1c:	aa01      	add	r2, sp, #4
+  1e:	f7ff fffe 	bl	0 <mt_timebase_snapshot>
+			1e: R_ARM_THM_CALL	mt_timebase_snapshot
+  22:	2800      	cmp	r0, #0
+  24:	d0f2      	beq.n	c <commit_timed+0xc>
+  26:	4620      	mov	r0, r4
+  28:	f7ff fffe 	bl	0 <commit_timed>
+			28: R_ARM_THM_CALL	usable
+  2c:	2800      	cmp	r0, #0
+  2e:	d0ed      	beq.n	c <commit_timed+0xc>
+  30:	9b00      	ldr	r3, [sp, #0]
+  32:	2001      	movs	r0, #1
+  34:	602b      	str	r3, [r5, #0]
+  36:	e7ea      	b.n	e <commit_timed+0xe>
+
+Disassembly of section .text.prepared_tx_step:
+
+00000000 <prepared_tx_step>:
+   0:	b570      	push	{r4, r5, r6, lr}
+   2:	460d      	mov	r5, r1
+   4:	f500 5100 	add.w	r1, r0, #8192	@ 0x2000
+   8:	f8d1 6820 	ldr.w	r6, [r1, #2080]	@ 0x820
+   c:	4604      	mov	r4, r0
+   e:	4296      	cmp	r6, r2
+  10:	d10d      	bne.n	2e <prepared_tx_step+0x2e>
+  12:	f8d1 2824 	ldr.w	r2, [r1, #2084]	@ 0x824
+  16:	429a      	cmp	r2, r3
+  18:	d109      	bne.n	2e <prepared_tx_step+0x2e>
+  1a:	f7ff fffe 	bl	0 <prepared_tx_step>
+			1a: R_ARM_THM_CALL	usable
+  1e:	b130      	cbz	r0, 2e <prepared_tx_step+0x2e>
+  20:	4629      	mov	r1, r5
+  22:	f504 6049 	add.w	r0, r4, #3216	@ 0xc90
+  26:	e8bd 4070 	ldmia.w	sp!, {r4, r5, r6, lr}
+  2a:	f7ff bffe 	b.w	0 <mt_live_device_step_prepared>
+			2a: R_ARM_THM_JUMP24	mt_live_device_step_prepared
+  2e:	2001      	movs	r0, #1
+  30:	bd70      	pop	{r4, r5, r6, pc}
+
+Disassembly of section .text.prefetch_after_tx:
+
+00000000 <prefetch_after_tx>:
+   0:	e92d 4ff7 	stmdb	sp!, {r0, r1, r2, r4, r5, r6, r7, r8, r9, sl, fp, lr}
+   4:	f500 6949 	add.w	r9, r0, #3216	@ 0xc90
+   8:	4605      	mov	r5, r0
+   a:	4648      	mov	r0, r9
+   c:	468a      	mov	sl, r1
+   e:	4614      	mov	r4, r2
+  10:	461f      	mov	r7, r3
+  12:	f7ff fffe 	bl	0 <mt_live_device_prefetch_ready>
+			12: R_ARM_THM_CALL	mt_live_device_prefetch_ready
+  16:	b918      	cbnz	r0, 20 <prefetch_after_tx+0x20>
+  18:	2000      	movs	r0, #0
+  1a:	b003      	add	sp, #12
+  1c:	e8bd 8ff0 	ldmia.w	sp!, {r4, r5, r6, r7, r8, r9, sl, fp, pc}
+  20:	f505 581f 	add.w	r8, r5, #10176	@ 0x27c0
+  24:	f108 0830 	add.w	r8, r8, #48	@ 0x30
+  28:	4640      	mov	r0, r8
+  2a:	f7ff fffe 	bl	0 <mt_live_clock_now>
+			2a: R_ARM_THM_CALL	mt_live_clock_now
+  2e:	f1b1 3fff 	cmp.w	r1, #4294967295
+  32:	bf08      	it	eq
+  34:	f1b0 3fff 	cmpeq.w	r0, #4294967295
+  38:	4628      	mov	r0, r5
+  3a:	d104      	bne.n	46 <prefetch_after_tx+0x46>
+  3c:	b003      	add	sp, #12
+  3e:	e8bd 4ff0 	ldmia.w	sp!, {r4, r5, r6, r7, r8, r9, sl, fp, lr}
+  42:	f7ff bffe 	b.w	0 <prefetch_after_tx>
+			42: R_ARM_THM_JUMP24	time_fault
+  46:	f7ff fffe 	bl	0 <prefetch_after_tx>
+			46: R_ARM_THM_CALL	synchronize_loss
+  4a:	b940      	cbnz	r0, 5e <prefetch_after_tx+0x5e>
+  4c:	f505 5500 	add.w	r5, r5, #8192	@ 0x2000
+  50:	f8d5 383c 	ldr.w	r3, [r5, #2108]	@ 0x83c
+  54:	b10b      	cbz	r3, 5a <prefetch_after_tx+0x5a>
+  56:	2003      	movs	r0, #3
+  58:	e7df      	b.n	1a <prefetch_after_tx+0x1a>
+  5a:	2002      	movs	r0, #2
+  5c:	e7dd      	b.n	1a <prefetch_after_tx+0x1a>
+  5e:	4628      	mov	r0, r5
+  60:	f7ff fffe 	bl	0 <prefetch_after_tx>
+			60: R_ARM_THM_CALL	usable
+  64:	b908      	cbnz	r0, 6a <prefetch_after_tx+0x6a>
+  66:	2001      	movs	r0, #1
+  68:	e7d7      	b.n	1a <prefetch_after_tx+0x1a>
+  6a:	f505 5600 	add.w	r6, r5, #8192	@ 0x2000
+  6e:	f8d6 3820 	ldr.w	r3, [r6, #2080]	@ 0x820
+  72:	42a3      	cmp	r3, r4
+  74:	d1f7      	bne.n	66 <prefetch_after_tx+0x66>
+  76:	f8d6 3824 	ldr.w	r3, [r6, #2084]	@ 0x824
+  7a:	42bb      	cmp	r3, r7
+  7c:	d1f3      	bne.n	66 <prefetch_after_tx+0x66>
+  7e:	4668      	mov	r0, sp
+  80:	f7ff fffe 	bl	0 <mt_usb_bridge_app_enter>
+			80: R_ARM_THM_CALL	mt_usb_bridge_app_enter
+  84:	2800      	cmp	r0, #0
+  86:	d0ee      	beq.n	66 <prefetch_after_tx+0x66>
+  88:	4628      	mov	r0, r5
+  8a:	f7ff fffe 	bl	0 <prefetch_after_tx>
+			8a: R_ARM_THM_CALL	stable
+  8e:	b940      	cbnz	r0, a2 <prefetch_after_tx+0xa2>
+  90:	4668      	mov	r0, sp
+  92:	f7ff fffe 	bl	0 <mt_usb_bridge_leave>
+			92: R_ARM_THM_CALL	mt_usb_bridge_leave
+  96:	4628      	mov	r0, r5
+  98:	f7ff fffe 	bl	0 <prefetch_after_tx>
+			98: R_ARM_THM_CALL	synchronize_loss
+  9c:	f8d6 383c 	ldr.w	r3, [r6, #2108]	@ 0x83c
+  a0:	e7d8      	b.n	54 <prefetch_after_tx+0x54>
+  a2:	f8d6 3820 	ldr.w	r3, [r6, #2080]	@ 0x820
+  a6:	42a3      	cmp	r3, r4
+  a8:	d103      	bne.n	b2 <prefetch_after_tx+0xb2>
+  aa:	f8d6 3824 	ldr.w	r3, [r6, #2084]	@ 0x824
+  ae:	42bb      	cmp	r3, r7
+  b0:	d003      	beq.n	ba <prefetch_after_tx+0xba>
+  b2:	4668      	mov	r0, sp
+  b4:	f7ff fffe 	bl	0 <mt_usb_bridge_leave>
+			b4: R_ARM_THM_CALL	mt_usb_bridge_leave
+  b8:	e7d5      	b.n	66 <prefetch_after_tx+0x66>
+  ba:	f7ff fffe 	bl	0 <mt_progress_prepare_begin>
+			ba: R_ARM_THM_CALL	mt_progress_prepare_begin
+  be:	4651      	mov	r1, sl
+  c0:	4683      	mov	fp, r0
+  c2:	4648      	mov	r0, r9
+  c4:	f7ff fffe 	bl	0 <mt_live_device_prefetch_tx>
+			c4: R_ARM_THM_CALL	mt_live_device_prefetch_tx
+  c8:	4681      	mov	r9, r0
+  ca:	4658      	mov	r0, fp
+  cc:	f7ff fffe 	bl	0 <mt_progress_prepare_end>
+			cc: R_ARM_THM_CALL	mt_progress_prepare_end
+  d0:	4640      	mov	r0, r8
+  d2:	f7ff fffe 	bl	0 <mt_live_clock_now>
+			d2: R_ARM_THM_CALL	mt_live_clock_now
+  d6:	f1b1 3fff 	cmp.w	r1, #4294967295
+  da:	bf08      	it	eq
+  dc:	f1b0 3fff 	cmpeq.w	r0, #4294967295
+  e0:	d106      	bne.n	f0 <prefetch_after_tx+0xf0>
+  e2:	4668      	mov	r0, sp
+  e4:	f7ff fffe 	bl	0 <mt_usb_bridge_leave>
+			e4: R_ARM_THM_CALL	mt_usb_bridge_leave
+  e8:	4628      	mov	r0, r5
+  ea:	f7ff fffe 	bl	0 <prefetch_after_tx>
+			ea: R_ARM_THM_CALL	time_fault
+  ee:	e794      	b.n	1a <prefetch_after_tx+0x1a>
+  f0:	4628      	mov	r0, r5
+  f2:	f7ff fffe 	bl	0 <prefetch_after_tx>
+			f2: R_ARM_THM_CALL	stable
+  f6:	2800      	cmp	r0, #0
+  f8:	d0ca      	beq.n	90 <prefetch_after_tx+0x90>
+  fa:	f8d6 3820 	ldr.w	r3, [r6, #2080]	@ 0x820
+  fe:	42a3      	cmp	r3, r4
+ 100:	d1c6      	bne.n	90 <prefetch_after_tx+0x90>
+ 102:	f8d6 3824 	ldr.w	r3, [r6, #2084]	@ 0x824
+ 106:	42bb      	cmp	r3, r7
+ 108:	d1c2      	bne.n	90 <prefetch_after_tx+0x90>
+ 10a:	4668      	mov	r0, sp
+ 10c:	f7ff fffe 	bl	0 <mt_usb_bridge_leave>
+			10c: R_ARM_THM_CALL	mt_usb_bridge_leave
+ 110:	f1b9 0f02 	cmp.w	r9, #2
+ 114:	d180      	bne.n	18 <prefetch_after_tx+0x18>
+ 116:	f7ff fffe 	bl	0 <mt_usb_bridge_lock>
+			116: R_ARM_THM_CALL	mt_usb_bridge_lock
+ 11a:	4622      	mov	r2, r4
+ 11c:	463b      	mov	r3, r7
+ 11e:	4651      	mov	r1, sl
+ 120:	4681      	mov	r9, r0
+ 122:	4628      	mov	r0, r5
+ 124:	f7ff fffe 	bl	0 <prefetch_after_tx>
+			124: R_ARM_THM_CALL	prepared_tx_step
+ 128:	4604      	mov	r4, r0
+ 12a:	4648      	mov	r0, r9
+ 12c:	f7ff fffe 	bl	0 <mt_usb_bridge_unlock>
+			12c: R_ARM_THM_CALL	mt_usb_bridge_unlock
+ 130:	4640      	mov	r0, r8
+ 132:	f7ff fffe 	bl	0 <mt_live_clock_now>
+			132: R_ARM_THM_CALL	mt_live_clock_now
+ 136:	f1b1 3fff 	cmp.w	r1, #4294967295
+ 13a:	bf08      	it	eq
+ 13c:	f1b0 3fff 	cmpeq.w	r0, #4294967295
+ 140:	4628      	mov	r0, r5
+ 142:	d0d2      	beq.n	ea <prefetch_after_tx+0xea>
+ 144:	f7ff fffe 	bl	0 <prefetch_after_tx>
+			144: R_ARM_THM_CALL	synchronize_loss
+ 148:	2800      	cmp	r0, #0
+ 14a:	d0a7      	beq.n	9c <prefetch_after_tx+0x9c>
+ 14c:	fab4 f084 	clz	r0, r4
+ 150:	0940      	lsrs	r0, r0, #5
+ 152:	0040      	lsls	r0, r0, #1
+ 154:	e761      	b.n	1a <prefetch_after_tx+0x1a>
+
+Disassembly of section .text.live_write:
+
+00000000 <live_write>:
+   0:	e92d 41f3 	stmdb	sp!, {r0, r1, r4, r5, r6, r7, r8, lr}
+   4:	4688      	mov	r8, r1
+   6:	4616      	mov	r6, r2
+   8:	4605      	mov	r5, r0
+   a:	2800      	cmp	r0, #0
+   c:	d041      	beq.n	92 <live_write+0x92>
+   e:	f500 5700 	add.w	r7, r0, #8192	@ 0x2000
+  12:	f8d7 3834 	ldr.w	r3, [r7, #2100]	@ 0x834
+  16:	2b00      	cmp	r3, #0
+  18:	d03b      	beq.n	92 <live_write+0x92>
+  1a:	f8d7 3838 	ldr.w	r3, [r7, #2104]	@ 0x838
+  1e:	b3c3      	cbz	r3, 92 <live_write+0x92>
+  20:	f8d7 484c 	ldr.w	r4, [r7, #2124]	@ 0x84c
+  24:	bbac      	cbnz	r4, 92 <live_write+0x92>
+  26:	b939      	cbnz	r1, 38 <live_write+0x38>
+  28:	2a00      	cmp	r2, #0
+  2a:	bf18      	it	ne
+  2c:	f04f 34ff 	movne.w	r4, #4294967295
+  30:	4620      	mov	r0, r4
+  32:	b002      	add	sp, #8
+  34:	e8bd 81f0 	ldmia.w	sp!, {r4, r5, r6, r7, r8, pc}
+  38:	f5b2 7fc0 	cmp.w	r2, #384	@ 0x180
+  3c:	d829      	bhi.n	92 <live_write+0x92>
+  3e:	2a00      	cmp	r2, #0
+  40:	d0f6      	beq.n	30 <live_write+0x30>
+  42:	4668      	mov	r0, sp
+  44:	f7ff fffe 	bl	0 <mt_usb_bridge_app_enter>
+			44: R_ARM_THM_CALL	mt_usb_bridge_app_enter
+  48:	2800      	cmp	r0, #0
+  4a:	d0f1      	beq.n	30 <live_write+0x30>
+  4c:	4628      	mov	r0, r5
+  4e:	f7ff fffe 	bl	0 <live_write>
+			4e: R_ARM_THM_CALL	usable
+  52:	b918      	cbnz	r0, 5c <live_write+0x5c>
+  54:	4668      	mov	r0, sp
+  56:	f7ff fffe 	bl	0 <mt_usb_bridge_leave>
+			56: R_ARM_THM_CALL	mt_usb_bridge_leave
+  5a:	e7e9      	b.n	30 <live_write+0x30>
+  5c:	4620      	mov	r0, r4
+  5e:	f7ff fffe 	bl	0 <tud_cdc_n_write_available>
+			5e: R_ARM_THM_CALL	tud_cdc_n_write_available
+  62:	4286      	cmp	r6, r0
+  64:	d908      	bls.n	78 <live_write+0x78>
+  66:	f505 5580 	add.w	r5, r5, #4096	@ 0x1000
+  6a:	f895 3f54 	ldrb.w	r3, [r5, #3924]	@ 0xf54
+  6e:	2b98      	cmp	r3, #152	@ 0x98
+  70:	d1f0      	bne.n	54 <live_write+0x54>
+  72:	f7ff fffe 	bl	0 <mt_progress_zero_space>
+			72: R_ARM_THM_CALL	mt_progress_zero_space
+  76:	e7ed      	b.n	54 <live_write+0x54>
+  78:	2301      	movs	r3, #1
+  7a:	4632      	mov	r2, r6
+  7c:	f8c7 384c 	str.w	r3, [r7, #2124]	@ 0x84c
+  80:	4641      	mov	r1, r8
+  82:	2000      	movs	r0, #0
+  84:	f7ff fffe 	bl	0 <tud_cdc_n_write>
+			84: R_ARM_THM_CALL	tud_cdc_n_write
+  88:	2300      	movs	r3, #0
+  8a:	4604      	mov	r4, r0
+  8c:	f8c7 384c 	str.w	r3, [r7, #2124]	@ 0x84c
+  90:	e7e0      	b.n	54 <live_write+0x54>
+  92:	f04f 34ff 	mov.w	r4, #4294967295
+  96:	e7cb      	b.n	30 <live_write+0x30>
+
+Disassembly of section .text.postcopy_abort.part.0:
+
+00000000 <postcopy_abort.part.0>:
+   0:	b538      	push	{r3, r4, r5, lr}
+   2:	2402      	movs	r4, #2
+   4:	f500 5500 	add.w	r5, r0, #8192	@ 0x2000
+   8:	f8c5 4830 	str.w	r4, [r5, #2096]	@ 0x830
+   c:	f7ff fffe 	bl	0 <postcopy_abort.part.0>
+			c: R_ARM_THM_CALL	synchronize_loss
+  10:	b930      	cbnz	r0, 20 <postcopy_abort.part.0+0x20>
+  12:	f8d5 383c 	ldr.w	r3, [r5, #2108]	@ 0x83c
+  16:	2b00      	cmp	r3, #0
+  18:	bf0c      	ite	eq
+  1a:	4620      	moveq	r0, r4
+  1c:	2003      	movne	r0, #3
+  1e:	bd38      	pop	{r3, r4, r5, pc}
+  20:	4620      	mov	r0, r4
+  22:	e7fc      	b.n	1e <postcopy_abort.part.0+0x1e>
+
+Disassembly of section .text.postcopy_publish:
+
+00000000 <postcopy_publish>:
+   0:	e92d 43f8 	stmdb	sp!, {r3, r4, r5, r6, r7, r8, r9, lr}
+   4:	4604      	mov	r4, r0
+   6:	460d      	mov	r5, r1
+   8:	f04f 0800 	mov.w	r8, #0
+   c:	f500 571f 	add.w	r7, r0, #10176	@ 0x27c0
+  10:	f500 59fd 	add.w	r9, r0, #8096	@ 0x1fa0
+  14:	3730      	adds	r7, #48	@ 0x30
+  16:	f109 0908 	add.w	r9, r9, #8
+  1a:	4638      	mov	r0, r7
+  1c:	f7ff fffe 	bl	0 <mt_live_clock_now>
+			1c: R_ARM_THM_CALL	mt_live_clock_now
+  20:	f1b1 3fff 	cmp.w	r1, #4294967295
+  24:	bf08      	it	eq
+  26:	f1b0 3fff 	cmpeq.w	r0, #4294967295
+  2a:	d103      	bne.n	34 <postcopy_publish+0x34>
+  2c:	2303      	movs	r3, #3
+  2e:	f885 3055 	strb.w	r3, [r5, #85]	@ 0x55
+  32:	e01f      	b.n	74 <postcopy_publish+0x74>
+  34:	4629      	mov	r1, r5
+  36:	4620      	mov	r0, r4
+  38:	f7ff fffe 	bl	0 <postcopy_publish>
+			38: R_ARM_THM_CALL	postcopy_identity
+  3c:	b938      	cbnz	r0, 4e <postcopy_publish+0x4e>
+  3e:	2303      	movs	r3, #3
+  40:	f885 3055 	strb.w	r3, [r5, #85]	@ 0x55
+  44:	4620      	mov	r0, r4
+  46:	e8bd 43f8 	ldmia.w	sp!, {r3, r4, r5, r6, r7, r8, r9, lr}
+  4a:	f7ff bffe 	b.w	0 <postcopy_publish>
+			4a: R_ARM_THM_JUMP24	postcopy_abort.part.0
+  4e:	4629      	mov	r1, r5
+  50:	4648      	mov	r0, r9
+  52:	f7ff fffe 	bl	0 <mt_live_adc_publish_next>
+			52: R_ARM_THM_CALL	mt_live_adc_publish_next
+  56:	1cc3      	adds	r3, r0, #3
+  58:	2b01      	cmp	r3, #1
+  5a:	4606      	mov	r6, r0
+  5c:	d9ef      	bls.n	3e <postcopy_publish+0x3e>
+  5e:	1c42      	adds	r2, r0, #1
+  60:	d10d      	bne.n	7e <postcopy_publish+0x7e>
+  62:	4638      	mov	r0, r7
+  64:	f7ff fffe 	bl	0 <mt_live_clock_now>
+			64: R_ARM_THM_CALL	mt_live_clock_now
+  68:	f1b1 3fff 	cmp.w	r1, #4294967295
+  6c:	bf08      	it	eq
+  6e:	f1b0 3fff 	cmpeq.w	r0, #4294967295
+  72:	d123      	bne.n	bc <postcopy_publish+0xbc>
+  74:	4620      	mov	r0, r4
+  76:	e8bd 43f8 	ldmia.w	sp!, {r3, r4, r5, r6, r7, r8, r9, lr}
+  7a:	f7ff bffe 	b.w	0 <postcopy_publish>
+			7a: R_ARM_THM_JUMP24	time_fault
+  7e:	1d03      	adds	r3, r0, #4
+  80:	d0ef      	beq.n	62 <postcopy_publish+0x62>
+  82:	4638      	mov	r0, r7
+  84:	f7ff fffe 	bl	0 <mt_live_clock_now>
+			84: R_ARM_THM_CALL	mt_live_clock_now
+  88:	f1b1 3fff 	cmp.w	r1, #4294967295
+  8c:	bf08      	it	eq
+  8e:	f1b0 3fff 	cmpeq.w	r0, #4294967295
+  92:	d0cb      	beq.n	2c <postcopy_publish+0x2c>
+  94:	4629      	mov	r1, r5
+  96:	4620      	mov	r0, r4
+  98:	f7ff fffe 	bl	0 <postcopy_publish>
+			98: R_ARM_THM_CALL	postcopy_identity
+  9c:	2800      	cmp	r0, #0
+  9e:	d0ce      	beq.n	3e <postcopy_publish+0x3e>
+  a0:	2e02      	cmp	r6, #2
+  a2:	d013      	beq.n	cc <postcopy_publish+0xcc>
+  a4:	2e01      	cmp	r6, #1
+  a6:	d1ca      	bne.n	3e <postcopy_publish+0x3e>
+  a8:	f8b5 3056 	ldrh.w	r3, [r5, #86]	@ 0x56
+  ac:	f108 0880 	add.w	r8, r8, #128	@ 0x80
+  b0:	4543      	cmp	r3, r8
+  b2:	d1c4      	bne.n	3e <postcopy_publish+0x3e>
+  b4:	f5b8 7f00 	cmp.w	r8, #512	@ 0x200
+  b8:	d1af      	bne.n	1a <postcopy_publish+0x1a>
+  ba:	e7c0      	b.n	3e <postcopy_publish+0x3e>
+  bc:	4620      	mov	r0, r4
+  be:	f7ff fffe 	bl	0 <postcopy_publish>
+			be: R_ARM_THM_CALL	stable
+  c2:	2800      	cmp	r0, #0
+  c4:	d0bb      	beq.n	3e <postcopy_publish+0x3e>
+  c6:	2002      	movs	r0, #2
+  c8:	e8bd 83f8 	ldmia.w	sp!, {r3, r4, r5, r6, r7, r8, r9, pc}
+  cc:	2000      	movs	r0, #0
+  ce:	e7fb      	b.n	c8 <postcopy_publish+0xc8>
+
+Disassembly of section .text.grant_irq:
+
+00000000 <grant_irq>:
+   0:	b570      	push	{r4, r5, r6, lr}
+   2:	f500 5400 	add.w	r4, r0, #8192	@ 0x2000
+   6:	f8d4 683c 	ldr.w	r6, [r4, #2108]	@ 0x83c
+   a:	b08c      	sub	sp, #48	@ 0x30
+   c:	bbce      	cbnz	r6, 82 <grant_irq+0x82>
+   e:	f8d4 0810 	ldr.w	r0, [r4, #2064]	@ 0x810
+  12:	f7ff fffe 	bl	0 <mt_timebase_healthy>
+			12: R_ARM_THM_CALL	mt_timebase_healthy
+  16:	b3a0      	cbz	r0, 82 <grant_irq+0x82>
+  18:	f7ff fffe 	bl	0 <mt_usb_bridge_lock>
+			18: R_ARM_THM_CALL	mt_usb_bridge_lock
+  1c:	4605      	mov	r5, r0
+  1e:	4668      	mov	r0, sp
+  20:	f7ff fffe 	bl	0 <mt_usb_bridge_snapshot>
+			20: R_ARM_THM_CALL	mt_usb_bridge_snapshot
+  24:	f8d4 0830 	ldr.w	r0, [r4, #2096]	@ 0x830
+  28:	bb38      	cbnz	r0, 7a <grant_irq+0x7a>
+  2a:	f8d4 3828 	ldr.w	r3, [r4, #2088]	@ 0x828
+  2e:	b9d3      	cbnz	r3, 66 <grant_irq+0x66>
+  30:	f8d4 082c 	ldr.w	r0, [r4, #2092]	@ 0x82c
+  34:	bb18      	cbnz	r0, 7e <grant_irq+0x7e>
+  36:	9b00      	ldr	r3, [sp, #0]
+  38:	f8d4 2820 	ldr.w	r2, [r4, #2080]	@ 0x820
+  3c:	4293      	cmp	r3, r2
+  3e:	d112      	bne.n	66 <grant_irq+0x66>
+  40:	f8d4 2824 	ldr.w	r2, [r4, #2084]	@ 0x824
+  44:	9905      	ldr	r1, [sp, #20]
+  46:	4291      	cmp	r1, r2
+  48:	d10d      	bne.n	66 <grant_irq+0x66>
+  4a:	9a03      	ldr	r2, [sp, #12]
+  4c:	4293      	cmp	r3, r2
+  4e:	d10a      	bne.n	66 <grant_irq+0x66>
+  50:	e9dd 3206 	ldrd	r3, r2, [sp, #24]
+  54:	4313      	orrs	r3, r2
+  56:	9a0b      	ldr	r2, [sp, #44]	@ 0x2c
+  58:	4313      	orrs	r3, r2
+  5a:	d104      	bne.n	66 <grant_irq+0x66>
+  5c:	f7ff fffe 	bl	0 <tud_task_event_ready>
+			5c: R_ARM_THM_CALL	tud_task_event_ready
+  60:	f080 0301 	eor.w	r3, r0, #1
+  64:	b2d8      	uxtb	r0, r3
+  66:	f000 0001 	and.w	r0, r0, #1
+  6a:	f7ff fffe 	bl	0 <mt_usb_fsdev_irq_grant>
+			6a: R_ARM_THM_CALL	mt_usb_fsdev_irq_grant
+  6e:	4628      	mov	r0, r5
+  70:	b00c      	add	sp, #48	@ 0x30
+  72:	e8bd 4070 	ldmia.w	sp!, {r4, r5, r6, lr}
+  76:	f7ff bffe 	b.w	0 <mt_usb_bridge_unlock>
+			76: R_ARM_THM_JUMP24	mt_usb_bridge_unlock
+  7a:	4630      	mov	r0, r6
+  7c:	e7f3      	b.n	66 <grant_irq+0x66>
+  7e:	4618      	mov	r0, r3
+  80:	e7f1      	b.n	66 <grant_irq+0x66>
+  82:	b00c      	add	sp, #48	@ 0x30
+  84:	bd70      	pop	{r4, r5, r6, pc}
+
+Disassembly of section .text.step.constprop.0:
+
+00000000 <step.constprop.0>:
+   0:	e92d 4ff0 	stmdb	sp!, {r4, r5, r6, r7, r8, r9, sl, fp, lr}
+   4:	f500 571f 	add.w	r7, r0, #10176	@ 0x27c0
+   8:	3730      	adds	r7, #48	@ 0x30
+   a:	4604      	mov	r4, r0
+   c:	b0d9      	sub	sp, #356	@ 0x164
+   e:	4638      	mov	r0, r7
+  10:	4689      	mov	r9, r1
+  12:	f7ff fffe 	bl	0 <mt_live_clock_now>
+			12: R_ARM_THM_CALL	mt_live_clock_now
+  16:	f1b1 3fff 	cmp.w	r1, #4294967295
+  1a:	bf08      	it	eq
+  1c:	f1b0 3fff 	cmpeq.w	r0, #4294967295
+  20:	4620      	mov	r0, r4
+  22:	d004      	beq.n	2e <step.constprop.0+0x2e>
+  24:	f504 5600 	add.w	r6, r4, #8192	@ 0x2000
+  28:	f8d6 583c 	ldr.w	r5, [r6, #2108]	@ 0x83c
+  2c:	b125      	cbz	r5, 38 <step.constprop.0+0x38>
+  2e:	b059      	add	sp, #356	@ 0x164
+  30:	e8bd 4ff0 	ldmia.w	sp!, {r4, r5, r6, r7, r8, r9, sl, fp, lr}
+  34:	f7ff bffe 	b.w	0 <step.constprop.0>
+			34: R_ARM_THM_JUMP24	time_fault
+  38:	f7ff fffe 	bl	0 <step.constprop.0>
+			38: R_ARM_THM_CALL	synchronize_loss
+  3c:	b948      	cbnz	r0, 52 <step.constprop.0+0x52>
+  3e:	f8d6 383c 	ldr.w	r3, [r6, #2108]	@ 0x83c
+  42:	b923      	cbnz	r3, 4e <step.constprop.0+0x4e>
+  44:	2502      	movs	r5, #2
+  46:	4628      	mov	r0, r5
+  48:	b059      	add	sp, #356	@ 0x164
+  4a:	e8bd 8ff0 	ldmia.w	sp!, {r4, r5, r6, r7, r8, r9, sl, fp, pc}
+  4e:	2503      	movs	r5, #3
+  50:	e7f9      	b.n	46 <step.constprop.0+0x46>
+  52:	4629      	mov	r1, r5
+  54:	4628      	mov	r0, r5
+  56:	f7ff fffe 	bl	0 <tud_task_ext>
+			56: R_ARM_THM_CALL	tud_task_ext
+  5a:	4638      	mov	r0, r7
+  5c:	f7ff fffe 	bl	0 <mt_live_clock_now>
+			5c: R_ARM_THM_CALL	mt_live_clock_now
+  60:	f1b1 3fff 	cmp.w	r1, #4294967295
+  64:	bf08      	it	eq
+  66:	f1b0 3fff 	cmpeq.w	r0, #4294967295
+  6a:	4620      	mov	r0, r4
+  6c:	d0df      	beq.n	2e <step.constprop.0+0x2e>
+  6e:	f7ff fffe 	bl	0 <step.constprop.0>
+			6e: R_ARM_THM_CALL	synchronize_loss
+  72:	2800      	cmp	r0, #0
+  74:	d0e3      	beq.n	3e <step.constprop.0+0x3e>
+  76:	4620      	mov	r0, r4
+  78:	f7ff fffe 	bl	0 <step.constprop.0>
+			78: R_ARM_THM_CALL	stable
+  7c:	b170      	cbz	r0, 9c <step.constprop.0+0x9c>
+  7e:	4628      	mov	r0, r5
+  80:	f7ff fffe 	bl	0 <tud_cdc_n_ready>
+			80: R_ARM_THM_CALL	tud_cdc_n_ready
+  84:	b960      	cbnz	r0, a0 <step.constprop.0+0xa0>
+  86:	f8d6 3844 	ldr.w	r3, [r6, #2116]	@ 0x844
+  8a:	b13b      	cbz	r3, 9c <step.constprop.0+0x9c>
+  8c:	2301      	movs	r3, #1
+  8e:	4620      	mov	r0, r4
+  90:	f8c6 3830 	str.w	r3, [r6, #2096]	@ 0x830
+  94:	f7ff fffe 	bl	0 <step.constprop.0>
+			94: R_ARM_THM_CALL	synchronize_loss
+  98:	2800      	cmp	r0, #0
+  9a:	d0d0      	beq.n	3e <step.constprop.0+0x3e>
+  9c:	2501      	movs	r5, #1
+  9e:	e7d2      	b.n	46 <step.constprop.0+0x46>
+  a0:	f8d6 3840 	ldr.w	r3, [r6, #2112]	@ 0x840
+  a4:	b123      	cbz	r3, b0 <step.constprop.0+0xb0>
+  a6:	4628      	mov	r0, r5
+  a8:	f7ff fffe 	bl	0 <tud_cdc_n_connected>
+			a8: R_ARM_THM_CALL	tud_cdc_n_connected
+  ac:	2800      	cmp	r0, #0
+  ae:	d0ea      	beq.n	86 <step.constprop.0+0x86>
+  b0:	a804      	add	r0, sp, #16
+  b2:	f7ff fffe 	bl	0 <mt_usb_bridge_app_enter>
+			b2: R_ARM_THM_CALL	mt_usb_bridge_app_enter
+  b6:	2800      	cmp	r0, #0
+  b8:	d0f0      	beq.n	9c <step.constprop.0+0x9c>
+  ba:	4620      	mov	r0, r4
+  bc:	f7ff fffe 	bl	0 <step.constprop.0>
+			bc: R_ARM_THM_CALL	stable
+  c0:	b918      	cbnz	r0, ca <step.constprop.0+0xca>
+  c2:	a804      	add	r0, sp, #16
+  c4:	f7ff fffe 	bl	0 <mt_usb_bridge_leave>
+			c4: R_ARM_THM_CALL	mt_usb_bridge_leave
+  c8:	e7e8      	b.n	9c <step.constprop.0+0x9c>
+  ca:	f8d6 8844 	ldr.w	r8, [r6, #2116]	@ 0x844
+  ce:	f1b8 0f00 	cmp.w	r8, #0
+  d2:	d112      	bne.n	fa <step.constprop.0+0xfa>
+  d4:	f8d6 3848 	ldr.w	r3, [r6, #2120]	@ 0x848
+  d8:	b163      	cbz	r3, f4 <step.constprop.0+0xf4>
+  da:	4640      	mov	r0, r8
+  dc:	f7ff fffe 	bl	0 <tud_cdc_n_read_flush>
+			dc: R_ARM_THM_CALL	tud_cdc_n_read_flush
+  e0:	4620      	mov	r0, r4
+  e2:	f7ff fffe 	bl	0 <step.constprop.0>
+			e2: R_ARM_THM_CALL	stable
+  e6:	b918      	cbnz	r0, f0 <step.constprop.0+0xf0>
+  e8:	a804      	add	r0, sp, #16
+  ea:	f7ff fffe 	bl	0 <mt_usb_bridge_leave>
+			ea: R_ARM_THM_CALL	mt_usb_bridge_leave
+  ee:	e7a9      	b.n	44 <step.constprop.0+0x44>
+  f0:	f8c6 8848 	str.w	r8, [r6, #2120]	@ 0x848
+  f4:	2301      	movs	r3, #1
+  f6:	f8c6 3844 	str.w	r3, [r6, #2116]	@ 0x844
+  fa:	4620      	mov	r0, r4
+  fc:	f7ff fffe 	bl	0 <step.constprop.0>
+			fc: R_ARM_THM_CALL	postcopy_hint
+ 100:	f504 5afd 	add.w	sl, r4, #8096	@ 0x1fa0
+ 104:	4680      	mov	r8, r0
+ 106:	f10a 0a08 	add.w	sl, sl, #8
+ 10a:	2800      	cmp	r0, #0
+ 10c:	f000 817b 	beq.w	406 <step.constprop.0+0x406>
+ 110:	2258      	movs	r2, #88	@ 0x58
+ 112:	2100      	movs	r1, #0
+ 114:	a808      	add	r0, sp, #32
+ 116:	f7ff fffe 	bl	0 <memset>
+			116: R_ARM_THM_CALL	memset
+ 11a:	f8d6 8820 	ldr.w	r8, [r6, #2080]	@ 0x820
+ 11e:	f8d6 b824 	ldr.w	fp, [r6, #2084]	@ 0x824
+ 122:	f7ff fffe 	bl	0 <mt_usb_bridge_actor>
+			122: R_ARM_THM_CALL	mt_usb_bridge_actor
+ 126:	4642      	mov	r2, r8
+ 128:	9000      	str	r0, [sp, #0]
+ 12a:	465b      	mov	r3, fp
+ 12c:	4650      	mov	r0, sl
+ 12e:	a908      	add	r1, sp, #32
+ 130:	f7ff fffe 	bl	0 <mt_live_adc_acquire>
+			130: R_ARM_THM_CALL	mt_live_adc_acquire
+ 134:	1e42      	subs	r2, r0, #1
+ 136:	f1d2 0a00 	rsbs	sl, r2, #0
+ 13a:	eb4a 0a02 	adc.w	sl, sl, r2
+ 13e:	2800      	cmp	r0, #0
+ 140:	f000 8345 	beq.w	7ce <step.constprop.0+0x7ce>
+ 144:	1c83      	adds	r3, r0, #2
+ 146:	d109      	bne.n	15c <step.constprop.0+0x15c>
+ 148:	2303      	movs	r3, #3
+ 14a:	4620      	mov	r0, r4
+ 14c:	f88d 3075 	strb.w	r3, [sp, #117]	@ 0x75
+ 150:	f7ff fffe 	bl	0 <step.constprop.0>
+			150: R_ARM_THM_CALL	postcopy_abort.part.0
+ 154:	4683      	mov	fp, r0
+ 156:	f04f 0800 	mov.w	r8, #0
+ 15a:	e012      	b.n	182 <step.constprop.0+0x182>
+ 15c:	2801      	cmp	r0, #1
+ 15e:	4638      	mov	r0, r7
+ 160:	d026      	beq.n	1b0 <step.constprop.0+0x1b0>
+ 162:	f7ff fffe 	bl	0 <mt_live_clock_now>
+			162: R_ARM_THM_CALL	mt_live_clock_now
+ 166:	f1b1 3fff 	cmp.w	r1, #4294967295
+ 16a:	bf08      	it	eq
+ 16c:	f1b0 3fff 	cmpeq.w	r0, #4294967295
+ 170:	4620      	mov	r0, r4
+ 172:	d10f      	bne.n	194 <step.constprop.0+0x194>
+ 174:	f7ff fffe 	bl	0 <step.constprop.0>
+			174: R_ARM_THM_CALL	time_fault
+ 178:	f04f 0800 	mov.w	r8, #0
+ 17c:	4683      	mov	fp, r0
+ 17e:	f04f 3aff 	mov.w	sl, #4294967295
+ 182:	f1bb 0f00 	cmp.w	fp, #0
+ 186:	f000 8142 	beq.w	40e <step.constprop.0+0x40e>
+ 18a:	a804      	add	r0, sp, #16
+ 18c:	f7ff fffe 	bl	0 <mt_usb_bridge_leave>
+			18c: R_ARM_THM_CALL	mt_usb_bridge_leave
+ 190:	465d      	mov	r5, fp
+ 192:	e758      	b.n	46 <step.constprop.0+0x46>
+ 194:	f7ff fffe 	bl	0 <step.constprop.0>
+			194: R_ARM_THM_CALL	stable
+ 198:	4680      	mov	r8, r0
+ 19a:	2800      	cmp	r0, #0
+ 19c:	f040 8314 	bne.w	7c8 <step.constprop.0+0x7c8>
+ 1a0:	2303      	movs	r3, #3
+ 1a2:	4620      	mov	r0, r4
+ 1a4:	f88d 3075 	strb.w	r3, [sp, #117]	@ 0x75
+ 1a8:	f7ff fffe 	bl	0 <step.constprop.0>
+			1a8: R_ARM_THM_CALL	postcopy_abort.part.0
+ 1ac:	4683      	mov	fp, r0
+ 1ae:	e7e6      	b.n	17e <step.constprop.0+0x17e>
+ 1b0:	f7ff fffe 	bl	0 <mt_live_clock_now>
+			1b0: R_ARM_THM_CALL	mt_live_clock_now
+ 1b4:	f1b1 3fff 	cmp.w	r1, #4294967295
+ 1b8:	bf08      	it	eq
+ 1ba:	f1b0 3fff 	cmpeq.w	r0, #4294967295
+ 1be:	d106      	bne.n	1ce <step.constprop.0+0x1ce>
+ 1c0:	2303      	movs	r3, #3
+ 1c2:	4620      	mov	r0, r4
+ 1c4:	f88d 3075 	strb.w	r3, [sp, #117]	@ 0x75
+ 1c8:	f7ff fffe 	bl	0 <step.constprop.0>
+			1c8: R_ARM_THM_CALL	time_fault
+ 1cc:	e7c2      	b.n	154 <step.constprop.0+0x154>
+ 1ce:	4620      	mov	r0, r4
+ 1d0:	a908      	add	r1, sp, #32
+ 1d2:	f7ff fffe 	bl	0 <step.constprop.0>
+			1d2: R_ARM_THM_CALL	postcopy_identity
+ 1d6:	4680      	mov	r8, r0
+ 1d8:	b930      	cbnz	r0, 1e8 <step.constprop.0+0x1e8>
+ 1da:	2303      	movs	r3, #3
+ 1dc:	4620      	mov	r0, r4
+ 1de:	f88d 3075 	strb.w	r3, [sp, #117]	@ 0x75
+ 1e2:	f7ff fffe 	bl	0 <step.constprop.0>
+			1e2: R_ARM_THM_CALL	postcopy_abort.part.0
+ 1e6:	e077      	b.n	2d8 <step.constprop.0+0x2d8>
+ 1e8:	4620      	mov	r0, r4
+ 1ea:	f7ff fffe 	bl	0 <step.constprop.0>
+			1ea: R_ARM_THM_CALL	postcopy_hint
+ 1ee:	4680      	mov	r8, r0
+ 1f0:	b920      	cbnz	r0, 1fc <step.constprop.0+0x1fc>
+ 1f2:	4620      	mov	r0, r4
+ 1f4:	a908      	add	r1, sp, #32
+ 1f6:	f7ff fffe 	bl	0 <step.constprop.0>
+			1f6: R_ARM_THM_CALL	postcopy_publish
+ 1fa:	e06d      	b.n	2d8 <step.constprop.0+0x2d8>
+ 1fc:	f7ff fffe 	bl	0 <mt_progress_prepare_begin>
+			1fc: R_ARM_THM_CALL	mt_progress_prepare_begin
+ 200:	4680      	mov	r8, r0
+ 202:	a91e      	add	r1, sp, #120	@ 0x78
+ 204:	f504 6049 	add.w	r0, r4, #3216	@ 0xc90
+ 208:	f7ff fffe 	bl	0 <mt_live_device_prepare_tx>
+			208: R_ARM_THM_CALL	mt_live_device_prepare_tx
+ 20c:	4640      	mov	r0, r8
+ 20e:	f7ff fffe 	bl	0 <mt_progress_prepare_end>
+			20e: R_ARM_THM_CALL	mt_progress_prepare_end
+ 212:	f8dd 8078 	ldr.w	r8, [sp, #120]	@ 0x78
+ 216:	f1b8 0f01 	cmp.w	r8, #1
+ 21a:	d15f      	bne.n	2dc <step.constprop.0+0x2dc>
+ 21c:	9b1f      	ldr	r3, [sp, #124]	@ 0x7c
+ 21e:	2b00      	cmp	r3, #0
+ 220:	d15c      	bne.n	2dc <step.constprop.0+0x2dc>
+ 222:	9b20      	ldr	r3, [sp, #128]	@ 0x80
+ 224:	2b04      	cmp	r3, #4
+ 226:	d159      	bne.n	2dc <step.constprop.0+0x2dc>
+ 228:	f8bd 3084 	ldrh.w	r3, [sp, #132]	@ 0x84
+ 22c:	2b05      	cmp	r3, #5
+ 22e:	d155      	bne.n	2dc <step.constprop.0+0x2dc>
+ 230:	f8bd 3088 	ldrh.w	r3, [sp, #136]	@ 0x88
+ 234:	2b05      	cmp	r3, #5
+ 236:	d151      	bne.n	2dc <step.constprop.0+0x2dc>
+ 238:	e9dd 2308 	ldrd	r2, r3, [sp, #32]
+ 23c:	e9dd 0124 	ldrd	r0, r1, [sp, #144]	@ 0x90
+ 240:	4299      	cmp	r1, r3
+ 242:	bf08      	it	eq
+ 244:	4290      	cmpeq	r0, r2
+ 246:	d149      	bne.n	2dc <step.constprop.0+0x2dc>
+ 248:	e9dd 0130 	ldrd	r0, r1, [sp, #192]	@ 0xc0
+ 24c:	428b      	cmp	r3, r1
+ 24e:	bf08      	it	eq
+ 250:	4282      	cmpeq	r2, r0
+ 252:	d143      	bne.n	2dc <step.constprop.0+0x2dc>
+ 254:	9b16      	ldr	r3, [sp, #88]	@ 0x58
+ 256:	9a38      	ldr	r2, [sp, #224]	@ 0xe0
+ 258:	429a      	cmp	r2, r3
+ 25a:	d13f      	bne.n	2dc <step.constprop.0+0x2dc>
+ 25c:	f89d 2072 	ldrb.w	r2, [sp, #114]	@ 0x72
+ 260:	f89d 308a 	ldrb.w	r3, [sp, #138]	@ 0x8a
+ 264:	4293      	cmp	r3, r2
+ 266:	d139      	bne.n	2dc <step.constprop.0+0x2dc>
+ 268:	f89d 208c 	ldrb.w	r2, [sp, #140]	@ 0x8c
+ 26c:	429a      	cmp	r2, r3
+ 26e:	d135      	bne.n	2dc <step.constprop.0+0x2dc>
+ 270:	f89d 3136 	ldrb.w	r3, [sp, #310]	@ 0x136
+ 274:	2b98      	cmp	r3, #152	@ 0x98
+ 276:	d131      	bne.n	2dc <step.constprop.0+0x2dc>
+ 278:	f8bd 3120 	ldrh.w	r3, [sp, #288]	@ 0x120
+ 27c:	f5b3 6f80 	cmp.w	r3, #1024	@ 0x400
+ 280:	d12c      	bne.n	2dc <step.constprop.0+0x2dc>
+ 282:	9b42      	ldr	r3, [sp, #264]	@ 0x108
+ 284:	b353      	cbz	r3, 2dc <step.constprop.0+0x2dc>
+ 286:	9a41      	ldr	r2, [sp, #260]	@ 0x104
+ 288:	4293      	cmp	r3, r2
+ 28a:	d227      	bcs.n	2dc <step.constprop.0+0x2dc>
+ 28c:	f5b2 6fa7 	cmp.w	r2, #1336	@ 0x538
+ 290:	d224      	bcs.n	2dc <step.constprop.0+0x2dc>
+ 292:	1ad3      	subs	r3, r2, r3
+ 294:	f5b3 7fc0 	cmp.w	r3, #384	@ 0x180
+ 298:	d820      	bhi.n	2dc <step.constprop.0+0x2dc>
+ 29a:	f8bd 3150 	ldrh.w	r3, [sp, #336]	@ 0x150
+ 29e:	2b04      	cmp	r3, #4
+ 2a0:	d11c      	bne.n	2dc <step.constprop.0+0x2dc>
+ 2a2:	f8bd 3144 	ldrh.w	r3, [sp, #324]	@ 0x144
+ 2a6:	f5b3 6f80 	cmp.w	r3, #1024	@ 0x400
+ 2aa:	d117      	bne.n	2dc <step.constprop.0+0x2dc>
+ 2ac:	f8bd 3156 	ldrh.w	r3, [sp, #342]	@ 0x156
+ 2b0:	429a      	cmp	r2, r3
+ 2b2:	d113      	bne.n	2dc <step.constprop.0+0x2dc>
+ 2b4:	2301      	movs	r3, #1
+ 2b6:	4638      	mov	r0, r7
+ 2b8:	f8c9 3000 	str.w	r3, [r9]
+ 2bc:	f7ff fffe 	bl	0 <mt_live_clock_now>
+			2bc: R_ARM_THM_CALL	mt_live_clock_now
+ 2c0:	f1b1 3fff 	cmp.w	r1, #4294967295
+ 2c4:	bf08      	it	eq
+ 2c6:	f1b0 3fff 	cmpeq.w	r0, #4294967295
+ 2ca:	d10c      	bne.n	2e6 <step.constprop.0+0x2e6>
+ 2cc:	2303      	movs	r3, #3
+ 2ce:	4620      	mov	r0, r4
+ 2d0:	f88d 3075 	strb.w	r3, [sp, #117]	@ 0x75
+ 2d4:	f7ff fffe 	bl	0 <step.constprop.0>
+			2d4: R_ARM_THM_CALL	time_fault
+ 2d8:	4683      	mov	fp, r0
+ 2da:	e752      	b.n	182 <step.constprop.0+0x182>
+ 2dc:	4620      	mov	r0, r4
+ 2de:	a908      	add	r1, sp, #32
+ 2e0:	f7ff fffe 	bl	0 <step.constprop.0>
+			2e0: R_ARM_THM_CALL	postcopy_publish
+ 2e4:	e736      	b.n	154 <step.constprop.0+0x154>
+ 2e6:	4620      	mov	r0, r4
+ 2e8:	a908      	add	r1, sp, #32
+ 2ea:	f7ff fffe 	bl	0 <step.constprop.0>
+			2ea: R_ARM_THM_CALL	postcopy_identity
+ 2ee:	2800      	cmp	r0, #0
+ 2f0:	f43f af73 	beq.w	1da <step.constprop.0+0x1da>
+ 2f4:	4620      	mov	r0, r4
+ 2f6:	f7ff fffe 	bl	0 <step.constprop.0>
+			2f6: R_ARM_THM_CALL	grant_irq
+ 2fa:	4638      	mov	r0, r7
+ 2fc:	f7ff fffe 	bl	0 <mt_live_clock_now>
+			2fc: R_ARM_THM_CALL	mt_live_clock_now
+ 300:	f1b1 3fff 	cmp.w	r1, #4294967295
+ 304:	bf08      	it	eq
+ 306:	f1b0 3fff 	cmpeq.w	r0, #4294967295
+ 30a:	d0df      	beq.n	2cc <step.constprop.0+0x2cc>
+ 30c:	4620      	mov	r0, r4
+ 30e:	a908      	add	r1, sp, #32
+ 310:	f7ff fffe 	bl	0 <step.constprop.0>
+			310: R_ARM_THM_CALL	postcopy_identity
+ 314:	2800      	cmp	r0, #0
+ 316:	f43f af60 	beq.w	1da <step.constprop.0+0x1da>
+ 31a:	f7ff fffe 	bl	0 <mt_stream_diag_cycle>
+			31a: R_ARM_THM_CALL	mt_stream_diag_cycle
+ 31e:	9002      	str	r0, [sp, #8]
+ 320:	f7ff fffe 	bl	0 <mt_usb_bridge_lock>
+			320: R_ARM_THM_CALL	mt_usb_bridge_lock
+ 324:	e9dd 2317 	ldrd	r2, r3, [sp, #92]	@ 0x5c
+ 328:	a91e      	add	r1, sp, #120	@ 0x78
+ 32a:	9003      	str	r0, [sp, #12]
+ 32c:	4620      	mov	r0, r4
+ 32e:	f7ff fffe 	bl	0 <step.constprop.0>
+			32e: R_ARM_THM_CALL	prepared_tx_step
+ 332:	4683      	mov	fp, r0
+ 334:	9803      	ldr	r0, [sp, #12]
+ 336:	f7ff fffe 	bl	0 <mt_usb_bridge_unlock>
+			336: R_ARM_THM_CALL	mt_usb_bridge_unlock
+ 33a:	9802      	ldr	r0, [sp, #8]
+ 33c:	f7ff fffe 	bl	0 <mt_stream_diag_tx>
+			33c: R_ARM_THM_CALL	mt_stream_diag_tx
+ 340:	4638      	mov	r0, r7
+ 342:	f7ff fffe 	bl	0 <mt_live_clock_now>
+			342: R_ARM_THM_CALL	mt_live_clock_now
+ 346:	f1b1 3fff 	cmp.w	r1, #4294967295
+ 34a:	bf08      	it	eq
+ 34c:	f1b0 3fff 	cmpeq.w	r0, #4294967295
+ 350:	d0bc      	beq.n	2cc <step.constprop.0+0x2cc>
+ 352:	4620      	mov	r0, r4
+ 354:	a908      	add	r1, sp, #32
+ 356:	f7ff fffe 	bl	0 <step.constprop.0>
+			356: R_ARM_THM_CALL	postcopy_identity
+ 35a:	2800      	cmp	r0, #0
+ 35c:	f43f af3d 	beq.w	1da <step.constprop.0+0x1da>
+ 360:	a806      	add	r0, sp, #24
+ 362:	f7ff fffe 	bl	0 <mt_usb_bridge_app_enter>
+			362: R_ARM_THM_CALL	mt_usb_bridge_app_enter
+ 366:	b148      	cbz	r0, 37c <step.constprop.0+0x37c>
+ 368:	4620      	mov	r0, r4
+ 36a:	f7ff fffe 	bl	0 <step.constprop.0>
+			36a: R_ARM_THM_CALL	usable
+ 36e:	b110      	cbz	r0, 376 <step.constprop.0+0x376>
+ 370:	2000      	movs	r0, #0
+ 372:	f7ff fffe 	bl	0 <tud_cdc_n_write_flush>
+			372: R_ARM_THM_CALL	tud_cdc_n_write_flush
+ 376:	a806      	add	r0, sp, #24
+ 378:	f7ff fffe 	bl	0 <mt_usb_bridge_leave>
+			378: R_ARM_THM_CALL	mt_usb_bridge_leave
+ 37c:	4638      	mov	r0, r7
+ 37e:	f7ff fffe 	bl	0 <mt_live_clock_now>
+			37e: R_ARM_THM_CALL	mt_live_clock_now
+ 382:	f1b1 3fff 	cmp.w	r1, #4294967295
+ 386:	bf08      	it	eq
+ 388:	f1b0 3fff 	cmpeq.w	r0, #4294967295
+ 38c:	d09e      	beq.n	2cc <step.constprop.0+0x2cc>
+ 38e:	4620      	mov	r0, r4
+ 390:	a908      	add	r1, sp, #32
+ 392:	f7ff fffe 	bl	0 <step.constprop.0>
+			392: R_ARM_THM_CALL	postcopy_identity
+ 396:	2800      	cmp	r0, #0
+ 398:	f43f af1f 	beq.w	1da <step.constprop.0+0x1da>
+ 39c:	f1bb 0f00 	cmp.w	fp, #0
+ 3a0:	f43f af27 	beq.w	1f2 <step.constprop.0+0x1f2>
+ 3a4:	f8bd 3088 	ldrh.w	r3, [sp, #136]	@ 0x88
+ 3a8:	2b05      	cmp	r3, #5
+ 3aa:	f47f af22 	bne.w	1f2 <step.constprop.0+0x1f2>
+ 3ae:	f89d 3136 	ldrb.w	r3, [sp, #310]	@ 0x136
+ 3b2:	2b98      	cmp	r3, #152	@ 0x98
+ 3b4:	f47f af1d 	bne.w	1f2 <step.constprop.0+0x1f2>
+ 3b8:	f8bd 3120 	ldrh.w	r3, [sp, #288]	@ 0x120
+ 3bc:	f5b3 6f80 	cmp.w	r3, #1024	@ 0x400
+ 3c0:	f47f af17 	bne.w	1f2 <step.constprop.0+0x1f2>
+ 3c4:	9b42      	ldr	r3, [sp, #264]	@ 0x108
+ 3c6:	2b00      	cmp	r3, #0
+ 3c8:	f43f af13 	beq.w	1f2 <step.constprop.0+0x1f2>
+ 3cc:	f504 5380 	add.w	r3, r4, #4096	@ 0x1000
+ 3d0:	f8d3 2f4c 	ldr.w	r2, [r3, #3916]	@ 0xf4c
+ 3d4:	2a00      	cmp	r2, #0
+ 3d6:	f47f af0c 	bne.w	1f2 <step.constprop.0+0x1f2>
+ 3da:	f8b3 3f9c 	ldrh.w	r3, [r3, #3996]	@ 0xf9c
+ 3de:	2b00      	cmp	r3, #0
+ 3e0:	f47f af07 	bne.w	1f2 <step.constprop.0+0x1f2>
+ 3e4:	e9dd 2317 	ldrd	r2, r3, [sp, #92]	@ 0x5c
+ 3e8:	4620      	mov	r0, r4
+ 3ea:	a91e      	add	r1, sp, #120	@ 0x78
+ 3ec:	f7ff fffe 	bl	0 <step.constprop.0>
+			3ec: R_ARM_THM_CALL	prefetch_after_tx
+ 3f0:	2803      	cmp	r0, #3
+ 3f2:	f43f af6b 	beq.w	2cc <step.constprop.0+0x2cc>
+ 3f6:	4620      	mov	r0, r4
+ 3f8:	a908      	add	r1, sp, #32
+ 3fa:	f7ff fffe 	bl	0 <step.constprop.0>
+			3fa: R_ARM_THM_CALL	postcopy_identity
+ 3fe:	2800      	cmp	r0, #0
+ 400:	f47f aef7 	bne.w	1f2 <step.constprop.0+0x1f2>
+ 404:	e6e9      	b.n	1da <step.constprop.0+0x1da>
+ 406:	4650      	mov	r0, sl
+ 408:	f7ff fffe 	bl	0 <mt_live_adc_service>
+			408: R_ARM_THM_CALL	mt_live_adc_service
+ 40c:	4682      	mov	sl, r0
+ 40e:	4638      	mov	r0, r7
+ 410:	f7ff fffe 	bl	0 <mt_live_clock_now>
+			410: R_ARM_THM_CALL	mt_live_clock_now
+ 414:	f1b1 3fff 	cmp.w	r1, #4294967295
+ 418:	bf08      	it	eq
+ 41a:	f1b0 3fff 	cmpeq.w	r0, #4294967295
+ 41e:	d103      	bne.n	428 <step.constprop.0+0x428>
+ 420:	a804      	add	r0, sp, #16
+ 422:	f7ff fffe 	bl	0 <mt_usb_bridge_leave>
+			422: R_ARM_THM_CALL	mt_usb_bridge_leave
+ 426:	e054      	b.n	4d2 <step.constprop.0+0x4d2>
+ 428:	4620      	mov	r0, r4
+ 42a:	f7ff fffe 	bl	0 <step.constprop.0>
+			42a: R_ARM_THM_CALL	stable
+ 42e:	b930      	cbnz	r0, 43e <step.constprop.0+0x43e>
+ 430:	a804      	add	r0, sp, #16
+ 432:	f7ff fffe 	bl	0 <mt_usb_bridge_leave>
+			432: R_ARM_THM_CALL	mt_usb_bridge_leave
+ 436:	4620      	mov	r0, r4
+ 438:	f7ff fffe 	bl	0 <step.constprop.0>
+			438: R_ARM_THM_CALL	synchronize_loss
+ 43c:	e5ff      	b.n	3e <step.constprop.0+0x3e>
+ 43e:	f11a 0f02 	cmn.w	sl, #2
+ 442:	d104      	bne.n	44e <step.constprop.0+0x44e>
+ 444:	a804      	add	r0, sp, #16
+ 446:	f7ff fffe 	bl	0 <mt_usb_bridge_leave>
+			446: R_ARM_THM_CALL	mt_usb_bridge_leave
+ 44a:	2504      	movs	r5, #4
+ 44c:	e5fb      	b.n	46 <step.constprop.0+0x46>
+ 44e:	f1b8 0f00 	cmp.w	r8, #0
+ 452:	d040      	beq.n	4d6 <step.constprop.0+0x4d6>
+ 454:	f04f 0a00 	mov.w	sl, #0
+ 458:	4638      	mov	r0, r7
+ 45a:	f7ff fffe 	bl	0 <mt_live_clock_now>
+			45a: R_ARM_THM_CALL	mt_live_clock_now
+ 45e:	f1b1 3fff 	cmp.w	r1, #4294967295
+ 462:	bf08      	it	eq
+ 464:	f1b0 3fff 	cmpeq.w	r0, #4294967295
+ 468:	d0da      	beq.n	420 <step.constprop.0+0x420>
+ 46a:	4620      	mov	r0, r4
+ 46c:	f7ff fffe 	bl	0 <step.constprop.0>
+			46c: R_ARM_THM_CALL	stable
+ 470:	2800      	cmp	r0, #0
+ 472:	d0dd      	beq.n	430 <step.constprop.0+0x430>
+ 474:	f8d6 2894 	ldr.w	r2, [r6, #2196]	@ 0x894
+ 478:	f8d6 3890 	ldr.w	r3, [r6, #2192]	@ 0x890
+ 47c:	429a      	cmp	r2, r3
+ 47e:	d10a      	bne.n	496 <step.constprop.0+0x496>
+ 480:	2000      	movs	r0, #0
+ 482:	f504 5121 	add.w	r1, r4, #10304	@ 0x2840
+ 486:	2240      	movs	r2, #64	@ 0x40
+ 488:	f8c6 0894 	str.w	r0, [r6, #2196]	@ 0x894
+ 48c:	3110      	adds	r1, #16
+ 48e:	f7ff fffe 	bl	0 <tud_cdc_n_read>
+			48e: R_ARM_THM_CALL	tud_cdc_n_read
+ 492:	f8c6 0890 	str.w	r0, [r6, #2192]	@ 0x890
+ 496:	f504 5b21 	add.w	fp, r4, #10304	@ 0x2840
+ 49a:	f504 6349 	add.w	r3, r4, #3216	@ 0xc90
+ 49e:	f10b 0b10 	add.w	fp, fp, #16
+ 4a2:	9302      	str	r3, [sp, #8]
+ 4a4:	f8d6 1894 	ldr.w	r1, [r6, #2196]	@ 0x894
+ 4a8:	f8d6 2890 	ldr.w	r2, [r6, #2192]	@ 0x890
+ 4ac:	4291      	cmp	r1, r2
+ 4ae:	d204      	bcs.n	4ba <step.constprop.0+0x4ba>
+ 4b0:	4620      	mov	r0, r4
+ 4b2:	f7ff fffe 	bl	0 <step.constprop.0>
+			4b2: R_ARM_THM_CALL	usable
+ 4b6:	2800      	cmp	r0, #0
+ 4b8:	d14e      	bne.n	558 <step.constprop.0+0x558>
+ 4ba:	a804      	add	r0, sp, #16
+ 4bc:	f7ff fffe 	bl	0 <mt_usb_bridge_leave>
+			4bc: R_ARM_THM_CALL	mt_usb_bridge_leave
+ 4c0:	4638      	mov	r0, r7
+ 4c2:	f7ff fffe 	bl	0 <mt_live_clock_now>
+			4c2: R_ARM_THM_CALL	mt_live_clock_now
+ 4c6:	f1b1 3fff 	cmp.w	r1, #4294967295
+ 4ca:	bf08      	it	eq
+ 4cc:	f1b0 3fff 	cmpeq.w	r0, #4294967295
+ 4d0:	d151      	bne.n	576 <step.constprop.0+0x576>
+ 4d2:	4620      	mov	r0, r4
+ 4d4:	e0e4      	b.n	6a0 <step.constprop.0+0x6a0>
+ 4d6:	f504 5380 	add.w	r3, r4, #4096	@ 0x1000
+ 4da:	f8b3 04e4 	ldrh.w	r0, [r3, #1252]	@ 0x4e4
+ 4de:	f8b3 2f90 	ldrh.w	r2, [r3, #3984]	@ 0xf90
+ 4e2:	2805      	cmp	r0, #5
+ 4e4:	f8d3 14d4 	ldr.w	r1, [r3, #1236]	@ 0x4d4
+ 4e8:	d12f      	bne.n	54a <step.constprop.0+0x54a>
+ 4ea:	f8d3 04e0 	ldr.w	r0, [r3, #1248]	@ 0x4e0
+ 4ee:	2804      	cmp	r0, #4
+ 4f0:	d12b      	bne.n	54a <step.constprop.0+0x54a>
+ 4f2:	f8d3 0f4c 	ldr.w	r0, [r3, #3916]	@ 0xf4c
+ 4f6:	bb40      	cbnz	r0, 54a <step.constprop.0+0x54a>
+ 4f8:	f8d3 05a4 	ldr.w	r0, [r3, #1444]	@ 0x5a4
+ 4fc:	bb28      	cbnz	r0, 54a <step.constprop.0+0x54a>
+ 4fe:	f8d3 05a0 	ldr.w	r0, [r3, #1440]	@ 0x5a0
+ 502:	bb10      	cbnz	r0, 54a <step.constprop.0+0x54a>
+ 504:	f8d3 05a8 	ldr.w	r0, [r3, #1448]	@ 0x5a8
+ 508:	b9f8      	cbnz	r0, 54a <step.constprop.0+0x54a>
+ 50a:	f8d3 05ac 	ldr.w	r0, [r3, #1452]	@ 0x5ac
+ 50e:	b9e0      	cbnz	r0, 54a <step.constprop.0+0x54a>
+ 510:	f8d3 05b0 	ldr.w	r0, [r3, #1456]	@ 0x5b0
+ 514:	b9c8      	cbnz	r0, 54a <step.constprop.0+0x54a>
+ 516:	f8d3 059c 	ldr.w	r0, [r3, #1436]	@ 0x59c
+ 51a:	b9b0      	cbnz	r0, 54a <step.constprop.0+0x54a>
+ 51c:	f8d3 04d8 	ldr.w	r0, [r3, #1240]	@ 0x4d8
+ 520:	b998      	cbnz	r0, 54a <step.constprop.0+0x54a>
+ 522:	2908      	cmp	r1, #8
+ 524:	d811      	bhi.n	54a <step.constprop.0+0x54a>
+ 526:	f5b2 6f80 	cmp.w	r2, #1024	@ 0x400
+ 52a:	d80e      	bhi.n	54a <step.constprop.0+0x54a>
+ 52c:	0650      	lsls	r0, r2, #25
+ 52e:	d10c      	bne.n	54a <step.constprop.0+0x54a>
+ 530:	f8b3 af9c 	ldrh.w	sl, [r3, #3996]	@ 0xf9c
+ 534:	f1ba 0f01 	cmp.w	sl, #1
+ 538:	d107      	bne.n	54a <step.constprop.0+0x54a>
+ 53a:	2904      	cmp	r1, #4
+ 53c:	bf28      	it	cs
+ 53e:	2104      	movcs	r1, #4
+ 540:	eb02 12c1 	add.w	r2, r2, r1, lsl #7
+ 544:	f5b2 6f80 	cmp.w	r2, #1024	@ 0x400
+ 548:	d286      	bcs.n	458 <step.constprop.0+0x458>
+ 54a:	2301      	movs	r3, #1
+ 54c:	4620      	mov	r0, r4
+ 54e:	f8c9 3000 	str.w	r3, [r9]
+ 552:	f7ff fffe 	bl	0 <step.constprop.0>
+			552: R_ARM_THM_CALL	grant_irq
+ 556:	e77d      	b.n	454 <step.constprop.0+0x454>
+ 558:	f8d6 1894 	ldr.w	r1, [r6, #2196]	@ 0x894
+ 55c:	2201      	movs	r2, #1
+ 55e:	9802      	ldr	r0, [sp, #8]
+ 560:	4459      	add	r1, fp
+ 562:	f7ff fffe 	bl	0 <mt_live_device_receive>
+			562: R_ARM_THM_CALL	mt_live_device_receive
+ 566:	2800      	cmp	r0, #0
+ 568:	d0a7      	beq.n	4ba <step.constprop.0+0x4ba>
+ 56a:	f8d6 2894 	ldr.w	r2, [r6, #2196]	@ 0x894
+ 56e:	3201      	adds	r2, #1
+ 570:	f8c6 2894 	str.w	r2, [r6, #2196]	@ 0x894
+ 574:	e796      	b.n	4a4 <step.constprop.0+0x4a4>
+ 576:	4620      	mov	r0, r4
+ 578:	f7ff fffe 	bl	0 <step.constprop.0>
+			578: R_ARM_THM_CALL	synchronize_loss
+ 57c:	2800      	cmp	r0, #0
+ 57e:	f43f ad5e 	beq.w	3e <step.constprop.0+0x3e>
+ 582:	4620      	mov	r0, r4
+ 584:	f7ff fffe 	bl	0 <step.constprop.0>
+			584: R_ARM_THM_CALL	usable
+ 588:	2800      	cmp	r0, #0
+ 58a:	f43f ad87 	beq.w	9c <step.constprop.0+0x9c>
+ 58e:	f1b8 0f00 	cmp.w	r8, #0
+ 592:	f47f ad58 	bne.w	46 <step.constprop.0+0x46>
+ 596:	f8d4 3c88 	ldr.w	r3, [r4, #3208]	@ 0xc88
+ 59a:	f504 5880 	add.w	r8, r4, #4096	@ 0x1000
+ 59e:	9301      	str	r3, [sp, #4]
+ 5a0:	f8b8 3564 	ldrh.w	r3, [r8, #1380]	@ 0x564
+ 5a4:	f04f 30ff 	mov.w	r0, #4294967295
+ 5a8:	9300      	str	r3, [sp, #0]
+ 5aa:	f8d8 3568 	ldr.w	r3, [r8, #1384]	@ 0x568
+ 5ae:	f8d8 24d4 	ldr.w	r2, [r8, #1236]	@ 0x4d4
+ 5b2:	f8d6 1820 	ldr.w	r1, [r6, #2080]	@ 0x820
+ 5b6:	f7ff fffe 	bl	0 <mt_stream_diag_note>
+			5b6: R_ARM_THM_CALL	mt_stream_diag_note
+ 5ba:	4620      	mov	r0, r4
+ 5bc:	f7ff fffe 	bl	0 <step.constprop.0>
+			5bc: R_ARM_THM_CALL	quiescent
+ 5c0:	b148      	cbz	r0, 5d6 <step.constprop.0+0x5d6>
+ 5c2:	f8d8 04e0 	ldr.w	r0, [r8, #1248]	@ 0x4e0
+ 5c6:	2801      	cmp	r0, #1
+ 5c8:	d105      	bne.n	5d6 <step.constprop.0+0x5d6>
+ 5ca:	f8d4 2c5c 	ldr.w	r2, [r4, #3164]	@ 0xc5c
+ 5ce:	f8d6 1820 	ldr.w	r1, [r6, #2080]	@ 0x820
+ 5d2:	f7ff fffe 	bl	0 <mt_stream_diag_replaced>
+			5d2: R_ARM_THM_CALL	mt_stream_diag_replaced
+ 5d6:	f8d6 3820 	ldr.w	r3, [r6, #2080]	@ 0x820
+ 5da:	9302      	str	r3, [sp, #8]
+ 5dc:	f8d6 3824 	ldr.w	r3, [r6, #2084]	@ 0x824
+ 5e0:	9303      	str	r3, [sp, #12]
+ 5e2:	f7ff fffe 	bl	0 <mt_progress_prepare_begin>
+			5e2: R_ARM_THM_CALL	mt_progress_prepare_begin
+ 5e6:	4683      	mov	fp, r0
+ 5e8:	a91e      	add	r1, sp, #120	@ 0x78
+ 5ea:	f504 6049 	add.w	r0, r4, #3216	@ 0xc90
+ 5ee:	f7ff fffe 	bl	0 <mt_live_device_prepare_tx>
+			5ee: R_ARM_THM_CALL	mt_live_device_prepare_tx
+ 5f2:	4658      	mov	r0, fp
+ 5f4:	f7ff fffe 	bl	0 <mt_progress_prepare_end>
+			5f4: R_ARM_THM_CALL	mt_progress_prepare_end
+ 5f8:	f1ba 0f00 	cmp.w	sl, #0
+ 5fc:	d143      	bne.n	686 <step.constprop.0+0x686>
+ 5fe:	f7ff fffe 	bl	0 <mt_stream_diag_cycle>
+			5fe: R_ARM_THM_CALL	mt_stream_diag_cycle
+ 602:	4683      	mov	fp, r0
+ 604:	f7ff fffe 	bl	0 <mt_usb_bridge_lock>
+			604: R_ARM_THM_CALL	mt_usb_bridge_lock
+ 608:	e9dd 2302 	ldrd	r2, r3, [sp, #8]
+ 60c:	a91e      	add	r1, sp, #120	@ 0x78
+ 60e:	4682      	mov	sl, r0
+ 610:	4620      	mov	r0, r4
+ 612:	f7ff fffe 	bl	0 <step.constprop.0>
+			612: R_ARM_THM_CALL	prepared_tx_step
+ 616:	4681      	mov	r9, r0
+ 618:	4650      	mov	r0, sl
+ 61a:	f7ff fffe 	bl	0 <mt_usb_bridge_unlock>
+			61a: R_ARM_THM_CALL	mt_usb_bridge_unlock
+ 61e:	4658      	mov	r0, fp
+ 620:	f7ff fffe 	bl	0 <mt_stream_diag_tx>
+			620: R_ARM_THM_CALL	mt_stream_diag_tx
+ 624:	4638      	mov	r0, r7
+ 626:	f7ff fffe 	bl	0 <mt_live_clock_now>
+			626: R_ARM_THM_CALL	mt_live_clock_now
+ 62a:	f1b1 3fff 	cmp.w	r1, #4294967295
+ 62e:	bf08      	it	eq
+ 630:	f1b0 3fff 	cmpeq.w	r0, #4294967295
+ 634:	f43f af4d 	beq.w	4d2 <step.constprop.0+0x4d2>
+ 638:	4620      	mov	r0, r4
+ 63a:	f7ff fffe 	bl	0 <step.constprop.0>
+			63a: R_ARM_THM_CALL	synchronize_loss
+ 63e:	2800      	cmp	r0, #0
+ 640:	f43f acfd 	beq.w	3e <step.constprop.0+0x3e>
+ 644:	a804      	add	r0, sp, #16
+ 646:	f7ff fffe 	bl	0 <mt_usb_bridge_app_enter>
+			646: R_ARM_THM_CALL	mt_usb_bridge_app_enter
+ 64a:	b148      	cbz	r0, 660 <step.constprop.0+0x660>
+ 64c:	4620      	mov	r0, r4
+ 64e:	f7ff fffe 	bl	0 <step.constprop.0>
+			64e: R_ARM_THM_CALL	usable
+ 652:	b110      	cbz	r0, 65a <step.constprop.0+0x65a>
+ 654:	2000      	movs	r0, #0
+ 656:	f7ff fffe 	bl	0 <tud_cdc_n_write_flush>
+			656: R_ARM_THM_CALL	tud_cdc_n_write_flush
+ 65a:	a804      	add	r0, sp, #16
+ 65c:	f7ff fffe 	bl	0 <mt_usb_bridge_leave>
+			65c: R_ARM_THM_CALL	mt_usb_bridge_leave
+ 660:	4638      	mov	r0, r7
+ 662:	f7ff fffe 	bl	0 <mt_live_clock_now>
+			662: R_ARM_THM_CALL	mt_live_clock_now
+ 666:	f1b1 3fff 	cmp.w	r1, #4294967295
+ 66a:	bf08      	it	eq
+ 66c:	f1b0 3fff 	cmpeq.w	r0, #4294967295
+ 670:	4620      	mov	r0, r4
+ 672:	d015      	beq.n	6a0 <step.constprop.0+0x6a0>
+ 674:	f7ff fffe 	bl	0 <step.constprop.0>
+			674: R_ARM_THM_CALL	synchronize_loss
+ 678:	2800      	cmp	r0, #0
+ 67a:	d17c      	bne.n	776 <step.constprop.0+0x776>
+ 67c:	f504 5400 	add.w	r4, r4, #8192	@ 0x2000
+ 680:	f8d4 383c 	ldr.w	r3, [r4, #2108]	@ 0x83c
+ 684:	e4dd      	b.n	42 <step.constprop.0+0x42>
+ 686:	2301      	movs	r3, #1
+ 688:	4638      	mov	r0, r7
+ 68a:	f8c9 3000 	str.w	r3, [r9]
+ 68e:	f7ff fffe 	bl	0 <mt_live_clock_now>
+			68e: R_ARM_THM_CALL	mt_live_clock_now
+ 692:	f1b1 3fff 	cmp.w	r1, #4294967295
+ 696:	bf08      	it	eq
+ 698:	f1b0 3fff 	cmpeq.w	r0, #4294967295
+ 69c:	4620      	mov	r0, r4
+ 69e:	d103      	bne.n	6a8 <step.constprop.0+0x6a8>
+ 6a0:	f7ff fffe 	bl	0 <step.constprop.0>
+			6a0: R_ARM_THM_CALL	time_fault
+ 6a4:	4605      	mov	r5, r0
+ 6a6:	e4ce      	b.n	46 <step.constprop.0+0x46>
+ 6a8:	f7ff fffe 	bl	0 <step.constprop.0>
+			6a8: R_ARM_THM_CALL	synchronize_loss
+ 6ac:	2800      	cmp	r0, #0
+ 6ae:	f43f acc6 	beq.w	3e <step.constprop.0+0x3e>
+ 6b2:	4620      	mov	r0, r4
+ 6b4:	f7ff fffe 	bl	0 <step.constprop.0>
+			6b4: R_ARM_THM_CALL	usable
+ 6b8:	2800      	cmp	r0, #0
+ 6ba:	f43f acef 	beq.w	9c <step.constprop.0+0x9c>
+ 6be:	a804      	add	r0, sp, #16
+ 6c0:	f7ff fffe 	bl	0 <mt_usb_bridge_app_enter>
+			6c0: R_ARM_THM_CALL	mt_usb_bridge_app_enter
+ 6c4:	2800      	cmp	r0, #0
+ 6c6:	f43f ace9 	beq.w	9c <step.constprop.0+0x9c>
+ 6ca:	4620      	mov	r0, r4
+ 6cc:	f7ff fffe 	bl	0 <step.constprop.0>
+			6cc: R_ARM_THM_CALL	stable
+ 6d0:	2800      	cmp	r0, #0
+ 6d2:	f43f aead 	beq.w	430 <step.constprop.0+0x430>
+ 6d6:	4620      	mov	r0, r4
+ 6d8:	f7ff fffe 	bl	0 <step.constprop.0>
+			6d8: R_ARM_THM_CALL	grant_irq
+ 6dc:	4638      	mov	r0, r7
+ 6de:	f7ff fffe 	bl	0 <mt_live_clock_now>
+			6de: R_ARM_THM_CALL	mt_live_clock_now
+ 6e2:	f1b1 3fff 	cmp.w	r1, #4294967295
+ 6e6:	bf08      	it	eq
+ 6e8:	f1b0 3fff 	cmpeq.w	r0, #4294967295
+ 6ec:	f43f ae98 	beq.w	420 <step.constprop.0+0x420>
+ 6f0:	4620      	mov	r0, r4
+ 6f2:	f7ff fffe 	bl	0 <step.constprop.0>
+			6f2: R_ARM_THM_CALL	stable
+ 6f6:	2800      	cmp	r0, #0
+ 6f8:	f43f ae9a 	beq.w	430 <step.constprop.0+0x430>
+ 6fc:	a804      	add	r0, sp, #16
+ 6fe:	f7ff fffe 	bl	0 <mt_usb_bridge_leave>
+			6fe: R_ARM_THM_CALL	mt_usb_bridge_leave
+ 702:	9b1e      	ldr	r3, [sp, #120]	@ 0x78
+ 704:	2b01      	cmp	r3, #1
+ 706:	f47f af7a 	bne.w	5fe <step.constprop.0+0x5fe>
+ 70a:	f89d 3136 	ldrb.w	r3, [sp, #310]	@ 0x136
+ 70e:	2b98      	cmp	r3, #152	@ 0x98
+ 710:	f47f af75 	bne.w	5fe <step.constprop.0+0x5fe>
+ 714:	e9dd 321f 	ldrd	r3, r2, [sp, #124]	@ 0x7c
+ 718:	2a04      	cmp	r2, #4
+ 71a:	f47f acbf 	bne.w	9c <step.constprop.0+0x9c>
+ 71e:	f8bd 2084 	ldrh.w	r2, [sp, #132]	@ 0x84
+ 722:	2a05      	cmp	r2, #5
+ 724:	f47f acba 	bne.w	9c <step.constprop.0+0x9c>
+ 728:	f8bd 2088 	ldrh.w	r2, [sp, #136]	@ 0x88
+ 72c:	2a05      	cmp	r2, #5
+ 72e:	f47f acb5 	bne.w	9c <step.constprop.0+0x9c>
+ 732:	9a42      	ldr	r2, [sp, #264]	@ 0x108
+ 734:	4313      	orrs	r3, r2
+ 736:	f47f acb1 	bne.w	9c <step.constprop.0+0x9c>
+ 73a:	f8bd 3120 	ldrh.w	r3, [sp, #288]	@ 0x120
+ 73e:	f5b3 6f80 	cmp.w	r3, #1024	@ 0x400
+ 742:	f47f acab 	bne.w	9c <step.constprop.0+0x9c>
+ 746:	f8bd 3150 	ldrh.w	r3, [sp, #336]	@ 0x150
+ 74a:	2b04      	cmp	r3, #4
+ 74c:	f47f aca6 	bne.w	9c <step.constprop.0+0x9c>
+ 750:	f8bd 3144 	ldrh.w	r3, [sp, #324]	@ 0x144
+ 754:	f5b3 6f80 	cmp.w	r3, #1024	@ 0x400
+ 758:	f47f aca0 	bne.w	9c <step.constprop.0+0x9c>
+ 75c:	f8bd 3156 	ldrh.w	r3, [sp, #342]	@ 0x156
+ 760:	9a41      	ldr	r2, [sp, #260]	@ 0x104
+ 762:	4293      	cmp	r3, r2
+ 764:	f47f ac9a 	bne.w	9c <step.constprop.0+0x9c>
+ 768:	f240 5236 	movw	r2, #1334	@ 0x536
+ 76c:	3b01      	subs	r3, #1
+ 76e:	4293      	cmp	r3, r2
+ 770:	f67f af45 	bls.w	5fe <step.constprop.0+0x5fe>
+ 774:	e492      	b.n	9c <step.constprop.0+0x9c>
+ 776:	f1b9 0f00 	cmp.w	r9, #0
+ 77a:	f43f ac63 	beq.w	44 <step.constprop.0+0x44>
+ 77e:	f8bd 3088 	ldrh.w	r3, [sp, #136]	@ 0x88
+ 782:	2b05      	cmp	r3, #5
+ 784:	f47f ac5f 	bne.w	46 <step.constprop.0+0x46>
+ 788:	f89d 3136 	ldrb.w	r3, [sp, #310]	@ 0x136
+ 78c:	2b98      	cmp	r3, #152	@ 0x98
+ 78e:	f47f ac5a 	bne.w	46 <step.constprop.0+0x46>
+ 792:	f8bd 3120 	ldrh.w	r3, [sp, #288]	@ 0x120
+ 796:	f5b3 6f80 	cmp.w	r3, #1024	@ 0x400
+ 79a:	f47f ac54 	bne.w	46 <step.constprop.0+0x46>
+ 79e:	9b42      	ldr	r3, [sp, #264]	@ 0x108
+ 7a0:	2b00      	cmp	r3, #0
+ 7a2:	f43f ac50 	beq.w	46 <step.constprop.0+0x46>
+ 7a6:	f8d8 3f4c 	ldr.w	r3, [r8, #3916]	@ 0xf4c
+ 7aa:	2b00      	cmp	r3, #0
+ 7ac:	f47f ac4b 	bne.w	46 <step.constprop.0+0x46>
+ 7b0:	f8b8 3f9c 	ldrh.w	r3, [r8, #3996]	@ 0xf9c
+ 7b4:	2b00      	cmp	r3, #0
+ 7b6:	f47f ac46 	bne.w	46 <step.constprop.0+0x46>
+ 7ba:	e9dd 2302 	ldrd	r2, r3, [sp, #8]
+ 7be:	4620      	mov	r0, r4
+ 7c0:	a91e      	add	r1, sp, #120	@ 0x78
+ 7c2:	f7ff fffe 	bl	0 <step.constprop.0>
+			7c2: R_ARM_THM_CALL	prefetch_after_tx
+ 7c6:	e76d      	b.n	6a4 <step.constprop.0+0x6a4>
+ 7c8:	f04f 0b02 	mov.w	fp, #2
+ 7cc:	e4dd      	b.n	18a <step.constprop.0+0x18a>
+ 7ce:	4680      	mov	r8, r0
+ 7d0:	e61d      	b.n	40e <step.constprop.0+0x40e>
+
+Disassembly of section .text.mt_live_runtime_init:
+
+00000000 <mt_live_runtime_init>:
+   0:	e92d 4ff0 	stmdb	sp!, {r4, r5, r6, r7, r8, r9, sl, fp, lr}
+   4:	b097      	sub	sp, #92	@ 0x5c
+   6:	460d      	mov	r5, r1
+   8:	4691      	mov	r9, r2
+   a:	4698      	mov	r8, r3
+   c:	4604      	mov	r4, r0
+   e:	f8dd b08c 	ldr.w	fp, [sp, #140]	@ 0x8c
+  12:	b920      	cbnz	r0, 1e <mt_live_runtime_init+0x1e>
+  14:	2604      	movs	r6, #4
+  16:	4630      	mov	r0, r6
+  18:	b017      	add	sp, #92	@ 0x5c
+  1a:	e8bd 8ff0 	ldmia.w	sp!, {r4, r5, r6, r7, r8, r9, sl, fp, pc}
+  1e:	f500 5700 	add.w	r7, r0, #8192	@ 0x2000
+  22:	f8d7 3834 	ldr.w	r3, [r7, #2100]	@ 0x834
+  26:	2b00      	cmp	r3, #0
+  28:	d1f4      	bne.n	14 <mt_live_runtime_init+0x14>
+  2a:	2900      	cmp	r1, #0
+  2c:	d0f2      	beq.n	14 <mt_live_runtime_init+0x14>
+  2e:	2a00      	cmp	r2, #0
+  30:	d0f0      	beq.n	14 <mt_live_runtime_init+0x14>
+  32:	6813      	ldr	r3, [r2, #0]
+  34:	2b00      	cmp	r3, #0
+  36:	d0ed      	beq.n	14 <mt_live_runtime_init+0x14>
+  38:	6853      	ldr	r3, [r2, #4]
+  3a:	2b00      	cmp	r3, #0
+  3c:	d0ea      	beq.n	14 <mt_live_runtime_init+0x14>
+  3e:	9b20      	ldr	r3, [sp, #128]	@ 0x80
+  40:	2b00      	cmp	r3, #0
+  42:	d0e7      	beq.n	14 <mt_live_runtime_init+0x14>
+  44:	9b21      	ldr	r3, [sp, #132]	@ 0x84
+  46:	2b00      	cmp	r3, #0
+  48:	d0e4      	beq.n	14 <mt_live_runtime_init+0x14>
+  4a:	f1bb 0f01 	cmp.w	fp, #1
+  4e:	d8e1      	bhi.n	14 <mt_live_runtime_init+0x14>
+  50:	9b24      	ldr	r3, [sp, #144]	@ 0x90
+  52:	3b01      	subs	r3, #1
+  54:	f5b3 7ff9 	cmp.w	r3, #498	@ 0x1f2
+  58:	d8dc      	bhi.n	14 <mt_live_runtime_init+0x14>
+  5a:	f7ff fffe 	bl	0 <tud_inited>
+			5a: R_ARM_THM_CALL	tud_inited
+  5e:	4682      	mov	sl, r0
+  60:	2800      	cmp	r0, #0
+  62:	d1d7      	bne.n	14 <mt_live_runtime_init+0x14>
+  64:	4628      	mov	r0, r5
+  66:	f7ff fffe 	bl	0 <mt_timebase_update>
+			66: R_ARM_THM_CALL	mt_timebase_update
+  6a:	2800      	cmp	r0, #0
+  6c:	f000 80b7 	beq.w	1de <mt_live_runtime_init+0x1de>
+  70:	e899 0007 	ldmia.w	r9, {r0, r1, r2}
+  74:	ae02      	add	r6, sp, #8
+  76:	e886 0007 	stmia.w	r6, {r0, r1, r2}
+  7a:	f642 0298 	movw	r2, #10392	@ 0x2898
+  7e:	4651      	mov	r1, sl
+  80:	4620      	mov	r0, r4
+  82:	f7ff fffe 	bl	0 <memset>
+			82: R_ARM_THM_CALL	memset
+  86:	e896 0007 	ldmia.w	r6, {r0, r1, r2}
+  8a:	f607 0314 	addw	r3, r7, #2068	@ 0x814
+  8e:	f8c7 5810 	str.w	r5, [r7, #2064]	@ 0x810
+  92:	e883 0007 	stmia.w	r3, {r0, r1, r2}
+  96:	4953      	ldr	r1, [pc, #332]	@ (1e4 <mt_live_runtime_init+0x1e4>)
+  98:	4620      	mov	r0, r4
+  9a:	f8c7 b840 	str.w	fp, [r7, #2112]	@ 0x840
+  9e:	f7ff fffe 	bl	0 <mt_live_runtime_init>
+			9e: R_ARM_THM_CALL	adc_read
+  a2:	4950      	ldr	r1, [pc, #320]	@ (1e4 <mt_live_runtime_init+0x1e4>)
+  a4:	f040 0201 	orr.w	r2, r0, #1
+  a8:	4620      	mov	r0, r4
+  aa:	f7ff fffe 	bl	0 <mt_live_runtime_init>
+			aa: R_ARM_THM_CALL	adc_write
+  ae:	494e      	ldr	r1, [pc, #312]	@ (1e8 <mt_live_runtime_init+0x1e8>)
+  b0:	4620      	mov	r0, r4
+  b2:	f7ff fffe 	bl	0 <mt_live_runtime_init>
+			b2: R_ARM_THM_CALL	adc_read
+  b6:	494c      	ldr	r1, [pc, #304]	@ (1e8 <mt_live_runtime_init+0x1e8>)
+  b8:	f440 7201 	orr.w	r2, r0, #516	@ 0x204
+  bc:	4620      	mov	r0, r4
+  be:	f7ff fffe 	bl	0 <mt_live_runtime_init>
+			be: R_ARM_THM_CALL	adc_write
+  c2:	494a      	ldr	r1, [pc, #296]	@ (1ec <mt_live_runtime_init+0x1ec>)
+  c4:	4620      	mov	r0, r4
+  c6:	f7ff fffe 	bl	0 <mt_live_runtime_init>
+			c6: R_ARM_THM_CALL	adc_read
+  ca:	4948      	ldr	r1, [pc, #288]	@ (1ec <mt_live_runtime_init+0x1ec>)
+  cc:	f040 0202 	orr.w	r2, r0, #2
+  d0:	4620      	mov	r0, r4
+  d2:	f7ff fffe 	bl	0 <mt_live_runtime_init>
+			d2: R_ARM_THM_CALL	adc_write
+  d6:	4620      	mov	r0, r4
+  d8:	4942      	ldr	r1, [pc, #264]	@ (1e4 <mt_live_runtime_init+0x1e4>)
+  da:	f7ff fffe 	bl	0 <mt_live_runtime_init>
+			da: R_ARM_THM_CALL	adc_read
+  de:	07c6      	lsls	r6, r0, #31
+  e0:	d401      	bmi.n	e6 <mt_live_runtime_init+0xe6>
+  e2:	2605      	movs	r6, #5
+  e4:	e797      	b.n	16 <mt_live_runtime_init+0x16>
+  e6:	4620      	mov	r0, r4
+  e8:	493f      	ldr	r1, [pc, #252]	@ (1e8 <mt_live_runtime_init+0x1e8>)
+  ea:	f7ff fffe 	bl	0 <mt_live_runtime_init>
+			ea: R_ARM_THM_CALL	adc_read
+  ee:	f400 7001 	and.w	r0, r0, #516	@ 0x204
+  f2:	f5b0 7f01 	cmp.w	r0, #516	@ 0x204
+  f6:	d1f4      	bne.n	e2 <mt_live_runtime_init+0xe2>
+  f8:	4620      	mov	r0, r4
+  fa:	493c      	ldr	r1, [pc, #240]	@ (1ec <mt_live_runtime_init+0x1ec>)
+  fc:	f7ff fffe 	bl	0 <mt_live_runtime_init>
+			fc: R_ARM_THM_CALL	adc_read
+ 100:	0780      	lsls	r0, r0, #30
+ 102:	d5ee      	bpl.n	e2 <mt_live_runtime_init+0xe2>
+ 104:	493a      	ldr	r1, [pc, #232]	@ (1f0 <mt_live_runtime_init+0x1f0>)
+ 106:	4620      	mov	r0, r4
+ 108:	f7ff fffe 	bl	0 <mt_live_runtime_init>
+			108: R_ARM_THM_CALL	adc_read
+ 10c:	0581      	lsls	r1, r0, #22
+ 10e:	d4e8      	bmi.n	e2 <mt_live_runtime_init+0xe2>
+ 110:	4620      	mov	r0, r4
+ 112:	4938      	ldr	r1, [pc, #224]	@ (1f4 <mt_live_runtime_init+0x1f4>)
+ 114:	f7ff fffe 	bl	0 <mt_live_runtime_init>
+			114: R_ARM_THM_CALL	adc_read
+ 118:	0782      	lsls	r2, r0, #30
+ 11a:	d4e2      	bmi.n	e2 <mt_live_runtime_init+0xe2>
+ 11c:	4620      	mov	r0, r4
+ 11e:	4936      	ldr	r1, [pc, #216]	@ (1f8 <mt_live_runtime_init+0x1f8>)
+ 120:	f7ff fffe 	bl	0 <mt_live_runtime_init>
+			120: R_ARM_THM_CALL	adc_read
+ 124:	07c3      	lsls	r3, r0, #31
+ 126:	d4dc      	bmi.n	e2 <mt_live_runtime_init+0xe2>
+ 128:	4620      	mov	r0, r4
+ 12a:	4934      	ldr	r1, [pc, #208]	@ (1fc <mt_live_runtime_init+0x1fc>)
+ 12c:	f7ff fffe 	bl	0 <mt_live_runtime_init>
+			12c: R_ARM_THM_CALL	adc_read
+ 130:	2800      	cmp	r0, #0
+ 132:	d1d6      	bne.n	e2 <mt_live_runtime_init+0xe2>
+ 134:	4620      	mov	r0, r4
+ 136:	4932      	ldr	r1, [pc, #200]	@ (200 <mt_live_runtime_init+0x200>)
+ 138:	f7ff fffe 	bl	0 <mt_live_runtime_init>
+			138: R_ARM_THM_CALL	adc_read
+ 13c:	f010 0601 	ands.w	r6, r0, #1
+ 140:	d1cf      	bne.n	e2 <mt_live_runtime_init+0xe2>
+ 142:	4b30      	ldr	r3, [pc, #192]	@ (204 <mt_live_runtime_init+0x204>)
+ 144:	4642      	mov	r2, r8
+ 146:	9305      	str	r3, [sp, #20]
+ 148:	4b2f      	ldr	r3, [pc, #188]	@ (208 <mt_live_runtime_init+0x208>)
+ 14a:	4620      	mov	r0, r4
+ 14c:	9306      	str	r3, [sp, #24]
+ 14e:	4b2f      	ldr	r3, [pc, #188]	@ (20c <mt_live_runtime_init+0x20c>)
+ 150:	a905      	add	r1, sp, #20
+ 152:	e9cd 3407 	strd	r3, r4, [sp, #28]
+ 156:	f7ff fffe 	bl	0 <mt_adc_dma_init>
+			156: R_ARM_THM_CALL	mt_adc_dma_init
+ 15a:	2800      	cmp	r0, #0
+ 15c:	f47f af5a 	bne.w	14 <mt_live_runtime_init+0x14>
+ 160:	f504 501f 	add.w	r0, r4, #10176	@ 0x27c0
+ 164:	4629      	mov	r1, r5
+ 166:	3030      	adds	r0, #48	@ 0x30
+ 168:	f7ff fffe 	bl	0 <mt_live_clock_init>
+			168: R_ARM_THM_CALL	mt_live_clock_init
+ 16c:	2800      	cmp	r0, #0
+ 16e:	f43f af51 	beq.w	14 <mt_live_runtime_init+0x14>
+ 172:	4b27      	ldr	r3, [pc, #156]	@ (210 <mt_live_runtime_init+0x210>)
+ 174:	f504 6849 	add.w	r8, r4, #3216	@ 0xc90
+ 178:	9309      	str	r3, [sp, #36]	@ 0x24
+ 17a:	4b26      	ldr	r3, [pc, #152]	@ (214 <mt_live_runtime_init+0x214>)
+ 17c:	f504 50fd 	add.w	r0, r4, #8096	@ 0x1fa0
+ 180:	930a      	str	r3, [sp, #40]	@ 0x28
+ 182:	4b25      	ldr	r3, [pc, #148]	@ (218 <mt_live_runtime_init+0x218>)
+ 184:	462a      	mov	r2, r5
+ 186:	e9cd 340b 	strd	r3, r4, [sp, #44]	@ 0x2c
+ 18a:	4b24      	ldr	r3, [pc, #144]	@ (21c <mt_live_runtime_init+0x21c>)
+ 18c:	4621      	mov	r1, r4
+ 18e:	930d      	str	r3, [sp, #52]	@ 0x34
+ 190:	ab09      	add	r3, sp, #36	@ 0x24
+ 192:	9300      	str	r3, [sp, #0]
+ 194:	3008      	adds	r0, #8
+ 196:	4643      	mov	r3, r8
+ 198:	f7ff fffe 	bl	0 <mt_live_adc_init>
+			198: R_ARM_THM_CALL	mt_live_adc_init
+ 19c:	2800      	cmp	r0, #0
+ 19e:	f43f af39 	beq.w	14 <mt_live_runtime_init+0x14>
+ 1a2:	4b1f      	ldr	r3, [pc, #124]	@ (220 <mt_live_runtime_init+0x220>)
+ 1a4:	4640      	mov	r0, r8
+ 1a6:	930f      	str	r3, [sp, #60]	@ 0x3c
+ 1a8:	4b1e      	ldr	r3, [pc, #120]	@ (224 <mt_live_runtime_init+0x224>)
+ 1aa:	a90e      	add	r1, sp, #56	@ 0x38
+ 1ac:	9310      	str	r3, [sp, #64]	@ 0x40
+ 1ae:	4b1e      	ldr	r3, [pc, #120]	@ (228 <mt_live_runtime_init+0x228>)
+ 1b0:	940e      	str	r4, [sp, #56]	@ 0x38
+ 1b2:	9311      	str	r3, [sp, #68]	@ 0x44
+ 1b4:	4b1d      	ldr	r3, [pc, #116]	@ (22c <mt_live_runtime_init+0x22c>)
+ 1b6:	9312      	str	r3, [sp, #72]	@ 0x48
+ 1b8:	4b1d      	ldr	r3, [pc, #116]	@ (230 <mt_live_runtime_init+0x230>)
+ 1ba:	9313      	str	r3, [sp, #76]	@ 0x4c
+ 1bc:	9b24      	ldr	r3, [sp, #144]	@ 0x90
+ 1be:	9314      	str	r3, [sp, #80]	@ 0x50
+ 1c0:	9b22      	ldr	r3, [sp, #136]	@ 0x88
+ 1c2:	9315      	str	r3, [sp, #84]	@ 0x54
+ 1c4:	f7ff fffe 	bl	0 <mt_live_device_init>
+			1c4: R_ARM_THM_CALL	mt_live_device_init
+ 1c8:	2800      	cmp	r0, #0
+ 1ca:	f43f af23 	beq.w	14 <mt_live_runtime_init+0x14>
+ 1ce:	e9dd 0120 	ldrd	r0, r1, [sp, #128]	@ 0x80
+ 1d2:	f7ff fffe 	bl	0 <mt_usb_bridge_init>
+			1d2: R_ARM_THM_CALL	mt_usb_bridge_init
+ 1d6:	2301      	movs	r3, #1
+ 1d8:	f8c7 3834 	str.w	r3, [r7, #2100]	@ 0x834
+ 1dc:	e71b      	b.n	16 <mt_live_runtime_init+0x16>
+ 1de:	2603      	movs	r6, #3
+ 1e0:	e719      	b.n	16 <mt_live_runtime_init+0x16>
+ 1e2:	bf00      	nop
+ 1e4:	40021014 	.word	0x40021014
+ 1e8:	40021018 	.word	0x40021018
+ 1ec:	4002101c 	.word	0x4002101c
+ 1f0:	4002100c 	.word	0x4002100c
+ 1f4:	40021010 	.word	0x40021010
+ 1f8:	40000400 	.word	0x40000400
+ 1fc:	40012408 	.word	0x40012408
+ 200:	40020008 	.word	0x40020008
+	...
+			204: R_ARM_ABS32	adc_read
+			208: R_ARM_ABS32	adc_write
+			20c: R_ARM_ABS32	adc_time
+			210: R_ARM_ABS32	commit_enter
+			214: R_ARM_ABS32	commit_allowed
+			218: R_ARM_ABS32	commit_leave
+			21c: R_ARM_ABS32	commit_timed
+			220: R_ARM_ABS32	live_time
+			224: R_ARM_ABS32	live_start
+			228: R_ARM_ABS32	live_stop
+			22c: R_ARM_ABS32	live_write
+			230: R_ARM_ABS32	live_isolate
+
+Disassembly of section .text.mt_live_runtime_step:
+
+00000000 <mt_live_runtime_step>:
+   0:	2300      	movs	r3, #0
+   2:	e92d 4ff0 	stmdb	sp!, {r4, r5, r6, r7, r8, r9, sl, fp, lr}
+   6:	b08f      	sub	sp, #60	@ 0x3c
+   8:	4604      	mov	r4, r0
+   a:	930d      	str	r3, [sp, #52]	@ 0x34
+   c:	b920      	cbnz	r0, 18 <mt_live_runtime_step+0x18>
+   e:	2704      	movs	r7, #4
+  10:	4638      	mov	r0, r7
+  12:	b00f      	add	sp, #60	@ 0x3c
+  14:	e8bd 8ff0 	ldmia.w	sp!, {r4, r5, r6, r7, r8, r9, sl, fp, pc}
+  18:	f500 5600 	add.w	r6, r0, #8192	@ 0x2000
+  1c:	f8d6 3834 	ldr.w	r3, [r6, #2100]	@ 0x834
+  20:	2b00      	cmp	r3, #0
+  22:	d0f4      	beq.n	e <mt_live_runtime_step+0xe>
+  24:	f8d6 3838 	ldr.w	r3, [r6, #2104]	@ 0x838
+  28:	2b00      	cmp	r3, #0
+  2a:	d1f0      	bne.n	e <mt_live_runtime_step+0xe>
+  2c:	f7ff fffe 	bl	0 <tud_inited>
+			2c: R_ARM_THM_CALL	tud_inited
+  30:	2800      	cmp	r0, #0
+  32:	d0ec      	beq.n	e <mt_live_runtime_step+0xe>
+  34:	f7ff fffe 	bl	0 <mt_stream_diag_cycle>
+			34: R_ARM_THM_CALL	mt_stream_diag_cycle
+  38:	2301      	movs	r3, #1
+  3a:	4680      	mov	r8, r0
+  3c:	f8c6 3838 	str.w	r3, [r6, #2104]	@ 0x838
+  40:	4620      	mov	r0, r4
+  42:	a90d      	add	r1, sp, #52	@ 0x34
+  44:	f7ff fffe 	bl	0 <mt_live_runtime_step>
+			44: R_ARM_THM_CALL	step.constprop.0
+  48:	9b0d      	ldr	r3, [sp, #52]	@ 0x34
+  4a:	4607      	mov	r7, r0
+  4c:	b913      	cbnz	r3, 54 <mt_live_runtime_step+0x54>
+  4e:	4620      	mov	r0, r4
+  50:	f7ff fffe 	bl	0 <mt_live_runtime_step>
+			50: R_ARM_THM_CALL	grant_irq
+  54:	f504 6049 	add.w	r0, r4, #3216	@ 0xc90
+  58:	f7ff fffe 	bl	0 <mt_progress_checkpoint>
+			58: R_ARM_THM_CALL	mt_progress_checkpoint
+  5c:	4620      	mov	r0, r4
+  5e:	f7ff fffe 	bl	0 <mt_live_runtime_step>
+			5e: R_ARM_THM_CALL	quiescent
+  62:	f504 5580 	add.w	r5, r4, #4096	@ 0x1000
+  66:	b1d8      	cbz	r0, a0 <mt_live_runtime_step+0xa0>
+  68:	f8d5 34e0 	ldr.w	r3, [r5, #1248]	@ 0x4e0
+  6c:	3b01      	subs	r3, #1
+  6e:	2b01      	cmp	r3, #1
+  70:	d816      	bhi.n	a0 <mt_live_runtime_step+0xa0>
+  72:	f8d4 3c88 	ldr.w	r3, [r4, #3208]	@ 0xc88
+  76:	4638      	mov	r0, r7
+  78:	9301      	str	r3, [sp, #4]
+  7a:	f8b5 3564 	ldrh.w	r3, [r5, #1380]	@ 0x564
+  7e:	9300      	str	r3, [sp, #0]
+  80:	f8d5 24d4 	ldr.w	r2, [r5, #1236]	@ 0x4d4
+  84:	f8d6 1820 	ldr.w	r1, [r6, #2080]	@ 0x820
+  88:	f8d5 3568 	ldr.w	r3, [r5, #1384]	@ 0x568
+  8c:	f7ff fffe 	bl	0 <mt_stream_diag_note>
+			8c: R_ARM_THM_CALL	mt_stream_diag_note
+  90:	f8d4 2c5c 	ldr.w	r2, [r4, #3164]	@ 0xc5c
+  94:	f8d6 1820 	ldr.w	r1, [r6, #2080]	@ 0x820
+  98:	f8d5 04e0 	ldr.w	r0, [r5, #1248]	@ 0x4e0
+  9c:	f7ff fffe 	bl	0 <mt_stream_diag_replaced>
+			9c: R_ARM_THM_CALL	mt_stream_diag_replaced
+  a0:	f8d6 3820 	ldr.w	r3, [r6, #2080]	@ 0x820
+  a4:	f8d4 2c88 	ldr.w	r2, [r4, #3208]	@ 0xc88
+  a8:	930b      	str	r3, [sp, #44]	@ 0x2c
+  aa:	f8d4 3c5c 	ldr.w	r3, [r4, #3164]	@ 0xc5c
+  ae:	4620      	mov	r0, r4
+  b0:	9308      	str	r3, [sp, #32]
+  b2:	f8d5 3568 	ldr.w	r3, [r5, #1384]	@ 0x568
+  b6:	920a      	str	r2, [sp, #40]	@ 0x28
+  b8:	9309      	str	r3, [sp, #36]	@ 0x24
+  ba:	f7ff fffe 	bl	0 <mt_live_runtime_step>
+			ba: R_ARM_THM_CALL	quiescent
+  be:	e9dd 230a 	ldrd	r2, r3, [sp, #40]	@ 0x28
+  c2:	f8d5 14e0 	ldr.w	r1, [r5, #1248]	@ 0x4e0
+  c6:	f8d5 a534 	ldr.w	sl, [r5, #1332]	@ 0x534
+  ca:	f8d5 b4d4 	ldr.w	fp, [r5, #1236]	@ 0x4d4
+  ce:	f894 9c66 	ldrb.w	r9, [r4, #3174]	@ 0xc66
+  d2:	f8b5 5564 	ldrh.w	r5, [r5, #1380]	@ 0x564
+  d6:	b120      	cbz	r0, e2 <mt_live_runtime_step+0xe2>
+  d8:	1fc8      	subs	r0, r1, #7
+  da:	2801      	cmp	r0, #1
+  dc:	bf8c      	ite	hi
+  de:	2000      	movhi	r0, #0
+  e0:	2001      	movls	r0, #1
+  e2:	e9cd 2006 	strd	r2, r0, [sp, #24]
+  e6:	9a09      	ldr	r2, [sp, #36]	@ 0x24
+  e8:	4640      	mov	r0, r8
+  ea:	e9cd b203 	strd	fp, r2, [sp, #12]
+  ee:	9a08      	ldr	r2, [sp, #32]
+  f0:	e9cd 9a01 	strd	r9, sl, [sp, #4]
+  f4:	9200      	str	r2, [sp, #0]
+  f6:	9505      	str	r5, [sp, #20]
+  f8:	460a      	mov	r2, r1
+  fa:	4639      	mov	r1, r7
+  fc:	f7ff fffe 	bl	0 <mt_stream_diag_observe>
+			fc: R_ARM_THM_CALL	mt_stream_diag_observe
+ 100:	2300      	movs	r3, #0
+ 102:	f8c6 3838 	str.w	r3, [r6, #2104]	@ 0x838
+ 106:	e783      	b.n	10 <mt_live_runtime_step+0x10>
