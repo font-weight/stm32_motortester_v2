@@ -1,5 +1,22 @@
 # Координация самостоятельного V2
 
+S implementation: higher_fs_review — firmware/v2-stream/**, native runner в
+ tests/v2-stream-firmware/** (кроме postcopy_handoff_model.c), build/v6s-*
+кроме root board/archive/host outputs. Host_200k — decode_usb_gate.py,
+decode_stream_progress.py, два старых checker только future-negative строки,
+новый host/tests/postcopy_identity_check.py и единственный native model
+ tests/v2-stream-firmware/postcopy_handoff_model.c. Author один запускает native
+и ARM; host один identity checker после actual SL fixture. Stream200_critic —
+независимое ревью source/resources/evidence, без реализации. Root — canonical
+docs/архив/интеграция, единолично аппаратура. Новых аппаратных действий пока нет.
+
+
+S draft: higher_fs_review — только build/v6s-design/contract-draft.md;
+stream200_critic — независимое ревью canonical S и design-01. Root —
+канонические документы и архив; новых аппаратных действий нет. Production
+остаётся SK до отдельного принятия контракта и назначения областей реализации.
+
+
 После R2: root — факты/архив/канонические документы, единолично аппаратные
 действия; новых START/Reset/Flash нет. Higher_fs_review — только
 build/v6r-followup/analysis.md и небольшие supporting JSON, offline-разбор,

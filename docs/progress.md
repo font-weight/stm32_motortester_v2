@@ -1,5 +1,20 @@
 # Прогресс Мотортестера V2
 
+## 28.10.2026 — S1: контракт SL принят, начата ограниченная реализация
+
+[Контракт S](streaming-postcopy-handoff.md), SHA256
+`521e91d88b8234be6f8db7cbecfd79b6f4bd4c47dbb38dd871242a0d97b1b149`,
+[независимо принят](reviews/v2-06s-contract-review.md) с 9,60/10 только как
+implementation-ready документ. Receipt/publish_next/observed-loss/markers/
+deadline закрывают шесть требований followup-review. Код, образ и физическая
+устойчивость пока не приняты; новых product/аппаратных запусков нет.
+
+Начата SL/0x5632534c: mode5 cached-final handoff после validated private-copy,
+до fixed<=4 offers128. Ровно прежняя grant/TX opportunity, 0newstatic;
+старые50/100/noneligible и сроки сохраняются. Native/ARM и узкая SL offline
+identity проверка ещё не выполнялись. SK остаётся остановленной на плате.
+
+
 ## 28.10.2026 — R2 завершён: SK, 21 пакет, очередь снова переполнена
 
 Новый фактический ответ «готово» на `call_2bb73a17ab2045fe8b6f8c0c91e97507`

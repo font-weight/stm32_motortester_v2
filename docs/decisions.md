@@ -1,5 +1,18 @@
 # Решения Мотортестера V2
 
+S,28.10.2026: по R2 проверить один post-copy handoff. До вставки USB работы
+получить валидный private512; затем только при mode5/cached-final/queue pressure
+потратить прежнюю grant/TX/Q возможность и публиковать исходные chunks128.
+Локальный receipt не переживает runtime call; healthy cancellation возвращает
+обычные offers, observed loss требует явного quarantine. Не обещать атомарное
+исключение асинхронного ISR store: до наблюдения потери возможна запись старой
+очереди, но после него запрещены следующий TX/команда/clean END без cleanup.
+Выбраны fixed<=4 publish_next с fresh pre/post admission, без callback или
+большого PRIMASK. Оригинальный poll origin/deadline3413, DCD6/<500 и 0newstatic
+обязательны. [Точный контракт](streaming-postcopy-handoff.md) — единственное
+место API/ошибок/markers; диагностический R2 не доказывает throughput fix.
+
+
 R,27.10.2026: после Q2 сначала наблюдать последний gate-переход текущей
 передачи USB, сохранив расписание SJ. Один24B bank, серийная идентификация
 публикации, первая фактически вычисленная причина, явная историчность и

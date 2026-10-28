@@ -192,3 +192,11 @@ docs/verification/v2-postcopy-handoff/**/*.stderr -whitespace
 docs/verification/v2-postcopy-handoff/**/*.map -whitespace
 
 docs/verification/v2-postcopy-handoff/**/*.patch -whitespace
+
+tests/v2-stream-firmware/postcopy* -text
+
+tests/v2-stream-firmware/check_postcopy* -text
+
+host/tests/postcopy_identity_check.py -text
+
+firmware/v2-stream/overlays/postcopy-handoff.json -text

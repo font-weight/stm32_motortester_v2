@@ -1,0 +1,84 @@
+{
+  "schema": "motortester-v2-06s-independent-contract-review-1",
+  "date": "2026-10-28",
+  "critic": "/root/stream200_critic",
+  "independent_non_author": true,
+  "status": "PASS",
+  "score": 9.6,
+  "scope": "Documented implementation-ready S/SL contract only; not implementation, image, resource or physical acceptance",
+  "implementation_contract_ready": true,
+  "bounded_implementation_may_proceed": true,
+  "production_implementation_accepted": false,
+  "hardware_approved": false,
+  "source_base": "bc851d6ee7b16663db95acb32733cacff7a50f36",
+  "source_base_build": "SK/0x5632534b",
+  "reviewed_head": "6510fb93dc1c0bf0a422f48019a1642cfe107f0e",
+  "target_build": "SL/0x5632534c",
+  "contract": "docs/streaming-postcopy-handoff.md",
+  "contract_bytes": 32164,
+  "contract_sha256": "521e91d88b8234be6f8db7cbecfd79b6f4bd4c47dbb38dd871242a0d97b1b149",
+  "manifest": "docs/verification/v2-postcopy-handoff/design-01/manifest.json",
+  "manifest_sha256": "c128fb7cdf88d6504fe640aa6157b5c8d9ad655851a3cdf165adeaf6f4ecabd2",
+  "author_draft": "build/v6s-design/contract-draft.md",
+  "author_draft_bytes": 31043,
+  "author_draft_sha256": "e4752a6c35f8cf101ab7e5937d29a06f74857f52fe27feebd0a9ad8992cf0be2",
+  "archive_audit": {
+    "pairs": 1,
+    "bytes": 32164,
+    "source_copy_equal": true,
+    "size_hash_pins_equal": true,
+    "canonical_prefix_equal_to_author_draft": true,
+    "root_only_appendix_bytes": 1121,
+    "root_only_appendix": "Section8 explicit SL offline identity; no silent default or format change"
+  },
+  "closed_followup_obligations": [
+    {"id": "S-CONTRACT-1", "status": "CLOSED_IN_CONTRACT", "basis": "Stack-only pending receipt, acquire/read once, publish_next at most128 and fixed at most4 iterations; terminal disposition and partial acceptance tracking"},
+    {"id": "S-CONTRACT-2", "status": "CLOSED_IN_CONTRACT", "basis": "Healthy cancel falls back to publication; invalid identity/raw lifecycle invokes explicit pending2 quarantine; CLOCK3/DEADLINE2/source and transport remain distinct"},
+    {"id": "S-CONTRACT-3", "status": "CLOSED_IN_CONTRACT", "basis": "No RX/read before disposition, nested separate LIFO scopes, fresh pre/post transport admission including final PUBLISHED, honest observed-loss semantics"},
+    {"id": "S-CONTRACT-4", "status": "CLOSED_IN_CONTRACT", "basis": "Actual cached ticket and consumed markers before fallible barriers; old guarded commit/flush/Q and RX-only endpass, no second DATA or grant"},
+    {"id": "S-CONTRACT-5", "status": "CLOSED_IN_CONTRACT", "basis": "Original poll origin, no timestamp refresh, fresh validated snapshot and strict delta3413 boundary; no DMA copy/flag guard weakening"},
+    {"id": "S-CONTRACT-6", "status": "CLOSED_IN_CONTRACT", "basis": "Zero static growth, retained buffers/wire/ordinary paths and8192 stack reserve; exact ARM required, receipt96 only a layout estimate"}
+  ],
+  "source_feasibility_checks": [
+    "Actual mt_timebase_snapshot performs a fresh full update and requires distinct us/ms output pointers",
+    "Actual read_block advances source cursor/half and exposes private driver.snapshot; pending disposition is necessary",
+    "Cached build_tx returns existing tx_length without new collection or serialization",
+    "Existing final completion publication occurs after final TIME; Q readiness is a full certificate, not tx_ok",
+    "Actual bridge supports nested same-actor app scopes and LIFO restore",
+    "Existing synchronize_loss does not infer raw lifecycle from unchanged epoch; explicit pending2 is a new callsite to existing hard quarantine",
+    "Accepted old-session queue stores around ISR observation need quarantine; no atomic exclusion is claimed"
+  ],
+  "blocking_findings": [],
+  "implementation_review_obligations": [
+    "Every pending receipt exit and final PUBLISHED post-check, including0..3 accepted chunks; no silent IDLE skip or replay",
+    "No consumed-path fall-through into ordinary grant/prepare/TX/flush/Q; preserve next-pass lifecycle fallback when no actual grant ran",
+    "Preserve existing N prepare/TX diagnostic span boundaries on moved calls and Q span, with actual common SL binding for136/64/24",
+    "Retain first reason, exact CLOCK/DEADLINE/TRANSPORT outcomes and no stale source error assigned to a replacement identity",
+    "Exact ARM receipt size, linked stack/ISR bound and zero static growth; no assumed resource acceptance"
+  ],
+  "minimum_evidence_after_implementation": [
+    "One integrated actual-C adapter/runtime/core/queue/serializer/wire runner for success q8->4->8, one-attempt backpressure and failure/identity/deadline matrix",
+    "Actual active observer common-SL assertions; transparent driver/MMIO/USB seams, not entire new boundary replaced by logical stubs",
+    "Source preservation of old service/driver/DCD/bridge/TIME/queue/serializer/ordinary paths and original commit/flush/Q guards",
+    "One exact ARM/resource/stack result with preserved failed attempts",
+    "One narrow offline identity check using new actual-C SL fixture plus saved SK fixture; explicit SL, unsupported SM and mismatch rejection"
+  ],
+  "limits": [
+    "No actual S source/model/ARM/hardware evidence exists in this contract review",
+    "Up to8 additional adapter pre/post publication snapshots plus runtime checks have unmeasured overhead",
+    "Private copy does not protect the next DMA half; known0/queue-full/deadline failure remain possible",
+    "R2 PUBLISHED history neither proves TIME/FINAL cause nor qualifies new sustained150k behavior",
+    "Physical P1-M2-01 remains OPEN; previous R2 result and software/package reviews unchanged"
+  ],
+  "rubric": {
+    "C1": {"weight": 0.30, "score": 9.7, "basis": "Exact API/identity/publication and unchanged Fs/wire; six prior obligations resolved"},
+    "C2": {"weight": 0.20, "score": 9.55, "basis": "Linear pending ownership, reason mapping, attempt markers, observed-loss and explicit quarantine"},
+    "C3": {"weight": 0.25, "score": 9.6, "basis": "Actual SK feasibility read and bounded sufficient later evidence; no invented test outcome"},
+    "C4": {"weight": 0.15, "score": 9.4, "basis": "Explicit return/disposition/endpass; fresh barrier and cleanup complexity remains material"},
+    "C5": {"weight": 0.10, "score": 9.7, "basis": "Frozen canonical/author/archive pins, common SL identity and next acceptance criteria"}
+  },
+  "personal_checks": ["Required V2 documents and exact contract read", "Targeted existing SK source read", "Single design source/archive byte-size-SHA comparison and author-prefix/appendix comparison"],
+  "new_product_tests_builds_decoders_hardware_runs": 0,
+  "implementation_edits": false,
+  "report": "docs/reviews/v2-06s-contract-review.md"
+}
