@@ -1,0 +1,76 @@
+{
+  "schema": "motortester-v2-06r-independent-followup-review-1",
+  "date": "2026-10-28",
+  "critic": "/root/stream200_critic",
+  "independent_non_author": true,
+  "status": "PASS",
+  "score": 9.6,
+  "status_scope": "Bounded offline hypothesis selection only; not an implementation-ready contract or throughput acceptance",
+  "draft_design_allowed": true,
+  "implementation_contract": {
+    "status": "BLOCKED_EVIDENCE",
+    "score": null,
+    "missing": "Exact acquire/publish receipt, return/disposition/error matrix and saved-deadline API; obligations 1-6 in report"
+  },
+  "production_implementation_accepted": false,
+  "hardware_approved": false,
+  "source_base": "bc851d6ee7b16663db95acb32733cacff7a50f36",
+  "reviewed_head": "2c85ff5ca6ec1276d894d2c786db4e4e46944f37",
+  "image_base_sha256": "dd6e8322488a1d4ada50c2c722820f971b4b4782c303bdafb1410180e2efc8f1",
+  "proposal": "docs/verification/v2-usb-gate/followup-01/analysis.md",
+  "proposal_bytes": 18299,
+  "proposal_sha256": "8c8a9bac2f18de6a89845e0135fdd6d0183f0b3ccb64ebc99be86e778b7cee63",
+  "manifest": "docs/verification/v2-usb-gate/followup-01/manifest.json",
+  "manifest_sha256": "cf1c08744f1318a64f4ec925ac4dea0aadc6be9380c20764e5bde5cb7c4f4053",
+  "archive_audit": {"pairs": 1, "bytes": 18299, "all_source_copy_equal": true, "all_pins_equal": true},
+  "read_source_pins": {
+    "build/v6r-fw-02/patched/v2/app/mt_live_adc.c": "49e7048249d6fa4053e7504ce4657f7819878dc2c61c027cbdc3c596e812b6cf",
+    "build/v6r-fw-02/patched/v2/platform/adc_timer_dma.c": "a0acc99437cad4cc6fcbee12569f853923ed0d8d5d7a4fdd59a6814b647955df",
+    "build/v6r-fw-02/patched/v2/app/mt_live_runtime.c": "91f3ffc157f853eb9bb7fdc0ced747b177e6906d1b13e611d3dc4c14a7407294",
+    "build/v6r-fw-02/patched/v2/protocol/mt_live_device.c": "96cfa960b6692d985b7b42f9a7cb50dd44126e969f4c22166f8fec6411a6d60e",
+    "build/v6r-fw-02/patched/v2/transport/mt_usb_bridge.c": "dad3783c3497f601a55d9d9d02c54500856b84beb3a2c99628ca7146b98eea10"
+  },
+  "unchanged_physical_review": {
+    "report": "docs/reviews/v2-06r-physical-review.md",
+    "report_sha256": "72bc24bfc91481e1ec3395aa3d8d1f9df4664aabb05bf81e1551529c0ae2eb6f",
+    "json": "docs/verification/v2-usb-gate/critic-physical.json",
+    "json_sha256": "042d96b497a4bc7e416cd2ef3a99aa2fae0b98c0944aa6bc52ab5dcb74206d8b",
+    "physical_status": "REWORK",
+    "physical_score": 6.375,
+    "open_requirement": "P1-M2-01 stable150k OPEN"
+  },
+  "findings": [
+    "Source supports private-copy512 then four offers before ordinary grant; queue-full can precede cached final TX and Q collection",
+    "R2 TX remainder183 versus FIFO free64 gives deficit119; a successful final commit and Q collect can conditionally yield queue8->4->8",
+    "G24 PUBLISHED/APPLICABLE0 neither identifies publication callsite nor establishes TIME/FINAL hold, current HELD64 episode or USB delivery",
+    "Native or observed maxpoll cannot establish throughput or hard IRQ WCET; known0 and deadline failures remain possible",
+    "Current bridge permits nested same-actor scopes using separate LIFO scope.previous locals; mandatory leave/reenter is not required"
+  ],
+  "required_contract_decisions": [
+    {"id": "S-CONTRACT-1", "requirement": "Linear local pending512 receipt with exact indices/session/epoch/soft/profile/original poll stamp; every exit publishes once or records explicit invalidation; handle partial 0..3 offers without retry/skip"},
+    {"id": "S-CONTRACT-2", "requirement": "Healthy optimization cancellation falls back to original offers; actual recovery/loss uses explicit old-session failure; prefetch IDLE cannot silently discard pending512 or permit clean normal END"},
+    {"id": "S-CONTRACT-3", "requirement": "No RX dispatch or next read_block/reinit before pending disposition; fresh lifecycle/stability checks and nested-scope restoration on all exits"},
+    {"id": "S-CONTRACT-4", "requirement": "Actual eligible cached ticket, single grant/DATA attempt including refusal/known0/error; retain old final-TIME commit, flush and Q certificate; no encode/task/spin/second DATA"},
+    {"id": "S-CONTRACT-5", "requirement": "Deadline and fault mapping use original poll stamp without refreshing last_poll_us; exact pre-offer/partial-offer/clock/elapsed>=3413 outcomes; unchanged driver ownership and flags"},
+    {"id": "S-CONTRACT-6", "requirement": "Zero static growth, unchanged buffers/wire/Fs/6<500/other paths; exact new stack/resource audit with8192 reserve and existing4-byte static spare"}
+  ],
+  "nonblocking_precision_note": "Current stop_snapshot writes adapter.stop_scratch and quiesce/invalidate_history do not themselves overwrite driver.snapshot. Recovery invalidates session/history/ownership even if private bytes remain; next read_block or reinit can overwrite them. Clarify in S contract, preserve frozen proposal.",
+  "minimum_later_evidence": [
+    "One actual-C adapter/runtime/core/queue/serializer runner: final commit->flush->Q->publish with queue8->4->8 and preserved data/index ownership",
+    "Same runner: known0/no-IN, partial/unknown/late-final-TIME/Q error and intermediate offer failure, one attempt/no spin",
+    "Same runner: pending RX/scope denial/stale epoch-soft-session/lifecycle and saved deadline boundaries; distinguish healthy fallback from invalid pending block",
+    "Source preservation for original driver/DCD/MMIO/commit/Stop guards; one ARM exact resource/stack audit; no broad legacy or GUI rerun requested"
+  ],
+  "rubric_scope": "Quality of bounded hypothesis selection, not completeness of S implementation contract",
+  "rubric": {
+    "C1": {"weight": 0.30, "score": 9.7, "basis": "Source-supported handoff; Fs/wire and fact-versus-inference preserved"},
+    "C2": {"weight": 0.20, "score": 9.5, "basis": "Pending512, identity, Stop and deadline risks explicit; draft direction only"},
+    "C3": {"weight": 0.25, "score": 9.6, "basis": "Valid prior R2 evidence and exact source read; no causal or sustained throughput overclaim"},
+    "C4": {"weight": 0.15, "score": 9.4, "basis": "Single bounded change; exact API/disposition remains a required next decision"},
+    "C5": {"weight": 0.10, "score": 9.8, "basis": "Frozen proposal/archive/source pins and minimal next evidence are reproducible"}
+  },
+  "personal_checks": ["Read required V2 documents and exact affected SK functions", "Source/archive byte-size-SHA comparison", "Preserved prior physical review hashes"],
+  "product_tests_builds_decoders_hardware_executed": false,
+  "implementation_edits": false,
+  "report": "docs/reviews/v2-06r-followup-review.md"
+}

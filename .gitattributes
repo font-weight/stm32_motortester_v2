@@ -168,3 +168,27 @@ firmware/v2-stream/build_windows.py -text
 firmware/v2-stream/config.json -text
 
 firmware/v2-stream/overlays/board_inputs.py -text
+
+docs/streaming-postcopy-handoff.md -text
+
+docs/reviews/v2-06s*.md -text
+
+docs/verification/v2-postcopy-handoff/** -text whitespace=cr-at-eol
+
+docs/verification/v2-postcopy-handoff/**/*.bin binary
+
+docs/verification/v2-postcopy-handoff/**/*.o binary
+
+docs/verification/v2-postcopy-handoff/**/*.elf binary
+
+docs/verification/v2-postcopy-handoff/**/*.txt -whitespace
+
+docs/verification/v2-postcopy-handoff/**/*.log -whitespace
+
+docs/verification/v2-postcopy-handoff/**/*.stdout -whitespace
+
+docs/verification/v2-postcopy-handoff/**/*.stderr -whitespace
+
+docs/verification/v2-postcopy-handoff/**/*.map -whitespace
+
+docs/verification/v2-postcopy-handoff/**/*.patch -whitespace

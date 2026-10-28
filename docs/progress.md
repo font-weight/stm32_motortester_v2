@@ -45,8 +45,15 @@ REWORK 6,375/10; достоверность сохранённой истори�
 physical-analysis.md сохранена как вывод pinned helper; правильный build
 в нём и прочих свидетельствах — SK. Отдельный root-observations поясняет её.
 **SK оставлена остановленной. Новых START/Flash/Reset/50/100k/отката нет.**
-Следующий шаг — offline-разбор порядка private-copy → queue offer → USB,
-без повторения R2. P1-M2-01 stable150k остаётся открытым.
+[Offline-разбор R2](verification/v2-usb-gate/followup-01/analysis.md), SHA256
+`8c8a9bac2f18de6a89845e0135fdd6d0183f0b3ccb64ebc99be86e778b7cee63`,
+предлагает одну гипотезу: прежняя grant/cached-TX/Q-prefetch возможность
+между validated private-copy512 и четырьмя queue offers. Callsite публикации
+по снимку не установлен. [Ревью гипотезы](reviews/v2-06r-followup-review.md) —
+PASS 9,60 только для выбора направления; implementation-ready пока
+BLOCKED_EVIDENCE/score:null до точного receipt/disposition/deadline API.
+Готовится контракт S/SL, production не меняется; черновик не допускает опыт. Не повторять
+R2. P1-M2-01 stable150k остаётся открытым.
 
 
 ## 27.10.2026 — R2: SK установлена, ожидается новый холодный USB-перезапуск
