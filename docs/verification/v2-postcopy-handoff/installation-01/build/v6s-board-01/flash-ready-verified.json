@@ -1,0 +1,23 @@
+{
+  "argv": [
+    "C:\\Program Files (x86)\\STMicroelectronics\\STM32 ST-LINK Utility\\ST-LINK Utility\\ST-LINK_CLI.exe",
+    "-c",
+    "ID=0",
+    "SWD",
+    "HOTPLUG",
+    "-Dump",
+    "0x08000000",
+    "0x10000",
+    "build\\v6s-board-01\\flash-ready-64k.bin"
+  ],
+  "started_utc": "2026-10-28T17:19:40.420785+00:00",
+  "wall_seconds": 0.7947716999333352,
+  "exit_code": 0,
+  "reset": false,
+  "COM_opened": false,
+  "status": "PASS",
+  "bytes": 65536,
+  "sha256": "7aca301f54bddd10fb711152fc636c22b8dda1823ac71f116f8902387d6fde50",
+  "byte_equal_to_pinned_backup": true,
+  "identity_log_sha256": "c01e871731343b7b2ff53efcef9f8bf3d0e910f9fe60589dd5729138561fa28c"
+}

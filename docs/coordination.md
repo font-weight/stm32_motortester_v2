@@ -1,3 +1,13 @@
+# S2: текущая область записи
+
+S1 source/native/host заморожены в `build/v6s-freeze.json` и production-01.
+Новых тестов/правок этих файлов без обнаруженной причины не выполнять.
+Root единолично владеет `build/v6s-board-01/`, S2 canonical progress/task,
+архивами plan/installation/physical и аппаратными действиями.
+Stream200_critic независимо читает exact план и последующий фактический
+результат; код реализации не правит. Source9,60 не переносить на physical150k.
+Предшествующее распределение S1 ниже сохранено для происхождения работы.
+
 # Координация самостоятельного V2
 
 S implementation: higher_fs_review — firmware/v2-stream/**, native runner в

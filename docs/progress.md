@@ -1,5 +1,36 @@
 # Прогресс Мотортестера V2
 
+## 28.10.2026 — S2: SL записана и сверена, ожидается новый холодный перезапуск USB
+
+Source `695efd95e7c4ba72bfa6fb5fb511b85186be6266` опубликован только в V2.
+[Точный план](verification/v2-postcopy-handoff/plan-01/build/v6s-board-01/plan.json)
+SHA256 `477b133fe1a2e7924e7414f2a7a9b38f469b70ebdee19650b0193df7a616bf0e`
+[допущен независимым критиком](reviews/v2-06s-flash-review.md) с9,60;
+JSON SHA256 `1406bcdf0a0236a534d18bba238b0fac9b3d8bfd82ec51c45b5e07141bce882a`.
+Это условный допуск одного опыта, не его результат и не physical150k PASS.
+Plan archive:17файлов/152250байт, manifest
+`cd5ad2a9bc4cce46d548ba7ce5acff682b54dfde3ad9b6dfdcb49349a4c2a149`.
+
+Fresh inventory17:18:53UTC: ожидаемый COM6/code0, owners=[], оба устройстваOK.
+Перед Flash в17:19:40 только повторно прочитаны64КиБ: побайтное равенство
+pinnedSK backup `7aca301f54bddd10fb711152fc636c22b8dda1823ac71f116f8902387d6fde50`,
+SN57005400120000393333574E совпал. Затем ровно один program/verify,
+полный отдельный readback49532B **побайтно равен SL**,
+SHA256 `f82311cde2ce0a3e735543006b2bc7890e8761434c73e7adc7fa332f86cb8cb2`.
+Reset/Run выполнен17:38:59.317035UTC после равенства. START не отправлялся.
+
+[Installation archive](verification/v2-postcopy-handoff/installation-01/manifest.json):
+34файла/276445байт, manifest SHA256
+`21d2c3b906c55cd34e1012b7e2cec2c240d450f84ae9c3ee1a618b6eae2cc074`.
+На плате **SL/0x5632534c**, не SK. Старую версию не возвращали.
+Пользователю отправлен новый запрос: обаUSB off10с, плата первой,
+ST-Link спустя5с; PA0 пуст, приложение закрыто. Фактического нового ответа
+после SL Reset пока нет; прежнее «готово» относилось к SK и не используется.
+До нового ответа COM/START не открывать. Затем только один150k/mode5/30с
+через `build/v6s-board-01/run_trial.py`, сохранив новый reply/reset binding;
+offline wire/raw/CRC/Open/END/ACK → closed owner → парные136/64/24+registers.
+На отказе сохранить данные/SL, без повторного START/50/100/автоматического отката.
+
 ## 28.10.2026 — S1 принят программно: SL post-copy handoff, физические150k открыты
 
 [Контракт S](streaming-postcopy-handoff.md), SHA256
