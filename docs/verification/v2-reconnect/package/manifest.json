@@ -1,0 +1,153 @@
+{
+  "status": "PASS",
+  "source_commit": "af596d87a11913b87c24cbc85ff5e8ebd6b48cb2",
+  "source": "build/v17w3",
+  "scope": "Final frozen Windows same-page reconnection + settings witness; injected serial only; no physical COM/SWD or firmware writes",
+  "files": {
+    "build-report.json": {
+      "source": "build-report.json",
+      "bytes": 11273,
+      "sha256": "d7691e7fffd187e29db96825a3ec20f0c917671a3d7642cb5b7494c75301503d"
+    },
+    "build.log": {
+      "source": "build.log",
+      "bytes": 38529,
+      "sha256": "b238fdcd25bddb8e8d6fd702a6d1c093089929d2b250d0fa160506560753bae5"
+    },
+    "SHA256SUMS.txt": {
+      "source": "SHA256SUMS.txt",
+      "bytes": 532,
+      "sha256": "24111f614f9b4985ef6fa383e16270738da3acb0dd22c63e3f511e25a4a5aef7"
+    },
+    "build-manifest.json": {
+      "source": "dist/MotortesterV2/build-manifest.json",
+      "bytes": 87574,
+      "sha256": "a20db5d98e66b903145dfa1feb9ccad19f616d504ceb3007f9ffe454e04344b5"
+    },
+    "boundary150.mtshot": {
+      "source": "frozen-main-stream/boundary150.mtshot",
+      "bytes": 1798,
+      "sha256": "c19a5d16d8db08a82c661abf20c595d83a0e02e10517cce1b98c5f27ce1084fc"
+    },
+    "corrupt.mtshot": {
+      "source": "frozen-main-stream/corrupt.mtshot",
+      "bytes": 1798,
+      "sha256": "1707c591a3854e201856cf428cf1042b7174f3b24266f92ff4b7f2bcd474a353"
+    },
+    "incomplete.mtshot": {
+      "source": "frozen-main-stream/incomplete.mtshot",
+      "bytes": 1837,
+      "sha256": "929f320d2dedcd7350dc7d8563460c38f2683cafba53ebafc45a6c92a727d072"
+    },
+    "invalid-config.mtshot": {
+      "source": "frozen-main-stream/invalid-config.mtshot",
+      "bytes": 1970,
+      "sha256": "888e1727953c26e35f4ee0140c2c3e6f166d25bca3a92edce742752bbb706d6e"
+    },
+    "result-capture-occupied.mtshot": {
+      "source": "frozen-main-stream/result-capture-occupied.mtshot",
+      "bytes": 26,
+      "sha256": "34281e3a8e89c1aabd26fd0f7ccd5a61aa79b51df99b705e24e7aef6d758c213"
+    },
+    "result-capture-open.png": {
+      "source": "frozen-main-stream/result-capture-open.png",
+      "bytes": 114170,
+      "sha256": "894fc6c3d2a820906f01fe3c569921ef63347a43ca82c353de9ccbdafaee7801"
+    },
+    "result-capture.mtshot": {
+      "source": "frozen-main-stream/result-capture.mtshot",
+      "bytes": 2903,
+      "sha256": "612b7b528e86059f9e95e55ed773c63d62d15f66d77e7cb94a3c962859d2d3d3"
+    },
+    "result-capture.png": {
+      "source": "frozen-main-stream/result-capture.png",
+      "bytes": 121092,
+      "sha256": "9d1ca8c88e64c9a1690db0f7318b2e2ad4bf5b022f0c6eb265c7989827e5add9"
+    },
+    "result-connected.png": {
+      "source": "frozen-main-stream/result-connected.png",
+      "bytes": 100180,
+      "sha256": "bb62026edeffbd2478c6d137edbc655d3044075d22f566f165c88c3cbb0646f6"
+    },
+    "result-entry.png": {
+      "source": "frozen-main-stream/result-entry.png",
+      "bytes": 125210,
+      "sha256": "18abbf726cdcd45fecd77450dcda40cd5bb0a6a9b988cf8c87d1a84bd9fe99d3"
+    },
+    "result-file-event.png": {
+      "source": "frozen-main-stream/result-file-event.png",
+      "bytes": 110588,
+      "sha256": "68e16e17ae5d5ede0f942dfc2e223e86b5833adccc18bf7207fb4287f3b999f5"
+    },
+    "result-live-event.png": {
+      "source": "frozen-main-stream/result-live-event.png",
+      "bytes": 115050,
+      "sha256": "5be97c727449b5e35624493ff4b35ba9e0969fb2e45db33be1961c7f643efe37"
+    },
+    "result-reconnect.json": {
+      "source": "frozen-main-stream/result-reconnect.json",
+      "bytes": 846,
+      "sha256": "7d878bddbdeb38b90c14247d2cf0d1a8e948ba72eff5c08e1207ebe852afc631"
+    },
+    "result-reconnect.mtshot": {
+      "source": "frozen-main-stream/result-reconnect.mtshot",
+      "bytes": 3926,
+      "sha256": "5f7c072b3fb65749f6027aced67e738aabc6092b1123af497411bda0f7cabcd5"
+    },
+    "result-reconnect.mtstream": {
+      "source": "frozen-main-stream/result-reconnect.mtstream",
+      "bytes": 36548,
+      "sha256": "3c9dc4d8d29d14f17bdae55737b730e9b0f862701bc95e5a030f4e9c0531fc7d"
+    },
+    "result-reconnect.mtstream.v2.json": {
+      "source": "frozen-main-stream/result-reconnect.mtstream.v2.json",
+      "bytes": 2701,
+      "sha256": "5f528eb7595d48f0383b45f325fd3dd27ac21569a9aae124cd4894ce6cb93f4d"
+    },
+    "result-reconnect.png": {
+      "source": "frozen-main-stream/result-reconnect.png",
+      "bytes": 114277,
+      "sha256": "3dbb26e354b06f2d57a9ae618d7fe5df57f165b0898d476e4e06791018115b6e"
+    },
+    "result-recording.mtstream": {
+      "source": "frozen-main-stream/result-recording.mtstream",
+      "bytes": 309693,
+      "sha256": "18fca329efcef786aaaa5136a647a908f23809225fd677b13292885adc7ebe78"
+    },
+    "result-recording.mtstream.v2.json": {
+      "source": "frozen-main-stream/result-recording.mtstream.v2.json",
+      "bytes": 2173,
+      "sha256": "be670174534c16c2072fcee3961f313ac9e59731f95d80265150b2c6781573ac"
+    },
+    "result-search-file.png": {
+      "source": "frozen-main-stream/result-search-file.png",
+      "bytes": 109383,
+      "sha256": "800490f4d6786edf00dff5fff92d4486517dd0271a5d79a53d124d7d1552d6cc"
+    },
+    "result-search.png": {
+      "source": "frozen-main-stream/result-search.png",
+      "bytes": 102712,
+      "sha256": "cef88149aa3451c8f2bd1f169dae692369e93d452deb8df44a4107c9e6f5e95a"
+    },
+    "result-service-menu.png": {
+      "source": "frozen-main-stream/result-service-menu.png",
+      "bytes": 3380,
+      "sha256": "b3e84a407de7d9a974261e27b73b5111205ffb850b93f36d29832481a3805a0e"
+    },
+    "result-sync.png": {
+      "source": "frozen-main-stream/result-sync.png",
+      "bytes": 114097,
+      "sha256": "7e3c6d17587c9032186c5d94dd0fccbf8230576be529c905c34c27816319b9fe"
+    },
+    "result.json": {
+      "source": "frozen-main-stream/result.json",
+      "bytes": 4304,
+      "sha256": "8a229ad7594e151ee7125bb1660d8321a4f716ebe42f833d435ed24153202ab8"
+    },
+    "result.png": {
+      "source": "frozen-main-stream/result.png",
+      "bytes": 110706,
+      "sha256": "21330d34bf099122ff2cbb7bce3b8c917df041190fdb13995a710e9910707990"
+    }
+  }
+}

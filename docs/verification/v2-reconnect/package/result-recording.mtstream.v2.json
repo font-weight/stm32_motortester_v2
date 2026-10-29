@@ -1,0 +1,78 @@
+{
+  "format": "motortester-v2-stream-context",
+  "format_version": 4,
+  "context": {
+    "channel_name": "Канал 1",
+    "ui_profile": "oscilloscope",
+    "input_profile": {
+      "a": null,
+      "b": null,
+      "state": "unconfigured",
+      "profile_id": "unknown",
+      "adc_bits": 12,
+      "channel_id": "CH1",
+      "device_id": null,
+      "frontend_id": null,
+      "frontend_revision": null,
+      "range_id": null,
+      "coupling": "unknown",
+      "coefficient_source": null,
+      "calibration_id": null,
+      "calibration_version": null,
+      "calibration_date": null,
+      "measurement_point": null,
+      "ground_reference": null,
+      "sensor": null,
+      "vref_v": null,
+      "bandwidth_hz": null,
+      "linear_min_v": null,
+      "linear_max_v": null,
+      "conditions": null
+    },
+    "channel_id": "CH1"
+  },
+  "time_basis": "nominal_unverified",
+  "journal_sha256": "18fca329efcef786aaaa5136a647a908f23809225fd677b13292885adc7ebe78",
+  "journal_bytes": 309693,
+  "journal": {
+    "identity": {
+      "session_id": "wire-0.2:03120e384b3d1ad6",
+      "generation": 3,
+      "config_id": 1,
+      "nominal_fs_hz": 50000,
+      "origin": "synthetic",
+      "protocol_revision": "0.2-draft-081721",
+      "firmware_version": "build:5632444d",
+      "application_version": "isolated-stream-bridge",
+      "acquisition_mode": 0,
+      "source_adc_bits": 12,
+      "retained_bits": 12,
+      "discarded_lsb": 0,
+      "wire_sample_encoding": "u16le",
+      "normalization": "identity",
+      "quantization": "none",
+      "stored_sample_encoding": "u16le",
+      "stored_code_domain": "adc12"
+    },
+    "recording_id": "790aa47e72d64f58b27cdb112c1bd2ba",
+    "first_sample_index": 22656,
+    "end_sample_index": 176284
+  },
+  "connection": null,
+  "event_search": {
+    "config": {
+      "threshold_code": 2400,
+      "release_code": 2600,
+      "polarity": "below",
+      "pre_samples": 100,
+      "post_samples": 50,
+      "baseline_samples": 25,
+      "holdoff_samples": 300,
+      "max_event_samples": 500,
+      "rail_low": 0,
+      "rail_high": 4095
+    },
+    "config_revision": 1,
+    "algorithm_version": "threshold-context-v1"
+  }
+}

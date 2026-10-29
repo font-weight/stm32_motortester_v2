@@ -1,0 +1,261 @@
+{
+  "status": "PASS",
+  "verification_scope": "embedded-main-stream",
+  "scope": "Frozen Windows same-page serial reconnection after file/Stop, next-live search draft and owner retirement/failure/close fences; existing capture and stream checks; injected serial and DEMO, no COM or physical input qualification",
+  "source_commit": "af596d87a11913b87c24cbc85ff5e8ebd6b48cb2",
+  "portable_zip": "MotortesterV2-windows-x64.zip",
+  "portable_sha256": "a75c428656b8fcf3f1696f088e24bdd3567d015e5119844c5ad9a4ab4ae1083f",
+  "source_sha256": "25d614b2212f41e2c325dcfdbfd3781315e803f21575a63b201e9f45aef72967",
+  "executable_sha256": {
+    "MotortesterV2.exe": "6e71130d957ebd4294ba220750b65cc0e82ac30b1be10a2a80c061c36cd6d1b0",
+    "MotortesterV2Inspect.exe": "c30a8165353bca8701c27ec51db369c73579c745be7eb4004d409e20012ee1bd"
+  },
+  "extracted_bundle": "C:\\Users\\Alexandr\\Desktop\\New folder\\универ\\мотортестер 2\\build\\v17w3\\Проверка переноса\\MotortesterV2",
+  "working_directory": "C:\\Users\\Alexandr\\Desktop\\New folder\\универ\\мотортестер 2\\build\\v17w3\\Другая рабочая папка",
+  "isolated_path": "C:\\Windows\\System32",
+  "frozen_smoke": {
+    "status": "PASS",
+    "frozen": true,
+    "platform": "win32",
+    "qt_platform": "windows",
+    "executable": "C:\\Users\\Alexandr\\Desktop\\New folder\\универ\\мотортестер 2\\build\\v17w3\\Проверка переноса\\MotortesterV2\\MotortesterV2.exe",
+    "callback_errors": [],
+    "cleanup_error": null,
+    "execution_kind": "DEMO + injected serial handshake",
+    "physical_stream_verified": false,
+    "owners_closed": true,
+    "real_serial_open_calls": 0,
+    "embedded_widget": true,
+    "capture_controls_hidden": true,
+    "demo_rate_hz": 50000,
+    "initial_window_samples": 1000,
+    "sweep_knob_samples": 2000,
+    "vertical_range_codes": [
+      1648.0,
+      2448.0
+    ],
+    "screenshot": "C:\\Users\\Alexandr\\Desktop\\New folder\\универ\\мотортестер 2\\build\\v17w3\\frozen-main-stream\\result.png",
+    "screenshot_sha256": "21330d34bf099122ff2cbb7bce3b8c917df041190fdb13995a710e9910707990",
+    "recording_continued_during_navigation": true,
+    "source_cursor_readback": true,
+    "saved_recording_reopened_in_main_window": true,
+    "raw_checkbox_restored": true,
+    "empty_autoscale_handled": true,
+    "stream_can_reopen": true,
+    "saved_file_bytes": 309693,
+    "saved_file_sha256": "18fca329efcef786aaaa5136a647a908f23809225fd677b13292885adc7ebe78",
+    "saved_recording_artifact": "result-recording.mtstream",
+    "checks": {
+      "reconnect_file_to_live": true,
+      "reconnect_stop_search": true,
+      "reconnect_ownership_fences": true,
+      "reconnect_close_priority": true,
+      "source_selector_routes_stream": true,
+      "cancel_preserves_source": true,
+      "primary_button_routes_stream": true,
+      "legacy_explicit": true,
+      "connect_150k_without_start": true,
+      "connection_owners_closed": true,
+      "service_menu_retains_hidden_tools": true,
+      "search_mode_change_resets_draft": true,
+      "live_sync_center_and_recording": true,
+      "single_capture_live_and_boundaries": true,
+      "single_capture_save_open": true,
+      "live_sync_wait_and_manual_hold": true,
+      "search_math_and_limits": true,
+      "search_controls_before_start": true,
+      "search_locked_during_acquisition": true,
+      "search_snapshot_and_legacy": true,
+      "search_reindex_preserves_raw": true,
+      "live_event_navigation_retained": true,
+      "file_event_navigation_retained": true,
+      "unavailable_event_explained": true,
+      "embedded_widget": true,
+      "capture_controls_hidden": true,
+      "main_time_scale": true,
+      "main_y_scale": true,
+      "source_cursor_readback": true,
+      "recording_continued_during_navigation": true,
+      "saved_recording_reopened_in_main_window": true,
+      "raw_checkbox_restored": true,
+      "empty_autoscale_handled": true,
+      "stream_can_reopen": true,
+      "return_restores_main_controls": true
+    },
+    "returned_to_main": true,
+    "serial_ports": 0,
+    "sync_frames": [
+      {
+        "trigger_index": 21090,
+        "width_samples": 1000,
+        "crossing_x_s": 0.01,
+        "centre_x_s": 0.01,
+        "marker_x_s": 0.01
+      },
+      {
+        "trigger_index": 26490,
+        "width_samples": 1000,
+        "crossing_x_s": 0.01,
+        "centre_x_s": 0.01,
+        "marker_x_s": 0.01
+      },
+      {
+        "trigger_index": 31290,
+        "width_samples": 1000,
+        "crossing_x_s": 0.01,
+        "centre_x_s": 0.01,
+        "marker_x_s": 0.01
+      },
+      {
+        "trigger_index": 31290,
+        "width_samples": 500,
+        "crossing_x_s": 0.005,
+        "centre_x_s": 0.005,
+        "marker_x_s": 0.005
+      },
+      {
+        "trigger_index": 36690,
+        "width_samples": 500,
+        "crossing_x_s": 0.005,
+        "centre_x_s": 0.005,
+        "marker_x_s": 0.005
+      }
+    ],
+    "single_capture": {
+      "arm_end_index": 69888,
+      "expected_ordinal": 117,
+      "captured_ordinal": 117,
+      "trigger_index": 70290,
+      "start_index": 70190,
+      "end_index": 70690,
+      "raw_sha256": "a3d8b903fe9560018c6cfccf04b89a1652907ed357d358be14a2112b63a89d30",
+      "artifact": "result-capture.mtshot",
+      "sha256": "612b7b528e86059f9e95e55ed773c63d62d15f66d77e7cb94a3c962859d2d3d3",
+      "boundaries": {
+        "first_ordinal": 4,
+        "pre_arm_ordinal": 3,
+        "later_ordinal": 5,
+        "retained_bits": 10,
+        "sample_rate_hz": 150000,
+        "interrupted_end": 26
+      }
+    },
+    "failures": []
+  },
+  "png_files": {
+    "result.png": {
+      "sha256": "21330d34bf099122ff2cbb7bce3b8c917df041190fdb13995a710e9910707990",
+      "bytes": 110706,
+      "width": 1440,
+      "height": 920,
+      "validation": "PNG IHDR/CRC and SHA-256"
+    },
+    "result-entry.png": {
+      "sha256": "18abbf726cdcd45fecd77450dcda40cd5bb0a6a9b988cf8c87d1a84bd9fe99d3",
+      "bytes": 125210,
+      "width": 1440,
+      "height": 920,
+      "validation": "PNG IHDR/CRC and SHA-256"
+    },
+    "result-connected.png": {
+      "sha256": "bb62026edeffbd2478c6d137edbc655d3044075d22f566f165c88c3cbb0646f6",
+      "bytes": 100180,
+      "width": 1440,
+      "height": 920,
+      "validation": "PNG IHDR/CRC and SHA-256"
+    },
+    "result-live-event.png": {
+      "sha256": "5be97c727449b5e35624493ff4b35ba9e0969fb2e45db33be1961c7f643efe37",
+      "bytes": 115050,
+      "width": 1440,
+      "height": 920,
+      "validation": "PNG IHDR/CRC and SHA-256"
+    },
+    "result-file-event.png": {
+      "sha256": "68e16e17ae5d5ede0f942dfc2e223e86b5833adccc18bf7207fb4287f3b999f5",
+      "bytes": 110588,
+      "width": 1440,
+      "height": 920,
+      "validation": "PNG IHDR/CRC and SHA-256"
+    },
+    "result-service-menu.png": {
+      "sha256": "b3e84a407de7d9a974261e27b73b5111205ffb850b93f36d29832481a3805a0e",
+      "bytes": 3380,
+      "width": 279,
+      "height": 107,
+      "validation": "PNG IHDR/CRC and SHA-256"
+    },
+    "result-search.png": {
+      "sha256": "cef88149aa3451c8f2bd1f169dae692369e93d452deb8df44a4107c9e6f5e95a",
+      "bytes": 102712,
+      "width": 1440,
+      "height": 920,
+      "validation": "PNG IHDR/CRC and SHA-256"
+    },
+    "result-search-file.png": {
+      "sha256": "800490f4d6786edf00dff5fff92d4486517dd0271a5d79a53d124d7d1552d6cc",
+      "bytes": 109383,
+      "width": 1440,
+      "height": 920,
+      "validation": "PNG IHDR/CRC and SHA-256"
+    },
+    "result-sync.png": {
+      "sha256": "7e3c6d17587c9032186c5d94dd0fccbf8230576be529c905c34c27816319b9fe",
+      "bytes": 114097,
+      "width": 1440,
+      "height": 920,
+      "validation": "PNG IHDR/CRC and SHA-256"
+    },
+    "result-capture.png": {
+      "sha256": "9d1ca8c88e64c9a1690db0f7318b2e2ad4bf5b022f0c6eb265c7989827e5add9",
+      "bytes": 121092,
+      "width": 1440,
+      "height": 920,
+      "validation": "PNG IHDR/CRC and SHA-256"
+    },
+    "result-capture-open.png": {
+      "sha256": "894fc6c3d2a820906f01fe3c569921ef63347a43ca82c353de9ccbdafaee7801",
+      "bytes": 114170,
+      "width": 1440,
+      "height": 920,
+      "validation": "PNG IHDR/CRC and SHA-256"
+    },
+    "result-reconnect.png": {
+      "sha256": "3dbb26e354b06f2d57a9ae618d7fe5df57f165b0898d476e4e06791018115b6e",
+      "bytes": 114277,
+      "width": 1440,
+      "height": 920,
+      "validation": "PNG IHDR/CRC and SHA-256"
+    }
+  },
+  "smoke_files": {
+    "boundary150.mtshot": "c19a5d16d8db08a82c661abf20c595d83a0e02e10517cce1b98c5f27ce1084fc",
+    "corrupt.mtshot": "1707c591a3854e201856cf428cf1042b7174f3b24266f92ff4b7f2bcd474a353",
+    "incomplete.mtshot": "929f320d2dedcd7350dc7d8563460c38f2683cafba53ebafc45a6c92a727d072",
+    "invalid-config.mtshot": "888e1727953c26e35f4ee0140c2c3e6f166d25bca3a92edce742752bbb706d6e",
+    "result-capture-occupied.mtshot": "34281e3a8e89c1aabd26fd0f7ccd5a61aa79b51df99b705e24e7aef6d758c213",
+    "result-capture-open.png": "894fc6c3d2a820906f01fe3c569921ef63347a43ca82c353de9ccbdafaee7801",
+    "result-capture.mtshot": "612b7b528e86059f9e95e55ed773c63d62d15f66d77e7cb94a3c962859d2d3d3",
+    "result-capture.png": "9d1ca8c88e64c9a1690db0f7318b2e2ad4bf5b022f0c6eb265c7989827e5add9",
+    "result-connected.png": "bb62026edeffbd2478c6d137edbc655d3044075d22f566f165c88c3cbb0646f6",
+    "result-entry.png": "18abbf726cdcd45fecd77450dcda40cd5bb0a6a9b988cf8c87d1a84bd9fe99d3",
+    "result-file-event.png": "68e16e17ae5d5ede0f942dfc2e223e86b5833adccc18bf7207fb4287f3b999f5",
+    "result-live-event.png": "5be97c727449b5e35624493ff4b35ba9e0969fb2e45db33be1961c7f643efe37",
+    "result-reconnect.json": "7d878bddbdeb38b90c14247d2cf0d1a8e948ba72eff5c08e1207ebe852afc631",
+    "result-reconnect.mtshot": "5f7c072b3fb65749f6027aced67e738aabc6092b1123af497411bda0f7cabcd5",
+    "result-reconnect.mtstream": "3c9dc4d8d29d14f17bdae55737b730e9b0f862701bc95e5a030f4e9c0531fc7d",
+    "result-reconnect.mtstream.v2.json": "5f528eb7595d48f0383b45f325fd3dd27ac21569a9aae124cd4894ce6cb93f4d",
+    "result-reconnect.png": "3dbb26e354b06f2d57a9ae618d7fe5df57f165b0898d476e4e06791018115b6e",
+    "result-recording.mtstream": "18fca329efcef786aaaa5136a647a908f23809225fd677b13292885adc7ebe78",
+    "result-recording.mtstream.v2.json": "be670174534c16c2072fcee3961f313ac9e59731f95d80265150b2c6781573ac",
+    "result-search-file.png": "800490f4d6786edf00dff5fff92d4486517dd0271a5d79a53d124d7d1552d6cc",
+    "result-search.png": "cef88149aa3451c8f2bd1f169dae692369e93d452deb8df44a4107c9e6f5e95a",
+    "result-service-menu.png": "b3e84a407de7d9a974261e27b73b5111205ffb850b93f36d29832481a3805a0e",
+    "result-sync.png": "7e3c6d17587c9032186c5d94dd0fccbf8230576be529c905c34c27816319b9fe",
+    "result.json": "8a229ad7594e151ee7125bb1660d8321a4f716ebe42f833d435ed24153202ab8",
+    "result.png": "21330d34bf099122ff2cbb7bce3b8c917df041190fdb13995a710e9910707990"
+  },
+  "windows_host": "Windows-10-10.0.19045-SP0",
+  "physical_device_verified": false,
+  "public_release_approved": false
+}

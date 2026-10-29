@@ -61,6 +61,32 @@ check_connection_entry затем прошла в свежей build/v17-reconne
 уже занятой diagnostic2 не начался из-за существующего файла записи;
 его лог сохранён, файл не заменялся. Финальное frozen свидетельство ожидается.
 
+Финальный frozen из `af596d87a11913b87c24cbc85ff5e8ebd6b48cb2`:
+`.venv/Scripts/python.exe -B host/packaging/v2/build_windows.py --output
+build/v17w3 --verification main-stream`. Windows10 19045 / Qt windows,
+перенесённый пакет из другого cwd с изолированным PATH: exit0, PASS35,
+callback/cleanup ошибок0, owners_closed=True, real_serial_open_calls=0.
+Новая ветка `failed_hello_draft_preserved=True`: после отказа HELLO файл
+с порогом2800 остаётся открыт; повторный READY возвращает live2500, старый
+файл2600 не меняется. Завершены4 serial-backend, старт только отдельной
+кнопкой. Хеши всех3 сохранённых файлов неизменны. Неудачный package2 не
+засчитывается; native1/package1 остаются промежуточными свидетельствами.
+
+Архив29 исходных файлов: [package/manifest.json](verification/v2-reconnect/package/manifest.json),
+включая frozen receipt, логи, PNG, raw, companion, shot и build-manifest.
+Root осмотрел финальный result-reconnect.png: настройки2500 доступны, raw
+checkbox соответствует графику, старой кривой нет, статус READY/0 отсчётов,
+предыдущий кадр доступен для Save. Основной тестовый журнал309693B,
+SHA256 `18fca329efcef786aaaa5136a647a908f23809225fd677b13292885adc7ebe78`.
+
+Пакет: `build/v17w3/MotortesterV2-windows-x64.zip`, SHA256
+`a75c428656b8fcf3f1696f088e24bdd3567d015e5119844c5ad9a4ab4ae1083f`.
+EXE: `build/v17w3/dist/MotortesterV2/MotortesterV2.exe`, SHA256
+`6e71130d957ebd4294ba220750b65cc0e82ac30b1be10a2a80c061c36cd6d1b0`.
+Прошивка не менялась; новая ветка реального COM6 в этом этапе ещё не проверена,
+электрическая шкала/измерительная точность не подтверждались. План короткой
+пользовательской проверки — task.md. Независимое заключение ожидается.
+
 ## 29.10.2026 — V2-13: одиночный захват из непрерывного потока
 
 После подтверждения V2-12 пользователь разрешил следующий этап. Реализована
