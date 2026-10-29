@@ -65,6 +65,11 @@ def check_connection_entry(app, window, output):
         top = window.device_stream_button.mapTo(window, QtCore.QPoint(0, 0))
         assert window.device_stream_button.isVisible() and 0 < top.y() < 500
         assert window.grab().save(str(entry_png))
+        window.service_menu.popup(window.service_button.mapToGlobal(QtCore.QPoint(0, window.service_button.height())))
+        app.processEvents()
+        menu_png = Path(output).with_name(Path(output).stem + "-service-menu.png")
+        assert window.service_menu.grab().save(str(menu_png))
+        window.service_menu.hide()
 
         QtCore.QTimer.singleShot(0, lambda: answer_port(True))
         window.waveform_combo.setCurrentIndex(window.waveform_combo.findData("stream"))
@@ -94,7 +99,10 @@ def check_connection_entry(app, window, output):
         assert window.device_panel is None and len(factory.backends) == 1
         second.close_panel_button.click()
         assert wait_until(app, lambda: second.closed and not window._stream_page_active)
-        window.device_button.click()
+        window._refresh_service_menu()
+        assert not window.device_button.isVisible() and not window.stream_button.isVisible()
+        assert not window.gap_button.isVisible() and not window.waveform_combo.isVisible()
+        next(action for action, control in window.service_actions if control is window.device_button).trigger()
         assert "старая прошивка" in window.device_panel.windowTitle()
         assert "Старая прошивка" in window.device_button.text()
         window.device_panel.hide()
@@ -102,13 +110,61 @@ def check_connection_entry(app, window, output):
         assert panel.viewer._closed and second.viewer._closed
         return {"source_selector_routes_stream": True, "cancel_preserves_source": True,
                 "primary_button_routes_stream": True, "legacy_explicit": True,
-                "connect_150k_without_start": True, "connection_owners_closed": True}
+                "connect_150k_without_start": True, "connection_owners_closed": True,
+                "service_menu_retains_hidden_tools": True}
+
+
+def check_event_navigation(app, window, panel, output, *, live):
+    viewer = panel.viewer
+    assert wait_until(app, lambda: len(viewer._events) >= 3)
+    if live:
+        viewer.follow_button.click()
+        assert wait_until(app, lambda: viewer.follow_tail and not viewer.holding_live)
+        viewer.previous_button.click()
+    else:
+        viewer.whole_button.click()
+        viewer.next_button.click()
+    selected = viewer._event
+    assert selected is not None
+
+    def exact_range():
+        return (viewer.selection.start == selected.start_index and
+                viewer.selection.stop == selected.end_index and
+                abs(window.sweep.value * 10 * panel.viewer._identity[3] -
+                    (selected.end_index - selected.start_index)) < 1)
+
+    assert wait_until(app, exact_range), "Крутилки не приняли диапазон события"
+    end = time.monotonic() + .25
+    wait_until(app, lambda: time.monotonic() >= end)
+    assert viewer._event == selected and exact_range(), "Событие сброшено после перерисовки"
+    step = viewer.previous_button if live else viewer.next_button
+    step.click()
+    neighbour = viewer._event
+    assert neighbour is not None and abs(neighbour.ordinal - selected.ordinal) == 1
+    (viewer.next_button if live else viewer.previous_button).click()
+    assert viewer._event == selected
+    if live:
+        received = panel.bridge.state.validated_samples
+        assert wait_until(app, lambda: viewer._raw_first > selected.end_index, timeout=5)
+        assert viewer._event == selected and exact_range() and viewer.holding_live
+        assert len(viewer.curve.getData()[1]) > 0
+        assert panel.bridge.state.phase == "recording" and panel.bridge.state.validated_samples > received
+    assert wait_until(app, exact_range)
+    image_path = Path(output).with_name(Path(output).stem + ("-live-event.png" if live else "-file-event.png"))
+    assert window.grab().save(str(image_path))
+    if live:
+        viewer.previous_button.click()
+        assert viewer._event_notice and viewer.navigation_label.isVisible()
+        assert "вне live-буфера" in viewer.navigation_label.text()
+        viewer.follow_button.click()
+        assert wait_until(app, lambda: viewer.follow_tail and not viewer.holding_live)
+    return True
 
 
 def main(output, callback_errors):
     app = QtWidgets.QApplication.instance() or QtWidgets.QApplication(["MotortesterV2-main-stream-smoke"])
     app.setStyle("Fusion")
-    with tempfile.TemporaryDirectory(prefix="motortester-main-stream-") as temporary:
+    with tempfile.TemporaryDirectory(prefix="motortester-main-stream-", delete=False) as temporary:
         root = Path(temporary)
         window = MainWindow(settings_path=root / "settings.ini")
         window.show()
@@ -191,6 +247,8 @@ def main(output, callback_errors):
             raise AssertionError("Поток не продолжался после управления масштабом во время записи")
         if panel.bridge.state.phase != "recording":
             raise AssertionError("Изменение графика остановило запись")
+        window.yscale.set_value(512, emit=True)
+        live_events = check_event_navigation(app, window, panel, output, live=True)
         if not panel.stop():
             raise RuntimeError("Не удалось остановить встроенную запись")
         if not wait_until(app, lambda: panel.bridge.state.phase == "saved" and path.exists()):
@@ -203,6 +261,7 @@ def main(output, callback_errors):
         if not wait_until(app, lambda: panel.viewer._recording is not None and
                           panel.viewer.selection is not None):
             raise TimeoutError("Сохранённая запись не открылась во встроенной панели")
+        file_events = check_event_navigation(app, window, panel, output, live=False)
 
         panel.close_panel_button.click()
         if not wait_until(app, lambda: panel.closed and
@@ -218,7 +277,8 @@ def main(output, callback_errors):
             raise AssertionError("Основные параметры не восстановились после выхода из потока")
         raw_checkbox_restored = not window.raw_view.isChecked()
 
-        window.stream_button.click()
+        window._refresh_service_menu()
+        next(action for action, control in window.service_actions if control is window.stream_button).trigger()
         if not wait_until(app, lambda: window._stream_page_active and
                           window.left_stack.currentWidget() is window.stream_dialog):
             raise AssertionError("Повторное открытие непрерывного приёма после возврата не сработало")
@@ -292,6 +352,9 @@ def main(output, callback_errors):
             "saved_recording_artifact": saved_artifact.name,
             "checks": {
                 **route_checks,
+                "live_event_navigation_retained": live_events,
+                "file_event_navigation_retained": file_events,
+                "unavailable_event_explained": live_events,
                 "embedded_widget": True,
                 "capture_controls_hidden": True,
                 "main_time_scale": True,

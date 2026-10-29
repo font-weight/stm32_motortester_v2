@@ -160,6 +160,14 @@ class MainWindow(DeviceControlsMixin, QtWidgets.QMainWindow):
         header.addWidget(self.open_button)
         self.png_button = self._button("Снимок", self.png_dialog)
         header.addWidget(self.png_button)
+        self.service_button = QtWidgets.QPushButton()
+        self.service_button.setText("Сервис")
+        self.service_menu = QtWidgets.QMenu(self.service_button)
+        self.service_button.setMenu(self.service_menu)
+        self.service_menu.setStyleSheet("QMenu { background: #13232e; color: #e6f1f5; border: 1px solid #345063; } QMenu::item { padding: 8px 24px; } QMenu::item:selected { background: #234150; } QMenu::item:disabled { color: #647d8b; }")
+        header.addWidget(self.service_button)
+        self.service_storage = QtWidgets.QWidget(self)
+        self.service_storage.hide()
         layout.addLayout(header)
         body = QtWidgets.QHBoxLayout()
         body.setSpacing(12)
@@ -334,14 +342,14 @@ class MainWindow(DeviceControlsMixin, QtWidgets.QMainWindow):
         self.source_controls_row = QtWidgets.QWidget()
         source_row = QtWidgets.QHBoxLayout(self.source_controls_row)
         source_row.setContentsMargins(0, 0, 0, 0)
-        self.waveform_combo = QtWidgets.QComboBox()
+        self.waveform_combo = QtWidgets.QComboBox(self.service_storage)
         self.waveform_combo.addItem("ДЕМО · синусоида", "sine")
         self.waveform_combo.addItem("ДЕМО · прямоугольный", "square")
         self.waveform_combo.addItem("ДЕМО · зажигание", "ignition")
         self.waveform_combo.addItem("STM32 · непрерывный приём", "stream")
         self.waveform_combo.addItem("STM32 · старая прошивка (окна)", "device")
         self.waveform_combo.currentIndexChanged.connect(self.change_waveform)
-        source_row.addWidget(self.waveform_combo, 1)
+        source_row.addWidget(label("Единицы"), 1)
         self.file_source_label = label("Просмотр записи", "muted")
         self.file_source_label.hide()
         source_row.addWidget(self.file_source_label, 1)
@@ -425,17 +433,32 @@ class MainWindow(DeviceControlsMixin, QtWidgets.QMainWindow):
         self.device_button = self._button("Старая прошивка · окна 2048", self.device_info)
         self.device_button.setToolTip("Только для прежней оконной прошивки wire 0.1. Для потоковой прошивки используйте «Подключить STM32 · поток».")
         self.stream_button = self._button("Непрерывный приём · ДЕМО", self.open_stream_workspace)
-        side.addWidget(self.stream_button)
-        side.addWidget(self.device_button)
         self.gap_button = self._button("ДЕМО · пропуск 100 мс", self.inject_gap)
         self.gap_button.setToolTip("Явно пропустить синтетические отсчёты для проверки записи и отображения разрывов.")
-        side.addWidget(self.gap_button)
         self.raw_button = self._button("Сведения о шкале / исходных кодах", self.raw_info)
-        side.addWidget(self.raw_button)
+        self.service_actions = []
+        demo_menu = self.service_menu.addMenu("ДЕМО для проверки")
+        for text, kind in (("Синусоида", "sine"), ("Прямоугольный сигнал", "square"),
+                           ("Зажигание", "ignition")):
+            action = demo_menu.addAction(text)
+            action.triggered.connect(lambda checked=False, value=kind:
+                self.waveform_combo.setCurrentIndex(self.waveform_combo.findData(value)))
+            self.service_actions.append((action, self.waveform_combo))
+        for menu, button in ((demo_menu, self.stream_button), (demo_menu, self.gap_button),
+                             (self.service_menu, self.device_button), (self.service_menu, self.raw_button)):
+            button.setParent(self.service_storage)
+            action = menu.addAction(button.text())
+            action.triggered.connect(button.click)
+            self.service_actions.append((action, button))
+        self.service_menu.aboutToShow.connect(self._refresh_service_menu)
         side.addStretch()
         body.addWidget(sidebar)
         self.provenance_label = label("1 канал · CH1", "muted")
         self.statusBar().addPermanentWidget(self.provenance_label)
+
+    def _refresh_service_menu(self):
+        for action, control in self.service_actions:
+            action.setEnabled(control.isEnabled())
 
     def capture_settings(self):
         return CaptureSettings(threshold_v=self.threshold.value,
@@ -1416,6 +1439,11 @@ class MainWindow(DeviceControlsMixin, QtWidgets.QMainWindow):
     def _stream_plot_drawn(self):
         if not self._stream_page_active or self.stream_dialog is None:
             return
+        if self.stream_dialog.viewer._event is not None:
+            # An explicit event selection wins even before the first source paint.
+            self._stream_initial_view = False
+            self._sync_stream_controls()
+            return
         if self._stream_initial_view:
             viewer = self.stream_dialog.viewer
             if viewer._identity is not None and viewer._end is not None:
@@ -1476,6 +1504,10 @@ class MainWindow(DeviceControlsMixin, QtWidgets.QMainWindow):
                 self.yposition.value, self._axis_kind, self.raw_view.isChecked(),
                 self.xposition.high, self.origin_badge.text())
             self._stream_page_active = True
+            self.device_stream_button.hide()
+            self.open_button.hide()
+            for tab in self.tabs:
+                tab.hide()
             self._stream_initial_view = True
             self.raw_view.setVisible(True)
             self.raw_view.setToolTip("В потоке исходные коды показаны без пересчёта в напряжение.")
@@ -1501,6 +1533,10 @@ class MainWindow(DeviceControlsMixin, QtWidgets.QMainWindow):
             self.origin_badge.setText("ПОТОК · " + ("ДЕМО" if self.stream_dialog.selection is None else "STM32"))
         else:
             self._stream_page_active = False
+            self.device_stream_button.show()
+            self.open_button.show()
+            for tab in self.tabs:
+                tab.show()
             self._stream_initial_view = False
             self.raw_view.hide()
             self.source_controls_row.show()
@@ -1579,7 +1615,7 @@ class MainWindow(DeviceControlsMixin, QtWidgets.QMainWindow):
             self.stream_dialog.setMinimumSize(0, 0)
             self.stream_dialog.setSizePolicy(QtWidgets.QSizePolicy.Policy.Expanding,
                                              QtWidgets.QSizePolicy.Policy.Expanding)
-            self.stream_dialog.viewer.inspection_reset.connect(self._stream_source_reset)
+            self.stream_dialog.viewer.source_reset.connect(self._stream_source_reset)
             self.stream_dialog.viewer.plot_drawn.connect(self._stream_plot_drawn)
             self.stream_dialog.viewer.view_requested.connect(self._sync_stream_controls)
             self.stream_dialog.viewer.plot.getViewBox().sigRangeChangedManually.connect(

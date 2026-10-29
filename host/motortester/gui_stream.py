@@ -534,6 +534,7 @@ class StreamViewerPanel(QtWidgets.QWidget):
     view_requested = QtCore.Signal(object)  # User intent only, not per-block traffic.
     plot_drawn = QtCore.Signal()
     inspection_reset = QtCore.Signal()  # A held measurement cannot cross this boundary.
+    source_reset = QtCore.Signal()  # Only replacement of the recording/live source.
 
     def __init__(self, parent=None, *, event_config=None, event_capacity=EVENT_CAPACITY):
         super().__init__(parent)
@@ -608,6 +609,8 @@ class StreamViewerPanel(QtWidgets.QWidget):
             button.clicked.connect(slot)
             row.addWidget(button)
         layout.addLayout(row)
+        self.navigation_label = _label("События ещё не найдены", "muted", wrap=True)
+        layout.addWidget(self.navigation_label)
         self.view_mode_label = _label("", "muted", wrap=True)
         layout.addWidget(self.view_mode_label)
         self.plot = pg.PlotWidget(background="#111923")
@@ -692,11 +695,20 @@ class StreamViewerPanel(QtWidgets.QWidget):
         self.previous_button.setEnabled(bool(self._events) and not self._closed)
         self.next_button.setEnabled(bool(self._events) and not self._closed)
         self.open_button.setEnabled(not self._closed)
+        if self._event_notice:
+            self.navigation_label.setText("Отсчёты этого события уже вне live-буфера. Для просмотра откройте сохранённую запись.")
+        elif self._event is not None:
+            self.navigation_label.setText(f"Выбрано событие №{self._event.ordinal + 1} · пороговый поиск")
+        else:
+            self.navigation_label.setText(
+                f"Доступно событий: {len(self._events)} · пороговый поиск" if self._events else
+                "События ещё не найдены · переходы появятся после пересечения порога")
 
     def _reset_source(self):
         if self._closed:
             raise RuntimeError("Панель закрыта")
         self.inspection_reset.emit()
+        self.source_reset.emit()
         self._cancel.set()
         self._cancel = threading.Event()
         self._source += 1
@@ -1038,6 +1050,7 @@ class StreamViewerPanel(QtWidgets.QWidget):
         self.curve.setData([], [])
         self.range_label.setText(f"Исходный контекст [{event.start_index}, {event.end_index}); unavailable live raw [{self._raw_first}, {self._end}). Диапазон не подменён.")
         self._set_status("После Stop откройте завершённый файл для полного raw-доступа.")
+        self._actions()
         return False
 
     def _select_event(self, event):
@@ -1051,8 +1064,13 @@ class StreamViewerPanel(QtWidgets.QWidget):
                                 f"флаги: {', '.join(event.flags) or 'не выявлены правилом'}. Это не подтверждение полного физического разряда.")
         if self._recording is None and not self._live_event_available(event):
             return
+        if self._recording is None and self._last_live is not None and self._last_live.raw_u16le is not None:
+            # Freeze the available source codes, not just the event envelope.
+            # Incoming acquisition must not evict the event being inspected.
+            self._held_live = self._last_live
         self.select_range(event.start_index, event.end_index, hold_live=False)
         self._event = event
+        self._actions()
 
     def next_event(self):
         if not self._events:
@@ -1065,6 +1083,7 @@ class StreamViewerPanel(QtWidgets.QWidget):
             self._select_event(self._events[at])
         else:
             self._set_status("Следующего события в обработанном префиксе нет")
+            self.navigation_label.setText("Следующего события пока нет · выбрано последнее доступное")
 
     def previous_event(self):
         if not self._events:
@@ -1077,6 +1096,7 @@ class StreamViewerPanel(QtWidgets.QWidget):
             self._select_event(self._events[at])
         else:
             self._set_status("Предыдущего события в обработанном префиксе нет")
+            self.navigation_label.setText("Предыдущего события в доступном фрагменте нет")
 
     def _submit(self, request):
         if self._closed:

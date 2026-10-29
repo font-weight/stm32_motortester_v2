@@ -1,3 +1,9 @@
+# V2-10: области записи
+
+Root: viewer/GUI, адресный сценарий, пакет, документация и архивы.
+Event_navigation_critic: только docs/reviews/v2-10-event-navigation-review.md
+и docs/verification/v2-event-navigation/critic.json. Без production/tests/COM/SWD.
+
 # V2-09a: области записи
 
 Root: маршруты/подписи GUI, адресный main_stream_smoke, пакет и canonical docs.

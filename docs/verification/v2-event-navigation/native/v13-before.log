@@ -1,0 +1,48 @@
+Traceback (most recent call last):
+  File "C:\Users\Alexandr\Desktop\New folder\универ\мотортестер 2\host\motortester\v2\main_stream_smoke.py", line 234, in main
+    live_events = check_event_navigation(app, window, panel, live=True)
+  File "C:\Users\Alexandr\Desktop\New folder\универ\мотортестер 2\host\motortester\v2\main_stream_smoke.py", line 130, in check_event_navigation
+    assert viewer._event == selected and exact_range(), "Событие сброшено после перерисовки"
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Событие сброшено после перерисовки
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Alexandr\AppData\Local\Python\pythoncore-3.14-64\Lib\shutil.py", line 701, in _rmtree_unsafe
+    os.unlink(fullname)
+    ~~~~~~~~~^^^^^^^^^^
+PermissionError: [WinError 32] The process cannot access the file because it is being used by another process: 'C:\\Users\\Alexandr\\AppData\\Local\\Temp\\motortester-main-stream-pv9jrlr0\\embedded-demo.mtstream'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "<frozen runpy>", line 203, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "C:\Users\Alexandr\Desktop\New folder\универ\мотортестер 2\host\motortester\v2\main_stream_smoke.py", line 379, in <module>
+    raise SystemExit(run(sys.argv[1]))
+                     ~~~^^^^^^^^^^^^^
+  File "C:\Users\Alexandr\Desktop\New folder\универ\мотортестер 2\host\motortester\v2\main_stream_smoke.py", line 370, in run
+    result = main(output, callback_errors)
+  File "C:\Users\Alexandr\Desktop\New folder\универ\мотортестер 2\host\motortester\v2\main_stream_smoke.py", line 151, in main
+    with tempfile.TemporaryDirectory(prefix="motortester-main-stream-") as temporary:
+         ~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Alexandr\AppData\Local\Python\pythoncore-3.14-64\Lib\tempfile.py", line 972, in __exit__
+    self.cleanup()
+    ~~~~~~~~~~~~^^
+  File "C:\Users\Alexandr\AppData\Local\Python\pythoncore-3.14-64\Lib\tempfile.py", line 976, in cleanup
+    self._rmtree(self.name, ignore_errors=self._ignore_cleanup_errors)
+    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Alexandr\AppData\Local\Python\pythoncore-3.14-64\Lib\tempfile.py", line 956, in _rmtree
+    _shutil.rmtree(name, onexc=onexc)
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Alexandr\AppData\Local\Python\pythoncore-3.14-64\Lib\shutil.py", line 852, in rmtree
+    _rmtree_impl(path, dir_fd, onexc)
+    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Alexandr\AppData\Local\Python\pythoncore-3.14-64\Lib\shutil.py", line 705, in _rmtree_unsafe
+    onexc(os.unlink, fullname, err)
+    ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Alexandr\AppData\Local\Python\pythoncore-3.14-64\Lib\tempfile.py", line 931, in onexc
+    _os.unlink(path)
+    ~~~~~~~~~~^^^^^^
+PermissionError: [WinError 32] The process cannot access the file because it is being used by another process: 'C:\\Users\\Alexandr\\AppData\\Local\\Temp\\motortester-main-stream-pv9jrlr0\\embedded-demo.mtstream'

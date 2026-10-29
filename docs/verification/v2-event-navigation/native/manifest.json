@@ -1,0 +1,43 @@
+{
+  "scope": "Native PASS20 before final service-button style adjustment; before-log reproduces old event reset",
+  "files": {
+    "native-result-connected.png": {
+      "bytes": 82339,
+      "sha256": "c84dd8953c983e13aa8935445e67488c8e01707b10b18f39a479b9b20d999441"
+    },
+    "native-result-entry.png": {
+      "bytes": 125716,
+      "sha256": "134120c1d46a5493f5df92e9ec04ad70577c156c7cbdee55e2e236f33a5eb093"
+    },
+    "native-result-file-event.png": {
+      "bytes": 92229,
+      "sha256": "b9f3bfe8bf4492249a3e540dbfdd7ef0244a67b0637e1f527c6c4ab1884a52e8"
+    },
+    "native-result-live-event.png": {
+      "bytes": 93868,
+      "sha256": "73ed74f75c8c73628a4dbb8fe8fde496fb529d9359aa61b4cbe878bab637f16f"
+    },
+    "native-result-recording.mtstream": {
+      "bytes": 141812,
+      "sha256": "998dd1bb1d329ef7635b524ef67080d985595259e2fa392f7b55cdcb22cf5678"
+    },
+    "native-result.json": {
+      "bytes": 2110,
+      "sha256": "9a0f834cf124e1275c04a2d8a3779bab29e87c8b73d4a402baa04e77360e4a46"
+    },
+    "native-result.png": {
+      "bytes": 93249,
+      "sha256": "ffef983629c1962534ff5ccd495d5dbbf792ce39765e08f41d41a8eb4e19c3e0"
+    },
+    "v13-before.log": {
+      "bytes": 3411,
+      "sha256": "ba173c6ff54e1c33fd509b751a593c32e464c48add3ea1c7e04c73a57981c318"
+    }
+  },
+  "source_files": {
+    "host/motortester/gui_stream.py": "f7e8cac1f6325917e5b2de03a161f65ded45c6141e3f73a41e4d55e5fb8ed73f",
+    "host/motortester/v2/gui.py": "8beb136b003001df6f6e22b972413923def9321738699f2acc1e9cdc762b360d",
+    "host/motortester/v2/main_stream_smoke.py": "cf514b462eb752e86a21ab5f732a243103dac5623e535c70866d20f6726f8d20",
+    "host/packaging/v2/main_stream_package_check.py": "d7569ff6b906af8d4f59685ac3ee9b794bbe4861b210aa98a93fefe48d816828"
+  }
+}
