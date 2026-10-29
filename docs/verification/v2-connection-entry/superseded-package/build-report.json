@@ -1,0 +1,104 @@
+{
+  "status": "PASS",
+  "verification_scope": "embedded-main-stream",
+  "scope": "Frozen Windows public stream entry and injected150k Connect without START; DEMO embedded view, knobs, cursors, recording and return; no COM or physical input qualification",
+  "source_commit": "1e58b1ee9c44452c2fbd40f666908c8151414fbd",
+  "portable_zip": "MotortesterV2-windows-x64.zip",
+  "portable_sha256": "b06bb3b864897c0cb8b822799dce8c7b09d023338c824e196abe2414289f6c83",
+  "source_sha256": "7712bee000b21926ee894dcbd449355361dae37bbde1abaac94e48bfdb153398",
+  "executable_sha256": {
+    "MotortesterV2.exe": "20b3cb0be19fea143d75d2e57bc6e8efdbf1d368c829c94f13868fc2ad5328ee",
+    "MotortesterV2Inspect.exe": "422e7c84ef73cd2ab7b35271975e57c37c4e90d50019a8d648d452102601e4f0"
+  },
+  "extracted_bundle": "C:\\Users\\Alexandr\\Desktop\\New folder\\универ\\мотортестер 2\\build\\v11w\\Проверка переноса\\MotortesterV2",
+  "working_directory": "C:\\Users\\Alexandr\\Desktop\\New folder\\универ\\мотортестер 2\\build\\v11w\\Другая рабочая папка",
+  "isolated_path": "C:\\Windows\\System32",
+  "frozen_smoke": {
+    "status": "PASS",
+    "frozen": true,
+    "platform": "win32",
+    "qt_platform": "windows",
+    "executable": "C:\\Users\\Alexandr\\Desktop\\New folder\\универ\\мотортестер 2\\build\\v11w\\Проверка переноса\\MotortesterV2\\MotortesterV2.exe",
+    "callback_errors": [],
+    "cleanup_error": null,
+    "execution_kind": "DEMO + injected serial handshake",
+    "physical_stream_verified": false,
+    "owners_closed": true,
+    "real_serial_open_calls": 0,
+    "embedded_widget": true,
+    "capture_controls_hidden": true,
+    "demo_rate_hz": 50000,
+    "initial_window_samples": 1000,
+    "sweep_knob_samples": 2000,
+    "vertical_range_codes": [
+      1648.0,
+      2448.0
+    ],
+    "screenshot": "C:\\Users\\Alexandr\\Desktop\\New folder\\универ\\мотортестер 2\\build\\v11w\\frozen-main-stream\\result.png",
+    "screenshot_sha256": "4e4bea9a0078b4b9283d10ef940ebb28da0a28ad13dcfa5dc800ec60beaf9eed",
+    "recording_continued_during_navigation": true,
+    "source_cursor_readback": true,
+    "saved_recording_reopened_in_main_window": true,
+    "raw_checkbox_restored": true,
+    "empty_autoscale_handled": true,
+    "stream_can_reopen": true,
+    "saved_file_bytes": 7418,
+    "saved_file_sha256": "f3aa27f1769d9116523366bc3f00e553b8c7d194bff40cf6235f55240c891e19",
+    "saved_recording_artifact": "result-recording.mtstream",
+    "checks": {
+      "source_selector_routes_stream": true,
+      "cancel_preserves_source": true,
+      "primary_button_routes_stream": true,
+      "legacy_explicit": true,
+      "connect_150k_without_start": true,
+      "connection_owners_closed": true,
+      "embedded_widget": true,
+      "capture_controls_hidden": true,
+      "main_time_scale": true,
+      "main_y_scale": true,
+      "source_cursor_readback": true,
+      "recording_continued_during_navigation": true,
+      "saved_recording_reopened_in_main_window": true,
+      "raw_checkbox_restored": true,
+      "empty_autoscale_handled": true,
+      "stream_can_reopen": true,
+      "return_restores_main_controls": true
+    },
+    "returned_to_main": true,
+    "serial_ports": 0,
+    "failures": []
+  },
+  "png_files": {
+    "result.png": {
+      "sha256": "4e4bea9a0078b4b9283d10ef940ebb28da0a28ad13dcfa5dc800ec60beaf9eed",
+      "bytes": 102537,
+      "width": 1440,
+      "height": 920,
+      "validation": "PNG IHDR/CRC and SHA-256"
+    },
+    "result-entry.png": {
+      "sha256": "43e6e90bbe735e329166e7ffecbbda565bd99d4609b2b0a926b405ecd458319f",
+      "bytes": 125634,
+      "width": 1440,
+      "height": 920,
+      "validation": "PNG IHDR/CRC and SHA-256"
+    },
+    "result-connected.png": {
+      "sha256": "9e6daa4d645c314025c013ed393f42016c7223fc497fbfc3a85556e16276eff5",
+      "bytes": 91754,
+      "width": 1440,
+      "height": 920,
+      "validation": "PNG IHDR/CRC and SHA-256"
+    }
+  },
+  "smoke_files": {
+    "result-connected.png": "9e6daa4d645c314025c013ed393f42016c7223fc497fbfc3a85556e16276eff5",
+    "result-entry.png": "43e6e90bbe735e329166e7ffecbbda565bd99d4609b2b0a926b405ecd458319f",
+    "result-recording.mtstream": "f3aa27f1769d9116523366bc3f00e553b8c7d194bff40cf6235f55240c891e19",
+    "result.json": "53a9a9bb99a708b7b5a9951b5e63040164b9b09534eefcadb0e8ae96d86db093",
+    "result.png": "4e4bea9a0078b4b9283d10ef940ebb28da0a28ad13dcfa5dc800ec60beaf9eed"
+  },
+  "windows_host": "Windows-10-10.0.19045-SP0",
+  "physical_device_verified": false,
+  "public_release_approved": false
+}

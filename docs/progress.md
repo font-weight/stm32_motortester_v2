@@ -19,8 +19,26 @@ Native свидетельства сохранены в [архиве](verificat
 Первая сборка `build/v11w` из `1e58b1ee9c44452c2fbd40f666908c8151414fbd`
 прошла frozen PASS17, exit0. Затем найдены прежние названия кнопок в инструкции
 README_RU внутри ZIP; она исправлена без изменения программного кода.
-V11 сохранена как промежуточная, итоговой не выдаётся. Окончательный пакет
-и независимая приёмка ещё ожидаются; прошивка не менялась.
+V11 сохранена как промежуточная, итоговой не выдаётся:
+[её архив](verification/v2-connection-entry/superseded-package/manifest.json).
+
+Итоговая сборка `.venv/Scripts/python.exe -B host/packaging/v2/build_windows.py
+--output build/v12w --verification main-stream` из чистого commit
+`8e82679aaeffecdfd73473516a60ab4f12dcedf6` — exit0. Перенесённый frozen EXE
+на Windows10/19045 с отдельным cwd и PATH=`C:\Windows\System32` прошёл PASS17,
+ошибок Qt/cleanup нет, реальные COM-вызовы0. DEMO-журнал8440B сохранён и открыт,
+SHA256 `541d7a8974aeda36603e542b4f54d13f7c8c7ba12d8ff87ace833bfe00849c7a`.
+Root просмотрел три frozen PNG: основной вход, synthetic READY и DEMO-график
+читаемы. [Архив пакета](verification/v2-connection-entry/package/manifest.json)
+содержит9 файлов; manifest SHA256
+`2d7601369e515bd94c692f8f612398e4dccaecbfec84eea53b2767fd563a1648`.
+ZIP `build/v12w/MotortesterV2-windows-x64.zip`, SHA256
+`0fc52550130a9657f17ce338600dcd0bc78c853f329921a47d26c3d55df0d8f9`;
+EXE `build/v12w/dist/MotortesterV2/MotortesterV2.exe`, SHA256
+`119439de06d7aed8129d8e1d8b44fa9c9f61507d9dc3270a56c617baa310bd5b`.
+Проверки не подтверждают восстановление COM6 на физической плате, её поток
+150k или чистую Windows без Python. Прошивка не менялась. Независимая приёмка
+этого точного пакета ожидается.
 
 ## 29.10.2026 — V2-09 принят: поток в главном окне
 
