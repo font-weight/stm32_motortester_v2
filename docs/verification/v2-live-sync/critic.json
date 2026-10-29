@@ -1,0 +1,158 @@
+{
+  "status": "PASS",
+  "score": 9.55,
+  "unrounded_score": "9.550",
+  "reviewer": "/root/trigger_controls_critic",
+  "independent": true,
+  "date": "2026-10-29",
+  "source_commit": "1259e377ecb34b5429cdfcbaad188b25b0bb7664",
+  "base_commit": "a278fface3addbef729931f31ee39ebc80dc8cde",
+  "evidence_commit": "138b389797a615c1bb50a03f413849bf4e425c43",
+  "requirement": "V2-UI24",
+  "scope": [
+    "program logic/DEMO",
+    "Windows 10 GUI",
+    "local portable package"
+  ],
+  "open_p0": 0,
+  "open_p1": 0,
+  "open_findings": [],
+  "closed_findings": [
+    {
+      "priority": "P2",
+      "issue": "Preview to Record transition disabled synchronization",
+      "resolution": "Preparing and waiting-for-boundary phases preserve mode; scenario enables synchronization before Record"
+    },
+    {
+      "priority": "P2",
+      "issue": "Rejecting baseline_unsettled prevented valid slow-edge frames",
+      "resolution": "Require a witnessed crossing in adjacent original raw codes; native failures retained and final frozen frames verified"
+    },
+    {
+      "priority": "P2",
+      "issue": "Lower X-axis label was cramped in native screenshot",
+      "resolution": "Reduced graph height to 270 px; final frozen screenshots inspected"
+    }
+  ],
+  "criteria": {
+    "C1": {
+      "score": 9.6,
+      "weight": 0.3
+    },
+    "C2": {
+      "score": 9.5,
+      "weight": 0.2
+    },
+    "C3": {
+      "score": 9.6,
+      "weight": 0.25
+    },
+    "C4": {
+      "score": 9.4,
+      "weight": 0.15
+    },
+    "C5": {
+      "score": 9.6,
+      "weight": 0.1
+    }
+  },
+  "report": "docs/reviews/v2-12-live-sync-review.md",
+  "report_sha256": "b4d991e955eb88f4c48a42b9a00ad7e34cbf9bd99725e20b63485ae6cd2fb446",
+  "evidence": {
+    "native_manifest": "docs/verification/v2-live-sync/native/manifest.json",
+    "native_manifest_sha256": "e5e24dffca76185184d5d60b97e99eed62512a795d336ba29c7598c009ab0d26",
+    "native_artifacts_verified": 26,
+    "native_checks": 29,
+    "native_scope": "Native3 before final graph-height and evidence refinements; final exact state covered by frozen run",
+    "package_manifest": "docs/verification/v2-live-sync/package/manifest.json",
+    "package_manifest_sha256": "c87ca864136fb01a95e48815b8154fa417cd24ca8bfdf524f7008519b236035e",
+    "package_artifacts_verified": 16,
+    "frozen_checks": 29,
+    "all_zip_dist_files_verified": 475,
+    "changed_host_source_files_verified": 9,
+    "archive_bytes_equal_git": true,
+    "receipt_equals_frozen_json": true,
+    "frozen_pngs_inspected": [
+      "result-sync.png",
+      "result-file-event.png"
+    ],
+    "sync_frames": [
+      {
+        "trigger_index": 15690,
+        "width_samples": 1000,
+        "crossing_x_s": 0.01,
+        "centre_x_s": 0.01,
+        "marker_x_s": 0.01
+      },
+      {
+        "trigger_index": 25890,
+        "width_samples": 1000,
+        "crossing_x_s": 0.01,
+        "centre_x_s": 0.01,
+        "marker_x_s": 0.01
+      },
+      {
+        "trigger_index": 30690,
+        "width_samples": 1000,
+        "crossing_x_s": 0.01,
+        "centre_x_s": 0.01,
+        "marker_x_s": 0.01
+      },
+      {
+        "trigger_index": 31290,
+        "width_samples": 500,
+        "crossing_x_s": 0.005,
+        "centre_x_s": 0.005,
+        "marker_x_s": 0.005
+      },
+      {
+        "trigger_index": 36090,
+        "width_samples": 500,
+        "crossing_x_s": 0.005,
+        "centre_x_s": 0.005,
+        "marker_x_s": 0.005
+      },
+      {
+        "trigger_index": 40890,
+        "width_samples": 500,
+        "crossing_x_s": 0.005,
+        "centre_x_s": 0.005,
+        "marker_x_s": 0.005
+      }
+    ],
+    "platform": "Windows-10-10.0.19045-SP0",
+    "qt_platform": "windows",
+    "real_serial_open_calls": 0,
+    "callback_errors": [],
+    "cleanup_error": null,
+    "owners_closed": true,
+    "recording_bytes": 257994,
+    "recording_sha256": "e2bf36f9b30023f162a0ca2d59919231c1fe5e057fc63a93debeb8fad4c9549a"
+  },
+  "deliverables": {
+    "zip": "build/v15w/MotortesterV2-windows-x64.zip",
+    "zip_sha256": "3b607e110806dc55e7e87dc8358287865822760fb21e46cdaa6b4f5bcd346d2c",
+    "exe": "build/v15w/dist/MotortesterV2/MotortesterV2.exe",
+    "exe_sha256": "5cc988c163a048c5f4f3c8fb55a7ab865300abd3e84c0894ac16d4cdcc2ff183",
+    "source_zip_sha256": "f50b7bc771245ad101bb874b01e135233440706080488ef6712d957894399f5e"
+  },
+  "critic_actions": [
+    "read-only source and contract review",
+    "read existing native/frozen receipts and diagnostics",
+    "view existing PNG screenshots",
+    "verify hashes, Git archive bytes and ZIP members"
+  ],
+  "critic_reran_tests": false,
+  "critic_reran_build": false,
+  "critic_used_hardware": false,
+  "physical_stream_verified": false,
+  "limitations": [
+    "No physical COM6 synchronization test in this iteration",
+    "No new firmware or analog/calibration qualification",
+    "No measured display jitter or maximum refresh rate",
+    "Latest eligible display frames only; display-frame skips are not recording losses",
+    "Live raw extent remains bounded to 65536 samples",
+    "Source timestamps unchanged; x axis is time from displayed left edge",
+    "Single capture remains a separate stage"
+  ]
+}
