@@ -1,0 +1,115 @@
+{
+  "status": "PASS",
+  "score": 9.55,
+  "unrounded_score": "9.550",
+  "reviewer": "/root/trigger_controls_critic",
+  "independent": true,
+  "date": "2026-10-29",
+  "source_commit": "700e16beaaf23f3146e502baa332cd0a4cc996c1",
+  "base_commit": "89b3be065cd966644e96d749716966e703522b82",
+  "evidence_commit": "63382cb6041b0ab8055ef2de887ab10bfb4abce4",
+  "requirement": "V2-UI23",
+  "scope": [
+    "program logic/DEMO",
+    "Windows 10 GUI",
+    "local portable package"
+  ],
+  "open_p0": 0,
+  "open_p1": 0,
+  "open_findings": [],
+  "closed_findings": [
+    {
+      "priority": "P2",
+      "issue": "Search draft retained old Fs/bit-mode sample counts and rail",
+      "resolution": "Reset on selected mode and accepted CAPS basis change; visible notice and injected 150k to 100k assertion"
+    },
+    {
+      "priority": "P2",
+      "issue": "Dynamic search controls could be compressed and lower controls absent from screenshot",
+      "resolution": "Layout minimum constraints, collapsible advanced fields, explicit sidebar scroll and reachability assertion; final PNG inspected"
+    },
+    {
+      "priority": "P3",
+      "issue": "Companion failure message omitted event-search parameters",
+      "resolution": "Failure message now names saved search parameters"
+    }
+  ],
+  "criteria": {
+    "C1": {
+      "score": 9.6,
+      "weight": 0.3
+    },
+    "C2": {
+      "score": 9.5,
+      "weight": 0.2
+    },
+    "C3": {
+      "score": 9.5,
+      "weight": 0.25
+    },
+    "C4": {
+      "score": 9.5,
+      "weight": 0.15
+    },
+    "C5": {
+      "score": 9.7,
+      "weight": 0.1
+    }
+  },
+  "report": "docs/reviews/v2-11-trigger-controls-review.md",
+  "report_sha256": "fb5ff77ead9096f322a2f81f9d6f409a6244dccc87f6bb0ea8777eb5622415f9",
+  "evidence": {
+    "native_manifest": "docs/verification/v2-trigger-controls/native/manifest.json",
+    "native_manifest_sha256": "5f735a753dfa842cc091a7dcc32e8b836a95e459b61ef1e2cfcd86180934ad71",
+    "native_artifacts_verified": 52,
+    "native_checks": 27,
+    "native_scope": "Native6 before final companion error-message wording; final state covered by frozen run",
+    "package_manifest": "docs/verification/v2-trigger-controls/package/manifest.json",
+    "package_manifest_sha256": "903970a0fec9fcfaa8b1b8fdcac5e4e7277170d9e9649b41f9d546ac32a01b4d",
+    "package_artifacts_verified": 15,
+    "frozen_checks": 27,
+    "smoke_files_verified": 11,
+    "all_zip_relocated_files_verified": 475,
+    "changed_host_source_files_verified": 10,
+    "frozen_pngs_inspected": [
+      "result-search.png",
+      "result-search-file.png",
+      "result-live-event.png"
+    ],
+    "receipt_equals_frozen_json": true,
+    "real_serial_open_calls": 0,
+    "callback_errors": [],
+    "cleanup_error": null,
+    "owners_closed": true,
+    "recording_bytes": 159246,
+    "recording_sha256": "44d0e2999fae152b141de229ec06932dad659da65516c90e4a8244855dc9de3c",
+    "companion_version": 4,
+    "companion_config_revision": 1,
+    "algorithm_version": "threshold-context-v1"
+  },
+  "deliverables": {
+    "zip": "build/v14w/MotortesterV2-windows-x64.zip",
+    "zip_sha256": "8acf328b7081718648dad321dce4589deb2ef65869c3c1385934bef4a987816d",
+    "exe": "build/v14w/dist/MotortesterV2/MotortesterV2.exe",
+    "exe_sha256": "86f5a76b8211d2c186c76438b8eaedd33dc2feac136779f8da9ea7ef5f7455a2",
+    "source_zip_sha256": "7baa515de299314e198af57785e4fe03e86fe81c8db59fe3598bd77f0e3ba6d8"
+  },
+  "review_methods": [
+    "read-only source/diff and document inspection",
+    "receipt, byte size and SHA256 checks",
+    "portable ZIP versus relocated file comparison",
+    "changed host source ZIP versus git commit comparison after CRLF normalization",
+    "visual inspection of three final PNGs and companion JSON"
+  ],
+  "reviewer_reran_tests": false,
+  "reviewer_built_package": false,
+  "hardware_actions": false,
+  "limitations": [
+    "No new physical COM, ADC rate, voltage, frontend, ignition or vehicle verification",
+    "No clean Windows without Python qualification",
+    "Single-shot stream acquisition remains a separate next step",
+    "Search settings preservation verified for companion, not CSV metadata",
+    "GUI scenario uses Qt controls/setters; no arbitrary-DPI or full manual-gesture qualification",
+    "Legacy v3 fallback exercised; v1/v2 reader branches inspected without extra reruns"
+  ]
+}
