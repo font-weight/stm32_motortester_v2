@@ -10,6 +10,7 @@ from ..stream_recording import AttemptReport
 from ..stream_wire import SUPPORTED_SAMPLE_RATES
 from .stream_device import StreamContext, StreamDeviceBridge, default_event_config
 from .stream_files import open_stream, export_stream
+from .stream_cursors import StreamCursorTool
 from .widgets import STYLE
 
 
@@ -119,7 +120,7 @@ class StreamDialog(QtWidgets.QDialog):
         # The unknown voltage scale is explained above the plot. Keep axis
         # labels short enough for the minimum-height graph and narrow window.
         self.viewer.plot.setLabel("left", "Код АЦП")
-        self.viewer.plot.setLabel("bottom", "Время, с · номинально")
+        self.viewer.plot.setLabel("bottom", "Время от левого края, с · номинально")
         self.viewer.open_button.hide()
         self.viewer.source_label.hide()
         self.viewer.index_label.hide()
@@ -132,6 +133,9 @@ class StreamDialog(QtWidgets.QDialog):
         self.viewer.view_requested.connect(self._view_requested)
         self.viewer.plot.hide()
         layout.addWidget(self.viewer, 1)
+        self.cursors = StreamCursorTool(self.viewer, self)
+        self.cursors.hide()
+        layout.addWidget(self.cursors)
         footer = QtWidgets.QHBoxLayout()
         self.export_button = QtWidgets.QPushButton("Экспорт открытой записи CSV + JSON…")
         self.export_button.clicked.connect(self.export_dialog)
@@ -183,6 +187,9 @@ class StreamDialog(QtWidgets.QDialog):
 
     def _raw_changed(self, checked):
         self.viewer.plot.setVisible(checked)
+        self.cursors.setVisible(checked)
+        if not checked:
+            self.cursors.reset()
 
     def _resume(self):
         self._paused = False
@@ -611,6 +618,7 @@ class StreamDialog(QtWidgets.QDialog):
         self._state(self.bridge.state)
 
     def _bridge_finished(self):
+        self.cursors.shutdown()
         self.viewer.shutdown()
         self._timer.stop()
         self._executor.shutdown(wait=False)

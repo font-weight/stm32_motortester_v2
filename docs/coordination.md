@@ -1,3 +1,10 @@
+# V2-08: текущая область записи
+
+Root — GUI-интеграция, курсоры, адресные проверки, пакет и canonical docs.
+Stream200_critic — только docs/reviews/v2-08-cursors-review.md и
+docs/verification/v2-cursors/critic.json, без реализации. COM/SWD/firmware
+не затрагиваются. V2-07 исходники/архивы сохраняются как принятая база.
+
 # V2-07: завершённая область записи
 
 Root — gui_stream.py, V2 stream UI, адресная Qt-проверка, документация и

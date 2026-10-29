@@ -1,0 +1,18 @@
+{
+  "status": "PASS",
+  "provenance": "Root transcription of actual exec console; not a second test run",
+  "command": ".venv/Scripts/python.exe -B -m unittest -v test_stream_cursors",
+  "environment": {
+    "PYTHONPATH": "host;host/tests"
+  },
+  "exit_code": 0,
+  "test_count": 3,
+  "seconds": 1.09,
+  "tests": [
+    "test_coalescing_stale_source_and_stale_integrity_failure",
+    "test_overview_uses_raw_and_keeps_indices_on_rebase",
+    "test_two_samples_signed_150k_large_index_and_missing"
+  ],
+  "console_summary": "Ran 3 tests in 1.090s\nOK",
+  "limits": "Before final two UI text changes: time_text6g->9g and explicit local-origin X axis. Final frozen check covers that version. No full inherited suite or COM."
+}

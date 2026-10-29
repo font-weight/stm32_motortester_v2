@@ -532,6 +532,8 @@ class StreamViewerPanel(QtWidgets.QWidget):
     bounded worker may finish later without touching Qt or reviving the source.
     """
     view_requested = QtCore.Signal(object)  # User intent only, not per-block traffic.
+    plot_drawn = QtCore.Signal()
+    inspection_reset = QtCore.Signal()  # A held measurement cannot cross this boundary.
 
     def __init__(self, parent=None, *, event_config=None, event_capacity=EVENT_CAPACITY):
         super().__init__(parent)
@@ -652,6 +654,7 @@ class StreamViewerPanel(QtWidgets.QWidget):
         self.status_label.setText(text)
 
     def _latch_source_failure(self, message):
+        self.inspection_reset.emit()
         if self._source_failure is None:
             self._source_failure = message
             self.origin_label.setText(self.origin_label.text() + " · ИСТОЧНИК ОТКЛОНЁН · КЕШ")
@@ -674,6 +677,14 @@ class StreamViewerPanel(QtWidgets.QWidget):
         if self._recording is None and self.selection is not None:
             self.select_range(self.selection.start, self.selection.stop)
 
+    def inspection_reader(self):
+        """Immutable raw backing for tools; never expose the moving receive ring."""
+        if self._closed or self._source_failure:
+            return None
+        if self._recording is not None:
+            return self._recording
+        return None if self._held_live is None else _HeldReader(self._held_live)
+
     def _actions(self):
         loaded = self._identity is not None and self.selection is not None and not self._closed
         self.whole_button.setEnabled(loaded and self._recording is not None)
@@ -685,6 +696,7 @@ class StreamViewerPanel(QtWidgets.QWidget):
     def _reset_source(self):
         if self._closed:
             raise RuntimeError("Панель закрыта")
+        self.inspection_reset.emit()
         self._cancel.set()
         self._cancel = threading.Event()
         self._source += 1
@@ -982,6 +994,7 @@ class StreamViewerPanel(QtWidgets.QWidget):
         if width <= 0:
             self._set_status("В live-памяти нет доступных отсчётов")
             return
+        self.inspection_reset.emit()
         self._held_live = None
         self.select_range(self._end - width, self._end, hold_live=False)
         self.follow_tail = True
@@ -1025,6 +1038,7 @@ class StreamViewerPanel(QtWidgets.QWidget):
         return False
 
     def _select_event(self, event):
+        self.inspection_reset.emit()
         self._held_live = None
         self.view_mode_label.setText("Просмотр события" if self._recording is None else "")
         self._event_notice = None
@@ -1169,10 +1183,12 @@ class StreamViewerPanel(QtWidgets.QWidget):
         self.range_label.setText(f"{kind}\nRaw [{payload.selection.start}, {payload.selection.stop}); локальный ноль = {payload.selection.start}; "
                                 f"покрытие до {payload.covered_until}; {payload.outcome}; Fs ном. {fs} Гц.")
         self._set_status("К хвосту" if self.follow_tail else "Выбранный диапазон удерживается")
+        self.plot_drawn.emit()
 
     def shutdown(self):
         if self._closed:
             return
+        self.inspection_reset.emit()
         self._closed = True
         self._drawn_live = self._held_live = self._last_live = None
         self._source += 1

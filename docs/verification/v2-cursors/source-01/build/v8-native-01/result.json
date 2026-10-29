@@ -1,0 +1,61 @@
+{
+  "status": "PASS",
+  "platform": "win32",
+  "windows": "Windows-10-10.0.19045-SP0",
+  "qt_platform": "windows",
+  "frozen": false,
+  "executable": "C:\\Users\\Alexandr\\Desktop\\New folder\\универ\\мотортестер 2\\.venv\\Scripts\\python.exe",
+  "execution_kind": "DEMO",
+  "physical_stream_verified": false,
+  "callback_errors": [],
+  "checks": {
+    "held_values_survive_eviction": true,
+    "mouse_drag_reads_raw": true,
+    "zoom_preserves_indices_and_graph": true,
+    "pause_cursors_recording_continues": true,
+    "follow_clears_cursors": true,
+    "overview_raw_values_signed_delta": true,
+    "file_unchanged": true,
+    "raw_visibility_clears_values": true
+  },
+  "live": {
+    "held_first": 0,
+    "held_end": 65536,
+    "held_bytes": 131072,
+    "received_before": 74752,
+    "received_after": 137472
+  },
+  "recording": {
+    "sha256": "5d54b8ce9ee9fa32cf0d47e5f8bc2399f96c461d98ea923b0389dea3c2d4c2ac",
+    "samples": 93681,
+    "a": 79528,
+    "b": 71762,
+    "code_a": 1200,
+    "code_b": 1025,
+    "delta_s": -0.15532
+  },
+  "owners_closed": true,
+  "real_serial_open_calls": 0,
+  "files": {
+    "cursors-file.png": {
+      "bytes": 61519,
+      "sha256": "2c789b29dbcd2007fe03e8e0752aca5d563989e63d028f380dd1844a635ddd48"
+    },
+    "cursors-live.png": {
+      "bytes": 60883,
+      "sha256": "ec126c72b6c64c8d38b6ceddb7edfa9eb37e0de9dc28ed12d1e60100e050b7a7"
+    },
+    "cursors-pause.png": {
+      "bytes": 61715,
+      "sha256": "32f60d0e026f00e809cbf2f564ce533d1fd648825ae8b85f8ac2e09d238a6fc3"
+    },
+    "cursors.mtstream": {
+      "bytes": 189456,
+      "sha256": "5d54b8ce9ee9fa32cf0d47e5f8bc2399f96c461d98ea923b0389dea3c2d4c2ac"
+    },
+    "cursors.mtstream.v2.json": {
+      "bytes": 1777,
+      "sha256": "1378c0122cf8b089ea26fcf9cce99821b549ae98d04cefcc4b9ecb691fc81dbe"
+    }
+  }
+}

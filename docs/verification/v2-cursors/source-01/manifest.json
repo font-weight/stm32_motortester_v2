@@ -1,0 +1,67 @@
+{
+  "schema": "v2-08-source-evidence-1",
+  "recorded_utc": "2026-10-29T04:36:03.498160+00:00",
+  "scope": "Two raw cursors, bounded async reads, integer indices, Windows DEMO; no physical actions.",
+  "source_storage": "Implementation is committed normally in Git; source_pins describe exact working bytes including line endings, not redundant source copies.",
+  "evidence_version_limit": "Unit/native01 precede final time_text6g->9g and explicit local-origin axis label. Final package receipt must bind final source commit and exact EXE.",
+  "files": [
+    {
+      "source": "build/v8-unit-result.json",
+      "archive": "docs/verification/v2-cursors/source-01/build/v8-unit-result.json",
+      "bytes": 740,
+      "sha256": "03324c0f3acf3d79405120976f7b2b915af6c697298171016fd2959824acf1bd"
+    },
+    {
+      "source": "build/v8-archive-source.py",
+      "archive": "docs/verification/v2-cursors/source-01/build/v8-archive-source.py",
+      "bytes": 2731,
+      "sha256": "45efb0eabc5e75781c96f605b37bf60116ea9482c439413b50ae991e558e70d0"
+    },
+    {
+      "source": "build/v8-native-01/cursors-file.png",
+      "archive": "docs/verification/v2-cursors/source-01/build/v8-native-01/cursors-file.png",
+      "bytes": 61519,
+      "sha256": "2c789b29dbcd2007fe03e8e0752aca5d563989e63d028f380dd1844a635ddd48"
+    },
+    {
+      "source": "build/v8-native-01/cursors-live.png",
+      "archive": "docs/verification/v2-cursors/source-01/build/v8-native-01/cursors-live.png",
+      "bytes": 60883,
+      "sha256": "ec126c72b6c64c8d38b6ceddb7edfa9eb37e0de9dc28ed12d1e60100e050b7a7"
+    },
+    {
+      "source": "build/v8-native-01/cursors-pause.png",
+      "archive": "docs/verification/v2-cursors/source-01/build/v8-native-01/cursors-pause.png",
+      "bytes": 61715,
+      "sha256": "32f60d0e026f00e809cbf2f564ce533d1fd648825ae8b85f8ac2e09d238a6fc3"
+    },
+    {
+      "source": "build/v8-native-01/cursors.mtstream",
+      "archive": "docs/verification/v2-cursors/source-01/build/v8-native-01/cursors.mtstream",
+      "bytes": 189456,
+      "sha256": "5d54b8ce9ee9fa32cf0d47e5f8bc2399f96c461d98ea923b0389dea3c2d4c2ac"
+    },
+    {
+      "source": "build/v8-native-01/cursors.mtstream.v2.json",
+      "archive": "docs/verification/v2-cursors/source-01/build/v8-native-01/cursors.mtstream.v2.json",
+      "bytes": 1777,
+      "sha256": "1378c0122cf8b089ea26fcf9cce99821b549ae98d04cefcc4b9ecb691fc81dbe"
+    },
+    {
+      "source": "build/v8-native-01/result.json",
+      "archive": "docs/verification/v2-cursors/source-01/build/v8-native-01/result.json",
+      "bytes": 1892,
+      "sha256": "219e6fbbcda019d6f884d885d0aef9569e57591ad9033c9ee23628974e7636aa"
+    }
+  ],
+  "source_pins": {
+    "host/motortester/gui_stream.py": "2e26b7fd523df5cf24b6854beba3f33ceae92dfb637f5097dbe45eb0e423a684",
+    "host/motortester/v2/stream_ui.py": "175f4793654631a66225a50d0c2514831b92942bd331501177076bbedae1b8e4",
+    "host/motortester/v2/stream_cursors.py": "b682f16c042fc46426a5ac6077829d695cc61e68b9a1bdccddacd0b23ccfe4be",
+    "host/motortester/v2/stream_cursors_smoke.py": "428b0ed3db760bc26427176443be1d91c8018e4dec7557f2caeb174d98e09699",
+    "host/tests/test_stream_cursors.py": "41f1f0811f3de0ebfbbcb0c34bd149dcacc2d19e4d98cbb349d717564e198e28",
+    "host/packaging/v2/build_windows.py": "c792567b02032dcf07e0f806ddadec819e231741f7a9377836bdaf2be0a4c99b",
+    "host/packaging/v2/launcher.py": "28ce6a410c2d39751c95d7c1c262289b1b1b39dab726acf1adc124b29d1efcba",
+    "host/packaging/v2/cursors_package_check.py": "0a5c1adafe64ea1e7959cd951add0cd65d7f909b6b647f801631aec2ca158803"
+  }
+}
