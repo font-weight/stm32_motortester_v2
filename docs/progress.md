@@ -31,7 +31,26 @@ DEMO-журнал native3 —245639B, SHA256
 `7e575753f20cb676e8354e6e25d9e6cefefbb3fec119289c67fa8eb3d43ee556`.
 Все попытки/PNG/логи сохранены в build/v15-sync и
 [native-архиве](verification/v2-live-sync/native/manifest.json).
-Приёмка и окончательный Windows-пакет пока ожидают сборку и независимого критика.
+Сборка `.venv/Scripts/python.exe -B host/packaging/v2/build_windows.py
+--output build/v15w --verification main-stream` из чистого source commit
+`1259e377ecb34b5429cdfcbaad188b25b0bb7664` завершилась exit0. Перенесённый EXE
+на Windows10/19045 с отдельным cwd/PATH=`C:\Windows\System32` — PASS29,
+callback/cleanup ошибок0, реальные COM-вызовы0, владельцы закрыты. Численные
+sync_frames подтверждают три разных trigger при1000 отсчётах с X=0,010с и
+три при500 с X=0,005с; маркер совпадает с ними. Счётчик записи увеличивается.
+Root осмотрел frozen sync/file-event PNG: кривая, маркер, подписи осей и
+переключатель видны целиком; при открытом файле синхронизация отключена.
+
+[Архив пакета](verification/v2-live-sync/package/manifest.json) содержит16
+файлов: отчёт/лог/manifest/суммы, receipt,9 PNG и запись с companion.
+DEMO-журнал257994B, SHA256
+`e2bf36f9b30023f162a0ca2d59919231c1fe5e057fc63a93debeb8fad4c9549a`.
+ZIP `build/v15w/MotortesterV2-windows-x64.zip`, SHA256
+`3b607e110806dc55e7e87dc8358287865822760fb21e46cdaa6b4f5bcd346d2c`.
+EXE `build/v15w/dist/MotortesterV2/MotortesterV2.exe`, SHA256
+`5cc988c163a048c5f4f3c8fb55a7ab865300abd3e84c0894ac16d4cdcc2ff183`.
+Независимое заключение пока ожидается. Физическая стабильность синхронизации
+на COM6 в этой итерации не проверялась; прошивка остаётся прежней.
 
 ## 29.10.2026 — V2-11: настройки поиска и Windows-пакет
 
