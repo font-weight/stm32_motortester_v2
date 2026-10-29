@@ -1,0 +1,155 @@
+{
+  "status": "PASS",
+  "verification_scope": "embedded-main-stream",
+  "scope": "Frozen Windows public stream entry and injected150k Connect without START; DEMO embedded view, knobs, cursors, recording and return; no COM or physical input qualification",
+  "source_commit": "700e16beaaf23f3146e502baa332cd0a4cc996c1",
+  "portable_zip": "MotortesterV2-windows-x64.zip",
+  "portable_sha256": "8acf328b7081718648dad321dce4589deb2ef65869c3c1385934bef4a987816d",
+  "source_sha256": "7baa515de299314e198af57785e4fe03e86fe81c8db59fe3598bd77f0e3ba6d8",
+  "executable_sha256": {
+    "MotortesterV2.exe": "86f5a76b8211d2c186c76438b8eaedd33dc2feac136779f8da9ea7ef5f7455a2",
+    "MotortesterV2Inspect.exe": "b1e2c7a3c009a0de5ba01e16a4760c59c5e463b05a2e1b172057ff666a6079a7"
+  },
+  "extracted_bundle": "C:\\Users\\Alexandr\\Desktop\\New folder\\универ\\мотортестер 2\\build\\v14w\\Проверка переноса\\MotortesterV2",
+  "working_directory": "C:\\Users\\Alexandr\\Desktop\\New folder\\универ\\мотортестер 2\\build\\v14w\\Другая рабочая папка",
+  "isolated_path": "C:\\Windows\\System32",
+  "frozen_smoke": {
+    "status": "PASS",
+    "frozen": true,
+    "platform": "win32",
+    "qt_platform": "windows",
+    "executable": "C:\\Users\\Alexandr\\Desktop\\New folder\\универ\\мотортестер 2\\build\\v14w\\Проверка переноса\\MotortesterV2\\MotortesterV2.exe",
+    "callback_errors": [],
+    "cleanup_error": null,
+    "execution_kind": "DEMO + injected serial handshake",
+    "physical_stream_verified": false,
+    "owners_closed": true,
+    "real_serial_open_calls": 0,
+    "embedded_widget": true,
+    "capture_controls_hidden": true,
+    "demo_rate_hz": 50000,
+    "initial_window_samples": 1000,
+    "sweep_knob_samples": 2000,
+    "vertical_range_codes": [
+      1648.0,
+      2448.0
+    ],
+    "screenshot": "C:\\Users\\Alexandr\\Desktop\\New folder\\универ\\мотортестер 2\\build\\v14w\\frozen-main-stream\\result.png",
+    "screenshot_sha256": "e424576c6bd3c301c4b43fb9a588388befbbc7ee656fbbeb23b8936f23ef5c4a",
+    "recording_continued_during_navigation": true,
+    "source_cursor_readback": true,
+    "saved_recording_reopened_in_main_window": true,
+    "raw_checkbox_restored": true,
+    "empty_autoscale_handled": true,
+    "stream_can_reopen": true,
+    "saved_file_bytes": 159246,
+    "saved_file_sha256": "44d0e2999fae152b141de229ec06932dad659da65516c90e4a8244855dc9de3c",
+    "saved_recording_artifact": "result-recording.mtstream",
+    "checks": {
+      "source_selector_routes_stream": true,
+      "cancel_preserves_source": true,
+      "primary_button_routes_stream": true,
+      "legacy_explicit": true,
+      "connect_150k_without_start": true,
+      "connection_owners_closed": true,
+      "service_menu_retains_hidden_tools": true,
+      "search_mode_change_resets_draft": true,
+      "search_math_and_limits": true,
+      "search_controls_before_start": true,
+      "search_locked_during_acquisition": true,
+      "search_snapshot_and_legacy": true,
+      "search_reindex_preserves_raw": true,
+      "live_event_navigation_retained": true,
+      "file_event_navigation_retained": true,
+      "unavailable_event_explained": true,
+      "embedded_widget": true,
+      "capture_controls_hidden": true,
+      "main_time_scale": true,
+      "main_y_scale": true,
+      "source_cursor_readback": true,
+      "recording_continued_during_navigation": true,
+      "saved_recording_reopened_in_main_window": true,
+      "raw_checkbox_restored": true,
+      "empty_autoscale_handled": true,
+      "stream_can_reopen": true,
+      "return_restores_main_controls": true
+    },
+    "returned_to_main": true,
+    "serial_ports": 0,
+    "failures": []
+  },
+  "png_files": {
+    "result.png": {
+      "sha256": "e424576c6bd3c301c4b43fb9a588388befbbc7ee656fbbeb23b8936f23ef5c4a",
+      "bytes": 104646,
+      "width": 1440,
+      "height": 920,
+      "validation": "PNG IHDR/CRC and SHA-256"
+    },
+    "result-entry.png": {
+      "sha256": "18abbf726cdcd45fecd77450dcda40cd5bb0a6a9b988cf8c87d1a84bd9fe99d3",
+      "bytes": 125210,
+      "width": 1440,
+      "height": 920,
+      "validation": "PNG IHDR/CRC and SHA-256"
+    },
+    "result-connected.png": {
+      "sha256": "1eb021622d48c3f58b4d386b865db138c694089e9d2cf5e9a91a9e884df8c8ae",
+      "bytes": 92764,
+      "width": 1440,
+      "height": 920,
+      "validation": "PNG IHDR/CRC and SHA-256"
+    },
+    "result-live-event.png": {
+      "sha256": "1e48846cf3248bbed1eb6d65fdb9d849f7a6bea7176cd67420801921f9143d48",
+      "bytes": 105142,
+      "width": 1440,
+      "height": 920,
+      "validation": "PNG IHDR/CRC and SHA-256"
+    },
+    "result-file-event.png": {
+      "sha256": "1e8e69c2712b7e3f2259bd4e1121fcd7c9416a28fba46c9b10fa301b93916f3c",
+      "bytes": 104609,
+      "width": 1440,
+      "height": 920,
+      "validation": "PNG IHDR/CRC and SHA-256"
+    },
+    "result-service-menu.png": {
+      "sha256": "b3e84a407de7d9a974261e27b73b5111205ffb850b93f36d29832481a3805a0e",
+      "bytes": 3380,
+      "width": 279,
+      "height": 107,
+      "validation": "PNG IHDR/CRC and SHA-256"
+    },
+    "result-search.png": {
+      "sha256": "5069bb8f9543b98ab6e34b93818f8291ce1d8807ddd8557366a4f6224c670511",
+      "bytes": 95279,
+      "width": 1440,
+      "height": 920,
+      "validation": "PNG IHDR/CRC and SHA-256"
+    },
+    "result-search-file.png": {
+      "sha256": "ff01da4b3d1754e5b114e5e467ffe39e2e87e2735ba6a0a0cbb5c0859d4eff7d",
+      "bytes": 104510,
+      "width": 1440,
+      "height": 920,
+      "validation": "PNG IHDR/CRC and SHA-256"
+    }
+  },
+  "smoke_files": {
+    "result-connected.png": "1eb021622d48c3f58b4d386b865db138c694089e9d2cf5e9a91a9e884df8c8ae",
+    "result-entry.png": "18abbf726cdcd45fecd77450dcda40cd5bb0a6a9b988cf8c87d1a84bd9fe99d3",
+    "result-file-event.png": "1e8e69c2712b7e3f2259bd4e1121fcd7c9416a28fba46c9b10fa301b93916f3c",
+    "result-live-event.png": "1e48846cf3248bbed1eb6d65fdb9d849f7a6bea7176cd67420801921f9143d48",
+    "result-recording.mtstream": "44d0e2999fae152b141de229ec06932dad659da65516c90e4a8244855dc9de3c",
+    "result-recording.mtstream.v2.json": "bbb9525122696ac4b3814ae5df1db1554bd52057611fa6d1871552d0bc3e9c2c",
+    "result-search-file.png": "ff01da4b3d1754e5b114e5e467ffe39e2e87e2735ba6a0a0cbb5c0859d4eff7d",
+    "result-search.png": "5069bb8f9543b98ab6e34b93818f8291ce1d8807ddd8557366a4f6224c670511",
+    "result-service-menu.png": "b3e84a407de7d9a974261e27b73b5111205ffb850b93f36d29832481a3805a0e",
+    "result.json": "f3272b6765b361ffc0bf56f1e298e1a2a8a24ef64b9c9c7edcd0adb92dd446e6",
+    "result.png": "e424576c6bd3c301c4b43fb9a588388befbbc7ee656fbbeb23b8936f23ef5c4a"
+  },
+  "windows_host": "Windows-10-10.0.19045-SP0",
+  "physical_device_verified": false,
+  "public_release_approved": false
+}

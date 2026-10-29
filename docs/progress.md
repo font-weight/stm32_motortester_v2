@@ -1,6 +1,6 @@
 # Прогресс Мотортестера V2
 
-## 29.10.2026 — V2-11: настройки поиска, подготовка пакета
+## 29.10.2026 — V2-11: настройки поиска и Windows-пакет
 
 По разрешению пользователя добавлены потоковые крутилки в главную правую
 панель: кодовый порог/направление, holdoff, предыстория и раскрываемые параметры
@@ -39,8 +39,29 @@ v3 fallback, отказ при hash/revision mismatch, снимок retry, пе�
 теперь упомянуты параметры поиска); окончательный код проверит frozen EXE.
 Все попытки и снимки сохраняются в build/v14-search; архив —
 [native manifest](verification/v2-trigger-controls/native/manifest.json).
-Пакет и окончательная независимая приёмка ожидаются. Физические параметры,
-чистая Windows без Python и одиночный захват из потока не проверялись.
+Итоговая сборка `.venv/Scripts/python.exe -B host/packaging/v2/build_windows.py
+--output build/v14w --verification main-stream` из чистого source commit
+`700e16beaaf23f3146e502baa332cd0a4cc996c1` — exit0. Перенесённый frozen EXE
+на Windows10/19045 с отдельным cwd и PATH=`C:\Windows\System32` — PASS27;
+callback/cleanup ошибок0, владельцы закрыты, реальные COM-вызовы0.
+Сценарий включает прежние переходы и крутилки, применение/блокировку поиска,
+точный снимок v4, legacy fallback, file reindex/restore с неизменными файлами
+и сброс при смене согласованного режима. Root осмотрел итоговые search,
+search-file и live-event PNG: поля и пояснения доступны прокруткой, кривая
+присутствует, при записи редактор заблокирован. Новые сведения сохраняются
+рядом с raw в `.mtstream.v2.json`; переносить нужно оба файла.
+
+[Архив пакета](verification/v2-trigger-controls/package/manifest.json) содержит
+15 файлов: отчёт/лог/manifest/суммы, receipt,8 PNG и запись с companion.
+DEMO-журнал159246B, SHA256
+`44d0e2999fae152b141de229ec06932dad659da65516c90e4a8244855dc9de3c`.
+ZIP `build/v14w/MotortesterV2-windows-x64.zip`, SHA256
+`8acf328b7081718648dad321dce4589deb2ef65869c3c1385934bef4a987816d`.
+EXE `build/v14w/dist/MotortesterV2/MotortesterV2.exe`, SHA256
+`86f5a76b8211d2c186c76438b8eaedd33dc2feac136779f8da9ea7ef5f7455a2`.
+Окончательная независимая приёмка ожидается. Физический поток с новой панелью,
+электрические параметры, чистая Windows без Python и одиночный захват из
+потока не проверялись; прошивка и COM6 не затрагивались.
 
 ## 29.10.2026 — пользователь подтвердил переходы V2-10
 
