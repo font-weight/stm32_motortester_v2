@@ -1,0 +1,150 @@
+{
+  "schema": "v2-09-independent-main-stream-review-1",
+  "date": "2026-10-29",
+  "reviewer": "/root/stream200_critic",
+  "independent_from_implementation": true,
+  "status": "PASS",
+  "score": 9.55,
+  "unrounded_score": "9.550",
+  "threshold": 9.5,
+  "scope": "V2-UI20 embedded main-window stream: software, Windows10 DEMO GUI and exact local package; no hardware qualification",
+  "reviewed_head": "a62001311c403df0eacf98877480cd173ef07f1e",
+  "source_commit": "e343a709f0ce55c2a9854d60945ec4b25ece0e8d",
+  "base_commit": "5750a737966b96686094511d5ee7d52883360ad2",
+  "superseded_source_commit": "4012cbc4da77d11cbd951c7097d88a5a2aea09cc",
+  "superseded_scope": "Initial PASS8 preserved; insufficient return/callback assertions; not accepted as final; no retrospective score",
+  "report_path": "docs/reviews/v2-09-main-stream-review.md",
+  "report_sha256": "ff4340e568dea72e257ca65bc5024101e730add0178da4ca6b15d314d5572a32",
+  "source_manifest_sha256": "48cfbb801bb1f46d023c6a27a6a6c26970e389f82ce658872a6570dfeb0bd738",
+  "package_manifest_sha256": "b8785509dca060348ddbc14ddfe274454663cc513120f3f456976fd2490f4fef",
+  "package_sha256": "85fc3c60606e3a1cda25a0d67ec5da7c1c8f260dc873f9412575726b629f4213",
+  "package_bytes": 61247931,
+  "gui_exe_sha256": "2721657853b0c121aca86d8d2dce2912030b6f9a4f2e72c42feb55ea203932b6",
+  "source_zip_sha256": "dfcce8030a6b6fdf055ff13c5c497b4a681439723495592a3030fba74c48a917",
+  "build_report_sha256": "4340cf49b357be8646cdeb8cfdb3d3c9c4f50d95eb54029c6db31147da82fc03",
+  "build_manifest_sha256": "1be6ff8d5ed0f0595a258c13d21c7a0126920e4fde9ecf2c50f3b83b2de02272",
+  "binding_audit": {
+    "source_files": 3,
+    "source_bytes": 110038,
+    "package_files": 7,
+    "package_bytes": 239760,
+    "local_deliverables": 3,
+    "zip_and_relocated_files": 475,
+    "manifest_entries": 474,
+    "additional_file": "build-manifest.json",
+    "checksums_entries": 6,
+    "report_equals_frozen_result": true,
+    "source_zip_git_exact": 8772,
+    "source_zip_only_line_endings": 524,
+    "other_mismatches": [],
+    "read_only_helper": "/root/stream200_critic/v9_receipt_audit"
+  },
+  "evidence": {
+    "native": {
+      "status": "PASS",
+      "checks": 11,
+      "result_sha256": "1a39449ca7b246c62ef61ca6121560d1224e783c429ab6fc35bd729d5d234e85",
+      "recording_bytes": 5964,
+      "recording_sha256": "29826eae742fa3f219f0dea2a31941a7a766059f714061b9666ac4a12f0c4f77",
+      "png_sha256": "8918e627c600804d1197da6d4f4957702f0d92cfaafb6f4f69adc3e71d57e912"
+    },
+    "frozen": {
+      "status": "PASS",
+      "checks": 11,
+      "result_sha256": "c781cbd4702b7ffce5f86f6ca541a420c67e8c215498949bb0f40aae840fc446",
+      "recording_bytes": 7418,
+      "recording_sha256": "bfe3882784c1fa7d62e48105d50771b24d0f1f657c54faa8d7bd5e9f63c45852",
+      "png_sha256": "d79f8481ec436b350344204a8b8f834acf802908f5c1a9a91f06a5ef8c03377e",
+      "platform": "Windows-10-10.0.19045-SP0",
+      "qt_platform": "windows",
+      "isolated_path": "C:\\Windows\\System32",
+      "relocated": true,
+      "foreign_cwd": true,
+      "start_utc": "2026-10-29T05:50:32.425428Z",
+      "end_utc": "2026-10-29T05:50:34.691093Z",
+      "exit_code": 0
+    },
+    "both": {
+      "demo_sample_rate_hz": 50000,
+      "initial_selection_samples": 1000,
+      "changed_selection_samples": 2000,
+      "y_range_codes": [
+        1648,
+        2448
+      ],
+      "owners_closed": true,
+      "real_serial_open_calls": 0,
+      "callback_errors": [],
+      "cleanup_error": null,
+      "failures": [],
+      "second_stream_open_close": true
+    },
+    "critic_personally_viewed": [
+      "source-02/native-result.png",
+      "package-02/build/v10w/frozen-main-stream/result.png"
+    ]
+  },
+  "resolved_findings": [
+    {
+      "id": "P1-V209-01",
+      "status": "CLOSED",
+      "problem": "Return leaves three stream/device buttons disabled",
+      "evidence": "Explicit enable plus actual second button-click, stream start, close and re-enable assertions"
+    },
+    {
+      "id": "V209-02",
+      "status": "CLOSED",
+      "problem": "Original raw checkbox and axis not restored",
+      "evidence": "Restore before display; UNKNOWN/rawFalse witness"
+    },
+    {
+      "id": "V209-03",
+      "status": "CLOSED",
+      "problem": "AutoScale iterates None before Preview",
+      "evidence": "None/empty guard plus pre-Preview assertion"
+    },
+    {
+      "id": "V209-04",
+      "status": "CLOSED",
+      "problem": "Literal callback/cleanup success fields",
+      "evidence": "Real temporary sys.excepthook, cleanup outcome, failure status and package checks"
+    }
+  ],
+  "open_P0": [],
+  "open_P1": [],
+  "criteria": {
+    "C1": {
+      "weight": 0.3,
+      "score": 9.6
+    },
+    "C2": {
+      "weight": 0.2,
+      "score": 9.5
+    },
+    "C3": {
+      "weight": 0.25,
+      "score": 9.5
+    },
+    "C4": {
+      "weight": 0.15,
+      "score": 9.5
+    },
+    "C5": {
+      "weight": 0.1,
+      "score": 9.7
+    }
+  },
+  "limitations": [
+    "No new physical STM32,150k GUI, voltage calibration, Fs accuracy or sustained-load qualification",
+    "Knob values exercised through emitted setters, not physical drag of each dial",
+    "Cursor-result availability checked; no repeated independent numerical A-B proof beyond accepted V2-08",
+    "Pause/export preserved by source; no new dedicated assertions in this scenario",
+    "Screenshots show Preview; return and repeat entry established by state assertions",
+    "Recording saved/opened and copy hashed; no new full-record comparison with independent generator",
+    "Source archive excludes other repository paths and has disclosed CRLF/LF differences",
+    "No clean-OS, public-release or full inherited-suite acceptance"
+  ],
+  "critic_test_or_build_runs": 0,
+  "critic_hardware_actions": 0,
+  "production_changes_by_critic": false
+}
