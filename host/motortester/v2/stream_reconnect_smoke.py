@@ -75,8 +75,9 @@ def check_reconnect(app, window, panel, factory, output, wait):
         with patch.object(factory, 'backend_type', HelloFailure):
             panel.disconnect_button.click()  # Retry cleanup, then one failed new HELLO.
             assert wait(app, lambda: panel.bridge is not old and panel.bridge.state.can_open
-                        and panel.bridge.state.error and panel.connect_button.isEnabled())
+                        and panel.bridge.state.serial.first_error and panel.connect_button.isEnabled())
             failed = panel.bridge
+            assert failed.state.bridge.endpoint_first_fault.code == 'write_count_unknown'
             assert failed.connection is None and failed.state.validated_samples == 0
             assert panel._opening and panel.archive is not None
             assert panel.search_config().threshold_code == 2800

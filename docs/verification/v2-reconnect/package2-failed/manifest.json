@@ -1,0 +1,27 @@
+{
+  "status": "FAILED_TEST_PREDICATE",
+  "source_commit": "5073b779b2d2970f915dd7dff242c87ed8e278c1",
+  "note": "Frozen HELLO negative branch waited for ControllerStatus.error, but transport failure is in serial.first_error and endpoint_first_fault. Native diagnostic confirms can_open/Connect=True, samples=0. Frozen child terminated by harness at timeout; no PASS. Original build directory preserved.",
+  "files": {
+    "build.log": {
+      "source": "build/v17w2/build.log",
+      "bytes": 35373,
+      "sha256": "c3cb3b80f7f4a48408ad90f7728a4dc6251cd9aadcd070870efad1a4575c3774"
+    },
+    "v17-reconnect-diagnosis.log": {
+      "source": "build/v17-reconnect-diagnosis.log",
+      "bytes": 4339,
+      "sha256": "b125554c9c0fc97fc9929753d186e6a968341958a6fa8a03a27332499e978f0d"
+    },
+    "v17-reconnect-diagnosis-fixed.log": {
+      "source": "build/v17-reconnect-diagnosis-fixed.log",
+      "bytes": 944,
+      "sha256": "c60da1d34b08d3a1dc4ece98182f96f0d54c73b6ac2b380ea3cae0f47eef6e45"
+    },
+    "v17-reconnect-diagnosis3.log": {
+      "source": "build/v17-reconnect-diagnosis3.log",
+      "bytes": 424,
+      "sha256": "740f28145d3e3495f206df79289a646e75046bc365aaa453455970dfccc760b3"
+    }
+  }
+}

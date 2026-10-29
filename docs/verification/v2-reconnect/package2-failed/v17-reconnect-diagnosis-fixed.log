@@ -1,0 +1,10 @@
+Traceback (most recent call last):
+  File "C:\Users\Alexandr\Desktop\New folder\универ\мотортестер 2\build\v17-reconnect-diagnosis.py", line 22, in <module>
+    print(m.check_connection_entry(app,w,root/'result.json'),flush=True)
+          ~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Alexandr\Desktop\New folder\универ\мотортестер 2\host\motortester\v2\main_stream_smoke.py", line 106, in check_connection_entry
+    reconnect_checks = check_reconnect(app, window, panel, factory, output, wait_until)
+  File "C:\Users\Alexandr\Desktop\New folder\универ\мотортестер 2\host\motortester\v2\stream_reconnect_smoke.py", line 23, in check_reconnect
+    assert wait(app, lambda: old.state.phase == 'recording' and old.state.validated_samples > 12000)
+           ~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError

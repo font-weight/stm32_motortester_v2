@@ -47,6 +47,20 @@ bridge оставлял connection=None, следующий retry стирал �
 проверка прежнего2500 против file2800/сохранённого2600 и READY без START.
 Первый пакет не подтверждает эту ветку; финальная сборка ещё ожидается.
 
+Второй frozen `build/v17w2` из5073b779 не прошёл новый negative-scenario:
+ошибочно ожидалось поле controller.error. Изолированная native-диагностика
+подтвердила фактический TransportWriteError в serial.first_error и endpoint
+write_count_unknown, can_open/Connect=True, samples0. Исправлен только
+предикат проверки; реализация не менялась. Failed frozen завершён harness
+по60s timeout/exit1; это не PASS. Лог и snapshot сохранены в
+[package2-failed](verification/v2-reconnect/package2-failed/manifest.json),
+полная неудачная сборка остаётся build/v17w2. Короткая адресная диагностика
+check_connection_entry затем прошла в свежей build/v17-reconnect/diagnostic3
+(exit0): failed_hello_draft_preserved=True, закрыты4 backends, COM0. Это
+вспомогательный опыт, не full main-stream PASS. Предшествующий повтор в
+уже занятой diagnostic2 не начался из-за существующего файла записи;
+его лог сохранён, файл не заменялся. Финальное frozen свидетельство ожидается.
+
 ## 29.10.2026 — V2-13: одиночный захват из непрерывного потока
 
 После подтверждения V2-12 пользователь разрешил следующий этап. Реализована
