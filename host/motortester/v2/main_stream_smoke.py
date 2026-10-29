@@ -102,7 +102,9 @@ def check_connection_entry(app, window, output):
         ready_png = Path(output).with_name(Path(output).stem + "-connected.png")
         app.processEvents()
         assert window.grab().save(str(ready_png))
-        panel.close_panel_button.click()
+        from .stream_reconnect_smoke import check_reconnect, close_during_reconnect
+        reconnect_checks = check_reconnect(app, window, panel, factory, output, wait_until)
+        close_during_reconnect(app, window, panel, factory, wait_until)
         assert wait_until(app, lambda: panel.closed and not window._stream_page_active)
         assert not any(b.is_open for b in factory.backends) and window._serial_owner is None
 
@@ -110,7 +112,7 @@ def check_connection_entry(app, window, output):
         window.device_stream_button.click()
         second = window.stream_dialog
         assert second is not panel and second.selection.port == "SYNTHETIC_ENTRY"
-        assert window.device_panel is None and len(factory.backends) == 2
+        assert window.device_panel is None and len(factory.backends) == 3
         second.close_panel_button.click()
         assert wait_until(app, lambda: second.closed and not window._stream_page_active)
         window._refresh_service_menu()
@@ -120,9 +122,10 @@ def check_connection_entry(app, window, output):
         assert "старая прошивка" in window.device_panel.windowTitle()
         assert "Старая прошивка" in window.device_button.text()
         window.device_panel.hide()
-        assert real_open.call_count == 0 and len(factory.backends) == 2
+        assert real_open.call_count == 0 and len(factory.backends) == 3
         assert panel.viewer._closed and second.viewer._closed
-        return {"source_selector_routes_stream": True, "cancel_preserves_source": True,
+        return {**reconnect_checks, "reconnect_close_priority": True,
+                "source_selector_routes_stream": True, "cancel_preserves_source": True,
                 "primary_button_routes_stream": True, "legacy_explicit": True,
                 "connect_150k_without_start": True, "connection_owners_closed": True,
                 "service_menu_retains_hidden_tools": True, "search_mode_change_resets_draft": True}

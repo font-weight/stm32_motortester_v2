@@ -1,5 +1,6 @@
 """V2 streaming workspace: explicit serial or DEMO, bounded display and disk."""
 from concurrent.futures import ThreadPoolExecutor
+from dataclasses import replace
 
 from PySide6 import QtCore, QtWidgets
 import pyqtgraph as pg
@@ -36,6 +37,11 @@ class StreamDialog(QtWidgets.QDialog):
         self.setMinimumSize(850, 650)
         self.setStyleSheet(STYLE)
         self.context = context
+        self._bridge_factory = bridge_factory
+        self._reconnecting = False
+        self._return_to_device = False
+        self._reconnect_search = None
+        self._reconnect_selection = None
         self.bridge = bridge_factory(self, context=context,
                                      **({"selection": selection} if selection is not None else {}))
         self.selection = selection
@@ -179,16 +185,23 @@ class StreamDialog(QtWidgets.QDialog):
             lambda: self.bridge.retry_context(self.bridge.metadata_error))
         self.retry_context_button.hide()
         layout.addWidget(self.retry_context_button)
-        self.bridge.live_ready.connect(self._display)
-        self.bridge.state_changed.connect(self._state)
-        self.bridge.recording_ready.connect(self._saved)
-        self.bridge.error.connect(self.error_label.setText)
-        self.bridge.finished.connect(self._bridge_finished)
+        self._bind_bridge()
         self._timer = QtCore.QTimer(self)
         self._timer.setInterval(30)
         self._timer.timeout.connect(self._poll_file)
         self._timer.start()
         self._state(self.bridge.state)
+
+    def _bind_bridge(self):
+        # A retiring owner can still emit a queued Qt signal. Only the current
+        # bridge may update this persistent page after reconnection.
+        bridge = self.bridge
+        for signal, slot in ((bridge.live_ready, self._display),
+                             (bridge.state_changed, self._state),
+                             (bridge.recording_ready, self._saved),
+                             (bridge.error, self.error_label.setText)):
+            signal.connect(lambda value, b=bridge, fn=slot: fn(value) if b is self.bridge else None)
+        bridge.finished.connect(lambda b=bridge: self._bridge_finished(b))
 
     def apply_scope_view(self, *, seconds_per_div, x_start_s, y_center, codes_per_div,
                          follow_tail=False, change_time=True, sync_sweep=False):
@@ -242,7 +255,7 @@ class StreamDialog(QtWidgets.QDialog):
 
     @property
     def busy(self):
-        return self._future is not None
+        return self._future is not None or self._reconnecting
 
     def _heading(self, context):
         profile = "Зажигание" if context.ui_profile == "ignition" else "Осциллограф"
@@ -266,8 +279,47 @@ class StreamDialog(QtWidgets.QDialog):
         self.viewer._timer.start()
 
     def connect_device(self):
-        if self.selection is None or self._closing or self.busy:
+        if not self._can_connect_here(self.bridge.state):
             return False
+        if self.capture.dirty:
+            self.capture.confirm_discard(self.connect_device_after_confirm)
+            return False
+        return self.connect_device_after_confirm()
+
+    def _can_connect_here(self, status):
+        return (self.selection is not None and not self._closing and not self.busy
+                and not self.bridge.metadata_pending and self._record_picker is None
+                and self.capture.picker is None and self.capture.prompt is None
+                and not status.command_pending and not status.stop_pending
+                and not status.can_retry_close and not status.worker_unresolved
+                and (status.can_connect or (status.can_open and not status.close_requested)))
+
+    def connect_device_after_confirm(self):
+        status = self.bridge.state
+        if not self._can_connect_here(status):
+            return False
+        if not self._opening and self.search_editable() and self.prepare_search is not None:
+            if not self.prepare_search():
+                return False
+        # An exhausted/failed session cannot become a new acquisition owner.
+        # Retire it completely, then negotiate a fresh one on the same page.
+        if self._opening or self.bridge.connection is not None or not status.can_connect:
+            self._reconnect_selection = replace(self.selection,
+                requested_sample_rate_hz=self.rate_combo.currentData())
+            connection = self.bridge.connection
+            self._reconnect_search = None
+            if connection is not None and self.bridge.search_config is not None:
+                caps = connection.observed_caps
+                basis = (caps[4], caps[8] if connection.protocol_revision == '0.3' else 12)
+                self._reconnect_search = (self.bridge.search_config, basis)
+            self._reconnecting = True
+            self.capture.cancel('Ожидание отменено: новое подключение')
+            self.bridge.shutdown()
+            self._state(self.bridge.state)
+            return True
+        return self._connect_current_bridge()
+
+    def _connect_current_bridge(self):
         if not self.bridge.select_sample_rate(self.rate_combo.currentData()):
             return False
         self.selection = self.bridge.selection
@@ -282,6 +334,30 @@ class StreamDialog(QtWidgets.QDialog):
             return False
         self.error_label.clear()
         return True
+
+    def _device_ready(self):
+        if self._reconnect_search is not None:
+            config, basis = self._reconnect_search
+            connection = self.bridge.connection
+            caps = connection.observed_caps
+            actual = (caps[4], caps[8] if connection.protocol_revision == '0.3' else 12)
+            if basis == actual:
+                self.bridge.set_search_config(config)
+            else:
+                self.bridge.search_reset_notice = 'Частота или разрядность изменена: параметры поиска сброшены.'
+            self._reconnect_search = None
+        self._return_to_device = False
+        self.archive = self.verified_context = None
+        self._file_search_config = None
+        self._file_search_revision = 0
+        self._opening = False
+        self._revision = self._handle = self._sent_view = None
+        self._resume()
+        self.viewer._reset_source()
+        self._heading(self.context)
+        self.quality.setText('Подключение готово. Настройте параметры запуска; приём ещё не начат.')
+        self.file_label.setText('Предыдущие файлы сохранены. Новый приём запускается кнопкой «Живой поток».')
+        self.error_label.clear()
 
     def disconnect_device(self):
         if self.bridge.state.can_retry_close:
@@ -356,8 +432,8 @@ class StreamDialog(QtWidgets.QDialog):
             if (not same_source or not current.can_record or self.bridge.metadata_pending):
                 self.error_label.setText(
                     "Запись не началась: состояние потока изменилось во время выбора файла. "
-                    "Проверьте сообщение о приёме. После сбоя закройте окно непрерывного "
-                    "приёма и откройте его заново.")
+                    "Проверьте сообщение о приёме. После завершения записи используйте "
+                    "кнопку переподключения на этой странице.")
             else:
                 self.record_path(paths[0])
         self._state(self.bridge.state)
@@ -412,7 +488,8 @@ class StreamDialog(QtWidgets.QDialog):
                 and self._record_picker is None and not status.command_pending and not status.stop_pending)
         if self._opening:
             return idle and self.archive is not None and not isinstance(self.archive, AttemptReport)
-        return idle and status.can_preview and (self.selection is None or status.ready)
+        return idle and (status.can_preview or (self.selection is not None and status.can_open
+                        and not status.close_requested and self.bridge.connection is not None))
 
     def search_config(self):
         if self._opening and self._file_search_config is not None:
@@ -521,6 +598,8 @@ class StreamDialog(QtWidgets.QDialog):
                 self._sent_view = key
 
     def _state(self, status):
+        if self._return_to_device and status.ready and self.bridge.connection is not None and not self._closing:
+            self._device_ready()
         self._publish_view()
         idle = (not self._closing and not self.busy and not self.bridge.metadata_pending
                 and self._record_picker is None)
@@ -529,10 +608,13 @@ class StreamDialog(QtWidgets.QDialog):
         self.record_button.setEnabled(idle and status.can_record and
                                       (not physical or status.phase == "preview"))
         if physical:
-            self.connect_button.setEnabled(idle and status.can_connect)
-            self.rate_combo.setEnabled(idle and status.can_connect and not status.command_pending)
+            can_connect = self._can_connect_here(status)
+            self.connect_button.setEnabled(can_connect)
+            self.connect_button.setText(('Переподключить ' if self.bridge.connection is not None or self._opening
+                                         else 'Подключить ') + self.selection.port)
+            self.rate_combo.setEnabled(can_connect)
             self.disconnect_button.setEnabled(status.can_retry_close or
-                                              (not self._closing and status.can_disconnect))
+                                              (not self._closing and not self._reconnecting and status.can_disconnect))
             self.disconnect_button.setText("Повторить закрытие порта" if status.can_retry_close
                                            else "Отключить")
             connection = self.bridge.connection
@@ -555,7 +637,7 @@ class StreamDialog(QtWidgets.QDialog):
                 self.error_label.setText(
                     str(status.error) + "\nНужна потоковая прошивка протокола 0.2 или 0.3. "
                     "Оконная прошивка 0.1 здесь несовместима. "
-                    "После сбоя отключите порт; перед новой попыткой перезапустите плату.")
+                    "После завершения соединения используйте переподключение на этой странице.")
         self.open_button.setEnabled(idle and status.can_open)
         self.stop_button.setEnabled(not self._closing and not status.can_open)
         self.pause_button.setEnabled(not self._closing and not self._opening and self._revision is not None)
@@ -585,6 +667,10 @@ class StreamDialog(QtWidgets.QDialog):
         text = phases.get(status.phase, status.phase)
         if self._closing:
             text = "Завершение потока и сохранение файла перед закрытием…"
+        elif self._reconnecting:
+            text = 'Завершение прежнего соединения перед переподключением…'
+        elif self._return_to_device and status.phase == 'negotiating':
+            text = 'Новое подключение: проверка возможностей STM32…'
         elif self.busy:
             text = ('Сохранение захвата…' if self._operation == 'capture_save' else
                     'Проверка файла…' if self._operation in ('open', 'capture_open') else 'Экспорт…')
@@ -656,7 +742,7 @@ class StreamDialog(QtWidgets.QDialog):
         if path:
             details += "\nФайл: " + str(path)
         return (explanation + details +
-                "\nДля новой попытки закройте это окно непрерывного приёма и откройте его заново.")
+                "\nПосле завершения сохранения используйте переподключение на этой странице.")
 
     def _resolve_context_error(self, failure):
         dialog = QtWidgets.QMessageBox(self)
@@ -804,7 +890,22 @@ class StreamDialog(QtWidgets.QDialog):
             self.close()
         self._state(self.bridge.state)
 
-    def _bridge_finished(self):
+    def _bridge_finished(self, bridge=None):
+        if bridge is not None and bridge is not self.bridge:
+            return
+        if self._reconnecting and not self._closing:
+            old = self.bridge
+            # finished is emitted only after receiver/disk/display owners join
+            # and the OS handle settles; the shared lease stays with this page.
+            self.selection = self._reconnect_selection
+            self.bridge = self._bridge_factory(self, context=self.context, selection=self.selection)
+            self._bind_bridge()
+            old.deleteLater()
+            self._reconnecting = False
+            self._return_to_device = True
+            self._connect_current_bridge()
+            self._state(self.bridge.state)
+            return
         self.cursors.shutdown()
         self.viewer.shutdown()
         self._timer.stop()

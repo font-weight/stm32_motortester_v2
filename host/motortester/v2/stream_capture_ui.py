@@ -14,6 +14,7 @@ class SingleCaptureControls(QtWidgets.QWidget):
         self.shot = None
         self.dirty = False
         self.picker = self.prompt = None
+        self._discard_callbacks = None
         self.saving = None
         layout = QtWidgets.QVBoxLayout(self)
         layout.setContentsMargins(0, 0, 0, 0)
@@ -49,7 +50,12 @@ class SingleCaptureControls(QtWidgets.QWidget):
             callback()
             return
         if self.prompt is not None:
+            # A later close request supersedes an earlier reconnect/replace
+            # intent in the same prompt. Cancel must cancel the window close.
+            if on_cancel is not None:
+                self._discard_callbacks = callback, on_cancel
             return
+        self._discard_callbacks = callback, on_cancel
         prompt = QtWidgets.QMessageBox(self.panel)
         prompt.setWindowTitle('Захват не сохранён')
         prompt.setText('Продолжить без сохранения отдельного захвата?\n'
@@ -61,13 +67,15 @@ class SingleCaptureControls(QtWidgets.QWidget):
         prompt.button(QtWidgets.QMessageBox.StandardButton.Cancel).setText('Отмена')
         self.prompt = prompt
         def finished(result):
+            action, cancelled = self._discard_callbacks
+            self._discard_callbacks = None
             self.prompt = None
             prompt.deleteLater()
             if result == QtWidgets.QMessageBox.StandardButton.Discard:
                 self.dirty = False
-                callback()
-            elif on_cancel is not None:
-                on_cancel()
+                action()
+            elif cancelled is not None:
+                cancelled()
         prompt.finished.connect(finished)
         prompt.open()
 
@@ -219,7 +227,7 @@ class SingleCaptureControls(QtWidgets.QWidget):
         p.error_label.clear()
         p._operation = 'capture_save'
         p._future = p._executor.submit(save_capture, Path(path), shot)
-        self.note.setText('Сохраняется отдельный захват · приём продолжается')
+        self.note.setText('Сохраняется отдельный захват…')
         self.update_state(p.bridge.state)
         return True
 

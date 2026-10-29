@@ -35,9 +35,21 @@ def verify_main_stream_package(*, output, gui_exe, relocated, foreign_cwd,
         "search_math_and_limits", "search_controls_before_start", "search_locked_during_acquisition",
         "search_snapshot_and_legacy", "search_reindex_preserves_raw", "search_mode_change_resets_draft",
         "live_sync_center_and_recording", "live_sync_wait_and_manual_hold",
-        "single_capture_live_and_boundaries", "single_capture_save_open")
+        "single_capture_live_and_boundaries", "single_capture_save_open",
+        "reconnect_file_to_live", "reconnect_stop_search", "reconnect_ownership_fences", "reconnect_close_priority")
     if any(smoke.get("checks", {}).get(key) is not True for key in required):
         raise RuntimeError("Embedded main-window evidence incomplete")
+    reconnect = read_json(folder / 'result-reconnect.json')
+    if (reconnect.get('status') != 'PASS' or reconnect.get('real_serial_open_calls') != 0 or
+            any(reconnect.get(key) is not True for key in (
+                'old_owners_joined', 'stale_callbacks_ignored', 'close_failure_fenced',
+                'metadata_failure_fenced', 'dirty_capture_cancelled', 'same_page', 'ready_without_start')) or
+            (reconnect.get('saved_threshold'), reconnect.get('file_threshold'),
+             reconnect.get('next_live_threshold')) != (2600, 2800, 2500)):
+        raise RuntimeError('Same-page reconnect evidence incomplete')
+    for name, digest in reconnect.get('archive_sha256', {}).items():
+        if Path(name).name != name or sha256(folder / name) != digest:
+            raise RuntimeError('Reconnect changed a saved file')
     frames = smoke.get("sync_frames", [])
     for width, minimum in ((1000, 3), (500, 2)):
         selected = [frame for frame in frames if frame.get("width_samples") == width]
@@ -74,7 +86,7 @@ def verify_main_stream_package(*, output, gui_exe, relocated, foreign_cwd,
         raise RuntimeError("Frozen witness changed the sealed package")
     report = dict(
         status="PASS", verification_scope="embedded-main-stream",
-        scope="Frozen Windows single event capture, continued recording, cancel, interrupted/raw bounds, exclusive save and reopen; synchronized live view, public stream entry and injected150k Connect without START; no COM or physical input qualification",
+        scope="Frozen Windows same-page serial reconnection after file/Stop, next-live search draft and owner retirement/failure/close fences; existing capture and stream checks; injected serial and DEMO, no COM or physical input qualification",
         source_commit=revision, portable_zip=portable.name,
         portable_sha256=portable_hash, source_sha256=sha256(source_archive),
         executable_sha256=exe_hashes, extracted_bundle=str(relocated),
@@ -83,7 +95,7 @@ def verify_main_stream_package(*, output, gui_exe, relocated, foreign_cwd,
                                     ("result.png", "result-entry.png", "result-connected.png",
                                      "result-live-event.png", "result-file-event.png", "result-service-menu.png",
                                      "result-search.png", "result-search-file.png", "result-sync.png",
-                                     "result-capture.png", "result-capture-open.png")},
+                                     "result-capture.png", "result-capture-open.png", "result-reconnect.png")},
         smoke_files=file_tree(folder), windows_host=platform.platform(),
         physical_device_verified=False, public_release_approved=False)
     write_json(output / "build-report.json", report)

@@ -1,3 +1,10 @@
+# V2-14: области записи
+
+Root: lifecycle GUI/bridge, адресный сценарий, пакет, canonical docs/evidence.
+Trigger_controls_critic: только docs/reviews/v2-14-reconnect-review.md и
+docs/verification/v2-reconnect/critic.json; read-only код/свидетельства,
+без повторных тестов, COM/SWD/прошивки. Итог после source freeze и пакета.
+
 # V2-13: области записи
 
 Root: захват/формат/GUI, адресный сценарий, пакет, canonical docs и свидетельства.

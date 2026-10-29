@@ -443,10 +443,11 @@ class StreamDeviceBridge(QtCore.QObject):
         """Only the next START may use this draft; running owners are immutable."""
         status = self.state
         if (self._closing or self._disconnecting or self.metadata_pending or
-                status.command_pending or not status.can_preview):
+                status.command_pending or status.stop_pending or status.close_requested or
+                not (status.can_preview or (self.is_device and status.can_open))):
             return False
         if self.is_device:
-            if not status.ready or self.connection is None:
+            if self.connection is None:
                 return False
             caps = self.connection.observed_caps
             fs, bits = caps[4], caps[8] if self.connection.protocol_revision == '0.3' else 12
@@ -595,12 +596,12 @@ class StreamDeviceBridge(QtCore.QObject):
             if code.startswith("selected_rate_mismatch_fixed_"):
                 rate = code.removeprefix("selected_rate_mismatch_fixed_")
                 message = (f"Эта прошивка имеет фиксированную частоту {rate} отсчётов/с. "
-                           "Приём не запущен. Закройте окно приёма, откройте его снова, "
-                           "выберите эту частоту и подключитесь.")
+                           "Приём не запущен. После завершения соединения "
+                           "выберите эту частоту и переподключитесь на той же странице.")
             elif code == "batch1024_firmware_required":
                 message = ("Для 150000 отсчётов/с нужна прошивка с пакетами по 1024 отсчёта. "
                            "Подключённая прошивка этот режим не поддерживает; приём не запущен. "
-                           "Можно закрыть окно приёма и выбрать 50000 или 100000, "
+                           "Можно выбрать 50000 или 100000 и переподключиться, "
                            "либо обновить прошивку после проверки совместимости.")
         if message:
             self._report_error(message)
