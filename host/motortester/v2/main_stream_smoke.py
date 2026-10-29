@@ -112,7 +112,7 @@ def check_connection_entry(app, window, output):
         window.device_stream_button.click()
         second = window.stream_dialog
         assert second is not panel and second.selection.port == "SYNTHETIC_ENTRY"
-        assert window.device_panel is None and len(factory.backends) == 3
+        assert window.device_panel is None and len(factory.backends) == 4
         second.close_panel_button.click()
         assert wait_until(app, lambda: second.closed and not window._stream_page_active)
         window._refresh_service_menu()
@@ -122,7 +122,7 @@ def check_connection_entry(app, window, output):
         assert "старая прошивка" in window.device_panel.windowTitle()
         assert "Старая прошивка" in window.device_button.text()
         window.device_panel.hide()
-        assert real_open.call_count == 0 and len(factory.backends) == 3
+        assert real_open.call_count == 0 and len(factory.backends) == 4
         assert panel.viewer._closed and second.viewer._closed
         return {**reconnect_checks, "reconnect_close_priority": True,
                 "source_selector_routes_stream": True, "cancel_preserves_source": True,

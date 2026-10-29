@@ -43,7 +43,8 @@ def verify_main_stream_package(*, output, gui_exe, relocated, foreign_cwd,
     if (reconnect.get('status') != 'PASS' or reconnect.get('real_serial_open_calls') != 0 or
             any(reconnect.get(key) is not True for key in (
                 'old_owners_joined', 'stale_callbacks_ignored', 'close_failure_fenced',
-                'metadata_failure_fenced', 'dirty_capture_cancelled', 'same_page', 'ready_without_start')) or
+                'metadata_failure_fenced', 'dirty_capture_cancelled', 'same_page', 'ready_without_start',
+                'failed_hello_draft_preserved')) or
             (reconnect.get('saved_threshold'), reconnect.get('file_threshold'),
              reconnect.get('next_live_threshold')) != (2600, 2800, 2500)):
         raise RuntimeError('Same-page reconnect evidence incomplete')

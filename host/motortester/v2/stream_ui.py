@@ -307,7 +307,8 @@ class StreamDialog(QtWidgets.QDialog):
             self._reconnect_selection = replace(self.selection,
                 requested_sample_rate_hz=self.rate_combo.currentData())
             connection = self.bridge.connection
-            self._reconnect_search = None
+            # Failed negotiation has no new live settings. Keep the draft
+            # from the last accepted connection through subsequent retries.
             if connection is not None and self.bridge.search_config is not None:
                 caps = connection.observed_caps
                 basis = (caps[4], caps[8] if connection.protocol_revision == '0.3' else 12)

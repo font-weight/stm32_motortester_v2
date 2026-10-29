@@ -69,11 +69,23 @@ def check_reconnect(app, window, panel, factory, output, wait):
         assert panel.bridge is old and panel._reconnecting and len(factory.backends) == count
         assert window._serial_owner is panel and not panel.closed and not viewer._closed
         backend.fail_close = False
-        panel.disconnect_button.click()  # Cleanup-only retry while old handle is retained.
+        class HelloFailure(factory.backend_type):
+            def write(self, data):
+                raise OSError('Synthetic write failure during HELLO')
+        with patch.object(factory, 'backend_type', HelloFailure):
+            panel.disconnect_button.click()  # Retry cleanup, then one failed new HELLO.
+            assert wait(app, lambda: panel.bridge is not old and panel.bridge.state.can_open
+                        and panel.bridge.state.error and panel.connect_button.isEnabled())
+            failed = panel.bridge
+            assert failed.connection is None and failed.state.validated_samples == 0
+            assert panel._opening and panel.archive is not None
+            assert panel.search_config().threshold_code == 2800
+        panel.connect_button.click()  # Retry must retain the last accepted live draft.
         assert wait(app, lambda: panel.bridge is not old and panel.bridge.state.ready
                     and not panel._opening and not panel._return_to_device)
         current = panel.bridge
         assert old._closed and old.controller.join(0) and not backend.is_open
+        assert failed._closed and failed.controller.join(0)
         assert window.stream_dialog is panel and panel.viewer is viewer and window._serial_owner is panel
         assert panel.archive is None and editor.fields.isEnabled() and panel.search_config() == next_config
         assert current.state.validated_samples == 0 and factory.backends[-1].commands == [1, 1, 2]
@@ -101,6 +113,7 @@ def check_reconnect(app, window, panel, factory, output, wait):
     receipt = dict(status='PASS', source='injected serial only', real_serial_open_calls=0,
         old_owners_joined=True, stale_callbacks_ignored=True, close_failure_fenced=True,
         metadata_failure_fenced=True, dirty_capture_cancelled=True, same_page=True,
+        failed_hello_draft_preserved=True,
         ready_without_start=True, file_threshold=2800, next_live_threshold=2500,
         saved_threshold=original.threshold_code, archive_sha256=before,
         first_backend_count=count, final_backend_count=len(factory.backends))
