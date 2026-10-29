@@ -34,7 +34,8 @@ def verify_main_stream_package(*, output, gui_exe, relocated, foreign_cwd,
         "service_menu_retains_hidden_tools", "unavailable_event_explained",
         "search_math_and_limits", "search_controls_before_start", "search_locked_during_acquisition",
         "search_snapshot_and_legacy", "search_reindex_preserves_raw", "search_mode_change_resets_draft",
-        "live_sync_center_and_recording", "live_sync_wait_and_manual_hold")
+        "live_sync_center_and_recording", "live_sync_wait_and_manual_hold",
+        "single_capture_live_and_boundaries", "single_capture_save_open")
     if any(smoke.get("checks", {}).get(key) is not True for key in required):
         raise RuntimeError("Embedded main-window evidence incomplete")
     frames = smoke.get("sync_frames", [])
@@ -60,13 +61,20 @@ def verify_main_stream_package(*, output, gui_exe, relocated, foreign_cwd,
             sha256(folder / recording_name) != smoke["saved_file_sha256"]):
         raise RuntimeError("Embedded stream saved-recording evidence is missing or changed")
     screenshot = folder / "result.png"
+    capture = smoke.get('single_capture', {})
+    artifact = capture.get('artifact', '')
+    if (not artifact or Path(artifact).name != artifact or not (folder / artifact).is_file() or
+            sha256(folder / artifact) != capture.get('sha256') or
+            capture.get('captured_ordinal') != capture.get('expected_ordinal') or
+            capture.get('trigger_index', -1) < capture.get('arm_end_index', 0)):
+        raise RuntimeError('Single-capture evidence missing or changed')
     if not screenshot.is_file() or smoke.get("screenshot_sha256") != sha256(screenshot):
         raise RuntimeError("Embedded main-window screenshot missing or changed")
     if file_tree(relocated) != expected_tree or sha256(portable) != portable_hash:
         raise RuntimeError("Frozen witness changed the sealed package")
     report = dict(
         status="PASS", verification_scope="embedded-main-stream",
-        scope="Frozen Windows event-aligned live view, continuous recording and manual hold; public stream entry and injected150k Connect without START; DEMO knobs, cursors and file navigation; no COM or physical input qualification",
+        scope="Frozen Windows single event capture, continued recording, cancel, interrupted/raw bounds, exclusive save and reopen; synchronized live view, public stream entry and injected150k Connect without START; no COM or physical input qualification",
         source_commit=revision, portable_zip=portable.name,
         portable_sha256=portable_hash, source_sha256=sha256(source_archive),
         executable_sha256=exe_hashes, extracted_bundle=str(relocated),
@@ -74,7 +82,8 @@ def verify_main_stream_package(*, output, gui_exe, relocated, foreign_cwd,
         frozen_smoke=smoke, png_files={name: png_info(folder / name) for name in
                                     ("result.png", "result-entry.png", "result-connected.png",
                                      "result-live-event.png", "result-file-event.png", "result-service-menu.png",
-                                     "result-search.png", "result-search-file.png", "result-sync.png")},
+                                     "result-search.png", "result-search-file.png", "result-sync.png",
+                                     "result-capture.png", "result-capture-open.png")},
         smoke_files=file_tree(folder), windows_host=platform.platform(),
         physical_device_verified=False, public_release_approved=False)
     write_json(output / "build-report.json", report)

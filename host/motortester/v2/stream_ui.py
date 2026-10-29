@@ -15,6 +15,8 @@ from .widgets import STYLE
 from .stream_search import validate_config
 from .stream_sync import SynchronizedStreamViewer
 from ..stream_view import DETECTOR_VERSION
+from .stream_capture import StreamCapture, load_capture
+from .stream_capture_ui import SingleCaptureControls
 
 
 STOPPED_UNKNOWN = "Остановлено по команде · полнота хвоста неизвестна"
@@ -117,7 +119,6 @@ class StreamDialog(QtWidgets.QDialog):
         layout.addWidget(self.quality)
         self.sync_button = QtWidgets.QCheckBox("Синхронизация по событию · порог в центре")
         self.sync_button.setToolTip("Выравнивать новые кадры по настроенному порогу. Приём и запись продолжаются.")
-        layout.addWidget(self.sync_button)
         self.viewer = SynchronizedStreamViewer(event_config=self.bridge.state.config)
         self.sync_button.toggled.connect(self._toggle_sync)
         self.viewer.sync_changed.connect(self._sync_changed)
@@ -130,7 +131,8 @@ class StreamDialog(QtWidgets.QDialog):
         self.viewer.plot.setYRange(0, 4095, padding=0)
         self.viewer.plot.setSizePolicy(QtWidgets.QSizePolicy.Policy.Expanding,
                                        QtWidgets.QSizePolicy.Policy.Preferred)
-        self.viewer.plot.setMaximumHeight(270)
+        self.viewer.plot.setMaximumHeight(240)
+        self.viewer.content.layout().setContentsMargins(8, 8, 8, 8)
         # The unknown voltage scale is explained above the plot. Keep axis
         # labels short enough for the minimum-height graph and narrow window.
         self.viewer.plot.setLabel("left", "Код АЦП")
@@ -146,9 +148,12 @@ class StreamDialog(QtWidgets.QDialog):
         self.viewer.next_button.setToolTip(self.viewer.previous_button.toolTip())
         self.viewer.view_requested.connect(self._view_requested)
         self.viewer.plot.hide()
+        self.capture = SingleCaptureControls(self)
+        layout.addWidget(self.capture)
         layout.addWidget(self.viewer, 1)
         self.cursors = StreamCursorTool(self.viewer, self)
         self.cursors.hide()
+        self.cursors.enabled.toggled.connect(lambda enabled: self.capture.cancel() if enabled else None)
         layout.addWidget(self.cursors)
         footer = QtWidgets.QHBoxLayout()
         self.export_button = QtWidgets.QPushButton("Экспорт открытой записи CSV + JSON…")
@@ -384,6 +389,7 @@ class StreamDialog(QtWidgets.QDialog):
         return accepted
 
     def stop(self):
+        self.capture.finish('host_stop_before_context')
         self.viewer.set_event_sync(False)
         return self.bridge.stop()
 
@@ -399,6 +405,8 @@ class StreamDialog(QtWidgets.QDialog):
         return 50_000, 12
 
     def search_editable(self):
+        if isinstance(self.archive, StreamCapture):
+            return False
         status = self.bridge.state
         idle = (not self._closing and not self.busy and not self.bridge.metadata_pending
                 and self._record_picker is None and not status.command_pending and not status.stop_pending)
@@ -421,6 +429,8 @@ class StreamDialog(QtWidgets.QDialog):
         return default_event_config(*self.search_basis())
 
     def search_origin_note(self):
+        if isinstance(self.archive, StreamCapture):
+            return 'Сохранённые параметры одиночного захвата. Контекст и исходные коды неизменны.'
         if self._opening:
             saved = None if self.verified_context is None else self.verified_context.event_search
             origin = ("Параметры поиска не сохранены: используется стандартный поиск."
@@ -456,6 +466,7 @@ class StreamDialog(QtWidgets.QDialog):
         return True
 
     def toggle_pause(self):
+        self.capture.cancel('Ожидание отменено: пауза просмотра')
         self._paused = not self._paused
         self.pause_button.setText("Продолжить просмотр" if self._paused else "Пауза просмотра")
         if self._paused:
@@ -488,6 +499,7 @@ class StreamDialog(QtWidgets.QDialog):
                 "Потоковый протокол 0.2 → проверка → файл и ограниченный обзор. Время номинальное.")
         if self._paused:
             return
+        self.capture.observe(source)
         index = LiveEventIndex(self._handle, source.sequence, source.config_revision,
                                source.config, source.events, source.detector, EVENT_CAPACITY)
         snapshot = LiveSnapshot(source.identity, source.sequence, source.first, source.end,
@@ -554,7 +566,8 @@ class StreamDialog(QtWidgets.QDialog):
         if not sync_available:
             self.viewer.set_event_sync(False)
         self.export_button.setEnabled(idle and self.archive is not None and
-                                      not isinstance(self.archive, AttemptReport))
+                                      not isinstance(self.archive, (AttemptReport, StreamCapture)))
+        self.capture.update_state(status)
         phases = {"idle": "Не подключено" if physical else "Готово",
                   "connected": "Соединение открыто", "disconnected": "Отключено",
                   "serial close unconfirmed": "Закрытие порта не подтверждено",
@@ -573,7 +586,8 @@ class StreamDialog(QtWidgets.QDialog):
         if self._closing:
             text = "Завершение потока и сохранение файла перед закрытием…"
         elif self.busy:
-            text = "Проверка файла…" if self._operation == "open" else "Экспорт…"
+            text = ('Сохранение захвата…' if self._operation == 'capture_save' else
+                    'Проверка файла…' if self._operation in ('open', 'capture_open') else 'Экспорт…')
         elif self.bridge.metadata_pending and status.can_open:
             text = ("Контекст записи не сохранён" if self.bridge.metadata_error is not None
                     else "Сохранение контекста записи…")
@@ -672,12 +686,18 @@ class StreamDialog(QtWidgets.QDialog):
                                "\nХраните вместе с соседним файлом .v2.json. Полнота указана в сведениях записи.")
 
     def open_dialog(self):
+        self.capture.confirm_discard(self._choose_open_path)
+
+    def _choose_open_path(self):
         path, _ = QtWidgets.QFileDialog.getOpenFileName(
-            self, "Открыть потоковую запись", "", "Потоковая запись (*.mtstream)")
+            self, "Открыть запись или захват", "", "Запись или захват (*.mtstream *.mtshot)")
         if path:
             self.open_path(path)
 
     def open_path(self, path):
+        if self.capture.dirty:
+            self.error_label.setText('Сначала сохраните отдельный захват или явно продолжите без сохранения.')
+            return False
         if self.busy or self._closing or self.bridge.metadata_pending or not self.bridge.controller.claim_open():
             return False
         self._opening = True
@@ -688,8 +708,10 @@ class StreamDialog(QtWidgets.QDialog):
         self.viewer.source_label.clear()
         self.quality.setText("Проверка открываемой записи…")
         self.error_label.clear()
-        self._operation = "open"
-        self._future = self._executor.submit(open_stream, path)
+        from pathlib import Path
+        shot = Path(path).suffix.lower() == '.mtshot'
+        self._operation = 'capture_open' if shot else 'open'
+        self._future = self._executor.submit(load_capture if shot else open_stream, path)
         return True
 
     def export_dialog(self):
@@ -711,7 +733,22 @@ class StreamDialog(QtWidgets.QDialog):
         future, self._future = self._future, None
         try:
             result = future.result()
-            if self._operation == "open":
+            if self._operation == 'capture_save':
+                self.capture.saved(result)
+            elif self._operation == 'capture_open':
+                self.archive = result
+                self._file_search_config = result.config
+                self._file_search_revision = 0
+                self.capture.accept(result, opened=True)
+                self._heading(result.context)
+                identity = result.identity
+                self.notice.setText(f'ОТКРЫТ ОДИНОЧНЫЙ ЗАХВАТ · {identity.nominal_fs_hz} отсчётов/с номинально · '
+                                    f'{identity.retained_bits} сохранённых бит ADC12.\n'
+                                    + ('Два младших бита утрачены; коды ADC12 с шагом 4.\n' if identity.retained_bits == 10 else '') +
+                                    'Шкала напряжения не настроена; исходные индексы и время сохранены.')
+                self.quality.setText('Отдельный контекст события; полнота всего потока и физического разряда не установлена.')
+                self.file_label.setText('Файл захвата содержит исходные отсчёты и контекст в одном .mtshot.')
+            elif self._operation == "open":
                 self.verified_context, archive = result
                 self.archive = archive.recording if isinstance(archive, AttemptReport) and archive.recording else archive
                 identity = (self.archive.preparation.identity if isinstance(self.archive, AttemptReport)
@@ -754,11 +791,17 @@ class StreamDialog(QtWidgets.QDialog):
                 self.file_label.setText("Экспорт завершён: " + result)
         except Exception as exc:
             self.error_label.setText("Ошибка файла: " + str(exc))
+            if self._operation == 'capture_save':
+                self.capture.saving = None
+                self.capture.note.setText('Ошибка сохранения; захват остаётся в памяти. Выберите новое имя и повторите.')
             if self._closing:
                 self._closing = False
                 self.close_cancelled.emit()
         if self._closing:
-            self.bridge.shutdown()
+            # Re-enter the normal close path after file I/O: a failed save or
+            # an unsaved capture still requires an explicit discard decision.
+            self._closing = False
+            self.close()
         self._state(self.bridge.state)
 
     def _bridge_finished(self):
@@ -779,7 +822,13 @@ class StreamDialog(QtWidgets.QDialog):
         if self.closed:
             event.accept()
             return
+        self.capture.finish('host_close_before_context')
+        if not self._closing and self.capture.dirty and not self.busy:
+            event.ignore()
+            self.capture.confirm_discard(self.close, on_cancel=self.close_cancelled.emit)
+            return
         self._closing = True
+        self.capture.close_picker()
         if self._record_picker is not None:
             self._record_picker.reject()
         self._state(self.bridge.state)

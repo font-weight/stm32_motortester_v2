@@ -276,6 +276,8 @@ def main(output, callback_errors):
         assert not panel.bridge.set_search_config(selected_search) and not editor.fields.isEnabled()
         from .stream_sync_smoke import check_sync
         sync_verified = check_sync(app, window, panel, output, wait_until)
+        from .stream_capture_smoke import check_capture_live, check_capture_open
+        capture_path, captured_shot, capture_receipt = check_capture_live(app, window, panel, output, wait_until)
         received_before = panel.bridge.state.validated_samples
         window.xposition.set_value(.01, emit=True)
         if not wait_until(app, lambda: panel.bridge.state.validated_samples > received_before):
@@ -294,6 +296,7 @@ def main(output, callback_errors):
         if not wait_until(app, lambda: panel.bridge.state.can_open and
                           not panel.bridge.metadata_pending):
             raise TimeoutError("Потоковая панель не перешла в состояние чтения файла")
+        capture_reopened = check_capture_open(app, window, panel, capture_path, captured_shot, output, wait_until)
         if not panel.open_path(path):
             raise RuntimeError("Не удалось открыть сохранённый файл во встроенной панели")
         if not wait_until(app, lambda: panel.viewer._recording is not None and
@@ -400,6 +403,8 @@ def main(output, callback_errors):
             "checks": {
                 **route_checks,
                 "live_sync_center_and_recording": bool(sync_verified),
+                "single_capture_live_and_boundaries": bool(capture_receipt),
+                "single_capture_save_open": capture_reopened,
                 "live_sync_wait_and_manual_hold": bool(sync_verified),
                 "search_math_and_limits": search_math,
                 "search_controls_before_start": True,
@@ -424,6 +429,7 @@ def main(output, callback_errors):
             "returned_to_main": True,
             "serial_ports": 0,
             "sync_frames": sync_verified,
+            "single_capture": capture_receipt,
             "failures": failures,
         }
         output.write_text(json.dumps(result, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")

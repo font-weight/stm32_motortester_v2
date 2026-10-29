@@ -1,3 +1,10 @@
+# V2-13: области записи
+
+Root: захват/формат/GUI, адресный сценарий, пакет, canonical docs и свидетельства.
+Trigger_controls_critic: только docs/reviews/v2-13-single-capture-review.md и
+docs/verification/v2-single-capture/critic.json. Read-only ревью реализации,
+без повторных запусков и без COM/SWD/прошивки; итог после freeze/свидетельств.
+
 # V2-12: области записи
 
 Root: viewer/GUI, адресный сценарий, пакет, canonical docs и свидетельства.

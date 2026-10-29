@@ -754,6 +754,8 @@ class MainWindow(DeviceControlsMixin, QtWidgets.QMainWindow):
             return
         if self._stream_page_active:
             viewer = self.stream_dialog.viewer
+            if sender in (self.sweep, self.xposition):
+                self.stream_dialog.capture.cancel('Ожидание отменено: изменение временного диапазона')
             follow = viewer.follow_tail and sender is not self.xposition
             self.stream_dialog.apply_scope_view(
                 seconds_per_div=self.sweep.value,

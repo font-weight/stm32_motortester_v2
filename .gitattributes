@@ -243,3 +243,9 @@ docs/verification/v2-live-sync/**/*.png binary
 docs/verification/v2-live-sync/**/*.mtstream binary
 docs/verification/v2-live-sync/**/*.log -whitespace
 docs/reviews/v2-12*.md -text
+docs/verification/v2-single-capture/** -text whitespace=cr-at-eol
+docs/verification/v2-single-capture/**/*.png binary
+docs/verification/v2-single-capture/**/*.mtstream binary
+docs/verification/v2-single-capture/**/*.mtshot binary
+docs/verification/v2-single-capture/**/*.log -whitespace
+docs/reviews/v2-13*.md -text
