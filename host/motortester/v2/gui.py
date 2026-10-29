@@ -761,6 +761,7 @@ class MainWindow(DeviceControlsMixin, QtWidgets.QMainWindow):
                 y_center=self.yposition.value,
                 codes_per_div=self.yscale.value,
                 follow_tail=follow,
+                sync_sweep=sender is self.sweep,
                 change_time=sender in (self.sweep, self.xposition))
             return
         if self.display_recording is None:

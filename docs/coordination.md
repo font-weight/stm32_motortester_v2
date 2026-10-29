@@ -1,3 +1,10 @@
+# V2-12: области записи
+
+Root: viewer/GUI, адресный сценарий, пакет, canonical docs и свидетельства.
+Trigger_controls_critic: только docs/reviews/v2-12-live-sync-review.md и
+docs/verification/v2-live-sync/critic.json. Независимое ревью без реализации,
+повторных тестов и аппаратных действий. COM/SWD/прошивка не входят.
+
 # V2-11: области записи
 
 Root: программные настройки поиска, companion v4, GUI, адресные проверки,

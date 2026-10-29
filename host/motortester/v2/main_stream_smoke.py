@@ -267,11 +267,15 @@ def main(output, callback_errors):
             raise AssertionError(f"Крутилка масштаба Y не применилась: {y_range}")
 
         path = root / "embedded-demo.mtstream"
+        panel.sync_button.click()
+        assert panel.viewer.event_sync
         if not panel.record_path(path):
             raise RuntimeError("Не удалось начать запись встроенного потока")
         if not wait_until(app, lambda: panel.bridge.state.phase == "recording"):
             raise TimeoutError("Запись встроенного потока не началась")
         assert not panel.bridge.set_search_config(selected_search) and not editor.fields.isEnabled()
+        from .stream_sync_smoke import check_sync
+        sync_verified = check_sync(app, window, panel, output, wait_until)
         received_before = panel.bridge.state.validated_samples
         window.xposition.set_value(.01, emit=True)
         if not wait_until(app, lambda: panel.bridge.state.validated_samples > received_before):
@@ -280,8 +284,11 @@ def main(output, callback_errors):
             raise AssertionError("Изменение графика остановило запись")
         window.yscale.set_value(512, emit=True)
         live_events = check_event_navigation(app, window, panel, output, live=True)
+        panel.sync_button.click()
+        assert panel.viewer.event_sync
         if not panel.stop():
             raise RuntimeError("Не удалось остановить встроенную запись")
+        assert not panel.viewer.event_sync and not panel.sync_button.isChecked()
         if not wait_until(app, lambda: panel.bridge.state.phase == "saved" and path.exists()):
             raise TimeoutError("Запись не завершилась и не сохранилась")
         if not wait_until(app, lambda: panel.bridge.state.can_open and
@@ -294,6 +301,7 @@ def main(output, callback_errors):
             raise TimeoutError("Сохранённая запись не открылась во встроенной панели")
         file_events = check_event_navigation(app, window, panel, output, live=False)
         file_search = check_file(app, window, panel, path, output, wait_until)
+        assert not panel.sync_button.isEnabled() and not panel.viewer.event_sync
         assert wait_until(app, lambda: panel.viewer._scan is None and panel.viewer._events and
                           panel.viewer.curve.getData()[1] is not None)
         scroll.ensureWidgetVisible(editor.note)
@@ -391,6 +399,8 @@ def main(output, callback_errors):
             "saved_recording_artifact": saved_artifact.name,
             "checks": {
                 **route_checks,
+                "live_sync_center_and_recording": bool(sync_verified),
+                "live_sync_wait_and_manual_hold": bool(sync_verified),
                 "search_math_and_limits": search_math,
                 "search_controls_before_start": True,
                 "search_locked_during_acquisition": True,
@@ -413,6 +423,7 @@ def main(output, callback_errors):
             },
             "returned_to_main": True,
             "serial_ports": 0,
+            "sync_frames": sync_verified,
             "failures": failures,
         }
         output.write_text(json.dumps(result, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")

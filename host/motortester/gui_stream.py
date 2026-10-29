@@ -890,6 +890,8 @@ class StreamViewerPanel(QtWidgets.QWidget):
         self.storage_label.setText(f"Live snapshot #{snapshot.sequence}; потери, заявлено: {loss}; хвост: {snapshot.tail_state}; "
                                    f"флаги: {', '.join(snapshot.flags) or 'не сообщены'}.{scope} Отображение не подтверждает сохранение на диск.")
         self._actions()
+        if self._consume_live_view(snapshot):
+            return
         if self._held_live is not None:
             # Metadata still advances; the graph remains backed by its own raw
             # window even after the receive ring has overwritten those samples.
@@ -922,6 +924,10 @@ class StreamViewerPanel(QtWidgets.QWidget):
             return _payload(selection, env.segments, fs, env.covered_until, outcome)
         self._submit(_Request(self._source, self._revision, "live", snapshot, operation))
         self._actions()
+
+    def _consume_live_view(self, snapshot):
+        """Optional derived view owns this frame after metadata was accepted."""
+        return False
 
     def select_range(self, start, stop, *, hold_live=True, follow_tail=False):
         if self._identity is None or self._first is None or self._first == self._end:

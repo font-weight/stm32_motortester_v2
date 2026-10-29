@@ -4,7 +4,7 @@ from concurrent.futures import ThreadPoolExecutor
 from PySide6 import QtCore, QtWidgets
 import pyqtgraph as pg
 
-from ..gui_stream import LiveEventIndex, LiveSnapshot, StreamViewerPanel
+from ..gui_stream import LiveEventIndex, LiveSnapshot
 from ..stream_controller import EVENT_CAPACITY
 from ..stream_recording import AttemptReport
 from ..stream_wire import SUPPORTED_SAMPLE_RATES
@@ -13,6 +13,7 @@ from .stream_files import open_stream, export_stream
 from .stream_cursors import StreamCursorTool
 from .widgets import STYLE
 from .stream_search import validate_config
+from .stream_sync import SynchronizedStreamViewer
 from ..stream_view import DETECTOR_VERSION
 
 
@@ -114,7 +115,13 @@ class StreamDialog(QtWidgets.QDialog):
         self.quality = QtWidgets.QLabel("Полнота данных ещё не определена.")
         self.quality.setWordWrap(True)
         layout.addWidget(self.quality)
-        self.viewer = StreamViewerPanel(event_config=self.bridge.state.config)
+        self.sync_button = QtWidgets.QCheckBox("Синхронизация по событию · порог в центре")
+        self.sync_button.setToolTip("Выравнивать новые кадры по настроенному порогу. Приём и запись продолжаются.")
+        layout.addWidget(self.sync_button)
+        self.viewer = SynchronizedStreamViewer(event_config=self.bridge.state.config)
+        self.sync_button.toggled.connect(self._toggle_sync)
+        self.viewer.sync_changed.connect(self._sync_changed)
+        self.viewer.follow_button.clicked.connect(self._resume)
         self.viewer.source_label.setText(
             "Источник и параметры появятся после запуска потока или открытия записи.")
         self.viewer.status_label.setText("Ожидание потока или открытия записи")
@@ -123,7 +130,7 @@ class StreamDialog(QtWidgets.QDialog):
         self.viewer.plot.setYRange(0, 4095, padding=0)
         self.viewer.plot.setSizePolicy(QtWidgets.QSizePolicy.Policy.Expanding,
                                        QtWidgets.QSizePolicy.Policy.Preferred)
-        self.viewer.plot.setMaximumHeight(300)
+        self.viewer.plot.setMaximumHeight(270)
         # The unknown voltage scale is explained above the plot. Keep axis
         # labels short enough for the minimum-height graph and narrow window.
         self.viewer.plot.setLabel("left", "Код АЦП")
@@ -179,7 +186,7 @@ class StreamDialog(QtWidgets.QDialog):
         self._state(self.bridge.state)
 
     def apply_scope_view(self, *, seconds_per_div, x_start_s, y_center, codes_per_div,
-                         follow_tail=False, change_time=True):
+                         follow_tail=False, change_time=True, sync_sweep=False):
         """Apply the main-window knobs to this raw-code stream plot.
 
         The host sweep is a time span and the Y controls are ADC codes while
@@ -201,6 +208,8 @@ class StreamDialog(QtWidgets.QDialog):
         if available_first is None:
             return False
         width = max(1, round(seconds_per_div * 10 * fs))
+        if sync_sweep and viewer.event_sync:
+            return viewer.set_sync_width(width)
         available = viewer._end - available_first
         if live:
             from ..gui_stream import DETAIL_SAMPLES
@@ -217,6 +226,14 @@ class StreamDialog(QtWidgets.QDialog):
         viewer.select_range(start, stop, hold_live=True,
                             follow_tail=bool(live and follow_tail))
         return viewer.selection is not None
+
+    def _toggle_sync(self, checked):
+        if not self.viewer.set_event_sync(checked):
+            self._sync_changed(False)
+
+    def _sync_changed(self, checked):
+        with QtCore.QSignalBlocker(self.sync_button):
+            self.sync_button.setChecked(checked)
 
     @property
     def busy(self):
@@ -367,6 +384,7 @@ class StreamDialog(QtWidgets.QDialog):
         return accepted
 
     def stop(self):
+        self.viewer.set_event_sync(False)
         return self.bridge.stop()
 
     def search_basis(self):
@@ -444,7 +462,8 @@ class StreamDialog(QtWidgets.QDialog):
             # Pause ingestion, not the GUI worker pump: held/file zoom still
             # needs completed range jobs to repaint without another gesture.
             self.viewer.hold_current_view()
-        else:
+        self.sync_button.setEnabled(not self._paused and self.bridge.state.phase in ('preview', 'recording'))
+        if not self._paused:
             self.viewer._timer.start()
             self.viewer.follow()
 
@@ -482,7 +501,7 @@ class StreamDialog(QtWidgets.QDialog):
     def _publish_view(self):
         selection = self.viewer.selection
         if self._revision is not None and selection is not None and not self._opening and not self._closing:
-            follow = self.viewer.follow_tail or self.viewer.holding_live
+            follow = self.viewer.follow_tail or self.viewer.holding_live or self.viewer.event_sync
             key = (self._revision, selection.start, selection.stop, follow)
             if key != self._sent_view:
                 self.bridge.controller.request_view(self._revision, selection.start, selection.stop,
@@ -528,6 +547,12 @@ class StreamDialog(QtWidgets.QDialog):
         self.open_button.setEnabled(idle and status.can_open)
         self.stop_button.setEnabled(not self._closing and not status.can_open)
         self.pause_button.setEnabled(not self._closing and not self._opening and self._revision is not None)
+        sync_available = (not self._closing and not self._opening and not self._paused and
+                          status.phase in ('preview', 'recording', 'preparing', 'waiting for boundary') and
+                          self.viewer._last_live is not None)
+        self.sync_button.setEnabled(sync_available)
+        if not sync_available:
+            self.viewer.set_event_sync(False)
         self.export_button.setEnabled(idle and self.archive is not None and
                                       not isinstance(self.archive, AttemptReport))
         phases = {"idle": "Не подключено" if physical else "Готово",

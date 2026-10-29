@@ -1,0 +1,14 @@
+Traceback (most recent call last):
+  File "<frozen runpy>", line 203, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "C:\Users\Alexandr\Desktop\New folder\универ\мотортестер 2\host\motortester\v2\main_stream_smoke.py", line 449, in <module>
+    raise SystemExit(run(sys.argv[1]))
+                     ~~~^^^^^^^^^^^^^
+  File "C:\Users\Alexandr\Desktop\New folder\универ\мотортестер 2\host\motortester\v2\main_stream_smoke.py", line 440, in run
+    result = main(output, callback_errors)
+  File "C:\Users\Alexandr\Desktop\New folder\универ\мотортестер 2\host\motortester\v2\main_stream_smoke.py", line 278, in main
+    sync_verified = check_sync(app, window, panel, output, wait_until)
+  File "C:\Users\Alexandr\Desktop\New folder\универ\мотортестер 2\host\motortester\v2\stream_sync_smoke.py", line 30, in check_sync
+    assert wait(app, lambda: len(set(t for t, _ in frames)) >= 3), 'Нет новых выровненных кадров'
+           ~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Нет новых выровненных кадров
