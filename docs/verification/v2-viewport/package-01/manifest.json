@@ -1,0 +1,128 @@
+{
+  "schema": "v2-07-viewport-package-evidence-1",
+  "recorded_utc": "2026-10-29T04:15:15.998195+00:00",
+  "source_commit": "2b7990974cff12a57483995e3f8e34f78ff17340",
+  "scope": "One relocated frozen Windows viewport DEMO check; no COM/SWD, no firmware changes, no whole inherited suite.",
+  "command": ".venv/Scripts/python.exe -B host/packaging/v2/build_windows.py --output build/v7w --verification viewport",
+  "exit_code": 0,
+  "files": [
+    {
+      "source": "build/v7w/build-report.json",
+      "archive": "docs/verification/v2-viewport/package-01/build/v7w/build-report.json",
+      "bytes": 5137,
+      "sha256": "54979b4a985a48b58b9a638fff4fe5d2c9654ccc5d1ffb6af9138280d3dec14c"
+    },
+    {
+      "source": "build/v7w/build.log",
+      "archive": "docs/verification/v2-viewport/package-01/build/v7w/build.log",
+      "bytes": 35012,
+      "sha256": "78e67f10a0f02a613bcf3eaabe3ed40a4200178e9cc29f75ffb7c9e2a9cfc2b8"
+    },
+    {
+      "source": "build/v7w/SHA256SUMS.txt",
+      "archive": "docs/verification/v2-viewport/package-01/build/v7w/SHA256SUMS.txt",
+      "bytes": 1048,
+      "sha256": "44222434a054ad8cf622a552f9eff287ce7a0315e9839d7b37bfb1940b314220"
+    },
+    {
+      "source": "build/v7w/license-input-restoration.json",
+      "archive": "docs/verification/v2-viewport/package-01/build/v7w/license-input-restoration.json",
+      "bytes": 20297,
+      "sha256": "3d6e63df2fa4ef820f7cf16449877b1fb29ec3fa42e5262a8d0da9f69ae2e189"
+    },
+    {
+      "source": "build/v7w/dist/MotortesterV2/build-manifest.json",
+      "archive": "docs/verification/v2-viewport/package-01/build/v7w/dist/MotortesterV2/build-manifest.json",
+      "bytes": 87571,
+      "sha256": "fcabe63058707eee42cf4b5757dd6cbf7c4623581949b5b9f7d86dede8b083af"
+    },
+    {
+      "source": "build/v7w/frozen-viewport/result.json",
+      "archive": "docs/verification/v2-viewport/package-01/build/v7w/frozen-viewport/result.json",
+      "bytes": 2126,
+      "sha256": "dfc1b143d07d890720da175fd4b0ae4922d59a1a9f3c039a6f55bb48fbe5d4e8"
+    },
+    {
+      "source": "build/v7w/frozen-viewport/viewport-file.png",
+      "archive": "docs/verification/v2-viewport/package-01/build/v7w/frozen-viewport/viewport-file.png",
+      "bytes": 54797,
+      "sha256": "affe731446d0a7a0f6648906882429b47528cea26afcd42276ef324761318681"
+    },
+    {
+      "source": "build/v7w/frozen-viewport/viewport-held.png",
+      "archive": "docs/verification/v2-viewport/package-01/build/v7w/frozen-viewport/viewport-held.png",
+      "bytes": 56811,
+      "sha256": "833933569c6c1aa683295c2abb63d2fb4b6265bc6a64f8f52d14add4beb369ab"
+    },
+    {
+      "source": "build/v7w/frozen-viewport/viewport-paused.png",
+      "archive": "docs/verification/v2-viewport/package-01/build/v7w/frozen-viewport/viewport-paused.png",
+      "bytes": 55382,
+      "sha256": "416511da852b56336a5fb638648e056d95c48cfe02d61013a122a182e0a92d64"
+    },
+    {
+      "source": "build/v7w/frozen-viewport/viewport-tail.png",
+      "archive": "docs/verification/v2-viewport/package-01/build/v7w/frozen-viewport/viewport-tail.png",
+      "bytes": 53410,
+      "sha256": "a574203536a10fb41672236d1a2edf287879b8544e354325d5cac5700a6778dc"
+    },
+    {
+      "source": "build/v7w/frozen-viewport/viewport.mtstream",
+      "archive": "docs/verification/v2-viewport/package-01/build/v7w/frozen-viewport/viewport.mtstream",
+      "bytes": 193670,
+      "sha256": "96bf44f42b130d65f9ba1ec0b35ebc67feaa112816fb74671ca2112ed34a21ad"
+    },
+    {
+      "source": "build/v7w/frozen-viewport/viewport.mtstream.v2.json",
+      "archive": "docs/verification/v2-viewport/package-01/build/v7w/frozen-viewport/viewport.mtstream.v2.json",
+      "bytes": 1777,
+      "sha256": "b039933f83a0fde5b867fe1f2f90c33f9aa4e8e771c9f5dac7e3cbc9423bd2a1"
+    },
+    {
+      "source": "build/v7-archive-package.py",
+      "archive": "docs/verification/v2-viewport/package-01/build/v7-archive-package.py",
+      "bytes": 3114,
+      "sha256": "3fe1bd111a7b72fb4da4ebdeaed23d5d09c9e64f79a4f3bb6ea72fa29e5b1e16"
+    }
+  ],
+  "local_deliverables": [
+    {
+      "path": "build/v7w/MotortesterV2-windows-x64.zip",
+      "bytes": 61212191,
+      "sha256": "b6cb27919755eb98bb0359cda4e76bf8269853227da38f0705b4919ff033cafe",
+      "storage": "local build artifact; not duplicated in Git"
+    },
+    {
+      "path": "build/v7w/source.zip",
+      "bytes": 76245014,
+      "sha256": "4da3e7948b1ba9ec79d598c31f8c33a6293c85263f1b4a87404bada5c4fa0d18",
+      "storage": "local build artifact; not duplicated in Git"
+    },
+    {
+      "path": "build/v7w/dist/MotortesterV2/MotortesterV2.exe",
+      "bytes": 7140678,
+      "sha256": "77e41adaa0dfbc3a3e6ea2ade4df6f2d34da20e1258d6041ed1ce48d23937a1c",
+      "storage": "local build artifact; not duplicated in Git"
+    },
+    {
+      "path": "build/v7w/dist/MotortesterV2/MotortesterV2Inspect.exe",
+      "bytes": 2231866,
+      "sha256": "75c0ea29f0bee7af4c6b22e1a23e00d0d038aa9cebaf8ffb1f1772a161ac967b",
+      "storage": "local build artifact; not duplicated in Git"
+    }
+  ],
+  "source_pins": {
+    "host/motortester/gui_stream.py": "23e4439121f69bd2f0320db85d1ce71308f6c068f11231c63cb72e6ae5a5e027",
+    "host/motortester/v2/stream_ui.py": "5664a05b98024618fa0ba814c41b02db467e94392543df831e620a1f1b6db5e3",
+    "host/motortester/v2/stream_viewport_smoke.py": "a9b59755ecf22018e00012a697dec6cc9ab42dea41b6c6c209a1185183f863a9",
+    "host/tests/test_gui_stream.py": "8bfeccb1a841ac72cabbe4c347a350e97b47bd634b29a120624b2c97cd1f1ba2",
+    "host/packaging/v2/build_windows.py": "fdb9fd99e7769a295854f34887ff2f392147c8b2df65d2e39c788929d22a875e",
+    "host/packaging/v2/launcher.py": "a75ed83ec5bbfdc63fc1681dcd11f562a4c962150276aa0100358f9f4551a0bf",
+    "host/packaging/v2/viewport_package_check.py": "88c981cbae22afb6c7c3ddf045021bf7cb2012155cc50315c108b7095d83b890"
+  },
+  "root_visual_review": {
+    "method": "view_image, all four held/paused/tail/file PNGs in native03 and frozen-viewport",
+    "finding": "Curves and visible edges present; holding/follow labels and controls readable; no text overlap.",
+    "limits": "Static rendered snapshots plus numeric event checks; original user saved-file defect was not independently reproduced on the old build. No physical 150k GUI or clean-OS claim."
+  }
+}

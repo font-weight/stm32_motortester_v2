@@ -1,0 +1,98 @@
+{
+  "schema": "v2-07-independent-viewport-review-1",
+  "date": "2026-10-29",
+  "reviewer": "/root/stream200_critic",
+  "independent_from_implementation": true,
+  "status": "PASS",
+  "score": 9.6,
+  "scope": "V2-UI18: bounded live held raw, pause/zoom, saved-file viewport and exact relocated Windows DEMO package",
+  "source_commit": "2b7990974cff12a57483995e3f8e34f78ff17340",
+  "base_commit": "f5076260326c63a2d2a371d3cbb14845570155af",
+  "source_manifest_sha256": "4262732df5cebc03dffdf29078d9b0014e055c58e7ea2fa6d98b3d0428bf8916",
+  "package_manifest_sha256": "8435ea3d7117d0a3a7f4c6ed22c59dd16aa91a8b00446f2681197c453f6aae96",
+  "package_sha256": "b6cb27919755eb98bb0359cda4e76bf8269853227da38f0705b4919ff033cafe",
+  "gui_exe_sha256": "77e41adaa0dfbc3a3e6ea2ade4df6f2d34da20e1258d6041ed1ce48d23937a1c",
+  "source_zip_sha256": "4da3e7948b1ba9ec79d598c31f8c33a6293c85263f1b4a87404bada5c4fa0d18",
+  "build_report_sha256": "54979b4a985a48b58b9a638fff4fe5d2c9654ccc5d1ffb6af9138280d3dec14c",
+  "build_manifest_sha256": "fcabe63058707eee42cf4b5757dd6cbf7c4623581949b5b9f7d86dede8b083af",
+  "source_pins": {
+    "host/motortester/gui_stream.py": "23e4439121f69bd2f0320db85d1ce71308f6c068f11231c63cb72e6ae5a5e027",
+    "host/motortester/v2/stream_ui.py": "5664a05b98024618fa0ba814c41b02db467e94392543df831e620a1f1b6db5e3",
+    "host/motortester/v2/stream_viewport_smoke.py": "a9b59755ecf22018e00012a697dec6cc9ab42dea41b6c6c209a1185183f863a9",
+    "host/tests/test_gui_stream.py": "8bfeccb1a841ac72cabbe4c347a350e97b47bd634b29a120624b2c97cd1f1ba2",
+    "host/packaging/v2/build_windows.py": "fdb9fd99e7769a295854f34887ff2f392147c8b2df65d2e39c788929d22a875e",
+    "host/packaging/v2/launcher.py": "a75ed83ec5bbfdc63fc1681dcd11f562a4c962150276aa0100358f9f4551a0bf",
+    "host/packaging/v2/viewport_package_check.py": "88c981cbae22afb6c7c3ddf045021bf7cb2012155cc50315c108b7095d83b890"
+  },
+  "personally_verified": {
+    "source_archive_pairs": 26,
+    "source_archive_bytes": 1200143,
+    "package_archive_pairs": 13,
+    "package_archive_bytes": 570152,
+    "archive_mismatches": [],
+    "portable_zip_bytes": 61212191,
+    "zip_vs_relocated_files": 475,
+    "zip_vs_relocated_mismatches": [],
+    "source_commit_zip_worktree_comparison": "Seven changed Python files equal after only CRLF-to-LF normalization; exact byte equality across all three representations is not claimed",
+    "png_visual_review": {
+      "native02": ["held", "paused", "tail", "file"],
+      "native03": ["held", "paused", "tail", "file"],
+      "frozen": ["held", "paused", "tail", "file"],
+      "finding": "Curves, edges and controls readable; held/follow labels visible, no blocking visual finding"
+    }
+  },
+  "evidence": {
+    "targeted_unittest": {
+      "status": "PASS",
+      "count": 4,
+      "seconds": 1.913,
+      "receipt_sha256": "3688379cf55f5e7edc6beb8c60523b0d2c0dcb7acf93037e946c78e43c61a8a0",
+      "limit": "Before later FullViewportUpdate/event-label changes; final UI covered by native03 and frozen"
+    },
+    "native01": {"status": "FAIL", "preserved": true, "reason": "Receiver counter advanced before GUI metadata; predicate corrected without production delta between01/02"},
+    "native02": {"status": "PASS", "checks": 8},
+    "native03": {"status": "PASS", "checks": 9, "result_sha256": "bc73d875d1436dd25655733eee5cbf8d1f911b772d01b3cfd2ec120a7a8d0816"},
+    "package": {
+      "status": "PASS",
+      "build_attempts": 1,
+      "frozen_scenario_executions": 1,
+      "checks": 9,
+      "result_sha256": "dfc1b143d07d890720da175fd4b0ae4922d59a1a9f3c039a6f55bb48fbe5d4e8",
+      "windows": "Windows-10-10.0.19045-SP0",
+      "qt_platform": "windows",
+      "python": "3.14.7",
+      "frozen": true,
+      "foreign_working_directory": true,
+      "isolated_path": "C:\\Windows\\System32",
+      "held_samples": 62208,
+      "held_raw_bytes": 124416,
+      "received_before": 69248,
+      "received_after": 133120,
+      "recorded_samples": 95788,
+      "journal_sha256": "96bf44f42b130d65f9ba1ec0b35ebc67feaa112816fb74671ca2112ed34a21ad",
+      "owners_closed": true,
+      "real_serial_open_calls": 0,
+      "callback_errors": []
+    }
+  },
+  "criteria": {
+    "C1": {"weight": 0.30, "score": 9.7, "basis": "Drawn immutable raw snapshot, bounded range, independent recording and explicit follow/source reset"},
+    "C2": {"weight": 0.20, "score": 9.6, "basis": "Bounded ownership, stale-result guards, one pending job and active pause worker poll"},
+    "C3": {"weight": 0.25, "score": 9.5, "basis": "Target Qt tests, final native and frozen Windows evidence; original saved-file paint defect not reproduced on old build"},
+    "C4": {"weight": 0.15, "score": 9.5, "basis": "Explicit held label and return, existing worker/minmax reused; local held routing"},
+    "C5": {"weight": 0.10, "score": 9.7, "basis": "Exact source/package archives and hashes, commands/environment and failed01 preserved"}
+  },
+  "open_findings": [],
+  "resolved_findings": ["Held-view label cleared/replaced when selecting an event before unavailable early return"],
+  "limitations": [
+    "Original user saved-file paint defect was not independently reproduced on the old EXE; dirty-rectangle explanation remains a hypothesis",
+    "DEMO50k GUI/package evidence is not a new physical150k GUI/COM test, analog validation or long-duration stress test",
+    "One held raw window is at most128KiB; this is not a bound on the entire GUI process heap",
+    "Saved journal is unchanged after navigation/Open; this task did not compare every saved raw code with generator output",
+    "PNG snapshots plus numeric event checks do not prove every rendered frame on every Windows/video configuration",
+    "Local technical package acceptance is not public-distribution or whole inherited-suite qualification"
+  ],
+  "critic_reran_tests_or_builds": false,
+  "critic_hardware_actions": false,
+  "physical_stream_verified_by_this_review": false
+}
