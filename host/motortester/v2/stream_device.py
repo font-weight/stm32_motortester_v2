@@ -25,6 +25,7 @@ from ..stream_view import EventConfig
 from ..stream_wire import SUPPORTED_SAMPLE_RATES, supported_caps, supported_mode_caps, mode_revision
 from .input import InputProfile, UNKNOWN_PROFILE, text
 from .stream_demo import PacedStreamPeer
+from .stream_search import SearchSnapshot, validate_config
 
 CONTEXT_FORMAT = "motortester-v2-stream-context"
 # Host-only navigation thresholds. They do not configure the ADC or volts.
@@ -152,6 +153,7 @@ class VerifiedStreamContext:
     companion_present: bool
     journal_sha256: str | None
     connection: StreamConnection | None = None
+    event_search: SearchSnapshot | None = None
 
 
 @dataclass(frozen=True, slots=True)
@@ -162,6 +164,7 @@ class ContextFailure:
     identity: object
     message: str
     connection: StreamConnection | None = None
+    event_search: SearchSnapshot | None = None
 
     def __str__(self):
         return self.message
@@ -206,7 +209,7 @@ def _journal_binding(path, *, legacy=False):
     }
 
 
-def _write_context(path, context, expected_identity, connection=None):
+def _write_context(path, context, expected_identity, connection=None, event_search=None):
     """File-owner operation after actual writer settlement, never on the GUI."""
     binding = _journal_binding(path)
     if expected_identity is None or binding["identity"] != asdict(expected_identity):
@@ -221,6 +224,10 @@ def _write_context(path, context, expected_identity, connection=None):
     if connection is not None:
         _verify_connection(connection, binding["identity"])
         value["connection"] = asdict(connection)
+    if event_search is not None:
+        event_search.__post_init__()
+        validate_config(event_search.config, expected_identity.nominal_fs_hz, expected_identity.retained_bits)
+        value.update(format_version=4, event_search=asdict(event_search))
     atomic_write(companion_path(path),
                  json.dumps(value, ensure_ascii=False, indent=2, allow_nan=False).encode("utf-8"))
     return str(path)
@@ -261,11 +268,13 @@ def open_verified_context(path):
     value = json.loads(raw)
     required = {"format", "format_version", "context", "time_basis",
                 "journal_sha256", "journal_bytes", "journal"}
-    if type(value) is dict and value.get("format_version") in (2, 3):
+    if type(value) is dict and value.get("format_version") in (2, 3, 4):
         required.add("connection")
+    if type(value) is dict and value.get("format_version") == 4:
+        required.add("event_search")
     if (type(value) is not dict or set(value) != required
             or value["format"] != CONTEXT_FORMAT or type(value["format_version"]) is not int
-            or value["format_version"] not in (1, 2, 3) or value["time_basis"] != "nominal_unverified"):
+            or value["format_version"] not in (1, 2, 3, 4) or value["time_basis"] != "nominal_unverified"):
         raise ValueError("Неизвестный формат контекста потока")
     context = value["context"]
     if type(context) is not dict or set(context) != set(StreamContext.__dataclass_fields__):
@@ -276,7 +285,7 @@ def open_verified_context(path):
     connection = None
     if value["format_version"] == 2 and value["connection"] is None:
         raise ValueError("Старый serial companion требует контекст соединения")
-    if value["format_version"] in (2, 3) and value["connection"] is not None:
+    if value["format_version"] in (2, 3, 4) and value["connection"] is not None:
         raw_connection = value["connection"]
         connection_fields = set(StreamConnection.__dataclass_fields__)
         selection_fields = set(SerialStreamSelection.__dataclass_fields__)
@@ -298,7 +307,12 @@ def open_verified_context(path):
             or type(value["journal_bytes"]) is not int or size != value["journal_bytes"]
             or value["journal"] != _journal_binding(path, legacy=value["format_version"] < 3)):
         raise ValueError("Контекст не соответствует исходному потоковому файлу")
-    return VerifiedStreamContext(context, True, digest, connection)
+    event_search = None
+    if value["format_version"] == 4:
+        event_search = SearchSnapshot.from_dict(value["event_search"])
+        identity = value["journal"]["identity"]
+        validate_config(event_search.config, identity["nominal_fs_hz"], identity["retained_bits"])
+    return VerifiedStreamContext(context, True, digest, connection, event_search)
 
 
 class StreamDeviceBridge(QtCore.QObject):
@@ -353,6 +367,10 @@ class StreamDeviceBridge(QtCore.QObject):
         self._record_path = self._metadata = self._executor = None
         self._record_context = None
         self._record_connection = None
+        self._record_search = None
+        self.search_config = None
+        self._search_basis = None
+        self.search_reset_notice = ""
         self._metadata_identity = self._metadata_error = None
         self._metadata_started = self._closing = self._closed = False
         self._last_error = None
@@ -385,7 +403,8 @@ class StreamDeviceBridge(QtCore.QObject):
         self._metadata_error = None
         self._last_error = None
         self._metadata = self._executor.submit(
-            _write_context, failure.path, failure.context, failure.identity, failure.connection)
+            _write_context, failure.path, failure.context, failure.identity, failure.connection,
+            failure.event_search)
         return True
 
     def abandon_context(self, failure):
@@ -411,13 +430,32 @@ class StreamDeviceBridge(QtCore.QObject):
             return False
         # Select sample counts only after accepted CAPS, before a new source.
         # Explicit custom sample configurations retain their caller's meaning.
-        config = (default_event_config(self.connection.observed_caps[4],
+        config = self.search_config or (default_event_config(self.connection.observed_caps[4],
                     self.connection.observed_caps[8] if self.connection.protocol_revision == "0.3" else 12)
                   if self._default_event_config and self.connection is not None else None)
         if not self.controller.preview(**({"event_config": config} if config is not None else {})):
             return False
         if not previous.ready:
             self._fence_new_source(previous.revision)
+        return True
+
+    def set_search_config(self, config):
+        """Only the next START may use this draft; running owners are immutable."""
+        status = self.state
+        if (self._closing or self._disconnecting or self.metadata_pending or
+                status.command_pending or not status.can_preview):
+            return False
+        if self.is_device:
+            if not status.ready or self.connection is None:
+                return False
+            caps = self.connection.observed_caps
+            fs, bits = caps[4], caps[8] if self.connection.protocol_revision == '0.3' else 12
+        else:
+            fs, bits = 50_000, 12
+        validate_config(config, fs, bits)
+        self.search_config = config
+        self._search_basis = (fs, bits)
+        self.search_reset_notice = ""
         return True
 
     def connect_source(self, selection=None):
@@ -441,6 +479,9 @@ class StreamDeviceBridge(QtCore.QObject):
         selection = replace(self.selection, requested_sample_rate_hz=rate)
         if not self.controller.select_sample_rate(rate):
             return False
+        if rate != self.selection.requested_sample_rate_hz and self.search_config is not None:
+            self.search_config = None
+            self.search_reset_notice = "Частота изменена: параметры поиска сброшены. Настройте их после подключения."
         self._selection = selection
         return True
 
@@ -467,7 +508,8 @@ class StreamDeviceBridge(QtCore.QObject):
         previous = self.controller.snapshot()
         if self.is_device and (previous.phase != "preview" or self.connection is None):
             return False
-        if not self.controller.record(path):
+        if not self.controller.record(path, **({"event_config": self.search_config}
+                if previous.can_preview and self.search_config is not None else {})):
             return False
         # can_preview marks a restartable source. Recording an already running
         # preview keeps its generation and display; a direct start replaces it.
@@ -476,6 +518,7 @@ class StreamDeviceBridge(QtCore.QObject):
         self._record_path = path
         self._record_context = self.context
         self._record_connection = self.connection
+        self._record_search = None
         self._metadata_started = False
         self._metadata = None
         return True
@@ -529,6 +572,11 @@ class StreamDeviceBridge(QtCore.QObject):
             self.connection = StreamConnection(self.selection, self._execution_kind,
                                                bridge.accepted_build_id, bridge.accepted_caps,
                                                protocol_revision="0.3" if len(bridge.accepted_caps) == 10 else "0.2")
+            basis = (self.connection.observed_caps[4], self.connection.observed_caps[8]
+                     if self.connection.protocol_revision == '0.3' else 12)
+            if self.search_config is not None and self._search_basis != basis:
+                self.search_config = None
+                self.search_reset_notice = "Режим АЦП изменён: параметры поиска сброшены для новой частоты и разрядности."
         if (bridge is not None and bridge.identity is not None
                 and status.revision >= self._minimum_display_revision
                 and status.revision != self._revision and not status.can_open):
@@ -559,11 +607,14 @@ class StreamDeviceBridge(QtCore.QObject):
         if self._record_path is not None and not self._metadata_started and status.can_open:
             self._metadata_started = True
             self._metadata_identity = None if bridge is None else bridge.identity
+            # Finalization still owns this attempt. Its accepted controller
+            # snapshot, not a later editor draft, accompanies the raw journal.
+            self._record_search = SearchSnapshot(status.config, status.config_revision)
             self._executor = self._executor or ThreadPoolExecutor(
                 max_workers=1, thread_name_prefix="v2-stream-context")
             self._metadata = self._executor.submit(
                 _write_context, self._record_path, self._record_context,
-                self._metadata_identity, self._record_connection)
+                self._metadata_identity, self._record_connection, self._record_search)
         if self._metadata is not None and self._metadata.done():
             future, self._metadata = self._metadata, None
             try:
@@ -571,7 +622,8 @@ class StreamDeviceBridge(QtCore.QObject):
             except Exception as exc:
                 self._metadata_error = ContextFailure(
                     self._record_path, self._record_context, self._metadata_identity,
-                    "Контекст потока не сохранён: " + str(exc), self._record_connection)
+                    "Контекст потока не сохранён: " + str(exc), self._record_connection,
+                    self._record_search)
                 self._report_error(str(self._metadata_error))
             else:
                 self.recording_ready.emit(path)

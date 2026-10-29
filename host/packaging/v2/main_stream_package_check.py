@@ -31,7 +31,9 @@ def verify_main_stream_package(*, output, gui_exe, relocated, foreign_cwd,
         "source_selector_routes_stream", "cancel_preserves_source", "primary_button_routes_stream",
         "legacy_explicit", "connect_150k_without_start", "connection_owners_closed",
         "live_event_navigation_retained", "file_event_navigation_retained",
-        "service_menu_retains_hidden_tools", "unavailable_event_explained")
+        "service_menu_retains_hidden_tools", "unavailable_event_explained",
+        "search_math_and_limits", "search_controls_before_start", "search_locked_during_acquisition",
+        "search_snapshot_and_legacy", "search_reindex_preserves_raw", "search_mode_change_resets_draft")
     if any(smoke.get("checks", {}).get(key) is not True for key in required):
         raise RuntimeError("Embedded main-window evidence incomplete")
     if (smoke.get("demo_rate_hz") != 50_000 or
@@ -61,7 +63,8 @@ def verify_main_stream_package(*, output, gui_exe, relocated, foreign_cwd,
         working_directory=str(foreign_cwd), isolated_path=frozen_env["PATH"],
         frozen_smoke=smoke, png_files={name: png_info(folder / name) for name in
                                     ("result.png", "result-entry.png", "result-connected.png",
-                                     "result-live-event.png", "result-file-event.png", "result-service-menu.png")},
+                                     "result-live-event.png", "result-file-event.png", "result-service-menu.png",
+                                     "result-search.png", "result-search-file.png")},
         smoke_files=file_tree(folder), windows_host=platform.platform(),
         physical_device_verified=False, public_release_approved=False)
     write_json(output / "build-report.json", report)

@@ -1,3 +1,11 @@
+# V2-11: области записи
+
+Root: программные настройки поиска, companion v4, GUI, адресные проверки,
+Windows-пакет, canonical docs и архив свидетельств. Trigger_controls_critic:
+только docs/reviews/v2-11-trigger-controls-review.md и
+docs/verification/v2-trigger-controls/critic.json. Независимый критик не
+меняет реализацию и не повторяет тесты. COM/SWD/прошивка не затрагиваются.
+
 # V2-10: области записи
 
 Root: viewer/GUI, адресный сценарий, пакет, документация и архивы.

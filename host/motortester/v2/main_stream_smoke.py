@@ -85,18 +85,32 @@ def check_connection_entry(app, window, output):
         assert connection.observed_caps == (5, 5, 0, 12, 150_000, 1, 1024, 1, 10, 2)
         assert backend.commands == [1, 1, 2], "Connect sent acquisition commands"
         assert panel.bridge.state.validated_samples == 0
+        # Switch a configured, stopped connection to another rate. The draft
+        # must not preserve sample counts/rails from the old 150k/10-bit mode.
+        from .stream_device import default_event_config
+        assert panel.apply_search(default_event_config(150_000, 10))
+        panel.disconnect_button.click()
+        assert wait_until(app, lambda: panel.bridge.state.can_connect and
+                          panel.connect_button.isEnabled() and not panel.bridge._disconnecting)
+        panel.rate_combo.setCurrentIndex(panel.rate_combo.findData(100_000))
+        panel.connect_button.click()
+        assert wait_until(app, lambda: panel.bridge.state.ready and panel.bridge.connection is not None)
+        assert panel.bridge.search_config is None and panel.search_basis() == (100_000, 12)
+        assert panel.search_config() == default_event_config(100_000, 12)
+        assert 'сброшены' in window.stream_search_controls.note.text()
+        assert panel.bridge.state.validated_samples == 0
         ready_png = Path(output).with_name(Path(output).stem + "-connected.png")
         app.processEvents()
         assert window.grab().save(str(ready_png))
         panel.close_panel_button.click()
         assert wait_until(app, lambda: panel.closed and not window._stream_page_active)
-        assert not backend.is_open and window._serial_owner is None
+        assert not any(b.is_open for b in factory.backends) and window._serial_owner is None
 
         QtCore.QTimer.singleShot(0, lambda: answer_port(True))
         window.device_stream_button.click()
         second = window.stream_dialog
         assert second is not panel and second.selection.port == "SYNTHETIC_ENTRY"
-        assert window.device_panel is None and len(factory.backends) == 1
+        assert window.device_panel is None and len(factory.backends) == 2
         second.close_panel_button.click()
         assert wait_until(app, lambda: second.closed and not window._stream_page_active)
         window._refresh_service_menu()
@@ -106,12 +120,12 @@ def check_connection_entry(app, window, output):
         assert "старая прошивка" in window.device_panel.windowTitle()
         assert "Старая прошивка" in window.device_button.text()
         window.device_panel.hide()
-        assert real_open.call_count == 0 and len(factory.backends) == 1
+        assert real_open.call_count == 0 and len(factory.backends) == 2
         assert panel.viewer._closed and second.viewer._closed
         return {"source_selector_routes_stream": True, "cancel_preserves_source": True,
                 "primary_button_routes_stream": True, "legacy_explicit": True,
                 "connect_150k_without_start": True, "connection_owners_closed": True,
-                "service_menu_retains_hidden_tools": True}
+                "service_menu_retains_hidden_tools": True, "search_mode_change_resets_draft": True}
 
 
 def check_event_navigation(app, window, panel, output, *, live):
@@ -162,6 +176,8 @@ def check_event_navigation(app, window, panel, output, *, live):
 
 
 def main(output, callback_errors):
+    from .stream_search_smoke import check_math, configure_editor, check_file
+    search_math = check_math()
     app = QtWidgets.QApplication.instance() or QtWidgets.QApplication(["MotortesterV2-main-stream-smoke"])
     app.setStyle("Fusion")
     with tempfile.TemporaryDirectory(prefix="motortester-main-stream-", delete=False) as temporary:
@@ -195,6 +211,18 @@ def main(output, callback_errors):
         if window.statusBar().currentMessage() != "Ждём отсчёты для автомасштаба потока.":
             raise AssertionError("Автомасштаб без Preview не обработал пустой график")
         window.statusBar().clearMessage()
+        selected_search = configure_editor(window)
+        editor = window.stream_search_controls
+        scroll = window.sidebar_scroll
+        editor.advanced_button.click()
+        app.processEvents()
+        scroll.ensureWidgetVisible(editor.note)
+        app.processEvents()
+        assert scroll.verticalScrollBar().maximum() > 0
+        note_bottom = editor.note.mapTo(scroll.viewport(), editor.note.rect().bottomRight()).y()
+        assert note_bottom <= scroll.viewport().height(), "Пояснение и Apply недоступны при прокрутке"
+        assert editor.threshold.dial.geometry().bottom() < editor.threshold.spin.mapTo(editor.threshold, QtCore.QPoint(0, 0)).y()
+        assert window.grab().save(str(Path(output).with_name(Path(output).stem + '-search.png')))
         if not panel.start_live():
             raise RuntimeError("Не удалось запустить ДЕМО-поток")
         if not wait_until(app, lambda: panel.viewer.selection is not None and
@@ -202,6 +230,8 @@ def main(output, callback_errors):
             raise TimeoutError("Потоковый график не получил исходные отсчёты")
         if not wait_until(app, lambda: panel.viewer.plot.isVisible()):
             raise AssertionError("Служебный график не показан после явного включения кодов")
+        assert panel.bridge.state.config == selected_search
+        assert not editor.fields.isEnabled() and not panel.apply_search(selected_search)
 
         fs = panel.viewer._identity[3]
         expected_initial = round(window.sweep.value * 10 * fs)
@@ -241,6 +271,7 @@ def main(output, callback_errors):
             raise RuntimeError("Не удалось начать запись встроенного потока")
         if not wait_until(app, lambda: panel.bridge.state.phase == "recording"):
             raise TimeoutError("Запись встроенного потока не началась")
+        assert not panel.bridge.set_search_config(selected_search) and not editor.fields.isEnabled()
         received_before = panel.bridge.state.validated_samples
         window.xposition.set_value(.01, emit=True)
         if not wait_until(app, lambda: panel.bridge.state.validated_samples > received_before):
@@ -262,6 +293,12 @@ def main(output, callback_errors):
                           panel.viewer.selection is not None):
             raise TimeoutError("Сохранённая запись не открылась во встроенной панели")
         file_events = check_event_navigation(app, window, panel, output, live=False)
+        file_search = check_file(app, window, panel, path, output, wait_until)
+        assert wait_until(app, lambda: panel.viewer._scan is None and panel.viewer._events and
+                          panel.viewer.curve.getData()[1] is not None)
+        scroll.ensureWidgetVisible(editor.note)
+        app.processEvents()
+        assert window.grab().save(str(Path(output).with_name(Path(output).stem + '-search-file.png')))
 
         panel.close_panel_button.click()
         if not wait_until(app, lambda: panel.closed and
@@ -312,6 +349,8 @@ def main(output, callback_errors):
         output.parent.mkdir(parents=True, exist_ok=True)
         saved_artifact = output.with_name(output.stem + "-recording.mtstream")
         shutil.copyfile(path, saved_artifact)
+        from .stream_device import companion_path
+        shutil.copyfile(companion_path(path), companion_path(saved_artifact))
         if saved_artifact.stat().st_size != file_bytes or hashlib.sha256(saved_artifact.read_bytes()).hexdigest() != file_sha256:
             raise RuntimeError("Сохранённая копия журнала отличается от проверенной записи")
         failures = []
@@ -352,6 +391,11 @@ def main(output, callback_errors):
             "saved_recording_artifact": saved_artifact.name,
             "checks": {
                 **route_checks,
+                "search_math_and_limits": search_math,
+                "search_controls_before_start": True,
+                "search_locked_during_acquisition": True,
+                "search_snapshot_and_legacy": file_search,
+                "search_reindex_preserves_raw": file_search,
                 "live_event_navigation_retained": live_events,
                 "file_event_navigation_retained": file_events,
                 "unavailable_event_explained": live_events,

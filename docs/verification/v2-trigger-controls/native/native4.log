@@ -1,0 +1,14 @@
+Traceback (most recent call last):
+  File "<frozen runpy>", line 203, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "C:\Users\Alexandr\Desktop\New folder\универ\мотортестер 2\host\motortester\v2\main_stream_smoke.py", line 441, in <module>
+    raise SystemExit(run(sys.argv[1]))
+                     ~~~^^^^^^^^^^^^^
+  File "C:\Users\Alexandr\Desktop\New folder\универ\мотортестер 2\host\motortester\v2\main_stream_smoke.py", line 432, in run
+    result = main(output, callback_errors)
+  File "C:\Users\Alexandr\Desktop\New folder\универ\мотортестер 2\host\motortester\v2\main_stream_smoke.py", line 187, in main
+    route_checks = check_connection_entry(app, window, output)
+  File "C:\Users\Alexandr\Desktop\New folder\универ\мотортестер 2\host\motortester\v2\main_stream_smoke.py", line 96, in check_connection_entry
+    assert wait_until(app, lambda: panel.bridge.state.ready and panel.bridge.connection is not None)
+           ~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError

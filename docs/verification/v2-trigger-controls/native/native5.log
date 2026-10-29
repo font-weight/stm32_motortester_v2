@@ -1,0 +1,12 @@
+Traceback (most recent call last):
+  File "<frozen runpy>", line 203, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "C:\Users\Alexandr\Desktop\New folder\универ\мотортестер 2\host\motortester\v2\main_stream_smoke.py", line 442, in <module>
+    raise SystemExit(run(sys.argv[1]))
+                     ~~~^^^^^^^^^^^^^
+  File "C:\Users\Alexandr\Desktop\New folder\универ\мотортестер 2\host\motortester\v2\main_stream_smoke.py", line 433, in run
+    result = main(output, callback_errors)
+  File "C:\Users\Alexandr\Desktop\New folder\универ\мотортестер 2\host\motortester\v2\main_stream_smoke.py", line 221, in main
+    assert scroll.verticalScrollBar().maximum() > 0
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError

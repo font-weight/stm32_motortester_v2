@@ -302,11 +302,13 @@ class MainWindow(DeviceControlsMixin, QtWidgets.QMainWindow):
         side_outer = QtWidgets.QVBoxLayout(sidebar)
         side_outer.setContentsMargins(8, 8, 8, 8)
         scroll = QtWidgets.QScrollArea()
+        self.sidebar_scroll = scroll
         scroll.setWidgetResizable(True)
         side_outer.addWidget(scroll)
         content = QtWidgets.QWidget(objectName="sidecontent")
         scroll.setWidget(content)
         side = QtWidgets.QVBoxLayout(content)
+        side.setSizeConstraint(QtWidgets.QLayout.SizeConstraint.SetMinimumSize)
         side.setContentsMargins(5, 4, 5, 4)
         side.setSpacing(9)
         side.addWidget(label("Управление", "heading"))
@@ -424,6 +426,13 @@ class MainWindow(DeviceControlsMixin, QtWidgets.QMainWindow):
         capture_layout.addLayout(pre_row)
         capture_layout.addWidget(self.pretrigger)
         side.addWidget(self.capture_controls)
+        self.stream_search_host = QtWidgets.QWidget()
+        self.stream_search_layout = QtWidgets.QVBoxLayout(self.stream_search_host)
+        self.stream_search_layout.setContentsMargins(0, 0, 0, 0)
+        self.stream_search_layout.setSizeConstraint(QtWidgets.QLayout.SizeConstraint.SetMinimumSize)
+        self.stream_search_controls = None
+        side.addWidget(self.stream_search_host)
+        self.stream_search_host.hide()
         fit_row = QtWidgets.QHBoxLayout()
         self.auto_scale_button = self._button("Автомасштаб", self.auto_scale)
         self.full_signal_button = self._button("Весь сигнал", self.full_signal)
@@ -1513,6 +1522,10 @@ class MainWindow(DeviceControlsMixin, QtWidgets.QMainWindow):
             self.raw_view.setToolTip("В потоке исходные коды показаны без пересчёта в напряжение.")
             self.source_controls_row.hide()
             self.capture_controls.hide()
+            from .stream_search_ui import StreamSearchControls
+            self.stream_search_controls = StreamSearchControls(self.stream_dialog)
+            self.stream_search_layout.addWidget(self.stream_search_controls)
+            self.stream_search_host.show()
             self.scale_label.setText("Потоковая шкала В/мВ не настроена")
             self.provenance_label.setText(
                 "CH1 · поток · " + ("ДЕМО" if self.stream_dialog.selection is None
@@ -1541,6 +1554,13 @@ class MainWindow(DeviceControlsMixin, QtWidgets.QMainWindow):
             self.raw_view.hide()
             self.source_controls_row.show()
             self.capture_controls.show()
+            self.stream_search_host.hide()
+            if self.stream_search_controls is not None:
+                self.stream_search_layout.removeWidget(self.stream_search_controls)
+                self.stream_search_controls.deleteLater()
+                self.stream_search_controls = None
+            if self.stream_dialog is not None:
+                self.stream_dialog.prepare_search = None
             saved = self._pre_stream_y_view
             self._pre_stream_y_view = None
             if saved is not None:

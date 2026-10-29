@@ -1,0 +1,12 @@
+First native run, 2026-10-29. Command:
+PYTHONPATH=host .venv/Scripts/python.exe -B -m motortester.v2.main_stream_smoke build/v14-search/native-result.json
+Exit 1. Tool output excerpt retained:
+File "host/motortester/v2/main_stream_smoke.py", line 276, in main
+  file_search = check_file(app, window, panel, path, output, wait_until)
+File "host/motortester/v2/stream_search_smoke.py", line 93, in check_file
+  assert tuple(x.trigger_index for x in panel.viewer._events) == original_triggers
+AssertionError
+Analysis: the assertion compared the first partial scan page against another
+partial scan. Wait for _scan is None before comparing the complete event index.
+No production change made for this test synchronization fix. Temporary files
+and existing first-run PNGs retained in their original directories.

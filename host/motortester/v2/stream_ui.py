@@ -12,6 +12,8 @@ from .stream_device import StreamContext, StreamDeviceBridge, default_event_conf
 from .stream_files import open_stream, export_stream
 from .stream_cursors import StreamCursorTool
 from .widgets import STYLE
+from .stream_search import validate_config
+from ..stream_view import DETECTOR_VERSION
 
 
 STOPPED_UNKNOWN = "Остановлено по команде · полнота хвоста неизвестна"
@@ -21,6 +23,7 @@ class StreamDialog(QtWidgets.QDialog):
     """One immutable channel/profile/port; connect never starts acquisition."""
     settled = QtCore.Signal()
     close_cancelled = QtCore.Signal()
+    search_changed = QtCore.Signal()
 
     def __init__(self, parent=None, *, context=StreamContext(), bridge_factory=StreamDeviceBridge,
                  selection=None, acquire_serial=None, release_serial=None):
@@ -47,6 +50,9 @@ class StreamDialog(QtWidgets.QDialog):
         self._executor = ThreadPoolExecutor(max_workers=1, thread_name_prefix="v2-stream-files")
         self.archive = self.verified_context = None
         self.saved_path = None
+        self.prepare_search = None
+        self._file_search_config = None
+        self._file_search_revision = 0
         layout = QtWidgets.QVBoxLayout(self)
         self.heading = QtWidgets.QLabel()
         self.heading.setObjectName("heading")
@@ -263,6 +269,8 @@ class StreamDialog(QtWidgets.QDialog):
     def start_live(self):
         if self.busy or self._closing:
             return False
+        if not self._opening and self.prepare_search is not None and not self.prepare_search():
+            return False
         accepted = self.bridge.start_live()
         if accepted:
             self.archive = self.verified_context = None
@@ -336,6 +344,8 @@ class StreamDialog(QtWidgets.QDialog):
         if self.busy or self._closing:
             return False
         new_source = self.bridge.state.can_preview
+        if new_source and not self._opening and self.prepare_search is not None and not self.prepare_search():
+            return False
         accepted = self.bridge.record(path)
         if accepted:
             self.archive = self.verified_context = None
@@ -358,6 +368,74 @@ class StreamDialog(QtWidgets.QDialog):
 
     def stop(self):
         return self.bridge.stop()
+
+    def search_basis(self):
+        if self.archive is not None:
+            identity = (self.archive.preparation.identity if isinstance(self.archive, AttemptReport)
+                        else self.archive.identity)
+            return identity.nominal_fs_hz, identity.retained_bits
+        connection = self.bridge.connection
+        if connection is not None:
+            caps = connection.observed_caps
+            return caps[4], caps[8] if connection.protocol_revision == '0.3' else 12
+        return 50_000, 12
+
+    def search_editable(self):
+        status = self.bridge.state
+        idle = (not self._closing and not self.busy and not self.bridge.metadata_pending
+                and self._record_picker is None and not status.command_pending and not status.stop_pending)
+        if self._opening:
+            return idle and self.archive is not None and not isinstance(self.archive, AttemptReport)
+        return idle and status.can_preview and (self.selection is None or status.ready)
+
+    def search_config(self):
+        if self._opening and self._file_search_config is not None:
+            return self._file_search_config
+        state = self.bridge.state
+        if not state.can_preview and state.phase in ('preview', 'recording', 'draining'):
+            return state.config
+        return self.bridge.search_config or default_event_config(*self.search_basis())
+
+    def original_file_search(self):
+        saved = None if self.verified_context is None else self.verified_context.event_search
+        if saved is not None and saved.algorithm_version == DETECTOR_VERSION:
+            return saved.config
+        return default_event_config(*self.search_basis())
+
+    def search_origin_note(self):
+        if self._opening:
+            saved = None if self.verified_context is None else self.verified_context.event_search
+            origin = ("Параметры поиска не сохранены: используется стандартный поиск."
+                      if saved is None else
+                      "Версия алгоритма неизвестна: используется стандартный поиск."
+                      if saved.algorithm_version != DETECTOR_VERSION else
+                      f"Сохранённые параметры поиска, версия {saved.config_revision}.")
+            if self._file_search_revision:
+                origin += f" Изменён поиск для просмотра, версия {self._file_search_revision}; файл не изменён."
+            return origin + " Индекс пересчитан от начала файла; первые события могут отличаться от live."
+        prefix = (self.bridge.search_reset_notice + "\n") if self.bridge.search_reset_notice else ""
+        if self.selection is not None and self.bridge.connection is None:
+            return prefix + "Сначала подключитесь и дождитесь согласования частоты. Поиск выполняет ПК."
+        return prefix + ("Программный поиск на ПК. Настройте перед запуском потока."
+                if self.search_editable() else
+                "Параметры фиксированы до остановки потока. Это не аппаратный запуск АЦП.")
+
+    def apply_search(self, config):
+        if not self.search_editable():
+            return False
+        validate_config(config, *self.search_basis())
+        if self._opening:
+            self._file_search_config = config
+            self._file_search_revision += 1
+            self.viewer._config = config
+            self._resume()
+            # load_recording issues a fresh source token: no result from an
+            # old scan or cursor read may be published into the new analysis.
+            self.viewer.load_recording(self.archive)
+        elif not self.bridge.set_search_config(config):
+            return False
+        self.search_changed.emit()
+        return True
 
     def toggle_pause(self):
         self._paused = not self._paused
@@ -507,6 +585,7 @@ class StreamDialog(QtWidgets.QDialog):
                     "Запись неполная. Остановка источника не означает, что все отсчёты сохранены.")
                 self.error_label.setText(self._failure_message(failure, status.path))
         self.state_label.setText(text)
+        self.search_changed.emit()
         failure = self.bridge.metadata_error
         self.retry_context_button.setVisible(failure is not None and not self._closing)
         if self._closing and failure is not None and not self._context_prompting:
@@ -544,7 +623,7 @@ class StreamDialog(QtWidgets.QDialog):
         dialog = QtWidgets.QMessageBox(self)
         dialog.setWindowTitle("Контекст записи не сохранён")
         dialog.setText(
-            "Файлы записи не удаляются. Не удалось сохранить имя канала и профиль.\n" +
+            "Файлы записи не удаляются. Не удалось сохранить имя канала, профиль и параметры поиска.\n" +
             str(failure))
         retry = dialog.addButton("Повторить", QtWidgets.QMessageBox.ButtonRole.AcceptRole)
         abandon = dialog.addButton("Закрыть без контекста", QtWidgets.QMessageBox.ButtonRole.DestructiveRole)
@@ -612,10 +691,9 @@ class StreamDialog(QtWidgets.QDialog):
                 self.archive = archive.recording if isinstance(archive, AttemptReport) and archive.recording else archive
                 identity = (self.archive.preparation.identity if isinstance(self.archive, AttemptReport)
                             else self.archive.identity)
-                if self.bridge._default_event_config and identity.nominal_fs_hz in SUPPORTED_SAMPLE_RATES:
-                    # File navigation is recomputed from raw; the journal does
-                    # not store host detector settings or change the raw data.
-                    self.viewer._config = default_event_config(identity.nominal_fs_hz, identity.retained_bits)
+                self._file_search_config = self.original_file_search()
+                self._file_search_revision = 0
+                self.viewer._config = self._file_search_config
                 self.viewer._accept_archive(archive)
                 rec = self.archive
                 if isinstance(rec, AttemptReport):
