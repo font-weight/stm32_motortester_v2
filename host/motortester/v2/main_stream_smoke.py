@@ -8,6 +8,7 @@ import shutil
 import sys
 import tempfile
 import time
+from unittest.mock import patch
 
 from PySide6 import QtCore, QtWidgets
 
@@ -27,6 +28,83 @@ def wait_until(app, predicate, timeout=8):
     return bool(predicate())
 
 
+def check_connection_entry(app, window, output):
+    """Follow the public controls with synthetic wire bytes; never touch COM."""
+    from .serial_smoke import _Factory
+    from .stream_profiles_smoke import ProfilesBackend
+    from .stream_device import StreamDeviceBridge
+    from .stream_ui import StreamDialog
+
+    factory = _Factory(ProfilesBackend)
+
+    class FixtureDialog(StreamDialog):
+        def __init__(self, *args, **kwargs):
+            kwargs["bridge_factory"] = lambda parent, **options: StreamDeviceBridge(
+                parent, fake_backend_factory=factory, **options)
+            super().__init__(*args, **kwargs)
+
+    def answer_port(accept):
+        dialog = app.activeModalWidget()
+        if not isinstance(dialog, QtWidgets.QInputDialog):
+            raise AssertionError("Выбор STM32 не открыл диалог порта")
+        dialog.setTextValue("SYNTHETIC_ENTRY")
+        dialog.accept() if accept else dialog.reject()
+
+    with patch("motortester.v2.device.available_ports", return_value=[("SYNTHETIC_ENTRY", "Fixture")]), \
+         patch("motortester.transport._serial_factory", side_effect=AssertionError("Real legacy transport forbidden")), \
+         patch("serial.serialwin32.Serial.open", side_effect=AssertionError("Real COM forbidden")) as real_open, \
+         patch("motortester.v2.stream_ui.StreamDialog", FixtureDialog):
+        previous = window.waveform_combo.currentData()
+        QtCore.QTimer.singleShot(0, lambda: answer_port(False))
+        window.waveform_combo.setCurrentIndex(window.waveform_combo.findData("stream"))
+        assert window.waveform_combo.currentData() == previous
+        assert window.stream_dialog is None and window.device_panel is None and not factory.backends
+        entry_png = Path(output).with_name(Path(output).stem + "-entry.png")
+        entry_png.parent.mkdir(parents=True, exist_ok=True)
+        app.processEvents()
+        top = window.device_stream_button.mapTo(window, QtCore.QPoint(0, 0))
+        assert window.device_stream_button.isVisible() and 0 < top.y() < 500
+        assert window.grab().save(str(entry_png))
+
+        QtCore.QTimer.singleShot(0, lambda: answer_port(True))
+        window.waveform_combo.setCurrentIndex(window.waveform_combo.findData("stream"))
+        panel = window.stream_dialog
+        assert panel is not None and not panel.isWindow() and window.device_panel is None
+        assert not window.device_active and not factory.backends  # Selection is inert.
+        panel.rate_combo.setCurrentIndex(panel.rate_combo.findData(150_000))
+        panel.connect_button.click()
+        assert wait_until(app, lambda: panel.bridge.state.ready and panel.bridge.connection is not None)
+        connection = panel.bridge.connection
+        backend, = factory.backends
+        assert connection.protocol_revision == "0.3"
+        assert connection.observed_caps == (5, 5, 0, 12, 150_000, 1, 1024, 1, 10, 2)
+        assert backend.commands == [1, 1, 2], "Connect sent acquisition commands"
+        assert panel.bridge.state.validated_samples == 0
+        ready_png = Path(output).with_name(Path(output).stem + "-connected.png")
+        app.processEvents()
+        assert window.grab().save(str(ready_png))
+        panel.close_panel_button.click()
+        assert wait_until(app, lambda: panel.closed and not window._stream_page_active)
+        assert not backend.is_open and window._serial_owner is None
+
+        QtCore.QTimer.singleShot(0, lambda: answer_port(True))
+        window.device_stream_button.click()
+        second = window.stream_dialog
+        assert second is not panel and second.selection.port == "SYNTHETIC_ENTRY"
+        assert window.device_panel is None and len(factory.backends) == 1
+        second.close_panel_button.click()
+        assert wait_until(app, lambda: second.closed and not window._stream_page_active)
+        window.device_button.click()
+        assert "старая прошивка" in window.device_panel.windowTitle()
+        assert "Старая прошивка" in window.device_button.text()
+        window.device_panel.hide()
+        assert real_open.call_count == 0 and len(factory.backends) == 1
+        assert panel.viewer._closed and second.viewer._closed
+        return {"source_selector_routes_stream": True, "cancel_preserves_source": True,
+                "primary_button_routes_stream": True, "legacy_explicit": True,
+                "connect_150k_without_start": True, "connection_owners_closed": True}
+
+
 def main(output, callback_errors):
     app = QtWidgets.QApplication.instance() or QtWidgets.QApplication(["MotortesterV2-main-stream-smoke"])
     app.setStyle("Fusion")
@@ -35,6 +113,7 @@ def main(output, callback_errors):
         window = MainWindow(settings_path=root / "settings.ini")
         window.show()
         window.timer.stop()
+        route_checks = check_connection_entry(app, window, output)
         original = Recording((SignalBlock(0, 50_000, tuple(1000 + i % 100 for i in range(200)),
                                          quality_flags=("unknown_scale",)),),
                              input_profile=UNKNOWN_PROFILE)
@@ -190,7 +269,7 @@ def main(output, callback_errors):
             "executable": sys.executable,
             "callback_errors": callback_errors,
             "cleanup_error": cleanup_error,
-            "execution_kind": "DEMO",
+            "execution_kind": "DEMO + injected serial handshake",
             "physical_stream_verified": False,
             "owners_closed": owners_closed,
             "real_serial_open_calls": 0,
@@ -212,6 +291,7 @@ def main(output, callback_errors):
             "saved_file_sha256": file_sha256,
             "saved_recording_artifact": saved_artifact.name,
             "checks": {
+                **route_checks,
                 "embedded_widget": True,
                 "capture_controls_hidden": True,
                 "main_time_scale": True,

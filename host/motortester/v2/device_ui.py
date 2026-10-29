@@ -25,7 +25,7 @@ class DevicePanel(QtWidgets.QDialog):
     def __init__(self, viewer):
         super().__init__(viewer)
         self.viewer = viewer
-        self.setWindowTitle("STM32 · подключение и захват")
+        self.setWindowTitle("STM32 · старая прошивка · окна 2048")
         self.resize(510, 670)
         self.setStyleSheet("""
             QDialog { background: #0d1d28; }
@@ -35,7 +35,8 @@ class DevicePanel(QtWidgets.QDialog):
             QSpinBox:disabled, QSpinBox:disabled QLineEdit { color: #647d8b; }
         """)
         box = QtWidgets.QVBoxLayout(self)
-        box.addWidget(note("Wire 0.1 · отдельные окна CH1\n"
+        box.addWidget(note("Только старая оконная прошивка · wire 0.1.\n"
+                          "Для текущей потоковой прошивки закройте эту панель и нажмите «Подключить STM32 · поток» в главном окне.\n"
                           "Подключение проверяет версию и возможности. АЦП запускается отдельной кнопкой."))
         row = QtWidgets.QHBoxLayout()
         self.port = Combo()
@@ -213,7 +214,7 @@ class DeviceControlsMixin:
         self._demo_settings = self.capture_settings()
         self.device_active = True
         with QtCore.QSignalBlocker(self.waveform_combo):
-            self.waveform_combo.setCurrentIndex(3)
+            self.waveform_combo.setCurrentIndex(self.waveform_combo.findData("device"))
         self._clear_device_window("Подключение не запускает захват")
         self.raw_view.setChecked(False)
         self.raw_view.setVisible(True)
@@ -397,7 +398,7 @@ class DeviceControlsMixin:
         self.record_button.setText("■  Остановить получение" if running else "▶  Получать окна")
         self.record_button.setEnabled(not self.busy and (bool(ready) or
             (self.device_acquiring and not (snapshot and snapshot.stop_barrier))))
-        self.record_button.setToolTip("Отдельные окна; непрерывная запись STM32 пока недоступна.")
+        self.record_button.setToolTip("Отдельные окна старой прошивки. Непрерывный приём доступен через «Подключить STM32 · поток».")
         self.single_button.setEnabled(bool(ready) and not self.busy)
         self.single_button.setText("◎  Один захват")
         self.save_button.setEnabled(self.mode == 1 and self.single is not None and not running and not self.busy)
@@ -408,9 +409,9 @@ class DeviceControlsMixin:
         self.pause_button.setEnabled(self.mode == 0 and not self.busy)
         self.capture_note.setText("Порог и предыстория — в панели STM32. Аппаратного holdoff нет.")
         if snapshot and snapshot.capabilities:
-            self.device_button.setText(f"STM32 · сборка {snapshot.capabilities.firmware_build}")
+            self.device_button.setText(f"Старая прошивка · {snapshot.capabilities.firmware_build}")
         else:
-            self.device_button.setText("STM32 · подключение")
+            self.device_button.setText("Старая прошивка · окна 2048")
         if snapshot and snapshot.phase is Phase.RECOVERY:
             text = "Ошибка обмена · последнее полное окно"
         elif self.device_acquiring:

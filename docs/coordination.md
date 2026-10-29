@@ -1,3 +1,10 @@
+# V2-09a: области записи
+
+Root: маршруты/подписи GUI, адресный main_stream_smoke, пакет и canonical docs.
+Connection_entry_critic: только docs/reviews/v2-09a-connection-entry-review.md
+и docs/verification/v2-connection-entry/critic.json; независимое ревью без
+реализации, повторных тестов и аппаратных действий. COM/SWD/firmware не входят.
+
 # V2-08: завершённая область записи
 
 Root — GUI-интеграция, курсоры, адресные проверки, пакет и canonical docs.

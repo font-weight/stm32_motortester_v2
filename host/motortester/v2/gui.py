@@ -338,7 +338,8 @@ class MainWindow(DeviceControlsMixin, QtWidgets.QMainWindow):
         self.waveform_combo.addItem("ДЕМО · синусоида", "sine")
         self.waveform_combo.addItem("ДЕМО · прямоугольный", "square")
         self.waveform_combo.addItem("ДЕМО · зажигание", "ignition")
-        self.waveform_combo.addItem("STM32 · COM-порт", "device")
+        self.waveform_combo.addItem("STM32 · непрерывный приём", "stream")
+        self.waveform_combo.addItem("STM32 · старая прошивка (окна)", "device")
         self.waveform_combo.currentIndexChanged.connect(self.change_waveform)
         source_row.addWidget(self.waveform_combo, 1)
         self.file_source_label = label("Просмотр записи", "muted")
@@ -356,6 +357,10 @@ class MainWindow(DeviceControlsMixin, QtWidgets.QMainWindow):
         self.raw_view.toggled.connect(self._raw_view_changed)
         self.raw_view.hide()
         side.addWidget(self.raw_view)
+        # Keep the current firmware entry above the knobs, visible without scrolling.
+        self.device_stream_button = self._button("Подключить STM32 · поток",
+                                                 self.open_device_stream_workspace)
+        side.addWidget(self.device_stream_button)
         controls = QtWidgets.QGridLayout()
         controls.setHorizontalSpacing(4)
         controls.setVerticalSpacing(8)
@@ -417,12 +422,10 @@ class MainWindow(DeviceControlsMixin, QtWidgets.QMainWindow):
         fit_row.addWidget(self.auto_scale_button)
         fit_row.addWidget(self.full_signal_button)
         side.addLayout(fit_row)
-        self.device_button = self._button("STM32 · подключение", self.device_info)
+        self.device_button = self._button("Старая прошивка · окна 2048", self.device_info)
+        self.device_button.setToolTip("Только для прежней оконной прошивки wire 0.1. Для потоковой прошивки используйте «Подключить STM32 · поток».")
         self.stream_button = self._button("Непрерывный приём · ДЕМО", self.open_stream_workspace)
         side.addWidget(self.stream_button)
-        self.device_stream_button = self._button("Непрерывный приём · STM32",
-                                                 self.open_device_stream_workspace)
-        side.addWidget(self.device_stream_button)
         side.addWidget(self.device_button)
         self.gap_button = self._button("ДЕМО · пропуск 100 мс", self.inject_gap)
         self.gap_button.setToolTip("Явно пропустить синтетические отсчёты для проверки записи и отображения разрывов.")
@@ -862,6 +865,13 @@ class MainWindow(DeviceControlsMixin, QtWidgets.QMainWindow):
         if self._stream_page_active:
             return
         kind = self.waveform_combo.currentData()
+        if kind == "stream":
+            # Choosing a port is cancellable and does not change the previous source.
+            previous = "device" if self.device_active else self.source.waveform
+            with QtCore.QSignalBlocker(self.waveform_combo):
+                self.waveform_combo.setCurrentIndex(self.waveform_combo.findData(previous))
+            self.open_device_stream_workspace()
+            return
         if kind == "device":
             if not self.device_active:
                 with QtCore.QSignalBlocker(self.waveform_combo):
@@ -872,11 +882,11 @@ class MainWindow(DeviceControlsMixin, QtWidgets.QMainWindow):
             state = self.device.state
             if state.connected or state.busy or state.has_capture or state.has_incomplete:
                 with QtCore.QSignalBlocker(self.waveform_combo):
-                    self.waveform_combo.setCurrentIndex(3)
+                    self.waveform_combo.setCurrentIndex(self.waveform_combo.findData("device"))
                 return
             if self.dirty and not self._confirm_discard():
                 with QtCore.QSignalBlocker(self.waveform_combo):
-                    self.waveform_combo.setCurrentIndex(3)
+                    self.waveform_combo.setCurrentIndex(self.waveform_combo.findData("device"))
                 return
             self.device_active = False
             self.mode = 0

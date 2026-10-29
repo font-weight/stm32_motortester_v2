@@ -17,7 +17,7 @@ def verify_main_stream_package(*, output, gui_exe, relocated, foreign_cwd,
             Path(smoke.get("executable", "")).resolve() != gui_exe.resolve() or
             smoke.get("callback_errors") != [] or smoke.get("error") or
             smoke.get("cleanup_error") or smoke.get("failures") != [] or
-            smoke.get("execution_kind") != "DEMO" or
+            smoke.get("execution_kind") != "DEMO + injected serial handshake" or
             smoke.get("physical_stream_verified") is not False or
             smoke.get("owners_closed") is not True or
             type(smoke.get("real_serial_open_calls")) is not int or
@@ -27,7 +27,9 @@ def verify_main_stream_package(*, output, gui_exe, relocated, foreign_cwd,
         "embedded_widget", "capture_controls_hidden", "main_time_scale", "main_y_scale",
         "source_cursor_readback", "recording_continued_during_navigation",
         "saved_recording_reopened_in_main_window", "raw_checkbox_restored",
-        "empty_autoscale_handled", "stream_can_reopen", "return_restores_main_controls")
+        "empty_autoscale_handled", "stream_can_reopen", "return_restores_main_controls",
+        "source_selector_routes_stream", "cancel_preserves_source", "primary_button_routes_stream",
+        "legacy_explicit", "connect_150k_without_start", "connection_owners_closed")
     if any(smoke.get("checks", {}).get(key) is not True for key in required):
         raise RuntimeError("Embedded main-window evidence incomplete")
     if (smoke.get("demo_rate_hz") != 50_000 or
@@ -50,12 +52,13 @@ def verify_main_stream_package(*, output, gui_exe, relocated, foreign_cwd,
         raise RuntimeError("Frozen witness changed the sealed package")
     report = dict(
         status="PASS", verification_scope="embedded-main-stream",
-        scope="Frozen Windows DEMO embedded stream view, main-window time/Y knobs, cursors, recording and return; no COM or physical input qualification",
+        scope="Frozen Windows public stream entry and injected150k Connect without START; DEMO embedded view, knobs, cursors, recording and return; no COM or physical input qualification",
         source_commit=revision, portable_zip=portable.name,
         portable_sha256=portable_hash, source_sha256=sha256(source_archive),
         executable_sha256=exe_hashes, extracted_bundle=str(relocated),
         working_directory=str(foreign_cwd), isolated_path=frozen_env["PATH"],
-        frozen_smoke=smoke, png_files={"result.png": png_info(screenshot)},
+        frozen_smoke=smoke, png_files={name: png_info(folder / name) for name in
+                                    ("result.png", "result-entry.png", "result-connected.png")},
         smoke_files=file_tree(folder), windows_host=platform.platform(),
         physical_device_verified=False, public_release_approved=False)
     write_json(output / "build-report.json", report)
