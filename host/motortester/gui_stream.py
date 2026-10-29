@@ -18,7 +18,7 @@ from PySide6 import QtCore, QtWidgets
 import pyqtgraph as pg
 
 from .gui import STYLE, _label
-from .stream_model import StreamError, StreamIdentity, uint
+from .stream_model import StreamBlock, StreamError, StreamIdentity, uint
 from .stream_provenance import profile_for_identity, provenance_text
 from . import stream_recording as storage
 from .stream_recording import AttemptReport, StreamRecording, recover, recover_attempt
@@ -156,6 +156,9 @@ class LiveSnapshot:
     flags: tuple[str, ...] = ()
     raw_available_start: int | None = None
     event_index: LiveEventIndex | None = None
+    # Optional immutable ring copy, uint16 little-endian in the canonical code
+    # domain. Holding this bounded window never holds the receiver or writer.
+    raw_u16le: bytes | None = None
 
     def __post_init__(self):
         key = identity_key(self.identity)
@@ -168,6 +171,10 @@ class LiveSnapshot:
             raise ValueError("Некорректная граница live raw")
         if self.raw_available_start is not None and self.end_sample_index - available > DETAIL_SAMPLES:
             raise ValueError("Live raw превышает бюджет кольца")
+        raw = self.raw_u16le
+        if raw is not None and (type(raw) is not bytes or self.raw_available_start is None or
+                                len(raw) != 2 * (self.end_sample_index - available)):
+            raise ValueError("Raw-копия не соответствует ограниченному live-диапазону")
         index = self.event_index
         if index is not None:
             if type(index) is not LiveEventIndex or self.raw_available_start is None:
@@ -227,6 +234,8 @@ class LiveSnapshot:
                         available <= point.sample_index < self.end_sample_index):
                     raise ValueError("Несогласованные индексы точек")
                 previous = point.sample_index
+                if raw is not None and struct.unpack_from("<H", raw, 2 * (point.sample_index - available))[0] != point.code:
+                    raise ValueError("Точка envelope не совпадает с live raw")
         if env.samples_read:
             accepted_start = max(env.viewport.start, available)
             if (not env.segments or not env.segments[0] or
@@ -264,6 +273,30 @@ class PlotPayload:
     outcome: str
     overview: bool = False
     bin_samples: int = 1
+
+
+@dataclass(frozen=True, slots=True)
+class _HeldReader:
+    """A single GUI-owned recent window, not a reader of the growing journal."""
+    snapshot: LiveSnapshot
+
+    @property
+    def identity(self):
+        return self.snapshot.identity
+
+    @property
+    def first_sample_index(self):
+        return self.snapshot.raw_available_start
+
+    @property
+    def end_sample_index(self):
+        return self.snapshot.end_sample_index
+
+    def iter_raw(self, start_sample_index, end_sample_index, chunk_samples=8192):
+        for start in range(start_sample_index, end_sample_index, chunk_samples):
+            stop = min(start + chunk_samples, end_sample_index)
+            lo, hi = start - self.first_sample_index, stop - self.first_sample_index
+            yield StreamBlock(self.identity, start, self.snapshot.raw_u16le[2 * lo:2 * hi])
 
 
 def _payload(selection, segments, fs, covered_until, outcome, *, overview=False, bin_samples=1):
@@ -523,6 +556,7 @@ class StreamViewerPanel(QtWidgets.QWidget):
         self._updating_plot = False
         self._display_origin = 0
         self._last_live = None
+        self._drawn_live = self._held_live = None
         self._latest_live_sequence = -1
         self._source_failure = None
         self._live_limit_notice = None
@@ -572,7 +606,13 @@ class StreamViewerPanel(QtWidgets.QWidget):
             button.clicked.connect(slot)
             row.addWidget(button)
         layout.addLayout(row)
+        self.view_mode_label = _label("", "muted", wrap=True)
+        layout.addWidget(self.view_mode_label)
         self.plot = pg.PlotWidget(background="#111923")
+        # Async range jobs replace a bounded curve and rebase its local X origin.
+        # Redraw the whole plot viewport so Windows does not leave the newly
+        # exposed area outside the previous curve's dirty rectangle unpainted.
+        self.plot.setViewportUpdateMode(QtWidgets.QGraphicsView.ViewportUpdateMode.FullViewportUpdate)
         self.plot.setObjectName("streamPlot")
         self.plot.setMinimumHeight(220)
         self.plot.setMenuEnabled(False)
@@ -626,6 +666,14 @@ class StreamViewerPanel(QtWidgets.QWidget):
             return bool(self._mailbox.running or self._mailbox.result or self._mailbox.live or
                         self._pending or self._scan is not None)
 
+    @property
+    def holding_live(self):
+        return self._held_live is not None
+
+    def hold_current_view(self):
+        if self._recording is None and self.selection is not None:
+            self.select_range(self.selection.start, self.selection.stop)
+
     def _actions(self):
         loaded = self._identity is not None and self.selection is not None and not self._closed
         self.whole_button.setEnabled(loaded and self._recording is not None)
@@ -647,12 +695,14 @@ class StreamViewerPanel(QtWidgets.QWidget):
         self._event = None
         self._first = self._end = self.selection = None
         self._last_live = None
+        self._drawn_live = self._held_live = None
         self._latest_live_sequence = -1
         self._source_failure = None
         self._live_limit_notice = None
         self._event_notice = None
         self._raw_first = None
         self.follow_tail = False
+        self.view_mode_label.clear()
         with self._mailbox.lock:
             self._mailbox.cancelled = self._cancel
             self._mailbox.live_handle = self._mailbox.live = None
@@ -733,6 +783,7 @@ class StreamViewerPanel(QtWidgets.QWidget):
         self._reset_source()
         self._identity = key
         self.follow_tail = True
+        self.view_mode_label.setText("Живой просмотр")
         handle = LiveHandle(self._source, key)
         with self._mailbox.lock:
             self._mailbox.live_handle = handle
@@ -815,6 +866,10 @@ class StreamViewerPanel(QtWidgets.QWidget):
         self.storage_label.setText(f"Live snapshot #{snapshot.sequence}; потери, заявлено: {loss}; хвост: {snapshot.tail_state}; "
                                    f"флаги: {', '.join(snapshot.flags) or 'не сообщены'}.{scope} Отображение не подтверждает сохранение на диск.")
         self._actions()
+        if self._held_live is not None:
+            # Metadata still advances; the graph remains backed by its own raw
+            # window even after the receive ring has overwritten those samples.
+            return
         if self._event is not None and not self._live_event_available(self._event):
             self._actions()
             return
@@ -844,15 +899,23 @@ class StreamViewerPanel(QtWidgets.QWidget):
         self._submit(_Request(self._source, self._revision, "live", snapshot, operation))
         self._actions()
 
-    def select_range(self, start, stop):
+    def select_range(self, start, stop, *, hold_live=True):
         if self._identity is None or self._first is None or self._first == self._end:
             return
         uint(start); uint(stop)
         if start >= stop:
             raise ValueError("Пустой диапазон просмотра")
         requested_width = stop - start
-        first = self._first if self._recording is not None else self._raw_first
-        width = min(requested_width, self._end - first)
+        if (hold_live and self._recording is None and self._held_live is None and
+                self._drawn_live is not None and self._drawn_live.raw_u16le is not None):
+            self._held_live = self._drawn_live
+        if self._held_live is not None:
+            first, end = self._held_live.raw_available_start, self._held_live.end_sample_index
+            self.view_mode_label.setText("Просмотр удержанного фрагмента · «К хвосту» вернёт свежие данные")
+        else:
+            first = self._first if self._recording is not None else self._raw_first
+            end = self._end
+        width = min(requested_width, end - first)
         if width <= 0:
             self._set_status("В live-памяти нет доступных отсчётов")
             return
@@ -866,7 +929,7 @@ class StreamViewerPanel(QtWidgets.QWidget):
             width = DETAIL_SAMPLES
             start += (requested_width - width) // 2
             self._live_limit_notice = f"Диапазон live ограничен {DETAIL_SAMPLES} отсчётами; более широкий live-обзор недоступен."
-        start = max(first, min(start, self._end - width))
+        start = max(first, min(start, end - width))
         self.selection = Selection(start, start + width)
         self.follow_tail = False
         self._revision += 1
@@ -889,6 +952,11 @@ class StreamViewerPanel(QtWidgets.QWidget):
         selection, recording = self.selection, self._recording
         self.range_label.setText(f"Выбран raw [{selection.start}, {selection.stop}); {selection.width} отсчётов. Ожидание отображения…")
         if recording is None:
+            if self._held_live is not None:
+                held, cancelled = self._held_live, self._cancel
+                self._submit(_Request(self._source, self._revision, "held", held,
+                    lambda: _detail(_HeldReader(held), selection, cancelled)))
+                return
             self.view_requested.emit(selection)
             self._set_status("Ожидание precomputed envelope выбранного диапазона")
             return
@@ -914,8 +982,10 @@ class StreamViewerPanel(QtWidgets.QWidget):
         if width <= 0:
             self._set_status("В live-памяти нет доступных отсчётов")
             return
-        self.select_range(self._end - width, self._end)
+        self._held_live = None
+        self.select_range(self._end - width, self._end, hold_live=False)
         self.follow_tail = True
+        self.view_mode_label.setText("Живой просмотр" if self._recording is None else "")
         if self._last_live is not None:
             self._consume_live(self._last_live)
 
@@ -955,6 +1025,8 @@ class StreamViewerPanel(QtWidgets.QWidget):
         return False
 
     def _select_event(self, event):
+        self._held_live = None
+        self.view_mode_label.setText("Просмотр события" if self._recording is None else "")
         self._event_notice = None
         self._event = event
         self.event_label.setText(f"Пороговое событие #{event.ordinal + 1} (ordinal {event.ordinal}): trigger {event.trigger_index}; исходный контекст [{event.start_index}, {event.end_index}); "
@@ -962,7 +1034,7 @@ class StreamViewerPanel(QtWidgets.QWidget):
                                 f"флаги: {', '.join(event.flags) or 'не выявлены правилом'}. Это не подтверждение полного физического разряда.")
         if self._recording is None and not self._live_event_available(event):
             return
-        self.select_range(event.start_index, event.end_index)
+        self.select_range(event.start_index, event.end_index, hold_live=False)
         self._event = event
 
     def next_event(self):
@@ -1015,6 +1087,8 @@ class StreamViewerPanel(QtWidgets.QWidget):
                 source_matches = source_matches and request.recording is self._recording
             if request.kind == "live":
                 source_matches = source_matches and request.recording.sequence == self._latest_live_sequence
+            if request.kind == "held":
+                source_matches = source_matches and request.recording is self._held_live
             current = source_matches and (request.kind == "scan" or request.revision == self._revision)
             # A stale selection cannot revive pixels, but a read failure still
             # belongs to this exact current source. Do not hide that evidence
@@ -1036,6 +1110,8 @@ class StreamViewerPanel(QtWidgets.QWidget):
                     elif request.kind == "scan":
                         self._accept_scan(result)
                     else:
+                        if request.kind == "live":
+                            self._drawn_live = request.recording
                         self._draw(result)
         with self._mailbox.lock:
             idle = not self._mailbox.running and self._mailbox.result is None
@@ -1098,6 +1174,7 @@ class StreamViewerPanel(QtWidgets.QWidget):
         if self._closed:
             return
         self._closed = True
+        self._drawn_live = self._held_live = self._last_live = None
         self._source += 1
         self._cancel.set()
         self._pending = self._scan = None

@@ -408,6 +408,58 @@ class StreamPanelTests(unittest.TestCase):
         self.assertLess(self.panel.selection.width, old_width)
         self.assertFalse(self.panel.follow_tail)
 
+    def test_held_live_raw_survives_ring_eviction_and_one_wheel_expands_edges(self):
+        recording = self.recording([i % 4096 for i in range(DETAIL_SAMPLES * 3)])
+        def snapshot(sequence, first, stop, width):
+            raw = b"".join(b.raw_u16le for b in recording.iter_raw(first, stop))
+            return LiveSnapshot(recording.identity, sequence, 0, stop,
+                minmax_envelope(recording, Viewport(stop-width, stop), POINT_BUDGET),
+                raw_available_start=first, raw_u16le=raw)
+        handle = self.panel.begin_live(recording.identity)
+        initial = snapshot(1, 0, DETAIL_SAMPLES, 20000)
+        self.panel.post_live_snapshot(handle, initial); self.settle()
+        self.panel.select_range(20000, 30000); self.settle()
+        held = self.panel._held_live
+        self.assertIs(held, initial)
+        before = tuple(tuple(a) for a in self.panel.curve.getData())
+        self.panel.post_live_snapshot(handle,
+            snapshot(2, 2*DETAIL_SAMPLES, 3*DETAIL_SAMPLES, 10000))
+        self.settle()
+        self.assertEqual(before, tuple(tuple(a) for a in self.panel.curve.getData()))
+        self.assertGreater(self.panel._raw_first, self.panel.selection.stop)
+        self.wheel(-120); self.settle()  # No mouse move or second gesture.
+        selected = self.panel.selection
+        self.assertLess(selected.start, 20000)
+        self.assertGreater(selected.stop, 30000)
+        expected = minmax_envelope(recording, Viewport(selected.start, selected.stop), POINT_BUDGET)
+        xs, ys = self.panel.curve.getData()
+        self.assertEqual(tuple(ys), tuple(p.code for p in expected.segments[0]))
+        self.assertEqual(xs[0], 0)
+        self.assertAlmostEqual(xs[-1], (selected.width-1)/50000)
+        self.assertIs(self.panel._held_live, held)
+        self.assertIn("удержанного", self.panel.view_mode_label.text())
+        self.panel.follow()
+        self.panel.post_live_snapshot(handle,
+            snapshot(3, 2*DETAIL_SAMPLES, 3*DETAIL_SAMPLES, selected.width))
+        self.settle()
+        self.assertFalse(self.panel.holding_live)
+        self.assertTrue(self.panel.follow_tail)
+        self.assertEqual(self.panel.selection.stop, 3*DETAIL_SAMPLES)
+        # Swapping source cannot retain a previous raw window with equal codes.
+        self.panel.hold_current_view(); self.settle()
+        self.panel.begin_live(replace(recording.identity, generation=9))
+        self.assertIsNone(self.panel._held_live)
+        self.assertIsNone(self.panel._drawn_live)
+
+    def test_live_raw_copy_rejects_wrong_length_and_envelope_codes(self):
+        recording = self.recording([1234] * 100)
+        snapshot = replace(self.live_snapshot(recording, 1, 0, 100),
+                           raw_available_start=0, raw_u16le=b'\xd2\x04' * 100)
+        for raw in (b'\0'*198, bytearray(snapshot.raw_u16le), b'\0'*200):
+            with self.subTest(kind=type(raw).__name__, size=len(raw)):
+                with self.assertRaises(ValueError):
+                    replace(snapshot, raw_u16le=raw)
+
     def test_actual_drag_and_wheel_change_selection_without_resetting_y(self):
         recording = self.recording(list(range(5000)))
         self.load(recording)

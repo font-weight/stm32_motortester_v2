@@ -1,0 +1,174 @@
+{
+  "schema": "v2-07-viewport-source-evidence-1",
+  "recorded_utc": "2026-10-29T04:07:22.193961+00:00",
+  "scope": "Bounded manual live raw, pause worker polling, full viewport repaint, saved detail-to-overview; Windows DEMO, no hardware.",
+  "failed_attempt": "native01 waited for receiver advancement but not slower GUI metadata; native02 added matching GUI predicate. No production change between01/02.",
+  "final_attempt": "native03 also crosses saved detail/overview boundary and requires FullViewportUpdate; no claim of reproducing exact user saved-file paint fault on old build.",
+  "files": [
+    {
+      "source": "build/v7-unit-result.json",
+      "archive": "docs/verification/v2-viewport/source-01/build/v7-unit-result.json",
+      "bytes": 821,
+      "sha256": "3688379cf55f5e7edc6beb8c60523b0d2c0dcb7acf93037e946c78e43c61a8a0"
+    },
+    {
+      "source": "build/v7-archive-source.py",
+      "archive": "docs/verification/v2-viewport/source-01/build/v7-archive-source.py",
+      "bytes": 2793,
+      "sha256": "056f8d17a93f65bba57c65eaf18e70e1e1df3c80566b5b24acb8899bc61b5934"
+    },
+    {
+      "source": "build/v7-view-native-01/result.json",
+      "archive": "docs/verification/v2-viewport/source-01/build/v7-view-native-01/result.json",
+      "bytes": 1027,
+      "sha256": "c8b9daf7a305735340adb8299da1e0a99ae3977ec6f90d7accf5665d8a9f485b"
+    },
+    {
+      "source": "build/v7-view-native-01/viewport.mtstream",
+      "archive": "docs/verification/v2-viewport/source-01/build/v7-view-native-01/viewport.mtstream",
+      "bytes": 134047,
+      "sha256": "86832d2e02cabb1a96c808012fde378ced7f0331e90b03bb7362d3a4ba6539bb"
+    },
+    {
+      "source": "build/v7-view-native-01/viewport.mtstream.v2.json",
+      "archive": "docs/verification/v2-viewport/source-01/build/v7-view-native-01/viewport.mtstream.v2.json",
+      "bytes": 1777,
+      "sha256": "71ce9dfe6957c6daa755c36e407e3b8c773cadd7d408ca669a1ea8e125eac90b"
+    },
+    {
+      "source": "build/v7-view-native-02/result.json",
+      "archive": "docs/verification/v2-viewport/source-01/build/v7-view-native-02/result.json",
+      "bytes": 2030,
+      "sha256": "0fc223f1e3fe4de38e25abfa235bc6d8d036e8b2fb2a67f5843f32c66ce585df"
+    },
+    {
+      "source": "build/v7-view-native-02/viewport-file.png",
+      "archive": "docs/verification/v2-viewport/source-01/build/v7-view-native-02/viewport-file.png",
+      "bytes": 59350,
+      "sha256": "02d7b818998de5dfa2118858f75ff3583dd44d9f0ae4ab24d2dc01a0f63d7dc0"
+    },
+    {
+      "source": "build/v7-view-native-02/viewport-held.png",
+      "archive": "docs/verification/v2-viewport/source-01/build/v7-view-native-02/viewport-held.png",
+      "bytes": 56839,
+      "sha256": "60f74dc952880170408b2075ab0e9d3d7f80a04f2828e270fe8fc395d3c318d2"
+    },
+    {
+      "source": "build/v7-view-native-02/viewport-paused.png",
+      "archive": "docs/verification/v2-viewport/source-01/build/v7-view-native-02/viewport-paused.png",
+      "bytes": 55219,
+      "sha256": "820d4ab2526c4b891b5dcb4844d7975a8efbaf902bac1d73b6aba32314a0a33d"
+    },
+    {
+      "source": "build/v7-view-native-02/viewport-tail.png",
+      "archive": "docs/verification/v2-viewport/source-01/build/v7-view-native-02/viewport-tail.png",
+      "bytes": 53162,
+      "sha256": "3bc526a74a2a305c42f228fab75737505b522a7504a6fd83e2f67be32a894abb"
+    },
+    {
+      "source": "build/v7-view-native-02/viewport.mtstream",
+      "archive": "docs/verification/v2-viewport/source-01/build/v7-view-native-02/viewport.mtstream",
+      "bytes": 191116,
+      "sha256": "4cc81955e73002eb9317b2664fb8000b9d76d09e1ec435ce9b29d842eef0a1f2"
+    },
+    {
+      "source": "build/v7-view-native-02/viewport.mtstream.v2.json",
+      "archive": "docs/verification/v2-viewport/source-01/build/v7-view-native-02/viewport.mtstream.v2.json",
+      "bytes": 1777,
+      "sha256": "abe90bebb1ee4346eb5abdea56a7d5c084b997f8b5b75c245579c9bbe61b56ae"
+    },
+    {
+      "source": "build/v7-view-native-03/result.json",
+      "archive": "docs/verification/v2-viewport/source-01/build/v7-view-native-03/result.json",
+      "bytes": 2074,
+      "sha256": "bc73d875d1436dd25655733eee5cbf8d1f911b772d01b3cfd2ec120a7a8d0816"
+    },
+    {
+      "source": "build/v7-view-native-03/viewport-file.png",
+      "archive": "docs/verification/v2-viewport/source-01/build/v7-view-native-03/viewport-file.png",
+      "bytes": 54883,
+      "sha256": "dcf0738f2e2cfd814f1c93a3804689b1d3e56a800346472ab333648b25f687c0"
+    },
+    {
+      "source": "build/v7-view-native-03/viewport-held.png",
+      "archive": "docs/verification/v2-viewport/source-01/build/v7-view-native-03/viewport-held.png",
+      "bytes": 54666,
+      "sha256": "5e1c15e4a6bc274e84c4490e24ae04a638cce64b1bc022a046c8263a2282a03d"
+    },
+    {
+      "source": "build/v7-view-native-03/viewport-paused.png",
+      "archive": "docs/verification/v2-viewport/source-01/build/v7-view-native-03/viewport-paused.png",
+      "bytes": 55623,
+      "sha256": "644f7accbe6f2b2f3a0f29ec98bc416264d4c0a84c1450b03c57336f01a4a154"
+    },
+    {
+      "source": "build/v7-view-native-03/viewport-tail.png",
+      "archive": "docs/verification/v2-viewport/source-01/build/v7-view-native-03/viewport-tail.png",
+      "bytes": 53605,
+      "sha256": "57473cbd086fe16f106c36f1b72d3c66046b42027d17b106b31c9806650be820"
+    },
+    {
+      "source": "build/v7-view-native-03/viewport.mtstream",
+      "archive": "docs/verification/v2-viewport/source-01/build/v7-view-native-03/viewport.mtstream",
+      "bytes": 193466,
+      "sha256": "c010bc1d9f6293ebf289427c8180ca7131bf40eba86ed58247a4266f91252607"
+    },
+    {
+      "source": "build/v7-view-native-03/viewport.mtstream.v2.json",
+      "archive": "docs/verification/v2-viewport/source-01/build/v7-view-native-03/viewport.mtstream.v2.json",
+      "bytes": 1777,
+      "sha256": "c6c5b570247e935107b78e417846a6bcd24a4cb80b951a65ea54bfc2a7ff55ba"
+    },
+    {
+      "source": "host/motortester/gui_stream.py",
+      "archive": "docs/verification/v2-viewport/source-01/host/motortester/gui_stream.py",
+      "bytes": 67042,
+      "sha256": "23e4439121f69bd2f0320db85d1ce71308f6c068f11231c63cb72e6ae5a5e027"
+    },
+    {
+      "source": "host/motortester/v2/stream_ui.py",
+      "archive": "docs/verification/v2-viewport/source-01/host/motortester/v2/stream_ui.py",
+      "bytes": 38303,
+      "sha256": "5664a05b98024618fa0ba814c41b02db467e94392543df831e620a1f1b6db5e3"
+    },
+    {
+      "source": "host/motortester/v2/stream_viewport_smoke.py",
+      "archive": "docs/verification/v2-viewport/source-01/host/motortester/v2/stream_viewport_smoke.py",
+      "bytes": 9187,
+      "sha256": "a9b59755ecf22018e00012a697dec6cc9ab42dea41b6c6c209a1185183f863a9"
+    },
+    {
+      "source": "host/tests/test_gui_stream.py",
+      "archive": "docs/verification/v2-viewport/source-01/host/tests/test_gui_stream.py",
+      "bytes": 72391,
+      "sha256": "8bfeccb1a841ac72cabbe4c347a350e97b47bd634b29a120624b2c97cd1f1ba2"
+    },
+    {
+      "source": "host/packaging/v2/build_windows.py",
+      "archive": "docs/verification/v2-viewport/source-01/host/packaging/v2/build_windows.py",
+      "bytes": 32347,
+      "sha256": "fdb9fd99e7769a295854f34887ff2f392147c8b2df65d2e39c788929d22a875e"
+    },
+    {
+      "source": "host/packaging/v2/launcher.py",
+      "archive": "docs/verification/v2-viewport/source-01/host/packaging/v2/launcher.py",
+      "bytes": 786,
+      "sha256": "a75ed83ec5bbfdc63fc1681dcd11f562a4c962150276aa0100358f9f4551a0bf"
+    },
+    {
+      "source": "host/packaging/v2/viewport_package_check.py",
+      "archive": "docs/verification/v2-viewport/source-01/host/packaging/v2/viewport_package_check.py",
+      "bytes": 4035,
+      "sha256": "88c981cbae22afb6c7c3ddf045021bf7cb2012155cc50315c108b7095d83b890"
+    }
+  ],
+  "source_pins": {
+    "host/motortester/gui_stream.py": "23e4439121f69bd2f0320db85d1ce71308f6c068f11231c63cb72e6ae5a5e027",
+    "host/motortester/v2/stream_ui.py": "5664a05b98024618fa0ba814c41b02db467e94392543df831e620a1f1b6db5e3",
+    "host/motortester/v2/stream_viewport_smoke.py": "a9b59755ecf22018e00012a697dec6cc9ab42dea41b6c6c209a1185183f863a9",
+    "host/tests/test_gui_stream.py": "8bfeccb1a841ac72cabbe4c347a350e97b47bd634b29a120624b2c97cd1f1ba2",
+    "host/packaging/v2/build_windows.py": "fdb9fd99e7769a295854f34887ff2f392147c8b2df65d2e39c788929d22a875e",
+    "host/packaging/v2/launcher.py": "a75ed83ec5bbfdc63fc1681dcd11f562a4c962150276aa0100358f9f4551a0bf",
+    "host/packaging/v2/viewport_package_check.py": "88c981cbae22afb6c7c3ddf045021bf7cb2012155cc50315c108b7095d83b890"
+  }
+}

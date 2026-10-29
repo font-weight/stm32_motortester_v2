@@ -1,0 +1,23 @@
+{
+  "status": "FAIL",
+  "platform": "win32",
+  "windows": "Windows-10-10.0.19045-SP0",
+  "qt_platform": "windows",
+  "frozen": false,
+  "executable": "C:\\Users\\Alexandr\\Desktop\\New folder\\универ\\мотортестер 2\\.venv\\Scripts\\python.exe",
+  "execution_kind": "DEMO",
+  "physical_stream_verified": false,
+  "callback_errors": [],
+  "checks": {},
+  "error": "Traceback (most recent call last):\n  File \"C:\\Users\\Alexandr\\Desktop\\New folder\\универ\\мотортестер 2\\host\\motortester\\v2\\stream_viewport_smoke.py\", line 85, in run\n    assert panel._raw_first > held.end_sample_index\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError\n",
+  "files": {
+    "viewport.mtstream": {
+      "bytes": 134047,
+      "sha256": "86832d2e02cabb1a96c808012fde378ced7f0331e90b03bb7362d3a4ba6539bb"
+    },
+    "viewport.mtstream.v2.json": {
+      "bytes": 1777,
+      "sha256": "71ce9dfe6957c6daa755c36e407e3b8c773cadd7d408ca669a1ea8e125eac90b"
+    }
+  }
+}

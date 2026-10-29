@@ -218,3 +218,8 @@ docs/reviews/v2-06u*.md -text
 tests/v2-stream-firmware/collect_local_model.c -text
 tests/v2-stream-firmware/check_collect_local.py -text
 host/tests/collect_identity_check.py -text
+docs/verification/v2-viewport/** -text whitespace=cr-at-eol
+docs/verification/v2-viewport/**/*.png binary
+docs/verification/v2-viewport/**/*.mtstream binary
+docs/verification/v2-viewport/**/*.log -whitespace
+docs/reviews/v2-07*.md -text

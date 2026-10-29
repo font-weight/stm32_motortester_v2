@@ -1,0 +1,61 @@
+{
+  "status": "PASS",
+  "platform": "win32",
+  "windows": "Windows-10-10.0.19045-SP0",
+  "qt_platform": "windows",
+  "frozen": false,
+  "executable": "C:\\Users\\Alexandr\\Desktop\\New folder\\универ\\мотортестер 2\\.venv\\Scripts\\python.exe",
+  "execution_kind": "DEMO",
+  "physical_stream_verified": false,
+  "callback_errors": [],
+  "checks": {
+    "held_after_ring_eviction": true,
+    "one_wheel_repaints_live_edges": true,
+    "drag_repaints_held": true,
+    "paused_zoom_repaints_while_recording": true,
+    "resume_returns_fresh_tail": true,
+    "one_wheel_repaints_file_edges": true,
+    "source_swap_clears_held_raw": true,
+    "recording_unchanged": true
+  },
+  "live": {
+    "held_first": 0,
+    "held_end": 61952,
+    "held_bytes": 123904,
+    "held_raw_sha256": "a5556ca728e86fe9c0bc72ab17c27165e408277991922032a5e99bc12b49d3e0",
+    "received_before": 70272,
+    "received_after": 133248
+  },
+  "recording": {
+    "sha256": "4cc81955e73002eb9317b2664fb8000b9d76d09e1ec435ce9b29d842eef0a1f2",
+    "samples": 94511
+  },
+  "owners_closed": true,
+  "real_serial_open_calls": 0,
+  "files": {
+    "viewport-file.png": {
+      "bytes": 59350,
+      "sha256": "02d7b818998de5dfa2118858f75ff3583dd44d9f0ae4ab24d2dc01a0f63d7dc0"
+    },
+    "viewport-held.png": {
+      "bytes": 56839,
+      "sha256": "60f74dc952880170408b2075ab0e9d3d7f80a04f2828e270fe8fc395d3c318d2"
+    },
+    "viewport-paused.png": {
+      "bytes": 55219,
+      "sha256": "820d4ab2526c4b891b5dcb4844d7975a8efbaf902bac1d73b6aba32314a0a33d"
+    },
+    "viewport-tail.png": {
+      "bytes": 53162,
+      "sha256": "3bc526a74a2a305c42f228fab75737505b522a7504a6fd83e2f67be32a894abb"
+    },
+    "viewport.mtstream": {
+      "bytes": 191116,
+      "sha256": "4cc81955e73002eb9317b2664fb8000b9d76d09e1ec435ce9b29d842eef0a1f2"
+    },
+    "viewport.mtstream.v2.json": {
+      "bytes": 1777,
+      "sha256": "abe90bebb1ee4346eb5abdea56a7d5c084b997f8b5b75c245579c9bbe61b56ae"
+    }
+  }
+}

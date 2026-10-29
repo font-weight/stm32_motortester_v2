@@ -315,7 +315,9 @@ class StreamDialog(QtWidgets.QDialog):
         self._paused = not self._paused
         self.pause_button.setText("Продолжить просмотр" if self._paused else "Пауза просмотра")
         if self._paused:
-            self.viewer._timer.stop()
+            # Pause ingestion, not the GUI worker pump: held/file zoom still
+            # needs completed range jobs to repaint without another gesture.
+            self.viewer.hold_current_view()
         else:
             self.viewer._timer.start()
             self.viewer.follow()
@@ -345,7 +347,7 @@ class StreamDialog(QtWidgets.QDialog):
                                source.config, source.events, source.detector, EVENT_CAPACITY)
         snapshot = LiveSnapshot(source.identity, source.sequence, source.first, source.end,
                                 result.envelope, source.loss_samples, source.tail_state,
-                                source.flags, source.raw_first, index)
+                                source.flags, source.raw_first, index, source.raw)
         self.viewer.post_live_snapshot(self._handle, snapshot)
 
     def _view_requested(self, selection):
@@ -354,10 +356,11 @@ class StreamDialog(QtWidgets.QDialog):
     def _publish_view(self):
         selection = self.viewer.selection
         if self._revision is not None and selection is not None and not self._opening and not self._closing:
-            key = (self._revision, selection.start, selection.stop, self.viewer.follow_tail)
+            follow = self.viewer.follow_tail or self.viewer.holding_live
+            key = (self._revision, selection.start, selection.stop, follow)
             if key != self._sent_view:
                 self.bridge.controller.request_view(self._revision, selection.start, selection.stop,
-                                                     follow=self.viewer.follow_tail)
+                                                     follow=follow)
                 self._sent_view = key
 
     def _state(self, status):

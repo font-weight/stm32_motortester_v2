@@ -1,0 +1,62 @@
+{
+  "status": "PASS",
+  "platform": "win32",
+  "windows": "Windows-10-10.0.19045-SP0",
+  "qt_platform": "windows",
+  "frozen": false,
+  "executable": "C:\\Users\\Alexandr\\Desktop\\New folder\\универ\\мотортестер 2\\.venv\\Scripts\\python.exe",
+  "execution_kind": "DEMO",
+  "physical_stream_verified": false,
+  "callback_errors": [],
+  "checks": {
+    "held_after_ring_eviction": true,
+    "one_wheel_repaints_live_edges": true,
+    "drag_repaints_held": true,
+    "paused_zoom_repaints_while_recording": true,
+    "resume_returns_fresh_tail": true,
+    "file_detail_to_overview_edges": true,
+    "one_wheel_repaints_file_edges": true,
+    "source_swap_clears_held_raw": true,
+    "recording_unchanged": true
+  },
+  "live": {
+    "held_first": 0,
+    "held_end": 62336,
+    "held_bytes": 124672,
+    "held_raw_sha256": "8a8422b9f509050396fbe87a6e991076204c8550b7d208cab58f7062c044923e",
+    "received_before": 68992,
+    "received_after": 134400
+  },
+  "recording": {
+    "sha256": "c010bc1d9f6293ebf289427c8180ca7131bf40eba86ed58247a4266f91252607",
+    "samples": 95686
+  },
+  "owners_closed": true,
+  "real_serial_open_calls": 0,
+  "files": {
+    "viewport-file.png": {
+      "bytes": 54883,
+      "sha256": "dcf0738f2e2cfd814f1c93a3804689b1d3e56a800346472ab333648b25f687c0"
+    },
+    "viewport-held.png": {
+      "bytes": 54666,
+      "sha256": "5e1c15e4a6bc274e84c4490e24ae04a638cce64b1bc022a046c8263a2282a03d"
+    },
+    "viewport-paused.png": {
+      "bytes": 55623,
+      "sha256": "644f7accbe6f2b2f3a0f29ec98bc416264d4c0a84c1450b03c57336f01a4a154"
+    },
+    "viewport-tail.png": {
+      "bytes": 53605,
+      "sha256": "57473cbd086fe16f106c36f1b72d3c66046b42027d17b106b31c9806650be820"
+    },
+    "viewport.mtstream": {
+      "bytes": 193466,
+      "sha256": "c010bc1d9f6293ebf289427c8180ca7131bf40eba86ed58247a4266f91252607"
+    },
+    "viewport.mtstream.v2.json": {
+      "bytes": 1777,
+      "sha256": "c6c5b570247e935107b78e417846a6bcd24a4cb80b951a65ea54bfc2a7ff55ba"
+    }
+  }
+}

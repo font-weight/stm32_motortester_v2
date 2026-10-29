@@ -241,8 +241,8 @@ def main(argv=None):
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--output", type=Path, default=REPOSITORY / "build" / "v2w",
                         help="New short output path (Windows path limits); never removes an existing directory")
-    parser.add_argument("--verification", choices=("full", "profiles"), default="full",
-                        help="Use the focused profile-selection/packed-data GUI check for V2-06i")
+    parser.add_argument("--verification", choices=("full", "profiles", "viewport"), default="full",
+                        help="Use only the focused changed-flow GUI check when appropriate")
     args = parser.parse_args(argv)
     if (sys.platform != "win32" or platform.machine().upper() not in ("AMD64", "X86_64")
             or sys.maxsize <= 2**32 or sys.version_info[:3] != EXPECTED_PYTHON
@@ -366,6 +366,16 @@ def main(argv=None):
     frozen_env["PATH"] = str(system_root / "System32")
     gui_exe, inspect_exe = relocated / gui_name, relocated / inspect_name
     exe_hashes = {name: expected_tree[name] for name in (gui_name, inspect_name)}
+    if args.verification == "viewport":
+        from viewport_package_check import verify_viewport_package
+        return verify_viewport_package(
+            output=output, gui_exe=gui_exe, relocated=relocated,
+            foreign_cwd=foreign_cwd, frozen_env=frozen_env, run=run,
+            portable=portable, portable_hash=portable_hash,
+            expected_tree=expected_tree, source_archive=source_archive,
+            revision=revision, exe_hashes=exe_hashes, log=log,
+            file_tree=file_tree, png_info=png_info, read_json=read_json,
+            sha256=sha256, write_json=write_json)
     if args.verification == "profiles":
         # Only the changed selector, protocol and recording path need a new
         # frozen witness. Keep the older full verification available unchanged.
