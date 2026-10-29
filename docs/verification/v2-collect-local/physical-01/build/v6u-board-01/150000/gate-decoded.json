@@ -1,0 +1,152 @@
+{
+  "schema": "motortester-sk-usb-gate-v1-offline",
+  "status": "VALID_WITH_LIMITS",
+  "accepted_frozen_record": true,
+  "errors": [],
+  "warnings": [
+    "observation_cap",
+    "last_decision_is_historical_not_applicable_to_held"
+  ],
+  "physical_identity_verified": false,
+  "timing_qualified": false,
+  "raw": {
+    "magic": 1297368881,
+    "flags": 2095,
+    "publication_serial": 154,
+    "event_cycle": 515082833,
+    "total_len": 384,
+    "queued_len": 256,
+    "evaluated_age_us": 358,
+    "remaining_budget": 2,
+    "decision": 2
+  },
+  "history": {
+    "publication_serial": 154,
+    "decision": "resumed",
+    "transfer_association_active_before_N_CLOSING": true,
+    "total_len": 384,
+    "queued_len_before_IN_handler_or_after_publication": 256,
+    "evaluated_TIM2_age_us": 358,
+    "remaining_budget": 2,
+    "zlp": false,
+    "metadata_valid": true
+  },
+  "nominal_event_timing": {
+    "event_from_begin_cycles": 18037846,
+    "event_to_N_close_cycles": 180,
+    "event_to_N_close_us_at_assumed_72MHz": 2.5,
+    "qualification": "Conditional no-halt, no-reset, less-than-one-DWT-wrap arithmetic. Event stamp follows publication/decision; not IRQ duration, calibrated time or atomic bank sampling."
+  },
+  "pre_closing_episode_applicable": false,
+  "current64_causal_attribution_available": false,
+  "same_episode_as_later64_proven": false,
+  "first_sha256": "b487c40e9afe44b571534c652e6abf150a79d49b1cffe0d2dc64e86569007f44",
+  "second_sha256": "b487c40e9afe44b571534c652e6abf150a79d49b1cffe0d2dc64e86569007f44",
+  "paired_progress": {
+    "schema": "motortester-sg-progress-v1-offline",
+    "errors": [],
+    "warnings": [
+      "cap_overshoot",
+      "checkpoint_freeze_not_acquisition_stop"
+    ],
+    "accepted_frozen_record": true,
+    "physical_identity_verified": false,
+    "timing_qualified": false,
+    "raw": {
+      "magic": 1297370673,
+      "flags": 2572,
+      "generation": 3,
+      "nonce_low": 3832752836,
+      "nonce_high": 2830721650,
+      "begin_cycle": 497044987,
+      "end_cycle": 515083013,
+      "prepare_cycles": 6245153,
+      "positive_bytes": 47493,
+      "last_positive_cycle": 515037955,
+      "max_positive_gap_cycles": 682612,
+      "prepare_count": 315,
+      "positive_count": 142,
+      "zero_space_count": 53,
+      "zero_other_count": 0,
+      "tx_offset": 768,
+      "tx_length": 1335,
+      "stage_count": 1024,
+      "fifo_free": 320,
+      "stage_phase": 4,
+      "queue_used": 4,
+      "snapshot_bits": 1,
+      "close_kind": 5
+    },
+    "nominal_timing": {
+      "elapsed_cycles": 18038026,
+      "elapsed_ms_at_assumed_72MHz": 250.5281388888889,
+      "completed_prepare_us_at_assumed_72MHz": 86738.23611111111,
+      "max_no_positive_us_at_assumed_72MHz": 9480.722222222223,
+      "close_tail_no_positive_cycles": 45058,
+      "qualification": "Conditional modulo arithmetic: assumes uninterrupted DWT and less than one wrap. Includes IRQ and observer work; not CPU share, calibrated time or WCET."
+    },
+    "first_sha256": "0e203dac588388945487a5653ed944831010ddbafbafab6c38a34f29e2088244",
+    "second_sha256": "0e203dac588388945487a5653ed944831010ddbafbafab6c38a34f29e2088244",
+    "nonce_hex": "a8b96272e4732ac4",
+    "raw_flag_names": [
+      "have_positive",
+      "core_snapshot",
+      "cap_overshoot"
+    ],
+    "close_kind": "cap",
+    "primary_reason": 0,
+    "expected_build": "0x5632534e",
+    "declared_image_sha256": "abc20c98a870c082fce3cb6fab8e0789aa7bd42e53c5bf342861d0c9d3c37714",
+    "core_snapshot": {
+      "tx_offset": 768,
+      "tx_length": 1335,
+      "stage_count": 1024,
+      "queue_used": 4,
+      "stage_phase": "ready",
+      "start_ack_pending": false
+    },
+    "USB_snapshot": {
+      "fifo_free_bytes": 320,
+      "held": false,
+      "deferred": false,
+      "task_ready": false
+    },
+    "status": "VALID_WITH_LIMITS",
+    "limits": [
+      "These are saved bytes and declared identity pins; physical image/readback and operator chronology are separate evidence.",
+      "positive_bytes are known DATA FIFO acceptance before freeze, not USB delivery, complete frames or committed sample prefix.",
+      "Unknown writes and unsaved partial prepare time cannot be reconstructed from zero counts.",
+      "The final no-positive interval includes the tail through first close; without positives it starts at begin.",
+      "250ms cap is a checkpoint for observation only; actual end and overshoot are retained.",
+      "No throughput fix, losslessness, analog accuracy or calibrated sampling rate follows from a valid record."
+    ]
+  },
+  "expected_build": "0x5632534e",
+  "declared_image_sha256": "abc20c98a870c082fce3cb6fab8e0789aa7bd42e53c5bf342861d0c9d3c37714",
+  "nonce_hex": "a8b96272e4732ac4",
+  "generation": 3,
+  "raw_flag_names": [
+    "has_publication",
+    "transfer_active",
+    "age_valid",
+    "observation_cap"
+  ],
+  "decision": "resumed",
+  "later_USB64_snapshot": {
+    "fifo_free_bytes": 320,
+    "held": false,
+    "deferred": false,
+    "task_ready": false
+  },
+  "later_snapshot_relation": "historical_decision_not_applicable_to_held",
+  "limits": [
+    "Gate24 has no embedded session/image identity: saved64/136, declared pins, exact source/readback and single-boot chronology are separate evidence.",
+    "The publication serial is an EP0x82 transfer cookie, not DATA sequence, sample count or USB packet count; queued bytes are staged in PMA, not host delivery.",
+    "APPLICABLE names the last episode before N CLOSING only. USB64 is later: HELD0 exposes skew, HELD1 never proves the same episode. Current64 attribution is always unavailable.",
+    "Grant, other ISR, failed submit, lifecycle and sticky-invalid history cannot be treated as the current held cause. Unknown fields stay unknown.",
+    "CAP is an observation checkpoint, not acquisition stop; this bank cannot explain a later failure.",
+    "Evaluated age is the existing modulo TIM2 decision operand, not a fresh freeze-time measurement or a 500us WCET guarantee.",
+    "No stable sampling/USB throughput, losslessness or analog accuracy follows from a valid diagnostic record."
+  ],
+  "legacy_report_sha256": "b08f4755d5e1381921fa81674846ddf1aa9d647e4c2c7fcc56311f88209618c6"
+}

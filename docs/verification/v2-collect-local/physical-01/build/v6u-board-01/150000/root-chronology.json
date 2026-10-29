@@ -1,0 +1,34 @@
+{
+  "schema": "v2-06u2-root-chronology-1",
+  "recorded_utc": "2026-10-29T03:30:29.381795+00:00",
+  "operator": "root",
+  "source_commit": "308406d8627fc2aedc6e8eb7abd833e1f229102f",
+  "plan_sha256": "392a2321858e9524b8b2760cad6454d65f9f0af7d08bdbd5057063119dd2f6c5",
+  "installation_manifest_sha256": "c3607b5c8bb02a37121f375773c7e01836d883c5dd8e210a5d6e3c19f383b316",
+  "actual_SN_reply_record_sha256": "532824f79db98db0c3ff1ce67039153059c88c4a9afeb6acd9683a58709c06f6",
+  "fresh_pretrial_inventory_sha256": "89ad235bc1f1dd1df34e03a569301c055cc58f2ba20a979a4507ba64d1c784b3",
+  "one_trial_started_utc": "2026-10-29T03:26:43.321390+00:00",
+  "one_trial_finished_utc": "2026-10-29T03:27:16.723586+00:00",
+  "first_SWD_read_started_utc": "2026-10-29T03:28:22.931834+00:00",
+  "root_observed_sequence": [
+    "New actual SN cold-cycle reply received (not old SL reply)",
+    "Fresh COM6/code0 and one ST-Link, no app/capture owners",
+    "One run_trial invocation, one150k mode5 requested30s START",
+    "Waited for trial process to complete with PASS and owners_closed",
+    "One offline saved-data analysis PASS with coherent normal END/STOP/ACK and fresh Open",
+    "Only then root_read_closed: independent pairs136/64/24 and stopped registers",
+    "No additional START, reset, flash or rollback"
+  ],
+  "SWD_or_halt_during_active": false,
+  "ADC_DR_read": false,
+  "retained_image": "SN/0x5632534e, stopped after normal host STOP",
+  "physical_scope": "One30s150k mode5 DATA1024 record with PA0 unconnected, Windows10 COM6. No external timing/analog calibration or long-duration claim.",
+  "unknown_produced_tail_preserved": true,
+  "diagnostic_cap_is_checkpoint_not_stop": true,
+  "limits": [
+    "Historical N64/G24 stop observation near250ms, not end of30s",
+    "Legacy max queue occupancy8 is not an overflow fault",
+    "One passing trial does not certify all operating conditions,50/100SN,GUI load or analog input",
+    "physical-analysis.md heading V2-06s is a retained cosmetic label from frozen helper; exact SN/build is explicit in body/JSON"
+  ]
+}

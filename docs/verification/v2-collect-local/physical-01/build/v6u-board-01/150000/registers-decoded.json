@@ -1,0 +1,55 @@
+{
+  "scope": "Offline post-owner-close stopped state only; no hardware access",
+  "sample_rate_hz_expected": 150000,
+  "acquisition_mode_expected": 5,
+  "deadline_us_exclusive": 3413,
+  "expected_psc_arr": [
+    47,
+    9
+  ],
+  "registers": {
+    "TIM3_CR1": 0,
+    "TIM3_PSC": 47,
+    "TIM3_ARR": 9,
+    "ADC_CR2": 0,
+    "ADC_SMPR1": 0,
+    "ADC_SMPR2": 4,
+    "DMA_CCR": 9632,
+    "RCC_APB2RSTR": 0,
+    "RCC_APB1RSTR": 0,
+    "RCC_AHBENR": 21,
+    "RCC_APB2ENR": 516,
+    "RCC_APB1ENR": 8388611
+  },
+  "checks": {
+    "TIM3_CEN_off": true,
+    "TIM3_rate_registers": true,
+    "ADC_off": true,
+    "ADC_sample_PA0": true,
+    "DMA_off": true,
+    "DMA_clock": true,
+    "ADC_GPIOA_clocks": true,
+    "TIM3_clock": true,
+    "ADC_reset_released": true,
+    "TIM3_reset_released": true,
+    "legacy136_pair_equal": true
+  },
+  "all_checks": true,
+  "owner_closed_asserted_by_saved_result": true,
+  "inputs_sha256": {
+    "run/result.json": "64e4bcd7e328dbfc28027507497078bfd9197da905a4b66ca7d716fa2c680f9a",
+    "tim3.bin": "df9ad576bf535386fae8c2d4e6afb2a27c969bafe47dd413d13754601be8cd30",
+    "adc.bin": "b389a6884b289d4b53e9b36853b9a933c640fa7a5abe584f859a56c6768c01ba",
+    "dma.bin": "2a00f7e9e2226f3fec1337bd7a97d58d3453fe9dcc2186400a7ec5dc7e9a4e3e",
+    "rcc.bin": "1e24249e3619f46e4291c93fac339276c89ad2a136a324180aa83757fc71a367",
+    "diagnostics-first.bin": "33f15ec0c6f2e027f16cc943438789ea7a58db35d2ef39f26119dfb0aecb9e29",
+    "diagnostics-second.bin": "33f15ec0c6f2e027f16cc943438789ea7a58db35d2ef39f26119dfb0aecb9e29"
+  },
+  "hardware_procedure_facts_generated": false,
+  "limitations": [
+    "Nominal mode expectation; not physical rate or ADC settling calibration.",
+    "Legacy136 build/nonce/generation/fault/deadline validation is a separate decoder step.",
+    "Saved owner-close evidence does not establish when SWD was used; root records actual procedure separately.",
+    "No ADC_DR read and no claim that equal dumps authenticate the physical image."
+  ]
+}

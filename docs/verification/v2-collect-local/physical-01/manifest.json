@@ -1,0 +1,392 @@
+{
+  "schema": "v2-06u2-physical-evidence-1",
+  "scope": "Completed one150k30s SN trial. Probe/offline PASS; independent physical review separate. No analog/tail completeness/universal stability claim.",
+  "references": [
+    {
+      "path": "docs/verification/v2-collect-local/production-01/manifest.json",
+      "sha256": "d4de6d4830efdc7372f7db3bda452b5a1b7cdaf959d7bcf8d2a85759754ac11d"
+    },
+    {
+      "path": "docs/verification/v2-collect-local/plan-01/manifest.json",
+      "sha256": "a714469107e2f2c34250617cb25da19e2503b83b3d0cd2dc6014416fec82928f"
+    },
+    {
+      "path": "docs/verification/v2-collect-local/installation-01/manifest.json",
+      "sha256": "c3607b5c8bb02a37121f375773c7e01836d883c5dd8e210a5d6e3c19f383b316"
+    }
+  ],
+  "files": [
+    {
+      "source": "build/v6u-board-01/150000/adc.bin",
+      "archive": "docs/verification/v2-collect-local/physical-01/build/v6u-board-01/150000/adc.bin",
+      "bytes": 12,
+      "sha256": "b389a6884b289d4b53e9b36853b9a933c640fa7a5abe584f859a56c6768c01ba"
+    },
+    {
+      "source": "build/v6u-board-01/150000/adc.invocation.json",
+      "archive": "docs/verification/v2-collect-local/physical-01/build/v6u-board-01/150000/adc.invocation.json",
+      "bytes": 382,
+      "sha256": "79f87d32cd2e17b0294e001ef226f6b1790ec90d3290d86ebfced3ca5b2481e6"
+    },
+    {
+      "source": "build/v6u-board-01/150000/adc.log",
+      "archive": "docs/verification/v2-collect-local/physical-01/build/v6u-board-01/150000/adc.log",
+      "bytes": 881,
+      "sha256": "956b3e7535ab5e70ce639764ab9e4663f71ec4ef851b8d69827c8ffbd6f66adf"
+    },
+    {
+      "source": "build/v6u-board-01/150000/adc.stdout.bin",
+      "archive": "docs/verification/v2-collect-local/physical-01/build/v6u-board-01/150000/adc.stdout.bin",
+      "bytes": 659,
+      "sha256": "b84bd382b002eae01f6702f5756fa6da2b99e8a9465053726c7ac829435d5c7a"
+    },
+    {
+      "source": "build/v6u-board-01/150000/diagnostics-decoded.json",
+      "archive": "docs/verification/v2-collect-local/physical-01/build/v6u-board-01/150000/diagnostics-decoded.json",
+      "bytes": 9402,
+      "sha256": "b08f4755d5e1381921fa81674846ddf1aa9d647e4c2c7fcc56311f88209618c6"
+    },
+    {
+      "source": "build/v6u-board-01/150000/diagnostics-decoder-stderr.txt",
+      "archive": "docs/verification/v2-collect-local/physical-01/build/v6u-board-01/150000/diagnostics-decoder-stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "source": "build/v6u-board-01/150000/diagnostics-first.bin",
+      "archive": "docs/verification/v2-collect-local/physical-01/build/v6u-board-01/150000/diagnostics-first.bin",
+      "bytes": 136,
+      "sha256": "33f15ec0c6f2e027f16cc943438789ea7a58db35d2ef39f26119dfb0aecb9e29"
+    },
+    {
+      "source": "build/v6u-board-01/150000/diagnostics-first.invocation.json",
+      "archive": "docs/verification/v2-collect-local/physical-01/build/v6u-board-01/150000/diagnostics-first.invocation.json",
+      "bytes": 396,
+      "sha256": "95bb068b946100759c94a77915a98d2a0ac309a9b2ba734e29e28f172ec4c5d7"
+    },
+    {
+      "source": "build/v6u-board-01/150000/diagnostics-first.log",
+      "archive": "docs/verification/v2-collect-local/physical-01/build/v6u-board-01/150000/diagnostics-first.log",
+      "bytes": 909,
+      "sha256": "181bb0a3fbd392d0de1355ad6a9c28c5b8675425af6b33000eb0e10f58b5feee"
+    },
+    {
+      "source": "build/v6u-board-01/150000/diagnostics-first.stdout.bin",
+      "archive": "docs/verification/v2-collect-local/physical-01/build/v6u-board-01/150000/diagnostics-first.stdout.bin",
+      "bytes": 687,
+      "sha256": "4925a9901891ac223ff761f8210ff639c4dded17bd9b02f3816f2dbca0e0c373"
+    },
+    {
+      "source": "build/v6u-board-01/150000/diagnostics-second.bin",
+      "archive": "docs/verification/v2-collect-local/physical-01/build/v6u-board-01/150000/diagnostics-second.bin",
+      "bytes": 136,
+      "sha256": "33f15ec0c6f2e027f16cc943438789ea7a58db35d2ef39f26119dfb0aecb9e29"
+    },
+    {
+      "source": "build/v6u-board-01/150000/diagnostics-second.invocation.json",
+      "archive": "docs/verification/v2-collect-local/physical-01/build/v6u-board-01/150000/diagnostics-second.invocation.json",
+      "bytes": 398,
+      "sha256": "4629d9fe873d0ade85c2e90202074d101b8b4535eee6dcd989d3f01f9bfa59dc"
+    },
+    {
+      "source": "build/v6u-board-01/150000/diagnostics-second.log",
+      "archive": "docs/verification/v2-collect-local/physical-01/build/v6u-board-01/150000/diagnostics-second.log",
+      "bytes": 911,
+      "sha256": "45018ef023ce5916f4008cf0aa48059089b27f46f3844a350ce8ffa190deda7b"
+    },
+    {
+      "source": "build/v6u-board-01/150000/diagnostics-second.stdout.bin",
+      "archive": "docs/verification/v2-collect-local/physical-01/build/v6u-board-01/150000/diagnostics-second.stdout.bin",
+      "bytes": 689,
+      "sha256": "a2130ee308f03c82648b1723f8916854c6713d71d93f4fdfb0a7fc54bb81608b"
+    },
+    {
+      "source": "build/v6u-board-01/150000/dma.bin",
+      "archive": "docs/verification/v2-collect-local/physical-01/build/v6u-board-01/150000/dma.bin",
+      "bytes": 16,
+      "sha256": "2a00f7e9e2226f3fec1337bd7a97d58d3453fe9dcc2186400a7ec5dc7e9a4e3e"
+    },
+    {
+      "source": "build/v6u-board-01/150000/dma.invocation.json",
+      "archive": "docs/verification/v2-collect-local/physical-01/build/v6u-board-01/150000/dma.invocation.json",
+      "bytes": 383,
+      "sha256": "dcbfd656c4b12ad93a15482f2a28883bdb1946e43f60348c4e65ed74b1ec6025"
+    },
+    {
+      "source": "build/v6u-board-01/150000/dma.log",
+      "archive": "docs/verification/v2-collect-local/physical-01/build/v6u-board-01/150000/dma.log",
+      "bytes": 881,
+      "sha256": "e8b0ffff490cfd85162a06d709c4d3cb72585cc79b645e71154e602c6627c9aa"
+    },
+    {
+      "source": "build/v6u-board-01/150000/dma.stdout.bin",
+      "archive": "docs/verification/v2-collect-local/physical-01/build/v6u-board-01/150000/dma.stdout.bin",
+      "bytes": 659,
+      "sha256": "0d9e57faf9d2d677117286b481a9b182f12568eca7fa067af3db690673df6408"
+    },
+    {
+      "source": "build/v6u-board-01/150000/gate-decoded.json",
+      "archive": "docs/verification/v2-collect-local/physical-01/build/v6u-board-01/150000/gate-decoded.json",
+      "bytes": 6328,
+      "sha256": "1cad20653562c32788912925b9117f513a62a5aeb4c53ba890dca855fd66f9a0"
+    },
+    {
+      "source": "build/v6u-board-01/150000/gate-decoder-stderr.txt",
+      "archive": "docs/verification/v2-collect-local/physical-01/build/v6u-board-01/150000/gate-decoder-stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "source": "build/v6u-board-01/150000/gate-first.bin",
+      "archive": "docs/verification/v2-collect-local/physical-01/build/v6u-board-01/150000/gate-first.bin",
+      "bytes": 24,
+      "sha256": "b487c40e9afe44b571534c652e6abf150a79d49b1cffe0d2dc64e86569007f44"
+    },
+    {
+      "source": "build/v6u-board-01/150000/gate-first.invocation.json",
+      "archive": "docs/verification/v2-collect-local/physical-01/build/v6u-board-01/150000/gate-first.invocation.json",
+      "bytes": 390,
+      "sha256": "5ae1371c6798d59b6d447040e8f93c3e2b4434c648c5dbe56475342ea45df328"
+    },
+    {
+      "source": "build/v6u-board-01/150000/gate-first.log",
+      "archive": "docs/verification/v2-collect-local/physical-01/build/v6u-board-01/150000/gate-first.log",
+      "bytes": 895,
+      "sha256": "13491bc499c3883c9b2b6a490cf6d9f6b3f0f26389fedfd5c7023ca3d5fded9e"
+    },
+    {
+      "source": "build/v6u-board-01/150000/gate-first.stdout.bin",
+      "archive": "docs/verification/v2-collect-local/physical-01/build/v6u-board-01/150000/gate-first.stdout.bin",
+      "bytes": 673,
+      "sha256": "58cca1a29ae5d1c6835086802361f674cf3663ac384c8f7c90416287cdea27ed"
+    },
+    {
+      "source": "build/v6u-board-01/150000/gate-second.bin",
+      "archive": "docs/verification/v2-collect-local/physical-01/build/v6u-board-01/150000/gate-second.bin",
+      "bytes": 24,
+      "sha256": "b487c40e9afe44b571534c652e6abf150a79d49b1cffe0d2dc64e86569007f44"
+    },
+    {
+      "source": "build/v6u-board-01/150000/gate-second.invocation.json",
+      "archive": "docs/verification/v2-collect-local/physical-01/build/v6u-board-01/150000/gate-second.invocation.json",
+      "bytes": 390,
+      "sha256": "9d5c8ef5a85950bb0b7e997afa9e0c1e18d1cb056596f0b6b05c522789b92689"
+    },
+    {
+      "source": "build/v6u-board-01/150000/gate-second.log",
+      "archive": "docs/verification/v2-collect-local/physical-01/build/v6u-board-01/150000/gate-second.log",
+      "bytes": 897,
+      "sha256": "d7c758a8312617e53d7cfcbde7e0b30be4bf80773c3f735492a6d88aecabe980"
+    },
+    {
+      "source": "build/v6u-board-01/150000/gate-second.stdout.bin",
+      "archive": "docs/verification/v2-collect-local/physical-01/build/v6u-board-01/150000/gate-second.stdout.bin",
+      "bytes": 675,
+      "sha256": "c1f1b83f3712e5c3decbd96945c24f9d49a1f0d9617725653bc7ddae72bc9e83"
+    },
+    {
+      "source": "build/v6u-board-01/150000/hardware-procedure-facts.json",
+      "archive": "docs/verification/v2-collect-local/physical-01/build/v6u-board-01/150000/hardware-procedure-facts.json",
+      "bytes": 500,
+      "sha256": "8aa94fa5d3da736f158ee97010d5bb22fa14bf5c7050a6199a448762779c2a9a"
+    },
+    {
+      "source": "build/v6u-board-01/150000/physical-analysis.json",
+      "archive": "docs/verification/v2-collect-local/physical-01/build/v6u-board-01/150000/physical-analysis.json",
+      "bytes": 16451,
+      "sha256": "e097953654b1409f9c49d06830e97518970e437a8cf262989a969bc09955710d"
+    },
+    {
+      "source": "build/v6u-board-01/150000/physical-analysis.md",
+      "archive": "docs/verification/v2-collect-local/physical-01/build/v6u-board-01/150000/physical-analysis.md",
+      "bytes": 2243,
+      "sha256": "533e6ab1900011eb73f3d8157a4c415fa715fcee29036c05c4f83207f9893769"
+    },
+    {
+      "source": "build/v6u-board-01/150000/progress-decoded.json",
+      "archive": "docs/verification/v2-collect-local/physical-01/build/v6u-board-01/150000/progress-decoded.json",
+      "bytes": 2913,
+      "sha256": "8838d185f7cdee112c878738898833050478377e5d50f52c0c3b4bf403686b3b"
+    },
+    {
+      "source": "build/v6u-board-01/150000/progress-decoder-stderr.txt",
+      "archive": "docs/verification/v2-collect-local/physical-01/build/v6u-board-01/150000/progress-decoder-stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "source": "build/v6u-board-01/150000/progress-first.bin",
+      "archive": "docs/verification/v2-collect-local/physical-01/build/v6u-board-01/150000/progress-first.bin",
+      "bytes": 64,
+      "sha256": "0e203dac588388945487a5653ed944831010ddbafbafab6c38a34f29e2088244"
+    },
+    {
+      "source": "build/v6u-board-01/150000/progress-first.invocation.json",
+      "archive": "docs/verification/v2-collect-local/physical-01/build/v6u-board-01/150000/progress-first.invocation.json",
+      "bytes": 394,
+      "sha256": "65940bd32bee4cbee5f6c7da5ce728ef6514c3c43969d4db443ff7c5073f74e9"
+    },
+    {
+      "source": "build/v6u-board-01/150000/progress-first.log",
+      "archive": "docs/verification/v2-collect-local/physical-01/build/v6u-board-01/150000/progress-first.log",
+      "bytes": 903,
+      "sha256": "a7cbad3c9e20584d848111f7d009ad5c2b4bca6d2dfd20f1c1bc6a7b6f6edf25"
+    },
+    {
+      "source": "build/v6u-board-01/150000/progress-first.stdout.bin",
+      "archive": "docs/verification/v2-collect-local/physical-01/build/v6u-board-01/150000/progress-first.stdout.bin",
+      "bytes": 681,
+      "sha256": "5c87cf9aaa6a0e055b6b88fde265f6e4d921740f26cdd2c8fdce846afb55d089"
+    },
+    {
+      "source": "build/v6u-board-01/150000/progress-second.bin",
+      "archive": "docs/verification/v2-collect-local/physical-01/build/v6u-board-01/150000/progress-second.bin",
+      "bytes": 64,
+      "sha256": "0e203dac588388945487a5653ed944831010ddbafbafab6c38a34f29e2088244"
+    },
+    {
+      "source": "build/v6u-board-01/150000/progress-second.invocation.json",
+      "archive": "docs/verification/v2-collect-local/physical-01/build/v6u-board-01/150000/progress-second.invocation.json",
+      "bytes": 394,
+      "sha256": "b4526bb7af193f70182b28424db1b21983c8ca8dc5a0fccf1463f6258cd49407"
+    },
+    {
+      "source": "build/v6u-board-01/150000/progress-second.log",
+      "archive": "docs/verification/v2-collect-local/physical-01/build/v6u-board-01/150000/progress-second.log",
+      "bytes": 905,
+      "sha256": "7a59b28e779adfcd1791e3deda5bad8e7efe06013aab038a5b924a94f4b25117"
+    },
+    {
+      "source": "build/v6u-board-01/150000/progress-second.stdout.bin",
+      "archive": "docs/verification/v2-collect-local/physical-01/build/v6u-board-01/150000/progress-second.stdout.bin",
+      "bytes": 683,
+      "sha256": "c3b78c0d07896b4c16314a04bda51fb29822095ba02b7b6be0fc97629aa80ab0"
+    },
+    {
+      "source": "build/v6u-board-01/150000/rcc.bin",
+      "archive": "docs/verification/v2-collect-local/physical-01/build/v6u-board-01/150000/rcc.bin",
+      "bytes": 20,
+      "sha256": "1e24249e3619f46e4291c93fac339276c89ad2a136a324180aa83757fc71a367"
+    },
+    {
+      "source": "build/v6u-board-01/150000/rcc.invocation.json",
+      "archive": "docs/verification/v2-collect-local/physical-01/build/v6u-board-01/150000/rcc.invocation.json",
+      "bytes": 383,
+      "sha256": "2e0f38905fbc178a57992fb9db19f7c79a739e89d9c50408b1261b09d1a18435"
+    },
+    {
+      "source": "build/v6u-board-01/150000/rcc.log",
+      "archive": "docs/verification/v2-collect-local/physical-01/build/v6u-board-01/150000/rcc.log",
+      "bytes": 881,
+      "sha256": "5d07bd30e8bbcf421e006763ca9dc84d50fa307e81ad36888c9d3f8e0cfd99a7"
+    },
+    {
+      "source": "build/v6u-board-01/150000/rcc.stdout.bin",
+      "archive": "docs/verification/v2-collect-local/physical-01/build/v6u-board-01/150000/rcc.stdout.bin",
+      "bytes": 659,
+      "sha256": "0b012ca3f8ea887c1a40c75816b14649ef03d487d1f4388324e3aebb2483401c"
+    },
+    {
+      "source": "build/v6u-board-01/150000/register-decoder-console.txt",
+      "archive": "docs/verification/v2-collect-local/physical-01/build/v6u-board-01/150000/register-decoder-console.txt",
+      "bytes": 237,
+      "sha256": "eeb480ccd496a348b7d0c309ad7aa7ead133c97c13e0366ace8f21a3144c9a84"
+    },
+    {
+      "source": "build/v6u-board-01/150000/registers-decoded.json",
+      "archive": "docs/verification/v2-collect-local/physical-01/build/v6u-board-01/150000/registers-decoded.json",
+      "bytes": 2042,
+      "sha256": "decaa726e34cd9ba019033992f70ae24b0490375299e21c12f02ccb9b77c0d15"
+    },
+    {
+      "source": "build/v6u-board-01/150000/root-chronology.json",
+      "archive": "docs/verification/v2-collect-local/physical-01/build/v6u-board-01/150000/root-chronology.json",
+      "bytes": 2096,
+      "sha256": "41b82ae64cc77718a17d7c3ed0e00ee03fa6d9371777d258a9b54f8fd95201ca"
+    },
+    {
+      "source": "build/v6u-board-01/150000/run/physical.mtstream",
+      "archive": "docs/verification/v2-collect-local/physical-01/build/v6u-board-01/150000/run/physical.mtstream",
+      "bytes": 9036032,
+      "sha256": "40e2961555d39472c14eace170be91d685b18091d33d8a2f0b51b71909cb0645"
+    },
+    {
+      "source": "build/v6u-board-01/150000/run/physical.mtstream.v2.json",
+      "archive": "docs/verification/v2-collect-local/physical-01/build/v6u-board-01/150000/run/physical.mtstream.v2.json",
+      "bytes": 2407,
+      "sha256": "ca6699de90d461a82a21bc2994519b61d3fd663c8d852cfd3d50c651dda405a0"
+    },
+    {
+      "source": "build/v6u-board-01/150000/run/result.json",
+      "archive": "docs/verification/v2-collect-local/physical-01/build/v6u-board-01/150000/run/result.json",
+      "bytes": 12488,
+      "sha256": "64e4bcd7e328dbfc28027507497078bfd9197da905a4b66ca7d716fa2c680f9a"
+    },
+    {
+      "source": "build/v6u-board-01/150000/run/traffic.bin",
+      "archive": "docs/verification/v2-collect-local/physical-01/build/v6u-board-01/150000/run/traffic.bin",
+      "bytes": 6037538,
+      "sha256": "6bf81af86952618d7d163e21bd1c056ab10bcebf16cae5420d36c437138d56a5"
+    },
+    {
+      "source": "build/v6u-board-01/150000/tim3.bin",
+      "archive": "docs/verification/v2-collect-local/physical-01/build/v6u-board-01/150000/tim3.bin",
+      "bytes": 48,
+      "sha256": "df9ad576bf535386fae8c2d4e6afb2a27c969bafe47dd413d13754601be8cd30"
+    },
+    {
+      "source": "build/v6u-board-01/150000/tim3.invocation.json",
+      "archive": "docs/verification/v2-collect-local/physical-01/build/v6u-board-01/150000/tim3.invocation.json",
+      "bytes": 384,
+      "sha256": "bc74dab23404cd891cd8d76914807d03ca94320e3646771c903b7f5469c75a41"
+    },
+    {
+      "source": "build/v6u-board-01/150000/tim3.log",
+      "archive": "docs/verification/v2-collect-local/physical-01/build/v6u-board-01/150000/tim3.log",
+      "bytes": 883,
+      "sha256": "3b53885b0f2a2c42415cdbf143a81d229c0deab7c14c5344ebd076b3885e5df7"
+    },
+    {
+      "source": "build/v6u-board-01/150000/tim3.stdout.bin",
+      "archive": "docs/verification/v2-collect-local/physical-01/build/v6u-board-01/150000/tim3.stdout.bin",
+      "bytes": 661,
+      "sha256": "b73bb0c73aad7b3449a7059bbc96e24371b90d3817db7a1821fd531db2f1aa49"
+    },
+    {
+      "source": "build/v6u-board-01/150000/trial-console.txt",
+      "archive": "docs/verification/v2-collect-local/physical-01/build/v6u-board-01/150000/trial-console.txt",
+      "bytes": 186,
+      "sha256": "5ca101b0ee2e8263a1c247fcc00c668fdf01136d19ab98750f5e5c4680ae9caa"
+    },
+    {
+      "source": "build/v6u-board-01/150000/trial-invocation.json",
+      "archive": "docs/verification/v2-collect-local/physical-01/build/v6u-board-01/150000/trial-invocation.json",
+      "bytes": 925,
+      "sha256": "a9e2a48d9a34ea794710a22ced05409071e093d9aa4ddefbd144ad696876c892"
+    },
+    {
+      "source": "build/v6u-board-01/150000-user-replug.json",
+      "archive": "docs/verification/v2-collect-local/physical-01/build/v6u-board-01/150000-user-replug.json",
+      "bytes": 886,
+      "sha256": "532824f79db98db0c3ff1ce67039153059c88c4a9afeb6acd9683a58709c06f6"
+    },
+    {
+      "source": "build/v6u-board-01/pretrial-inventory.json",
+      "archive": "docs/verification/v2-collect-local/physical-01/build/v6u-board-01/pretrial-inventory.json",
+      "bytes": 823,
+      "sha256": "89ad235bc1f1dd1df34e03a569301c055cc58f2ba20a979a4507ba64d1c784b3"
+    },
+    {
+      "source": "build/v6u-board-01/com-inventory.json",
+      "archive": "docs/verification/v2-collect-local/physical-01/build/v6u-board-01/com-inventory.json",
+      "bytes": 206,
+      "sha256": "83d5e9b3d1f9b95053c0dfe02190599a4c099db2ef1c2db1b4981a49a3613fac"
+    },
+    {
+      "source": "build/v6u-physical-archive.py",
+      "archive": "docs/verification/v2-collect-local/physical-01/build/v6u-physical-archive.py",
+      "bytes": 3973,
+      "sha256": "4d2a02b1b62e4a63be609c29adedca9dbcd1456dff5972091034ccdcb183e597"
+    }
+  ]
+}
