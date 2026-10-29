@@ -1,0 +1,94 @@
+{
+  "schema": "motortester-v2-independent-review/1",
+  "iteration": "V2-09a",
+  "reviewer": "connection_entry_critic",
+  "independent": true,
+  "author": "root",
+  "date": "2026-10-29",
+  "base_commit": "1d44968eaffc878ce8aec35c6d048095243d8f8f",
+  "implementation_commit": "1e58b1ee9c44452c2fbd40f666908c8151414fbd",
+  "source_commit": "8e82679aaeffecdfd73473516a60ab4f12dcedf6",
+  "evidence_head": "3056141",
+  "scope": "Primary STM32 entry routing and explicit legacy labels; synthetic wire0.3 mode5 connection without START; Windows Qt DEMO and portable package",
+  "status": "PASS",
+  "score": 9.55,
+  "score_unrounded": "9.550",
+  "threshold": 9.5,
+  "criteria": {
+    "C1": {
+      "score": 9.6,
+      "weight": 0.3,
+      "reason": "Correct public route, preserved source on cancellation, explicit connection without START"
+    },
+    "C2": {
+      "score": 9.5,
+      "weight": 0.2,
+      "reason": "Existing transport ownership retained; close and repeat entry verified"
+    },
+    "C3": {
+      "score": 9.5,
+      "weight": 0.25,
+      "reason": "Native and frozen targeted PASS17, PNG inspection, archived hashes; physical boundaries explicit"
+    },
+    "C4": {
+      "score": 9.5,
+      "weight": 0.15,
+      "reason": "Visible stream entry, explicit legacy labels, one reused route"
+    },
+    "C5": {
+      "score": 9.7,
+      "weight": 0.1,
+      "reason": "Exact source/package, synchronized portable instructions and reproducible evidence"
+    }
+  },
+  "open_p0": 0,
+  "open_p1": 0,
+  "findings": [],
+  "evidence": {
+    "native_manifest": "docs/verification/v2-connection-entry/native/manifest.json",
+    "native_manifest_sha256": "cc541f6ace6be343e3e990a729a51bf3efdccd322ecba6b9c69f22ab74839e9f",
+    "native_files_verified": 5,
+    "source_file_hashes_verified": 4,
+    "package_manifest": "docs/verification/v2-connection-entry/package/manifest.json",
+    "package_manifest_sha256": "2d7601369e515bd94c692f8f612398e4dccaecbfec84eea53b2767fd563a1648",
+    "package_files_verified": 9,
+    "local_artifacts_verified": 3,
+    "zip_relocated_files_verified": 475,
+    "zip_relocated_mismatches": 0,
+    "frozen_receipt_matches_result_json": true,
+    "portable_instructions_match_source": true,
+    "native_check_count": 17,
+    "frozen_check_count": 17,
+    "callback_errors": [],
+    "windows": "Windows-10-10.0.19045-SP0",
+    "python": "3.14.7",
+    "qt_platform": "windows",
+    "frozen_path": "C:\\Windows\\System32",
+    "portable_zip": "build/v12w/MotortesterV2-windows-x64.zip",
+    "portable_sha256": "0fc52550130a9657f17ce338600dcd0bc78c853f329921a47d26c3d55df0d8f9",
+    "source_archive_sha256": "4ad82c2695c7613b99776adfd35b38894daf668be5672985f826d429801f955e",
+    "gui_executable_sha256": "119439de06d7aed8129d8e1d8b44fa9c9f61507d9dc3270a56c617baa310bd5b",
+    "reviewer_visually_inspected": [
+      "native/native-result-entry.png",
+      "native/native-result-connected.png",
+      "package/frozen-main-stream/result.png"
+    ],
+    "frozen_entry_connected_identical_to_inspected_native": true
+  },
+  "reviewer_executed_tests": false,
+  "reviewer_built_package": false,
+  "reviewer_used_com_or_swd": false,
+  "physical_device_verified": false,
+  "physical_timeout_diagnosed": false,
+  "user_com6_check": "pending",
+  "clean_windows_without_python_verified": false,
+  "firmware_changed": false,
+  "limitations": [
+    "150k Connect uses injected serial bytes; recording smoke is DEMO50k, not physical throughput",
+    "Screenshot demonstrates legacy UI route, not definitive physical cause of TIMEOUT",
+    "GUI signals and value setters, not independent manual mouse gestures",
+    "No calibration, analog-input, ignition or clean-Windows acceptance"
+  ],
+  "report": "docs/reviews/v2-09a-connection-entry-review.md",
+  "report_sha256": "4d62ca0735d95b7b3a6bdb3e92c7f60f63afd5f85f83782849536d4409d5a401"
+}
