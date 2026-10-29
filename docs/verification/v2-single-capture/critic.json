@@ -1,0 +1,157 @@
+{
+  "status": "PASS",
+  "score": 9.55,
+  "unrounded_score": "9.550",
+  "reviewer": "/root/trigger_controls_critic",
+  "independent": true,
+  "date": "2026-10-29",
+  "source_commit": "50cc9b13bdfbe1845a0013d659409fb37fe197a0",
+  "base_commit": "a726cbbd772d6feae8611475f4b7563cd27ff930",
+  "evidence_binding": "Exact native/package manifest hashes; evidence commit is written by root after review",
+  "requirement": "V2-UI25",
+  "scope": [
+    "program logic/DEMO",
+    "Windows 10 GUI",
+    "local portable package"
+  ],
+  "open_p0": 0,
+  "open_p1": 0,
+  "open_p2": 0,
+  "open_findings": [
+    {
+      "priority": "P3",
+      "status": "deferred cosmetic",
+      "file": "host/motortester/v2/stream_capture_ui.py",
+      "symbol": "SingleCaptureControls.save_path",
+      "issue": "Temporary save-progress caption says reception continues even after Stop or while saving an opened capture",
+      "impact": "No acquisition command is sent; main state remains accurate; raw/save behavior unaffected",
+      "recommended_action": "Remove the reception clause or derive it from current phase in the next ordinary UI change"
+    }
+  ],
+  "closed_findings": [
+    {
+      "priority": "P2",
+      "issue": "Cancel capture-discard prompt retained MainWindow pending-close intent",
+      "resolution": "close_cancelled callback and native/frozen cancellation assertion"
+    },
+    {
+      "priority": "P2",
+      "issue": "Arm before the first initialized viewer frame could leave capture without a plot",
+      "resolution": "Require viewer selection, first index, matching identity and source revision"
+    },
+    {
+      "priority": "P2",
+      "issue": "Capture decoder did not bind EventConfig rails and bounds to Fs and retained bits",
+      "resolution": "validate_config in StreamCapture; final negative fixture has valid SHA but invalid ADC10 rail4095"
+    },
+    {
+      "priority": "P2",
+      "issue": "Capture native screenshot had clipped lower X-axis",
+      "resolution": "Reduced plot height/margins; final screenshots inspected"
+    },
+    {
+      "priority": "P3",
+      "issue": "Successful save caption could hide capture incompleteness",
+      "resolution": "Incomplete context remains visible after Save"
+    }
+  ],
+  "criteria": {
+    "C1": {
+      "score": 9.6,
+      "weight": 0.3
+    },
+    "C2": {
+      "score": 9.5,
+      "weight": 0.2
+    },
+    "C3": {
+      "score": 9.6,
+      "weight": 0.25
+    },
+    "C4": {
+      "score": 9.4,
+      "weight": 0.15
+    },
+    "C5": {
+      "score": 9.6,
+      "weight": 0.1
+    }
+  },
+  "report": "docs/reviews/v2-13-single-capture-review.md",
+  "report_sha256": "8fe27f886a7256bd0ccc2bc38b68a981a3e72f7fd1521f468260b4c2d13db924",
+  "evidence": {
+    "native_manifest": "docs/verification/v2-single-capture/native/manifest.json",
+    "native_manifest_sha256": "3a08f7e359fbd42dc380d9fdd31890f24a5d77f2bc6f971b9d3866887650e351",
+    "native_artifacts_verified": 20,
+    "native_checks": 31,
+    "native_scope": "Native1 before final metadata validation and layout adjustments; final state covered by frozen run",
+    "package_manifest": "docs/verification/v2-single-capture/package/manifest.json",
+    "package_manifest_sha256": "3d73bf4fadee6d9e84e3f04754ae24396689b65218f9ee72616443ab6a15bdbe",
+    "package_artifacts_verified": 24,
+    "frozen_checks": 31,
+    "native_archive_bytes_equal_git": true,
+    "package_archive_bytes_equal_build": true,
+    "receipt_equals_frozen_json": true,
+    "all_zip_dist_relocated_files_verified": 475,
+    "changed_host_source_files_verified": 9,
+    "frozen_pngs_inspected": [
+      "result-capture.png",
+      "result-capture-open.png"
+    ],
+    "platform": "Windows-10-10.0.19045-SP0",
+    "qt_platform": "windows",
+    "real_serial_open_calls": 0,
+    "callback_errors": [],
+    "cleanup_error": null,
+    "owners_closed": true,
+    "single_capture": {
+      "arm_end_index": 75648,
+      "expected_ordinal": 126,
+      "captured_ordinal": 126,
+      "trigger_index": 75690,
+      "start_index": 75590,
+      "end_index": 76090,
+      "raw_sha256": "a3d8b903fe9560018c6cfccf04b89a1652907ed357d358be14a2112b63a89d30",
+      "artifact": "result-capture.mtshot",
+      "sha256": "a68821136f134d2eac86fdf8b89655a5b1f1c1fd03d1784bed94c11c5e1140a3",
+      "boundaries": {
+        "first_ordinal": 4,
+        "pre_arm_ordinal": 3,
+        "later_ordinal": 5,
+        "retained_bits": 10,
+        "sample_rate_hz": 150000,
+        "interrupted_end": 26
+      }
+    },
+    "capture_file_bytes": 2903,
+    "capture_binary_header_raw_hash_and_event_verified_without_app_import": true,
+    "recording_bytes": 324764,
+    "recording_sha256": "a3ee6d1c96e980c42611176e57cf294c150230153cd1e2e187dfd90daee3008d"
+  },
+  "deliverables": {
+    "zip": "build/v16w/MotortesterV2-windows-x64.zip",
+    "zip_sha256": "0c2c7429df1e7a0af145e189efefe17b6b8ae9f90bcc6dd92ebc087620cb4c61",
+    "exe": "build/v16w/dist/MotortesterV2/MotortesterV2.exe",
+    "exe_sha256": "7173fe58e14d8d5a4b978f23c11caf9e0b0e2f1223e01f57832384c12f24617d",
+    "source_zip_sha256": "3f3211bed897c9b6a95763d0d154375cdf1e9e32d7ad34491cedd31a2943abf4"
+  },
+  "critic_actions": [
+    "read-only source and contract review",
+    "read existing native/frozen receipts",
+    "inspect existing PNG screenshots",
+    "verify archive hashes and binary capture metadata/raw",
+    "compare ZIP members and changed host source files"
+  ],
+  "critic_reran_tests": false,
+  "critic_reran_build": false,
+  "critic_used_hardware": false,
+  "physical_stream_verified": false,
+  "limitations": [
+    "Arm boundary is latest published receiver end on host, not hardware click time",
+    "On interruption only the already observed pending prefix is saved",
+    "Raw or metadata eviction can fail the first-event attempt without substituting a later event",
+    "No physical COM6/analog/ignition qualification in this iteration",
+    "No CSV export for mtshot in this scope",
+    "Open cosmetic P3 does not change acquisition or file contents"
+  ]
+}

@@ -34,7 +34,41 @@ Receipt: arm72448, ожидаемый/захваченный ordinal121, trigger
 Save. Эти последние изменения проверяет итоговый frozen-сценарий;
 native1 не выдаётся за подтверждение финального состояния.
 
-Windows-пакет и окончательная независимая оценка ещё не приняты.
+Сборка `.venv/Scripts/python.exe -B host/packaging/v2/build_windows.py
+--output build/v16w --verification main-stream` из чистого source commit
+`50cc9b13bdfbe1845a0013d659409fb37fe197a0` завершилась exit0. Перенесённый EXE
+на Windows10/19045, Qt windows, отдельные cwd/PATH=`C:\Windows\System32`:
+PASS31, callback/cleanup ошибок0, реальные COM-вызовы0, владельцы закрыты.
+Проверена окончательная валидация ADC10: файл с верной SHA и неверной границей
+4095 отклонён; корректный150k/10 сохраняется/читается без изменения raw.
+Событие126 после arm75648, trigger75690, контекст75590…76090; позднее событие
+не подменяет первое. Отдельный capture2903B, SHA256
+`a68821136f134d2eac86fdf8b89655a5b1f1c1fd03d1784bed94c11c5e1140a3`.
+DEMO-журнал324764B, SHA256
+`a3ee6d1c96e980c42611176e57cf294c150230153cd1e2e187dfd90daee3008d`.
+Root осмотрел frozen capture/open PNG: оси, подписи, порог и курсоры видны;
+неполнота остаётся после Save и Open. Проверки относятся к программному
+источнику/подставленному обмену; реальный сигнал этой итерацией не проверен.
+[Архив пакета](verification/v2-single-capture/package/manifest.json):24 файла,
+включая отчёт/лог/manifest/суммы, receipt,11 PNG, журнал/companion и mtshot-fixtures.
+ZIP `build/v16w/MotortesterV2-windows-x64.zip`, SHA256
+`0c2c7429df1e7a0af145e189efefe17b6b8ae9f90bcc6dd92ebc087620cb4c61`.
+EXE `build/v16w/dist/MotortesterV2/MotortesterV2.exe`, SHA256
+`7173fe58e14d8d5a4b978f23c11caf9e0b0e2f1223e01f57832384c12f24617d`.
+Независимый `/root/trigger_controls_critic` принял точный source и пакет:
+**PASS9,55/10**, открытых P0/P1/P2 нет. Проверил код,31/31 receipt, PNG,
+raw/формат `.mtshot`,9 изменённых host source-файлов, native20/package24
+свидетельства,475 файлов ZIP/dist/перенесённой папки без повторных тестов.
+[Отчёт](reviews/v2-13-single-capture-review.md), SHA256
+`8fe27f886a7256bd0ccc2bc38b68a981a3e72f7fd1521f468260b4c2d13db924`;
+[заключение](verification/v2-single-capture/critic.json), SHA256
+`dcd06a6666be09318e12f2c3de80a0365d2a7d7e10085d9e221349e8865a8708`.
+Оставлен косметический P3: краткая подпись сохранения говорит «приём
+продолжается» и после Stop; она не запускает приём, главный статус остаётся
+верным. Исправить при следующей обычной UI-итерации без отдельного rebuild.
+Source/пакет после сборки не менялись. Дополнение evidence/progress/task
+не меняет байты EXE. Следующий шаг пользователя — проверить захват/сохранение/
+открытие в новом приложении по task.md. Отзыва о V2-13 пока нет.
 
 ## 29.10.2026 — V2-12: синхронизация живого просмотра
 
