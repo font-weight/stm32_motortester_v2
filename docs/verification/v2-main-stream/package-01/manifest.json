@@ -1,0 +1,66 @@
+{
+  "schema": "v2-09-package-evidence-1",
+  "recorded_utc": "2026-10-29T05:38:21.1725226Z",
+  "source_commit": "4012cbc4da77d11cbd951c7097d88a5a2aea09cc",
+  "command": ".venv/Scripts/python.exe -B host/packaging/v2/build_windows.py --output build/v9w --verification main-stream",
+  "exit_code": 0,
+  "verification_scope": "Frozen Windows 10 DEMO package; embedded stream, main time/Y controls, cursors, recording, reopen and return. Isolated PATH C:\\Windows\\System32 and separate working directory.",
+  "status": "PASS",
+  "local_deliverables": [
+    {
+      "path": "build/v9w/MotortesterV2-windows-x64.zip",
+      "bytes": 61245003,
+      "sha256": "6761dfad3c3c0b75683542dc054e2d640fc96ee6e1208b615adf013ec5a13c9c",
+      "storage": "Local portable delivery, not duplicated in Git"
+    },
+    {
+      "path": "build/v9w/source.zip",
+      "bytes": 76944033,
+      "sha256": "994bb1b4e0e1ff811d664ffaf587395ca73336a94c79f04012e10fda43de7ba5",
+      "storage": "Local source archive, not duplicated in Git"
+    },
+    {
+      "path": "build/v9w/dist/MotortesterV2/MotortesterV2.exe",
+      "bytes": 7173606,
+      "sha256": "91ca326d411859a5c4db5de5b26352732b8a963ef1e0b6011d84f0b0647bf977",
+      "storage": "Inside portable folder and ZIP"
+    }
+  ],
+  "files": [
+    {
+      "path": "build/v9w/build-manifest.json",
+      "bytes": 87574,
+      "sha256": "07cb23eb425039873510fb37fb72a05db5fe3748ab0eb5b56b05b6fb9ebb3dac"
+    },
+    {
+      "path": "build/v9w/build-report.json",
+      "bytes": 3533,
+      "sha256": "b9abf14fc280980734ffc55e724eef4b6bc0539f77ebade0f7c58e5ee89a9505"
+    },
+    {
+      "path": "build/v9w/build.log",
+      "bytes": 36124,
+      "sha256": "2779bb138a3a716035942793b46f813389b48c85973cd02ae26cd067e38d913f"
+    },
+    {
+      "path": "build/v9w/SHA256SUMS.txt",
+      "bytes": 532,
+      "sha256": "f5163bb01af3213ba088d81a4769a2607e3c0bbdcc6add6b6576bb4fcaabe5a2"
+    },
+    {
+      "path": "build/v9w/frozen-main-stream/result-recording.mtstream",
+      "bytes": 6990,
+      "sha256": "02295e7d4e8a36fdc3154870cf51e19a383fff95928407c1316892d654f672ee"
+    },
+    {
+      "path": "build/v9w/frozen-main-stream/result.json",
+      "bytes": 1630,
+      "sha256": "a263786984460ffddf4d74539ab95bda1114ec3bef38c8db3c0350b72a0ac0b8"
+    },
+    {
+      "path": "build/v9w/frozen-main-stream/result.png",
+      "bytes": 102152,
+      "sha256": "997a35a6058a80ee4cba73752ea0af17146cf360ecb10d4ecfe5e89c991dd087"
+    }
+  ]
+}

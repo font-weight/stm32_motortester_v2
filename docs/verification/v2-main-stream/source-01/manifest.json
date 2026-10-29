@@ -1,0 +1,25 @@
+{
+  "schema": "v2-09-native-evidence-1",
+  "recorded_utc": "2026-10-29T05:38:21.1049370Z",
+  "source_commit": "4012cbc4da77d11cbd951c7097d88a5a2aea09cc",
+  "scope": "Native Windows Qt DEMO: embedded stream, main-window knobs, source cursors, active recording, saved recording reopened, and return to main page; no COM or physical input.",
+  "command": "PYTHONPATH=host .venv/Scripts/python.exe -B -m motortester.v2.main_stream_smoke build/v9-main-stream/native-result.json",
+  "status": "PASS",
+  "files": [
+    {
+      "path": "native-result-recording.mtstream",
+      "bytes": 8324,
+      "sha256": "b26b9db5431d8db96a80e735359679b27104116b8d83ba77b9677086529a1b70"
+    },
+    {
+      "path": "native-result.json",
+      "bytes": 1501,
+      "sha256": "48afb376d280bae6926b610c7bb49101eb3b90b4315d646914b1ba52091565e7"
+    },
+    {
+      "path": "native-result.png",
+      "bytes": 102261,
+      "sha256": "4e11343bbaaacdd1b46326e78ab49005e01217488fa15c9d0cad0bb0a73cbddc"
+    }
+  ]
+}

@@ -19,9 +19,26 @@ motortester.v2.main_stream_smoke build/v9-main-stream/native-result.json`
 callback/cleanup отсутствуют, владельцы закрыты, COM не открывался. Результат
 будет зафиксирован в `docs/verification/v2-main-stream`.
 
+Из чистого source commit `4012cbc4da77d11cbd951c7097d88a5a2aea09cc` собран
+переносимый пакет: `.venv/Scripts/python.exe -B
+host/packaging/v2/build_windows.py --output build/v9w --verification
+main-stream` — exit 0. Один frozen GUI-сценарий — **PASS** на Windows 10
+build 19045, Qt `windows`: package распакован под другой каталог, приложение
+запущено из отдельной рабочей папки с PATH=`C:\Windows\System32`; запись
+6990 B сохранена и открыта внутри встроенного экрана, все восемь проверок
+пройдены, COM/реальная плата не открывались. ZIP SHA-256
+`6761dfad3c3c0b75683542dc054e2d640fc96ee6e1208b615adf013ec5a13c9c`, GUI EXE
+`91ca326d411859a5c4db5de5b26352732b8a963ef1e0b6011d84f0b0647bf977`.
+Проверка не проводилась на чистой Windows без Python.
+
+Native и frozen screenshots, результаты, контрольные записи, build log,
+manifest и hashes сохранены в `docs/verification/v2-main-stream`. Portable
+ZIP остаётся локальным deliverable `build/v9w/MotortesterV2-windows-x64.zip`;
+EXE находится в `build/v9w/dist/MotortesterV2/MotortesterV2.exe`. Независимая
+оценка по quality-gate ещё ожидается, поэтому V2-09 пока не принят.
+
 Это GUI/ДЕМО-свидетельство, не физическая проверка STM32, частоты, напряжения
-или калибровки. Frozen Windows-пакет и независимая оценка по quality-gate
-ещё не завершены; до них результат не принят.
+или калибровки.
 
 ## 29.10.2026 — пользователь подтвердил работу V2-08
 
