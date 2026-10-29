@@ -1,0 +1,82 @@
+{
+  "status": "PASS",
+  "verification_scope": "embedded-main-stream",
+  "scope": "Frozen Windows DEMO embedded stream view, main-window time/Y knobs, cursors, recording and return; no COM or physical input qualification",
+  "source_commit": "e343a709f0ce55c2a9854d60945ec4b25ece0e8d",
+  "portable_zip": "MotortesterV2-windows-x64.zip",
+  "portable_sha256": "85fc3c60606e3a1cda25a0d67ec5da7c1c8f260dc873f9412575726b629f4213",
+  "source_sha256": "dfcce8030a6b6fdf055ff13c5c497b4a681439723495592a3030fba74c48a917",
+  "executable_sha256": {
+    "MotortesterV2.exe": "2721657853b0c121aca86d8d2dce2912030b6f9a4f2e72c42feb55ea203932b6",
+    "MotortesterV2Inspect.exe": "7dcca344986a9c2fd509cf060ad60f4cb299f8243e2ef9e06e93ff3bfd555baa"
+  },
+  "extracted_bundle": "C:\\Users\\Alexandr\\Desktop\\New folder\\универ\\мотортестер 2\\build\\v10w\\Проверка переноса\\MotortesterV2",
+  "working_directory": "C:\\Users\\Alexandr\\Desktop\\New folder\\универ\\мотортестер 2\\build\\v10w\\Другая рабочая папка",
+  "isolated_path": "C:\\Windows\\System32",
+  "frozen_smoke": {
+    "status": "PASS",
+    "frozen": true,
+    "platform": "win32",
+    "qt_platform": "windows",
+    "executable": "C:\\Users\\Alexandr\\Desktop\\New folder\\универ\\мотортестер 2\\build\\v10w\\Проверка переноса\\MotortesterV2\\MotortesterV2.exe",
+    "callback_errors": [],
+    "cleanup_error": null,
+    "execution_kind": "DEMO",
+    "physical_stream_verified": false,
+    "owners_closed": true,
+    "real_serial_open_calls": 0,
+    "embedded_widget": true,
+    "capture_controls_hidden": true,
+    "demo_rate_hz": 50000,
+    "initial_window_samples": 1000,
+    "sweep_knob_samples": 2000,
+    "vertical_range_codes": [
+      1648.0,
+      2448.0
+    ],
+    "screenshot": "C:\\Users\\Alexandr\\Desktop\\New folder\\универ\\мотортестер 2\\build\\v10w\\frozen-main-stream\\result.png",
+    "screenshot_sha256": "d79f8481ec436b350344204a8b8f834acf802908f5c1a9a91f06a5ef8c03377e",
+    "recording_continued_during_navigation": true,
+    "source_cursor_readback": true,
+    "saved_recording_reopened_in_main_window": true,
+    "raw_checkbox_restored": true,
+    "empty_autoscale_handled": true,
+    "stream_can_reopen": true,
+    "saved_file_bytes": 7418,
+    "saved_file_sha256": "bfe3882784c1fa7d62e48105d50771b24d0f1f657c54faa8d7bd5e9f63c45852",
+    "saved_recording_artifact": "result-recording.mtstream",
+    "checks": {
+      "embedded_widget": true,
+      "capture_controls_hidden": true,
+      "main_time_scale": true,
+      "main_y_scale": true,
+      "source_cursor_readback": true,
+      "recording_continued_during_navigation": true,
+      "saved_recording_reopened_in_main_window": true,
+      "raw_checkbox_restored": true,
+      "empty_autoscale_handled": true,
+      "stream_can_reopen": true,
+      "return_restores_main_controls": true
+    },
+    "returned_to_main": true,
+    "serial_ports": 0,
+    "failures": []
+  },
+  "png_files": {
+    "result.png": {
+      "sha256": "d79f8481ec436b350344204a8b8f834acf802908f5c1a9a91f06a5ef8c03377e",
+      "bytes": 102223,
+      "width": 1440,
+      "height": 920,
+      "validation": "PNG IHDR/CRC and SHA-256"
+    }
+  },
+  "smoke_files": {
+    "result-recording.mtstream": "bfe3882784c1fa7d62e48105d50771b24d0f1f657c54faa8d7bd5e9f63c45852",
+    "result.json": "c781cbd4702b7ffce5f86f6ca541a420c67e8c215498949bb0f40aae840fc446",
+    "result.png": "d79f8481ec436b350344204a8b8f834acf802908f5c1a9a91f06a5ef8c03377e"
+  },
+  "windows_host": "Windows-10-10.0.19045-SP0",
+  "physical_device_verified": false,
+  "public_release_approved": false
+}

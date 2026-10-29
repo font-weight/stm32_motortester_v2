@@ -1,0 +1,25 @@
+{
+  "schema": "v2-09-native-evidence-2",
+  "recorded_utc": "2026-10-29T05:51:33.9637540Z",
+  "source_commit": "e343a709f0ce55c2a9854d60945ec4b25ece0e8d",
+  "scope": "Native Windows Qt DEMO: embedded stream, knobs, raw checkbox restoration, safe empty autoscale, recording, return, and second open/close cycle; no COM or physical input.",
+  "command": "PYTHONPATH=host .venv/Scripts/python.exe -B -m motortester.v2.main_stream_smoke build/v9-main-stream/native-result.json",
+  "status": "PASS",
+  "files": [
+    {
+      "path": "native-result-recording.mtstream",
+      "bytes": 5964,
+      "sha256": "29826eae742fa3f219f0dea2a31941a7a766059f714061b9666ac4a12f0c4f77"
+    },
+    {
+      "path": "native-result.json",
+      "bytes": 1707,
+      "sha256": "1a39449ca7b246c62ef61ca6121560d1224e783c429ab6fc35bd729d5d234e85"
+    },
+    {
+      "path": "native-result.png",
+      "bytes": 102367,
+      "sha256": "8918e627c600804d1197da6d4f4957702f0d92cfaafb6f4f69adc3e71d57e912"
+    }
+  ]
+}

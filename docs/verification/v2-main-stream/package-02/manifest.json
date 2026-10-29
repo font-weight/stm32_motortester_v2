@@ -1,0 +1,66 @@
+{
+  "schema": "v2-09-package-evidence-2",
+  "recorded_utc": "2026-10-29T05:51:34.0259364Z",
+  "source_commit": "e343a709f0ce55c2a9854d60945ec4b25ece0e8d",
+  "command": ".venv/Scripts/python.exe -B host/packaging/v2/build_windows.py --output build/v10w --verification main-stream",
+  "exit_code": 0,
+  "verification_scope": "Frozen Windows 10 DEMO package: raw-axis restoration, empty autoscale, main time/Y controls, cursors, recording/reopen, return, and reopening stream a second time. Isolated PATH C:\\Windows\\System32 and foreign working directory.",
+  "status": "PASS",
+  "local_deliverables": [
+    {
+      "path": "build/v10w/MotortesterV2-windows-x64.zip",
+      "bytes": 61247931,
+      "sha256": "85fc3c60606e3a1cda25a0d67ec5da7c1c8f260dc873f9412575726b629f4213",
+      "storage": "Local portable delivery, not duplicated in Git"
+    },
+    {
+      "path": "build/v10w/source.zip",
+      "bytes": 77186183,
+      "sha256": "dfcce8030a6b6fdf055ff13c5c497b4a681439723495592a3030fba74c48a917",
+      "storage": "Local source archive, not duplicated in Git"
+    },
+    {
+      "path": "build/v10w/dist/MotortesterV2/MotortesterV2.exe",
+      "bytes": 7176482,
+      "sha256": "2721657853b0c121aca86d8d2dce2912030b6f9a4f2e72c42feb55ea203932b6",
+      "storage": "Inside portable folder and ZIP"
+    }
+  ],
+  "files": [
+    {
+      "path": "build/v10w/build-manifest.json",
+      "bytes": 87574,
+      "sha256": "1be6ff8d5ed0f0595a258c13d21c7a0126920e4fde9ecf2c50f3b83b2de02272"
+    },
+    {
+      "path": "build/v10w/build-report.json",
+      "bytes": 3755,
+      "sha256": "4340cf49b357be8646cdeb8cfdb3d3c9c4f50d95eb54029c6db31147da82fc03"
+    },
+    {
+      "path": "build/v10w/build.log",
+      "bytes": 36420,
+      "sha256": "c18975db84598d5ac511f24645c98459baa036a89f224220bc57b6b21d554a35"
+    },
+    {
+      "path": "build/v10w/SHA256SUMS.txt",
+      "bytes": 532,
+      "sha256": "bb23ade496aebdc13292639a2ad8ab7371e00bc3c656b342e1fe6e05e84a2a37"
+    },
+    {
+      "path": "build/v10w/frozen-main-stream/result-recording.mtstream",
+      "bytes": 7418,
+      "sha256": "bfe3882784c1fa7d62e48105d50771b24d0f1f657c54faa8d7bd5e9f63c45852"
+    },
+    {
+      "path": "build/v10w/frozen-main-stream/result.json",
+      "bytes": 1838,
+      "sha256": "c781cbd4702b7ffce5f86f6ca541a420c67e8c215498949bb0f40aae840fc446"
+    },
+    {
+      "path": "build/v10w/frozen-main-stream/result.png",
+      "bytes": 102223,
+      "sha256": "d79f8481ec436b350344204a8b8f834acf802908f5c1a9a91f06a5ef8c03377e"
+    }
+  ]
+}
