@@ -1114,6 +1114,9 @@ class MainWindow(DeviceControlsMixin, QtWidgets.QMainWindow):
                 self.statusBar().showMessage("Включите служебные коды АЦП, чтобы настроить масштаб потока.")
                 return
             _x, y = self.stream_dialog.viewer.curve.getData()
+            if y is None or len(y) == 0:
+                self.statusBar().showMessage("Ждём отсчёты для автомасштаба потока.")
+                return
             finite = [float(value) for value in y if math.isfinite(float(value))]
             if not finite:
                 self.statusBar().showMessage("Ждём отсчёты для автомасштаба потока.")
@@ -1495,6 +1498,14 @@ class MainWindow(DeviceControlsMixin, QtWidgets.QMainWindow):
             saved = self._pre_stream_y_view
             self._pre_stream_y_view = None
             if saved is not None:
+                self._stream_syncing = True
+                try:
+                    with QtCore.QSignalBlocker(self.raw_view):
+                        self.raw_view.setChecked(saved[5])
+                    self._set_axis_mode(saved[4] == "raw")
+                finally:
+                    self._stream_syncing = False
+            if saved is not None:
                 self.origin_badge.setText(saved[7])
                 self.xposition.set_bounds(0, saved[6])
             self._update_actions()
@@ -1511,6 +1522,8 @@ class MainWindow(DeviceControlsMixin, QtWidgets.QMainWindow):
                 self.yposition.set_value(saved[3])
                 if self.display_recording is not None:
                     self._display(self.display_recording)
+            for widget in (self.stream_button, self.device_stream_button, self.device_button):
+                widget.setEnabled(True)
             self.raw_view.setToolTip("Коды 0…4095. Это не напряжение на входном разъёме.")
 
     def _reserve_serial(self, owner, port):

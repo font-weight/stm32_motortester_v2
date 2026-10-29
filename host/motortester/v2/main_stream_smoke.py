@@ -11,7 +11,9 @@ import time
 
 from PySide6 import QtCore, QtWidgets
 
+from .data import Recording, SignalBlock
 from .gui import MainWindow
+from .input import UNKNOWN_PROFILE
 
 
 def wait_until(app, predicate, timeout=8):
@@ -25,13 +27,23 @@ def wait_until(app, predicate, timeout=8):
     return bool(predicate())
 
 
-def main(output):
+def main(output, callback_errors):
     app = QtWidgets.QApplication.instance() or QtWidgets.QApplication(["MotortesterV2-main-stream-smoke"])
     app.setStyle("Fusion")
     with tempfile.TemporaryDirectory(prefix="motortester-main-stream-") as temporary:
         root = Path(temporary)
         window = MainWindow(settings_path=root / "settings.ini")
         window.show()
+        window.timer.stop()
+        original = Recording((SignalBlock(0, 50_000, tuple(1000 + i % 100 for i in range(200)),
+                                         quality_flags=("unknown_scale",)),),
+                             input_profile=UNKNOWN_PROFILE)
+        window.raw_view.setChecked(False)
+        window._display(original, reset=True)
+        window.sweep.set_value(.002)
+        window.xposition.set_value(0)
+        if window.raw_view.isChecked() or window._axis_kind != "voltage":
+            raise AssertionError("Подготовка проверки не сохранила исходный unknown/raw=False экран")
         if not window.open_stream_workspace():
             raise RuntimeError("Не удалось открыть встроенную ДЕМО-панель потока")
         panel = window.stream_dialog
@@ -43,12 +55,16 @@ def main(output):
             raise AssertionError("Правая панель не переключилась на служебную шкалу АЦП")
         if window.capture_controls.isVisible() or window.yposition.suffix != "код":
             raise AssertionError("Потоковый экран показывает параметры/единицы оконного запуска")
+        window.raw_view.setChecked(True)
+        window.auto_scale()
+        if window.statusBar().currentMessage() != "Ждём отсчёты для автомасштаба потока.":
+            raise AssertionError("Автомасштаб без Preview не обработал пустой график")
+        window.statusBar().clearMessage()
         if not panel.start_live():
             raise RuntimeError("Не удалось запустить ДЕМО-поток")
         if not wait_until(app, lambda: panel.viewer.selection is not None and
                           panel.viewer._identity is not None):
             raise TimeoutError("Потоковый график не получил исходные отсчёты")
-        window.raw_view.setChecked(True)
         if not wait_until(app, lambda: panel.viewer.plot.isVisible()):
             raise AssertionError("Служебный график не показан после явного включения кодов")
 
@@ -116,10 +132,41 @@ def main(output):
         if window.stream_dialog is not None and not window.stream_dialog.closed:
             raise AssertionError("Ресурсы потоковой панели остались активны")
         if (not window.scope_button.isEnabled() or not window.open_button.isEnabled() or
-                window.yscale.suffix != "В/дел" or abs(window.sweep.value - .002) > 1e-9):
+                not window.stream_button.isEnabled() or not window.device_stream_button.isEnabled() or
+                not window.device_button.isEnabled() or window.raw_view.isChecked() or
+                window._axis_kind != "voltage" or window.yscale.suffix != "В/дел" or
+                window.yposition.suffix != "В" or abs(window.sweep.value - .002) > 1e-9):
             raise AssertionError("Основные параметры не восстановились после выхода из потока")
-        window.close()
-        app.processEvents()
+        raw_checkbox_restored = not window.raw_view.isChecked()
+
+        window.stream_button.click()
+        if not wait_until(app, lambda: window._stream_page_active and
+                          window.left_stack.currentWidget() is window.stream_dialog):
+            raise AssertionError("Повторное открытие непрерывного приёма после возврата не сработало")
+        second_panel = window.stream_dialog
+        if not second_panel.start_live() or not wait_until(
+                app, lambda: second_panel.viewer._identity is not None):
+            raise AssertionError("Повторно открытая панель не запустила ДЕМО-поток")
+        second_panel.close_panel_button.click()
+        if not wait_until(app, lambda: second_panel.closed and
+                          window.left_stack.currentWidget() is window.main_page):
+            raise AssertionError("Повторная панель не закрылась с возвратом в главное окно")
+        stream_reopened = (window.stream_button.isEnabled() and
+                           window.device_stream_button.isEnabled() and
+                           window.device_button.isEnabled())
+        if not stream_reopened:
+            raise AssertionError("Кнопки потока не восстановились после второго закрытия")
+        cleanup_error = None
+        try:
+            if not window.close():
+                cleanup_error = "Закрытие основного окна было отклонено"
+            app.processEvents()
+        except Exception as exc:
+            cleanup_error = f"{type(exc).__name__}: {exc}"
+        owners_closed = bool(panel.closed and panel.viewer._closed and
+                             panel.cursors._closed and not panel._serial_reserved and
+                             second_panel.closed and second_panel.viewer._closed and
+                             second_panel.cursors._closed and not second_panel._serial_reserved)
         file_bytes = path.stat().st_size
         file_sha256 = hashlib.sha256(path.read_bytes()).hexdigest()
         output = Path(output)
@@ -128,18 +175,24 @@ def main(output):
         shutil.copyfile(path, saved_artifact)
         if saved_artifact.stat().st_size != file_bytes or hashlib.sha256(saved_artifact.read_bytes()).hexdigest() != file_sha256:
             raise RuntimeError("Сохранённая копия журнала отличается от проверенной записи")
+        failures = []
+        if callback_errors:
+            failures.append("Qt callback exceptions were captured")
+        if cleanup_error is not None:
+            failures.append("Cleanup raised or the main window refused to close")
+        if not owners_closed:
+            failures.append("One or more stream resources remained open")
         result = {
-            "status": "PASS",
+            "status": "PASS" if not failures else "FAIL",
             "frozen": bool(getattr(sys, "frozen", False)),
             "platform": sys.platform,
             "qt_platform": app.platformName(),
             "executable": sys.executable,
-            "callback_errors": [],
-            "cleanup_error": None,
+            "callback_errors": callback_errors,
+            "cleanup_error": cleanup_error,
             "execution_kind": "DEMO",
             "physical_stream_verified": False,
-            "owners_closed": bool(panel.closed and panel.viewer._closed and
-                                  panel.cursors._closed and not panel._serial_reserved),
+            "owners_closed": owners_closed,
             "real_serial_open_calls": 0,
             "embedded_widget": True,
             "capture_controls_hidden": True,
@@ -152,6 +205,9 @@ def main(output):
             "recording_continued_during_navigation": True,
             "source_cursor_readback": True,
             "saved_recording_reopened_in_main_window": True,
+            "raw_checkbox_restored": raw_checkbox_restored,
+            "empty_autoscale_handled": True,
+            "stream_can_reopen": stream_reopened,
             "saved_file_bytes": file_bytes,
             "saved_file_sha256": file_sha256,
             "saved_recording_artifact": saved_artifact.name,
@@ -163,19 +219,34 @@ def main(output):
                 "source_cursor_readback": True,
                 "recording_continued_during_navigation": True,
                 "saved_recording_reopened_in_main_window": True,
+                "raw_checkbox_restored": raw_checkbox_restored,
+                "empty_autoscale_handled": True,
+                "stream_can_reopen": stream_reopened,
                 "return_restores_main_controls": True,
             },
             "returned_to_main": True,
             "serial_ports": 0,
-            "failures": [],
+            "failures": failures,
         }
         output.write_text(json.dumps(result, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
         print(json.dumps(result, ensure_ascii=False, sort_keys=True))
+        return result
 
 
 def run(output):
-    main(output)
-    return 0
+    callback_errors = []
+    previous_excepthook = sys.excepthook
+
+    def capture_qt_callback_error(exc_type, exc_value, traceback):
+        callback_errors.append(f"{exc_type.__name__}: {exc_value}")
+        previous_excepthook(exc_type, exc_value, traceback)
+
+    sys.excepthook = capture_qt_callback_error
+    try:
+        result = main(output, callback_errors)
+    finally:
+        sys.excepthook = previous_excepthook
+    return 0 if result["status"] == "PASS" else 1
 
 
 if __name__ == "__main__":

@@ -16,7 +16,8 @@ def verify_main_stream_package(*, output, gui_exe, relocated, foreign_cwd,
             smoke.get("platform") != "win32" or smoke.get("qt_platform") != "windows" or
             Path(smoke.get("executable", "")).resolve() != gui_exe.resolve() or
             smoke.get("callback_errors") != [] or smoke.get("error") or
-            smoke.get("cleanup_error") or smoke.get("execution_kind") != "DEMO" or
+            smoke.get("cleanup_error") or smoke.get("failures") != [] or
+            smoke.get("execution_kind") != "DEMO" or
             smoke.get("physical_stream_verified") is not False or
             smoke.get("owners_closed") is not True or
             type(smoke.get("real_serial_open_calls")) is not int or
@@ -25,7 +26,8 @@ def verify_main_stream_package(*, output, gui_exe, relocated, foreign_cwd,
     required = (
         "embedded_widget", "capture_controls_hidden", "main_time_scale", "main_y_scale",
         "source_cursor_readback", "recording_continued_during_navigation",
-        "saved_recording_reopened_in_main_window", "return_restores_main_controls")
+        "saved_recording_reopened_in_main_window", "raw_checkbox_restored",
+        "empty_autoscale_handled", "stream_can_reopen", "return_restores_main_controls")
     if any(smoke.get("checks", {}).get(key) is not True for key in required):
         raise RuntimeError("Embedded main-window evidence incomplete")
     if (smoke.get("demo_rate_hz") != 50_000 or
