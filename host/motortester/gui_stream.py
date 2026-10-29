@@ -911,14 +911,17 @@ class StreamViewerPanel(QtWidgets.QWidget):
         self._submit(_Request(self._source, self._revision, "live", snapshot, operation))
         self._actions()
 
-    def select_range(self, start, stop, *, hold_live=True):
+    def select_range(self, start, stop, *, hold_live=True, follow_tail=False):
         if self._identity is None or self._first is None or self._first == self._end:
             return
         uint(start); uint(stop)
         if start >= stop:
             raise ValueError("Пустой диапазон просмотра")
         requested_width = stop - start
-        if (hold_live and self._recording is None and self._held_live is None and
+        if (follow_tail and self._held_live is not None):
+            self.inspection_reset.emit()
+            self._held_live = None
+        if (hold_live and not follow_tail and self._recording is None and self._held_live is None and
                 self._drawn_live is not None and self._drawn_live.raw_u16le is not None):
             self._held_live = self._drawn_live
         if self._held_live is not None:
@@ -943,7 +946,7 @@ class StreamViewerPanel(QtWidgets.QWidget):
             self._live_limit_notice = f"Диапазон live ограничен {DETAIL_SAMPLES} отсчётами; более широкий live-обзор недоступен."
         start = max(first, min(start, end - width))
         self.selection = Selection(start, start + width)
-        self.follow_tail = False
+        self.follow_tail = bool(follow_tail)
         self._revision += 1
         if self._live_limit_notice:
             # Undo the unsupported wheel scale immediately, before its legal

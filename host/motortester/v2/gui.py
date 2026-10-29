@@ -111,6 +111,10 @@ class MainWindow(DeviceControlsMixin, QtWidgets.QMainWindow):
         self.gap_items = []
         self.stream_dialog = None
         self._stream_close_pending = False
+        self._stream_page_active = False
+        self._stream_initial_view = False
+        self._stream_syncing = False
+        self._pre_stream_y_view = None
         self._serial_owner = None
         self._serial_port = None
         self._init_device(device_bridge_factory)
@@ -160,9 +164,12 @@ class MainWindow(DeviceControlsMixin, QtWidgets.QMainWindow):
         body = QtWidgets.QHBoxLayout()
         body.setSpacing(12)
         layout.addLayout(body, 1)
-        left = QtWidgets.QVBoxLayout()
+        self.main_page = QtWidgets.QWidget()
+        self.left_stack = QtWidgets.QStackedWidget()
+        self.left_stack.addWidget(self.main_page)
+        body.addWidget(self.left_stack, 1)
+        left = QtWidgets.QVBoxLayout(self.main_page)
         left.setSpacing(6)
-        body.addLayout(left, 1)
         actions = QtWidgets.QGridLayout()
         self.action_layout = actions
         self.state_label = label("●  Живой сигнал", "state")
@@ -324,7 +331,9 @@ class MainWindow(DeviceControlsMixin, QtWidgets.QMainWindow):
         profile_row.addWidget(self.scope_button)
         profile_row.addWidget(self.ignition_button)
         side.addLayout(profile_row)
-        source_row = QtWidgets.QHBoxLayout()
+        self.source_controls_row = QtWidgets.QWidget()
+        source_row = QtWidgets.QHBoxLayout(self.source_controls_row)
+        source_row.setContentsMargins(0, 0, 0, 0)
         self.waveform_combo = QtWidgets.QComboBox()
         self.waveform_combo.addItem("ДЕМО · синусоида", "sine")
         self.waveform_combo.addItem("ДЕМО · прямоугольный", "square")
@@ -339,7 +348,7 @@ class MainWindow(DeviceControlsMixin, QtWidgets.QMainWindow):
         self.units_combo.addItems(["В", "мВ"])
         self.units_combo.currentIndexChanged.connect(self._units_changed)
         source_row.addWidget(self.units_combo)
-        side.addLayout(source_row)
+        side.addWidget(self.source_controls_row)
         self.scale_label = label("Номинальная шкала · ДЕМО", "muted", wrap=True)
         side.addWidget(self.scale_label)
         self.raw_view = QtWidgets.QCheckBox("Показать служебные коды АЦП")
@@ -360,7 +369,8 @@ class MainWindow(DeviceControlsMixin, QtWidgets.QMainWindow):
         self.xposition.set_display(1000, "мс")
         self.holdoff.set_display(1000, "мс")
         for index, knob in enumerate((self.sweep, self.yscale, self.xposition, self.yposition, self.threshold, self.holdoff)):
-            controls.addWidget(knob, index // 2, index % 2)
+            if knob not in (self.threshold, self.holdoff):
+                controls.addWidget(knob, index // 2, index % 2)
         for knob in (self.sweep, self.yscale, self.xposition, self.yposition):
             knob.changed.connect(lambda value, sender=knob: self._view_changed(sender))
         self.threshold.changed.connect(self._capture_settings_changed)
@@ -376,23 +386,36 @@ class MainWindow(DeviceControlsMixin, QtWidgets.QMainWindow):
         self.rising.setChecked(True)
         edge_row.addWidget(self.rising)
         edge_row.addWidget(self.falling)
-        side.addLayout(edge_row)
         self.capture_note = label("Программный поиск события · ДЕМО", "muted", wrap=True)
-        side.addWidget(self.capture_note)
         pre_row = QtWidgets.QHBoxLayout()
         pre_row.addWidget(label("Предыстория"))
         pre_row.addStretch()
         self.pre_label = label("20 %", "muted")
         pre_row.addWidget(self.pre_label)
-        side.addLayout(pre_row)
         self.pretrigger = QtWidgets.QSlider(QtCore.Qt.Orientation.Horizontal)
         self.pretrigger.setRange(0, 99)
         self.pretrigger.setValue(20)
         self.pretrigger.valueChanged.connect(lambda value: self.pre_label.setText(f"{value} %"))
-        side.addWidget(self.pretrigger)
+        self.capture_controls = QtWidgets.QWidget()
+        capture_layout = QtWidgets.QVBoxLayout(self.capture_controls)
+        capture_layout.setContentsMargins(0, 0, 0, 0)
+        capture_layout.setSpacing(8)
+        capture_grid = QtWidgets.QGridLayout()
+        capture_grid.setHorizontalSpacing(4)
+        capture_grid.setVerticalSpacing(8)
+        capture_grid.addWidget(self.threshold, 0, 0)
+        capture_grid.addWidget(self.holdoff, 0, 1)
+        capture_layout.addLayout(capture_grid)
+        capture_layout.addLayout(edge_row)
+        capture_layout.addWidget(self.capture_note)
+        capture_layout.addLayout(pre_row)
+        capture_layout.addWidget(self.pretrigger)
+        side.addWidget(self.capture_controls)
         fit_row = QtWidgets.QHBoxLayout()
-        fit_row.addWidget(self._button("Автомасштаб", self.auto_scale))
-        fit_row.addWidget(self._button("Весь сигнал", self.full_signal))
+        self.auto_scale_button = self._button("Автомасштаб", self.auto_scale)
+        self.full_signal_button = self._button("Весь сигнал", self.full_signal)
+        fit_row.addWidget(self.auto_scale_button)
+        fit_row.addWidget(self.full_signal_button)
         side.addLayout(fit_row)
         self.device_button = self._button("STM32 · подключение", self.device_info)
         self.stream_button = self._button("Непрерывный приём · ДЕМО", self.open_stream_workspace)
@@ -427,6 +450,8 @@ class MainWindow(DeviceControlsMixin, QtWidgets.QMainWindow):
             capture_settings=self.capture_settings())
 
     def _tick(self):
+        if self._stream_page_active:
+            return
         if self.device_active:
             return
         self._ticks += 1
@@ -690,7 +715,20 @@ class MainWindow(DeviceControlsMixin, QtWidgets.QMainWindow):
             self.cursor_b.setValue((start + width * .4) * 1000)
 
     def _view_changed(self, sender):
-        if self._rendering or self.display_recording is None:
+        if self._rendering or self._stream_syncing:
+            return
+        if self._stream_page_active:
+            viewer = self.stream_dialog.viewer
+            follow = viewer.follow_tail and sender is not self.xposition
+            self.stream_dialog.apply_scope_view(
+                seconds_per_div=self.sweep.value,
+                x_start_s=self.xposition.value,
+                y_center=self.yposition.value,
+                codes_per_div=self.yscale.value,
+                follow_tail=follow,
+                change_time=sender in (self.sweep, self.xposition))
+            return
+        if self.display_recording is None:
             return
         if sender is self.xposition:
             self.follow = False
@@ -730,6 +768,10 @@ class MainWindow(DeviceControlsMixin, QtWidgets.QMainWindow):
             f"ΔU: {self.voltage_text(result.delta_v)}   |   — = нет отсчёта / шкалы")
 
     def _raw_view_changed(self):
+        if self._stream_page_active:
+            if self.stream_dialog is not None and not self.stream_dialog.closed:
+                self.stream_dialog.raw_view.setChecked(self.raw_view.isChecked())
+            return
         if self.display_recording is not None:
             self._display(self.display_recording)
 
@@ -799,6 +841,9 @@ class MainWindow(DeviceControlsMixin, QtWidgets.QMainWindow):
         self.set_mode(0)
 
     def change_profile(self, profile):
+        if self._stream_page_active:
+            self.statusBar().showMessage("Остановите поток, чтобы изменить профиль основного экрана.")
+            return
         if self.recording or self.armed_after is not None or self.mode != 0:
             return
         self.ui_profile = profile
@@ -814,6 +859,8 @@ class MainWindow(DeviceControlsMixin, QtWidgets.QMainWindow):
         self.auto_scale()
 
     def change_waveform(self, *args):
+        if self._stream_page_active:
+            return
         kind = self.waveform_combo.currentData()
         if kind == "device":
             if not self.device_active:
@@ -1062,6 +1109,27 @@ class MainWindow(DeviceControlsMixin, QtWidgets.QMainWindow):
             self.device_panel.update_state()
 
     def auto_scale(self):
+        if self._stream_page_active:
+            if not self.raw_view.isChecked():
+                self.statusBar().showMessage("Включите служебные коды АЦП, чтобы настроить масштаб потока.")
+                return
+            _x, y = self.stream_dialog.viewer.curve.getData()
+            finite = [float(value) for value in y if math.isfinite(float(value))]
+            if not finite:
+                self.statusBar().showMessage("Ждём отсчёты для автомасштаба потока.")
+                return
+            low, high = min(finite), max(finite)
+            wanted = max(1.0, (high - low) * 1.15 / 8)
+            decade = 10 ** math.floor(math.log10(wanted))
+            scale = next(step * decade for step in (1, 2, 5, 10) if step * decade >= wanted)
+            self._stream_syncing = True
+            try:
+                self.yposition.set_value((high + low) / 2)
+                self.yscale.set_value(scale)
+            finally:
+                self._stream_syncing = False
+            self._view_changed(self.yscale)
+            return
         rec = self.display_recording
         if rec is None:
             return
@@ -1081,6 +1149,13 @@ class MainWindow(DeviceControlsMixin, QtWidgets.QMainWindow):
         self._display(rec)
 
     def full_signal(self):
+        if self._stream_page_active:
+            viewer = self.stream_dialog.viewer
+            if viewer._recording is None:
+                viewer.follow()
+            else:
+                viewer.show_whole_recording()
+            return
         rec = self.display_recording
         if rec:
             self.follow = False
@@ -1298,8 +1373,7 @@ class MainWindow(DeviceControlsMixin, QtWidgets.QMainWindow):
         from .device import available_ports
         from .stream_device import SerialStreamSelection
         if self.stream_dialog is not None and not self.stream_dialog.closed:
-            self.stream_dialog.show()
-            self.stream_dialog.raise_()
+            self._show_stream_workspace()
             self.statusBar().showMessage("Для смены источника сначала закройте текущее окно потока.")
             return False
         try:
@@ -1322,6 +1396,122 @@ class MainWindow(DeviceControlsMixin, QtWidgets.QMainWindow):
             self.statusBar().showMessage(str(exc))
             return False
         return self._open_stream_workspace(selection)
+
+    def _stream_source_reset(self):
+        self._stream_initial_view = True
+
+    def _stream_plot_drawn(self):
+        if not self._stream_page_active or self.stream_dialog is None:
+            return
+        if self._stream_initial_view:
+            viewer = self.stream_dialog.viewer
+            if viewer._identity is not None and viewer._end is not None:
+                fs = viewer._identity[3]
+                available_first = viewer._first if viewer._recording is not None else viewer._raw_first
+                wanted = max(1, round(self.sweep.value * 10 * fs))
+                if viewer._recording is None:
+                    from ..gui_stream import DETAIL_SAMPLES
+                    wanted = min(wanted, DETAIL_SAMPLES)
+                if available_first is not None and viewer._end - available_first < wanted:
+                    return
+            self._stream_initial_view = False
+            self.stream_dialog.apply_scope_view(
+                seconds_per_div=self.sweep.value,
+                x_start_s=self.xposition.value,
+                y_center=self.yposition.value,
+                codes_per_div=self.yscale.value,
+                follow_tail=viewer.follow_tail,
+                change_time=True)
+        else:
+            self._sync_stream_controls()
+
+    def _sync_stream_controls(self, *_args):
+        if (not self._stream_page_active or self.stream_dialog is None or
+                self._stream_syncing):
+            return
+        viewer = self.stream_dialog.viewer
+        selection, identity = viewer.selection, viewer._identity
+        if selection is None or identity is None or viewer._first is None:
+            return
+        fs = identity[3]
+        if type(fs) is not int or fs <= 0:
+            return
+        x_start = max(0.0, (selection.start - viewer._first) / fs)
+        y_low, y_high = viewer.plot.getViewBox().viewRange()[1]
+        if not all(math.isfinite(value) for value in (x_start, y_low, y_high)) or y_high <= y_low:
+            return
+        source_duration = max(0.0, (viewer._end - viewer._first) / fs)
+        self._stream_syncing = True
+        try:
+            self.xposition.set_bounds(0, max(3600.0, source_duration))
+            self.xposition.set_value(x_start)
+            self.sweep.set_value(selection.width / fs / 10)
+            self.yscale.set_value((y_high - y_low) / 8)
+            self.yposition.set_value((y_high + y_low) / 2)
+        finally:
+            self._stream_syncing = False
+
+    def _stream_range_changed(self, *_args):
+        self._sync_stream_controls()
+
+    def _set_stream_page_active(self, active):
+        if self._stream_page_active == active:
+            return
+        if active:
+            self._pre_stream_y_view = (
+                self.sweep.value, self.xposition.value, self.yscale.value,
+                self.yposition.value, self._axis_kind, self.raw_view.isChecked(),
+                self.xposition.high, self.origin_badge.text())
+            self._stream_page_active = True
+            self._stream_initial_view = True
+            self.raw_view.setVisible(True)
+            self.raw_view.setToolTip("В потоке исходные коды показаны без пересчёта в напряжение.")
+            self.source_controls_row.hide()
+            self.capture_controls.hide()
+            self.scale_label.setText("Потоковая шкала В/мВ не настроена")
+            self.provenance_label.setText(
+                "CH1 · поток · " + ("ДЕМО" if self.stream_dialog.selection is None
+                                    else self.stream_dialog.selection.port))
+            if self.stream_dialog is not None:
+                with QtCore.QSignalBlocker(self.raw_view):
+                    self.raw_view.setChecked(self.stream_dialog.raw_view.isChecked())
+                self.stream_dialog.raw_view.hide()
+            self._set_axis_mode(True)
+            self.units_combo.setEnabled(False)
+            for widget in (self.scope_button, self.ignition_button, self.waveform_combo,
+                           self.rename_button, self.threshold, self.holdoff, self.rising,
+                           self.falling, self.pretrigger, self.device_button,
+                           self.pre_label, self.stream_button, self.device_stream_button, self.gap_button,
+                           self.open_button, *self.tabs):
+                widget.setEnabled(False)
+            self.capture_note.setText("Параметры запуска и захвата в потоке не применяются")
+            self.origin_badge.setText("ПОТОК · " + ("ДЕМО" if self.stream_dialog.selection is None else "STM32"))
+        else:
+            self._stream_page_active = False
+            self._stream_initial_view = False
+            self.raw_view.hide()
+            self.source_controls_row.show()
+            self.capture_controls.show()
+            saved = self._pre_stream_y_view
+            self._pre_stream_y_view = None
+            if saved is not None:
+                self.origin_badge.setText(saved[7])
+                self.xposition.set_bounds(0, saved[6])
+            self._update_actions()
+            recording = self.display_recording
+            if recording is not None:
+                self._display(recording)
+            elif self.mode == 0:
+                self._show_live()
+            if saved is not None:
+                self.sweep.set_value(saved[0])
+                self.xposition.set_value(saved[1])
+            if saved is not None and self._axis_kind == saved[4]:
+                self.yscale.set_value(saved[2])
+                self.yposition.set_value(saved[3])
+                if self.display_recording is not None:
+                    self._display(self.display_recording)
+            self.raw_view.setToolTip("Коды 0…4095. Это не напряжение на входном разъёме.")
 
     def _reserve_serial(self, owner, port):
         self._release_window_serial_if_closed()
@@ -1347,10 +1537,12 @@ class MainWindow(DeviceControlsMixin, QtWidgets.QMainWindow):
     def _open_stream_workspace(self, selection):
         from .stream_device import StreamContext
         from .stream_ui import StreamDialog
+        if self.recording or self.armed_after is not None:
+            self.statusBar().showMessage("Остановите текущий захват перед открытием непрерывного потока.")
+            return False
         if (self.stream_dialog is not None and not self.stream_dialog.closed and
                 self.stream_dialog.selection != selection):
-            self.stream_dialog.show()
-            self.stream_dialog.raise_()
+            self._show_stream_workspace()
             self.statusBar().showMessage("Для смены источника сначала закройте текущее окно потока.")
             return False
         if self.stream_dialog is None or self.stream_dialog.closed:
@@ -1360,14 +1552,32 @@ class MainWindow(DeviceControlsMixin, QtWidgets.QMainWindow):
                 self, context=StreamContext(self.channel_name, self.ui_profile),
                 selection=selection, acquire_serial=self._reserve_serial,
                 release_serial=self._release_serial)
+            self.stream_dialog.setWindowFlags(QtCore.Qt.WindowType.Widget)
+            self.stream_dialog.setMinimumSize(0, 0)
+            self.stream_dialog.setSizePolicy(QtWidgets.QSizePolicy.Policy.Expanding,
+                                             QtWidgets.QSizePolicy.Policy.Expanding)
+            self.stream_dialog.viewer.inspection_reset.connect(self._stream_source_reset)
+            self.stream_dialog.viewer.plot_drawn.connect(self._stream_plot_drawn)
+            self.stream_dialog.viewer.view_requested.connect(self._sync_stream_controls)
+            self.stream_dialog.viewer.plot.getViewBox().sigRangeChangedManually.connect(
+                self._stream_range_changed)
+            self.left_stack.addWidget(self.stream_dialog)
             self.stream_dialog.settled.connect(self._stream_settled)
             self.stream_dialog.close_cancelled.connect(self._stream_close_cancelled)
+        self._show_stream_workspace()
+        return True
+
+    def _show_stream_workspace(self):
+        if self.stream_dialog is None or self.stream_dialog.closed:
+            return False
+        self.left_stack.setCurrentWidget(self.stream_dialog)
         self.stream_dialog.show()
-        self.stream_dialog.raise_()
-        self.stream_dialog.activateWindow()
+        self._set_stream_page_active(True)
         return True
 
     def _stream_settled(self):
+        self.left_stack.setCurrentWidget(self.main_page)
+        self._set_stream_page_active(False)
         if self._stream_close_pending:
             self._stream_close_pending = False
             QtCore.QTimer.singleShot(0, self.close)

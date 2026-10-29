@@ -92,6 +92,7 @@ class StreamDialog(QtWidgets.QDialog):
             ("stop_button", "Остановить", self.stop),
             ("pause_button", "Пауза просмотра", self.toggle_pause),
             ("open_button", "Открыть запись…", self.open_dialog),
+            ("close_panel_button", "Остановить и вернуться", self.close),
         ):
             button = QtWidgets.QPushButton(text)
             button.clicked.connect(action)
@@ -170,6 +171,46 @@ class StreamDialog(QtWidgets.QDialog):
         self._timer.timeout.connect(self._poll_file)
         self._timer.start()
         self._state(self.bridge.state)
+
+    def apply_scope_view(self, *, seconds_per_div, x_start_s, y_center, codes_per_div,
+                         follow_tail=False, change_time=True):
+        """Apply the main-window knobs to this raw-code stream plot.
+
+        The host sweep is a time span and the Y controls are ADC codes while
+        the physical CH1 scale is unknown. No input calibration is inferred.
+        """
+        viewer = self.viewer
+        identity = viewer._identity
+        if identity is None or viewer._first is None or viewer._end is None:
+            return False
+        fs = identity[3]
+        if type(fs) is not int or fs <= 0 or viewer._end <= viewer._first:
+            return False
+        viewer.plot.setYRange(y_center - codes_per_div * 4,
+                              y_center + codes_per_div * 4, padding=0)
+        if not change_time:
+            return True
+        live = viewer._recording is None
+        available_first = viewer._raw_first if live else viewer._first
+        if available_first is None:
+            return False
+        width = max(1, round(seconds_per_div * 10 * fs))
+        available = viewer._end - available_first
+        if live:
+            from ..gui_stream import DETAIL_SAMPLES
+            width = min(width, DETAIL_SAMPLES)
+        width = min(width, available)
+        if width <= 0:
+            return False
+        if live and follow_tail:
+            stop = viewer._end
+            start = stop - width
+        else:
+            start = viewer._first + round(max(0.0, x_start_s) * fs)
+            stop = start + width
+        viewer.select_range(start, stop, hold_live=True,
+                            follow_tail=bool(live and follow_tail))
+        return viewer.selection is not None
 
     @property
     def busy(self):

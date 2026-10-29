@@ -1,5 +1,6 @@
 """Windowed V2 entrypoint; package verification is explicit and isolated."""
 import sys
+from pathlib import Path
 
 
 def main():
@@ -8,6 +9,11 @@ def main():
             return 2
         from motortester.v2.stream_cursors_smoke import run
         return run(sys.argv[2])
+    if sys.argv[1:2] == ["--verify-main-stream"]:
+        if len(sys.argv) != 3:
+            return 2
+        from motortester.v2.main_stream_smoke import run
+        return run(Path(sys.argv[2]) / "result.json")
     if sys.argv[1:2] == ["--verify-viewport"]:
         if len(sys.argv) != 3:
             return 2
