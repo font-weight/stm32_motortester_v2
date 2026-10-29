@@ -1,0 +1,123 @@
+{
+  "schema": "v2-08-package-evidence-1",
+  "recorded_utc": "2026-10-29T04:40:07.767376+00:00",
+  "source_commit": "148a950390b88dd7c5e8de8064dd1c833ce4c613",
+  "command": ".venv/Scripts/python.exe -B host/packaging/v2/build_windows.py --output build/v8w --verification cursors",
+  "exit_code": 0,
+  "files": [
+    {
+      "source": "build/v8w/build-report.json",
+      "archive": "docs/verification/v2-cursors/package-01/build/v8w/build-report.json",
+      "bytes": 4622,
+      "sha256": "0b880a745cec73e2e6b28c51c1b6fd9b74837ecbc6e12bd5319373f4ff40af1e"
+    },
+    {
+      "source": "build/v8w/build.log",
+      "archive": "docs/verification/v2-cursors/package-01/build/v8w/build.log",
+      "bytes": 34971,
+      "sha256": "25b182f9a9b8992e66c54f296e3a1661407d1be77c40da38ff923f5fcc6bf399"
+    },
+    {
+      "source": "build/v8w/SHA256SUMS.txt",
+      "archive": "docs/verification/v2-cursors/package-01/build/v8w/SHA256SUMS.txt",
+      "bytes": 935,
+      "sha256": "ccd7b1e6fe573e8682e44eb87fe79c4d51ce0e34bfba035d6df8cbfb2ead11aa"
+    },
+    {
+      "source": "build/v8w/license-input-restoration.json",
+      "archive": "docs/verification/v2-cursors/package-01/build/v8w/license-input-restoration.json",
+      "bytes": 20297,
+      "sha256": "3d6e63df2fa4ef820f7cf16449877b1fb29ec3fa42e5262a8d0da9f69ae2e189"
+    },
+    {
+      "source": "build/v8w/dist/MotortesterV2/build-manifest.json",
+      "archive": "docs/verification/v2-cursors/package-01/build/v8w/dist/MotortesterV2/build-manifest.json",
+      "bytes": 87570,
+      "sha256": "e0dddd8dc80cd40b7e0ccfdeaf1ee50dc6a29cd9b819e43ba24f43936cbfd337"
+    },
+    {
+      "source": "build/v8w/frozen-cursors/cursors-file.png",
+      "archive": "docs/verification/v2-cursors/package-01/build/v8w/frozen-cursors/cursors-file.png",
+      "bytes": 62517,
+      "sha256": "69c962f359d4e152b5d7d0609e438bc9e690bd275a585ac80454c293ddff7024"
+    },
+    {
+      "source": "build/v8w/frozen-cursors/cursors-live.png",
+      "archive": "docs/verification/v2-cursors/package-01/build/v8w/frozen-cursors/cursors-live.png",
+      "bytes": 60943,
+      "sha256": "f1bff7fa3dbb51fedc9ec261d410420e2963677903bfcc5b70d538089c69fd72"
+    },
+    {
+      "source": "build/v8w/frozen-cursors/cursors-pause.png",
+      "archive": "docs/verification/v2-cursors/package-01/build/v8w/frozen-cursors/cursors-pause.png",
+      "bytes": 61826,
+      "sha256": "99b69f92f1d6aded2435437d0ecd64c3a286088d582823b9b2b14e5c0cf33562"
+    },
+    {
+      "source": "build/v8w/frozen-cursors/cursors.mtstream",
+      "archive": "docs/verification/v2-cursors/package-01/build/v8w/frozen-cursors/cursors.mtstream",
+      "bytes": 192464,
+      "sha256": "a7e6f2aa334b21b69d7643d22670f3cf30a5380281a36b85acafee8260150119"
+    },
+    {
+      "source": "build/v8w/frozen-cursors/cursors.mtstream.v2.json",
+      "archive": "docs/verification/v2-cursors/package-01/build/v8w/frozen-cursors/cursors.mtstream.v2.json",
+      "bytes": 1777,
+      "sha256": "c5d29e069c03340608fed00cdef503074de2315d4931613fb721c5b135aaf0ef"
+    },
+    {
+      "source": "build/v8w/frozen-cursors/result.json",
+      "archive": "docs/verification/v2-cursors/package-01/build/v8w/frozen-cursors/result.json",
+      "bytes": 1946,
+      "sha256": "43650c3aa97d343f266b766a53e84ae9484f79b869039494a4a1b223033f25d3"
+    },
+    {
+      "source": "build/v8-archive-package.py",
+      "archive": "docs/verification/v2-cursors/package-01/build/v8-archive-package.py",
+      "bytes": 2887,
+      "sha256": "ca531b181eb1e42c9bdeb6d4cf75ba4a25dbfb2d0cef97da03227c260870bb68"
+    }
+  ],
+  "local_deliverables": [
+    {
+      "path": "build/v8w/MotortesterV2-windows-x64.zip",
+      "bytes": 61230407,
+      "sha256": "32cf24bf55a8a98eb393f7de4c07d8c36cccd17ee8628459cf28ced855dabc43",
+      "storage": "Local build artifact, not duplicated in Git"
+    },
+    {
+      "path": "build/v8w/source.zip",
+      "bytes": 76702400,
+      "sha256": "00c974c03179e18ddd705ddaf0b2a89e38ad7bf299f1804a3cf892cfb57bad52",
+      "storage": "Local build artifact, not duplicated in Git"
+    },
+    {
+      "path": "build/v8w/dist/MotortesterV2/MotortesterV2.exe",
+      "bytes": 7158856,
+      "sha256": "7bc8ec6e05f252a5d6c981335eda0136234e7ec08e60a6cfad5ee5cb07200eeb",
+      "storage": "Local build artifact, not duplicated in Git"
+    },
+    {
+      "path": "build/v8w/dist/MotortesterV2/MotortesterV2Inspect.exe",
+      "bytes": 2231866,
+      "sha256": "b65b48e935567d3a89f6ca83c44c4ebd6c5e7add8306ab2bcb164771c48a47bf",
+      "storage": "Local build artifact, not duplicated in Git"
+    }
+  ],
+  "source_pins": {
+    "host/motortester/gui_stream.py": "2e26b7fd523df5cf24b6854beba3f33ceae92dfb637f5097dbe45eb0e423a684",
+    "host/motortester/v2/stream_ui.py": "175f4793654631a66225a50d0c2514831b92942bd331501177076bbedae1b8e4",
+    "host/motortester/v2/stream_cursors.py": "b682f16c042fc46426a5ac6077829d695cc61e68b9a1bdccddacd0b23ccfe4be",
+    "host/motortester/v2/stream_cursors_smoke.py": "428b0ed3db760bc26427176443be1d91c8018e4dec7557f2caeb174d98e09699",
+    "host/tests/test_stream_cursors.py": "41f1f0811f3de0ebfbbcb0c34bd149dcacc2d19e4d98cbb349d717564e198e28",
+    "host/packaging/v2/build_windows.py": "c792567b02032dcf07e0f806ddadec819e231741f7a9377836bdaf2be0a4c99b",
+    "host/packaging/v2/launcher.py": "28ce6a410c2d39751c95d7c1c262289b1b1b39dab726acf1adc124b29d1efcba",
+    "host/packaging/v2/cursors_package_check.py": "0a5c1adafe64ea1e7959cd951add0cd65d7f909b6b647f801631aec2ca158803"
+  },
+  "scope": "One frozen Windows DEMO cursor run; no COM/SWD/firmware or full legacy suite.",
+  "root_visual_review": {
+    "method": "view_image: all three native01 and all three frozen-cursors PNGs",
+    "finding": "Visible A/B lines, signed readouts and controls; final frozen X axis explicitly states local origin. No overlapping labels.",
+    "limits": "Native01 preceded final local-axis-label/9g text changes; frozen covers final version. No physical150k GUI, calibrated timing/voltage or clean-OS claim."
+  }
+}
