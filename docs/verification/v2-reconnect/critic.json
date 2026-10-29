@@ -1,0 +1,164 @@
+{
+  "status": "PASS",
+  "score": 9.55,
+  "unrounded_score": "9.550",
+  "reviewer": "/root/trigger_controls_critic",
+  "independent": true,
+  "date": "2026-10-29",
+  "source_commit": "af596d87a11913b87c24cbc85ff5e8ebd6b48cb2",
+  "build_source_commit": "af596d87a11913b87c24cbc85ff5e8ebd6b48cb2",
+  "reviewed_head": "6b38eae39176b9ce42edaf325c645cb72c7571f9",
+  "base_commit": "e62969231be59005861bf622fc9b6944d33debbb",
+  "evidence_binding": "Source, committed final evidence and exact manifest hashes; host files unchanged between source and reviewed_head",
+  "requirement": "V2-UI26",
+  "scope": [
+    "program logic/DEMO and injected serial",
+    "Windows 10 GUI",
+    "local portable package"
+  ],
+  "open_p0": 0,
+  "open_p1": 0,
+  "open_p2": 0,
+  "open_findings": [],
+  "closed_findings": [
+    {
+      "priority": "P2",
+      "issue": "Main-window close while reconnect discard prompt was already open retained the wrong pending action",
+      "resolution": "Later close replaces both callbacks; final frozen verifies Cancel clears pending-close and retains dirty shot and old bridge; Discard priority reviewed statically"
+    },
+    {
+      "priority": "P2",
+      "issue": "Retry after failed HELLO erased the last accepted live search draft",
+      "resolution": "Preserve pending config and Fs/bits until accepted READY; final negative HELLO write and retry retain file2800, next-live2500 and saved2600"
+    },
+    {
+      "priority": "P2 evidence",
+      "issue": "Intermediate negative witness required ControllerStatus.error even though write failure is reported by serial.first_error and endpoint_first_fault",
+      "resolution": "Saved failure/diagnostic snapshot; assert serial.first_error and write_count_unknown; final frozen passed without production changes after5073b779"
+    },
+    {
+      "priority": "P3",
+      "issue": "V2-13 save-progress caption claimed reception continued after Stop",
+      "resolution": "Neutral saving caption"
+    }
+  ],
+  "criteria": {
+    "C1": {
+      "score": 9.6,
+      "weight": 0.3,
+      "basis": "Separate completed acquisition, file search and next-live draft; reconnect never sends START automatically; identified contract defects fixed"
+    },
+    "C2": {
+      "score": 9.5,
+      "weight": 0.2,
+      "basis": "Owner join/OS handle/lease and stale-callback fences; close, metadata, HELLO, dirty and close-priority negative paths; not exhaustive physical driver timing qualification"
+    },
+    "C3": {
+      "score": 9.6,
+      "weight": 0.25,
+      "basis": "Exact frozen source/package receipts, original artifacts and PNG reviewed; intermediate and failed runs preserved with correct scope"
+    },
+    "C4": {
+      "score": 9.4,
+      "weight": 0.15,
+      "basis": "Shorter user flow and clearer captions; persistent panel lifecycle still depends on several private states across existing components"
+    },
+    "C5": {
+      "score": 9.6,
+      "weight": 0.1,
+      "basis": "Source/evidence/package hashes, matching source ZIP, current instructions and documented continuation"
+    }
+  },
+  "report": "docs/reviews/v2-14-reconnect-review.md",
+  "report_sha256": "92d78c883df2b31bacb8cf61062335601872d9e2b4a8444153c6f7ad2c066be7",
+  "evidence": {
+    "native_manifest": "docs/verification/v2-reconnect/native/manifest.json",
+    "native_manifest_sha256": "08c8e4ec6c041ddb2f228299830707fc2c78bafd462b8b97a553dc9ee7f59c60",
+    "native_artifacts_verified": 26,
+    "native_checks": 35,
+    "native_scope": "Intermediate; before final close-prompt and failed-HELLO fixes",
+    "package1_manifest": "docs/verification/v2-reconnect/package1/manifest.json",
+    "package1_manifest_sha256": "8374fefd096a2a9b5056948bcb4cd113e76db30d088a94e0be54b3416ac505b1",
+    "package1_artifacts_verified": 29,
+    "package1_scope": "Intermediate PASS35 on673f7a2 before pending-draft fix",
+    "failed_manifest": "docs/verification/v2-reconnect/package2-failed/manifest.json",
+    "failed_manifest_sha256": "6dfeb710a90f8076cc6be522b3b8cd56349476ff546e7a9bebc621ecbd77e4e3",
+    "failed_artifacts_verified": 4,
+    "failed_status": "FAILED_TEST_PREDICATE; timeout/exit1; not accepted as PASS",
+    "package_manifest": "docs/verification/v2-reconnect/package/manifest.json",
+    "package_manifest_sha256": "8356b71582f934d9298210992e9bd867432f937b042d8c8af2b992d0904a597b",
+    "package_artifacts_verified": 29,
+    "frozen_checks": 35,
+    "all_archive_bytes_equal_git": true,
+    "all_archive_bytes_equal_original_build": true,
+    "receipt_equals_frozen_json": true,
+    "all_zip_dist_relocated_files_verified": 475,
+    "changed_host_source_files_verified": 8,
+    "frozen_pngs_inspected": [
+      "result-reconnect.png",
+      "result-connected.png"
+    ],
+    "native_pngs_inspected": [
+      "result-reconnect.png"
+    ],
+    "platform": "Windows-10-10.0.19045-SP0",
+    "qt_platform": "windows",
+    "isolated_path": "C:\\Windows\\System32",
+    "real_serial_open_calls": 0,
+    "callback_errors": [],
+    "cleanup_error": null,
+    "owners_closed": true,
+    "reconnect": {
+      "same_page": true,
+      "old_owners_joined": true,
+      "stale_callbacks_ignored": true,
+      "close_failure_fenced": true,
+      "metadata_failure_fenced": true,
+      "dirty_capture_cancelled": true,
+      "failed_hello_draft_preserved": true,
+      "ready_without_start": true,
+      "saved_threshold": 2600,
+      "file_threshold": 2800,
+      "next_live_threshold": 2500,
+      "first_backend_count": 2,
+      "final_backend_count": 4,
+      "successful_ready_commands": [
+        1,
+        1,
+        2
+      ],
+      "successful_ready_validated_samples": 0,
+      "archive_sha256": {
+        "result-reconnect.mtstream": "3c9dc4d8d29d14f17bdae55737b730e9b0f862701bc95e5a030f4e9c0531fc7d",
+        "result-reconnect.mtstream.v2.json": "5f528eb7595d48f0383b45f325fd3dd27ac21569a9aae124cd4894ce6cb93f4d",
+        "result-reconnect.mtshot": "5f7c072b3fb65749f6027aced67e738aabc6092b1123af497411bda0f7cabcd5"
+      }
+    }
+  },
+  "package": {
+    "build_directory": "build/v17w3",
+    "portable_zip": "build/v17w3/MotortesterV2-windows-x64.zip",
+    "portable_sha256": "a75c428656b8fcf3f1696f088e24bdd3567d015e5119844c5ad9a4ab4ae1083f",
+    "source_zip": "build/v17w3/source.zip",
+    "source_sha256": "25d614b2212f41e2c325dcfdbfd3781315e803f21575a63b201e9f45aef72967",
+    "gui_executable": "build/v17w3/dist/MotortesterV2/MotortesterV2.exe",
+    "gui_executable_sha256": "6e71130d957ebd4294ba220750b65cc0e82ac30b1be10a2a80c061c36cd6d1b0",
+    "inspect_executable_sha256": "c30a8165353bca8701c27ec51db369c73579c745be7eb4004d409e20012ee1bd"
+  },
+  "critic_actions": [
+    "Read Git/source/contracts/receipts/logs",
+    "Independently hash and compare archived evidence, ZIP, source ZIP and extracted package without importing application",
+    "Inspect stored native/frozen PNGs"
+  ],
+  "not_performed_by_critic": [
+    "Application/test/build rerun",
+    "Physical COM/SWD or firmware actions"
+  ],
+  "limitations": [
+    "No physical COM6 reconnection qualification in this iteration",
+    "No electrical calibration, accuracy, bandwidth, ignition or vehicle validation",
+    "Same selected COM only; changing port still uses original selection flow",
+    "Search remains fixed during active acquisition; Stop is required",
+    "Score is not a probability of correctness or hardware safety qualification"
+  ]
+}
