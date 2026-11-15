@@ -1,0 +1,25 @@
+{
+  "date": "2026-11-15",
+  "status": "PUBLISHED_AND_VERIFIED",
+  "repository": "https://github.com/font-weight/stm32_motortester_v2",
+  "source_commit": "22d2c8729fd8dd79f2d990f9770627a41be940e3",
+  "previous_main": "3ebfe1479056d64ce9c4a1eadad048f60ade100f",
+  "heads_observed_after_payload_push": {
+    "main": "22d2c8729fd8dd79f2d990f9770627a41be940e3",
+    "codex/publish-v2-21-20261115": "22d2c8729fd8dd79f2d990f9770627a41be940e3"
+  },
+  "method": "atomic Git push; main fast-forward and new publication branch; no force",
+  "verification": [
+    "git ls-remote origin returned the payload commit for both heads",
+    "GitHub connector fetched README.md at main; its content and blob SHA match the local committed README"
+  ],
+  "readme_blob_sha": "3a10aaa4115571640791ce195b081ffee8264f91",
+  "readme_url": "https://github.com/font-weight/stm32_motortester_v2/blob/main/README.md",
+  "publication_manifest_sha256": "6ff08672b617997c0311dc91781f79ff24e0350bf301be5ace9f84e4ea05041e",
+  "independent_review": "PASS 9.62/10; docs/reviews/v2-22-publication-review.md",
+  "runtime_changed_in_publication_task": false,
+  "public_windows_binary_release_created": false,
+  "upstream_original_repository_written": false,
+  "physical_measurement_performed": false,
+  "note": "The payload is identified by source_commit. This receipt and final progress are subsequent audit-only additions; they do not change the reviewed application or README."
+}
