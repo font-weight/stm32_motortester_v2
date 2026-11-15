@@ -1,0 +1,104 @@
+{
+  "date": "2026-11-14",
+  "scope": "V2-21 recorded damped-response analysis; synthetic software, native Windows GUI and relocated Windows package only",
+  "critic": "/root/unified_critic",
+  "independent_of_implementation": true,
+  "base_sha": "6e364ed4cc6f2859473c565765fcfe54b811d77f",
+  "manifest_path": "build/v24w/dist/MotortesterV2/build-manifest.json",
+  "manifest_sha256": "b123b3358d046e39b6ec88a041f677e043200cb3e8ae24f64a1a07a26fa455db",
+  "verdict": "PASS",
+  "score": 9.6,
+  "weighted_score_exact": "9.600",
+  "scores": {
+    "C1": 9.7,
+    "C2": 9.6,
+    "C3": 9.6,
+    "C4": 9.4,
+    "C5": 9.6
+  },
+  "weights": {
+    "C1": 0.3,
+    "C2": 0.2,
+    "C3": 0.25,
+    "C4": 0.15,
+    "C5": 0.1
+  },
+  "open_P0_P1": 0,
+  "report": "docs/reviews/v2-21-ringdown-review.md",
+  "report_sha256": "bec8039f3d2b9348556728a19268ff2dfd37058715a89f9ce2478e24a6e2292c",
+  "personally_checked": [
+    "Read current pure model, UI lifecycle, source integration, bounded tests, smoke, build and canonical documents",
+    "Reproduced separate-tail proposal bug before fix and once after fix on final code: refusal with reason",
+    "Inspected four native04 screenshots and four final frozen screenshots plus normal cold entry",
+    "Verified 477 source hashes and zip entries, 480 payload hashes in dist/relocated/portable zip, manifest consistency and old v23w EXE preservation"
+  ],
+  "author_evidence_checked": {
+    "model_tests": 5,
+    "native_gui_assertions": 33,
+    "relocated_frozen_gui_assertions": 33,
+    "real_serial_open_calls": 0,
+    "callback_errors": [],
+    "gui_platform": "Windows-10-10.0.19045-SP0 / Qt windows",
+    "model_max_32768_sample_proposal_seconds": 0.309
+  },
+  "findings": [
+    {
+      "id": "R1",
+      "severity": "P1",
+      "status": "closed",
+      "summary": "Automatic proposal selected second of separated tails when first suffix fit failed; all-region activity check now refuses exact supplied witness"
+    },
+    {
+      "id": "R2",
+      "severity": "P2",
+      "status": "closed",
+      "summary": "Expanded analysis hid bottom plot and X axis in native03; current-width layout sizing and whole-plot assertion verified in native04 and frozen"
+    },
+    {
+      "id": "R3",
+      "severity": "P3",
+      "status": "open_nonblocking",
+      "summary": "host/README.md lines 38-39 retain --verify-event-frequency caption after correct ringdown build command; build actually runs --verify-ringdown and progress records clarification"
+    }
+  ],
+  "exclusions": [
+    "No physical COM, SWD, firmware, CAD or hardware tests",
+    "No confirmation of ADC timing accuracy, analog bandwidth, protection or overload recovery",
+    "No coil diagnosis, physical Q, spark-end inference, kV or vehicle acceptance",
+    "No full legacy suite; old formats remain in separate prior viewer without ringdown analysis",
+    "Series summarizes selected accepted recorded events only; no independent physical validation or export"
+  ],
+  "evidence_sha256": {
+    "build/v24w/dist/MotortesterV2/build-manifest.json": "b123b3358d046e39b6ec88a041f677e043200cb3e8ae24f64a1a07a26fa455db",
+    "build/v24w/build-report.json": "506ed0f88ee52a3045d8fe5445ecd510705c4cc5719253d63fd6683da0f7b264",
+    "build/v24w/frozen-ringdown/result.json": "0fbc7c1b5cfdf02d7067879e6e9766a0855616328325ea06566ea421fa7a4b83",
+    "build/v24-native-04/result.json": "396e8a19a908af4654333aa6f570990c16c0a6823f379c0f793c22b576d36711",
+    "build/v24w/normal-entry.png": "bbe9f46d35acb88eb1717702327b07524e0d89f3ac121c2ec2c4a15bb748572d",
+    "docs/verification/ringdown-20261114/SCOPE_RU.md": "83700548cc02e3add9311c40fb34ef349bdd89f0dc8ac10da3d9634d7802f60f",
+    "docs/verification/ringdown-20261114/model-tests.log": "6769fdf5da1d624d9f15cb8befcc7b6049ae304cc9ee8fc03870490563b70529",
+    "docs/verification/ringdown-20261114/author-evidence.json": "ce0d98f40b11380ee20e0156766c03d0e7d6a3e5cc5196e71aa5922092c509cb",
+    "docs/verification/ringdown-20261114/critic-package-integrity.json": "647ecee6630a941f278f6ae7884d0659571ab1ef6374bd51622337d131fb453d",
+    "docs/quality-gate.md": "be4e7de71777d247f1554c8bec4d001b6afaac3c6e50479e0aad2001e4ff1489",
+    "docs/ringdown.md": "78563022e4e530ea3138317a20867dcb84c17f60b351f9ede0fb8f748c38a892",
+    "docs/architecture.md": "4c0d686d18e955c55c43ea4d4aa927feed892cdfaa5e183b9290b1148026104b",
+    "docs/decisions.md": "1d1911054a60c8d224a05524c20399b1177d1ceccb6386ef1d7604e54bf1caa5",
+    "requirements.md": "7de1d7533ba4a813b083386e5f69d9fe8810d615f4756e5057d81b7fd22f17b7",
+    "task.md": "5a9e3af640409279333401b3948c55fbfcf9ceab921d50304af7c2178e97a324",
+    "README.md": "1da331f42c3cb924f736b2c20dc92b6907f2e4afe3d900dea98a8ae6cac0026c",
+    "host/README.md": "e3f628901c6bc4b5ce081d83769bcf36b641391ff50dc5a7183825c672c7031b",
+    "host/motortester/v2/ringdown.py": "79b3c6e3d762662aa843d60551cd0ac4303b97bec05c5d19795e746baa3cfa4d",
+    "host/motortester/v2/ringdown_ui.py": "9288c087f7f199c612c8949ec1f8a87c859e046faf41cdf2ad5df2ca226ced62",
+    "host/motortester/v2/ringdown_smoke.py": "49e3842be122a44b962320c7071a43429dcc14cdafc416a1e63c0c0b6c55c1e5",
+    "host/motortester/v2/ringdown_examples.py": "493bdb299b2888272ee5188335dc1f7e4c333c4f01a4396aaacf258258579d56",
+    "host/tests/test_v2_ringdown.py": "94cee0e5f68f3adb3ff3c838d022328cad08579bb8fbcc45b61568f8a296923f",
+    "docs/reviews/v2-21-ringdown-review.md": "bec8039f3d2b9348556728a19268ff2dfd37058715a89f9ce2478e24a6e2292c",
+    "build/v24-native-04/01-ringdown-result.png": "c18fbe51a80c2c93eb35bed4990aba28eb40afcf9727258c85a3d132195b2c50",
+    "build/v24-native-04/02-short-interval.png": "647618a692ce4d7c4aa9837a7c9e14de488879cdd02f282910634a01dc08e40f",
+    "build/v24-native-04/03-clipped-reason.png": "8e18f437738bd0e54d4150e4b0c942ce479a0c65dd05f39311831569ab6b6c6e",
+    "build/v24-native-04/04-distinct-event-series.png": "3451c4b65f961f5d7a576da84a830a85f6152ff329cba8a80f79b30a3f8357a3",
+    "build/v24w/frozen-ringdown/01-ringdown-result.png": "c18fbe51a80c2c93eb35bed4990aba28eb40afcf9727258c85a3d132195b2c50",
+    "build/v24w/frozen-ringdown/02-short-interval.png": "647618a692ce4d7c4aa9837a7c9e14de488879cdd02f282910634a01dc08e40f",
+    "build/v24w/frozen-ringdown/03-clipped-reason.png": "8e18f437738bd0e54d4150e4b0c942ce479a0c65dd05f39311831569ab6b6c6e",
+    "build/v24w/frozen-ringdown/04-distinct-event-series.png": "3451c4b65f961f5d7a576da84a830a85f6152ff329cba8a80f79b30a3f8357a3"
+  }
+}

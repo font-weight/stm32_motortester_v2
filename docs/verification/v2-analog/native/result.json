@@ -1,0 +1,82 @@
+{
+  "status": "PASS",
+  "execution_kind": "injected-test",
+  "physical_measurement": false,
+  "frozen": false,
+  "platform": "win32",
+  "windows_host": "Windows-10-10.0.19045-SP0",
+  "qt_platform": "windows",
+  "executable": "C:\\Users\\Alexandr\\Desktop\\New folder\\универ\\мотортестер 2\\.venv\\Scripts\\python.exe",
+  "callback_errors": [],
+  "errors": [],
+  "checks": {
+    "unknown_until_manual_selection": true,
+    "all_three_modes_manual_no_start_ui_profile_unchanged": true,
+    "threshold_quantized_once_to_4_codes": true,
+    "config_locked_during_reception": true,
+    "volts_curve_matches_raw": true,
+    "cursors_match_two_original_samples": true,
+    "millivolts_preserve_codes": true,
+    "metrics_share_scale": true,
+    "unit_change_keeps_recording": true,
+    "recording_and_capture_keep_profile_snapshot": true,
+    "reopened_files_use_saved_profile": true,
+    "reconnect_resets_unknown": true,
+    "reconnect_does_not_start": true,
+    "saved_files_unchanged": true,
+    "no_real_com": true
+  },
+  "real_serial_open_calls": 0,
+  "owners_closed": true,
+  "modes": [
+    {
+      "mode_id": "DC_WIDE",
+      "a": 0.02178437023628049,
+      "b": -44.88
+    },
+    {
+      "mode_id": "AC_WIDE",
+      "a": 0.021990043826219514,
+      "b": -47.0435668789809
+    },
+    {
+      "mode_id": "AC_SENSITIVE",
+      "a": 0.00432487270646786,
+      "b": -9.252252520170531
+    }
+  ],
+  "accepted_search": {
+    "threshold_code": 2604,
+    "release_code": 2204,
+    "polarity": "above",
+    "pre_samples": 150,
+    "post_samples": 450,
+    "baseline_samples": 75,
+    "holdoff_samples": 300,
+    "max_event_samples": 1500,
+    "rail_low": 0,
+    "rail_high": 4092
+  },
+  "curve_points": 1477,
+  "cursor_v": {
+    "a": 31366,
+    "b": 31866,
+    "code_a": 1084,
+    "code_b": 3012,
+    "delta_s": 0.0033333333333333335
+  },
+  "cursor_mv": {
+    "a": 31366,
+    "b": 31866,
+    "code_a": 1084,
+    "code_b": 3012,
+    "delta_s": 0.0033333333333333335
+  },
+  "files": {
+    "analog.mtstream": "cfd20943d30d6fbeee5ccb027943f743dafc5bf77960f40eea25005d5d4a0276",
+    "analog.mtstream.v2.json": "e8efd282bc1c8638a7f7dcc1f7b69c55e9aac71f1513f9460df4667f38dfb327",
+    "analog.mtshot": "a2bcf1b742bc89bb48c79b9c2957f295c795ff6250cb3fe1903b8e7384742a3b"
+  },
+  "saved_samples": 80784,
+  "elapsed_s": 1.962
+}

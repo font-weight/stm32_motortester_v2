@@ -1,0 +1,951 @@
+{
+  "embedded_vs_external": [
+    {
+      "name": "AGND",
+      "external_present": true,
+      "pin_geometry_same": true
+    },
+    {
+      "name": "C_H",
+      "external_present": true,
+      "pin_geometry_same": true
+    },
+    {
+      "name": "C_V",
+      "external_present": true,
+      "pin_geometry_same": true
+    },
+    {
+      "name": "Conn2L",
+      "external_present": true,
+      "pin_geometry_same": true
+    },
+    {
+      "name": "Conn2R",
+      "external_present": true,
+      "pin_geometry_same": true
+    },
+    {
+      "name": "Jumper",
+      "external_present": true,
+      "pin_geometry_same": true
+    },
+    {
+      "name": "PWR_FLAG",
+      "external_present": true,
+      "pin_geometry_same": true
+    },
+    {
+      "name": "R_H",
+      "external_present": true,
+      "pin_geometry_same": true
+    },
+    {
+      "name": "R_V",
+      "external_present": true,
+      "pin_geometry_same": true
+    },
+    {
+      "name": "S2_Shunt",
+      "external_present": true,
+      "pin_geometry_same": true
+    },
+    {
+      "name": "SW_DPDT",
+      "external_present": true,
+      "pin_geometry_same": true
+    },
+    {
+      "name": "TLV9064QDRQ1_D",
+      "external_present": true,
+      "pin_geometry_same": true
+    },
+    {
+      "name": "V_A",
+      "external_present": true,
+      "pin_geometry_same": true
+    }
+  ],
+  "symbols": [
+    {
+      "ref": "R6",
+      "unit": 1,
+      "libid": "AnalogLUTR5:R_H",
+      "expected_pin_numbers": [
+        "1",
+        "2"
+      ],
+      "stored_pin_numbers": [
+        "1",
+        "2"
+      ],
+      "same": true
+    },
+    {
+      "ref": "R5",
+      "unit": 1,
+      "libid": "AnalogLUTR5:R_H",
+      "expected_pin_numbers": [
+        "1",
+        "2"
+      ],
+      "stored_pin_numbers": [
+        "2",
+        "1"
+      ],
+      "same": true
+    },
+    {
+      "ref": "R17",
+      "unit": 1,
+      "libid": "AnalogLUTR5:R_H",
+      "expected_pin_numbers": [
+        "1",
+        "2"
+      ],
+      "stored_pin_numbers": [
+        "1",
+        "2"
+      ],
+      "same": true
+    },
+    {
+      "ref": "S1",
+      "unit": 1,
+      "libid": "AnalogLUTR5:SW_DPDT",
+      "expected_pin_numbers": [
+        "3",
+        "1",
+        "2",
+        "5",
+        "6",
+        "4"
+      ],
+      "stored_pin_numbers": [
+        "2",
+        "3",
+        "1",
+        "4",
+        "5",
+        "6"
+      ],
+      "same": true
+    },
+    {
+      "ref": "J3",
+      "unit": 1,
+      "libid": "AnalogLUTR5:Conn2R",
+      "expected_pin_numbers": [
+        "2",
+        "1"
+      ],
+      "stored_pin_numbers": [
+        "2",
+        "1"
+      ],
+      "same": true
+    },
+    {
+      "ref": "C11",
+      "unit": 1,
+      "libid": "AnalogLUTR5:C_V",
+      "expected_pin_numbers": [
+        "2",
+        "1"
+      ],
+      "stored_pin_numbers": [
+        "2",
+        "1"
+      ],
+      "same": true
+    },
+    {
+      "ref": "C7",
+      "unit": 1,
+      "libid": "AnalogLUTR5:C_V",
+      "expected_pin_numbers": [
+        "2",
+        "1"
+      ],
+      "stored_pin_numbers": [
+        "1",
+        "2"
+      ],
+      "same": true
+    },
+    {
+      "ref": "J2",
+      "unit": 1,
+      "libid": "AnalogLUTR5:Conn2L",
+      "expected_pin_numbers": [
+        "2",
+        "1"
+      ],
+      "stored_pin_numbers": [
+        "2",
+        "1"
+      ],
+      "same": true
+    },
+    {
+      "ref": "R11",
+      "unit": 1,
+      "libid": "AnalogLUTR5:R_V",
+      "expected_pin_numbers": [
+        "2",
+        "1"
+      ],
+      "stored_pin_numbers": [
+        "1",
+        "2"
+      ],
+      "same": true
+    },
+    {
+      "ref": "#PWR01",
+      "unit": 1,
+      "libid": "AnalogLUTR5:AGND",
+      "expected_pin_numbers": [
+        "1"
+      ],
+      "stored_pin_numbers": [
+        "1"
+      ],
+      "same": true
+    },
+    {
+      "ref": "R1",
+      "unit": 1,
+      "libid": "AnalogLUTR5:R_H",
+      "expected_pin_numbers": [
+        "1",
+        "2"
+      ],
+      "stored_pin_numbers": [
+        "2",
+        "1"
+      ],
+      "same": true
+    },
+    {
+      "ref": "#PWR08",
+      "unit": 1,
+      "libid": "AnalogLUTR5:V_A",
+      "expected_pin_numbers": [
+        "1"
+      ],
+      "stored_pin_numbers": [
+        "1"
+      ],
+      "same": true
+    },
+    {
+      "ref": "#PWR09",
+      "unit": 1,
+      "libid": "AnalogLUTR5:AGND",
+      "expected_pin_numbers": [
+        "1"
+      ],
+      "stored_pin_numbers": [
+        "1"
+      ],
+      "same": true
+    },
+    {
+      "ref": "U1",
+      "unit": 3,
+      "libid": "AnalogLUTR5:TLV9064QDRQ1_D",
+      "expected_pin_numbers": [
+        "2",
+        "3",
+        "1",
+        "6",
+        "5",
+        "7",
+        "9",
+        "10",
+        "8",
+        "13",
+        "12",
+        "14",
+        "11",
+        "4"
+      ],
+      "stored_pin_numbers": [
+        "3",
+        "9",
+        "12",
+        "14",
+        "5",
+        "7",
+        "1",
+        "2",
+        "6",
+        "8",
+        "10",
+        "13",
+        "4",
+        "11"
+      ],
+      "same": true
+    },
+    {
+      "ref": "R16",
+      "unit": 1,
+      "libid": "AnalogLUTR5:R_V",
+      "expected_pin_numbers": [
+        "2",
+        "1"
+      ],
+      "stored_pin_numbers": [
+        "2",
+        "1"
+      ],
+      "same": true
+    },
+    {
+      "ref": "R15",
+      "unit": 1,
+      "libid": "AnalogLUTR5:R_V",
+      "expected_pin_numbers": [
+        "2",
+        "1"
+      ],
+      "stored_pin_numbers": [
+        "2",
+        "1"
+      ],
+      "same": true
+    },
+    {
+      "ref": "C5",
+      "unit": 1,
+      "libid": "AnalogLUTR5:C_V",
+      "expected_pin_numbers": [
+        "2",
+        "1"
+      ],
+      "stored_pin_numbers": [
+        "1",
+        "2"
+      ],
+      "same": true
+    },
+    {
+      "ref": "S1",
+      "unit": 2,
+      "libid": "AnalogLUTR5:SW_DPDT",
+      "expected_pin_numbers": [
+        "3",
+        "1",
+        "2",
+        "5",
+        "6",
+        "4"
+      ],
+      "stored_pin_numbers": [
+        "4",
+        "6",
+        "1",
+        "2",
+        "3",
+        "5"
+      ],
+      "same": true
+    },
+    {
+      "ref": "#PWR10",
+      "unit": 1,
+      "libid": "AnalogLUTR5:AGND",
+      "expected_pin_numbers": [
+        "1"
+      ],
+      "stored_pin_numbers": [
+        "1"
+      ],
+      "same": true
+    },
+    {
+      "ref": "#PWR11",
+      "unit": 1,
+      "libid": "AnalogLUTR5:AGND",
+      "expected_pin_numbers": [
+        "1"
+      ],
+      "stored_pin_numbers": [
+        "1"
+      ],
+      "same": true
+    },
+    {
+      "ref": "R12",
+      "unit": 1,
+      "libid": "AnalogLUTR5:R_V",
+      "expected_pin_numbers": [
+        "2",
+        "1"
+      ],
+      "stored_pin_numbers": [
+        "2",
+        "1"
+      ],
+      "same": true
+    },
+    {
+      "ref": "U1",
+      "unit": 2,
+      "libid": "AnalogLUTR5:TLV9064QDRQ1_D",
+      "expected_pin_numbers": [
+        "2",
+        "3",
+        "1",
+        "6",
+        "5",
+        "7",
+        "9",
+        "10",
+        "8",
+        "13",
+        "12",
+        "14",
+        "11",
+        "4"
+      ],
+      "stored_pin_numbers": [
+        "6",
+        "5",
+        "8",
+        "13",
+        "1",
+        "2",
+        "12",
+        "10",
+        "3",
+        "14",
+        "4",
+        "7",
+        "9",
+        "11"
+      ],
+      "same": true
+    },
+    {
+      "ref": "C9",
+      "unit": 1,
+      "libid": "AnalogLUTR5:C_H",
+      "expected_pin_numbers": [
+        "1",
+        "2"
+      ],
+      "stored_pin_numbers": [
+        "1",
+        "2"
+      ],
+      "same": true
+    },
+    {
+      "ref": "R8",
+      "unit": 1,
+      "libid": "AnalogLUTR5:R_H",
+      "expected_pin_numbers": [
+        "1",
+        "2"
+      ],
+      "stored_pin_numbers": [
+        "1",
+        "2"
+      ],
+      "same": true
+    },
+    {
+      "ref": "#PWR07",
+      "unit": 1,
+      "libid": "AnalogLUTR5:AGND",
+      "expected_pin_numbers": [
+        "1"
+      ],
+      "stored_pin_numbers": [
+        "1"
+      ],
+      "same": true
+    },
+    {
+      "ref": "R7",
+      "unit": 1,
+      "libid": "AnalogLUTR5:R_H",
+      "expected_pin_numbers": [
+        "1",
+        "2"
+      ],
+      "stored_pin_numbers": [
+        "1",
+        "2"
+      ],
+      "same": true
+    },
+    {
+      "ref": "U1",
+      "unit": 5,
+      "libid": "AnalogLUTR5:TLV9064QDRQ1_D",
+      "expected_pin_numbers": [
+        "2",
+        "3",
+        "1",
+        "6",
+        "5",
+        "7",
+        "9",
+        "10",
+        "8",
+        "13",
+        "12",
+        "14",
+        "11",
+        "4"
+      ],
+      "stored_pin_numbers": [
+        "2",
+        "1",
+        "3",
+        "5",
+        "6",
+        "8",
+        "9",
+        "10",
+        "7",
+        "12",
+        "11",
+        "14",
+        "4",
+        "13"
+      ],
+      "same": true
+    },
+    {
+      "ref": "C2",
+      "unit": 1,
+      "libid": "AnalogLUTR5:C_V",
+      "expected_pin_numbers": [
+        "2",
+        "1"
+      ],
+      "stored_pin_numbers": [
+        "1",
+        "2"
+      ],
+      "same": true
+    },
+    {
+      "ref": "C10",
+      "unit": 1,
+      "libid": "AnalogLUTR5:C_H",
+      "expected_pin_numbers": [
+        "1",
+        "2"
+      ],
+      "stored_pin_numbers": [
+        "1",
+        "2"
+      ],
+      "same": true
+    },
+    {
+      "ref": "#FLG01",
+      "unit": 1,
+      "libid": "AnalogLUTR5:PWR_FLAG",
+      "expected_pin_numbers": [
+        "1"
+      ],
+      "stored_pin_numbers": [
+        "1"
+      ],
+      "same": true
+    },
+    {
+      "ref": "JP1",
+      "unit": 1,
+      "libid": "AnalogLUTR5:Jumper",
+      "expected_pin_numbers": [
+        "1",
+        "2"
+      ],
+      "stored_pin_numbers": [
+        "1",
+        "2"
+      ],
+      "same": true
+    },
+    {
+      "ref": "U1",
+      "unit": 1,
+      "libid": "AnalogLUTR5:TLV9064QDRQ1_D",
+      "expected_pin_numbers": [
+        "2",
+        "3",
+        "1",
+        "6",
+        "5",
+        "7",
+        "9",
+        "10",
+        "8",
+        "13",
+        "12",
+        "14",
+        "11",
+        "4"
+      ],
+      "stored_pin_numbers": [
+        "6",
+        "5",
+        "1",
+        "2",
+        "8",
+        "12",
+        "10",
+        "13",
+        "3",
+        "14",
+        "4",
+        "11",
+        "7",
+        "9"
+      ],
+      "same": true
+    },
+    {
+      "ref": "#PWR05",
+      "unit": 1,
+      "libid": "AnalogLUTR5:AGND",
+      "expected_pin_numbers": [
+        "1"
+      ],
+      "stored_pin_numbers": [
+        "1"
+      ],
+      "same": true
+    },
+    {
+      "ref": "C6",
+      "unit": 1,
+      "libid": "AnalogLUTR5:C_V",
+      "expected_pin_numbers": [
+        "2",
+        "1"
+      ],
+      "stored_pin_numbers": [
+        "1",
+        "2"
+      ],
+      "same": true
+    },
+    {
+      "ref": "J1",
+      "unit": 1,
+      "libid": "AnalogLUTR5:Conn2R",
+      "expected_pin_numbers": [
+        "2",
+        "1"
+      ],
+      "stored_pin_numbers": [
+        "1",
+        "2"
+      ],
+      "same": true
+    },
+    {
+      "ref": "#PWR12",
+      "unit": 1,
+      "libid": "AnalogLUTR5:AGND",
+      "expected_pin_numbers": [
+        "1"
+      ],
+      "stored_pin_numbers": [
+        "1"
+      ],
+      "same": true
+    },
+    {
+      "ref": "R9",
+      "unit": 1,
+      "libid": "AnalogLUTR5:R_H",
+      "expected_pin_numbers": [
+        "1",
+        "2"
+      ],
+      "stored_pin_numbers": [
+        "1",
+        "2"
+      ],
+      "same": true
+    },
+    {
+      "ref": "R18",
+      "unit": 1,
+      "libid": "AnalogLUTR5:R_H",
+      "expected_pin_numbers": [
+        "1",
+        "2"
+      ],
+      "stored_pin_numbers": [
+        "1",
+        "2"
+      ],
+      "same": true
+    },
+    {
+      "ref": "R14",
+      "unit": 1,
+      "libid": "AnalogLUTR5:R_H",
+      "expected_pin_numbers": [
+        "1",
+        "2"
+      ],
+      "stored_pin_numbers": [
+        "1",
+        "2"
+      ],
+      "same": true
+    },
+    {
+      "ref": "C1",
+      "unit": 1,
+      "libid": "AnalogLUTR5:C_H",
+      "expected_pin_numbers": [
+        "1",
+        "2"
+      ],
+      "stored_pin_numbers": [
+        "1",
+        "2"
+      ],
+      "same": true
+    },
+    {
+      "ref": "#PWR02",
+      "unit": 1,
+      "libid": "AnalogLUTR5:AGND",
+      "expected_pin_numbers": [
+        "1"
+      ],
+      "stored_pin_numbers": [
+        "1"
+      ],
+      "same": true
+    },
+    {
+      "ref": "#PWR06",
+      "unit": 1,
+      "libid": "AnalogLUTR5:V_A",
+      "expected_pin_numbers": [
+        "1"
+      ],
+      "stored_pin_numbers": [
+        "1"
+      ],
+      "same": true
+    },
+    {
+      "ref": "#FLG02",
+      "unit": 1,
+      "libid": "AnalogLUTR5:PWR_FLAG",
+      "expected_pin_numbers": [
+        "1"
+      ],
+      "stored_pin_numbers": [
+        "1"
+      ],
+      "same": true
+    },
+    {
+      "ref": "C3",
+      "unit": 1,
+      "libid": "AnalogLUTR5:C_H",
+      "expected_pin_numbers": [
+        "1",
+        "2"
+      ],
+      "stored_pin_numbers": [
+        "2",
+        "1"
+      ],
+      "same": true
+    },
+    {
+      "ref": "#PWR03",
+      "unit": 1,
+      "libid": "AnalogLUTR5:V_A",
+      "expected_pin_numbers": [
+        "1"
+      ],
+      "stored_pin_numbers": [
+        "1"
+      ],
+      "same": true
+    },
+    {
+      "ref": "C4",
+      "unit": 1,
+      "libid": "AnalogLUTR5:C_V",
+      "expected_pin_numbers": [
+        "2",
+        "1"
+      ],
+      "stored_pin_numbers": [
+        "1",
+        "2"
+      ],
+      "same": true
+    },
+    {
+      "ref": "C8",
+      "unit": 1,
+      "libid": "AnalogLUTR5:C_H",
+      "expected_pin_numbers": [
+        "1",
+        "2"
+      ],
+      "stored_pin_numbers": [
+        "1",
+        "2"
+      ],
+      "same": true
+    },
+    {
+      "ref": "U1",
+      "unit": 4,
+      "libid": "AnalogLUTR5:TLV9064QDRQ1_D",
+      "expected_pin_numbers": [
+        "2",
+        "3",
+        "1",
+        "6",
+        "5",
+        "7",
+        "9",
+        "10",
+        "8",
+        "13",
+        "12",
+        "14",
+        "11",
+        "4"
+      ],
+      "stored_pin_numbers": [
+        "1",
+        "6",
+        "10",
+        "12",
+        "2",
+        "4",
+        "11",
+        "8",
+        "5",
+        "9",
+        "3",
+        "7",
+        "13",
+        "14"
+      ],
+      "same": true
+    },
+    {
+      "ref": "R4",
+      "unit": 1,
+      "libid": "AnalogLUTR5:R_V",
+      "expected_pin_numbers": [
+        "2",
+        "1"
+      ],
+      "stored_pin_numbers": [
+        "1",
+        "2"
+      ],
+      "same": true
+    },
+    {
+      "ref": "R10",
+      "unit": 1,
+      "libid": "AnalogLUTR5:R_V",
+      "expected_pin_numbers": [
+        "2",
+        "1"
+      ],
+      "stored_pin_numbers": [
+        "1",
+        "2"
+      ],
+      "same": true
+    },
+    {
+      "ref": "R3",
+      "unit": 1,
+      "libid": "AnalogLUTR5:R_V",
+      "expected_pin_numbers": [
+        "2",
+        "1"
+      ],
+      "stored_pin_numbers": [
+        "1",
+        "2"
+      ],
+      "same": true
+    },
+    {
+      "ref": "#PWR13",
+      "unit": 1,
+      "libid": "AnalogLUTR5:AGND",
+      "expected_pin_numbers": [
+        "1"
+      ],
+      "stored_pin_numbers": [
+        "1"
+      ],
+      "same": true
+    },
+    {
+      "ref": "R2",
+      "unit": 1,
+      "libid": "AnalogLUTR5:R_H",
+      "expected_pin_numbers": [
+        "1",
+        "2"
+      ],
+      "stored_pin_numbers": [
+        "1",
+        "2"
+      ],
+      "same": true
+    },
+    {
+      "ref": "#PWR04",
+      "unit": 1,
+      "libid": "AnalogLUTR5:AGND",
+      "expected_pin_numbers": [
+        "1"
+      ],
+      "stored_pin_numbers": [
+        "1"
+      ],
+      "same": true
+    },
+    {
+      "ref": "S2",
+      "unit": 1,
+      "libid": "AnalogLUTR5:S2_Shunt",
+      "expected_pin_numbers": [
+        "2",
+        "3",
+        "1"
+      ],
+      "stored_pin_numbers": [
+        "2",
+        "3",
+        "1"
+      ],
+      "same": true
+    }
+  ],
+  "mismatched_libraries": [],
+  "mismatched_instance_pins": []
+}

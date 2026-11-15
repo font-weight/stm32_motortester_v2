@@ -14,10 +14,14 @@ from .stream_files import open_stream, export_stream
 from .stream_cursors import StreamCursorTool
 from .widgets import STYLE
 from .stream_search import validate_config
-from .stream_sync import SynchronizedStreamViewer
+from .analog_view import AnalogStreamViewer
+from .analog_profile import profile_description
+from .input import UNKNOWN_PROFILE
 from ..stream_view import DETECTOR_VERSION
 from .stream_capture import StreamCapture, load_capture
 from .stream_capture_ui import SingleCaptureControls
+from .event_frequency_ui import EventFrequencyReadout
+from .ringdown_ui import RingdownControls
 
 
 STOPPED_UNKNOWN = "Остановлено по команде · полнота хвоста неизвестна"
@@ -28,6 +32,7 @@ class StreamDialog(QtWidgets.QDialog):
     settled = QtCore.Signal()
     close_cancelled = QtCore.Signal()
     search_changed = QtCore.Signal()
+    input_changed = QtCore.Signal()
 
     def __init__(self, parent=None, *, context=StreamContext(), bridge_factory=StreamDeviceBridge,
                  selection=None, acquire_serial=None, release_serial=None):
@@ -37,6 +42,8 @@ class StreamDialog(QtWidgets.QDialog):
         self.setMinimumSize(850, 650)
         self.setStyleSheet(STYLE)
         self.context = context
+        self.voltage_unit = 'В'
+        self._input_display_key = None
         self._bridge_factory = bridge_factory
         self._reconnecting = False
         self._return_to_device = False
@@ -63,6 +70,7 @@ class StreamDialog(QtWidgets.QDialog):
         self._file_search_config = None
         self._file_search_revision = 0
         layout = QtWidgets.QVBoxLayout(self)
+        layout.setSpacing(4)
         self.heading = QtWidgets.QLabel()
         self.heading.setObjectName("heading")
         self.heading.setTextFormat(QtCore.Qt.TextFormat.PlainText)
@@ -77,6 +85,7 @@ class StreamDialog(QtWidgets.QDialog):
         self._live_notice = self.notice.text()
         self.notice.setWordWrap(True)
         layout.addWidget(self.notice)
+        self.notice.hide()
         self.connect_button = self.disconnect_button = None
         self.rate_combo = None
         if selection is not None:
@@ -117,6 +126,17 @@ class StreamDialog(QtWidgets.QDialog):
         self.state_label = QtWidgets.QLabel("Готово")
         self.state_label.setWordWrap(True)
         layout.addWidget(self.state_label)
+        input_row = QtWidgets.QHBoxLayout()
+        self.input_button = QtWidgets.QPushButton('Аналоговый вход CH1…')
+        self.input_button.clicked.connect(self.configure_input)
+        if selection is not None:
+            connection_row.addWidget(self.input_button)
+        else:
+            self.input_button.hide()
+        self.input_note = QtWidgets.QLabel()
+        self.input_note.setWordWrap(True)
+        input_row.addWidget(self.input_note, 1)
+        layout.addLayout(input_row)
         self.raw_view = QtWidgets.QCheckBox("Показать служебные коды АЦП")
         self.raw_view.toggled.connect(self._raw_changed)
         layout.addWidget(self.raw_view)
@@ -125,7 +145,7 @@ class StreamDialog(QtWidgets.QDialog):
         layout.addWidget(self.quality)
         self.sync_button = QtWidgets.QCheckBox("Синхронизация по событию · порог в центре")
         self.sync_button.setToolTip("Выравнивать новые кадры по настроенному порогу. Приём и запись продолжаются.")
-        self.viewer = SynchronizedStreamViewer(event_config=self.bridge.state.config)
+        self.viewer = AnalogStreamViewer(event_config=self.bridge.state.config)
         self.sync_button.toggled.connect(self._toggle_sync)
         self.viewer.sync_changed.connect(self._sync_changed)
         self.viewer.follow_button.clicked.connect(self._resume)
@@ -139,6 +159,7 @@ class StreamDialog(QtWidgets.QDialog):
                                        QtWidgets.QSizePolicy.Policy.Preferred)
         self.viewer.plot.setMaximumHeight(240)
         self.viewer.content.layout().setContentsMargins(8, 8, 8, 8)
+        self.viewer.content.layout().setSpacing(4)
         # The unknown voltage scale is explained above the plot. Keep axis
         # labels short enough for the minimum-height graph and narrow window.
         self.viewer.plot.setLabel("left", "Код АЦП")
@@ -157,6 +178,15 @@ class StreamDialog(QtWidgets.QDialog):
         self.capture = SingleCaptureControls(self)
         layout.addWidget(self.capture)
         layout.addWidget(self.viewer, 1)
+        self.measurement_label = QtWidgets.QLabel('Показатели появятся после получения данных.')
+        self.measurement_label.setWordWrap(True)
+        self.viewer.measurements_changed.connect(self.measurement_label.setText)
+        layout.addWidget(self.measurement_label)
+        self.event_frequency = EventFrequencyReadout(self)
+        self.viewer.source_reset.connect(self.event_frequency.reset)
+        layout.addWidget(self.event_frequency)
+        self.ringdown = RingdownControls(self.viewer, self)
+        layout.addWidget(self.ringdown)
         self.cursors = StreamCursorTool(self.viewer, self)
         self.cursors.hide()
         self.cursors.enabled.toggled.connect(lambda enabled: self.capture.cancel() if enabled else None)
@@ -262,16 +292,84 @@ class StreamDialog(QtWidgets.QDialog):
         self.heading.setText(f"Непрерывный приём · {context.channel_name} · CH1 · {profile}")
 
     def _details(self, visible):
+        self.notice.setVisible(visible)
         for widget in (self.viewer.source_label, self.viewer.index_label,
                        self.viewer.range_label, self.viewer.status_label, self.viewer.storage_label,
                        self.viewer.event_label):
             widget.setVisible(visible)
 
     def _raw_changed(self, checked):
-        self.viewer.plot.setVisible(checked)
-        self.cursors.setVisible(checked)
-        if not checked:
+        self._refresh_input_display()
+
+    @property
+    def active_context(self):
+        if self._opening:
+            if isinstance(self.archive, StreamCapture):
+                return self.archive.context
+            if self.verified_context is not None:
+                return self.verified_context.context
+            return StreamContext()
+        return self.bridge.context
+
+    @property
+    def active_input_profile(self):
+        return self.active_context.input_profile
+
+    @property
+    def active_analog_snapshot(self):
+        return self.active_context.analog_snapshot
+
+    def input_editable(self):
+        status = self.bridge.state
+        return (not self._opening and not self._closing and not self.busy
+                and self.selection is not None and status.ready and status.can_preview
+                and not status.command_pending and not status.stop_pending
+                and not self.bridge.metadata_pending and self._record_picker is None)
+
+    def configure_input(self):
+        if not self.input_editable():
+            return False
+        from .analog_ui import AnalogInputDialog
+        dialog = AnalogInputDialog(self, identity=self.bridge.input_format,
+            current_profile=self.active_input_profile, current_snapshot=self.active_analog_snapshot)
+        if dialog.exec() != QtWidgets.QDialog.DialogCode.Accepted:
+            return False
+        return self.apply_input_profile(dialog.profile, dialog.snapshot)
+
+    def apply_input_profile(self, profile, snapshot=None):
+        if not self.input_editable() or not self.bridge.set_input_profile(profile, snapshot):
+            return False
+        self.context = self.bridge.context
+        if profile.configured:
+            with QtCore.QSignalBlocker(self.raw_view):
+                self.raw_view.setChecked(False)
+        self._refresh_input_display()
+        return True
+
+    def set_voltage_unit(self, unit):
+        if unit not in ('В', 'мВ'):
+            raise ValueError('Неизвестная единица напряжения')
+        self.voltage_unit = unit
+        self._refresh_input_display()
+
+    def _refresh_input_display(self):
+        profile, snapshot = self.active_input_profile, self.active_analog_snapshot
+        key = (profile, snapshot, self.raw_view.isChecked(), self.voltage_unit)
+        self.input_button.setEnabled(self.input_editable())
+        self.input_note.setText(profile_description(profile, snapshot))
+        if key == self._input_display_key:
+            return
+        self._input_display_key = key
+        self.viewer.set_input_display(profile, self.raw_view.isChecked(), self.voltage_unit)
+        self.ringdown.refresh_display()
+        visible = profile.configured or self.raw_view.isChecked()
+        self.viewer.plot.setVisible(visible)
+        self.cursors.setVisible(visible)
+        if not visible:
             self.cursors.reset()
+        elif self.cursors.values is not None:
+            self.cursors._show_values()
+        self.input_changed.emit()
 
     def _resume(self):
         self._paused = False
@@ -333,6 +431,8 @@ class StreamDialog(QtWidgets.QDialog):
         if not self.bridge.connect_source():
             self.error_label.setText("Подключение сейчас недоступно. Проверьте состояние порта.")
             return False
+        self.context = self.bridge.context
+        self._refresh_input_display()
         self.error_label.clear()
         return True
 
@@ -468,7 +568,11 @@ class StreamDialog(QtWidgets.QDialog):
     def stop(self):
         self.capture.finish('host_stop_before_context')
         self.viewer.set_event_sync(False)
-        return self.bridge.stop()
+        accepted = self.bridge.stop()
+        if accepted:
+            # Do not leave a live number until the next bridge timer tick.
+            self.event_frequency.set_active(False)
+        return accepted
 
     def search_basis(self):
         if self.archive is not None:
@@ -575,6 +679,8 @@ class StreamDialog(QtWidgets.QDialog):
                 ("Программный источник; COM-порт не используется. " if self.selection is None else
                  f"Выбранный порт {self.selection.port}; происхождение: {source.identity.origin}. ") +
                 "Потоковый протокол 0.2 → проверка → файл и ограниченный обзор. Время номинальное.")
+        self.event_frequency.set_active(self._event_frequency_active(self.bridge.state))
+        self.event_frequency.observe(self.bridge, source)
         if self._paused:
             return
         self.capture.observe(source)
@@ -598,10 +704,18 @@ class StreamDialog(QtWidgets.QDialog):
                                                      follow=follow)
                 self._sent_view = key
 
+    def _event_frequency_active(self, status):
+        return (not self._opening and not self._closing and not self._reconnecting
+                and not self._return_to_device and not status.stop_pending
+                and not status.stop_requested and not status.close_requested
+                and status.phase in ('preview', 'preparing', 'waiting for boundary', 'recording'))
+
     def _state(self, status):
+        self.event_frequency.set_active(self._event_frequency_active(status))
         if self._return_to_device and status.ready and self.bridge.connection is not None and not self._closing:
             self._device_ready()
         self._publish_view()
+        self._refresh_input_display()
         idle = (not self._closing and not self.busy and not self.bridge.metadata_pending
                 and self._record_picker is None)
         physical = self.selection is not None
@@ -631,7 +745,7 @@ class StreamDialog(QtWidgets.QDialog):
                     ("Фиксированная частота прежней прошивки.\n" if connection.protocol_revision == "0.2" else "") +
                     f"Плата сообщила сборку 0x{connection.observed_build_id:08X}. "
                     "Это не проверка файла прошивки или точности частоты.\n"
-                    "Шкала напряжения не настроена. Полнота произведённых отсчётов неизвестна.")
+                    "Полнота произведённых отсчётов неизвестна.")
                 if not self._opening:
                     self.notice.setText(self._live_notice)
             if status.error:
@@ -832,7 +946,7 @@ class StreamDialog(QtWidgets.QDialog):
                 self.notice.setText(f'ОТКРЫТ ОДИНОЧНЫЙ ЗАХВАТ · {identity.nominal_fs_hz} отсчётов/с номинально · '
                                     f'{identity.retained_bits} сохранённых бит ADC12.\n'
                                     + ('Два младших бита утрачены; коды ADC12 с шагом 4.\n' if identity.retained_bits == 10 else '') +
-                                    'Шкала напряжения не настроена; исходные индексы и время сохранены.')
+                                    'Исходные индексы и время сохранены; шкала — из файла.')
                 self.quality.setText('Отдельный контекст события; полнота всего потока и физического разряда не установлена.')
                 self.file_label.setText('Файл захвата содержит исходные отсчёты и контекст в одном .mtshot.')
             elif self._operation == "open":
@@ -863,13 +977,16 @@ class StreamDialog(QtWidgets.QDialog):
                     if terminal is not None and terminal.failure is not None:
                         self.error_label.setText(self._failure_message(terminal.failure, rec.path))
                 self._heading(self.verified_context.context)
+                self.file_label.setText('Открыта потоковая запись: ' + str(self.archive.path))
+                if self.capture.shot is not None:
+                    self.capture.note.setText('Отдельный захват доступен для сохранения; его исходные данные и настройки не меняются.')
                 self.notice.setText(
                     "ОТКРЫТАЯ ПОТОКОВАЯ ЗАПИСЬ · "
                     f"{identity.nominal_fs_hz} отсчётов/с · "
                     f"шаг {1_000_000 / identity.nominal_fs_hz:g} мкс номинально.\n"
                     + ("Сохранены 10 старших бит ADC12; два младших утрачены. Коды0/4092 — крайние корзины квантования, не точное насыщение.\n"
                        if identity.retained_bits == 10 else "Сохранены 12 бит АЦП.\n") +
-                    "Шкала напряжения не настроена. Отображаются полученные коды; время номинальное.")
+                    "Шкала — из сохранённого контекста; время номинальное.")
                 if not self.verified_context.companion_present:
                     self.error_label.setText(
                         (self.error_label.text() + "\n" if self.error_label.text() else "") +
@@ -908,6 +1025,7 @@ class StreamDialog(QtWidgets.QDialog):
             self._state(self.bridge.state)
             return
         self.cursors.shutdown()
+        self.ringdown.shutdown()
         self.viewer.shutdown()
         self._timer.stop()
         self._executor.shutdown(wait=False)

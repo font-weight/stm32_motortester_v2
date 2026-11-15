@@ -1,0 +1,28 @@
+{
+  "scope": "V2-17 software/native Windows10/local portable; no physical acceptance",
+  "tests": {
+    "command": "unittest discover three exact modules: inline_input, unified_panel, legacy_view",
+    "count": 11,
+    "seconds": 3.419,
+    "status": "PASS"
+  },
+  "native_result": "build/v20-native-11/result.json",
+  "native_checks": 22,
+  "final_package": "build/v20w2",
+  "frozen_result": "build/v20w2/frozen-unified/result.json",
+  "frozen_checks": 22,
+  "source_files_unchanged_after_build": 449,
+  "payload_files": 477,
+  "real_serial_open_calls": 0,
+  "physical_actions": false,
+  "firmware_changed": false,
+  "cad_changed": false,
+  "prior_build_preserved": "build/v19w2",
+  "intermediate_build_preserved": "build/v20w",
+  "visual_evidence": [
+    "build/v20-native-11/03-file-1366.png",
+    "build/v20-native-11/04-old-file-1366.png",
+    "build/v20w2/normal-entry.png",
+    "build/v20w2/frozen-unified/03-file-1366.png"
+  ]
+}

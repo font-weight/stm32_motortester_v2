@@ -1,0 +1,24 @@
+{
+  "date": "2026-11-14",
+  "scope": "V2-18 live calibration collector, wizard, PDF; synthetic only",
+  "record_type": "author transcription of executed tool results; not redirected stdout",
+  "environment": "Windows 10 build 19045, repository .venv, PYTHONPATH=host, Qt windows",
+  "targeted_unittest": [
+    {"command": ".venv/Scripts/python.exe -m unittest discover -s host/tests -p test_v2_calibration_live.py -v", "tests": 5, "result": "OK", "seconds": 0.013},
+    {"command": ".venv/Scripts/python.exe -m unittest discover -s host/tests -p test_v2_calibration_report.py -v", "tests": 2, "result": "OK", "seconds": 0.144},
+    {"command": ".venv/Scripts/python.exe -m unittest discover -s host/tests -p test_v2_calibration_io.py -v", "tests": 3, "result": "OK", "seconds": 0.353}
+  ],
+  "native_final": "build/v21-native-03/result.json",
+  "frozen_final": "build/v21w/frozen-calibration-live/result.json",
+  "build_report": "build/v21w/build-report.json",
+  "manifest": "build/v21w/dist/MotortesterV2/build-manifest.json",
+  "manifest_sha256": "362a76a56cf8d24e1895d2503905b284f9c92715b2b9f2052a260ff13d7ce215",
+  "source_zip_sha256": "674121daf6c6d4dc622d8282e3979b9e799cc802ccbc31ce19f686a0219bb795",
+  "portable_zip_sha256": "dca47a27ceb6edc8421f12ee0c7e0a5dbe7fc3955c40547e768821f1eb8e4f22",
+  "pdf_renderer": "C:/Users/Alexandr/.cache/codex-runtimes/codex-primary-runtime/dependencies/native/poppler/Library/bin/pdftoppm.exe",
+  "pdf_checks": "frozen-calibration-live/DC_WIDE.pdf and AC_SENSITIVE.pdf all pages; pending.pdf and failed.pdf first page for status",
+  "physical_serial_open_calls": 0,
+  "firmware_changed": false,
+  "hardware_measurements": false,
+  "full_legacy_suite_run": false
+}

@@ -1,0 +1,36 @@
+{
+  "scope": "V2-20 stable segment readout and live threshold-event frequency",
+  "date": "2026-11-14",
+  "environment": "Windows 10 build 19045; Qt windows; existing locked dependencies",
+  "native": "build/v23-native-04/result.json",
+  "frozen": "build/v23w/frozen-event-frequency/result.json",
+  "model_test_log": "docs/verification/event-frequency-20261114/model-tests.log",
+  "build_report": "build/v23w/build-report.json",
+  "manifest_sha256": "9d68b062d0bcf090ae559edf8ec684501fc96b38bd7fd010594ec2e49440967c",
+  "source_zip_sha256": "a53934ea14d2a40c8c06da57174e79c936e34bd30c7946a64d195d88b86752a5",
+  "portable_zip_sha256": "e831c3fc4ea8aec135fb50afd612f39f7e39cb5fa42ba5843f3ec233e86b171b",
+  "synthetic_conditions": [
+    "Actual paced byte peer, 25 Hz ignition waveform, no physical COM",
+    "Pulse peak changed to code 4095 to reproduce rail warning from user screenshot",
+    "Raw reader deliberately delayed 0.16 seconds across incoming display snapshots",
+    "At least six successful recalculations observed with no loading replacement",
+    "One visible pulse, event synchronization, manual zoom, pause, exact held interval",
+    "Stop, file replacement, configuration reset, sample-time event expiry and host-time data stall"
+  ],
+  "visual_review": [
+    "All 3 frozen PNGs at 1366x768: readable values and warnings, no cursor overlap",
+    "normal-entry.png: idle without auto-connect or demo data"
+  ],
+  "retained_intermediate_results": {
+    "v23-native-01": "Fixture next_ordinal was zero; corrected fixture. First ten UI assertions passed.",
+    "v23-native-02": "PASS16 before expanded sync-disable and clipped waveform coverage.",
+    "v23-native-03": "Found one bridge-tick lag clearing live frequency after Stop. Accepted Stop now clears immediately.",
+    "v23-native-04": "PASS20 including fixed Stop and expanded coverage. Frozen package repeats these checks."
+  },
+  "hardware_access": false,
+  "physical_accuracy_verified": false,
+  "spark_detection_verified": false,
+  "firmware_changed": false,
+  "previous_package_retained": "build/v22w",
+  "limitations": "Counts accepted threshold events; not proof of sparks, cylinder, RPM or physically measured sampling clock."
+}

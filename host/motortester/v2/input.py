@@ -1,6 +1,6 @@
 """Connector voltage, kept separate from the oscilloscope/ignition UI profile."""
 from dataclasses import dataclass
-from math import isfinite
+from math import floor, isfinite, ulp
 
 
 class V2Error(ValueError):
@@ -111,15 +111,40 @@ class InputProfile:
     def voltage_limits(self):
         return tuple(sorted((self.voltage(0), self.voltage(4095))))
 
-    def code(self, voltage):
-        """Nearest code, with explicit range rejection; never silent clipping."""
+    def code(self, voltage, step=1):
+        """Nearest attainable canonical code; half a step goes to higher code.
+
+        Retained-10 samples already use ADC12 coordinates, with step=4. Never
+        multiply their voltage by four again or silently clamp a threshold.
+        """
+        if type(step) is not int or step not in (1, 4):
+            raise V2Error("Шаг исходных кодов должен быть 1 или 4")
         finite(voltage, "Напряжение")
-        low, high = self.voltage_limits
+        maximum = 4095 if step == 1 else 4092
+        low, high = sorted((self.voltage(0), self.voltage(maximum)))
         if self.linear_min_v is not None:
             low, high = max(low, self.linear_min_v), min(high, self.linear_max_v)
         if not low <= voltage <= high:
             raise V2Error(f"Порог вне диапазона {low:g}…{high:g} В")
-        return int(round((voltage - self.b) / self.a))
+        raw = (voltage - self.b) / self.a
+        # The strict voltage-domain test above already rejected any real
+        # excursion. Undo only floating-point roundoff of the affine inverse,
+        # including cancellation around zero volts and attainable end points.
+        tolerance = 4 * ((ulp(voltage) + ulp(self.b)) / abs(self.a) + ulp(raw))
+        if abs(raw) <= tolerance:
+            raw = 0.
+        elif abs(raw - maximum) <= tolerance:
+            raw = float(maximum)
+        if not 0 <= raw <= maximum:
+            raise V2Error("Порог вне диапазона исходных кодов")
+        scaled = raw / step
+        half = floor(scaled) + 0.5
+        if abs(scaled - half) <= tolerance / step:
+            scaled = half
+        code = step * floor(scaled + 0.5)
+        if not 0 <= code <= maximum:
+            raise V2Error("Округлённый порог вне диапазона исходных кодов")
+        return code
 
     def code_edge(self, edge):
         if edge not in ("rising", "falling"):

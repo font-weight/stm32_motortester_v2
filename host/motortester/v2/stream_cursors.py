@@ -199,18 +199,27 @@ class StreamCursorTool(QtWidgets.QWidget):
 
     def _show_values(self):
         v, p = self.values, self.viewer
+        profile = getattr(p, 'input_profile', None)
+        volts = profile is not None and profile.configured and not p.raw_display
         fs = self._reader.identity.nominal_fs_hz
         base = self._reader.first_sample_index if p._recording is not None else p._first
         def point(name, index, code):
             outside = ' · вне экрана' if not p.selection.start <= index < p.selection.stop else ''
-            return f'{name}: {time_text((index-base)/fs)} · {code} код{outside}'
+            value = p.value_text(profile.voltage(code)) if volts else f'{code} код'
+            return f'{name}: {time_text((index-base)/fs)} · {value}{outside}'
         time_base = 'начала записи' if p._recording is not None else 'начала потока'
         bits = ('10 старших бит, шаг 4 кода на шкале ADC12.' if self._reader.identity.retained_bits == 10
                 else 'Исходные коды АЦП.')
+        delta = (f'ΔU = {p.value_text(profile.a * (v.code_b-v.code_a))}' if volts else
+                 f'Δкод = {v.code_b-v.code_a:+d}')
+        scale_note = (' Переменная составляющая CH1; постоянная не измеряется.' if volts and profile.coupling == 'AC'
+                      else ' Шкала CH1 расчётная, не калибровано.' if volts
+                      else ' Шкала В/мВ не настроена.' if profile is None or not profile.configured
+                      else ' Служебный просмотр исходных кодов.')
         self.readout.setText(
             f'{point("A", v.a, v.code_a)}    |    {point("B", v.b, v.code_b)}\n'
-            f'B−A: Δt = {time_text(v.delta_s)} · Δкод = {v.code_b-v.code_a:+d}\n'
-            f'Время от {time_base}, номинальное. {bits} Шкала В/мВ не настроена.')
+            f'B−A: Δt = {time_text(v.delta_s)} · {delta} · время номинальное')
+        self.readout.setToolTip(f'Время от {time_base}, номинальное. {bits}{scale_note}')
 
     def _poll(self):
         if self._closed:

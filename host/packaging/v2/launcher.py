@@ -4,6 +4,41 @@ from pathlib import Path
 
 
 def main():
+    if sys.argv[1:2] == ["--verify-ringdown"]:
+        if len(sys.argv) != 3:
+            return 2
+        from motortester.v2.ringdown_smoke import run
+        return run(sys.argv[2])
+    if sys.argv[1:2] == ["--verify-event-frequency"]:
+        if len(sys.argv) != 3:
+            return 2
+        from motortester.v2.event_frequency_smoke import run
+        return run(sys.argv[2])
+    if sys.argv[1:2] == ["--verify-segment-measurements"]:
+        if len(sys.argv) != 3:
+            return 2
+        from motortester.v2.segment_measurements_smoke import run
+        return run(sys.argv[2])
+    if sys.argv[1:2] == ["--verify-calibration-live"]:
+        if len(sys.argv) != 3:
+            return 2
+        from motortester.v2.calibration_live_smoke import run
+        return run(sys.argv[2])
+    if sys.argv[1:2] == ["--verify-unified"]:
+        if len(sys.argv) != 3:
+            return 2
+        from motortester.v2.unified_smoke import run
+        return run(sys.argv[2])
+    if sys.argv[1:2] == ["--verify-calibration"]:
+        if len(sys.argv) != 3:
+            return 2
+        from motortester.v2.calibration_smoke import run
+        return run(sys.argv[2])
+    if sys.argv[1:2] == ["--verify-analog"]:
+        if len(sys.argv) != 3:
+            return 2
+        from motortester.v2.analog_smoke import run
+        return run(sys.argv[2])
     if sys.argv[1:2] == ["--verify-cursors"]:
         if len(sys.argv) != 3:
             return 2

@@ -1,0 +1,33 @@
+{
+  "pdf": "готовые документы/Ёмкостной датчик_сборка_P1.pdf",
+  "sha256": "3833795ae8c4bfa975cef3d7510a4b0c694106e45b41a12c3201065bcf1b4cd9",
+  "page_count": 9,
+  "text_chars": [
+    1269,
+    1749,
+    1001,
+    1239,
+    1482,
+    1855,
+    1364,
+    1711,
+    1927
+  ],
+  "links": [
+    "https://www.picoauto.com/accessories/ignition-accessories/secondary-ignition-pickup-capacitive-with-bnc",
+    "https://www.wima.de/en/our-product-range/metallized-capacitors/mkp-2/",
+    "https://www.belden.com/products/cable/coax-triax-cable/50-ohm-coax-cable/8259"
+  ],
+  "standalone_fixture": {
+    "scope": "Standalone low-voltage fixture only; no physical measurements",
+    "Ct_F": 1e-08,
+    "Cp_F": 1.01e-08,
+    "Rp_ohm": 909090.9090909091,
+    "Rs_ohm": 50.0,
+    "peak_s": 2.812554847106331e-06,
+    "peak_V": 0.9948581906439968,
+    "V_2ms_after_peak": 0.8917293864522048,
+    "equation": "H(s)=s*Ct*Rp/[1+s*(Ct*(Rs+Rp)+Cp*Rp)+s^2*Rs*Rp*Ct*Cp]"
+  },
+  "limits": "Text/math checks do not replace PNG visual review or physical tests."
+}

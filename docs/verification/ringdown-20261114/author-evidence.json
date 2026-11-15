@@ -1,0 +1,51 @@
+{
+  "scope": "V2-21 synthetic damped-response analysis; no diagnosis",
+  "status": "author_checks_pass_independent_review_pending",
+  "date": "2026-11-14",
+  "platform": "Windows-10-10.0.19045-SP0",
+  "model_test_log": "docs/verification/ringdown-20261114/model-tests.log",
+  "native_result": "build/v24-native-04/result.json",
+  "native_checks": 33,
+  "frozen_result": "build/v24w/frozen-ringdown/result.json",
+  "frozen_checks": 33,
+  "real_serial_open_calls": 0,
+  "callback_errors": [],
+  "example_result": {
+    "frequency_hz": 2497.2873716718136,
+    "tau_s": 0.0012004563939787291,
+    "ratio": 0.7163627942851576,
+    "cycles": 12,
+    "selected_range": [
+      130,
+      651
+    ]
+  },
+  "manifest_sha256": "b123b3358d046e39b6ec88a041f677e043200cb3e8ae24f64a1a07a26fa455db",
+  "portable_sha256": "26d175b7138b66789bd5018cb273ba82b6b1f16fe84a5f91b51c0831032bc70b",
+  "source_zip_sha256": "f65b95ea64e024534fbfdae7c64edd69039118c771666bfcc66165ef6b9109d8",
+  "exe_sha256": "a6936f0acd689af4943f3113eee802624160f14bc8bffcc492ba981072dad069",
+  "source_files_count": 477,
+  "payload_files_count": 480,
+  "visual_inspection_by_author": {
+    "native04": "all four PNG; complete trace, X axis, two result rows, no cursor overlap",
+    "frozen": "all four PNG and normal-entry.png; readable at 1366x768, cold start has no data"
+  },
+  "intermediate_results": "native01 failed readout height; native02/03 machine PASS but visually rejected; native04 corrects bounded height and whole-plot geometry",
+  "physical_measurement": false,
+  "firmware_changed": false,
+  "cad_changed": false,
+  "old_v23w_manifest_sha256": "9d68b062d0bcf090ae559edf8ec684501fc96b38bd7fd010594ec2e49440967c",
+  "evidence_sha256": {
+    "build/v24-native-04/result.json": "396e8a19a908af4654333aa6f570990c16c0a6823f379c0f793c22b576d36711",
+    "docs/verification/ringdown-20261114/model-tests.log": "6769fdf5da1d624d9f15cb8befcc7b6049ae304cc9ee8fc03870490563b70529",
+    "build/v24w/build-report.json": "506ed0f88ee52a3045d8fe5445ecd510705c4cc5719253d63fd6683da0f7b264",
+    "build/v24w/frozen-ringdown/result.json": "0fbc7c1b5cfdf02d7067879e6e9766a0855616328325ea06566ea421fa7a4b83",
+    "build/v24w/normal-entry.png": "bbe9f46d35acb88eb1717702327b07524e0d89f3ac121c2ec2c4a15bb748572d",
+    "docs/architecture.md": "4c0d686d18e955c55c43ea4d4aa927feed892cdfaa5e183b9290b1148026104b",
+    "docs/decisions.md": "1d1911054a60c8d224a05524c20399b1177d1ceccb6386ef1d7604e54bf1caa5",
+    "build/v24w/frozen-ringdown/01-ringdown-result.png": "c18fbe51a80c2c93eb35bed4990aba28eb40afcf9727258c85a3d132195b2c50",
+    "build/v24w/frozen-ringdown/02-short-interval.png": "647618a692ce4d7c4aa9837a7c9e14de488879cdd02f282910634a01dc08e40f",
+    "build/v24w/frozen-ringdown/03-clipped-reason.png": "8e18f437738bd0e54d4150e4b0c942ce479a0c65dd05f39311831569ab6b6c6e",
+    "build/v24w/frozen-ringdown/04-distinct-event-series.png": "3451c4b65f961f5d7a576da84a830a85f6152ff329cba8a80f79b30a3f8357a3"
+  }
+}

@@ -26,9 +26,12 @@ def export_stream(path, recording, context):
     prefix and complete=false receipt remain available for inspection.
     """
     path = Path(path)
+    context.context.__post_init__()
+    context.context.validate_identity(recording.identity)
+    profile = context.context.input_profile
     sidecar = path.with_name(path.name + ".json")
     metadata = {
-        "format": "motortester-v2-stream-csv", "format_version": 1,
+        "format": "motortester-v2-stream-csv", "format_version": 2,
         "complete": False, "context": asdict(context.context),
         "source_companion_present": context.companion_present,
         "source_journal_sha256": context.journal_sha256,
@@ -39,6 +42,9 @@ def export_stream(path, recording, context):
         "terminal": None if recording.terminal is None else asdict(recording.terminal),
         "recovery_issue": recording.recovery_issue,
         "discarded_tail_bytes": recording.discarded_tail_bytes,
+        "voltage_point": "CH1_before_input_divider" if profile.configured else None,
+        "voltage_state": profile.state,
+        "dc_component_measured": profile.coupling == "DC" if profile.configured else None,
     }
     # Reserve both names before writing samples. A pre-existing counterpart is
     # never replaced, even when another application creates it concurrently.
@@ -49,12 +55,17 @@ def export_stream(path, recording, context):
         writer = csv.writer(stream)
         code_label = ("adc12_scale_code_retained10_truncate_lsb2" if recording.identity.retained_bits == 10
                       else "adc_code")
-        writer.writerow(("sample_index", "time_from_recording_start_s", code_label))
+        header = ("sample_index", "time_from_recording_start_s", code_label)
+        if profile.configured:
+            header += ("CH1_ac_component_V" if profile.coupling == "AC" else "CH1_V",)
+        writer.writerow(header)
         for block in recording.iter_raw():
             for offset, (code,) in enumerate(struct.iter_unpack("<H", block.raw_u16le)):
                 index = block.first_sample_index + offset
-                writer.writerow((index, (index - recording.first_sample_index) /
-                                 recording.identity.nominal_fs_hz, code))
+                row = (index, (index - recording.first_sample_index) / recording.identity.nominal_fs_hz, code)
+                if profile.configured:
+                    row += (profile.voltage(code),)
+                writer.writerow(row)
         stream.flush()
         digest = hashlib.sha256()
         with path.open("rb") as raw:

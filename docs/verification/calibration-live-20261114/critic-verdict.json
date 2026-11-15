@@ -1,0 +1,217 @@
+{
+  "schema_version": 1,
+  "date": "2026-11-14",
+  "critic": "/root/unified_critic",
+  "independent_of_author": true,
+  "repository": "font-weight/stm32_motortester_v2",
+  "base_sha": "6e364ed4cc6f2859473c565765fcfe54b811d77f",
+  "scope": "V2-18 software/native Windows 10/relocated frozen package; synthetic-only calibration capture and PDF",
+  "verdict": "PASS",
+  "score_unrounded": 9.63,
+  "criteria": {
+    "C2": 9.6,
+    "C4": 9.5,
+    "C5": 9.7,
+    "C1": 9.8,
+    "C3": 9.5
+  },
+  "weights": {
+    "C2": 0.2,
+    "C4": 0.15,
+    "C5": 0.1,
+    "C1": 0.3,
+    "C3": 0.25
+  },
+  "open_P0": 0,
+  "open_P1": 0,
+  "manifest_path": "build/v21w/dist/MotortesterV2/build-manifest.json",
+  "manifest_sha256": "362a76a56cf8d24e1895d2503905b284f9c92715b2b9f2052a260ff13d7ce215",
+  "executable_sha256": "6239f8ceefe2b2e8096e5f74ba473fcd08bd4e9db278625d1cd604895f79b42c",
+  "source_zip_sha256": "674121daf6c6d4dc622d8282e3979b9e799cc802ccbc31ce19f686a0219bb795",
+  "portable_zip_sha256": "dca47a27ceb6edc8421f12ee0c7e0a5dbe7fc3955c40547e768821f1eb8e4f22",
+  "source_files_independently_verified": 457,
+  "payload_files_independently_verified": 477,
+  "artifacts_all_match": true,
+  "reported_executions": {
+    "frozen": {
+      "checks_count": 21,
+      "frozen": true,
+      "callback_errors": [],
+      "qt_platform": "windows",
+      "real_serial_open_calls": 0,
+      "status": "PASS",
+      "platform": "Windows-10-10.0.19045-SP0"
+    },
+    "targeted_tests": {
+      "existing_offline_import": 3,
+      "live_provider": 5,
+      "result": "OK",
+      "pdf_report": 2,
+      "basis": "author transcription explicitly identified, not redirected stdout"
+    },
+    "native": {
+      "checks_count": 21,
+      "frozen": false,
+      "callback_errors": [],
+      "qt_platform": "windows",
+      "real_serial_open_calls": 0,
+      "status": "PASS",
+      "platform": "Windows-10-10.0.19045-SP0"
+    }
+  },
+  "personally_performed": [
+    "Read scoped implementation, tests and canonical instructions",
+    "Recomputed source, archive and both payload-tree SHA-256 values",
+    "Inspected all four native and all four frozen wizard screenshots plus cold entry",
+    "Inspected all pages of final DC and AC PDF renders and first pages of pending/failed reports",
+    "Inspected all three long-fields render pages with exact final report code hash"
+  ],
+  "runtime_tests_repeated_by_critic": false,
+  "full_legacy_suite_run": false,
+  "physical_tests_run": false,
+  "resolved_findings": [
+    "Withdrawing measured-value confirmation now invalidates accepted raw and cancels pending capture; Fit/Control recheck it; native and frozen checks cover both states"
+  ],
+  "limits": [
+    "No physical serial, SWD, firmware or analogue-board measurements",
+    "Synthetic results cannot calibrate the actual input",
+    "Prepared timestamps are not measured acquisition times",
+    "The received excerpt does not prove whole-source losslessness",
+    "PDF is a read-only human report and does not replace mtcal raw",
+    "Native and frozen GUI evidence is for Windows 10 build 19045; other OS are not accepted by this review"
+  ],
+  "evidence_hashes": [
+    {
+      "path": "docs/reviews/v2-18-calibration-live-review.md",
+      "sha256": "87b3d263b1f811ca3668aee7d1a040323ebe5c785e5d76597e5531116ee7328e"
+    },
+    {
+      "path": "docs/verification/calibration-live-20261114/SCOPE_RU.md",
+      "sha256": "7c4eafc2042c4e43f3371d5bb1742a65d8ef0e1298c8dcda1f9de14b2272dc54"
+    },
+    {
+      "path": "docs/verification/calibration-live-20261114/author-tests.json",
+      "sha256": "9ccb5a67f742c31a4a5fad00fbddba6e431e636930ee80e4913260f669874bf2"
+    },
+    {
+      "path": "docs/verification/calibration-live-20261114/critic-package-integrity.json",
+      "sha256": "a32268f35eab577c50bec4e51bcf01cceb8526519711a27671f9b655b5310e13"
+    },
+    {
+      "path": "build/v21-native-03/result.json",
+      "sha256": "3cf142c75891c8824b927e047f4cf24117c16185dbab49a1ec878981a824e3f4"
+    },
+    {
+      "path": "build/v21w/build-report.json",
+      "sha256": "f40e11927b429d4239811f1eb11a5555389e9aa70f5ad63ed72fca46c6c820e8"
+    },
+    {
+      "path": "build/v21w/frozen-calibration-live/result.json",
+      "sha256": "1092c629c06041545a23e4a03c9a4856d11bc26ce11d5bce8eff2ce4afb843dd"
+    },
+    {
+      "path": "build/v21w/normal-entry.png",
+      "sha256": "c39d8c9c74879425ad66328a96bef8a6af3850b3699ab3549a63c3c936ce8839"
+    },
+    {
+      "path": "build/v21w/frozen-calibration-live/DC_WIDE.mtcal.json",
+      "sha256": "5ade28aae494d1d341da81ff5b7711801d6f24fbf4b96c9357cadda4b96f298c"
+    },
+    {
+      "path": "build/v21w/frozen-calibration-live/AC_WIDE.mtcal.json",
+      "sha256": "6a99e1941a6d2b1bb6737178fb8a38bcc5db04b83439c95830567a973e51113c"
+    },
+    {
+      "path": "build/v21w/frozen-calibration-live/AC_SENSITIVE.mtcal.json",
+      "sha256": "5636b0204f0dc79f32745ba3d0288ff4975aed2a366430b66acabff54f9ecea0"
+    },
+    {
+      "path": "build/v21w/frozen-calibration-live/DC_WIDE.pdf",
+      "sha256": "138a59ba435aa7fe59cb05926ee8ab52e3383785d1c61a129693ec427f3eb007"
+    },
+    {
+      "path": "build/v21w/frozen-calibration-live/AC_SENSITIVE.pdf",
+      "sha256": "7495ba96a5e3c4054b72ed55dad228e02a0f0074fcda532de92b66465b64a01d"
+    },
+    {
+      "path": "build/v21w/frozen-calibration-live/pending.pdf",
+      "sha256": "3283233eb73837c190ba2a3c423a214caebc3a0a7360f25a8f5abde336208256"
+    },
+    {
+      "path": "build/v21w/frozen-calibration-live/failed.pdf",
+      "sha256": "f7b84f52e342c83d2069936ac015b2837f472532971811b470b6ab3248b01bf7"
+    },
+    {
+      "path": "build/v21w/frozen-calibration-live/dc-pdf-1.png",
+      "sha256": "69961151f7ffe4112429c009e69bb2d8d81c4a3f1dd81deea1f64fff0442e870"
+    },
+    {
+      "path": "build/v21w/frozen-calibration-live/dc-pdf-2.png",
+      "sha256": "e7c90457b53128757ca5c99d93ce07c98ce7e3023b4ec5603fe3091d9bf72023"
+    },
+    {
+      "path": "build/v21w/frozen-calibration-live/ac-pdf-1.png",
+      "sha256": "b44f57f3a549b82bdb5f2ecfff49011c6bd24146b4e148f66801f16c3f24b1ce"
+    },
+    {
+      "path": "build/v21w/frozen-calibration-live/ac-pdf-2.png",
+      "sha256": "249dfbf1a5798a05f22940820bb979f87e5e8f12a7a803df4fed3dc76c4f285d"
+    },
+    {
+      "path": "build/v21w/frozen-calibration-live/pending-pdf.png",
+      "sha256": "5043f68d570c713090c89d8075d4332d27ddf4cba26000e24501c1ba1d0a2243"
+    },
+    {
+      "path": "build/v21w/frozen-calibration-live/failed-pdf.png",
+      "sha256": "6d4d44b51e1501f0360675a6fc1f280a8f495df064ea030b5e98a533b1d17c4b"
+    },
+    {
+      "path": "build/v21-report-dev/long-fields-reviewed.pdf",
+      "sha256": "f3df44739b3edc9a372fc6344fec83c668fe90870aed7feb82c466c58a960ade"
+    },
+    {
+      "path": "build/v21-report-dev/long-fields-reviewed-1.png",
+      "sha256": "8e2940531a9b0fa0540bab064832e0c4813fce5e52558f0de6be79d16c8b96dd"
+    },
+    {
+      "path": "build/v21-report-dev/long-fields-reviewed-2.png",
+      "sha256": "8f82ddfd8e651bcfb2d5f8cb41e5d23198990398217f375ecd656d3112d19d70"
+    },
+    {
+      "path": "build/v21-report-dev/long-fields-reviewed-3.png",
+      "sha256": "7e30a10107521e1a878e0be436629d0d8b08703b8de5d80dc2874e7dab7fe8a0"
+    },
+    {
+      "path": "build/v21-native-03/01-plan.png",
+      "sha256": "fc3b2106c4ca566e5b4d56e41422d8d5f293462aedbef90a43ab19beb5cbde1e"
+    },
+    {
+      "path": "build/v21-native-03/02-new-raw.png",
+      "sha256": "4e9d55c1f533494f7d8ddba5938c365c285bceb00db853aac031ac7e7ee7447f"
+    },
+    {
+      "path": "build/v21-native-03/03-ac-raw.png",
+      "sha256": "316b5394548593168e7754c8a7579d1a4efd10535be7ce8b0f29a87e446be6b1"
+    },
+    {
+      "path": "build/v21-native-03/04-result.png",
+      "sha256": "ba4a7e89dcec61dd8eb598c982357c5252c8565de28a2773c632cd42d9bbd093"
+    },
+    {
+      "path": "build/v21w/frozen-calibration-live/01-plan.png",
+      "sha256": "fc3b2106c4ca566e5b4d56e41422d8d5f293462aedbef90a43ab19beb5cbde1e"
+    },
+    {
+      "path": "build/v21w/frozen-calibration-live/02-new-raw.png",
+      "sha256": "4e9d55c1f533494f7d8ddba5938c365c285bceb00db853aac031ac7e7ee7447f"
+    },
+    {
+      "path": "build/v21w/frozen-calibration-live/03-ac-raw.png",
+      "sha256": "316b5394548593168e7754c8a7579d1a4efd10535be7ce8b0f29a87e446be6b1"
+    },
+    {
+      "path": "build/v21w/frozen-calibration-live/04-result.png",
+      "sha256": "ba4a7e89dcec61dd8eb598c982357c5252c8565de28a2773c632cd42d9bbd093"
+    }
+  ]
+}

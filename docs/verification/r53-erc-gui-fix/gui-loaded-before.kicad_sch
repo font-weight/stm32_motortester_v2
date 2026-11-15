@@ -1,0 +1,7794 @@
+(kicad_sch
+	(version 20260306)
+	(generator "eeschema")
+	(generator_version "10.0")
+	(uuid "f1c772b0-891d-5755-a79a-3c4c6f206837")
+	(paper "A2")
+	(title_block
+		(title "CH1 — unified wired analog schematic")
+		(date "2026-10-29")
+		(rev "R5")
+		(company "Motortester V2")
+		(comment 1 "R4 wiring retained. C10=96pF, C11=104pF user measured. Ceramic type/fit unresolved.")
+		(comment 2 "No ignition / HV / vehicle connection authorized. Not CAT rated.")
+	)
+	(lib_symbols
+		(symbol "AnalogLUTR5:AGND"
+			(power global)
+			(pin_numbers
+				(hide yes)
+			)
+			(pin_names
+				(hide yes)
+			)
+			(exclude_from_sim no)
+			(in_bom yes)
+			(on_board yes)
+			(in_pos_files yes)
+			(duplicate_pin_numbers_are_jumpers no)
+			(property "Reference" "#PWR"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(effects
+					(font
+						(size 2 2)
+					)
+				)
+			)
+			(property "Value" "AGND"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(effects
+					(font
+						(size 2 2)
+					)
+				)
+			)
+			(property "Footprint" ""
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 2 2)
+					)
+				)
+			)
+			(property "Datasheet" ""
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 2 2)
+					)
+				)
+			)
+			(property "Description" ""
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(symbol "AGND_1_1"
+				(polyline
+					(pts
+						(xy 0 0) (xy 0 -1.27) (xy 2.54 -1.27) (xy 0 -3.81) (xy -2.54 -1.27) (xy 0 -1.27)
+					)
+					(stroke
+						(width 0.254)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(pin power_in line
+					(at 0 0 270)
+					(length 0)
+					(name ""
+						(effects
+							(font
+								(size 1.7 1.7)
+							)
+						)
+					)
+					(number "1"
+						(effects
+							(font
+								(size 1.7 1.7)
+							)
+						)
+					)
+				)
+			)
+			(embedded_fonts no)
+		)
+		(symbol "AnalogLUTR5:C_H"
+			(exclude_from_sim no)
+			(in_bom yes)
+			(on_board yes)
+			(in_pos_files yes)
+			(duplicate_pin_numbers_are_jumpers no)
+			(property "Reference" "C"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(effects
+					(font
+						(size 2 2)
+					)
+				)
+			)
+			(property "Value" "C_H"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(effects
+					(font
+						(size 2 2)
+					)
+				)
+			)
+			(property "Footprint" ""
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 2 2)
+					)
+				)
+			)
+			(property "Datasheet" ""
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 2 2)
+					)
+				)
+			)
+			(property "Description" ""
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(symbol "C_H_1_1"
+				(polyline
+					(pts
+						(xy -0.635 2.54) (xy -0.635 -2.54)
+					)
+					(stroke
+						(width 0.254)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy 0.635 2.54) (xy 0.635 -2.54)
+					)
+					(stroke
+						(width 0.254)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(pin passive line
+					(at -5.08 0 0)
+					(length 4.445)
+					(name ""
+						(effects
+							(font
+								(size 1.7 1.7)
+							)
+						)
+					)
+					(number "1"
+						(effects
+							(font
+								(size 1.7 1.7)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at 5.08 0 180)
+					(length 4.445)
+					(name ""
+						(effects
+							(font
+								(size 1.7 1.7)
+							)
+						)
+					)
+					(number "2"
+						(effects
+							(font
+								(size 1.7 1.7)
+							)
+						)
+					)
+				)
+			)
+			(embedded_fonts no)
+		)
+		(symbol "AnalogLUTR5:C_V"
+			(exclude_from_sim no)
+			(in_bom yes)
+			(on_board yes)
+			(in_pos_files yes)
+			(duplicate_pin_numbers_are_jumpers no)
+			(property "Reference" "C"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(effects
+					(font
+						(size 2 2)
+					)
+				)
+			)
+			(property "Value" "C_V"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(effects
+					(font
+						(size 2 2)
+					)
+				)
+			)
+			(property "Footprint" ""
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 2 2)
+					)
+				)
+			)
+			(property "Datasheet" ""
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 2 2)
+					)
+				)
+			)
+			(property "Description" ""
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(symbol "C_V_1_1"
+				(polyline
+					(pts
+						(xy -2.54 0.635) (xy 2.54 0.635)
+					)
+					(stroke
+						(width 0.254)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy -2.54 -0.635) (xy 2.54 -0.635)
+					)
+					(stroke
+						(width 0.254)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(pin passive line
+					(at 0 5.08 270)
+					(length 4.445)
+					(name ""
+						(effects
+							(font
+								(size 1.7 1.7)
+							)
+						)
+					)
+					(number "1"
+						(effects
+							(font
+								(size 1.7 1.7)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at 0 -5.08 90)
+					(length 4.445)
+					(name ""
+						(effects
+							(font
+								(size 1.7 1.7)
+							)
+						)
+					)
+					(number "2"
+						(effects
+							(font
+								(size 1.7 1.7)
+							)
+						)
+					)
+				)
+			)
+			(embedded_fonts no)
+		)
+		(symbol "AnalogLUTR5:Conn2L"
+			(exclude_from_sim no)
+			(in_bom yes)
+			(on_board yes)
+			(in_pos_files yes)
+			(duplicate_pin_numbers_are_jumpers no)
+			(property "Reference" "J"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(effects
+					(font
+						(size 2 2)
+					)
+				)
+			)
+			(property "Value" "Conn2L"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(effects
+					(font
+						(size 2 2)
+					)
+				)
+			)
+			(property "Footprint" ""
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 2 2)
+					)
+				)
+			)
+			(property "Datasheet" ""
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 2 2)
+					)
+				)
+			)
+			(property "Description" ""
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(symbol "Conn2L_1_1"
+				(rectangle
+					(start 0 5.08)
+					(end 5.08 -5.08)
+					(stroke
+						(width 0.254)
+						(type default)
+					)
+					(fill
+						(type background)
+					)
+				)
+				(pin passive line
+					(at -7.62 1.27 0)
+					(length 7.62)
+					(name ""
+						(effects
+							(font
+								(size 1.7 1.7)
+							)
+						)
+					)
+					(number "1"
+						(effects
+							(font
+								(size 1.7 1.7)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at -7.62 -1.27 0)
+					(length 7.62)
+					(name ""
+						(effects
+							(font
+								(size 1.7 1.7)
+							)
+						)
+					)
+					(number "2"
+						(effects
+							(font
+								(size 1.7 1.7)
+							)
+						)
+					)
+				)
+			)
+			(embedded_fonts no)
+		)
+		(symbol "AnalogLUTR5:Conn2R"
+			(exclude_from_sim no)
+			(in_bom yes)
+			(on_board yes)
+			(in_pos_files yes)
+			(duplicate_pin_numbers_are_jumpers no)
+			(property "Reference" "J"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(effects
+					(font
+						(size 2 2)
+					)
+				)
+			)
+			(property "Value" "Conn2R"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(effects
+					(font
+						(size 2 2)
+					)
+				)
+			)
+			(property "Footprint" ""
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 2 2)
+					)
+				)
+			)
+			(property "Datasheet" ""
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 2 2)
+					)
+				)
+			)
+			(property "Description" ""
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(symbol "Conn2R_1_1"
+				(rectangle
+					(start -5.08 5.08)
+					(end 0 -5.08)
+					(stroke
+						(width 0.254)
+						(type default)
+					)
+					(fill
+						(type background)
+					)
+				)
+				(pin passive line
+					(at 7.62 1.27 180)
+					(length 7.62)
+					(name ""
+						(effects
+							(font
+								(size 1.7 1.7)
+							)
+						)
+					)
+					(number "1"
+						(effects
+							(font
+								(size 1.7 1.7)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at 7.62 -1.27 180)
+					(length 7.62)
+					(name ""
+						(effects
+							(font
+								(size 1.7 1.7)
+							)
+						)
+					)
+					(number "2"
+						(effects
+							(font
+								(size 1.7 1.7)
+							)
+						)
+					)
+				)
+			)
+			(embedded_fonts no)
+		)
+		(symbol "AnalogLUTR5:Jumper"
+			(exclude_from_sim no)
+			(in_bom yes)
+			(on_board yes)
+			(in_pos_files yes)
+			(duplicate_pin_numbers_are_jumpers no)
+			(property "Reference" "JP"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(effects
+					(font
+						(size 2 2)
+					)
+				)
+			)
+			(property "Value" "Jumper"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(effects
+					(font
+						(size 2 2)
+					)
+				)
+			)
+			(property "Footprint" ""
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 2 2)
+					)
+				)
+			)
+			(property "Datasheet" ""
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 2 2)
+					)
+				)
+			)
+			(property "Description" ""
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(symbol "Jumper_1_1"
+				(polyline
+					(pts
+						(xy -2.54 0) (xy 2.54 0)
+					)
+					(stroke
+						(width 0.254)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(pin passive line
+					(at -5.08 0 0)
+					(length 2.54)
+					(name ""
+						(effects
+							(font
+								(size 1.7 1.7)
+							)
+						)
+					)
+					(number "1"
+						(effects
+							(font
+								(size 1.7 1.7)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at 5.08 0 180)
+					(length 2.54)
+					(name ""
+						(effects
+							(font
+								(size 1.7 1.7)
+							)
+						)
+					)
+					(number "2"
+						(effects
+							(font
+								(size 1.7 1.7)
+							)
+						)
+					)
+				)
+			)
+			(embedded_fonts no)
+		)
+		(symbol "AnalogLUTR5:PWR_FLAG"
+			(pin_numbers
+				(hide yes)
+			)
+			(pin_names
+				(hide yes)
+			)
+			(exclude_from_sim no)
+			(in_bom yes)
+			(on_board yes)
+			(in_pos_files yes)
+			(duplicate_pin_numbers_are_jumpers no)
+			(property "Reference" "#FLG"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(effects
+					(font
+						(size 2 2)
+					)
+				)
+			)
+			(property "Value" "PWR_FLAG"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(effects
+					(font
+						(size 2 2)
+					)
+				)
+			)
+			(property "Footprint" ""
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 2 2)
+					)
+				)
+			)
+			(property "Datasheet" ""
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 2 2)
+					)
+				)
+			)
+			(property "Description" ""
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(symbol "PWR_FLAG_1_1"
+				(polyline
+					(pts
+						(xy 0 0) (xy 0 2.54) (xy -1.27 1.27) (xy 1.27 1.27) (xy 0 2.54)
+					)
+					(stroke
+						(width 0.254)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(pin power_out line
+					(at 0 0 90)
+					(length 0)
+					(name "pwr"
+						(effects
+							(font
+								(size 1.7 1.7)
+							)
+						)
+					)
+					(number "1"
+						(effects
+							(font
+								(size 1.7 1.7)
+							)
+						)
+					)
+				)
+			)
+			(embedded_fonts no)
+		)
+		(symbol "AnalogLUTR5:R_H"
+			(exclude_from_sim no)
+			(in_bom yes)
+			(on_board yes)
+			(in_pos_files yes)
+			(duplicate_pin_numbers_are_jumpers no)
+			(property "Reference" "R"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(effects
+					(font
+						(size 2 2)
+					)
+				)
+			)
+			(property "Value" "R_H"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(effects
+					(font
+						(size 2 2)
+					)
+				)
+			)
+			(property "Footprint" ""
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 2 2)
+					)
+				)
+			)
+			(property "Datasheet" ""
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 2 2)
+					)
+				)
+			)
+			(property "Description" ""
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(symbol "R_H_1_1"
+				(rectangle
+					(start -2.54 1.016)
+					(end 2.54 -1.016)
+					(stroke
+						(width 0.254)
+						(type default)
+					)
+					(fill
+						(type background)
+					)
+				)
+				(pin passive line
+					(at -5.08 0 0)
+					(length 2.54)
+					(name ""
+						(effects
+							(font
+								(size 1.7 1.7)
+							)
+						)
+					)
+					(number "1"
+						(effects
+							(font
+								(size 1.7 1.7)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at 5.08 0 180)
+					(length 2.54)
+					(name ""
+						(effects
+							(font
+								(size 1.7 1.7)
+							)
+						)
+					)
+					(number "2"
+						(effects
+							(font
+								(size 1.7 1.7)
+							)
+						)
+					)
+				)
+			)
+			(embedded_fonts no)
+		)
+		(symbol "AnalogLUTR5:R_V"
+			(exclude_from_sim no)
+			(in_bom yes)
+			(on_board yes)
+			(in_pos_files yes)
+			(duplicate_pin_numbers_are_jumpers no)
+			(property "Reference" "R"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(effects
+					(font
+						(size 2 2)
+					)
+				)
+			)
+			(property "Value" "R_V"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(effects
+					(font
+						(size 2 2)
+					)
+				)
+			)
+			(property "Footprint" ""
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 2 2)
+					)
+				)
+			)
+			(property "Datasheet" ""
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 2 2)
+					)
+				)
+			)
+			(property "Description" ""
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(symbol "R_V_1_1"
+				(rectangle
+					(start -1.016 2.54)
+					(end 1.016 -2.54)
+					(stroke
+						(width 0.254)
+						(type default)
+					)
+					(fill
+						(type background)
+					)
+				)
+				(pin passive line
+					(at 0 5.08 270)
+					(length 2.54)
+					(name ""
+						(effects
+							(font
+								(size 1.7 1.7)
+							)
+						)
+					)
+					(number "1"
+						(effects
+							(font
+								(size 1.7 1.7)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at 0 -5.08 90)
+					(length 2.54)
+					(name ""
+						(effects
+							(font
+								(size 1.7 1.7)
+							)
+						)
+					)
+					(number "2"
+						(effects
+							(font
+								(size 1.7 1.7)
+							)
+						)
+					)
+				)
+			)
+			(embedded_fonts no)
+		)
+		(symbol "AnalogLUTR5:S2_Shunt"
+			(exclude_from_sim no)
+			(in_bom yes)
+			(on_board yes)
+			(in_pos_files yes)
+			(duplicate_pin_numbers_are_jumpers no)
+			(property "Reference" "S"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(effects
+					(font
+						(size 2 2)
+					)
+				)
+			)
+			(property "Value" "S2_Shunt"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(effects
+					(font
+						(size 2 2)
+					)
+				)
+			)
+			(property "Footprint" ""
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 2 2)
+					)
+				)
+			)
+			(property "Datasheet" ""
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 2 2)
+					)
+				)
+			)
+			(property "Description" ""
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(symbol "S2_Shunt_1_1"
+				(polyline
+					(pts
+						(xy -2.54 0) (xy 4.445 4.445)
+					)
+					(stroke
+						(width 0.254)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(pin passive line
+					(at 7.62 5.08 180)
+					(length 2.54)
+					(name "WIDE"
+						(effects
+							(font
+								(size 1.7 1.7)
+							)
+						)
+					)
+					(number "1"
+						(effects
+							(font
+								(size 1.7 1.7)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at -7.62 0 0)
+					(length 5.08)
+					(name "COM"
+						(effects
+							(font
+								(size 1.7 1.7)
+							)
+						)
+					)
+					(number "2"
+						(effects
+							(font
+								(size 1.7 1.7)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at 7.62 -5.08 180)
+					(length 2.54)
+					(name "SENS"
+						(effects
+							(font
+								(size 1.7 1.7)
+							)
+						)
+					)
+					(number "3"
+						(effects
+							(font
+								(size 1.7 1.7)
+							)
+						)
+					)
+				)
+			)
+			(embedded_fonts no)
+		)
+		(symbol "AnalogLUTR5:SW_DPDT"
+			(exclude_from_sim no)
+			(in_bom yes)
+			(on_board yes)
+			(in_pos_files yes)
+			(duplicate_pin_numbers_are_jumpers no)
+			(property "Reference" "S"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(effects
+					(font
+						(size 2 2)
+					)
+				)
+			)
+			(property "Value" "SW_DPDT"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(effects
+					(font
+						(size 2 2)
+					)
+				)
+			)
+			(property "Footprint" ""
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 2 2)
+					)
+				)
+			)
+			(property "Datasheet" ""
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 2 2)
+					)
+				)
+			)
+			(property "Description" ""
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(symbol "SW_DPDT_1_1"
+				(polyline
+					(pts
+						(xy 2.54 0) (xy -4.445 4.445)
+					)
+					(stroke
+						(width 0.254)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(pin passive line
+					(at -7.62 5.08 0)
+					(length 2.54)
+					(name "DC"
+						(effects
+							(font
+								(size 1.7 1.7)
+							)
+						)
+					)
+					(number "1"
+						(effects
+							(font
+								(size 1.7 1.7)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at 7.62 0 180)
+					(length 5.08)
+					(name "COM"
+						(effects
+							(font
+								(size 1.7 1.7)
+							)
+						)
+					)
+					(number "2"
+						(effects
+							(font
+								(size 1.7 1.7)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at -7.62 -5.08 0)
+					(length 2.54)
+					(name "AC"
+						(effects
+							(font
+								(size 1.7 1.7)
+							)
+						)
+					)
+					(number "3"
+						(effects
+							(font
+								(size 1.7 1.7)
+							)
+						)
+					)
+				)
+			)
+			(symbol "SW_DPDT_2_1"
+				(polyline
+					(pts
+						(xy -2.54 0) (xy 4.445 4.445)
+					)
+					(stroke
+						(width 0.254)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(pin passive line
+					(at 7.62 5.08 180)
+					(length 2.54)
+					(name "DC"
+						(effects
+							(font
+								(size 1.7 1.7)
+							)
+						)
+					)
+					(number "4"
+						(effects
+							(font
+								(size 1.7 1.7)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at -7.62 0 0)
+					(length 5.08)
+					(name "COM"
+						(effects
+							(font
+								(size 1.7 1.7)
+							)
+						)
+					)
+					(number "5"
+						(effects
+							(font
+								(size 1.7 1.7)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at 7.62 -5.08 180)
+					(length 2.54)
+					(name "AC"
+						(effects
+							(font
+								(size 1.7 1.7)
+							)
+						)
+					)
+					(number "6"
+						(effects
+							(font
+								(size 1.7 1.7)
+							)
+						)
+					)
+				)
+			)
+			(embedded_fonts no)
+		)
+		(symbol "AnalogLUTR5:TLV9064QDRQ1_D"
+			(exclude_from_sim no)
+			(in_bom yes)
+			(on_board yes)
+			(in_pos_files yes)
+			(duplicate_pin_numbers_are_jumpers no)
+			(property "Reference" "U"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(effects
+					(font
+						(size 2 2)
+					)
+				)
+			)
+			(property "Value" "TLV9064QDRQ1_D"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(effects
+					(font
+						(size 2 2)
+					)
+				)
+			)
+			(property "Footprint" ""
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 2 2)
+					)
+				)
+			)
+			(property "Datasheet" ""
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 2 2)
+					)
+				)
+			)
+			(property "Description" ""
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(symbol "TLV9064QDRQ1_D_1_1"
+				(polyline
+					(pts
+						(xy -5.08 5.08) (xy -5.08 -5.08) (xy 5.08 0) (xy -5.08 5.08)
+					)
+					(stroke
+						(width 0.254)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(pin output line
+					(at 10.16 0 180)
+					(length 5.08)
+					(name ""
+						(effects
+							(font
+								(size 1.7 1.7)
+							)
+						)
+					)
+					(number "1"
+						(effects
+							(font
+								(size 1.7 1.7)
+							)
+						)
+					)
+				)
+				(pin input line
+					(at -10.16 -2.54 0)
+					(length 5.08)
+					(name "-"
+						(effects
+							(font
+								(size 1.7 1.7)
+							)
+						)
+					)
+					(number "2"
+						(effects
+							(font
+								(size 1.7 1.7)
+							)
+						)
+					)
+				)
+				(pin input line
+					(at -10.16 2.54 0)
+					(length 5.08)
+					(name "+"
+						(effects
+							(font
+								(size 1.7 1.7)
+							)
+						)
+					)
+					(number "3"
+						(effects
+							(font
+								(size 1.7 1.7)
+							)
+						)
+					)
+				)
+			)
+			(symbol "TLV9064QDRQ1_D_2_1"
+				(polyline
+					(pts
+						(xy -5.08 5.08) (xy -5.08 -5.08) (xy 5.08 0) (xy -5.08 5.08)
+					)
+					(stroke
+						(width 0.254)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(pin input line
+					(at -10.16 2.54 0)
+					(length 5.08)
+					(name "+"
+						(effects
+							(font
+								(size 1.7 1.7)
+							)
+						)
+					)
+					(number "5"
+						(effects
+							(font
+								(size 1.7 1.7)
+							)
+						)
+					)
+				)
+				(pin input line
+					(at -10.16 -2.54 0)
+					(length 5.08)
+					(name "-"
+						(effects
+							(font
+								(size 1.7 1.7)
+							)
+						)
+					)
+					(number "6"
+						(effects
+							(font
+								(size 1.7 1.7)
+							)
+						)
+					)
+				)
+				(pin output line
+					(at 10.16 0 180)
+					(length 5.08)
+					(name ""
+						(effects
+							(font
+								(size 1.7 1.7)
+							)
+						)
+					)
+					(number "7"
+						(effects
+							(font
+								(size 1.7 1.7)
+							)
+						)
+					)
+				)
+			)
+			(symbol "TLV9064QDRQ1_D_3_1"
+				(polyline
+					(pts
+						(xy -5.08 5.08) (xy -5.08 -5.08) (xy 5.08 0) (xy -5.08 5.08)
+					)
+					(stroke
+						(width 0.254)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(pin output line
+					(at 10.16 0 180)
+					(length 5.08)
+					(name ""
+						(effects
+							(font
+								(size 1.7 1.7)
+							)
+						)
+					)
+					(number "8"
+						(effects
+							(font
+								(size 1.7 1.7)
+							)
+						)
+					)
+				)
+				(pin input line
+					(at -10.16 -2.54 0)
+					(length 5.08)
+					(name "-"
+						(effects
+							(font
+								(size 1.7 1.7)
+							)
+						)
+					)
+					(number "9"
+						(effects
+							(font
+								(size 1.7 1.7)
+							)
+						)
+					)
+				)
+				(pin input line
+					(at -10.16 2.54 0)
+					(length 5.08)
+					(name "+"
+						(effects
+							(font
+								(size 1.7 1.7)
+							)
+						)
+					)
+					(number "10"
+						(effects
+							(font
+								(size 1.7 1.7)
+							)
+						)
+					)
+				)
+			)
+			(symbol "TLV9064QDRQ1_D_4_1"
+				(polyline
+					(pts
+						(xy -5.08 5.08) (xy -5.08 -5.08) (xy 5.08 0) (xy -5.08 5.08)
+					)
+					(stroke
+						(width 0.254)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(pin input line
+					(at -10.16 2.54 0)
+					(length 5.08)
+					(name "+"
+						(effects
+							(font
+								(size 1.7 1.7)
+							)
+						)
+					)
+					(number "12"
+						(effects
+							(font
+								(size 1.7 1.7)
+							)
+						)
+					)
+				)
+				(pin input line
+					(at -10.16 -2.54 0)
+					(length 5.08)
+					(name "-"
+						(effects
+							(font
+								(size 1.7 1.7)
+							)
+						)
+					)
+					(number "13"
+						(effects
+							(font
+								(size 1.7 1.7)
+							)
+						)
+					)
+				)
+				(pin output line
+					(at 10.16 0 180)
+					(length 5.08)
+					(name ""
+						(effects
+							(font
+								(size 1.7 1.7)
+							)
+						)
+					)
+					(number "14"
+						(effects
+							(font
+								(size 1.7 1.7)
+							)
+						)
+					)
+				)
+			)
+			(symbol "TLV9064QDRQ1_D_5_1"
+				(rectangle
+					(start -2.54 5.08)
+					(end 2.54 -5.08)
+					(stroke
+						(width 0.254)
+						(type default)
+					)
+					(fill
+						(type background)
+					)
+				)
+				(pin power_in line
+					(at 0 10.16 270)
+					(length 5.08)
+					(name "V+"
+						(effects
+							(font
+								(size 1.7 1.7)
+							)
+						)
+					)
+					(number "4"
+						(effects
+							(font
+								(size 1.7 1.7)
+							)
+						)
+					)
+				)
+				(pin power_in line
+					(at 0 -10.16 90)
+					(length 5.08)
+					(name "V-"
+						(effects
+							(font
+								(size 1.7 1.7)
+							)
+						)
+					)
+					(number "11"
+						(effects
+							(font
+								(size 1.7 1.7)
+							)
+						)
+					)
+				)
+			)
+			(embedded_fonts no)
+		)
+		(symbol "AnalogLUTR5:V_A"
+			(power global)
+			(pin_numbers
+				(hide yes)
+			)
+			(pin_names
+				(hide yes)
+			)
+			(exclude_from_sim no)
+			(in_bom yes)
+			(on_board yes)
+			(in_pos_files yes)
+			(duplicate_pin_numbers_are_jumpers no)
+			(property "Reference" "#PWR"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(effects
+					(font
+						(size 2 2)
+					)
+				)
+			)
+			(property "Value" "V_A"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(effects
+					(font
+						(size 2 2)
+					)
+				)
+			)
+			(property "Footprint" ""
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 2 2)
+					)
+				)
+			)
+			(property "Datasheet" ""
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 2 2)
+					)
+				)
+			)
+			(property "Description" ""
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(symbol "V_A_1_1"
+				(polyline
+					(pts
+						(xy 0 0) (xy 0 3.81) (xy -1.778 2.032) (xy 0 3.81) (xy 1.778 2.032)
+					)
+					(stroke
+						(width 0.254)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(pin power_in line
+					(at 0 0 90)
+					(length 0)
+					(name ""
+						(effects
+							(font
+								(size 1.7 1.7)
+							)
+						)
+					)
+					(number "1"
+						(effects
+							(font
+								(size 1.7 1.7)
+							)
+						)
+					)
+				)
+			)
+			(embedded_fonts no)
+		)
+	)
+	(text "CORE_IN"
+		(exclude_from_sim no)
+		(at 177.8 93.98 0)
+		(effects
+			(font
+				(size 1.8 1.8)
+			)
+			(justify left top)
+		)
+		(uuid "00738551-d85e-507e-b613-6cb100351622")
+	)
+	(text "FB_D"
+		(exclude_from_sim no)
+		(at 426.72 172.72 0)
+		(effects
+			(font
+				(size 1.8 1.8)
+			)
+			(justify left top)
+		)
+		(uuid "04109a38-e219-545b-b9da-641fbc69d37b")
+	)
+	(text "ПРОДОЛЖЕНИЕ ТОГО ЖЕ ПРОВОДНИКА DRIVE → R5"
+		(exclude_from_sim no)
+		(at 287.02 245.11 0)
+		(effects
+			(font
+				(size 1.8 1.8)
+			)
+			(justify left top)
+		)
+		(uuid "0b392c82-7254-5eac-999e-952139f1d9ef")
+	)
+	(text "7  ВЫХОД ADC"
+		(exclude_from_sim no)
+		(at 469.9 284.48 0)
+		(effects
+			(font
+				(size 2.4 2.4)
+			)
+			(justify left top)
+		)
+		(uuid "0c529d2d-1fac-5322-b6e2-9eb9a8c0bf25")
+	)
+	(text "2  ДЕЛИТЕЛЬ"
+		(exclude_from_sim no)
+		(at 195.58 53.34 0)
+		(effects
+			(font
+				(size 2.4 2.4)
+			)
+			(justify left top)
+		)
+		(uuid "0cf0e3fe-5e79-52c8-bfe6-f0702226ffdf")
+	)
+	(text "LP2"
+		(exclude_from_sim no)
+		(at 452.12 320.04 0)
+		(effects
+			(font
+				(size 1.8 1.8)
+			)
+			(justify left top)
+		)
+		(uuid "27297ab7-43be-5553-a953-36fae07a98f7")
+	)
+	(text "SUM"
+		(exclude_from_sim no)
+		(at 284.48 93.98 0)
+		(effects
+			(font
+				(size 1.8 1.8)
+			)
+			(justify left top)
+		)
+		(uuid "2afba644-0533-5263-be83-6b08eda90cb2")
+	)
+	(text "CH1"
+		(exclude_from_sim no)
+		(at 68.58 71.12 0)
+		(effects
+			(font
+				(size 1.8 1.8)
+			)
+			(justify left top)
+		)
+		(uuid "4ef1c07e-41e8-5e78-8a63-4b7ec8a719e7")
+	)
+	(text "C1 + C8 = 11,8 нФ. C1/C3/C8 подключены к выходам ОУ, НЕ к AGND.\nC1/C2/C4: К73-17 10 нФ ±5%; C3: 68 нФ ±5%.\nНоминальная расчётная полоса ≈17,84 кГц; не результат измерения."
+		(exclude_from_sim no)
+		(at 20.32 386.08 0)
+		(effects
+			(font
+				(size 1.9 1.9)
+			)
+			(justify left top)
+		)
+		(uuid "4f28f83c-d24f-550a-b825-70357e5dbb88")
+	)
+	(text "X1"
+		(exclude_from_sim no)
+		(at 99.06 317.5 0)
+		(effects
+			(font
+				(size 1.8 1.8)
+			)
+			(justify left top)
+		)
+		(uuid "50b2126d-aadc-5ded-8791-b97bd82c7cfd")
+	)
+	(text "3  БУФЕР"
+		(exclude_from_sim no)
+		(at 345.44 53.34 0)
+		(effects
+			(font
+				(size 2.4 2.4)
+			)
+			(justify left top)
+		)
+		(uuid "5266b1a8-6040-5c84-aca6-157651235027")
+	)
+	(text "IN_A"
+		(exclude_from_sim no)
+		(at 344.17 93.98 0)
+		(effects
+			(font
+				(size 1.8 1.8)
+			)
+			(justify left top)
+		)
+		(uuid "5935c99d-9c2d-5cc9-9f42-1017524e1efa")
+	)
+	(text "BUF"
+		(exclude_from_sim no)
+		(at 393.7 96.52 0)
+		(effects
+			(font
+				(size 1.8 1.8)
+			)
+			(justify left top)
+		)
+		(uuid "5c78130b-a418-5fce-8f01-c814471bcf87")
+	)
+	(text "JP1 снять при первом включении. J2 — короткая пара signal + AGND.\nV_A и ADC не питать независимо. Положение S1/S2 не считывается ПО.\nНизковольтная приёмка и калибровка обязательны до эксплуатации."
+		(exclude_from_sim no)
+		(at 274.32 386.08 0)
+		(effects
+			(font
+				(size 1.9 1.9)
+			)
+			(justify left top)
+		)
+		(uuid "5ddd047d-20bd-5cf8-9756-06e175c68043")
+	)
+	(text "5  ФНЧ: ПЕРВАЯ СЕКЦИЯ"
+		(exclude_from_sim no)
+		(at 63.5 256.54 0)
+		(effects
+			(font
+				(size 2.4 2.4)
+			)
+			(justify left top)
+		)
+		(uuid "661b6dfe-a9df-5515-a23d-eced7d57ebcf")
+	)
+	(text "C9_RIGHT"
+		(exclude_from_sim no)
+		(at 91.44 113.03 0)
+		(effects
+			(font
+				(size 1.8 1.8)
+			)
+			(justify left top)
+		)
+		(uuid "70007689-f98f-515b-84f4-9a408839cd26")
+	)
+	(text "ПИТАНИЕ U1A…U1D — ОДИН TLV9064 SOIC-14 НА АДАПТЕРЕ"
+		(exclude_from_sim no)
+		(at 195.58 182.88 0)
+		(effects
+			(font
+				(size 2 2)
+			)
+			(justify left top)
+		)
+		(uuid "71083482-aee5-5e7f-90ae-040af6afe29c")
+	)
+	(text "S2: одна перемычка. 1–2 = WIDE ×1; 2–3 = SENSITIVE ×5,085.\nSENSITIVE допустим только в AC; DC + SENSITIVE запрещён.\nS2 переставлять без питания и без внешнего источника."
+		(exclude_from_sim no)
+		(at 408.94 218.44 0)
+		(effects
+			(font
+				(size 1.85 1.85)
+			)
+			(justify left top)
+		)
+		(uuid "78087b26-d650-526b-9ef1-59e85b21ee32")
+	)
+	(text "4  ЧУВСТВИТЕЛЬНОСТЬ"
+		(exclude_from_sim no)
+		(at 419.1 53.34 0)
+		(effects
+			(font
+				(size 2.4 2.4)
+			)
+			(justify left top)
+		)
+		(uuid "7874b091-f9a8-5652-aeec-a0f8646ebeef")
+	)
+	(text "LP1"
+		(exclude_from_sim no)
+		(at 231.14 320.04 0)
+		(effects
+			(font
+				(size 1.8 1.8)
+			)
+			(justify left top)
+		)
+		(uuid "7ac62a6b-6034-5056-a042-5188715d281d")
+	)
+	(text "ADC_NODE"
+		(exclude_from_sim no)
+		(at 487.68 320.04 0)
+		(effects
+			(font
+				(size 1.8 1.8)
+			)
+			(justify left top)
+		)
+		(uuid "7b7939bb-902f-5a61-a69d-cf7d8950cb82")
+	)
+	(text "AC_NODE"
+		(exclude_from_sim no)
+		(at 111.76 129.54 0)
+		(effects
+			(font
+				(size 1.8 1.8)
+			)
+			(justify left top)
+		)
+		(uuid "7ef77ec3-517e-50e0-8e00-f4b31a8c2df2")
+	)
+	(text "ADC_TARGET"
+		(exclude_from_sim no)
+		(at 535.94 312.42 0)
+		(effects
+			(font
+				(size 1.8 1.8)
+			)
+			(justify left top)
+		)
+		(uuid "87ba4b38-0658-5ea5-b121-6096fbea2c93")
+	)
+	(text "C10/C11 — выводные, 96/104 пФ по измерению.\nДиэлектрик неизвестен; X7R лишь предположение.\nПосадки от R4: нужна примерка и проверка."
+		(exclude_from_sim no)
+		(at 198.12 161.29 0)
+		(effects
+			(font
+				(size 1.9 1.9)
+			)
+			(justify left top)
+		)
+		(uuid "8f9c5e27-ba5c-58a7-8631-779562e20009")
+	)
+	(text "Y1"
+		(exclude_from_sim no)
+		(at 165.1 317.5 0)
+		(effects
+			(font
+				(size 1.8 1.8)
+			)
+			(justify left top)
+		)
+		(uuid "bb560f32-db45-565e-92a3-65d6a8795178")
+	)
+	(text "X2"
+		(exclude_from_sim no)
+		(at 317.5 317.5 0)
+		(effects
+			(font
+				(size 1.8 1.8)
+			)
+			(justify left top)
+		)
+		(uuid "c208b3d5-9778-5639-a114-e42d7b2d9d31")
+	)
+	(text "S1 — один внешний DPDT ON–ON, C&K 7201SYZBE.\nDC: 2–1 и 5–4; AC: 2–3 и 5–6, вывод 6 свободен.\nВ DC конденсатор C9 разряжается через R17.\nПереключать без внешнего источника."
+		(exclude_from_sim no)
+		(at 20.32 210.82 0)
+		(effects
+			(font
+				(size 1.9 1.9)
+			)
+			(justify left top)
+		)
+		(uuid "c31fd019-3dcc-5c94-9ef6-d80f28040390")
+	)
+	(text "6  ФНЧ: ВТОРАЯ СЕКЦИЯ"
+		(exclude_from_sim no)
+		(at 274.32 256.54 0)
+		(effects
+			(font
+				(size 2.4 2.4)
+			)
+			(justify left top)
+		)
+		(uuid "d23863f6-86f4-5f1c-aed1-190ed16ed704")
+	)
+	(text "DRIVE"
+		(exclude_from_sim no)
+		(at 525.78 96.52 0)
+		(effects
+			(font
+				(size 1.8 1.8)
+			)
+			(justify left top)
+		)
+		(uuid "d9fa1239-41e3-5343-9c55-ce35e725ea4e")
+	)
+	(text "Общая шина V_A = VDDA / VREF+ ADC, 3,20…3,40 В. AGND — проверенная общая аналоговая земля. Физическая плата не испытана; не CAT."
+		(exclude_from_sim no)
+		(at 20.32 38.1 0)
+		(effects
+			(font
+				(size 2 2)
+			)
+			(justify left top)
+		)
+		(uuid "da460313-63ac-5d6d-b650-2cfdf52061ba")
+	)
+	(text "Y2"
+		(exclude_from_sim no)
+		(at 386.08 317.5 0)
+		(effects
+			(font
+				(size 1.8 1.8)
+			)
+			(justify left top)
+		)
+		(uuid "dee63357-1123-5851-a970-66cdfbc31da7")
+	)
+	(text "Связи R4 сохранены. C10=96 пФ, C11=104 пФ по измерению владельца. Диэлектрик, корпус и напряжение уточнить. Пока НЕ ТРАВИТЬ."
+		(exclude_from_sim no)
+		(at 20.32 27.94 0)
+		(effects
+			(font
+				(size 2 2)
+			)
+			(justify left top)
+		)
+		(uuid "df3bbc61-ba7d-5588-ae48-5730b6b1334e")
+	)
+	(text "1  ВХОД И DC / AC"
+		(exclude_from_sim no)
+		(at 20.32 53.34 0)
+		(effects
+			(font
+				(size 2.4 2.4)
+			)
+			(justify left top)
+		)
+		(uuid "e2b7cbea-88fb-5a9d-b3ff-1d29f77ca4d2")
+	)
+	(text "GAIN_REF"
+		(exclude_from_sim no)
+		(at 518.16 208.28 0)
+		(effects
+			(font
+				(size 1.8 1.8)
+			)
+			(justify left top)
+		)
+		(uuid "e7764339-3964-5231-8f7a-206671192920")
+	)
+	(text "IN_MID"
+		(exclude_from_sim no)
+		(at 218.44 93.98 0)
+		(effects
+			(font
+				(size 1.8 1.8)
+			)
+			(justify left top)
+		)
+		(uuid "f7de1d2a-8072-5209-8d7b-f9082cd4cd5c")
+	)
+	(text "АНАЛОГОВЫЙ ВХОД CH1 • R5 • ЕДИНАЯ ПРИНЦИПИАЛЬНАЯ СХЕМА"
+		(exclude_from_sim no)
+		(at 20.32 15.24 0)
+		(effects
+			(font
+				(size 3.2 3.2)
+			)
+			(justify left top)
+		)
+		(uuid "fd3e58da-8572-59b8-b1fa-04c17480208b")
+	)
+	(no_connect
+		(at 116.84 167.64)
+		(uuid "63bb277b-cbf7-5016-9b38-4c2a892a9e21")
+	)
+	(wire
+		(pts
+			(xy 142.24 198.12) (xy 142.24 157.48)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "0a3e7dec-89fc-5666-9227-e576c6e3cb67")
+	)
+	(wire
+		(pts
+			(xy 215.9 213.36) (xy 228.6 213.36)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "0e5cc87b-0f77-5dc9-8218-bf3616f6ee11")
+	)
+	(wire
+		(pts
+			(xy 63.5 198.12) (xy 142.24 198.12)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "0fb77429-6e7f-5b8c-824f-3c67aa1d1722")
+	)
+	(wire
+		(pts
+			(xy 561.34 330.2) (xy 556.26 330.2)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "1217552e-6eb8-5e5a-ab9c-e67edc4d993b")
+	)
+	(wire
+		(pts
+			(xy 353.06 124.46) (xy 391.16 124.46)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "12f3d802-f24c-5fc3-98fe-15a4bdc11d96")
+	)
+	(wire
+		(pts
+			(xy 556.26 330.2) (xy 556.26 355.6)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "1646bf49-0484-5913-afc9-695fae3c9f58")
+	)
+	(wire
+		(pts
+			(xy 370.84 292.1) (xy 447.04 292.1)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "166529f2-24ea-576c-9754-a6921abb08d0")
+	)
+	(wire
+		(pts
+			(xy 254 195.58) (xy 254 203.2)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "184d0729-7a32-5057-8916-59075133cb2f")
+	)
+	(wire
+		(pts
+			(xy 36.83 104.14) (xy 36.83 119.38)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "1b70c1ef-020e-5aba-85ae-81bf2a402679")
+	)
+	(wire
+		(pts
+			(xy 279.4 142.24) (xy 279.4 157.48)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "23308123-dd00-56cb-85d7-7250933d1f7e")
+	)
+	(wire
+		(pts
+			(xy 424.18 106.68) (xy 424.18 200.66)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "24175385-c803-4fc1-8a2b-c6d08c599896")
+	)
+	(wire
+		(pts
+			(xy 33.02 104.14) (xy 36.83 104.14)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "294ce7dc-d5b9-542c-ae5e-eae091b76ade")
+	)
+	(wire
+		(pts
+			(xy 342.9 142.24) (xy 342.9 157.48)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "29e5d268-1242-596a-8c6b-9c5d7444611a")
+	)
+	(wire
+		(pts
+			(xy 472.44 134.62) (xy 500.38 134.62)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "2bd74d0c-9237-5f5f-a3d2-5606eba2f145")
+	)
+	(wire
+		(pts
+			(xy 424.18 200.66) (xy 452.12 200.66)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "2d5921d1-a8d7-5762-b464-9a3d6a50325e")
+	)
+	(wire
+		(pts
+			(xy 297.18 218.44) (xy 297.18 233.68)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "2eac421c-53f8-5551-a375-67b2e3b5e317")
+	)
+	(wire
+		(pts
+			(xy 228.6 213.36) (xy 228.6 233.68)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "30d68fbc-f7e9-52d5-8e3c-5f26503e3ee4")
+	)
+	(wire
+		(pts
+			(xy 558.8 104.14) (xy 558.8 248.92)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "398a6710-d94d-5e93-9a22-ad0c17f4d81e")
+	)
+	(wire
+		(pts
+			(xy 513.08 195.58) (xy 513.08 104.14)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "3aa6a649-2bbf-51eb-a2b6-6c969fa11a93")
+	)
+	(wire
+		(pts
+			(xy 228.6 233.68) (xy 373.38 233.68)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "3ab92f5c-4e11-5b34-9f3e-228d52163ea2")
+	)
+	(wire
+		(pts
+			(xy 134.62 137.16) (xy 91.44 137.16)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "3c874645-e16d-529c-b383-31760faf75fe")
+	)
+	(wire
+		(pts
+			(xy 530.86 327.66) (xy 561.34 327.66)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "3c885d44-fc64-5663-a38f-03d8cf5ef678")
+	)
+	(wire
+		(pts
+			(xy 401.32 330.2) (xy 401.32 345.44)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "45476f4d-d19a-5d7e-9001-0ccfcd0c8717")
+	)
+	(wire
+		(pts
+			(xy 254 325.12) (xy 279.4 325.12)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "47337705-5a7e-5a58-a6cc-e405f5211671")
+	)
+	(wire
+		(pts
+			(xy 63.5 76.2) (xy 147.32 76.2)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "49dd5ffb-dd8c-513b-86f3-860fab8025fa")
+	)
+	(wire
+		(pts
+			(xy 45.72 101.6) (xy 45.72 134.62)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "4d181d1a-330e-5f80-962a-6d8b64a5afff")
+	)
+	(wire
+		(pts
+			(xy 91.44 162.56) (xy 101.6 162.56)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "4f2157dc-dba0-55ca-8423-4b8ec374370f")
+	)
+	(wire
+		(pts
+			(xy 424.18 134.62) (xy 462.28 134.62)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "504a0b8a-df18-5a16-bad2-27f93ab0a784")
+	)
+	(wire
+		(pts
+			(xy 406.4 330.2) (xy 401.32 330.2)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "523ab7f3-b046-5d32-9c2e-c7e8d8752388")
+	)
+	(wire
+		(pts
+			(xy 129.54 325.12) (xy 193.04 325.12)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "5e2e07d8-f4d9-52cd-880f-52371e221cb6")
+	)
+	(wire
+		(pts
+			(xy 330.2 101.6) (xy 358.14 101.6)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "5e4de2ce-3f54-533d-8684-985a5e05963e")
+	)
+	(wire
+		(pts
+			(xy 45.72 170.18) (xy 45.72 180.34)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "5f8efe40-716d-5183-889d-3cb33360138f")
+	)
+	(wire
+		(pts
+			(xy 408.94 104.14) (xy 408.94 101.6)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "6126b852-cdb8-5e88-b891-42c25e3685a5")
+	)
+	(wire
+		(pts
+			(xy 162.56 325.12) (xy 162.56 358.14)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "62d1e425-30be-5499-8641-2720b833b1db")
+	)
+	(wire
+		(pts
+			(xy 215.9 210.82) (xy 223.52 210.82)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "62ed1a7a-12eb-534a-99f4-811cb34053ca")
+	)
+	(wire
+		(pts
+			(xy 96.52 269.24) (xy 96.52 325.12)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "6466a98f-39a1-55bd-9241-c19ea70bcaa8")
+	)
+	(wire
+		(pts
+			(xy 45.72 144.78) (xy 45.72 160.02)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "652f883e-44c6-5d66-aff1-d5c565d4ea02")
+	)
+	(wire
+		(pts
+			(xy 210.82 101.6) (xy 243.84 101.6)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "658b46a9-5244-55ab-b5cb-770c92d0a423")
+	)
+	(wire
+		(pts
+			(xy 76.2 325.12) (xy 119.38 325.12)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "65c88b2a-a120-5cb5-b6bc-726bd6293c50")
+	)
+	(wire
+		(pts
+			(xy 91.44 137.16) (xy 91.44 162.56)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "67a65383-eb87-56b4-ba36-5828f10894a9")
+	)
+	(wire
+		(pts
+			(xy 147.32 76.2) (xy 147.32 96.52)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "67b12206-b701-5de0-b9d8-6f7ac4b04da4")
+	)
+	(wire
+		(pts
+			(xy 314.96 325.12) (xy 314.96 292.1)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "68feafd7-4f96-5d99-b6d4-424f6261e0ad")
+	)
+	(wire
+		(pts
+			(xy 86.36 101.6) (xy 111.76 101.6)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "6b0c4d3c-3c19-55f4-a889-4039524f81d5")
+	)
+	(wire
+		(pts
+			(xy 378.46 104.14) (xy 408.94 104.14)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "6cc8eb99-d836-5bab-8502-f7de01d656ba")
+	)
+	(wire
+		(pts
+			(xy 426.72 327.66) (xy 474.98 327.66)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "6db02211-0bb7-5a82-beab-5bbcefb5b75d")
+	)
+	(wire
+		(pts
+			(xy 408.94 101.6) (xy 429.26 101.6)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "702c6507-f04d-51f5-9102-b403dfdd5a3d")
+	)
+	(wire
+		(pts
+			(xy 543.56 233.68) (xy 543.56 238.76)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "711e9046-6957-5930-bc8b-c5d7ab36adf3")
+	)
+	(wire
+		(pts
+			(xy 373.38 195.58) (xy 373.38 208.28)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "71f6e490-f2af-501e-a992-5f24fe70d7d4")
+	)
+	(wire
+		(pts
+			(xy 279.4 63.5) (xy 279.4 68.58)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "72e372eb-3184-5bba-8bca-567073e8a7fb")
+	)
+	(wire
+		(pts
+			(xy 383.54 368.3) (xy 383.54 373.38)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "7416cec5-71a8-52f8-ba7a-d2bbf3237558")
+	)
+	(wire
+		(pts
+			(xy 391.16 124.46) (xy 391.16 104.14)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "74b0473f-bb1a-5c3c-81be-0541bf1dad59")
+	)
+	(wire
+		(pts
+			(xy 289.56 325.12) (xy 332.74 325.12)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "75ebaa62-0939-5a77-b46a-6fb255777ae4")
+	)
+	(wire
+		(pts
+			(xy 162.56 368.3) (xy 162.56 373.38)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "7856c785-2b2c-581f-beaf-344116207487")
+	)
+	(wire
+		(pts
+			(xy 424.18 165.1) (xy 462.28 165.1)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "7a184974-67ff-59e5-b592-97a52841132f")
+	)
+	(wire
+		(pts
+			(xy 472.44 165.1) (xy 500.38 165.1)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "7a35a2a5-25bd-5960-96f8-b6bb9046baad")
+	)
+	(wire
+		(pts
+			(xy 96.52 292.1) (xy 149.86 292.1)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "7a632f5c-f494-5060-91dd-15eeff32aed3")
+	)
+	(wire
+		(pts
+			(xy 142.24 157.48) (xy 116.84 157.48)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "7ba88a15-1575-5a6e-a878-37029d9dadce")
+	)
+	(wire
+		(pts
+			(xy 543.56 177.8) (xy 543.56 223.52)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "7c2a013f-b61f-44d5-aec4-f5ab7206dac1")
+	)
+	(wire
+		(pts
+			(xy 429.26 106.68) (xy 424.18 106.68)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "7e3dc15a-8b8d-55bf-8cd9-31cdac6c4493")
+	)
+	(wire
+		(pts
+			(xy 447.04 292.1) (xy 447.04 327.66)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "7f477e2a-5a48-528f-a18f-ca8d0f4a9dbf")
+	)
+	(wire
+		(pts
+			(xy 342.9 325.12) (xy 406.4 325.12)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "8005aa19-dede-5251-b8f9-3a1a014c3812")
+	)
+	(wire
+		(pts
+			(xy 33.02 101.6) (xy 63.5 101.6)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "86e84ce5-e559-55f7-b083-97ae43025e91")
+	)
+	(wire
+		(pts
+			(xy 335.28 195.58) (xy 335.28 208.28)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "8b27a709-d0d5-5a7f-a9dd-975bb6a6c49e")
+	)
+	(wire
+		(pts
+			(xy 279.4 78.74) (xy 279.4 101.6)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "8ced586d-d0ce-5f80-b064-3262f7a99186")
+	)
+	(wire
+		(pts
+			(xy 500.38 104.14) (xy 500.38 165.1)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "8f086dce-759c-408f-9226-c0d6a408ebbb")
+	)
+	(wire
+		(pts
+			(xy 226.06 345.44) (xy 226.06 327.66)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "8f122853-1001-57c0-9ad8-4790bdfa6915")
+	)
+	(wire
+		(pts
+			(xy 213.36 327.66) (xy 254 327.66)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "93058ef0-f651-50d6-bab3-97a21b6bcd0a")
+	)
+	(wire
+		(pts
+			(xy 441.96 345.44) (xy 441.96 327.66)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "969b3906-d56c-5ee8-8892-db41192ed0e5")
+	)
+	(wire
+		(pts
+			(xy 226.06 269.24) (xy 226.06 327.66)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "982faf3d-42dd-40d1-8d6e-da1827a724d5")
+	)
+	(wire
+		(pts
+			(xy 353.06 106.68) (xy 353.06 124.46)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "985187a9-ed5b-5c35-bded-87bd5fad44dc")
+	)
+	(wire
+		(pts
+			(xy 193.04 330.2) (xy 187.96 330.2)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "998bb3e2-e68e-55b1-85d1-80ee1370b966")
+	)
+	(wire
+		(pts
+			(xy 297.18 195.58) (xy 297.18 208.28)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "99c9d3a3-7602-5033-a6ea-884f82692a0f")
+	)
+	(wire
+		(pts
+			(xy 187.96 345.44) (xy 226.06 345.44)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "9d0bdf63-895a-551d-96f4-438552075db1")
+	)
+	(wire
+		(pts
+			(xy 558.8 248.92) (xy 40.64 248.92)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "9e08cc86-341b-5a09-8cfe-d0d49732c718")
+	)
+	(wire
+		(pts
+			(xy 63.5 101.6) (xy 76.2 101.6)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "9fd25ae3-fa87-55d9-a100-f5bb9800ae74")
+	)
+	(wire
+		(pts
+			(xy 543.56 157.48) (xy 543.56 167.64)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "a496aba5-2ab0-59a9-ba0d-560640711d98")
+	)
+	(wire
+		(pts
+			(xy 40.64 248.92) (xy 40.64 325.12)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "a7b8bef3-5bb7-5d78-9392-6b5ab0919ed1")
+	)
+	(wire
+		(pts
+			(xy 335.28 218.44) (xy 335.28 233.68)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "a7d19421-3ce5-5892-9b92-2e0b5e1d8709")
+	)
+	(wire
+		(pts
+			(xy 485.14 327.66) (xy 520.7 327.66)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "a7e83094-de5c-5422-87fd-2c2b9baf55dc")
+	)
+	(wire
+		(pts
+			(xy 502.92 327.66) (xy 502.92 340.36)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "ab753f5a-1b2c-59bc-a9e4-c47e2e1dd91a")
+	)
+	(wire
+		(pts
+			(xy 373.38 218.44) (xy 373.38 233.68)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "ad53615f-b9ff-5fbe-87fb-94afd9626953")
+	)
+	(wire
+		(pts
+			(xy 254 223.52) (xy 254 233.68)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "af76e2d7-8611-5455-b2d0-43997fbe380f")
+	)
+	(wire
+		(pts
+			(xy 121.92 101.6) (xy 134.62 101.6)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "b1c7d511-df2f-599a-99fd-1f903ba67f1c")
+	)
+	(wire
+		(pts
+			(xy 172.72 101.6) (xy 200.66 101.6)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "b35f57ec-1be3-530b-b254-e5f481e3039d")
+	)
+	(wire
+		(pts
+			(xy 502.92 350.52) (xy 502.92 355.6)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "b90d5c73-903d-5f9f-8a2e-e9ae0b4c14e4")
+	)
+	(wire
+		(pts
+			(xy 40.64 325.12) (xy 66.04 325.12)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "ba3c53b5-ff2b-5197-886d-24b072496f3f")
+	)
+	(wire
+		(pts
+			(xy 254 101.6) (xy 320.04 101.6)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "baa64a92-ab20-5716-8f1f-cb38c9f43f97")
+	)
+	(wire
+		(pts
+			(xy 223.52 210.82) (xy 223.52 195.58)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "bb358702-5b0b-5b58-ad45-023008195cd8")
+	)
+	(wire
+		(pts
+			(xy 383.54 325.12) (xy 383.54 358.14)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "bc1a07fb-b5f6-5d77-b6ec-cb91960b6e3d")
+	)
+	(wire
+		(pts
+			(xy 342.9 101.6) (xy 342.9 132.08)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "bd7a425d-3d65-5abb-a254-e971df7e126a")
+	)
+	(wire
+		(pts
+			(xy 449.58 104.14) (xy 558.8 104.14)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "c02197cb-4ea8-57eb-8ad9-04ae46bec6fb")
+	)
+	(wire
+		(pts
+			(xy 134.62 106.68) (xy 157.48 106.68)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "c24abd51-13fa-563c-8363-21ab1f835bf0")
+	)
+	(wire
+		(pts
+			(xy 223.52 195.58) (xy 373.38 195.58)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "c55a3df8-6e0a-5263-85c8-539c68fbb97b")
+	)
+	(wire
+		(pts
+			(xy 96.52 269.24) (xy 149.86 269.24)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "cec3d700-9ee4-58d8-a261-f19eda0a1621")
+	)
+	(wire
+		(pts
+			(xy 467.36 205.74) (xy 543.56 205.74)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "d16707a3-40b9-539b-83ed-c2cfa48091bf")
+	)
+	(wire
+		(pts
+			(xy 401.32 345.44) (xy 441.96 345.44)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "d6ff12b6-6b9b-5340-b081-3bd64eb0d90d")
+	)
+	(wire
+		(pts
+			(xy 63.5 76.2) (xy 63.5 198.12)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "d7b1232e-8c9d-5115-99fb-b9dc53377304")
+	)
+	(wire
+		(pts
+			(xy 160.02 292.1) (xy 226.06 292.1)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "daa94cb6-06fc-5254-9439-bab901647105")
+	)
+	(wire
+		(pts
+			(xy 314.96 292.1) (xy 360.68 292.1)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "dd14573e-e241-5ec3-89ec-0a9b66168d91")
+	)
+	(wire
+		(pts
+			(xy 187.96 330.2) (xy 187.96 345.44)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "ddac3ccd-5c8b-50e1-a732-db663fdcc701")
+	)
+	(wire
+		(pts
+			(xy 254 327.66) (xy 254 325.12)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "e1f294a7-f2ae-5e49-963a-eb6d6c4bdc91")
+	)
+	(wire
+		(pts
+			(xy 467.36 195.58) (xy 513.08 195.58)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "e61ae635-889d-56b6-8f14-f1c5d83ab5bb")
+	)
+	(wire
+		(pts
+			(xy 358.14 106.68) (xy 353.06 106.68)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "e79e26d1-604c-532b-a21d-af30e0c7b74d")
+	)
+	(wire
+		(pts
+			(xy 134.62 101.6) (xy 134.62 137.16)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "e9f22e64-66ec-5f5a-840e-522c5b36aae3")
+	)
+	(wire
+		(pts
+			(xy 147.32 96.52) (xy 157.48 96.52)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "ed2333a5-ba4e-5a4a-b153-1d1b0de13c23")
+	)
+	(wire
+		(pts
+			(xy 160.02 269.24) (xy 226.06 269.24)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "ee9b249d-5ec8-521b-a664-00a997190db9")
+	)
+	(wire
+		(pts
+			(xy 279.4 101.6) (xy 279.4 132.08)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "f3b9f79b-bcdd-5b0e-b1ab-0ef0189a66f0")
+	)
+	(symbol
+		(lib_id "AnalogLUTR5:R_H")
+		(at 124.46 325.12 0)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(uuid "026b4ca3-22a5-578e-943a-ce78d179bf94")
+		(property "Reference" "R6"
+			(at 124.46 320.548 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 2 2)
+				)
+			)
+		)
+		(property "Value" "750 1%"
+			(at 124.46 329.692 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 2 2)
+				)
+			)
+		)
+		(property "Footprint" "LUT:R_025W_P10.16_LUT"
+			(at 124.46 325.12 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 2 2)
+				)
+			)
+		)
+		(property "Datasheet" "https://www.vishay.com/docs/28766/mbxsma.pdf"
+			(at 124.46 325.12 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 2 2)
+				)
+			)
+		)
+		(property "Description" ""
+			(at 124.46 325.12 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "5eacdca2-a4ac-41a2-929e-0171263464e6")
+		)
+		(pin "2"
+			(uuid "f2b9b274-1642-4ae9-b003-1bda7e4a4e40")
+		)
+		(instances
+			(project "analog-input-r53"
+				(path "/f1c772b0-891d-5755-a79a-3c4c6f206837"
+					(reference "R6")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "AnalogLUTR5:R_H")
+		(at 71.12 325.12 0)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(uuid "04879ae8-789d-5dd7-bb8e-e6b9665994ea")
+		(property "Reference" "R5"
+			(at 71.12 320.548 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 2 2)
+				)
+			)
+		)
+		(property "Value" "750 1%"
+			(at 71.12 329.692 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 2 2)
+				)
+			)
+		)
+		(property "Footprint" "LUT:R_025W_P10.16_LUT"
+			(at 71.12 325.12 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 2 2)
+				)
+			)
+		)
+		(property "Datasheet" "https://www.vishay.com/docs/28766/mbxsma.pdf"
+			(at 71.12 325.12 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 2 2)
+				)
+			)
+		)
+		(property "Description" ""
+			(at 71.12 325.12 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "2"
+			(uuid "84ed3dc5-78a1-46dc-90a7-561c7c0b0a6d")
+		)
+		(pin "1"
+			(uuid "fa0d95bd-a9e1-4f3f-a9f8-68d338b728d5")
+		)
+		(instances
+			(project "analog-input-r53"
+				(path "/f1c772b0-891d-5755-a79a-3c4c6f206837"
+					(reference "R5")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "AnalogLUTR5:R_H")
+		(at 116.84 101.6 0)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(uuid "08d1b39e-d100-5a92-b914-1fd506bb029e")
+		(property "Reference" "R17"
+			(at 116.84 97.028 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 2 2)
+				)
+			)
+		)
+		(property "Value" "10k 1%"
+			(at 116.84 106.172 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 2 2)
+				)
+			)
+		)
+		(property "Footprint" "LUT:R_025W_P10.16_LUT"
+			(at 116.84 101.6 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 2 2)
+				)
+			)
+		)
+		(property "Datasheet" "https://www.vishay.com/docs/28766/mbxsma.pdf"
+			(at 116.84 101.6 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 2 2)
+				)
+			)
+		)
+		(property "Description" ""
+			(at 116.84 101.6 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "bbcabac3-10eb-44d0-b283-a3974e0bd20e")
+		)
+		(pin "2"
+			(uuid "dd7bc5db-757c-4493-82fb-1912795a0ce9")
+		)
+		(instances
+			(project "analog-input-r53"
+				(path "/f1c772b0-891d-5755-a79a-3c4c6f206837"
+					(reference "R17")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "AnalogLUTR5:SW_DPDT")
+		(at 165.1 101.6 0)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(uuid "1a792376-d82c-5d03-b2c5-0ae42d3272f4")
+		(property "Reference" "S1"
+			(at 165.1 88.9 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 2 2)
+				)
+			)
+		)
+		(property "Value" "DC / AC"
+			(at 165.1 114.3 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 2 2)
+				)
+			)
+		)
+		(property "Footprint" "LUT:DC_AC_Wire_2x3_P5.08_Compact"
+			(at 165.1 101.6 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 2 2)
+				)
+			)
+		)
+		(property "Datasheet" "https://www.ckswitches.com/media/1394/7000toggle.pdf"
+			(at 165.1 101.6 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 2 2)
+				)
+			)
+		)
+		(property "Description" ""
+			(at 165.1 101.6 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "2"
+			(uuid "77a2bde4-27b6-42a6-95e0-010efcf10fb0")
+		)
+		(pin "3"
+			(uuid "14ce71a9-0f0c-445c-8d75-a836b0340d7f")
+		)
+		(pin "1"
+			(uuid "fc9e223b-4ee4-49de-8618-38869aed4647")
+		)
+		(pin "4"
+			(uuid "f6ed99d4-0e84-4f86-89c0-79ac60a7ec89")
+		)
+		(pin "5"
+			(uuid "6d32392c-cf85-4bdb-8b5b-f2d0bb4af588")
+		)
+		(pin "6"
+			(uuid "8ede5914-73ad-431d-9e0e-2857756a6c24")
+		)
+		(instances
+			(project "analog-input-r53"
+				(path "/f1c772b0-891d-5755-a79a-3c4c6f206837"
+					(reference "S1")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "AnalogLUTR5:Conn2R")
+		(at 208.28 212.09 0)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(uuid "1acced02-fac2-5ba2-a1e0-03968c410e22")
+		(property "Reference" "J3"
+			(at 208.28 201.93 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 2 2)
+				)
+			)
+		)
+		(property "Value" "Common VDDA rail"
+			(at 208.28 222.25 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 2 2)
+				)
+			)
+		)
+		(property "Footprint" "LUT:Wire_P5.08_LUT"
+			(at 208.28 212.09 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 2 2)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 208.28 212.09 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 2 2)
+				)
+			)
+		)
+		(property "Description" ""
+			(at 208.28 212.09 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "2"
+			(uuid "21661701-e1f8-49f7-b6c1-99b94e6cdb94")
+		)
+		(pin "1"
+			(uuid "fdb90f3c-74cd-4a39-9dae-8aafdf4097b2")
+		)
+		(instances
+			(project "analog-input-r53"
+				(path "/f1c772b0-891d-5755-a79a-3c4c6f206837"
+					(reference "J3")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "AnalogLUTR5:C_V")
+		(at 342.9 137.16 0)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(uuid "1e6719dd-c79b-542c-b953-1ebc4582f900")
+		(property "Reference" "C11"
+			(at 347.98 133.604 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 2 2)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "100p (104p measured)"
+			(at 347.98 137.414 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 2 2)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" "LUT:Radial_P2.54_LUT"
+			(at 342.9 137.16 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 2 2)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 342.9 137.16 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 2 2)
+				)
+			)
+		)
+		(property "Description" ""
+			(at 342.9 137.16 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "2"
+			(uuid "c81ea30b-855d-4a64-950b-961fe0263e70")
+		)
+		(pin "1"
+			(uuid "7ada151c-8949-4b36-8e5a-30798a826ca0")
+		)
+		(instances
+			(project "analog-input-r53"
+				(path "/f1c772b0-891d-5755-a79a-3c4c6f206837"
+					(reference "C11")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "AnalogLUTR5:C_V")
+		(at 335.28 213.36 0)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(uuid "23a79eeb-94e1-51d5-806c-2dbe6087869a")
+		(property "Reference" "C7"
+			(at 340.36 209.804 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 2 2)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "1u X7R"
+			(at 340.36 213.614 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 2 2)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" "LUT:Radial_P2.54_LUT"
+			(at 335.28 213.36 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 2 2)
+				)
+			)
+		)
+		(property "Datasheet" "https://search.kemet.com/component-documentation/download/specsheet/C315C105K3R5TA"
+			(at 335.28 213.36 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 2 2)
+				)
+			)
+		)
+		(property "Description" ""
+			(at 335.28 213.36 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "bc2da851-c415-4622-8516-763e3fd19896")
+		)
+		(pin "2"
+			(uuid "6783c981-251f-4fe3-9c6c-ecbbf33a307b")
+		)
+		(instances
+			(project "analog-input-r53"
+				(path "/f1c772b0-891d-5755-a79a-3c4c6f206837"
+					(reference "C7")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "AnalogLUTR5:Conn2L")
+		(at 568.96 328.93 0)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(uuid "28872ecc-6566-5f6d-afaa-6c8f15574564")
+		(property "Reference" "J2"
+			(at 568.96 318.77 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 2 2)
+				)
+			)
+		)
+		(property "Value" "Verified PA0 / ADC1_IN0"
+			(at 543.56 306.07 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 2 2)
+				)
+			)
+		)
+		(property "Footprint" "LUT:Wire_P5.08_LUT"
+			(at 568.96 328.93 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 2 2)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 568.96 328.93 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 2 2)
+				)
+			)
+		)
+		(property "Description" ""
+			(at 568.96 328.93 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "2"
+			(uuid "77c1a462-7d5e-4576-b9fb-18990d8ddc89")
+		)
+		(pin "1"
+			(uuid "60de1896-0430-48e6-bb86-dd932ed122ea")
+		)
+		(instances
+			(project "analog-input-r53"
+				(path "/f1c772b0-891d-5755-a79a-3c4c6f206837"
+					(reference "J2")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "AnalogLUTR5:R_V")
+		(at 45.72 165.1 0)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(uuid "29630382-e7db-56c6-afbc-a01167c2a14c")
+		(property "Reference" "R11"
+			(at 22.86 161.544 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 2 2)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "4.7M 1%"
+			(at 22.86 165.354 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 2 2)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" "LUT:R_025W_P10.16_LUT"
+			(at 45.72 165.1 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 2 2)
+				)
+			)
+		)
+		(property "Datasheet" "https://www.vishay.com/docs/28766/mbxsma.pdf"
+			(at 45.72 165.1 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 2 2)
+				)
+			)
+		)
+		(property "Description" ""
+			(at 45.72 165.1 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "ec57577f-08b7-48cd-9727-de3eb5b6a9cf")
+		)
+		(pin "2"
+			(uuid "c65382a5-6c52-4794-a8b0-b67f76a1c6ce")
+		)
+		(instances
+			(project "analog-input-r53"
+				(path "/f1c772b0-891d-5755-a79a-3c4c6f206837"
+					(reference "R11")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "AnalogLUTR5:AGND")
+		(at 36.83 119.38 0)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom no)
+		(on_board no)
+		(in_pos_files yes)
+		(dnp no)
+		(uuid "2b58a148-99a4-58de-8eaf-a9b17493e3bd")
+		(property "Reference" "#PWR01"
+			(at 36.83 119.38 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 2 2)
+				)
+			)
+		)
+		(property "Value" "AGND"
+			(at 36.83 126.238 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 2 2)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 36.83 119.38 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 2 2)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 36.83 119.38 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 2 2)
+				)
+			)
+		)
+		(property "Description" ""
+			(at 36.83 119.38 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "6ee97697-3a8f-4a55-b759-c92275a2bdac")
+		)
+		(instances
+			(project "analog-input-r53"
+				(path "/f1c772b0-891d-5755-a79a-3c4c6f206837"
+					(reference "#PWR01")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "AnalogLUTR5:R_H")
+		(at 205.74 101.6 0)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(uuid "2f68a17e-1286-5f33-962e-7006c6ece7d2")
+		(property "Reference" "R1"
+			(at 205.74 97.028 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 2 2)
+				)
+			)
+		)
+		(property "Value" "510k 1%"
+			(at 205.74 106.172 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 2 2)
+				)
+			)
+		)
+		(property "Footprint" "LUT:R_025W_P10.16_LUT"
+			(at 205.74 101.6 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 2 2)
+				)
+			)
+		)
+		(property "Datasheet" "https://www.vishay.com/docs/28766/mbxsma.pdf"
+			(at 205.74 101.6 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 2 2)
+				)
+			)
+		)
+		(property "Description" ""
+			(at 205.74 101.6 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "2"
+			(uuid "e0eef2c9-4a4a-4994-8697-9e77ca8d04c9")
+		)
+		(pin "1"
+			(uuid "09f5e469-8099-466b-ae90-ef43a8299f29")
+		)
+		(instances
+			(project "analog-input-r53"
+				(path "/f1c772b0-891d-5755-a79a-3c4c6f206837"
+					(reference "R1")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "AnalogLUTR5:V_A")
+		(at 223.52 195.58 0)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom no)
+		(on_board no)
+		(in_pos_files yes)
+		(dnp no)
+		(uuid "31b6e403-4680-5e97-be16-78ac41d99970")
+		(property "Reference" "#PWR08"
+			(at 223.52 195.58 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 2 2)
+				)
+			)
+		)
+		(property "Value" "V_A"
+			(at 223.52 187.452 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 2 2)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 223.52 195.58 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 2 2)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 223.52 195.58 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 2 2)
+				)
+			)
+		)
+		(property "Description" ""
+			(at 223.52 195.58 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "a849cae7-7c8b-46e4-9dc4-29cf28a4e3ec")
+		)
+		(instances
+			(project "analog-input-r53"
+				(path "/f1c772b0-891d-5755-a79a-3c4c6f206837"
+					(reference "#PWR08")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "AnalogLUTR5:AGND")
+		(at 228.6 233.68 0)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom no)
+		(on_board no)
+		(in_pos_files yes)
+		(dnp no)
+		(uuid "3963bdfd-d252-5b2d-aaf8-b048829f635b")
+		(property "Reference" "#PWR09"
+			(at 228.6 233.68 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 2 2)
+				)
+			)
+		)
+		(property "Value" "AGND"
+			(at 228.6 240.538 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 2 2)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 228.6 233.68 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 2 2)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 228.6 233.68 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 2 2)
+				)
+			)
+		)
+		(property "Description" ""
+			(at 228.6 233.68 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "e486984f-aef0-46ad-b35a-6546b0a8530d")
+		)
+		(instances
+			(project "analog-input-r53"
+				(path "/f1c772b0-891d-5755-a79a-3c4c6f206837"
+					(reference "#PWR09")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "AnalogLUTR5:TLV9064QDRQ1_D")
+		(at 416.56 327.66 0)
+		(unit 3)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(uuid "431970ba-364f-589b-bd65-8772e93f670c")
+		(property "Reference" "U1"
+			(at 416.56 317.5 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 2 2)
+				)
+			)
+		)
+		(property "Value" "TLV9064QDRQ1"
+			(at 416.56 337.82 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 2 2)
+				)
+			)
+		)
+		(property "Footprint" "LUT:SOIC14_Adapter_18x18_Rows15.24"
+			(at 416.56 327.66 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 2 2)
+				)
+			)
+		)
+		(property "Datasheet" "https://www.ti.com/lit/ds/symlink/tlv9064-q1.pdf"
+			(at 416.56 327.66 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 2 2)
+				)
+			)
+		)
+		(property "Description" ""
+			(at 416.56 327.66 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "3"
+			(uuid "d7270a5c-0098-4e4a-8712-0a61df84781f")
+		)
+		(pin "9"
+			(uuid "41e0f38c-ac9d-4169-8c5f-fe3a0072edf5")
+		)
+		(pin "12"
+			(uuid "4596aaae-b6c2-464a-a629-fa1bbacb8ba8")
+		)
+		(pin "14"
+			(uuid "fcf9432e-e61e-45e0-8ef1-2a52eef493fc")
+		)
+		(pin "5"
+			(uuid "5ab36e53-b9b0-4487-bfab-98f19f1aeb67")
+		)
+		(pin "7"
+			(uuid "6287daec-178c-427a-9d2e-6c9c630d2eb6")
+		)
+		(pin "1"
+			(uuid "5bad013f-6135-4e2a-a588-564a9acdfa8e")
+		)
+		(pin "2"
+			(uuid "9acb2b2e-5421-414c-8593-3315beace3ff")
+		)
+		(pin "6"
+			(uuid "3fc4f971-578b-4bd7-9ff2-7e7f0a4ac869")
+		)
+		(pin "8"
+			(uuid "1cb1c178-1e29-4539-a43f-c9ca02a37688")
+		)
+		(pin "10"
+			(uuid "4288a453-3fe7-4201-8e4b-c50dc4315052")
+		)
+		(pin "13"
+			(uuid "82339143-f6ab-4935-bc20-119195f15a63")
+		)
+		(pin "4"
+			(uuid "173af96f-4181-480a-9311-f54c4553aa28")
+		)
+		(pin "11"
+			(uuid "e55a4d90-0fbe-4274-ae0b-d3c8a1def3e2")
+		)
+		(instances
+			(project "analog-input-r53"
+				(path "/f1c772b0-891d-5755-a79a-3c4c6f206837"
+					(reference "U1")
+					(unit 3)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "AnalogLUTR5:R_V")
+		(at 543.56 228.6 0)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(uuid "47455ceb-4c0b-53db-a332-ad17aaf07007")
+		(property "Reference" "R16"
+			(at 520.7 225.044 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 2 2)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "820 1%"
+			(at 520.7 228.854 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 2 2)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" "LUT:R_025W_P10.16_LUT"
+			(at 543.56 228.6 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 2 2)
+				)
+			)
+		)
+		(property "Datasheet" "https://www.vishay.com/docs/28766/mbxsma.pdf"
+			(at 543.56 228.6 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 2 2)
+				)
+			)
+		)
+		(property "Description" ""
+			(at 543.56 228.6 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "2"
+			(uuid "13805227-3c1a-4f30-981d-f0ab4a2706c9")
+		)
+		(pin "1"
+			(uuid "ed8a31b0-1e48-4458-8f6d-7e2a5530adbb")
+		)
+		(instances
+			(project "analog-input-r53"
+				(path "/f1c772b0-891d-5755-a79a-3c4c6f206837"
+					(reference "R16")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "AnalogLUTR5:R_V")
+		(at 543.56 172.72 0)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(uuid "4abf817c-6925-5da2-8591-60e2c072b52e")
+		(property "Reference" "R15"
+			(at 520.7 169.164 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 2 2)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "750 1%"
+			(at 520.7 172.974 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 2 2)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" "LUT:R_025W_P10.16_LUT"
+			(at 543.56 172.72 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 2 2)
+				)
+			)
+		)
+		(property "Datasheet" "https://www.vishay.com/docs/28766/mbxsma.pdf"
+			(at 543.56 172.72 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 2 2)
+				)
+			)
+		)
+		(property "Description" ""
+			(at 543.56 172.72 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "2"
+			(uuid "75ed2b75-e7c8-4e66-8618-99975ad985a9")
+		)
+		(pin "1"
+			(uuid "061c39f0-a6a2-42fa-9c8a-871a45983e84")
+		)
+		(instances
+			(project "analog-input-r53"
+				(path "/f1c772b0-891d-5755-a79a-3c4c6f206837"
+					(reference "R15")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "AnalogLUTR5:C_V")
+		(at 502.92 345.44 0)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(uuid "51532d26-bc5b-5380-bc54-ad669a9c1f3f")
+		(property "Reference" "C5"
+			(at 508 341.884 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 2 2)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "1n C0G 5%"
+			(at 508 345.694 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 2 2)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" "LUT:C5_0805_LUT"
+			(at 502.92 345.44 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 2 2)
+				)
+			)
+		)
+		(property "Datasheet" "https://yageogroup.com/download/specsheet/CC0805JRNPO9BN102"
+			(at 502.92 345.44 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 2 2)
+				)
+			)
+		)
+		(property "Description" ""
+			(at 502.92 345.44 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "690bac46-8040-461a-b12a-886771651d05")
+		)
+		(pin "2"
+			(uuid "b6833ab2-a2fd-4020-b09b-0a7d9668a272")
+		)
+		(instances
+			(project "analog-input-r53"
+				(path "/f1c772b0-891d-5755-a79a-3c4c6f206837"
+					(reference "C5")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "AnalogLUTR5:SW_DPDT")
+		(at 109.22 162.56 0)
+		(unit 2)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(uuid "5e2677f9-3f0e-56b2-aafa-930094662100")
+		(property "Reference" "S1"
+			(at 109.22 149.86 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 2 2)
+				)
+			)
+		)
+		(property "Value" "DC / AC"
+			(at 109.22 175.26 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 2 2)
+				)
+			)
+		)
+		(property "Footprint" "LUT:DC_AC_Wire_2x3_P5.08_Compact"
+			(at 109.22 162.56 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 2 2)
+				)
+			)
+		)
+		(property "Datasheet" "https://www.ckswitches.com/media/1394/7000toggle.pdf"
+			(at 109.22 162.56 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 2 2)
+				)
+			)
+		)
+		(property "Description" ""
+			(at 109.22 162.56 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "4"
+			(uuid "61a485e2-b561-417c-b949-b7b418ca95c1")
+		)
+		(pin "6"
+			(uuid "8d75736d-b7e3-43c2-8c8c-c157e905eac1")
+		)
+		(pin "1"
+			(uuid "9b16c6bc-6542-4585-a032-69a60023903c")
+		)
+		(pin "2"
+			(uuid "381b714f-035d-4ea8-b0b9-7930ad1d099f")
+		)
+		(pin "3"
+			(uuid "e142a7e7-0aff-4182-9a25-3caddfd4a6bd")
+		)
+		(pin "5"
+			(uuid "9ce634fa-e631-4f3c-9617-82c1425f9402")
+		)
+		(instances
+			(project "analog-input-r53"
+				(path "/f1c772b0-891d-5755-a79a-3c4c6f206837"
+					(reference "S1")
+					(unit 2)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "AnalogLUTR5:AGND")
+		(at 162.56 373.38 0)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom no)
+		(on_board no)
+		(in_pos_files yes)
+		(dnp no)
+		(uuid "5f60c5a9-6265-5cd5-baa8-287601d489e6")
+		(property "Reference" "#PWR10"
+			(at 162.56 373.38 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 2 2)
+				)
+			)
+		)
+		(property "Value" "AGND"
+			(at 162.56 380.238 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 2 2)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 162.56 373.38 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 2 2)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 162.56 373.38 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 2 2)
+				)
+			)
+		)
+		(property "Description" ""
+			(at 162.56 373.38 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "ded216d0-62d0-45f6-8737-369897ebb323")
+		)
+		(instances
+			(project "analog-input-r53"
+				(path "/f1c772b0-891d-5755-a79a-3c4c6f206837"
+					(reference "#PWR10")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "AnalogLUTR5:AGND")
+		(at 383.54 373.38 0)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom no)
+		(on_board no)
+		(in_pos_files yes)
+		(dnp no)
+		(uuid "64fb4ba8-a8c0-5aec-a6b9-6176bc219ad8")
+		(property "Reference" "#PWR11"
+			(at 383.54 373.38 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 2 2)
+				)
+			)
+		)
+		(property "Value" "AGND"
+			(at 383.54 380.238 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 2 2)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 383.54 373.38 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 2 2)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 383.54 373.38 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 2 2)
+				)
+			)
+		)
+		(property "Description" ""
+			(at 383.54 373.38 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "4d44bb87-2aef-495f-8f32-77e07c534940")
+		)
+		(instances
+			(project "analog-input-r53"
+				(path "/f1c772b0-891d-5755-a79a-3c4c6f206837"
+					(reference "#PWR11")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "AnalogLUTR5:R_V")
+		(at 373.38 213.36 0)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(uuid "65bea01a-9b19-5e8b-9543-aec744e6d9c0")
+		(property "Reference" "R12"
+			(at 378.46 209.804 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 2 2)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "1k 1%"
+			(at 378.46 213.614 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 2 2)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" "LUT:R_025W_P10.16_LUT"
+			(at 373.38 213.36 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 2 2)
+				)
+			)
+		)
+		(property "Datasheet" "https://www.vishay.com/docs/28766/mbxsma.pdf"
+			(at 373.38 213.36 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 2 2)
+				)
+			)
+		)
+		(property "Description" ""
+			(at 373.38 213.36 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "2"
+			(uuid "be01ce57-522c-42a2-bd7d-2508d33b060c")
+		)
+		(pin "1"
+			(uuid "0812bcf8-09f4-43d5-853d-7bd98c10b034")
+		)
+		(instances
+			(project "analog-input-r53"
+				(path "/f1c772b0-891d-5755-a79a-3c4c6f206837"
+					(reference "R12")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "AnalogLUTR5:TLV9064QDRQ1_D")
+		(at 203.2 327.66 0)
+		(unit 2)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(uuid "6819af77-1717-5420-8f17-3ecb633ab01b")
+		(property "Reference" "U1"
+			(at 203.2 317.5 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 2 2)
+				)
+			)
+		)
+		(property "Value" "TLV9064QDRQ1"
+			(at 203.2 337.82 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 2 2)
+				)
+			)
+		)
+		(property "Footprint" "LUT:SOIC14_Adapter_18x18_Rows15.24"
+			(at 203.2 327.66 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 2 2)
+				)
+			)
+		)
+		(property "Datasheet" "https://www.ti.com/lit/ds/symlink/tlv9064-q1.pdf"
+			(at 203.2 327.66 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 2 2)
+				)
+			)
+		)
+		(property "Description" ""
+			(at 203.2 327.66 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "6"
+			(uuid "aa8cf55f-ddda-421b-a1fe-b7a600a71979")
+		)
+		(pin "5"
+			(uuid "ccb46bdd-65f0-4ec5-99f9-31f0ee18cd71")
+		)
+		(pin "8"
+			(uuid "fdfd7872-62aa-497f-ae74-756637eee0e5")
+		)
+		(pin "13"
+			(uuid "1de434a2-3f14-4b40-94cf-2813da518cfb")
+		)
+		(pin "1"
+			(uuid "a0aaa72c-4aa8-4dcc-9891-bca6b8267375")
+		)
+		(pin "2"
+			(uuid "ae19e579-e514-4546-9466-fca396dde5b6")
+		)
+		(pin "12"
+			(uuid "5e4fbca0-881b-46a8-ae1f-f97f158800e2")
+		)
+		(pin "10"
+			(uuid "cb8d16f4-abc1-46a4-b76e-8a64fc61965d")
+		)
+		(pin "3"
+			(uuid "ca85b027-0b1b-417f-a6e0-47dfce964a7f")
+		)
+		(pin "14"
+			(uuid "b19c496f-974b-4be0-a64b-13cefe4b6655")
+		)
+		(pin "4"
+			(uuid "8b48afde-91ab-4032-bc0e-45e4d4142c64")
+		)
+		(pin "7"
+			(uuid "e38c4be6-995f-4a8d-a653-bf849f521973")
+		)
+		(pin "9"
+			(uuid "8be7226c-2ad3-4d91-9365-c4f4659b10fc")
+		)
+		(pin "11"
+			(uuid "3fb06358-4d0c-4146-8765-3689efc36eea")
+		)
+		(instances
+			(project "analog-input-r53"
+				(path "/f1c772b0-891d-5755-a79a-3c4c6f206837"
+					(reference "U1")
+					(unit 2)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "AnalogLUTR5:C_H")
+		(at 81.28 101.6 0)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(uuid "6a9894c7-3040-5f48-9f3a-e47738d3972b")
+		(property "Reference" "C9"
+			(at 81.28 97.028 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 2 2)
+				)
+			)
+		)
+		(property "Value" "1u MKP 5% 100V"
+			(at 81.28 106.172 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 2 2)
+				)
+			)
+		)
+		(property "Footprint" "LUT:MKP_P5_7.2x11_LUT"
+			(at 81.28 101.6 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 2 2)
+				)
+			)
+		)
+		(property "Datasheet" "https://www.wima.de/wp-content/uploads/media/e_WIMA_MKP_2.pdf"
+			(at 81.28 101.6 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 2 2)
+				)
+			)
+		)
+		(property "Description" ""
+			(at 81.28 101.6 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "13420634-3f32-4eab-94ea-18c9c8fc8e22")
+		)
+		(pin "2"
+			(uuid "964472d0-34a1-4942-af71-1c8075255737")
+		)
+		(instances
+			(project "analog-input-r53"
+				(path "/f1c772b0-891d-5755-a79a-3c4c6f206837"
+					(reference "C9")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "AnalogLUTR5:R_H")
+		(at 337.82 325.12 0)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(uuid "7311816c-f922-538a-965b-9c27046260fc")
+		(property "Reference" "R8"
+			(at 337.82 320.548 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 2 2)
+				)
+			)
+		)
+		(property "Value" "330 1%"
+			(at 337.82 329.692 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 2 2)
+				)
+			)
+		)
+		(property "Footprint" "LUT:R_025W_P10.16_LUT"
+			(at 337.82 325.12 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 2 2)
+				)
+			)
+		)
+		(property "Datasheet" "https://www.vishay.com/docs/28766/mbxsma.pdf"
+			(at 337.82 325.12 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 2 2)
+				)
+			)
+		)
+		(property "Description" ""
+			(at 337.82 325.12 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "6635622f-30ee-46c7-93f1-7bba1d49fac1")
+		)
+		(pin "2"
+			(uuid "98a6ae39-5bad-4502-a9c7-b74996380bc5")
+		)
+		(instances
+			(project "analog-input-r53"
+				(path "/f1c772b0-891d-5755-a79a-3c4c6f206837"
+					(reference "R8")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "AnalogLUTR5:AGND")
+		(at 543.56 238.76 0)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom no)
+		(on_board no)
+		(in_pos_files yes)
+		(dnp no)
+		(uuid "76a7cd00-bfd8-5145-8fb2-8d1c8117390f")
+		(property "Reference" "#PWR07"
+			(at 543.56 238.76 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 2 2)
+				)
+			)
+		)
+		(property "Value" "AGND"
+			(at 543.56 245.618 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 2 2)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 543.56 238.76 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 2 2)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 543.56 238.76 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 2 2)
+				)
+			)
+		)
+		(property "Description" ""
+			(at 543.56 238.76 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "7423bf78-c607-44e8-bf48-52a9d2831042")
+		)
+		(instances
+			(project "analog-input-r53"
+				(path "/f1c772b0-891d-5755-a79a-3c4c6f206837"
+					(reference "#PWR07")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "AnalogLUTR5:R_H")
+		(at 284.48 325.12 0)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(uuid "76e7de07-691e-5143-82ba-44f11c59e5cb")
+		(property "Reference" "R7"
+			(at 284.48 320.548 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 2 2)
+				)
+			)
+		)
+		(property "Value" "330 1%"
+			(at 284.48 329.692 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 2 2)
+				)
+			)
+		)
+		(property "Footprint" "LUT:R_025W_P10.16_LUT"
+			(at 284.48 325.12 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 2 2)
+				)
+			)
+		)
+		(property "Datasheet" "https://www.vishay.com/docs/28766/mbxsma.pdf"
+			(at 284.48 325.12 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 2 2)
+				)
+			)
+		)
+		(property "Description" ""
+			(at 284.48 325.12 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "9bb9b135-e763-4a87-b02a-b74b1c76817e")
+		)
+		(pin "2"
+			(uuid "17bd2fbe-66f1-421f-8818-211258460730")
+		)
+		(instances
+			(project "analog-input-r53"
+				(path "/f1c772b0-891d-5755-a79a-3c4c6f206837"
+					(reference "R7")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "AnalogLUTR5:TLV9064QDRQ1_D")
+		(at 254 213.36 0)
+		(unit 5)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(uuid "7771e3f2-9c6f-5536-8ad6-97d847ee92c9")
+		(property "Reference" "U1"
+			(at 260.35 204.47 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 2 2)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "TLV9064QDRQ1"
+			(at 260.35 222.25 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 2 2)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" "LUT:SOIC14_Adapter_18x18_Rows15.24"
+			(at 254 213.36 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 2 2)
+				)
+			)
+		)
+		(property "Datasheet" "https://www.ti.com/lit/ds/symlink/tlv9064-q1.pdf"
+			(at 254 213.36 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 2 2)
+				)
+			)
+		)
+		(property "Description" ""
+			(at 254 213.36 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "2"
+			(uuid "6e7d044f-3306-43c4-8174-448cf4f1890d")
+		)
+		(pin "1"
+			(uuid "2c988646-8338-4591-bbd1-fb1be78c3119")
+		)
+		(pin "3"
+			(uuid "6b05f512-4626-493c-8486-8fac463aff60")
+		)
+		(pin "5"
+			(uuid "1fc55fb6-c7ca-4720-86f5-42522da2edbd")
+		)
+		(pin "6"
+			(uuid "5e43649c-2e9c-4aab-95a7-cce270dfeb69")
+		)
+		(pin "8"
+			(uuid "864dc81d-3947-427c-a739-c61cbbccf4e2")
+		)
+		(pin "9"
+			(uuid "c28ffb26-bab8-40fc-b02d-e57cf7cf8ec9")
+		)
+		(pin "10"
+			(uuid "5810d9a7-819b-47b3-9036-da23c318a8e8")
+		)
+		(pin "7"
+			(uuid "c1f6dae8-909a-4da4-81c8-67c23ea9aec9")
+		)
+		(pin "12"
+			(uuid "44fae8e0-c1d8-47e8-912a-1b158a5906c5")
+		)
+		(pin "11"
+			(uuid "473a688e-1c8b-4113-81f8-5cdf787f0479")
+		)
+		(pin "14"
+			(uuid "251cbd50-4865-4c1a-b1b8-eea8e14e27ca")
+		)
+		(pin "4"
+			(uuid "6b25c13b-44eb-48eb-9c37-2d7c90dccaf7")
+		)
+		(pin "13"
+			(uuid "11e93b2a-42e0-4762-8953-422d9ef392dc")
+		)
+		(instances
+			(project "analog-input-r53"
+				(path "/f1c772b0-891d-5755-a79a-3c4c6f206837"
+					(reference "U1")
+					(unit 5)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "AnalogLUTR5:C_V")
+		(at 162.56 363.22 0)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(uuid "7974fd8d-6265-5b6b-b750-ede84220881e")
+		(property "Reference" "C2"
+			(at 167.64 359.664 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 2 2)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "10n PET 5% 100V"
+			(at 167.64 363.474 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 2 2)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" "LUT:Film_K73_P4_LUT"
+			(at 162.56 363.22 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 2 2)
+				)
+			)
+		)
+		(property "Datasheet" "https://skzcond.ru/k73-17.html"
+			(at 162.56 363.22 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 2 2)
+				)
+			)
+		)
+		(property "Description" ""
+			(at 162.56 363.22 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "60355e7c-ff4f-410e-bf3e-f0418fc76093")
+		)
+		(pin "2"
+			(uuid "ff641c37-f0f8-4858-b3b8-ab6ece3f4a4a")
+		)
+		(instances
+			(project "analog-input-r53"
+				(path "/f1c772b0-891d-5755-a79a-3c4c6f206837"
+					(reference "C2")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "AnalogLUTR5:C_H")
+		(at 467.36 165.1 0)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(uuid "7aa7aa61-0a21-524c-9281-8656e91b778b")
+		(property "Reference" "C10"
+			(at 467.36 160.528 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 2 2)
+				)
+			)
+		)
+		(property "Value" "100p (96p measured)"
+			(at 467.36 169.672 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 2 2)
+				)
+			)
+		)
+		(property "Footprint" "LUT:Radial_P2.54_LUT"
+			(at 467.36 165.1 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 2 2)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 467.36 165.1 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 2 2)
+				)
+			)
+		)
+		(property "Description" ""
+			(at 467.36 165.1 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "bdd85e4b-032b-4585-a147-f4eaf4eb3a7e")
+		)
+		(pin "2"
+			(uuid "d6c0e5d0-13d6-4993-8134-60a3cda45dc8")
+		)
+		(instances
+			(project "analog-input-r53"
+				(path "/f1c772b0-891d-5755-a79a-3c4c6f206837"
+					(reference "C10")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "AnalogLUTR5:PWR_FLAG")
+		(at 241.3 195.58 0)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom no)
+		(on_board no)
+		(in_pos_files yes)
+		(dnp no)
+		(uuid "7da92828-025e-5e11-a9f9-47a17a8ec3b1")
+		(property "Reference" "#FLG01"
+			(at 241.3 191.008 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 2 2)
+				)
+			)
+		)
+		(property "Value" "PWR_FLAG"
+			(at 241.3 200.152 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 2 2)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 241.3 195.58 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 2 2)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 241.3 195.58 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 2 2)
+				)
+			)
+		)
+		(property "Description" ""
+			(at 241.3 195.58 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "09d373e9-0a19-4b6f-86ac-23e57a832c0b")
+		)
+		(instances
+			(project "analog-input-r53"
+				(path "/f1c772b0-891d-5755-a79a-3c4c6f206837"
+					(reference "#FLG01")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "AnalogLUTR5:Jumper")
+		(at 525.78 327.66 0)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(uuid "83f94653-6cdf-578f-b44d-a1310a1c43b7")
+		(property "Reference" "JP1"
+			(at 525.78 323.088 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 2 2)
+				)
+			)
+		)
+		(property "Value" "ADC link"
+			(at 525.78 332.232 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 2 2)
+				)
+			)
+		)
+		(property "Footprint" "LUT:Shunt_1x2_P2.54_LUT"
+			(at 525.78 327.66 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 2 2)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 525.78 327.66 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 2 2)
+				)
+			)
+		)
+		(property "Description" ""
+			(at 525.78 327.66 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "fdc30fb0-b086-4ae5-802c-8292d368cfa2")
+		)
+		(pin "2"
+			(uuid "66ba432c-7182-4c8a-978e-2f7f43e938b5")
+		)
+		(instances
+			(project "analog-input-r53"
+				(path "/f1c772b0-891d-5755-a79a-3c4c6f206837"
+					(reference "JP1")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "AnalogLUTR5:TLV9064QDRQ1_D")
+		(at 368.3 104.14 0)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(uuid "8fdcab43-679e-5b2a-9dd4-83da25ef2256")
+		(property "Reference" "U1"
+			(at 368.3 93.98 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 2 2)
+				)
+			)
+		)
+		(property "Value" "TLV9064QDRQ1"
+			(at 368.3 114.3 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 2 2)
+				)
+			)
+		)
+		(property "Footprint" "LUT:SOIC14_Adapter_18x18_Rows15.24"
+			(at 368.3 104.14 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 2 2)
+				)
+			)
+		)
+		(property "Datasheet" "https://www.ti.com/lit/ds/symlink/tlv9064-q1.pdf"
+			(at 368.3 104.14 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 2 2)
+				)
+			)
+		)
+		(property "Description" ""
+			(at 368.3 104.14 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "6"
+			(uuid "6ef516e0-cf67-4f79-8608-04e3f10c29df")
+		)
+		(pin "5"
+			(uuid "a62ae113-989f-499a-8f4e-1eaa5eb4e9f4")
+		)
+		(pin "1"
+			(uuid "76f66dcb-d843-4a68-83bc-993c85966e18")
+		)
+		(pin "2"
+			(uuid "28178bac-6b36-45a0-a157-a5328e7da203")
+		)
+		(pin "8"
+			(uuid "1116d5c8-c6bd-4410-9f57-ad0839dc648c")
+		)
+		(pin "12"
+			(uuid "ce06479b-8f5d-4378-97b6-8c5778741922")
+		)
+		(pin "10"
+			(uuid "158cdd60-5982-496d-a4ba-f2ffc72cc81d")
+		)
+		(pin "13"
+			(uuid "dc75e37e-786e-4ad7-8fd7-6b12a358ba32")
+		)
+		(pin "3"
+			(uuid "0c5d1334-df12-4710-a6ca-5c77877f51d7")
+		)
+		(pin "14"
+			(uuid "565ac7c4-86b8-43b1-b738-86958077e5e6")
+		)
+		(pin "4"
+			(uuid "f3f2e5b6-0509-4e4c-9ba0-204dcfa24dec")
+		)
+		(pin "11"
+			(uuid "5865227e-2561-4e34-9522-59d8d3b86484")
+		)
+		(pin "7"
+			(uuid "b9ba24f9-2073-484e-b4a4-e0044a1c1aa6")
+		)
+		(pin "9"
+			(uuid "f77ea47d-85bf-4dee-9ec4-028eff7512d0")
+		)
+		(instances
+			(project "analog-input-r53"
+				(path "/f1c772b0-891d-5755-a79a-3c4c6f206837"
+					(reference "U1")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "AnalogLUTR5:AGND")
+		(at 342.9 157.48 0)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom no)
+		(on_board no)
+		(in_pos_files yes)
+		(dnp no)
+		(uuid "9099f06e-fa51-5515-b1b0-c7880a745fb2")
+		(property "Reference" "#PWR05"
+			(at 342.9 157.48 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 2 2)
+				)
+			)
+		)
+		(property "Value" "AGND"
+			(at 342.9 164.338 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 2 2)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 342.9 157.48 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 2 2)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 342.9 157.48 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 2 2)
+				)
+			)
+		)
+		(property "Description" ""
+			(at 342.9 157.48 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "bf4c1a35-63b1-4a5e-ae8b-b1cf0b0d19fd")
+		)
+		(instances
+			(project "analog-input-r53"
+				(path "/f1c772b0-891d-5755-a79a-3c4c6f206837"
+					(reference "#PWR05")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "AnalogLUTR5:C_V")
+		(at 297.18 213.36 0)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(uuid "90d37376-3867-534d-8caf-fb420132802a")
+		(property "Reference" "C6"
+			(at 302.26 209.804 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 2 2)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "100n X7R"
+			(at 302.26 213.614 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 2 2)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" "LUT:Radial_P2.54_LUT"
+			(at 297.18 213.36 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 2 2)
+				)
+			)
+		)
+		(property "Datasheet" "https://search.kemet.com/component-documentation/download/specsheet/C315C104K5R5TA"
+			(at 297.18 213.36 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 2 2)
+				)
+			)
+		)
+		(property "Description" ""
+			(at 297.18 213.36 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "f2450794-1717-43e2-bd08-efb14a9ac551")
+		)
+		(pin "2"
+			(uuid "45a949ff-21b8-43d5-8ae7-66fde45ff2ee")
+		)
+		(instances
+			(project "analog-input-r53"
+				(path "/f1c772b0-891d-5755-a79a-3c4c6f206837"
+					(reference "C6")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "AnalogLUTR5:Conn2R")
+		(at 25.4 102.87 0)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(uuid "9477eaa7-ed5d-571f-9f08-38e511a72ca8")
+		(property "Reference" "J1"
+			(at 25.4 92.71 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 2 2)
+				)
+			)
+		)
+		(property "Value" "CH1 / BNC"
+			(at 25.4 113.03 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 2 2)
+				)
+			)
+		)
+		(property "Footprint" "LUT:Wire_P5.08_LUT"
+			(at 25.4 102.87 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 2 2)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 25.4 102.87 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 2 2)
+				)
+			)
+		)
+		(property "Description" ""
+			(at 25.4 102.87 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "5fea3906-5d2e-476f-921c-98d5ddc02a72")
+		)
+		(pin "2"
+			(uuid "4ba9820e-68b7-4e70-bb0b-f8febc2b0f5c")
+		)
+		(instances
+			(project "analog-input-r53"
+				(path "/f1c772b0-891d-5755-a79a-3c4c6f206837"
+					(reference "J1")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "AnalogLUTR5:AGND")
+		(at 502.92 355.6 0)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom no)
+		(on_board no)
+		(in_pos_files yes)
+		(dnp no)
+		(uuid "97c5a047-0b3b-5d49-8783-e90f6aa84b90")
+		(property "Reference" "#PWR12"
+			(at 502.92 355.6 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 2 2)
+				)
+			)
+		)
+		(property "Value" "AGND"
+			(at 502.92 362.458 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 2 2)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 502.92 355.6 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 2 2)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 502.92 355.6 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 2 2)
+				)
+			)
+		)
+		(property "Description" ""
+			(at 502.92 355.6 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "5c08d50e-8868-497e-bad1-36b8741fb179")
+		)
+		(instances
+			(project "analog-input-r53"
+				(path "/f1c772b0-891d-5755-a79a-3c4c6f206837"
+					(reference "#PWR12")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "AnalogLUTR5:R_H")
+		(at 480.06 327.66 0)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(uuid "97defeb4-27c6-57f6-bcdc-c68bab33447a")
+		(property "Reference" "R9"
+			(at 480.06 323.088 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 2 2)
+				)
+			)
+		)
+		(property "Value" "330 1%"
+			(at 480.06 332.232 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 2 2)
+				)
+			)
+		)
+		(property "Footprint" "LUT:R_025W_P10.16_LUT"
+			(at 480.06 327.66 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 2 2)
+				)
+			)
+		)
+		(property "Datasheet" "https://www.vishay.com/docs/28766/mbxsma.pdf"
+			(at 480.06 327.66 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 2 2)
+				)
+			)
+		)
+		(property "Description" ""
+			(at 480.06 327.66 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "3a89d9b5-a7b4-4db3-994b-934ff0e4459b")
+		)
+		(pin "2"
+			(uuid "c80ce423-d8bf-40f1-9a9e-6889b7119532")
+		)
+		(instances
+			(project "analog-input-r53"
+				(path "/f1c772b0-891d-5755-a79a-3c4c6f206837"
+					(reference "R9")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "AnalogLUTR5:R_H")
+		(at 325.12 101.6 0)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(uuid "999701be-36e3-523a-aaa4-5640a8d841a9")
+		(property "Reference" "R18"
+			(at 325.12 97.028 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 2 2)
+				)
+			)
+		)
+		(property "Value" "1k 1%"
+			(at 325.12 106.172 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 2 2)
+				)
+			)
+		)
+		(property "Footprint" "LUT:R_025W_P10.16_LUT"
+			(at 325.12 101.6 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 2 2)
+				)
+			)
+		)
+		(property "Datasheet" "https://www.vishay.com/docs/28766/mbxsma.pdf"
+			(at 325.12 101.6 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 2 2)
+				)
+			)
+		)
+		(property "Description" ""
+			(at 325.12 101.6 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "35103b9d-7ffb-4a72-925a-a8358957e809")
+		)
+		(pin "2"
+			(uuid "fbdc7695-d96b-40d2-8f15-f700de6d0613")
+		)
+		(instances
+			(project "analog-input-r53"
+				(path "/f1c772b0-891d-5755-a79a-3c4c6f206837"
+					(reference "R18")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "AnalogLUTR5:R_H")
+		(at 467.36 134.62 0)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(uuid "9c124c30-3f7c-565e-aa31-1955609d7a6f")
+		(property "Reference" "R14"
+			(at 467.36 130.048 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 2 2)
+				)
+			)
+		)
+		(property "Value" "1.6k 1%"
+			(at 467.36 139.192 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 2 2)
+				)
+			)
+		)
+		(property "Footprint" "LUT:R_025W_P10.16_LUT"
+			(at 467.36 134.62 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 2 2)
+				)
+			)
+		)
+		(property "Datasheet" "https://www.vishay.com/docs/28766/mbxsma.pdf"
+			(at 467.36 134.62 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 2 2)
+				)
+			)
+		)
+		(property "Description" ""
+			(at 467.36 134.62 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "0549666d-d5fa-41c8-8ad7-1caff1438a0d")
+		)
+		(pin "2"
+			(uuid "4b688a3b-3d3e-4346-b30f-10da9d40e0a4")
+		)
+		(instances
+			(project "analog-input-r53"
+				(path "/f1c772b0-891d-5755-a79a-3c4c6f206837"
+					(reference "R14")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "AnalogLUTR5:C_H")
+		(at 154.94 292.1 0)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(uuid "a380c3c8-f7d3-5233-8686-a2e1d48fa8f2")
+		(property "Reference" "C1"
+			(at 154.94 287.528 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 2 2)
+				)
+			)
+		)
+		(property "Value" "10n PET 5% 100V"
+			(at 154.94 296.672 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 2 2)
+				)
+			)
+		)
+		(property "Footprint" "LUT:Film_K73_P4_LUT"
+			(at 154.94 292.1 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 2 2)
+				)
+			)
+		)
+		(property "Datasheet" "https://skzcond.ru/k73-17.html"
+			(at 154.94 292.1 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 2 2)
+				)
+			)
+		)
+		(property "Description" ""
+			(at 154.94 292.1 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "9bd0fbc7-9bf0-4577-9998-08f5d2614823")
+		)
+		(pin "2"
+			(uuid "098c8b74-6b80-41b0-81d5-c1674fa43244")
+		)
+		(instances
+			(project "analog-input-r53"
+				(path "/f1c772b0-891d-5755-a79a-3c4c6f206837"
+					(reference "C1")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "AnalogLUTR5:AGND")
+		(at 45.72 180.34 0)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom no)
+		(on_board no)
+		(in_pos_files yes)
+		(dnp no)
+		(uuid "a5f40f61-d584-5c39-8d9d-dec4af244c5a")
+		(property "Reference" "#PWR02"
+			(at 45.72 180.34 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 2 2)
+				)
+			)
+		)
+		(property "Value" "AGND"
+			(at 45.72 187.198 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 2 2)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 45.72 180.34 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 2 2)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 45.72 180.34 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 2 2)
+				)
+			)
+		)
+		(property "Description" ""
+			(at 45.72 180.34 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "98ca3bcc-fd33-4ce6-97ca-49c6ffd1f3a4")
+		)
+		(instances
+			(project "analog-input-r53"
+				(path "/f1c772b0-891d-5755-a79a-3c4c6f206837"
+					(reference "#PWR02")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "AnalogLUTR5:V_A")
+		(at 543.56 157.48 0)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom no)
+		(on_board no)
+		(in_pos_files yes)
+		(dnp no)
+		(uuid "aaeff171-f612-5202-a1eb-59b0a93cb1c1")
+		(property "Reference" "#PWR06"
+			(at 543.56 157.48 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 2 2)
+				)
+			)
+		)
+		(property "Value" "V_A"
+			(at 543.56 149.352 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 2 2)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 543.56 157.48 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 2 2)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 543.56 157.48 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 2 2)
+				)
+			)
+		)
+		(property "Description" ""
+			(at 543.56 157.48 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "0f402220-3210-4175-8dc4-4bc464c293e5")
+		)
+		(instances
+			(project "analog-input-r53"
+				(path "/f1c772b0-891d-5755-a79a-3c4c6f206837"
+					(reference "#PWR06")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "AnalogLUTR5:PWR_FLAG")
+		(at 363.22 233.68 0)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom no)
+		(on_board no)
+		(in_pos_files yes)
+		(dnp no)
+		(uuid "bbd10d47-104a-5d53-aa1e-2fa895411d0f")
+		(property "Reference" "#FLG02"
+			(at 363.22 229.108 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 2 2)
+				)
+			)
+		)
+		(property "Value" "PWR_FLAG"
+			(at 363.22 238.252 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 2 2)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 363.22 233.68 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 2 2)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 363.22 233.68 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 2 2)
+				)
+			)
+		)
+		(property "Description" ""
+			(at 363.22 233.68 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "4660e3e8-921c-461b-952a-e9787d7419c3")
+		)
+		(instances
+			(project "analog-input-r53"
+				(path "/f1c772b0-891d-5755-a79a-3c4c6f206837"
+					(reference "#FLG02")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "AnalogLUTR5:C_H")
+		(at 365.76 292.1 0)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(uuid "bc6887dc-475b-5912-a589-49f333c328c6")
+		(property "Reference" "C3"
+			(at 365.76 287.528 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 2 2)
+				)
+			)
+		)
+		(property "Value" "68n film 5%"
+			(at 365.76 296.672 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 2 2)
+				)
+			)
+		)
+		(property "Footprint" "LUT:Film_P6.5_LUT"
+			(at 365.76 292.1 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 2 2)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 365.76 292.1 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 2 2)
+				)
+			)
+		)
+		(property "Description" ""
+			(at 365.76 292.1 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "2"
+			(uuid "d742c014-51d4-45da-b570-874509aba95f")
+		)
+		(pin "1"
+			(uuid "7843180a-4f23-4668-90d8-7f33b6bf9b93")
+		)
+		(instances
+			(project "analog-input-r53"
+				(path "/f1c772b0-891d-5755-a79a-3c4c6f206837"
+					(reference "C3")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "AnalogLUTR5:V_A")
+		(at 279.4 63.5 0)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom no)
+		(on_board no)
+		(in_pos_files yes)
+		(dnp no)
+		(uuid "c03051f2-0502-57b5-abec-4573e5f7cb1b")
+		(property "Reference" "#PWR03"
+			(at 279.4 63.5 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 2 2)
+				)
+			)
+		)
+		(property "Value" "V_A"
+			(at 279.4 55.372 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 2 2)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 279.4 63.5 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 2 2)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 279.4 63.5 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 2 2)
+				)
+			)
+		)
+		(property "Description" ""
+			(at 279.4 63.5 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "aa0f9578-f82e-4e5c-9346-6680142f30e8")
+		)
+		(instances
+			(project "analog-input-r53"
+				(path "/f1c772b0-891d-5755-a79a-3c4c6f206837"
+					(reference "#PWR03")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "AnalogLUTR5:C_V")
+		(at 383.54 363.22 0)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(uuid "c733920c-41aa-53a3-ae72-9b53af2714d1")
+		(property "Reference" "C4"
+			(at 388.62 359.664 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 2 2)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "10n PET 5% 100V"
+			(at 388.62 363.474 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 2 2)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" "LUT:Film_K73_P4_LUT"
+			(at 383.54 363.22 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 2 2)
+				)
+			)
+		)
+		(property "Datasheet" "https://skzcond.ru/k73-17.html"
+			(at 383.54 363.22 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 2 2)
+				)
+			)
+		)
+		(property "Description" ""
+			(at 383.54 363.22 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "d3b77a99-9a3d-45b7-a156-256e4a519bdf")
+		)
+		(pin "2"
+			(uuid "3cc990ea-abd4-4212-a7a2-be7b698e581b")
+		)
+		(instances
+			(project "analog-input-r53"
+				(path "/f1c772b0-891d-5755-a79a-3c4c6f206837"
+					(reference "C4")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "AnalogLUTR5:C_H")
+		(at 154.94 269.24 0)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(uuid "d091c969-24f2-5d1e-9ae0-719f0467ab0a")
+		(property "Reference" "C8"
+			(at 154.94 264.668 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 2 2)
+				)
+			)
+		)
+		(property "Value" "1.8n C0G 5% 50V"
+			(at 154.94 273.812 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 2 2)
+				)
+			)
+		)
+		(property "Footprint" "LUT:Radial_P2.50_LUT"
+			(at 154.94 269.24 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 2 2)
+				)
+			)
+		)
+		(property "Datasheet" "https://www.vishay.com/docs/45171/kseries.pdf"
+			(at 154.94 269.24 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 2 2)
+				)
+			)
+		)
+		(property "Description" ""
+			(at 154.94 269.24 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "d47a8f28-163b-478f-93ab-adcd83c1705b")
+		)
+		(pin "2"
+			(uuid "3de752b5-2746-4174-a1fd-f7c72f714ad3")
+		)
+		(instances
+			(project "analog-input-r53"
+				(path "/f1c772b0-891d-5755-a79a-3c4c6f206837"
+					(reference "C8")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "AnalogLUTR5:TLV9064QDRQ1_D")
+		(at 439.42 104.14 0)
+		(unit 4)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(uuid "d29901d2-91b6-5298-9798-d933cb12923d")
+		(property "Reference" "U1"
+			(at 439.42 93.98 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 2 2)
+				)
+			)
+		)
+		(property "Value" "TLV9064QDRQ1"
+			(at 439.42 114.3 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 2 2)
+				)
+			)
+		)
+		(property "Footprint" "LUT:SOIC14_Adapter_18x18_Rows15.24"
+			(at 439.42 104.14 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 2 2)
+				)
+			)
+		)
+		(property "Datasheet" "https://www.ti.com/lit/ds/symlink/tlv9064-q1.pdf"
+			(at 439.42 104.14 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 2 2)
+				)
+			)
+		)
+		(property "Description" ""
+			(at 439.42 104.14 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "09d6cc75-ede5-4677-91c4-d89c54092056")
+		)
+		(pin "6"
+			(uuid "3e04a57e-f8e2-463d-ab85-25c7fa3eb288")
+		)
+		(pin "10"
+			(uuid "57510406-f3f8-4d90-a1e4-903765987c28")
+		)
+		(pin "12"
+			(uuid "ed48a674-7cad-4b67-9a2d-ff35c6160540")
+		)
+		(pin "2"
+			(uuid "340715c5-6ad8-46d3-a284-d2b23500ad96")
+		)
+		(pin "4"
+			(uuid "a4e86899-8312-4a20-8910-a71917737639")
+		)
+		(pin "11"
+			(uuid "e5a3ec51-e334-4f54-8757-7f470a086317")
+		)
+		(pin "8"
+			(uuid "f5c8785a-1656-49ca-ab7c-1cec65afcc6e")
+		)
+		(pin "5"
+			(uuid "a7bf4fa2-ad9b-40b1-9768-a1d0717a2169")
+		)
+		(pin "9"
+			(uuid "67e9ac23-669b-49fe-8ab1-2e6fd76ff3c2")
+		)
+		(pin "3"
+			(uuid "b2a4ddb6-7aa2-4595-ab4c-b25a2f79f1aa")
+		)
+		(pin "7"
+			(uuid "c1583a4c-db1b-450f-9ef2-30a94fe71a29")
+		)
+		(pin "13"
+			(uuid "cae88852-5593-41d9-8bb4-c239b8167b55")
+		)
+		(pin "14"
+			(uuid "37998648-3bc0-4a62-81ba-9178482afb12")
+		)
+		(instances
+			(project "analog-input-r53"
+				(path "/f1c772b0-891d-5755-a79a-3c4c6f206837"
+					(reference "U1")
+					(unit 4)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "AnalogLUTR5:R_V")
+		(at 279.4 137.16 0)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(uuid "d2da5b7c-758d-5880-bc80-3ef597155cd9")
+		(property "Reference" "R4"
+			(at 284.48 133.604 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 2 2)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "82k 1%"
+			(at 284.48 137.414 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 2 2)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" "LUT:R_025W_P10.16_LUT"
+			(at 279.4 137.16 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 2 2)
+				)
+			)
+		)
+		(property "Datasheet" "https://www.vishay.com/docs/28766/mbxsma.pdf"
+			(at 279.4 137.16 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 2 2)
+				)
+			)
+		)
+		(property "Description" ""
+			(at 279.4 137.16 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "42afd911-4ae2-4125-a8f5-3f45797f0ff1")
+		)
+		(pin "2"
+			(uuid "ee1ba8ba-e0f4-4aa7-a2e0-3e57a7e173e9")
+		)
+		(instances
+			(project "analog-input-r53"
+				(path "/f1c772b0-891d-5755-a79a-3c4c6f206837"
+					(reference "R4")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "AnalogLUTR5:R_V")
+		(at 45.72 139.7 0)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(uuid "dc618afc-42d6-5c36-ae95-002bab2f68d7")
+		(property "Reference" "R10"
+			(at 22.86 136.144 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 2 2)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "10M 1%"
+			(at 22.86 139.954 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 2 2)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" "LUT:R_025W_P10.16_LUT"
+			(at 45.72 139.7 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 2 2)
+				)
+			)
+		)
+		(property "Datasheet" "https://www.vishay.com/docs/28766/mbxsma.pdf"
+			(at 45.72 139.7 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 2 2)
+				)
+			)
+		)
+		(property "Description" ""
+			(at 45.72 139.7 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "feccf1d1-082e-4491-a54a-c7e6b508ba93")
+		)
+		(pin "2"
+			(uuid "4ba879f7-7440-4991-8632-f9714674ba16")
+		)
+		(instances
+			(project "analog-input-r53"
+				(path "/f1c772b0-891d-5755-a79a-3c4c6f206837"
+					(reference "R10")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "AnalogLUTR5:R_V")
+		(at 279.4 73.66 0)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(uuid "e036b298-a9c3-52ec-a3b0-291132c0ec4f")
+		(property "Reference" "R3"
+			(at 284.48 70.104 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 2 2)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "75k 1%"
+			(at 284.48 73.914 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 2 2)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" "LUT:R_025W_P10.16_LUT"
+			(at 279.4 73.66 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 2 2)
+				)
+			)
+		)
+		(property "Datasheet" "https://www.vishay.com/docs/28766/mbxsma.pdf"
+			(at 279.4 73.66 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 2 2)
+				)
+			)
+		)
+		(property "Description" ""
+			(at 279.4 73.66 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "b0c27b6f-0fc7-4f2d-a8c0-bf6ec9f86b72")
+		)
+		(pin "2"
+			(uuid "7fab9d4f-03eb-49a5-89bb-8a8c188798af")
+		)
+		(instances
+			(project "analog-input-r53"
+				(path "/f1c772b0-891d-5755-a79a-3c4c6f206837"
+					(reference "R3")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "AnalogLUTR5:AGND")
+		(at 556.26 355.6 0)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom no)
+		(on_board no)
+		(in_pos_files yes)
+		(dnp no)
+		(uuid "e541b53a-76d8-52b3-be7b-a0bb16e29825")
+		(property "Reference" "#PWR13"
+			(at 556.26 355.6 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 2 2)
+				)
+			)
+		)
+		(property "Value" "AGND"
+			(at 556.26 362.458 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 2 2)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 556.26 355.6 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 2 2)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 556.26 355.6 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 2 2)
+				)
+			)
+		)
+		(property "Description" ""
+			(at 556.26 355.6 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "413cc8ed-667c-46f2-b3c4-d2f42d7ea166")
+		)
+		(instances
+			(project "analog-input-r53"
+				(path "/f1c772b0-891d-5755-a79a-3c4c6f206837"
+					(reference "#PWR13")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "AnalogLUTR5:R_H")
+		(at 248.92 101.6 0)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(uuid "efbe22f9-a0b7-5e44-bfcc-353c80bbb3d1")
+		(property "Reference" "R2"
+			(at 248.92 97.028 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 2 2)
+				)
+			)
+		)
+		(property "Value" "510k 1%"
+			(at 248.92 106.172 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 2 2)
+				)
+			)
+		)
+		(property "Footprint" "LUT:R_025W_P10.16_LUT"
+			(at 248.92 101.6 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 2 2)
+				)
+			)
+		)
+		(property "Datasheet" "https://www.vishay.com/docs/28766/mbxsma.pdf"
+			(at 248.92 101.6 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 2 2)
+				)
+			)
+		)
+		(property "Description" ""
+			(at 248.92 101.6 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "6fa917ee-e7bb-4605-89ea-1ae0a7314ea7")
+		)
+		(pin "2"
+			(uuid "99066f58-4076-439f-9019-b46547696958")
+		)
+		(instances
+			(project "analog-input-r53"
+				(path "/f1c772b0-891d-5755-a79a-3c4c6f206837"
+					(reference "R2")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "AnalogLUTR5:AGND")
+		(at 279.4 157.48 0)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom no)
+		(on_board no)
+		(in_pos_files yes)
+		(dnp no)
+		(uuid "f0251d52-cc24-5082-ab5b-0f450eedc713")
+		(property "Reference" "#PWR04"
+			(at 279.4 157.48 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 2 2)
+				)
+			)
+		)
+		(property "Value" "AGND"
+			(at 279.4 164.338 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 2 2)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 279.4 157.48 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 2 2)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 279.4 157.48 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 2 2)
+				)
+			)
+		)
+		(property "Description" ""
+			(at 279.4 157.48 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "e104ced2-a9fd-4009-836d-8a1989c233cb")
+		)
+		(instances
+			(project "analog-input-r53"
+				(path "/f1c772b0-891d-5755-a79a-3c4c6f206837"
+					(reference "#PWR04")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "AnalogLUTR5:S2_Shunt")
+		(at 459.74 200.66 0)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(uuid "f31786b5-2b9d-5fe3-a4a6-98fbb37f7c04")
+		(property "Reference" "S2"
+			(at 459.74 187.96 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 2 2)
+				)
+			)
+		)
+		(property "Value" "3-pin + shunt"
+			(at 459.74 213.36 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 2 2)
+				)
+			)
+		)
+		(property "Footprint" "LUT:Shunt_1x3_P2.54_LUT"
+			(at 459.74 200.66 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 2 2)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 459.74 200.66 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 2 2)
+				)
+			)
+		)
+		(property "Description" ""
+			(at 459.74 200.66 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "2"
+			(uuid "bbcbf188-d8ef-4b09-98ed-73e8233dcc12")
+		)
+		(pin "3"
+			(uuid "cd4dc134-9a17-4649-8e79-2d04e01cfeae")
+		)
+		(pin "1"
+			(uuid "58d53719-b2d7-4976-8070-2d8e86b10c78")
+		)
+		(instances
+			(project "analog-input-r53"
+				(path "/f1c772b0-891d-5755-a79a-3c4c6f206837"
+					(reference "S2")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(sheet_instances
+		(path "/"
+			(page "1")
+		)
+	)
+	(embedded_fonts no)
+)

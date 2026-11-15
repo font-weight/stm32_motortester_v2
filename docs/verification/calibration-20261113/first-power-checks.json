@@ -1,0 +1,55 @@
+{
+  "scope": "document/calculation only; no hardware action",
+  "source_netlist_sha256": "3444127d120dbbabd49ab06dda45a9144f4ecc8d9c67c2ac1dd0623f088d461f",
+  "checked_net_groups": [
+    [
+      "J3.1",
+      "U1.4"
+    ],
+    [
+      "J3.2",
+      "U1.11",
+      "J1.2",
+      "J2.2"
+    ],
+    [
+      "U1.1",
+      "U1.2",
+      "U1.12"
+    ],
+    [
+      "R5.1",
+      "S2.1",
+      "U1.14"
+    ],
+    [
+      "R7.1",
+      "U1.7"
+    ],
+    [
+      "R9.1",
+      "U1.8"
+    ],
+    [
+      "JP1.1",
+      "C5.1",
+      "R9.2"
+    ],
+    [
+      "JP1.2",
+      "J2.1"
+    ]
+  ],
+  "jp1_open_isolation_checked": true,
+  "dc_gain": 0.03698358289734801,
+  "dc_zero_ratio": 0.5029767274039328,
+  "dc_at_1p5v_va3p3": 1.7152985747790002,
+  "quiescent_current_estimate_A": 0.007553910828025477,
+  "pdf_sha256": "7bbb8be4c5f82df96a2662397bd731901edb6acbb68b96b91d14b528a90e5cad",
+  "physical_testing": "NOT_PERFORMED",
+  "references": [
+    "https://www.ti.com/lit/ds/symlink/tlv9064-q1.pdf",
+    "docs/verification/r53-user-20261104/REPORT_RU.md",
+    "docs/design/analog-r5-1/calculations/beginner_checks.json"
+  ]
+}

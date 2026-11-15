@@ -1,0 +1,472 @@
+{
+  "return_paths": {
+    "source": "C6.2",
+    "target": "U1.11",
+    "grid_mm": 0.5,
+    "actual_track_endpoint_auxiliary_nodes": 8,
+    "copper_corridor_radius_mm": 0.49999,
+    "straight_distance_mm": 13.576542269664987,
+    "with_native_wires": {
+      "found": true,
+      "length_mm": 15.112407066865288,
+      "polyline_mm": [
+        [
+          91.27,
+          64.0
+        ],
+        [
+          94.75,
+          60.52
+        ],
+        [
+          95.0,
+          59.5
+        ],
+        [
+          95.0,
+          53.5
+        ],
+        [
+          96.0,
+          52.5
+        ],
+        [
+          96.5,
+          52.5
+        ],
+        [
+          97.62,
+          52.0
+        ]
+      ],
+      "segment_types": [
+        "copper",
+        "copper",
+        "copper",
+        "copper",
+        "copper",
+        "copper"
+      ],
+      "used_wires": [],
+      "visited": 174
+    },
+    "without_native_wires": {
+      "found": true,
+      "length_mm": 15.112407066865288,
+      "polyline_mm": [
+        [
+          91.27,
+          64.0
+        ],
+        [
+          94.75,
+          60.52
+        ],
+        [
+          95.0,
+          59.5
+        ],
+        [
+          95.0,
+          53.5
+        ],
+        [
+          96.0,
+          52.5
+        ],
+        [
+          96.5,
+          52.5
+        ],
+        [
+          97.62,
+          52.0
+        ]
+      ],
+      "segment_types": [
+        "copper",
+        "copper",
+        "copper",
+        "copper",
+        "copper",
+        "copper"
+      ],
+      "used_wires": [],
+      "visited": 174
+    },
+    "scope": "Geometric accessible-route length only; not inductance/current distribution. Copper pad holes are not subtracted; LUT production tolerance is not modeled."
+  },
+  "bypass_track_paths": {
+    "supply": {
+      "net": "V_A",
+      "source": "C6.1",
+      "target": "U1.4",
+      "scope": "Actual track centerlines and same-pad copper joins only; no zone shortcut, no inductance or measured EMI claim.",
+      "found": true,
+      "length_mm": 16.006854249492388,
+      "polyline_mm": [
+        [
+          88.73,
+          64.0
+        ],
+        [
+          88.0,
+          64.0
+        ],
+        [
+          86.0,
+          62.0
+        ],
+        [
+          86.0,
+          54.0
+        ],
+        [
+          84.0,
+          52.0
+        ],
+        [
+          82.38,
+          52.0
+        ]
+      ]
+    },
+    "return": {
+      "net": "AGND",
+      "source": "C6.2",
+      "target": "U1.11",
+      "scope": "Actual track centerlines and same-pad copper joins only; no zone shortcut, no inductance or measured EMI claim.",
+      "found": true,
+      "length_mm": 16.31146319705838,
+      "polyline_mm": [
+        [
+          91.27,
+          64.0
+        ],
+        [
+          94.75,
+          60.52
+        ],
+        [
+          94.75,
+          52.0
+        ],
+        [
+          97.62,
+          52.0
+        ]
+      ]
+    },
+    "total_track_centerline_length_mm": 32.318317446550765
+  },
+  "board_sha256": "e3b121a95d97afec065cb37b64ef93cc9867b816e47e5f35d207a7d7dfa3b2c2",
+  "zone_outline_count": 1,
+  "copper_component_count": 1,
+  "ground_membership": [
+    {
+      "ref": "C11",
+      "pin": "2",
+      "at": [
+        71.73,
+        47.0
+      ],
+      "copper_component": [
+        0
+      ],
+      "core_0_998mm_component": [
+        0
+      ]
+    },
+    {
+      "ref": "R11",
+      "pin": "2",
+      "at": [
+        23.0,
+        70.08
+      ],
+      "copper_component": [
+        0
+      ],
+      "core_0_998mm_component": [
+        0
+      ]
+    },
+    {
+      "ref": "R16",
+      "pin": "2",
+      "at": [
+        125.0,
+        27.08
+      ],
+      "copper_component": [
+        0
+      ],
+      "core_0_998mm_component": [
+        0
+      ]
+    },
+    {
+      "ref": "R4",
+      "pin": "2",
+      "at": [
+        53.0,
+        60.08
+      ],
+      "copper_component": [
+        0
+      ],
+      "core_0_998mm_component": [
+        0
+      ]
+    },
+    {
+      "ref": "J2",
+      "pin": "2",
+      "at": [
+        144.0,
+        56.46
+      ],
+      "copper_component": [
+        0
+      ],
+      "core_0_998mm_component": [
+        0
+      ]
+    },
+    {
+      "ref": "U1",
+      "pin": "11",
+      "at": [
+        97.62,
+        52.0
+      ],
+      "copper_component": [
+        0
+      ],
+      "core_0_998mm_component": [
+        0
+      ]
+    },
+    {
+      "ref": "C7",
+      "pin": "2",
+      "at": [
+        81.27,
+        28.0
+      ],
+      "copper_component": [
+        0
+      ],
+      "core_0_998mm_component": [
+        0
+      ]
+    },
+    {
+      "ref": "W3",
+      "pin": "1",
+      "at": [
+        76.0,
+        58.5
+      ],
+      "copper_component": [
+        0
+      ],
+      "core_0_998mm_component": [
+        0
+      ]
+    },
+    {
+      "ref": "W3",
+      "pin": "1",
+      "at": [
+        76.0,
+        66.0
+      ],
+      "copper_component": [
+        0
+      ],
+      "core_0_998mm_component": [
+        0
+      ]
+    },
+    {
+      "ref": "C6",
+      "pin": "2",
+      "at": [
+        91.27,
+        64.0
+      ],
+      "copper_component": [
+        0
+      ],
+      "core_0_998mm_component": [
+        0
+      ]
+    },
+    {
+      "ref": "J1",
+      "pin": "2",
+      "at": [
+        18.0,
+        28.46
+      ],
+      "copper_component": [
+        0
+      ],
+      "core_0_998mm_component": [
+        0
+      ]
+    },
+    {
+      "ref": "R12",
+      "pin": "2",
+      "at": [
+        94.08,
+        24.0
+      ],
+      "copper_component": [
+        0
+      ],
+      "core_0_998mm_component": [
+        0
+      ]
+    },
+    {
+      "ref": "J3",
+      "pin": "2",
+      "at": [
+        76.54,
+        17.0
+      ],
+      "copper_component": [
+        0
+      ],
+      "core_0_998mm_component": [
+        0
+      ]
+    },
+    {
+      "ref": "C2",
+      "pin": "2",
+      "at": [
+        69.0,
+        58.5
+      ],
+      "copper_component": [
+        0
+      ],
+      "core_0_998mm_component": [
+        0
+      ]
+    },
+    {
+      "ref": "C4",
+      "pin": "2",
+      "at": [
+        119.0,
+        67.0
+      ],
+      "copper_component": [
+        0
+      ],
+      "core_0_998mm_component": [
+        0
+      ]
+    },
+    {
+      "ref": "C5",
+      "pin": "2",
+      "at": [
+        136.0,
+        82.0
+      ],
+      "copper_component": [
+        0
+      ],
+      "core_0_998mm_component": [
+        0
+      ]
+    }
+  ],
+  "native_ground_wire_edges": [
+    {
+      "ref": "W3",
+      "a": {
+        "ref": "W3",
+        "pin": "1",
+        "at": [
+          76.0,
+          58.5
+        ],
+        "copper_component": [
+          0
+        ],
+        "core_0_998mm_component": [
+          0
+        ]
+      },
+      "b": {
+        "ref": "W3",
+        "pin": "1",
+        "at": [
+          76.0,
+          66.0
+        ],
+        "copper_component": [
+          0
+        ],
+        "core_0_998mm_component": [
+          0
+        ]
+      },
+      "length_mm": 7.5
+    }
+  ],
+  "redundant_native_wires_with_existing_copper_unchanged": [
+    "W3"
+  ],
+  "electrical_ground_groups_with_native_jumpers": [
+    [
+      "C11.2@[71.73, 47.0]",
+      "R11.2@[23.0, 70.08]",
+      "R16.2@[125.0, 27.08]",
+      "R4.2@[53.0, 60.08]",
+      "J2.2@[144.0, 56.46]",
+      "U1.11@[97.62, 52.0]",
+      "C7.2@[81.27, 28.0]",
+      "W3.1@[76.0, 58.5]",
+      "W3.1@[76.0, 66.0]",
+      "C6.2@[91.27, 64.0]",
+      "J1.2@[18.0, 28.46]",
+      "R12.2@[94.08, 24.0]",
+      "J3.2@[76.54, 17.0]",
+      "C2.2@[69.0, 58.5]",
+      "C4.2@[119.0, 67.0]",
+      "C5.2@[136.0, 82.0]"
+    ]
+  ],
+  "missing_ground_pad_centres": [],
+  "core_0_998mm_component_count": 1,
+  "ground_groups_after_0_499mm_erosion_with_native_jumpers": [
+    [
+      "C11.2@[71.73, 47.0]",
+      "R11.2@[23.0, 70.08]",
+      "R16.2@[125.0, 27.08]",
+      "R4.2@[53.0, 60.08]",
+      "J2.2@[144.0, 56.46]",
+      "U1.11@[97.62, 52.0]",
+      "C7.2@[81.27, 28.0]",
+      "W3.1@[76.0, 58.5]",
+      "W3.1@[76.0, 66.0]",
+      "C6.2@[91.27, 64.0]",
+      "J1.2@[18.0, 28.46]",
+      "R12.2@[94.08, 24.0]",
+      "J3.2@[76.54, 17.0]",
+      "C2.2@[69.0, 58.5]",
+      "C4.2@[119.0, 67.0]",
+      "C5.2@[136.0, 82.0]"
+    ]
+  ],
+  "ground_pad_centres_missing_from_eroded_core": [],
+  "scope": "Read-only final filled CAD. Ground copper includes filled zones, AGND pad polygons and AGND track capsules. Native duplicate-number jumper flags supply real wire edges. Erosion screen at 0.998 mm excludes drill-annulus analysis and is not physical validation."
+}

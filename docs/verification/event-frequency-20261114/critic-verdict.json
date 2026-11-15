@@ -1,0 +1,75 @@
+{
+  "date": "2026-11-14",
+  "critic": "/root/unified_critic",
+  "independent_of_implementation": true,
+  "base_sha": "6e364ed4cc6f2859473c565765fcfe54b811d77f",
+  "scope": "V2-20 stable automatic segment readout and live threshold-event cadence, Windows native/frozen synthetic only",
+  "manifest_path": "build/v23w/dist/MotortesterV2/build-manifest.json",
+  "manifest_sha256": "9d68b062d0bcf090ae559edf8ec684501fc96b38bd7fd010594ec2e49440967c",
+  "verdict": "PASS",
+  "score": 9.6,
+  "threshold": 9.5,
+  "criteria": {
+    "C1": 9.7,
+    "C2": 9.6,
+    "C3": 9.5,
+    "C4": 9.5,
+    "C5": 9.7
+  },
+  "weights": {
+    "C1": 0.3,
+    "C2": 0.2,
+    "C3": 0.25,
+    "C4": 0.15,
+    "C5": 0.1
+  },
+  "open_p0_p1": [],
+  "closed_findings": [
+    "Same-range pause/sync disable could relabel older automatic result as visible; cancel and exact held recomputation implemented and checked",
+    "One bridge tick lag after accepted Stop; immediate readout deactivation implemented and checked"
+  ],
+  "evidence_sha256": {
+    "docs/verification/event-frequency-20261114/SCOPE_RU.md": "4f4ba030bca3118e271f566699e0bfab491a39e58a58c9e5aa67326ffd35cb9d",
+    "docs/verification/event-frequency-20261114/model-tests.log": "10c17cec1fd87d6144c4ba0d743f5bb2ba595041a8aa04bd091818ba7e1eea5f",
+    "docs/verification/event-frequency-20261114/author-evidence.json": "63c0747529a071bf4456cdf816cc54b3e6704a5010cb8a8b91d11569620cb3b8",
+    "docs/verification/event-frequency-20261114/critic-package-integrity.json": "1e3eaa72e7c35e32c9534ea73375e1b8d70858a88cd18d6c5d1aca0530198a00",
+    "build/v23-native-04/result.json": "5c157313ff1839d0ed9f2bc11368d23d45e1935f188b9b03e1c495c3e02d2829",
+    "build/v23w/frozen-event-frequency/result.json": "f6a1f1778aaa5af6418148dea17f7e194b825c3c4e448ed0c308413eb401fa3c",
+    "build/v23w/build-report.json": "c9fa568ddc63ab539c5bc0241c10ff59c9349d6f22dbcd5d888b8b1565b17b3d",
+    "build/v23w/normal-entry.png": "0e560d365bd1b9371b9cbc4a8f9f0e0626497ae3cef382d6f8516c7959160c0d",
+    "build/v23-native-04/01-live-single-event.png": "313459c3ec51c2dfd31bf7073fc4a58fc4d49f9b43bcba10b63733920fdfc3e3",
+    "build/v23-native-04/02-paused-view-live-frequency.png": "69bdd132e8f3399f336c4f6f35e7447c72d22221e70501e95b563bf1ba58a050",
+    "build/v23-native-04/03-opened-single-event.png": "fd00e72c33376a8ee9574999dc6aa7a0c337243fbc54406fe6e6ebf18ab2e202",
+    "build/v23w/frozen-event-frequency/01-live-single-event.png": "1337dfb4b473f2cc1ecf0efd1a2dfe90594914a631df3a4d38296429b0787d26",
+    "build/v23w/frozen-event-frequency/02-paused-view-live-frequency.png": "e2c52cf62d795c96d95cd53120eeccd2331c99a475679c96eadc319e33a3c28e",
+    "build/v23w/frozen-event-frequency/03-opened-single-event.png": "fd00e72c33376a8ee9574999dc6aa7a0c337243fbc54406fe6e6ebf18ab2e202"
+  },
+  "review_path": "docs/reviews/v2-20-event-frequency-review.md",
+  "review_sha256": "0666887956907e4f036d3e7ae4b4a9987345dd72e98e549e138f926e4bbab089",
+  "personally_performed": [
+    "read-only code and requirements audit",
+    "all source and payload SHA-256 verification in worktree, source ZIP, dist, relocated tree and portable ZIP",
+    "native04 three images, frozen three images and normal cold entry visual inspection",
+    "one final-code five-test model run"
+  ],
+  "critic_model_execution": {
+    "command": "PYTHONPATH=host .venv/Scripts/python.exe -m unittest discover -s host/tests -p test_v2_event_frequency.py -v",
+    "observed_result": "OK",
+    "observed_test_count": 5,
+    "observed_duration_seconds": 0.054,
+    "exit_code": 0,
+    "model_sha256": "6043e8c4d40918334828438e5221d1e80229e48115954f1a2ad90bee7c0c7c05",
+    "test_sha256": "18e86768a6809b0fe96efbe225f64666c69ea1c97f675cd2a4413fb3796a588e",
+    "evidence_kind": "tool-returned stdout/stderr observed directly; summary recorded here, no fabricated log"
+  },
+  "author_executions_not_repeated": [
+    "native and relocated frozen GUI scenarios, 20 assertions each"
+  ],
+  "not_confirmed": [
+    "new load with physical COM/USB",
+    "firmware or analog board operation",
+    "physical voltage/sampling-clock/spark-frequency accuracy",
+    "ignition or vehicle diagnostics"
+  ],
+  "old_review_score_transferred": false
+}

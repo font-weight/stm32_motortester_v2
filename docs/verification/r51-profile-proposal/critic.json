@@ -1,0 +1,90 @@
+{
+  "reviewer": "/root/r51_profile_critic",
+  "independent": true,
+  "date": "2026-11-02",
+  "scope": "Documentation and nominal-calculation proposal for Analog LUT R5.1 only; no implementation, calibration or hardware acceptance",
+  "base_commit": "6e364ed4cc6f2859473c565765fcfe54b811d77f",
+  "verdict": "PASS",
+  "score": 9.59,
+  "criteria": {
+    "C1": 9.7,
+    "C2": 9.6,
+    "C3": 9.5,
+    "C4": 9.5,
+    "C5": 9.6
+  },
+  "weights": {
+    "C1": 0.3,
+    "C2": 0.2,
+    "C3": 0.25,
+    "C4": 0.15,
+    "C5": 0.1
+  },
+  "manifest": {
+    "path": "docs/verification/r51-profile-proposal/review-manifest.json",
+    "sha256": "f9f0d0d1bc2d5855c0ae361e728c065b687d320ba4a249d3ee70704a4480659a",
+    "files_verified": 31,
+    "mismatches": []
+  },
+  "source_files_sha256": {
+    "firmware/v2-stream/selectable/mt_acquisition_profile.c": "df8ccaf78a1979db7a259be6fabc2c75e38cdba410c508b2cd1bebe65091a368",
+    "firmware/v2-stream/batch1024/production/mt_batch1024.c": "cfaa06114eefe41c36517a451673533aeae3bba17b090099f75375b04708c037",
+    "host/motortester/stream_wire.py": "87eb5567553190a1063e787e788bd7652cb9e872a4d3126902626f530784984f",
+    "host/motortester/stream_model.py": "e5a261abe9ef7d294428f50614373685a7b6e6363c1146f90e6353afbafee03c",
+    "host/motortester/v2/input.py": "b45e0b3fb4d824792f4f173a77367d6d68b8a6cec91748f43de0b27fe43e0d96",
+    "host/motortester/v2/stream_device.py": "ee66e342b2a0e1a0699bf56ac0fc198999621c40e026c21113ecd91bad8ce675",
+    "host/motortester/v2/stream_capture.py": "935038cd5473ca902d73407d8689d4ec57b1c41f0b93ce1c7078252cc4c10cd4"
+  },
+  "report": {
+    "path": "docs/reviews/r51-profile-proposal-review.md",
+    "sha256": "3552bacc1a1af514d67b4fd4dd6cdba27530a7c373d4e7b8f4320a1d7fcc8370"
+  },
+  "open_findings": [],
+  "resolved_findings": [
+    {
+      "severity": "P3",
+      "description": "Undefined described threshold rounding in early draft",
+      "resolution": "Nearest attainable canonical code, half-tie toward higher code; domain checks, displayed accepted voltage and collapsed-hysteresis rejection now explicit in proposal and JSON"
+    }
+  ],
+  "personally_verified": {
+    "archive_sha256": "ddec83fd287bb4f7cd5341324f07445ec804d8ef839b7e7ce4ea74b4109cf777",
+    "zip_crc_failure": null,
+    "original_files_byte_identical": 16,
+    "netlist_and_schematic_png_read": true,
+    "independent_dc_and_ac_gain_bias_arithmetic": true,
+    "all_three_json_a_b_formula_consistent": true,
+    "three_inactive_allowed_modes": true,
+    "adc_format_and_sn_source_read": true,
+    "dc_ac_calibration_and_compatibility_reviewed": true,
+    "production_firmware_host_diff_empty": true,
+    "targeted_diff_check_clean": true
+  },
+  "reviewed_author_evidence_not_repeated": {
+    "internal_checksum_count": 106,
+    "audit_node_sets_matched": 23,
+    "schematic_component_values_match": 35,
+    "cutoff_Hz": [
+      17771.822180928866,
+      17771.070385042643,
+      17769.706649607913
+    ]
+  },
+  "execution": {
+    "environment": "Windows checkout / PowerShell / local Python standard library",
+    "gui_runs": 0,
+    "com_opens": 0,
+    "swd_actions": 0,
+    "archive_scripts_executed": 0,
+    "full_tests": 0,
+    "physical_experiments": 0
+  },
+  "limitations": [
+    "DIP-V2-01c additions in shared documents are outside review; full hashes do not accept that separate task",
+    "Application/firmware/CAD implementation unchanged",
+    "No manufacturing release; eight reported placement issues remain",
+    "No physical calibration, verified voltage range, measured bandwidth, ADC settling or protection claim",
+    "SN is saved source/evidence identity, not newly observed hardware",
+    "Calibration acceptance criteria and allowed physical experiment amplitudes remain TBD before measurement"
+  ]
+}

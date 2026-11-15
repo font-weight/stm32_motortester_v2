@@ -1,0 +1,150 @@
+{
+  "status": "PASS",
+  "verification_scope": "analog-nominal-stream",
+  "source_commit": "5e2ce8db8a945f399c98c06a4f42392532b0503e",
+  "portable_zip": "MotortesterV2-windows-x64.zip",
+  "portable_sha256": "2b5361c0a40beec8d3859f6803ae775fa3c0d417ebe3a55691d014f12de1fd65",
+  "source_sha256": "3475a14e5de5867c67a99613edbc770e3b451bf35b4d3e9cf660d87d3dd92846",
+  "executable_sha256": {
+    "MotortesterV2.exe": "91092779cf3e85f2e1833fbc1bb317573d4c87809e995b78a543e512e01c03d1",
+    "MotortesterV2Inspect.exe": "605f98ab0ac4f029624e6b0c4a53c50ec38ca10d4c708af881961b127fc6797f"
+  },
+  "extracted_bundle": "C:\\Users\\Alexandr\\Desktop\\New folder\\универ\\мотортестер 2\\build\\v18w\\Проверка переноса\\MotortesterV2",
+  "working_directory": "C:\\Users\\Alexandr\\Desktop\\New folder\\универ\\мотортестер 2\\build\\v18w\\Другая рабочая папка",
+  "isolated_path": "C:\\Windows\\System32",
+  "windows_host": "Windows-10-10.0.19045-SP0",
+  "frozen_smoke": {
+    "status": "PASS",
+    "execution_kind": "injected-test",
+    "physical_measurement": false,
+    "frozen": true,
+    "platform": "win32",
+    "windows_host": "Windows-10-10.0.19045-SP0",
+    "qt_platform": "windows",
+    "executable": "C:\\Users\\Alexandr\\Desktop\\New folder\\универ\\мотортестер 2\\build\\v18w\\Проверка переноса\\MotortesterV2\\MotortesterV2.exe",
+    "callback_errors": [],
+    "errors": [],
+    "checks": {
+      "unknown_until_manual_selection": true,
+      "all_three_modes_manual_no_start_ui_profile_unchanged": true,
+      "threshold_quantized_once_to_4_codes": true,
+      "config_locked_during_reception": true,
+      "volts_curve_matches_raw": true,
+      "cursors_match_two_original_samples": true,
+      "millivolts_preserve_codes": true,
+      "metrics_share_scale": true,
+      "unit_change_keeps_recording": true,
+      "recording_and_capture_keep_profile_snapshot": true,
+      "reopened_files_use_saved_profile": true,
+      "reconnect_resets_unknown": true,
+      "reconnect_does_not_start": true,
+      "saved_files_unchanged": true,
+      "no_real_com": true
+    },
+    "real_serial_open_calls": 0,
+    "owners_closed": true,
+    "modes": [
+      {
+        "mode_id": "DC_WIDE",
+        "a": 0.02178437023628049,
+        "b": -44.88
+      },
+      {
+        "mode_id": "AC_WIDE",
+        "a": 0.021990043826219514,
+        "b": -47.0435668789809
+      },
+      {
+        "mode_id": "AC_SENSITIVE",
+        "a": 0.00432487270646786,
+        "b": -9.252252520170531
+      }
+    ],
+    "accepted_search": {
+      "threshold_code": 2604,
+      "release_code": 2204,
+      "polarity": "above",
+      "pre_samples": 150,
+      "post_samples": 450,
+      "baseline_samples": 75,
+      "holdoff_samples": 300,
+      "max_event_samples": 1500,
+      "rail_low": 0,
+      "rail_high": 4092
+    },
+    "curve_points": 1477,
+    "cursor_v": {
+      "a": 31366,
+      "b": 31866,
+      "code_a": 1084,
+      "code_b": 3012,
+      "delta_s": 0.0033333333333333335
+    },
+    "cursor_mv": {
+      "a": 31366,
+      "b": 31866,
+      "code_a": 1084,
+      "code_b": 3012,
+      "delta_s": 0.0033333333333333335
+    },
+    "files": {
+      "analog.mtstream": "226ef08ac3b4c18290a2638dd230c3f1e136f8f3f3ece94ae86b14610f1dc6ed",
+      "analog.mtstream.v2.json": "0063dd7e2afd60c9d69bdd190be527f09fac7c4c44a41f204606b3b56c86a14e",
+      "analog.mtshot": "6bd3e381bd6727142eec336ab6868579c4db68d3ad7d4c917c378a23bb32532f"
+    },
+    "saved_samples": 93247,
+    "elapsed_s": 2.5
+  },
+  "smoke_files": {
+    "01-input-dialog.png": "641a14f546dff3ba584dfb2e31cb743b41abb46b1fa02a4b1c925a23b1125811",
+    "02-live-volts.png": "02f88b47bf84e74ed8d94d04a1a7cd5ed7f9fa5e0b2147482e3f8c292a198fe7",
+    "03-live-millivolts.png": "b4291ddc1dc225bf29101ede520df9a310c760a0b585bdb7e9a0ba3374e9fd62",
+    "04-reopened-recording.png": "6da69176a514a20332d9d8fb8411ecb146b6318a09526112d41c93fa1d05dc34",
+    "05-reconnect-unknown.png": "77719b1dcc6e0a8948edff392b429fb47323ba5e32e44beaab10b16ef996c2ac",
+    "analog.mtshot": "6bd3e381bd6727142eec336ab6868579c4db68d3ad7d4c917c378a23bb32532f",
+    "analog.mtstream": "226ef08ac3b4c18290a2638dd230c3f1e136f8f3f3ece94ae86b14610f1dc6ed",
+    "analog.mtstream.v2.json": "0063dd7e2afd60c9d69bdd190be527f09fac7c4c44a41f204606b3b56c86a14e",
+    "result.json": "b969bb8ad5c075c9cb80efce73d21f598ca2eeee0ffd045d0b6b72ba57589ba2",
+    "run.log": "8b874465c4a971dea18bff7b6fca3ebd4c6f977e1cba6d60c5e03091e8b3808e"
+  },
+  "png_files": {
+    "01-input-dialog.png": {
+      "sha256": "641a14f546dff3ba584dfb2e31cb743b41abb46b1fa02a4b1c925a23b1125811",
+      "bytes": 31109,
+      "width": 690,
+      "height": 432,
+      "validation": "PNG IHDR/CRC and SHA-256"
+    },
+    "02-live-volts.png": {
+      "sha256": "02f88b47bf84e74ed8d94d04a1a7cd5ed7f9fa5e0b2147482e3f8c292a198fe7",
+      "bytes": 119951,
+      "width": 1440,
+      "height": 920,
+      "validation": "PNG IHDR/CRC and SHA-256"
+    },
+    "03-live-millivolts.png": {
+      "sha256": "b4291ddc1dc225bf29101ede520df9a310c760a0b585bdb7e9a0ba3374e9fd62",
+      "bytes": 121346,
+      "width": 1440,
+      "height": 920,
+      "validation": "PNG IHDR/CRC and SHA-256"
+    },
+    "04-reopened-recording.png": {
+      "sha256": "6da69176a514a20332d9d8fb8411ecb146b6318a09526112d41c93fa1d05dc34",
+      "bytes": 116019,
+      "width": 1440,
+      "height": 920,
+      "validation": "PNG IHDR/CRC and SHA-256"
+    },
+    "05-reconnect-unknown.png": {
+      "sha256": "77719b1dcc6e0a8948edff392b429fb47323ba5e32e44beaab10b16ef996c2ac",
+      "bytes": 96441,
+      "width": 1440,
+      "height": 920,
+      "validation": "PNG IHDR/CRC and SHA-256"
+    }
+  },
+  "physical_device_verified": false,
+  "physical_analog_verified": false,
+  "public_release_approved": false
+}

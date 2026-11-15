@@ -255,3 +255,36 @@ docs/verification/v2-reconnect/**/*.mtstream binary
 docs/verification/v2-reconnect/**/*.mtshot binary
 docs/verification/v2-reconnect/**/*.log -whitespace
 docs/reviews/v2-14*.md -text
+
+# Preserve supplied R5.1 originals and hash-bound analysis evidence byte-for-byte.
+docs/design/analog-r5-1/** -text
+docs/verification/r51-profile-proposal/** -text
+docs/reviews/r51-profile-proposal-review.md -text
+
+# Preserve KiCad/PDF/evidence hashes of the reviewed R5.2 LUT pack.
+hardware/v2-input/r52-lut-20261102/** -text
+tools/pcb_r52/** -text
+docs/verification/r52-pcb/** -text
+docs/reviews/r52-pcb-review.md -text
+
+# Preserve KiCad/PDF/evidence hashes of the compact R5.3 pack.
+hardware/v2-input/r53-compact-20261102/** -text
+tools/pcb_r53/** -text
+docs/verification/r53-compact-pcb/** -text
+docs/reviews/r53-compact-pcb-review.md -text
+
+# Published source/evidence receipts retain the exact supplied bytes.
+docs/verification/** -text whitespace=cr-at-eol
+docs/reviews/** -text whitespace=cr-at-eol
+docs/design/** -text whitespace=cr-at-eol
+tools/pcb_r52/** whitespace=cr-at-eol
+tools/pcb_r53/** whitespace=cr-at-eol
+hardware/v2-input/r52-lut-20261102/** whitespace=cr-at-eol
+hardware/v2-input/r53-compact-20261102/** whitespace=cr-at-eol
+
+# Generated printouts, images and source archives are binary payloads.
+*.pdf binary
+*.docx binary
+*.png binary
+*.zip binary
+*.rar binary

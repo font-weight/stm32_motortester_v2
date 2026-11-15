@@ -1,0 +1,908 @@
+{
+    "$schema": "https://schemas.kicad.org/erc.v1.json",
+    "coordinate_units": "mm",
+    "date": "2026-11-03T18:35:03",
+    "ignored_checks": [
+        {
+            "description": "Global label only appears once in the schematic",
+            "key": "single_global_label"
+        },
+        {
+            "description": "Four connection points are joined together",
+            "key": "four_way_junction"
+        },
+        {
+            "description": "SPICE model issue",
+            "key": "simulation_model_issue"
+        },
+        {
+            "description": "Assigned footprint doesn't match footprint filters",
+            "key": "footprint_filter"
+        }
+    ],
+    "included_severities": [
+        "error",
+        "warning",
+        "exclusion"
+    ],
+    "kicad_version": "10.0.6",
+    "sheets": [
+        {
+            "path": "/",
+            "uuid_path": "/f1c772b0-891d-5755-a79a-3c4c6f206837",
+            "violations": [
+                {
+                    "description": "Input Power pin not driven by any Output Power pins",
+                    "items": [
+                        {
+                            "description": "Symbol #PWR01 Pin 1 [Power input, Line]",
+                            "pos": {
+                                "x": 0.3683,
+                                "y": 1.1938
+                            },
+                            "uuid": "6ee97697-3a8f-4a55-b759-c92275a2bdac"
+                        }
+                    ],
+                    "severity": "error",
+                    "type": "power_pin_not_driven"
+                },
+                {
+                    "description": "Pin not connected",
+                    "items": [
+                        {
+                            "description": "Symbol R10 Pin 1 [Passive, Line]",
+                            "pos": {
+                                "x": 0.4572,
+                                "y": 1.3462
+                            },
+                            "uuid": "feccf1d1-082e-4491-a54a-c7e6b508ba93"
+                        }
+                    ],
+                    "severity": "error",
+                    "type": "pin_not_connected"
+                },
+                {
+                    "description": "Pin not connected",
+                    "items": [
+                        {
+                            "description": "Symbol C8 Pin 1 [Passive, Line]",
+                            "pos": {
+                                "x": 1.4986,
+                                "y": 2.6924
+                            },
+                            "uuid": "d47a8f28-163b-478f-93ab-adcd83c1705b"
+                        }
+                    ],
+                    "severity": "error",
+                    "type": "pin_not_connected"
+                },
+                {
+                    "description": "Pin not connected",
+                    "items": [
+                        {
+                            "description": "Symbol C1 Pin 1 [Passive, Line]",
+                            "pos": {
+                                "x": 1.4986,
+                                "y": 2.921
+                            },
+                            "uuid": "9bd0fbc7-9bf0-4577-9998-08f5d2614823"
+                        }
+                    ],
+                    "severity": "error",
+                    "type": "pin_not_connected"
+                },
+                {
+                    "description": "Pin not connected",
+                    "items": [
+                        {
+                            "description": "Symbol S1 Pin 3 [AC, Passive, Line]",
+                            "pos": {
+                                "x": 1.5748,
+                                "y": 1.0668
+                            },
+                            "uuid": "14ce71a9-0f0c-445c-8d75-a836b0340d7f"
+                        }
+                    ],
+                    "severity": "error",
+                    "type": "pin_not_connected"
+                },
+                {
+                    "description": "Pin not connected",
+                    "items": [
+                        {
+                            "description": "Symbol C1 Pin 2 [Passive, Line]",
+                            "pos": {
+                                "x": 1.6002,
+                                "y": 2.921
+                            },
+                            "uuid": "098c8b74-6b80-41b0-81d5-c1674fa43244"
+                        }
+                    ],
+                    "severity": "error",
+                    "type": "pin_not_connected"
+                },
+                {
+                    "description": "Pin not connected",
+                    "items": [
+                        {
+                            "description": "Symbol C2 Pin 1 [Passive, Line]",
+                            "pos": {
+                                "x": 1.6256,
+                                "y": 3.5814
+                            },
+                            "uuid": "60355e7c-ff4f-410e-bf3e-f0418fc76093"
+                        }
+                    ],
+                    "severity": "error",
+                    "type": "pin_not_connected"
+                },
+                {
+                    "description": "Pin not connected",
+                    "items": [
+                        {
+                            "description": "Symbol #FLG01 Pin 1 [pwr, Power output, Line]",
+                            "pos": {
+                                "x": 2.413,
+                                "y": 1.9558
+                            },
+                            "uuid": "09d373e9-0a19-4b6f-86ac-23e57a832c0b"
+                        }
+                    ],
+                    "severity": "error",
+                    "type": "pin_not_connected"
+                },
+                {
+                    "description": "Pin not connected",
+                    "items": [
+                        {
+                            "description": "Symbol U1 Pin 4 [V+, Power input, Line]",
+                            "pos": {
+                                "x": 2.54,
+                                "y": 2.032
+                            },
+                            "uuid": "6b25c13b-44eb-48eb-9c37-2d7c90dccaf7"
+                        }
+                    ],
+                    "severity": "error",
+                    "type": "pin_not_connected"
+                },
+                {
+                    "description": "Input Power pin not driven by any Output Power pins",
+                    "items": [
+                        {
+                            "description": "Symbol U1 Pin 4 [V+, Power input, Line]",
+                            "pos": {
+                                "x": 2.54,
+                                "y": 2.032
+                            },
+                            "uuid": "6b25c13b-44eb-48eb-9c37-2d7c90dccaf7"
+                        }
+                    ],
+                    "severity": "error",
+                    "type": "power_pin_not_driven"
+                },
+                {
+                    "description": "Pin not connected",
+                    "items": [
+                        {
+                            "description": "Symbol U1 Pin 11 [V-, Power input, Line]",
+                            "pos": {
+                                "x": 2.54,
+                                "y": 2.2352
+                            },
+                            "uuid": "473a688e-1c8b-4113-81f8-5cdf787f0479"
+                        }
+                    ],
+                    "severity": "error",
+                    "type": "pin_not_connected"
+                },
+                {
+                    "description": "Input Power pin not driven by any Output Power pins",
+                    "items": [
+                        {
+                            "description": "Symbol U1 Pin 11 [V-, Power input, Line]",
+                            "pos": {
+                                "x": 2.54,
+                                "y": 2.2352
+                            },
+                            "uuid": "473a688e-1c8b-4113-81f8-5cdf787f0479"
+                        }
+                    ],
+                    "severity": "error",
+                    "type": "power_pin_not_driven"
+                },
+                {
+                    "description": "Input Power pin not driven by any Output Power pins",
+                    "items": [
+                        {
+                            "description": "Symbol #PWR03 Pin 1 [Power input, Line]",
+                            "pos": {
+                                "x": 2.794,
+                                "y": 0.635
+                            },
+                            "uuid": "aa0f9578-f82e-4e5c-9346-6680142f30e8"
+                        }
+                    ],
+                    "severity": "error",
+                    "type": "power_pin_not_driven"
+                },
+                {
+                    "description": "Pin not connected",
+                    "items": [
+                        {
+                            "description": "Symbol C6 Pin 1 [Passive, Line]",
+                            "pos": {
+                                "x": 2.9718,
+                                "y": 2.0828
+                            },
+                            "uuid": "f2450794-1717-43e2-bd08-efb14a9ac551"
+                        }
+                    ],
+                    "severity": "error",
+                    "type": "pin_not_connected"
+                },
+                {
+                    "description": "Pin not connected",
+                    "items": [
+                        {
+                            "description": "Symbol C6 Pin 2 [Passive, Line]",
+                            "pos": {
+                                "x": 2.9718,
+                                "y": 2.1844
+                            },
+                            "uuid": "45a949ff-21b8-43d5-8ae7-66fde45ff2ee"
+                        }
+                    ],
+                    "severity": "error",
+                    "type": "pin_not_connected"
+                },
+                {
+                    "description": "Pin not connected",
+                    "items": [
+                        {
+                            "description": "Symbol C7 Pin 1 [Passive, Line]",
+                            "pos": {
+                                "x": 3.3528,
+                                "y": 2.0828
+                            },
+                            "uuid": "bc2da851-c415-4622-8516-763e3fd19896"
+                        }
+                    ],
+                    "severity": "error",
+                    "type": "pin_not_connected"
+                },
+                {
+                    "description": "Pin not connected",
+                    "items": [
+                        {
+                            "description": "Symbol C7 Pin 2 [Passive, Line]",
+                            "pos": {
+                                "x": 3.3528,
+                                "y": 2.1844
+                            },
+                            "uuid": "6783c981-251f-4fe3-9c6c-ecbbf33a307b"
+                        }
+                    ],
+                    "severity": "error",
+                    "type": "pin_not_connected"
+                },
+                {
+                    "description": "Pin not connected",
+                    "items": [
+                        {
+                            "description": "Symbol C11 Pin 1 [Passive, Line]",
+                            "pos": {
+                                "x": 3.429,
+                                "y": 1.3208
+                            },
+                            "uuid": "7ada151c-8949-4b36-8e5a-30798a826ca0"
+                        }
+                    ],
+                    "severity": "error",
+                    "type": "pin_not_connected"
+                },
+                {
+                    "description": "Pin not connected",
+                    "items": [
+                        {
+                            "description": "Symbol U1 Pin 2 [-, Input, Line]",
+                            "pos": {
+                                "x": 3.5814,
+                                "y": 1.0668
+                            },
+                            "uuid": "28178bac-6b36-45a0-a157-a5328e7da203"
+                        }
+                    ],
+                    "severity": "error",
+                    "type": "pin_not_connected"
+                },
+                {
+                    "description": "Input pin not driven by any Output pins",
+                    "items": [
+                        {
+                            "description": "Symbol U1 Pin 2 [-, Input, Line]",
+                            "pos": {
+                                "x": 3.5814,
+                                "y": 1.0668
+                            },
+                            "uuid": "28178bac-6b36-45a0-a157-a5328e7da203"
+                        }
+                    ],
+                    "severity": "error",
+                    "type": "pin_not_driven"
+                },
+                {
+                    "description": "Pin not connected",
+                    "items": [
+                        {
+                            "description": "Symbol C3 Pin 1 [Passive, Line]",
+                            "pos": {
+                                "x": 3.6068,
+                                "y": 2.921
+                            },
+                            "uuid": "7843180a-4f23-4668-90d8-7f33b6bf9b93"
+                        }
+                    ],
+                    "severity": "error",
+                    "type": "pin_not_connected"
+                },
+                {
+                    "description": "Pin not connected",
+                    "items": [
+                        {
+                            "description": "Symbol #FLG02 Pin 1 [pwr, Power output, Line]",
+                            "pos": {
+                                "x": 3.6322,
+                                "y": 2.3368
+                            },
+                            "uuid": "4660e3e8-921c-461b-952a-e9787d7419c3"
+                        }
+                    ],
+                    "severity": "error",
+                    "type": "pin_not_connected"
+                },
+                {
+                    "description": "Pin not connected",
+                    "items": [
+                        {
+                            "description": "Symbol C3 Pin 2 [Passive, Line]",
+                            "pos": {
+                                "x": 3.7084,
+                                "y": 2.921
+                            },
+                            "uuid": "d742c014-51d4-45da-b570-874509aba95f"
+                        }
+                    ],
+                    "severity": "error",
+                    "type": "pin_not_connected"
+                },
+                {
+                    "description": "Pin not connected",
+                    "items": [
+                        {
+                            "description": "Symbol C4 Pin 1 [Passive, Line]",
+                            "pos": {
+                                "x": 3.8354,
+                                "y": 3.5814
+                            },
+                            "uuid": "d3b77a99-9a3d-45b7-a156-256e4a519bdf"
+                        }
+                    ],
+                    "severity": "error",
+                    "type": "pin_not_connected"
+                },
+                {
+                    "description": "Pin not connected",
+                    "items": [
+                        {
+                            "description": "Symbol U1 Pin 9 [-, Input, Line]",
+                            "pos": {
+                                "x": 4.064,
+                                "y": 3.302
+                            },
+                            "uuid": "41e0f38c-ac9d-4169-8c5f-fe3a0072edf5"
+                        }
+                    ],
+                    "severity": "error",
+                    "type": "pin_not_connected"
+                },
+                {
+                    "description": "Input pin not driven by any Output pins",
+                    "items": [
+                        {
+                            "description": "Symbol U1 Pin 9 [-, Input, Line]",
+                            "pos": {
+                                "x": 4.064,
+                                "y": 3.302
+                            },
+                            "uuid": "41e0f38c-ac9d-4169-8c5f-fe3a0072edf5"
+                        }
+                    ],
+                    "severity": "error",
+                    "type": "pin_not_driven"
+                },
+                {
+                    "description": "Pin not connected",
+                    "items": [
+                        {
+                            "description": "Symbol R14 Pin 1 [Passive, Line]",
+                            "pos": {
+                                "x": 4.6228,
+                                "y": 1.3462
+                            },
+                            "uuid": "0549666d-d5fa-41c8-8ad7-1caff1438a0d"
+                        }
+                    ],
+                    "severity": "error",
+                    "type": "pin_not_connected"
+                },
+                {
+                    "description": "Pin not connected",
+                    "items": [
+                        {
+                            "description": "Symbol C10 Pin 1 [Passive, Line]",
+                            "pos": {
+                                "x": 4.6228,
+                                "y": 1.651
+                            },
+                            "uuid": "bdd85e4b-032b-4585-a147-f4eaf4eb3a7e"
+                        }
+                    ],
+                    "severity": "error",
+                    "type": "pin_not_connected"
+                },
+                {
+                    "description": "Pin not connected",
+                    "items": [
+                        {
+                            "description": "Symbol S2 Pin 1 [WIDE, Passive, Line]",
+                            "pos": {
+                                "x": 4.6736,
+                                "y": 1.9558
+                            },
+                            "uuid": "58d53719-b2d7-4976-8070-2d8e86b10c78"
+                        }
+                    ],
+                    "severity": "error",
+                    "type": "pin_not_connected"
+                },
+                {
+                    "description": "Pin not connected",
+                    "items": [
+                        {
+                            "description": "Symbol S2 Pin 3 [SENS, Passive, Line]",
+                            "pos": {
+                                "x": 4.6736,
+                                "y": 2.0574
+                            },
+                            "uuid": "cd4dc134-9a17-4649-8e79-2d04e01cfeae"
+                        }
+                    ],
+                    "severity": "error",
+                    "type": "pin_not_connected"
+                },
+                {
+                    "description": "Pin not connected",
+                    "items": [
+                        {
+                            "description": "Symbol R14 Pin 2 [Passive, Line]",
+                            "pos": {
+                                "x": 4.7244,
+                                "y": 1.3462
+                            },
+                            "uuid": "4b688a3b-3d3e-4346-b30f-10da9d40e0a4"
+                        }
+                    ],
+                    "severity": "error",
+                    "type": "pin_not_connected"
+                },
+                {
+                    "description": "Pin not connected",
+                    "items": [
+                        {
+                            "description": "Symbol C10 Pin 2 [Passive, Line]",
+                            "pos": {
+                                "x": 4.7244,
+                                "y": 1.651
+                            },
+                            "uuid": "d6c0e5d0-13d6-4993-8134-60a3cda45dc8"
+                        }
+                    ],
+                    "severity": "error",
+                    "type": "pin_not_connected"
+                },
+                {
+                    "description": "Pin not connected",
+                    "items": [
+                        {
+                            "description": "Symbol C5 Pin 1 [Passive, Line]",
+                            "pos": {
+                                "x": 5.0292,
+                                "y": 3.4036
+                            },
+                            "uuid": "690bac46-8040-461a-b12a-886771651d05"
+                        }
+                    ],
+                    "severity": "error",
+                    "type": "pin_not_connected"
+                },
+                {
+                    "description": "Unconnected wire endpoint",
+                    "items": [
+                        {
+                            "description": "Vertical Wire, length 0.3302 mm",
+                            "pos": {
+                                "x": 0.4572,
+                                "y": 1.016
+                            },
+                            "uuid": "4d181d1a-330e-5f80-962a-6d8b64a5afff"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "unconnected_wire_endpoint"
+                },
+                {
+                    "description": "Unconnected wire endpoint",
+                    "items": [
+                        {
+                            "description": "Horizontal Wire, length 0.5334 mm",
+                            "pos": {
+                                "x": 0.9652,
+                                "y": 2.921
+                            },
+                            "uuid": "7a632f5c-f494-5060-91dd-15eeff32aed3"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "unconnected_wire_endpoint"
+                },
+                {
+                    "description": "Unconnected wire endpoint",
+                    "items": [
+                        {
+                            "description": "Vertical Wire, length 0.5588 mm",
+                            "pos": {
+                                "x": 0.9652,
+                                "y": 2.6924
+                            },
+                            "uuid": "6466a98f-39a1-55bd-9241-c19ea70bcaa8"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "unconnected_wire_endpoint"
+                },
+                {
+                    "description": "Unconnected wire endpoint",
+                    "items": [
+                        {
+                            "description": "Horizontal Wire, length 0.2286 mm",
+                            "pos": {
+                                "x": 1.3462,
+                                "y": 1.0668
+                            },
+                            "uuid": "c24abd51-13fa-563c-8363-21ab1f835bf0"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "unconnected_wire_endpoint"
+                },
+                {
+                    "description": "Unconnected wire endpoint",
+                    "items": [
+                        {
+                            "description": "Vertical Wire, length 0.3302 mm",
+                            "pos": {
+                                "x": 1.6256,
+                                "y": 3.2512
+                            },
+                            "uuid": "62d1e425-30be-5499-8641-2720b833b1db"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "unconnected_wire_endpoint"
+                },
+                {
+                    "description": "Unconnected wire endpoint",
+                    "items": [
+                        {
+                            "description": "Horizontal Wire, length 0.6604 mm",
+                            "pos": {
+                                "x": 1.6002,
+                                "y": 2.921
+                            },
+                            "uuid": "daa94cb6-06fc-5254-9439-bab901647105"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "unconnected_wire_endpoint"
+                },
+                {
+                    "description": "Unconnected wire endpoint",
+                    "items": [
+                        {
+                            "description": "Vertical Wire, length 0.0762 mm",
+                            "pos": {
+                                "x": 2.54,
+                                "y": 1.9558
+                            },
+                            "uuid": "184d0729-7a32-5057-8916-59075133cb2f"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "unconnected_wire_endpoint"
+                },
+                {
+                    "description": "Unconnected wire endpoint",
+                    "items": [
+                        {
+                            "description": "Vertical Wire, length 0.1016 mm",
+                            "pos": {
+                                "x": 2.54,
+                                "y": 2.2352
+                            },
+                            "uuid": "af76e2d7-8611-5455-b2d0-43997fbe380f"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "unconnected_wire_endpoint"
+                },
+                {
+                    "description": "Unconnected wire endpoint",
+                    "items": [
+                        {
+                            "description": "Vertical Wire, length 0.1270 mm",
+                            "pos": {
+                                "x": 2.9718,
+                                "y": 1.9558
+                            },
+                            "uuid": "99c9d3a3-7602-5033-a6ea-884f82692a0f"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "unconnected_wire_endpoint"
+                },
+                {
+                    "description": "Unconnected wire endpoint",
+                    "items": [
+                        {
+                            "description": "Vertical Wire, length 0.1524 mm",
+                            "pos": {
+                                "x": 2.9718,
+                                "y": 2.1844
+                            },
+                            "uuid": "2eac421c-53f8-5551-a375-67b2e3b5e317"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "unconnected_wire_endpoint"
+                },
+                {
+                    "description": "Unconnected wire endpoint",
+                    "items": [
+                        {
+                            "description": "Vertical Wire, length 0.3302 mm",
+                            "pos": {
+                                "x": 3.1496,
+                                "y": 3.2512
+                            },
+                            "uuid": "68feafd7-4f96-5d99-b6d4-424f6261e0ad"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "unconnected_wire_endpoint"
+                },
+                {
+                    "description": "Unconnected wire endpoint",
+                    "items": [
+                        {
+                            "description": "Vertical Wire, length 0.1270 mm",
+                            "pos": {
+                                "x": 3.3528,
+                                "y": 1.9558
+                            },
+                            "uuid": "8b27a709-d0d5-5a7f-a9dd-975bb6a6c49e"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "unconnected_wire_endpoint"
+                },
+                {
+                    "description": "Unconnected wire endpoint",
+                    "items": [
+                        {
+                            "description": "Vertical Wire, length 0.1524 mm",
+                            "pos": {
+                                "x": 3.3528,
+                                "y": 2.1844
+                            },
+                            "uuid": "a7d19421-3ce5-5892-9b92-2e0b5e1d8709"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "unconnected_wire_endpoint"
+                },
+                {
+                    "description": "Unconnected wire endpoint",
+                    "items": [
+                        {
+                            "description": "Vertical Wire, length 0.3048 mm",
+                            "pos": {
+                                "x": 3.429,
+                                "y": 1.016
+                            },
+                            "uuid": "bd7a425d-3d65-5abb-a254-e971df7e126a"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "unconnected_wire_endpoint"
+                },
+                {
+                    "description": "Unconnected wire endpoint",
+                    "items": [
+                        {
+                            "description": "Vertical Wire, length 0.3302 mm",
+                            "pos": {
+                                "x": 3.8354,
+                                "y": 3.2512
+                            },
+                            "uuid": "bc1a07fb-b5f6-5d77-b6ec-cb91960b6e3d"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "unconnected_wire_endpoint"
+                },
+                {
+                    "description": "Unconnected wire endpoint",
+                    "items": [
+                        {
+                            "description": "Vertical Wire, length 0.2032 mm",
+                            "pos": {
+                                "x": 3.9116,
+                                "y": 1.2446
+                            },
+                            "uuid": "74b0473f-bb1a-5c3c-81be-0541bf1dad59"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "unconnected_wire_endpoint"
+                },
+                {
+                    "description": "Unconnected wire endpoint",
+                    "items": [
+                        {
+                            "description": "Horizontal Wire, length 0.3810 mm",
+                            "pos": {
+                                "x": 4.2418,
+                                "y": 1.3462
+                            },
+                            "uuid": "504a0b8a-df18-5a16-bad2-27f93ab0a784"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "unconnected_wire_endpoint"
+                },
+                {
+                    "description": "Unconnected wire endpoint",
+                    "items": [
+                        {
+                            "description": "Horizontal Wire, length 0.3810 mm",
+                            "pos": {
+                                "x": 4.2418,
+                                "y": 1.651
+                            },
+                            "uuid": "7a184974-67ff-59e5-b592-97a52841132f"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "unconnected_wire_endpoint"
+                },
+                {
+                    "description": "Unconnected wire endpoint",
+                    "items": [
+                        {
+                            "description": "Vertical Wire, length 0.1778 mm",
+                            "pos": {
+                                "x": 4.4196,
+                                "y": 3.4544
+                            },
+                            "uuid": "969b3906-d56c-5ee8-8892-db41192ed0e5"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "unconnected_wire_endpoint"
+                },
+                {
+                    "description": "Unconnected wire endpoint",
+                    "items": [
+                        {
+                            "description": "Vertical Wire, length 0.3556 mm",
+                            "pos": {
+                                "x": 4.4704,
+                                "y": 2.921
+                            },
+                            "uuid": "7f477e2a-5a48-528f-a18f-ca8d0f4a9dbf"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "unconnected_wire_endpoint"
+                },
+                {
+                    "description": "Unconnected wire endpoint",
+                    "items": [
+                        {
+                            "description": "Vertical Wire, length 0.6096 mm",
+                            "pos": {
+                                "x": 5.0038,
+                                "y": 1.0414
+                            },
+                            "uuid": "eb49e2c9-5527-5bee-8f73-c351d1f1bfea"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "unconnected_wire_endpoint"
+                },
+                {
+                    "description": "Unconnected wire endpoint",
+                    "items": [
+                        {
+                            "description": "Horizontal Wire, length 0.2794 mm",
+                            "pos": {
+                                "x": 4.7244,
+                                "y": 1.3462
+                            },
+                            "uuid": "2bd74d0c-9237-5f5f-a3d2-5606eba2f145"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "unconnected_wire_endpoint"
+                },
+                {
+                    "description": "Unconnected wire endpoint",
+                    "items": [
+                        {
+                            "description": "Vertical Wire, length 0.1270 mm",
+                            "pos": {
+                                "x": 5.0292,
+                                "y": 3.2766
+                            },
+                            "uuid": "ab753f5a-1b2c-59bc-a9e4-c47e2e1dd91a"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "unconnected_wire_endpoint"
+                },
+                {
+                    "description": "Unconnected wire endpoint",
+                    "items": [
+                        {
+                            "description": "Vertical Wire, length 0.9144 mm",
+                            "pos": {
+                                "x": 5.1308,
+                                "y": 1.9558
+                            },
+                            "uuid": "3aa6a649-2bbf-51eb-a2b6-6c969fa11a93"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "unconnected_wire_endpoint"
+                },
+                {
+                    "description": "Unconnected wire endpoint",
+                    "items": [
+                        {
+                            "description": "Horizontal Wire, length 0.7620 mm",
+                            "pos": {
+                                "x": 4.6736,
+                                "y": 2.0574
+                            },
+                            "uuid": "d16707a3-40b9-539b-83ed-c2cfa48091bf"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "unconnected_wire_endpoint"
+                }
+            ]
+        }
+    ],
+    "source": "analog-input-r53.kicad_sch"
+}

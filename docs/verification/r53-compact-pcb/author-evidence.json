@@ -1,0 +1,64 @@
+{
+  "base_commit": "6e364ed4cc6f2859473c565765fcfe54b811d77f",
+  "date": "2026-11-02",
+  "scope": "Compact R5.3 single-copper LUT CAD, documentation and 1:1 print set. No physical fabrication/measurement.",
+  "pcb_sha256": "a42d276fa19727af062d79cac4bb9bfd6956781ed5078dbca22f9de8f20a98be",
+  "pdf_sha256": "ac2c9d2dfb29a9bfefdd22a1e54617cef8c9edb30551d02b441438bb2ac4c75f",
+  "drc": {
+    "violations": 0,
+    "unconnected_items": 0,
+    "schematic_parity": 0
+  },
+  "ignored_checks": [
+    {
+      "description": "Footprint has no courtyard defined",
+      "key": "missing_courtyard"
+    },
+    {
+      "description": "Track endpoint not centered on via",
+      "key": "track_not_centered_on_via"
+    },
+    {
+      "description": "Tuning profile track geometries",
+      "key": "tuning_profile_track_geometries"
+    },
+    {
+      "description": "Footprint doesn't match symbol's footprint filters",
+      "key": "footprint_filters_mismatch"
+    },
+    {
+      "description": "Footprint component type doesn't match footprint pads",
+      "key": "footprint_type_mismatch"
+    }
+  ],
+  "parity_pass": true,
+  "dimensions_mm": [
+    88.0,
+    55.0
+  ],
+  "area_reduction_factor": 2.875206611570248,
+  "original_r51_archive_and_r52_pcb_unchanged": true,
+  "all_tools_static_parse_pass": true,
+  "ground_report": "final-ground-graph.json",
+  "s1_report": "s1-distance.json",
+  "print_visual_review": {
+    "reviewer": "root",
+    "pages": [
+      1,
+      2,
+      3,
+      4
+    ],
+    "corrected_bottom_wire_callouts_and_final_comparison_reviewed": true,
+    "limits": "Visual review and vector scale only; physical printer scale, material fit and wire dressing unverified."
+  },
+  "known_limits": [
+    "U1 body/protrusions and actual capacitors still need physical 1:1 fit.",
+    "All nine insulated W1-W9 required; six bottom surface wires need mechanical fixing.",
+    "S1 nearest LP1 copper clearance 25.138 mm; real harness and solder must be checked, wires exit left.",
+    "U1 minimum narrow annulus .35mm needs accurate LUT/drilling; C5 pad gap .8mm.",
+    "Ground erosion does not account for holes, etch tolerances or HF current.",
+    "No calibrated response, protection, allowable input voltage or vehicle approval inferred.",
+    "No application, firmware, COM, SWD or physical signal tests in this iteration."
+  ]
+}

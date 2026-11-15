@@ -1,0 +1,1151 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<export version="E">
+  <design>
+    <source>C:\Users\Alexandr\Documents\Codex\2026-10-29\task\output\Analog_LUT_R5_2026-10-29\kicad\analog-input-r5.kicad_sch</source>
+    <date>2026-10-29T15:19:42</date>
+    <tool>Eeschema 10.0.6</tool>
+    <sheet number="1" name="/" tstamps="/">
+      <title_block>
+        <title>CH1 — unified wired analog schematic</title>
+        <company>Motortester V2</company>
+        <rev>R5</rev>
+        <date>2026-10-29</date>
+        <source>analog-input-r5.kicad_sch</source>
+        <comment number="1" value="R4 wiring retained. C10=96pF, C11=104pF user measured. Ceramic type/fit unresolved."/>
+        <comment number="2" value="No ignition / HV / vehicle connection authorized. Not CAT rated."/>
+        <comment number="3" value=""/>
+        <comment number="4" value=""/>
+        <comment number="5" value=""/>
+        <comment number="6" value=""/>
+        <comment number="7" value=""/>
+        <comment number="8" value=""/>
+        <comment number="9" value=""/>
+      </title_block>
+    </sheet>
+  </design>
+  <components>
+    <comp ref="C1">
+      <value>10n PET 5% 100V</value>
+      <footprint>local:K73_17_P4.0_Envelope11x7</footprint>
+      <datasheet>https://skzcond.ru/k73-17.html</datasheet>
+      <fields>
+        <field name="Footprint">local:K73_17_P4.0_Envelope11x7</field>
+        <field name="Datasheet">https://skzcond.ru/k73-17.html</field>
+        <field name="Description"/>
+      </fields>
+      <libsource lib="AnalogLUTR5" part="C_H" description=""/>
+      <property name="Sheetname" value="analog-input-r5"/>
+      <property name="Sheetfile" value="analog-input-r5.kicad_sch"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>a380c3c8-f7d3-5233-8686-a2e1d48fa8f2</tstamps>
+      <units>
+        <unit name="A">
+          <pins>
+            <pin num="1"/>
+            <pin num="2"/>
+          </pins>
+        </unit>
+      </units>
+    </comp>
+    <comp ref="C2">
+      <value>10n PET 5% 100V</value>
+      <footprint>local:K73_17_P4.0_Envelope11x7</footprint>
+      <datasheet>https://skzcond.ru/k73-17.html</datasheet>
+      <fields>
+        <field name="Footprint">local:K73_17_P4.0_Envelope11x7</field>
+        <field name="Datasheet">https://skzcond.ru/k73-17.html</field>
+        <field name="Description"/>
+      </fields>
+      <libsource lib="AnalogLUTR5" part="C_V" description=""/>
+      <property name="Sheetname" value="analog-input-r5"/>
+      <property name="Sheetfile" value="analog-input-r5.kicad_sch"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>7974fd8d-6265-5b6b-b750-ede84220881e</tstamps>
+      <units>
+        <unit name="A">
+          <pins>
+            <pin num="1"/>
+            <pin num="2"/>
+          </pins>
+        </unit>
+      </units>
+    </comp>
+    <comp ref="C3">
+      <value>68n film 5%</value>
+      <footprint>local:RadialCap_P6.5_Envelope13x10</footprint>
+      <fields>
+        <field name="Footprint">local:RadialCap_P6.5_Envelope13x10</field>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <libsource lib="AnalogLUTR5" part="C_H" description=""/>
+      <property name="Sheetname" value="analog-input-r5"/>
+      <property name="Sheetfile" value="analog-input-r5.kicad_sch"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>bc6887dc-475b-5912-a589-49f333c328c6</tstamps>
+      <units>
+        <unit name="A">
+          <pins>
+            <pin num="1"/>
+            <pin num="2"/>
+          </pins>
+        </unit>
+      </units>
+    </comp>
+    <comp ref="C4">
+      <value>10n PET 5% 100V</value>
+      <footprint>local:K73_17_P4.0_Envelope11x7</footprint>
+      <datasheet>https://skzcond.ru/k73-17.html</datasheet>
+      <fields>
+        <field name="Footprint">local:K73_17_P4.0_Envelope11x7</field>
+        <field name="Datasheet">https://skzcond.ru/k73-17.html</field>
+        <field name="Description"/>
+      </fields>
+      <libsource lib="AnalogLUTR5" part="C_V" description=""/>
+      <property name="Sheetname" value="analog-input-r5"/>
+      <property name="Sheetfile" value="analog-input-r5.kicad_sch"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>c733920c-41aa-53a3-ae72-9b53af2714d1</tstamps>
+      <units>
+        <unit name="A">
+          <pins>
+            <pin num="1"/>
+            <pin num="2"/>
+          </pins>
+        </unit>
+      </units>
+    </comp>
+    <comp ref="C5">
+      <value>1n C0G 5%</value>
+      <footprint>local:C_0805_2012Metric</footprint>
+      <datasheet>https://yageogroup.com/download/specsheet/CC0805JRNPO9BN102</datasheet>
+      <fields>
+        <field name="Footprint">local:C_0805_2012Metric</field>
+        <field name="Datasheet">https://yageogroup.com/download/specsheet/CC0805JRNPO9BN102</field>
+        <field name="Description"/>
+      </fields>
+      <libsource lib="AnalogLUTR5" part="C_V" description=""/>
+      <property name="Sheetname" value="analog-input-r5"/>
+      <property name="Sheetfile" value="analog-input-r5.kicad_sch"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>51532d26-bc5b-5380-bc54-ad669a9c1f3f</tstamps>
+      <units>
+        <unit name="A">
+          <pins>
+            <pin num="1"/>
+            <pin num="2"/>
+          </pins>
+        </unit>
+      </units>
+    </comp>
+    <comp ref="C6">
+      <value>100n X7R</value>
+      <footprint>local:KEMET_C315_P2.54_L3.81_W2.54</footprint>
+      <datasheet>https://search.kemet.com/component-documentation/download/specsheet/C315C104K5R5TA</datasheet>
+      <fields>
+        <field name="Footprint">local:KEMET_C315_P2.54_L3.81_W2.54</field>
+        <field name="Datasheet">https://search.kemet.com/component-documentation/download/specsheet/C315C104K5R5TA</field>
+        <field name="Description"/>
+      </fields>
+      <libsource lib="AnalogLUTR5" part="C_V" description=""/>
+      <property name="Sheetname" value="analog-input-r5"/>
+      <property name="Sheetfile" value="analog-input-r5.kicad_sch"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>90d37376-3867-534d-8caf-fb420132802a</tstamps>
+      <units>
+        <unit name="A">
+          <pins>
+            <pin num="1"/>
+            <pin num="2"/>
+          </pins>
+        </unit>
+      </units>
+    </comp>
+    <comp ref="C7">
+      <value>1u X7R</value>
+      <footprint>local:KEMET_C315_P2.54_L3.81_W2.54</footprint>
+      <datasheet>https://search.kemet.com/component-documentation/download/specsheet/C315C105K3R5TA</datasheet>
+      <fields>
+        <field name="Footprint">local:KEMET_C315_P2.54_L3.81_W2.54</field>
+        <field name="Datasheet">https://search.kemet.com/component-documentation/download/specsheet/C315C105K3R5TA</field>
+        <field name="Description"/>
+      </fields>
+      <libsource lib="AnalogLUTR5" part="C_V" description=""/>
+      <property name="Sheetname" value="analog-input-r5"/>
+      <property name="Sheetfile" value="analog-input-r5.kicad_sch"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>23a79eeb-94e1-51d5-806c-2dbe6087869a</tstamps>
+      <units>
+        <unit name="A">
+          <pins>
+            <pin num="1"/>
+            <pin num="2"/>
+          </pins>
+        </unit>
+      </units>
+    </comp>
+    <comp ref="C8">
+      <value>1.8n C0G 5% 50V</value>
+      <footprint>local:Vishay_K_P2.50_L4.0_W2.6</footprint>
+      <datasheet>https://www.vishay.com/docs/45171/kseries.pdf</datasheet>
+      <fields>
+        <field name="Footprint">local:Vishay_K_P2.50_L4.0_W2.6</field>
+        <field name="Datasheet">https://www.vishay.com/docs/45171/kseries.pdf</field>
+        <field name="Description"/>
+      </fields>
+      <libsource lib="AnalogLUTR5" part="C_H" description=""/>
+      <property name="Sheetname" value="analog-input-r5"/>
+      <property name="Sheetfile" value="analog-input-r5.kicad_sch"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>d091c969-24f2-5d1e-9ae0-719f0467ab0a</tstamps>
+      <units>
+        <unit name="A">
+          <pins>
+            <pin num="1"/>
+            <pin num="2"/>
+          </pins>
+        </unit>
+      </units>
+    </comp>
+    <comp ref="C9">
+      <value>1u MKP 5% 100V</value>
+      <footprint>local:C_Rect_L7.2mm_W11.0mm_P5.00mm_FKS2_FKP2_MKS2_MKP2</footprint>
+      <datasheet>https://www.wima.de/wp-content/uploads/media/e_WIMA_MKP_2.pdf</datasheet>
+      <fields>
+        <field name="Footprint">local:C_Rect_L7.2mm_W11.0mm_P5.00mm_FKS2_FKP2_MKS2_MKP2</field>
+        <field name="Datasheet">https://www.wima.de/wp-content/uploads/media/e_WIMA_MKP_2.pdf</field>
+        <field name="Description"/>
+      </fields>
+      <libsource lib="AnalogLUTR5" part="C_H" description=""/>
+      <property name="Sheetname" value="analog-input-r5"/>
+      <property name="Sheetfile" value="analog-input-r5.kicad_sch"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>6a9894c7-3040-5f48-9f3a-e47738d3972b</tstamps>
+      <units>
+        <unit name="A">
+          <pins>
+            <pin num="1"/>
+            <pin num="2"/>
+          </pins>
+        </unit>
+      </units>
+    </comp>
+    <comp ref="C10">
+      <value>100p (96p measured)</value>
+      <footprint>local:KEMET_C315_P2.54_L3.81_W2.54</footprint>
+      <fields>
+        <field name="Footprint">local:KEMET_C315_P2.54_L3.81_W2.54</field>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <libsource lib="AnalogLUTR5" part="C_H" description=""/>
+      <property name="Sheetname" value="analog-input-r5"/>
+      <property name="Sheetfile" value="analog-input-r5.kicad_sch"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>7aa7aa61-0a21-524c-9281-8656e91b778b</tstamps>
+      <units>
+        <unit name="A">
+          <pins>
+            <pin num="1"/>
+            <pin num="2"/>
+          </pins>
+        </unit>
+      </units>
+    </comp>
+    <comp ref="C11">
+      <value>100p (104p measured)</value>
+      <footprint>local:KEMET_C315_P2.54_L3.81_W2.54</footprint>
+      <fields>
+        <field name="Footprint">local:KEMET_C315_P2.54_L3.81_W2.54</field>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <libsource lib="AnalogLUTR5" part="C_V" description=""/>
+      <property name="Sheetname" value="analog-input-r5"/>
+      <property name="Sheetfile" value="analog-input-r5.kicad_sch"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>1e6719dd-c79b-542c-b953-1ebc4582f900</tstamps>
+      <units>
+        <unit name="A">
+          <pins>
+            <pin num="1"/>
+            <pin num="2"/>
+          </pins>
+        </unit>
+      </units>
+    </comp>
+    <comp ref="J1">
+      <value>CH1 / BNC</value>
+      <footprint>local:Wire_Header_1x2_P3.81</footprint>
+      <fields>
+        <field name="Footprint">local:Wire_Header_1x2_P3.81</field>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <libsource lib="AnalogLUTR5" part="Conn2R" description=""/>
+      <property name="Sheetname" value="analog-input-r5"/>
+      <property name="Sheetfile" value="analog-input-r5.kicad_sch"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>9477eaa7-ed5d-571f-9f08-38e511a72ca8</tstamps>
+      <units>
+        <unit name="A">
+          <pins>
+            <pin num="1"/>
+            <pin num="2"/>
+          </pins>
+        </unit>
+      </units>
+    </comp>
+    <comp ref="J2">
+      <value>Verified PA0 / ADC1_IN0</value>
+      <footprint>local:Wire_Header_1x2_P2.54</footprint>
+      <fields>
+        <field name="Footprint">local:Wire_Header_1x2_P2.54</field>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <libsource lib="AnalogLUTR5" part="Conn2L" description=""/>
+      <property name="Sheetname" value="analog-input-r5"/>
+      <property name="Sheetfile" value="analog-input-r5.kicad_sch"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>28872ecc-6566-5f6d-afaa-6c8f15574564</tstamps>
+      <units>
+        <unit name="A">
+          <pins>
+            <pin num="1"/>
+            <pin num="2"/>
+          </pins>
+        </unit>
+      </units>
+    </comp>
+    <comp ref="J3">
+      <value>Common VDDA rail</value>
+      <footprint>local:Wire_Header_1x2_P3.81</footprint>
+      <fields>
+        <field name="Footprint">local:Wire_Header_1x2_P3.81</field>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <libsource lib="AnalogLUTR5" part="Conn2R" description=""/>
+      <property name="Sheetname" value="analog-input-r5"/>
+      <property name="Sheetfile" value="analog-input-r5.kicad_sch"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>1acced02-fac2-5ba2-a1e0-03968c410e22</tstamps>
+      <units>
+        <unit name="A">
+          <pins>
+            <pin num="1"/>
+            <pin num="2"/>
+          </pins>
+        </unit>
+      </units>
+    </comp>
+    <comp ref="JP1">
+      <value>ADC link</value>
+      <footprint>local:Wire_Header_1x2_P2.54_Shunt</footprint>
+      <fields>
+        <field name="Footprint">local:Wire_Header_1x2_P2.54_Shunt</field>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <libsource lib="AnalogLUTR5" part="Jumper" description=""/>
+      <property name="Sheetname" value="analog-input-r5"/>
+      <property name="Sheetfile" value="analog-input-r5.kicad_sch"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>83f94653-6cdf-578f-b44d-a1310a1c43b7</tstamps>
+      <units>
+        <unit name="A">
+          <pins>
+            <pin num="1"/>
+            <pin num="2"/>
+          </pins>
+        </unit>
+      </units>
+    </comp>
+    <comp ref="R1">
+      <value>510k 1%</value>
+      <footprint>local:R_Axial_DIN0207_L6.3mm_D2.5mm_P10.16mm_Horizontal</footprint>
+      <datasheet>https://www.vishay.com/docs/28766/mbxsma.pdf</datasheet>
+      <fields>
+        <field name="Footprint">local:R_Axial_DIN0207_L6.3mm_D2.5mm_P10.16mm_Horizontal</field>
+        <field name="Datasheet">https://www.vishay.com/docs/28766/mbxsma.pdf</field>
+        <field name="Description"/>
+      </fields>
+      <libsource lib="AnalogLUTR5" part="R_H" description=""/>
+      <property name="Sheetname" value="analog-input-r5"/>
+      <property name="Sheetfile" value="analog-input-r5.kicad_sch"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>2f68a17e-1286-5f33-962e-7006c6ece7d2</tstamps>
+      <units>
+        <unit name="A">
+          <pins>
+            <pin num="1"/>
+            <pin num="2"/>
+          </pins>
+        </unit>
+      </units>
+    </comp>
+    <comp ref="R2">
+      <value>510k 1%</value>
+      <footprint>local:R_Axial_DIN0207_L6.3mm_D2.5mm_P10.16mm_Horizontal</footprint>
+      <datasheet>https://www.vishay.com/docs/28766/mbxsma.pdf</datasheet>
+      <fields>
+        <field name="Footprint">local:R_Axial_DIN0207_L6.3mm_D2.5mm_P10.16mm_Horizontal</field>
+        <field name="Datasheet">https://www.vishay.com/docs/28766/mbxsma.pdf</field>
+        <field name="Description"/>
+      </fields>
+      <libsource lib="AnalogLUTR5" part="R_H" description=""/>
+      <property name="Sheetname" value="analog-input-r5"/>
+      <property name="Sheetfile" value="analog-input-r5.kicad_sch"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>efbe22f9-a0b7-5e44-bfcc-353c80bbb3d1</tstamps>
+      <units>
+        <unit name="A">
+          <pins>
+            <pin num="1"/>
+            <pin num="2"/>
+          </pins>
+        </unit>
+      </units>
+    </comp>
+    <comp ref="R3">
+      <value>75k 1%</value>
+      <footprint>local:R_Axial_DIN0207_L6.3mm_D2.5mm_P10.16mm_Horizontal</footprint>
+      <datasheet>https://www.vishay.com/docs/28766/mbxsma.pdf</datasheet>
+      <fields>
+        <field name="Footprint">local:R_Axial_DIN0207_L6.3mm_D2.5mm_P10.16mm_Horizontal</field>
+        <field name="Datasheet">https://www.vishay.com/docs/28766/mbxsma.pdf</field>
+        <field name="Description"/>
+      </fields>
+      <libsource lib="AnalogLUTR5" part="R_V" description=""/>
+      <property name="Sheetname" value="analog-input-r5"/>
+      <property name="Sheetfile" value="analog-input-r5.kicad_sch"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>e036b298-a9c3-52ec-a3b0-291132c0ec4f</tstamps>
+      <units>
+        <unit name="A">
+          <pins>
+            <pin num="1"/>
+            <pin num="2"/>
+          </pins>
+        </unit>
+      </units>
+    </comp>
+    <comp ref="R4">
+      <value>82k 1%</value>
+      <footprint>local:R_Axial_DIN0207_L6.3mm_D2.5mm_P10.16mm_Horizontal</footprint>
+      <datasheet>https://www.vishay.com/docs/28766/mbxsma.pdf</datasheet>
+      <fields>
+        <field name="Footprint">local:R_Axial_DIN0207_L6.3mm_D2.5mm_P10.16mm_Horizontal</field>
+        <field name="Datasheet">https://www.vishay.com/docs/28766/mbxsma.pdf</field>
+        <field name="Description"/>
+      </fields>
+      <libsource lib="AnalogLUTR5" part="R_V" description=""/>
+      <property name="Sheetname" value="analog-input-r5"/>
+      <property name="Sheetfile" value="analog-input-r5.kicad_sch"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>d2da5b7c-758d-5880-bc80-3ef597155cd9</tstamps>
+      <units>
+        <unit name="A">
+          <pins>
+            <pin num="1"/>
+            <pin num="2"/>
+          </pins>
+        </unit>
+      </units>
+    </comp>
+    <comp ref="R5">
+      <value>750 1%</value>
+      <footprint>local:R_Axial_DIN0207_L6.3mm_D2.5mm_P10.16mm_Horizontal</footprint>
+      <datasheet>https://www.vishay.com/docs/28766/mbxsma.pdf</datasheet>
+      <fields>
+        <field name="Footprint">local:R_Axial_DIN0207_L6.3mm_D2.5mm_P10.16mm_Horizontal</field>
+        <field name="Datasheet">https://www.vishay.com/docs/28766/mbxsma.pdf</field>
+        <field name="Description"/>
+      </fields>
+      <libsource lib="AnalogLUTR5" part="R_H" description=""/>
+      <property name="Sheetname" value="analog-input-r5"/>
+      <property name="Sheetfile" value="analog-input-r5.kicad_sch"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>04879ae8-789d-5dd7-bb8e-e6b9665994ea</tstamps>
+      <units>
+        <unit name="A">
+          <pins>
+            <pin num="1"/>
+            <pin num="2"/>
+          </pins>
+        </unit>
+      </units>
+    </comp>
+    <comp ref="R6">
+      <value>750 1%</value>
+      <footprint>local:R_Axial_DIN0207_L6.3mm_D2.5mm_P10.16mm_Horizontal</footprint>
+      <datasheet>https://www.vishay.com/docs/28766/mbxsma.pdf</datasheet>
+      <fields>
+        <field name="Footprint">local:R_Axial_DIN0207_L6.3mm_D2.5mm_P10.16mm_Horizontal</field>
+        <field name="Datasheet">https://www.vishay.com/docs/28766/mbxsma.pdf</field>
+        <field name="Description"/>
+      </fields>
+      <libsource lib="AnalogLUTR5" part="R_H" description=""/>
+      <property name="Sheetname" value="analog-input-r5"/>
+      <property name="Sheetfile" value="analog-input-r5.kicad_sch"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>026b4ca3-22a5-578e-943a-ce78d179bf94</tstamps>
+      <units>
+        <unit name="A">
+          <pins>
+            <pin num="1"/>
+            <pin num="2"/>
+          </pins>
+        </unit>
+      </units>
+    </comp>
+    <comp ref="R7">
+      <value>330 1%</value>
+      <footprint>local:R_Axial_DIN0207_L6.3mm_D2.5mm_P10.16mm_Horizontal</footprint>
+      <datasheet>https://www.vishay.com/docs/28766/mbxsma.pdf</datasheet>
+      <fields>
+        <field name="Footprint">local:R_Axial_DIN0207_L6.3mm_D2.5mm_P10.16mm_Horizontal</field>
+        <field name="Datasheet">https://www.vishay.com/docs/28766/mbxsma.pdf</field>
+        <field name="Description"/>
+      </fields>
+      <libsource lib="AnalogLUTR5" part="R_H" description=""/>
+      <property name="Sheetname" value="analog-input-r5"/>
+      <property name="Sheetfile" value="analog-input-r5.kicad_sch"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>76e7de07-691e-5143-82ba-44f11c59e5cb</tstamps>
+      <units>
+        <unit name="A">
+          <pins>
+            <pin num="1"/>
+            <pin num="2"/>
+          </pins>
+        </unit>
+      </units>
+    </comp>
+    <comp ref="R8">
+      <value>330 1%</value>
+      <footprint>local:R_Axial_DIN0207_L6.3mm_D2.5mm_P10.16mm_Horizontal</footprint>
+      <datasheet>https://www.vishay.com/docs/28766/mbxsma.pdf</datasheet>
+      <fields>
+        <field name="Footprint">local:R_Axial_DIN0207_L6.3mm_D2.5mm_P10.16mm_Horizontal</field>
+        <field name="Datasheet">https://www.vishay.com/docs/28766/mbxsma.pdf</field>
+        <field name="Description"/>
+      </fields>
+      <libsource lib="AnalogLUTR5" part="R_H" description=""/>
+      <property name="Sheetname" value="analog-input-r5"/>
+      <property name="Sheetfile" value="analog-input-r5.kicad_sch"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>7311816c-f922-538a-965b-9c27046260fc</tstamps>
+      <units>
+        <unit name="A">
+          <pins>
+            <pin num="1"/>
+            <pin num="2"/>
+          </pins>
+        </unit>
+      </units>
+    </comp>
+    <comp ref="R9">
+      <value>330 1%</value>
+      <footprint>local:R_Axial_DIN0207_L6.3mm_D2.5mm_P10.16mm_Horizontal</footprint>
+      <datasheet>https://www.vishay.com/docs/28766/mbxsma.pdf</datasheet>
+      <fields>
+        <field name="Footprint">local:R_Axial_DIN0207_L6.3mm_D2.5mm_P10.16mm_Horizontal</field>
+        <field name="Datasheet">https://www.vishay.com/docs/28766/mbxsma.pdf</field>
+        <field name="Description"/>
+      </fields>
+      <libsource lib="AnalogLUTR5" part="R_H" description=""/>
+      <property name="Sheetname" value="analog-input-r5"/>
+      <property name="Sheetfile" value="analog-input-r5.kicad_sch"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>97defeb4-27c6-57f6-bcdc-c68bab33447a</tstamps>
+      <units>
+        <unit name="A">
+          <pins>
+            <pin num="1"/>
+            <pin num="2"/>
+          </pins>
+        </unit>
+      </units>
+    </comp>
+    <comp ref="R10">
+      <value>10M 1%</value>
+      <footprint>local:R_Axial_DIN0207_L6.3mm_D2.5mm_P10.16mm_Horizontal</footprint>
+      <datasheet>https://www.vishay.com/docs/28766/mbxsma.pdf</datasheet>
+      <fields>
+        <field name="Footprint">local:R_Axial_DIN0207_L6.3mm_D2.5mm_P10.16mm_Horizontal</field>
+        <field name="Datasheet">https://www.vishay.com/docs/28766/mbxsma.pdf</field>
+        <field name="Description"/>
+      </fields>
+      <libsource lib="AnalogLUTR5" part="R_V" description=""/>
+      <property name="Sheetname" value="analog-input-r5"/>
+      <property name="Sheetfile" value="analog-input-r5.kicad_sch"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>dc618afc-42d6-5c36-ae95-002bab2f68d7</tstamps>
+      <units>
+        <unit name="A">
+          <pins>
+            <pin num="1"/>
+            <pin num="2"/>
+          </pins>
+        </unit>
+      </units>
+    </comp>
+    <comp ref="R11">
+      <value>4.7M 1%</value>
+      <footprint>local:R_Axial_DIN0207_L6.3mm_D2.5mm_P10.16mm_Horizontal</footprint>
+      <datasheet>https://www.vishay.com/docs/28766/mbxsma.pdf</datasheet>
+      <fields>
+        <field name="Footprint">local:R_Axial_DIN0207_L6.3mm_D2.5mm_P10.16mm_Horizontal</field>
+        <field name="Datasheet">https://www.vishay.com/docs/28766/mbxsma.pdf</field>
+        <field name="Description"/>
+      </fields>
+      <libsource lib="AnalogLUTR5" part="R_V" description=""/>
+      <property name="Sheetname" value="analog-input-r5"/>
+      <property name="Sheetfile" value="analog-input-r5.kicad_sch"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>29630382-e7db-56c6-afbc-a01167c2a14c</tstamps>
+      <units>
+        <unit name="A">
+          <pins>
+            <pin num="1"/>
+            <pin num="2"/>
+          </pins>
+        </unit>
+      </units>
+    </comp>
+    <comp ref="R12">
+      <value>1k 1%</value>
+      <footprint>local:R_Axial_DIN0207_L6.3mm_D2.5mm_P10.16mm_Horizontal</footprint>
+      <datasheet>https://www.vishay.com/docs/28766/mbxsma.pdf</datasheet>
+      <fields>
+        <field name="Footprint">local:R_Axial_DIN0207_L6.3mm_D2.5mm_P10.16mm_Horizontal</field>
+        <field name="Datasheet">https://www.vishay.com/docs/28766/mbxsma.pdf</field>
+        <field name="Description"/>
+      </fields>
+      <libsource lib="AnalogLUTR5" part="R_V" description=""/>
+      <property name="Sheetname" value="analog-input-r5"/>
+      <property name="Sheetfile" value="analog-input-r5.kicad_sch"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>65bea01a-9b19-5e8b-9543-aec744e6d9c0</tstamps>
+      <units>
+        <unit name="A">
+          <pins>
+            <pin num="1"/>
+            <pin num="2"/>
+          </pins>
+        </unit>
+      </units>
+    </comp>
+    <comp ref="R14">
+      <value>1.6k 1%</value>
+      <footprint>local:R_Axial_DIN0207_L6.3mm_D2.5mm_P10.16mm_Horizontal</footprint>
+      <datasheet>https://www.vishay.com/docs/28766/mbxsma.pdf</datasheet>
+      <fields>
+        <field name="Footprint">local:R_Axial_DIN0207_L6.3mm_D2.5mm_P10.16mm_Horizontal</field>
+        <field name="Datasheet">https://www.vishay.com/docs/28766/mbxsma.pdf</field>
+        <field name="Description"/>
+      </fields>
+      <libsource lib="AnalogLUTR5" part="R_H" description=""/>
+      <property name="Sheetname" value="analog-input-r5"/>
+      <property name="Sheetfile" value="analog-input-r5.kicad_sch"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>9c124c30-3f7c-565e-aa31-1955609d7a6f</tstamps>
+      <units>
+        <unit name="A">
+          <pins>
+            <pin num="1"/>
+            <pin num="2"/>
+          </pins>
+        </unit>
+      </units>
+    </comp>
+    <comp ref="R15">
+      <value>750 1%</value>
+      <footprint>local:R_Axial_DIN0207_L6.3mm_D2.5mm_P10.16mm_Horizontal</footprint>
+      <datasheet>https://www.vishay.com/docs/28766/mbxsma.pdf</datasheet>
+      <fields>
+        <field name="Footprint">local:R_Axial_DIN0207_L6.3mm_D2.5mm_P10.16mm_Horizontal</field>
+        <field name="Datasheet">https://www.vishay.com/docs/28766/mbxsma.pdf</field>
+        <field name="Description"/>
+      </fields>
+      <libsource lib="AnalogLUTR5" part="R_V" description=""/>
+      <property name="Sheetname" value="analog-input-r5"/>
+      <property name="Sheetfile" value="analog-input-r5.kicad_sch"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>4abf817c-6925-5da2-8591-60e2c072b52e</tstamps>
+      <units>
+        <unit name="A">
+          <pins>
+            <pin num="1"/>
+            <pin num="2"/>
+          </pins>
+        </unit>
+      </units>
+    </comp>
+    <comp ref="R16">
+      <value>820 1%</value>
+      <footprint>local:R_Axial_DIN0207_L6.3mm_D2.5mm_P10.16mm_Horizontal</footprint>
+      <datasheet>https://www.vishay.com/docs/28766/mbxsma.pdf</datasheet>
+      <fields>
+        <field name="Footprint">local:R_Axial_DIN0207_L6.3mm_D2.5mm_P10.16mm_Horizontal</field>
+        <field name="Datasheet">https://www.vishay.com/docs/28766/mbxsma.pdf</field>
+        <field name="Description"/>
+      </fields>
+      <libsource lib="AnalogLUTR5" part="R_V" description=""/>
+      <property name="Sheetname" value="analog-input-r5"/>
+      <property name="Sheetfile" value="analog-input-r5.kicad_sch"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>47455ceb-4c0b-53db-a332-ad17aaf07007</tstamps>
+      <units>
+        <unit name="A">
+          <pins>
+            <pin num="1"/>
+            <pin num="2"/>
+          </pins>
+        </unit>
+      </units>
+    </comp>
+    <comp ref="R17">
+      <value>10k 1%</value>
+      <footprint>local:R_Axial_DIN0207_L6.3mm_D2.5mm_P10.16mm_Horizontal</footprint>
+      <datasheet>https://www.vishay.com/docs/28766/mbxsma.pdf</datasheet>
+      <fields>
+        <field name="Footprint">local:R_Axial_DIN0207_L6.3mm_D2.5mm_P10.16mm_Horizontal</field>
+        <field name="Datasheet">https://www.vishay.com/docs/28766/mbxsma.pdf</field>
+        <field name="Description"/>
+      </fields>
+      <libsource lib="AnalogLUTR5" part="R_H" description=""/>
+      <property name="Sheetname" value="analog-input-r5"/>
+      <property name="Sheetfile" value="analog-input-r5.kicad_sch"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>08d1b39e-d100-5a92-b914-1fd506bb029e</tstamps>
+      <units>
+        <unit name="A">
+          <pins>
+            <pin num="1"/>
+            <pin num="2"/>
+          </pins>
+        </unit>
+      </units>
+    </comp>
+    <comp ref="R18">
+      <value>1k 1%</value>
+      <footprint>local:R_Axial_DIN0207_L6.3mm_D2.5mm_P10.16mm_Horizontal</footprint>
+      <datasheet>https://www.vishay.com/docs/28766/mbxsma.pdf</datasheet>
+      <fields>
+        <field name="Footprint">local:R_Axial_DIN0207_L6.3mm_D2.5mm_P10.16mm_Horizontal</field>
+        <field name="Datasheet">https://www.vishay.com/docs/28766/mbxsma.pdf</field>
+        <field name="Description"/>
+      </fields>
+      <libsource lib="AnalogLUTR5" part="R_H" description=""/>
+      <property name="Sheetname" value="analog-input-r5"/>
+      <property name="Sheetfile" value="analog-input-r5.kicad_sch"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>999701be-36e3-523a-aaa4-5640a8d841a9</tstamps>
+      <units>
+        <unit name="A">
+          <pins>
+            <pin num="1"/>
+            <pin num="2"/>
+          </pins>
+        </unit>
+      </units>
+    </comp>
+    <comp ref="S1">
+      <value>DC / AC</value>
+      <footprint>local:Wire_Header_1x6_P3.81</footprint>
+      <datasheet>https://www.ckswitches.com/media/1394/7000toggle.pdf</datasheet>
+      <fields>
+        <field name="Footprint">local:Wire_Header_1x6_P3.81</field>
+        <field name="Datasheet">https://www.ckswitches.com/media/1394/7000toggle.pdf</field>
+        <field name="Description"/>
+      </fields>
+      <libsource lib="AnalogLUTR5" part="SW_DPDT" description=""/>
+      <property name="Sheetname" value="analog-input-r5"/>
+      <property name="Sheetfile" value="analog-input-r5.kicad_sch"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>5e2677f9-3f0e-56b2-aafa-930094662100 1a792376-d82c-5d03-b2c5-0ae42d3272f4</tstamps>
+      <units>
+        <unit name="A">
+          <pins>
+            <pin num="1"/>
+            <pin num="3"/>
+            <pin num="2"/>
+          </pins>
+        </unit>
+        <unit name="B">
+          <pins>
+            <pin num="5"/>
+            <pin num="4"/>
+            <pin num="6"/>
+          </pins>
+        </unit>
+      </units>
+    </comp>
+    <comp ref="S2">
+      <value>3-pin + shunt</value>
+      <footprint>local:Wire_Header_1x3_P2.54_Shunt</footprint>
+      <fields>
+        <field name="Footprint">local:Wire_Header_1x3_P2.54_Shunt</field>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <libsource lib="AnalogLUTR5" part="S2_Shunt" description=""/>
+      <property name="Sheetname" value="analog-input-r5"/>
+      <property name="Sheetfile" value="analog-input-r5.kicad_sch"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>f31786b5-2b9d-5fe3-a4a6-98fbb37f7c04</tstamps>
+      <units>
+        <unit name="A">
+          <pins>
+            <pin num="2"/>
+            <pin num="1"/>
+            <pin num="3"/>
+          </pins>
+        </unit>
+      </units>
+    </comp>
+    <comp ref="U1">
+      <value>TLV9064QDRQ1</value>
+      <footprint>local:Adapter_SOIC14_DIP14_P2.54_Rows15.24_Body18x18</footprint>
+      <datasheet>https://www.ti.com/lit/ds/symlink/tlv9064-q1.pdf</datasheet>
+      <fields>
+        <field name="Footprint">local:Adapter_SOIC14_DIP14_P2.54_Rows15.24_Body18x18</field>
+        <field name="Datasheet">https://www.ti.com/lit/ds/symlink/tlv9064-q1.pdf</field>
+        <field name="Description"/>
+      </fields>
+      <libsource lib="AnalogLUTR5" part="TLV9064QDRQ1_D" description=""/>
+      <property name="Sheetname" value="analog-input-r5"/>
+      <property name="Sheetfile" value="analog-input-r5.kicad_sch"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>8fdcab43-679e-5b2a-9dd4-83da25ef2256 d29901d2-91b6-5298-9798-d933cb12923d 6819af77-1717-5420-8f17-3ecb633ab01b 7771e3f2-9c6f-5536-8ad6-97d847ee92c9 431970ba-364f-589b-bd65-8772e93f670c</tstamps>
+      <units>
+        <unit name="A">
+          <pins>
+            <pin num="3"/>
+            <pin num="2"/>
+            <pin num="1"/>
+          </pins>
+        </unit>
+        <unit name="B">
+          <pins>
+            <pin num="5"/>
+            <pin num="6"/>
+            <pin num="7"/>
+          </pins>
+        </unit>
+        <unit name="C">
+          <pins>
+            <pin num="10"/>
+            <pin num="9"/>
+            <pin num="8"/>
+          </pins>
+        </unit>
+        <unit name="D">
+          <pins>
+            <pin num="12"/>
+            <pin num="13"/>
+            <pin num="14"/>
+          </pins>
+        </unit>
+        <unit name="E">
+          <pins>
+            <pin num="4"/>
+            <pin num="11"/>
+          </pins>
+        </unit>
+      </units>
+    </comp>
+  </components>
+  <libparts>
+    <libpart lib="AnalogLUTR5" part="C_H">
+      <fields>
+        <field name="Reference">C</field>
+        <field name="Value">C_H</field>
+        <field name="Footprint"/>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <pins>
+        <pin num="1" name="" type="passive"/>
+        <pin num="2" name="" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="AnalogLUTR5" part="C_V">
+      <fields>
+        <field name="Reference">C</field>
+        <field name="Value">C_V</field>
+        <field name="Footprint"/>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <pins>
+        <pin num="1" name="" type="passive"/>
+        <pin num="2" name="" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="AnalogLUTR5" part="Conn2L">
+      <fields>
+        <field name="Reference">J</field>
+        <field name="Value">Conn2L</field>
+        <field name="Footprint"/>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <pins>
+        <pin num="1" name="" type="passive"/>
+        <pin num="2" name="" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="AnalogLUTR5" part="Conn2R">
+      <fields>
+        <field name="Reference">J</field>
+        <field name="Value">Conn2R</field>
+        <field name="Footprint"/>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <pins>
+        <pin num="1" name="" type="passive"/>
+        <pin num="2" name="" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="AnalogLUTR5" part="Jumper">
+      <fields>
+        <field name="Reference">JP</field>
+        <field name="Value">Jumper</field>
+        <field name="Footprint"/>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <pins>
+        <pin num="1" name="" type="passive"/>
+        <pin num="2" name="" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="AnalogLUTR5" part="R_H">
+      <fields>
+        <field name="Reference">R</field>
+        <field name="Value">R_H</field>
+        <field name="Footprint"/>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <pins>
+        <pin num="1" name="" type="passive"/>
+        <pin num="2" name="" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="AnalogLUTR5" part="R_V">
+      <fields>
+        <field name="Reference">R</field>
+        <field name="Value">R_V</field>
+        <field name="Footprint"/>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <pins>
+        <pin num="1" name="" type="passive"/>
+        <pin num="2" name="" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="AnalogLUTR5" part="S2_Shunt">
+      <fields>
+        <field name="Reference">S</field>
+        <field name="Value">S2_Shunt</field>
+        <field name="Footprint"/>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <pins>
+        <pin num="1" name="WIDE" type="passive"/>
+        <pin num="2" name="COM" type="passive"/>
+        <pin num="3" name="SENS" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="AnalogLUTR5" part="SW_DPDT">
+      <fields>
+        <field name="Reference">S</field>
+        <field name="Value">SW_DPDT</field>
+        <field name="Footprint"/>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <pins>
+        <pin num="1" name="DC" type="passive"/>
+        <pin num="2" name="COM" type="passive"/>
+        <pin num="3" name="AC" type="passive"/>
+        <pin num="4" name="DC" type="passive"/>
+        <pin num="5" name="COM" type="passive"/>
+        <pin num="6" name="AC" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="AnalogLUTR5" part="TLV9064QDRQ1_D">
+      <fields>
+        <field name="Reference">U</field>
+        <field name="Value">TLV9064QDRQ1_D</field>
+        <field name="Footprint"/>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <pins>
+        <pin num="1" name="" type="output"/>
+        <pin num="2" name="-" type="input"/>
+        <pin num="3" name="+" type="input"/>
+        <pin num="4" name="V+" type="power_in"/>
+        <pin num="5" name="+" type="input"/>
+        <pin num="6" name="-" type="input"/>
+        <pin num="7" name="" type="output"/>
+        <pin num="8" name="" type="output"/>
+        <pin num="9" name="-" type="input"/>
+        <pin num="10" name="+" type="input"/>
+        <pin num="11" name="V-" type="power_in"/>
+        <pin num="12" name="+" type="input"/>
+        <pin num="13" name="-" type="input"/>
+        <pin num="14" name="" type="output"/>
+      </pins>
+    </libpart>
+  </libparts>
+  <libraries>
+    <library logical="AnalogLUTR5">
+      <uri>${KIPRJMOD}/AnalogLUTR5.kicad_sym</uri>
+    </library>
+  </libraries>
+  <nets>
+    <net code="1" name="AGND" class="Default">
+      <node ref="C11" pin="2" pintype="passive"/>
+      <node ref="C2" pin="2" pintype="passive"/>
+      <node ref="C4" pin="2" pintype="passive"/>
+      <node ref="C5" pin="2" pintype="passive"/>
+      <node ref="C6" pin="2" pintype="passive"/>
+      <node ref="C7" pin="2" pintype="passive"/>
+      <node ref="J1" pin="2" pintype="passive"/>
+      <node ref="J2" pin="2" pintype="passive"/>
+      <node ref="J3" pin="2" pintype="passive"/>
+      <node ref="R11" pin="2" pintype="passive"/>
+      <node ref="R12" pin="2" pintype="passive"/>
+      <node ref="R16" pin="2" pintype="passive"/>
+      <node ref="R4" pin="2" pintype="passive"/>
+      <node ref="U1" pin="11" pinfunction="V-_11" pintype="power_in"/>
+    </net>
+    <net code="2" name="Net-(C1-Pad1)" class="Default">
+      <node ref="C1" pin="1" pintype="passive"/>
+      <node ref="C8" pin="1" pintype="passive"/>
+      <node ref="R5" pin="2" pintype="passive"/>
+      <node ref="R6" pin="1" pintype="passive"/>
+    </net>
+    <net code="3" name="Net-(C3-Pad1)" class="Default">
+      <node ref="C3" pin="1" pintype="passive"/>
+      <node ref="R7" pin="2" pintype="passive"/>
+      <node ref="R8" pin="1" pintype="passive"/>
+    </net>
+    <net code="4" name="Net-(C5-Pad1)" class="Default">
+      <node ref="C5" pin="1" pintype="passive"/>
+      <node ref="JP1" pin="1" pintype="passive"/>
+      <node ref="R9" pin="2" pintype="passive"/>
+    </net>
+    <net code="5" name="Net-(C9-Pad2)" class="Default">
+      <node ref="C9" pin="2" pintype="passive"/>
+      <node ref="R17" pin="1" pintype="passive"/>
+    </net>
+    <net code="6" name="Net-(J2-Pad1)" class="Default">
+      <node ref="J2" pin="1" pintype="passive"/>
+      <node ref="JP1" pin="2" pintype="passive"/>
+    </net>
+    <net code="7" name="Net-(R1-Pad2)" class="Default">
+      <node ref="R1" pin="2" pintype="passive"/>
+      <node ref="R2" pin="1" pintype="passive"/>
+    </net>
+    <net code="8" name="Net-(R10-Pad2)" class="Default">
+      <node ref="R10" pin="2" pintype="passive"/>
+      <node ref="R11" pin="1" pintype="passive"/>
+    </net>
+    <net code="9" name="Net-(R18-Pad1)" class="Default">
+      <node ref="R18" pin="1" pintype="passive"/>
+      <node ref="R2" pin="2" pintype="passive"/>
+      <node ref="R3" pin="2" pintype="passive"/>
+      <node ref="R4" pin="1" pintype="passive"/>
+    </net>
+    <net code="10" name="Net-(S1A-AC)" class="Default">
+      <node ref="R17" pin="2" pintype="passive"/>
+      <node ref="S1" pin="3" pinfunction="AC_3" pintype="passive"/>
+      <node ref="S1" pin="5" pinfunction="COM_5" pintype="passive"/>
+    </net>
+    <net code="11" name="Net-(S1A-COM)" class="Default">
+      <node ref="R1" pin="1" pintype="passive"/>
+      <node ref="S1" pin="2" pinfunction="COM_2" pintype="passive"/>
+    </net>
+    <net code="12" name="Net-(S1A-DC)" class="Default">
+      <node ref="C9" pin="1" pintype="passive"/>
+      <node ref="J1" pin="1" pintype="passive"/>
+      <node ref="R10" pin="1" pintype="passive"/>
+      <node ref="S1" pin="1" pinfunction="DC_1" pintype="passive"/>
+      <node ref="S1" pin="4" pinfunction="DC_4" pintype="passive"/>
+    </net>
+    <net code="13" name="Net-(S2-COM)" class="Default">
+      <node ref="C10" pin="1" pintype="passive"/>
+      <node ref="R14" pin="1" pintype="passive"/>
+      <node ref="S2" pin="2" pinfunction="COM_2" pintype="passive"/>
+      <node ref="U1" pin="13" pinfunction="-_13" pintype="input"/>
+    </net>
+    <net code="14" name="Net-(S2-SENS)" class="Default">
+      <node ref="R15" pin="2" pintype="passive"/>
+      <node ref="R16" pin="1" pintype="passive"/>
+      <node ref="S2" pin="3" pinfunction="SENS_3" pintype="passive"/>
+    </net>
+    <net code="15" name="Net-(S2-WIDE)" class="Default">
+      <node ref="C10" pin="2" pintype="passive"/>
+      <node ref="R14" pin="2" pintype="passive"/>
+      <node ref="R5" pin="1" pintype="passive"/>
+      <node ref="S2" pin="1" pinfunction="WIDE_1" pintype="passive"/>
+      <node ref="U1" pin="14" pintype="output"/>
+    </net>
+    <net code="16" name="Net-(U1A-+)" class="Default">
+      <node ref="C11" pin="1" pintype="passive"/>
+      <node ref="R18" pin="2" pintype="passive"/>
+      <node ref="U1" pin="3" pinfunction="+_3" pintype="input"/>
+    </net>
+    <net code="17" name="Net-(U1A--)" class="Default">
+      <node ref="U1" pin="1" pintype="output"/>
+      <node ref="U1" pin="12" pinfunction="+_12" pintype="input"/>
+      <node ref="U1" pin="2" pinfunction="-_2" pintype="input"/>
+    </net>
+    <net code="18" name="Net-(U1B-+)" class="Default">
+      <node ref="C2" pin="1" pintype="passive"/>
+      <node ref="R6" pin="2" pintype="passive"/>
+      <node ref="U1" pin="5" pinfunction="+_5" pintype="input"/>
+    </net>
+    <net code="19" name="Net-(U1B--)" class="Default">
+      <node ref="C1" pin="2" pintype="passive"/>
+      <node ref="C8" pin="2" pintype="passive"/>
+      <node ref="R7" pin="1" pintype="passive"/>
+      <node ref="U1" pin="6" pinfunction="-_6" pintype="input"/>
+      <node ref="U1" pin="7" pintype="output"/>
+    </net>
+    <net code="20" name="Net-(U1C-+)" class="Default">
+      <node ref="C4" pin="1" pintype="passive"/>
+      <node ref="R8" pin="2" pintype="passive"/>
+      <node ref="U1" pin="10" pinfunction="+_10" pintype="input"/>
+    </net>
+    <net code="21" name="Net-(U1C--)" class="Default">
+      <node ref="C3" pin="2" pintype="passive"/>
+      <node ref="R9" pin="1" pintype="passive"/>
+      <node ref="U1" pin="8" pintype="output"/>
+      <node ref="U1" pin="9" pinfunction="-_9" pintype="input"/>
+    </net>
+    <net code="22" name="V_A" class="Default">
+      <node ref="C6" pin="1" pintype="passive"/>
+      <node ref="C7" pin="1" pintype="passive"/>
+      <node ref="J3" pin="1" pintype="passive"/>
+      <node ref="R12" pin="1" pintype="passive"/>
+      <node ref="R15" pin="1" pintype="passive"/>
+      <node ref="R3" pin="1" pintype="passive"/>
+      <node ref="U1" pin="4" pinfunction="V+_4" pintype="power_in"/>
+    </net>
+    <net code="23" name="unconnected-(S1B-AC-Pad6)" class="Default">
+      <node ref="S1" pin="6" pinfunction="AC_6" pintype="passive+no_connect"/>
+    </net>
+  </nets>
+</export>

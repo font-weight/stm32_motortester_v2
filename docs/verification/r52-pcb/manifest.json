@@ -1,0 +1,297 @@
+{
+  "base_commit": "6e364ed4cc6f2859473c565765fcfe54b811d77f",
+  "scope": "Fresh R5.2 single-copper LUT CAD and 1:1 print set; no physical assembly/measurement",
+  "exclusions": "Mutable progress and reviewer-owned report/critic.json excluded to avoid circular hashing. Local KiCad view state excluded.",
+  "files": [
+    {
+      "path": ".gitattributes",
+      "sha256": "5293bd4d90732a14065a059c0a00c00a3f47b66ea74b17acda6d163cc7ad8acf",
+      "bytes": 13335
+    },
+    {
+      "path": "docs/coordination.md",
+      "sha256": "97ea20bdb3a97608fb62f786b07e48343590c1df7839fa97a664c8f0588b542d",
+      "bytes": 72613
+    },
+    {
+      "path": "docs/decisions.md",
+      "sha256": "f5a7f94ee73427d755a4f02d90b74727c1c4d9c6043921a6db9f1b9f9599845e",
+      "bytes": 87064
+    },
+    {
+      "path": "docs/design/analog-r5-1/Analog_LUT_R5_1_2026-10-29_REVIEW.zip",
+      "sha256": "ddec83fd287bb4f7cd5341324f07445ec804d8ef839b7e7ce4ea74b4109cf777",
+      "bytes": 5869933
+    },
+    {
+      "path": "docs/design/analog-r5-1/kicad/analog-input-r5.kicad_sch",
+      "sha256": "81f66ec804cbeb8a30582a7cf9b8cf2be11a87e93079aa12b6b1dfca19be4041",
+      "bytes": 80999
+    },
+    {
+      "path": "docs/design/analog-r5-1/kicad/analog-input-r5.net.xml",
+      "sha256": "f2beab79cd6d4179ba69332e5ea1a3b900939f06d90522beaacb3bd2b3f3b0af",
+      "bytes": 44025
+    },
+    {
+      "path": "docs/quality-gate.md",
+      "sha256": "be4e7de71777d247f1554c8bec4d001b6afaac3c6e50479e0aad2001e4ff1489",
+      "bytes": 23103
+    },
+    {
+      "path": "docs/sources.md",
+      "sha256": "6f9d403f9352527b73b2021f329a1a960ed9aa8c740533bbe2cb19685ddda897",
+      "bytes": 43789
+    },
+    {
+      "path": "docs/verification/r52-pcb/author-evidence.json",
+      "sha256": "c8d11760339e05f99451e2f52ccfd3aa9398ed995dab7470526d14ca5991c620",
+      "bytes": 2396
+    },
+    {
+      "path": "docs/verification/r52-pcb/board-metrics.json",
+      "sha256": "92e9e0a0de2c7944a26298c355448d2f50fd0194494d2ec9be058f7a6afd72d1",
+      "bytes": 761
+    },
+    {
+      "path": "docs/verification/r52-pcb/drc.json",
+      "sha256": "0aecc13399966df4f446d7e9e79217a2b37f96edbe5c62158e66321894eee4bb",
+      "bytes": 1109
+    },
+    {
+      "path": "docs/verification/r52-pcb/final-ground-graph.json",
+      "sha256": "b09398618959dfa3132f1838541f252d0b193d00ef7d51845478290db8b2831e",
+      "bytes": 8930
+    },
+    {
+      "path": "docs/verification/r52-pcb/final-ground-graph.md",
+      "sha256": "2188671048ebb056a0cac34d2e0b55284c4a9452aced19c60dff0dc8d29e3fee",
+      "bytes": 3133
+    },
+    {
+      "path": "docs/verification/r52-pcb/geometry.json",
+      "sha256": "89069edd7d76819b50b0a1a24ac505cceb9f5cb75f2d863c36031f0ce04602eb",
+      "bytes": 685249
+    },
+    {
+      "path": "docs/verification/r52-pcb/parity.json",
+      "sha256": "85edd3bd6863540359f1dc5d74303ecd8c98b7e7718a9de6c3cad03a60c995f6",
+      "bytes": 13635
+    },
+    {
+      "path": "docs/verification/r52-pcb/return-path.svg",
+      "sha256": "14b526a7a296966a59638cfd2883cb75df25680810a4471c93435e701f474322",
+      "bytes": 189753
+    },
+    {
+      "path": "hardware/v2-input/r52-lut-20261102/.gitignore",
+      "sha256": "7c5f4ffb8e3c558c2f10f03e70fc666a51acbce68c612b44301f28284c54b491",
+      "bytes": 29
+    },
+    {
+      "path": "hardware/v2-input/r52-lut-20261102/analog-input-r52.kicad_dru",
+      "sha256": "e63f4283a8d43bd14c9b22cb958afd484ca9617afc245880d70bb09221e4edeb",
+      "bytes": 192
+    },
+    {
+      "path": "hardware/v2-input/r52-lut-20261102/analog-input-r52.kicad_pcb",
+      "sha256": "e3b121a95d97afec065cb37b64ef93cc9867b816e47e5f35d207a7d7dfa3b2c2",
+      "bytes": 276393
+    },
+    {
+      "path": "hardware/v2-input/r52-lut-20261102/analog-input-r52.kicad_pro",
+      "sha256": "b4b940845dd3677241bba1512cdf97e99a1f5f79d27e69c95a95355118f81c6d",
+      "bytes": 717
+    },
+    {
+      "path": "hardware/v2-input/r52-lut-20261102/analog-input-r52.kicad_sch",
+      "sha256": "b7bb769acddf59077c3516011021a3785727066f118977ffb5ffed19bd4d5eca",
+      "bytes": 80381
+    },
+    {
+      "path": "hardware/v2-input/r52-lut-20261102/AnalogLUTR5.kicad_sym",
+      "sha256": "c3cd2e5a32648552fc4e9d960e159c5f6265a2479584ce1e561d36b9b4720af8",
+      "bytes": 14008
+    },
+    {
+      "path": "hardware/v2-input/r52-lut-20261102/ASSEMBLY_RU.md",
+      "sha256": "09ce8f65032aa73dcc1aa6458f52743c17eab151bfeebfe25ad9240a4aeca9d5",
+      "bytes": 20325
+    },
+    {
+      "path": "hardware/v2-input/r52-lut-20261102/fp-lib-table",
+      "sha256": "b71cee173932d7646bb8d86679f715a465b98cdb1fa8f0dc80e3fd5cdf74b400",
+      "bytes": 135
+    },
+    {
+      "path": "hardware/v2-input/r52-lut-20261102/LUT.pretty/C5_0805_LUT.kicad_mod",
+      "sha256": "1b3a4c5830c18ae69bbaeba9fa4234ab1232dc331ddbc4703f3a59ee60463533",
+      "bytes": 2680
+    },
+    {
+      "path": "hardware/v2-input/r52-lut-20261102/LUT.pretty/DC_AC_Wire_2x3_P5.08.kicad_mod",
+      "sha256": "3cc07ec5f8a7c3f2ccc04e0165bfd92fb09319cc0ec964db88823ffbcb4619e4",
+      "bytes": 3397
+    },
+    {
+      "path": "hardware/v2-input/r52-lut-20261102/LUT.pretty/Film_K73_P4_LUT.kicad_mod",
+      "sha256": "0f76e09dfc86a14fc13d260324e542941747711043e2d8f3b024a72c842bd259",
+      "bytes": 2742
+    },
+    {
+      "path": "hardware/v2-input/r52-lut-20261102/LUT.pretty/Film_P6.5_LUT.kicad_mod",
+      "sha256": "721288a3683dafa46be1cc1577ae7b7e1e72e49883a47b6a8580d8580b10d355",
+      "bytes": 2686
+    },
+    {
+      "path": "hardware/v2-input/r52-lut-20261102/LUT.pretty/MKP_P5_7.2x11_LUT.kicad_mod",
+      "sha256": "c76e2ffdff9a8fb44e0c307128938607665028b109968cb021afc2d2f67b0efd",
+      "bytes": 2707
+    },
+    {
+      "path": "hardware/v2-input/r52-lut-20261102/LUT.pretty/R_025W_P10.16_LUT.kicad_mod",
+      "sha256": "ae4ccd27f5a5a17708f6c10eaba0bb24bae6b7dbaf4f76aa8c450aac0d7121f9",
+      "bytes": 2717
+    },
+    {
+      "path": "hardware/v2-input/r52-lut-20261102/LUT.pretty/Radial_P2.50_LUT.kicad_mod",
+      "sha256": "07bdef8d41d373251f6a203cc55ae3b72019721d93dca52cbefa0c06aa109c6c",
+      "bytes": 2752
+    },
+    {
+      "path": "hardware/v2-input/r52-lut-20261102/LUT.pretty/Radial_P2.54_LUT.kicad_mod",
+      "sha256": "faeaf708664d635a24417d0745facac6257488ab3fc2bd26b0491441c96cb2f9",
+      "bytes": 2758
+    },
+    {
+      "path": "hardware/v2-input/r52-lut-20261102/LUT.pretty/Shunt_1x2_P2.54_LUT.kicad_mod",
+      "sha256": "f22e97f69a901f31e3117df7bfa4a9bf32366fd5328a313e640eecb71b86d40d",
+      "bytes": 2752
+    },
+    {
+      "path": "hardware/v2-input/r52-lut-20261102/LUT.pretty/Shunt_1x3_P2.54_LUT.kicad_mod",
+      "sha256": "a7248758f266d8b241b6bbee2605e45efd86f041a8fe050057b7c2cc96840d3d",
+      "bytes": 2953
+    },
+    {
+      "path": "hardware/v2-input/r52-lut-20261102/LUT.pretty/SOIC14_Adapter_18x18_Rows15.24.kicad_mod",
+      "sha256": "fb454fa1860c63f548bb4485a18dbea038cbc7a39f44142adaa405166545a9f1",
+      "bytes": 5396
+    },
+    {
+      "path": "hardware/v2-input/r52-lut-20261102/LUT.pretty/W1_wire.kicad_mod",
+      "sha256": "31720df1da82ea98afdaf398991e3919c995aaf4de72d7b5e6c1ceb7b0478256",
+      "bytes": 3597
+    },
+    {
+      "path": "hardware/v2-input/r52-lut-20261102/LUT.pretty/W2_wire.kicad_mod",
+      "sha256": "58c4b402b08a5ba70fc89129c298da753740b4d91c2a3219cc5839b46d9083ea",
+      "bytes": 3597
+    },
+    {
+      "path": "hardware/v2-input/r52-lut-20261102/LUT.pretty/W3_wire.kicad_mod",
+      "sha256": "095238d0651373ed00e38b8fb006815d4080dbe5e414126dd6f2e58931043a2c",
+      "bytes": 3587
+    },
+    {
+      "path": "hardware/v2-input/r52-lut-20261102/LUT.pretty/Wire_P5.08_LUT.kicad_mod",
+      "sha256": "f1c5b47561dcb7fae751418e6d3d4bc8bc745e2c3ddb059752e59fb1a48dfbd7",
+      "bytes": 2652
+    },
+    {
+      "path": "hardware/v2-input/r52-lut-20261102/print/preview-1.png",
+      "sha256": "217ac3e9076b738445dad3c178a87a5508c61fb30ef42e9d2b1955ebe857bdcc",
+      "bytes": 170796
+    },
+    {
+      "path": "hardware/v2-input/r52-lut-20261102/print/preview-2.png",
+      "sha256": "633b568fb9d3a9c4afbc8b8377b173191af6a9986b38fa62d24048ed0ad0e0a0",
+      "bytes": 173023
+    },
+    {
+      "path": "hardware/v2-input/r52-lut-20261102/print/preview-3.png",
+      "sha256": "8b7e0ddc5715b357862ed6baedf26abcd938eba0f3c688faed53fb71fefea418",
+      "bytes": 194050
+    },
+    {
+      "path": "hardware/v2-input/r52-lut-20261102/print/preview-4.png",
+      "sha256": "43a1dd7df9c5d73d4b1adad163a091ec5bcfd76ef066daa25223f22a3edf9de1",
+      "bytes": 181728
+    },
+    {
+      "path": "hardware/v2-input/r52-lut-20261102/print/print-manifest.json",
+      "sha256": "8dce420f09e681db78c0a8ac1e00b8920a540206a9fdd94ab4c9f87624ed24ab",
+      "bytes": 3657
+    },
+    {
+      "path": "hardware/v2-input/r52-lut-20261102/print/R52_LUT_assembly_fit_1to1.pdf",
+      "sha256": "2fe1786e184166e978548efa7987acbcda07619385262b9d30397ce55ae04069",
+      "bytes": 778765
+    },
+    {
+      "path": "hardware/v2-input/r52-lut-20261102/README_RU.md",
+      "sha256": "315480977f5d4fae70a3f64d1ba91145fabbcf2ac5483b26b15ad9bdb3aac6f3",
+      "bytes": 12212
+    },
+    {
+      "path": "hardware/v2-input/r52-lut-20261102/sym-lib-table",
+      "sha256": "e1dd029087c0cf731945ad96d0741549cdb9a79b3eebd471831d87001250e943",
+      "bytes": 162
+    },
+    {
+      "path": "requirements.md",
+      "sha256": "fe2cee838b4986a6db58abba3e7ac4f280b8d030d258b55ad47413330c88b1a9",
+      "bytes": 67503
+    },
+    {
+      "path": "task.md",
+      "sha256": "7c76d4e5c71a6728ba35b0e6a36dac8fb0345c22a3cce876d4d76ef38093e912",
+      "bytes": 153107
+    },
+    {
+      "path": "tools/pcb_r52/build_board.py",
+      "sha256": "c556333ace4e3bb82028bb71b5b76c8284222042de57e3662d93a0d329768ff6",
+      "bytes": 15639
+    },
+    {
+      "path": "tools/pcb_r52/check_parity.py",
+      "sha256": "762b9045e306c26c439e0b6141c911a3637a453d9c367bf71af5534ba1d930c8",
+      "bytes": 7742
+    },
+    {
+      "path": "tools/pcb_r52/data/jumpers.json",
+      "sha256": "9985084839f793fb1df36ca6aa8d5cd89fbe69e6f3cd1c9cf71fc667b69b249d",
+      "bytes": 173
+    },
+    {
+      "path": "tools/pcb_r52/data/placement.json",
+      "sha256": "cd47e81cd6fce6c875e29a31b8ee9af2fdfb076b9ffcced24051a814a8ba9821",
+      "bytes": 318
+    },
+    {
+      "path": "tools/pcb_r52/data/routes.json",
+      "sha256": "77d5f38d36d6bddb6ad7d7b232eee9be2c6d774b98694f8b3b77130101ebc584",
+      "bytes": 30447
+    },
+    {
+      "path": "tools/pcb_r52/export_prints.py",
+      "sha256": "d903f5ac949ebe0389435574cd9ea58a3736bddceb2e0143898295a000cbe16a",
+      "bytes": 18233
+    },
+    {
+      "path": "tools/pcb_r52/ground_analysis.py",
+      "sha256": "801f22f4eb6a116832bc4c49dc3ea1f19ad05e76b6cd7f0c629300dcbf6a09d9",
+      "bytes": 35107
+    },
+    {
+      "path": "tools/pcb_r52/README.md",
+      "sha256": "3c3569668b025468b1e5fe1dd859b8af8f26e01e1be47139bc49fb9f12e95d3c",
+      "bytes": 8022
+    },
+    {
+      "path": "tools/pcb_r52/router.py",
+      "sha256": "14948262c72bc66505a5adf51bd4c67c8c6dc083d887363791b155e10eaa7f40",
+      "bytes": 24144
+    }
+  ]
+}

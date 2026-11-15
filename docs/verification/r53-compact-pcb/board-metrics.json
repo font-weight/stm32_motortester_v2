@@ -1,0 +1,2477 @@
+{
+  "board_sha256": "a42d276fa19727af062d79cac4bb9bfd6956781ed5078dbca22f9de8f20a98be",
+  "size_mm": [
+    88.0,
+    55.0
+  ],
+  "area_mm2": 4840.0,
+  "previous_size_mm": [
+    142,
+    98
+  ],
+  "area_reduction_factor": 2.875206611570248,
+  "tracks": 198,
+  "widths_mm": {
+    "1.2": 198
+  },
+  "track_layers": {
+    "B.Cu": 198
+  },
+  "vias": 0,
+  "zones": [
+    {
+      "net": "AGND",
+      "layer": "B.Cu",
+      "clearance_mm": 1.0
+    }
+  ],
+  "holes_by_diameter_mm": {
+    "0.9": 8,
+    "0.8": 46,
+    "3.2": 2,
+    "1.1": 12,
+    "1.0": 25
+  },
+  "hole_count": 93,
+  "parts": [
+    {
+      "ref": "C1",
+      "value": "10n PET 5% 100V",
+      "xy_mm": [
+        35.0,
+        58.0
+      ],
+      "side": "F.Cu",
+      "pads": [
+        {
+          "number": "1",
+          "xy_mm": [
+            37.0,
+            58.0
+          ],
+          "net": "Net-(C1-Pad1)",
+          "drill_mm": 0.9,
+          "size_mm": [
+            2.6,
+            2.6
+          ]
+        },
+        {
+          "number": "2",
+          "xy_mm": [
+            33.0,
+            58.0
+          ],
+          "net": "Net-(U1B--)",
+          "drill_mm": 0.9,
+          "size_mm": [
+            2.6,
+            2.6
+          ]
+        }
+      ]
+    },
+    {
+      "ref": "C10",
+      "value": "100p (96p measured)",
+      "xy_mm": [
+        70.1,
+        25.65
+      ],
+      "side": "F.Cu",
+      "pads": [
+        {
+          "number": "1",
+          "xy_mm": [
+            70.1,
+            26.92
+          ],
+          "net": "Net-(S2-COM)",
+          "drill_mm": 0.8,
+          "size_mm": [
+            1.7,
+            2.6
+          ]
+        },
+        {
+          "number": "2",
+          "xy_mm": [
+            70.1,
+            24.38
+          ],
+          "net": "Net-(S2-WIDE)",
+          "drill_mm": 0.8,
+          "size_mm": [
+            1.7,
+            2.6
+          ]
+        }
+      ]
+    },
+    {
+      "ref": "C11",
+      "value": "100p (104p measured)",
+      "xy_mm": [
+        46.2,
+        28.0
+      ],
+      "side": "F.Cu",
+      "pads": [
+        {
+          "number": "1",
+          "xy_mm": [
+            47.47,
+            28.0
+          ],
+          "net": "Net-(U1A-+)",
+          "drill_mm": 0.8,
+          "size_mm": [
+            1.7,
+            2.6
+          ]
+        },
+        {
+          "number": "2",
+          "xy_mm": [
+            44.93,
+            28.0
+          ],
+          "net": "AGND",
+          "drill_mm": 0.8,
+          "size_mm": [
+            1.7,
+            2.6
+          ]
+        }
+      ]
+    },
+    {
+      "ref": "C2",
+      "value": "10n PET 5% 100V",
+      "xy_mm": [
+        35.0,
+        43.0
+      ],
+      "side": "F.Cu",
+      "pads": [
+        {
+          "number": "1",
+          "xy_mm": [
+            37.0,
+            43.0
+          ],
+          "net": "Net-(U1B-+)",
+          "drill_mm": 0.9,
+          "size_mm": [
+            2.6,
+            2.6
+          ]
+        },
+        {
+          "number": "2",
+          "xy_mm": [
+            33.0,
+            43.0
+          ],
+          "net": "AGND",
+          "drill_mm": 0.9,
+          "size_mm": [
+            2.6,
+            2.6
+          ]
+        }
+      ]
+    },
+    {
+      "ref": "C3",
+      "value": "68n film 5%",
+      "xy_mm": [
+        81.5,
+        51.0
+      ],
+      "side": "F.Cu",
+      "pads": [
+        {
+          "number": "1",
+          "xy_mm": [
+            81.5,
+            54.25
+          ],
+          "net": "Net-(C3-Pad1)",
+          "drill_mm": 0.9,
+          "size_mm": [
+            2.6,
+            2.6
+          ]
+        },
+        {
+          "number": "2",
+          "xy_mm": [
+            81.5,
+            47.75
+          ],
+          "net": "Net-(U1C--)",
+          "drill_mm": 0.9,
+          "size_mm": [
+            2.6,
+            2.6
+          ]
+        }
+      ]
+    },
+    {
+      "ref": "C4",
+      "value": "10n PET 5% 100V",
+      "xy_mm": [
+        83.5,
+        38.0
+      ],
+      "side": "F.Cu",
+      "pads": [
+        {
+          "number": "1",
+          "xy_mm": [
+            81.5,
+            38.0
+          ],
+          "net": "Net-(U1C-+)",
+          "drill_mm": 0.9,
+          "size_mm": [
+            2.6,
+            2.6
+          ]
+        },
+        {
+          "number": "2",
+          "xy_mm": [
+            85.5,
+            38.0
+          ],
+          "net": "AGND",
+          "drill_mm": 0.9,
+          "size_mm": [
+            2.6,
+            2.6
+          ]
+        }
+      ]
+    },
+    {
+      "ref": "C5",
+      "value": "1n C0G 5%",
+      "xy_mm": [
+        89.0,
+        58.5
+      ],
+      "side": "B.Cu",
+      "pads": [
+        {
+          "number": "1",
+          "xy_mm": [
+            90.0,
+            58.5
+          ],
+          "net": "Net-(C5-Pad1)",
+          "drill_mm": 0.0,
+          "size_mm": [
+            1.2,
+            1.6
+          ]
+        },
+        {
+          "number": "2",
+          "xy_mm": [
+            88.0,
+            58.5
+          ],
+          "net": "AGND",
+          "drill_mm": 0.0,
+          "size_mm": [
+            1.2,
+            1.6
+          ]
+        }
+      ]
+    },
+    {
+      "ref": "C6",
+      "value": "100n X7R",
+      "xy_mm": [
+        58.5,
+        44.0
+      ],
+      "side": "F.Cu",
+      "pads": [
+        {
+          "number": "1",
+          "xy_mm": [
+            57.23,
+            44.0
+          ],
+          "net": "V_A",
+          "drill_mm": 0.8,
+          "size_mm": [
+            1.7,
+            2.6
+          ]
+        },
+        {
+          "number": "2",
+          "xy_mm": [
+            59.77,
+            44.0
+          ],
+          "net": "AGND",
+          "drill_mm": 0.8,
+          "size_mm": [
+            1.7,
+            2.6
+          ]
+        }
+      ]
+    },
+    {
+      "ref": "C7",
+      "value": "1u X7R",
+      "xy_mm": [
+        65.0,
+        18.5
+      ],
+      "side": "F.Cu",
+      "pads": [
+        {
+          "number": "1",
+          "xy_mm": [
+            63.73,
+            18.5
+          ],
+          "net": "V_A",
+          "drill_mm": 0.8,
+          "size_mm": [
+            1.7,
+            2.6
+          ]
+        },
+        {
+          "number": "2",
+          "xy_mm": [
+            66.27,
+            18.5
+          ],
+          "net": "AGND",
+          "drill_mm": 0.8,
+          "size_mm": [
+            1.7,
+            2.6
+          ]
+        }
+      ]
+    },
+    {
+      "ref": "C8",
+      "value": "1.8n C0G 5% 50V",
+      "xy_mm": [
+        38.5,
+        49.0
+      ],
+      "side": "F.Cu",
+      "pads": [
+        {
+          "number": "1",
+          "xy_mm": [
+            39.75,
+            49.0
+          ],
+          "net": "Net-(C1-Pad1)",
+          "drill_mm": 0.8,
+          "size_mm": [
+            1.7,
+            2.6
+          ]
+        },
+        {
+          "number": "2",
+          "xy_mm": [
+            37.25,
+            49.0
+          ],
+          "net": "Net-(U1B--)",
+          "drill_mm": 0.8,
+          "size_mm": [
+            1.7,
+            2.6
+          ]
+        }
+      ]
+    },
+    {
+      "ref": "C9",
+      "value": "1u MKP 5% 100V",
+      "xy_mm": [
+        27.0,
+        17.5
+      ],
+      "side": "F.Cu",
+      "pads": [
+        {
+          "number": "1",
+          "xy_mm": [
+            24.5,
+            17.5
+          ],
+          "net": "Net-(S1A-DC)",
+          "drill_mm": 0.8,
+          "size_mm": [
+            2.6,
+            2.6
+          ]
+        },
+        {
+          "number": "2",
+          "xy_mm": [
+            29.5,
+            17.5
+          ],
+          "net": "Net-(C9-Pad2)",
+          "drill_mm": 0.8,
+          "size_mm": [
+            2.6,
+            2.6
+          ]
+        }
+      ]
+    },
+    {
+      "ref": "H1",
+      "value": "M3",
+      "xy_mm": [
+        92.0,
+        13.0
+      ],
+      "side": "F.Cu",
+      "pads": [
+        {
+          "number": "",
+          "xy_mm": [
+            92.0,
+            13.0
+          ],
+          "net": "",
+          "drill_mm": 3.2,
+          "size_mm": [
+            3.2,
+            3.2
+          ]
+        }
+      ]
+    },
+    {
+      "ref": "H2",
+      "value": "M3",
+      "xy_mm": [
+        12.8,
+        61.5
+      ],
+      "side": "F.Cu",
+      "pads": [
+        {
+          "number": "",
+          "xy_mm": [
+            12.8,
+            61.5
+          ],
+          "net": "",
+          "drill_mm": 3.2,
+          "size_mm": [
+            3.2,
+            3.2
+          ]
+        }
+      ]
+    },
+    {
+      "ref": "J1",
+      "value": "CH1 / BNC",
+      "xy_mm": [
+        17.5,
+        12.5
+      ],
+      "side": "F.Cu",
+      "pads": [
+        {
+          "number": "1",
+          "xy_mm": [
+            14.96,
+            12.5
+          ],
+          "net": "Net-(S1A-DC)",
+          "drill_mm": 1.1,
+          "size_mm": [
+            3.0,
+            3.0
+          ]
+        },
+        {
+          "number": "2",
+          "xy_mm": [
+            20.04,
+            12.5
+          ],
+          "net": "AGND",
+          "drill_mm": 1.1,
+          "size_mm": [
+            3.0,
+            3.0
+          ]
+        }
+      ]
+    },
+    {
+      "ref": "J2",
+      "value": "Verified PA0 / ADC1_IN0",
+      "xy_mm": [
+        58.5,
+        61.0
+      ],
+      "side": "F.Cu",
+      "pads": [
+        {
+          "number": "1",
+          "xy_mm": [
+            61.04,
+            61.0
+          ],
+          "net": "Net-(J2-Pad1)",
+          "drill_mm": 1.1,
+          "size_mm": [
+            3.0,
+            3.0
+          ]
+        },
+        {
+          "number": "2",
+          "xy_mm": [
+            55.96,
+            61.0
+          ],
+          "net": "AGND",
+          "drill_mm": 1.1,
+          "size_mm": [
+            3.0,
+            3.0
+          ]
+        }
+      ]
+    },
+    {
+      "ref": "J3",
+      "value": "Common VDDA rail",
+      "xy_mm": [
+        49.0,
+        13.5
+      ],
+      "side": "F.Cu",
+      "pads": [
+        {
+          "number": "1",
+          "xy_mm": [
+            46.46,
+            13.5
+          ],
+          "net": "V_A",
+          "drill_mm": 1.1,
+          "size_mm": [
+            3.0,
+            3.0
+          ]
+        },
+        {
+          "number": "2",
+          "xy_mm": [
+            51.54,
+            13.5
+          ],
+          "net": "AGND",
+          "drill_mm": 1.1,
+          "size_mm": [
+            3.0,
+            3.0
+          ]
+        }
+      ]
+    },
+    {
+      "ref": "JP1",
+      "value": "ADC link",
+      "xy_mm": [
+        68.0,
+        59.0
+      ],
+      "side": "F.Cu",
+      "pads": [
+        {
+          "number": "1",
+          "xy_mm": [
+            68.0,
+            60.27
+          ],
+          "net": "Net-(C5-Pad1)",
+          "drill_mm": 1.0,
+          "size_mm": [
+            1.7,
+            3.0
+          ]
+        },
+        {
+          "number": "2",
+          "xy_mm": [
+            68.0,
+            57.73
+          ],
+          "net": "Net-(J2-Pad1)",
+          "drill_mm": 1.0,
+          "size_mm": [
+            1.7,
+            3.0
+          ]
+        }
+      ]
+    },
+    {
+      "ref": "R1",
+      "value": "510k 1%",
+      "xy_mm": [
+        35.0,
+        31.0
+      ],
+      "side": "F.Cu",
+      "pads": [
+        {
+          "number": "1",
+          "xy_mm": [
+            29.92,
+            31.0
+          ],
+          "net": "Net-(S1A-COM)",
+          "drill_mm": 0.8,
+          "size_mm": [
+            2.6,
+            2.6
+          ]
+        },
+        {
+          "number": "2",
+          "xy_mm": [
+            40.08,
+            31.0
+          ],
+          "net": "Net-(R1-Pad2)",
+          "drill_mm": 0.8,
+          "size_mm": [
+            2.6,
+            2.6
+          ]
+        }
+      ]
+    },
+    {
+      "ref": "R10",
+      "value": "10M 1%",
+      "xy_mm": [
+        15.0,
+        48.0
+      ],
+      "side": "F.Cu",
+      "pads": [
+        {
+          "number": "1",
+          "xy_mm": [
+            15.0,
+            42.92
+          ],
+          "net": "Net-(S1A-DC)",
+          "drill_mm": 0.8,
+          "size_mm": [
+            2.6,
+            2.6
+          ]
+        },
+        {
+          "number": "2",
+          "xy_mm": [
+            15.0,
+            53.08
+          ],
+          "net": "Net-(R10-Pad2)",
+          "drill_mm": 0.8,
+          "size_mm": [
+            2.6,
+            2.6
+          ]
+        }
+      ]
+    },
+    {
+      "ref": "R11",
+      "value": "4.7M 1%",
+      "xy_mm": [
+        19.5,
+        54.0
+      ],
+      "side": "F.Cu",
+      "pads": [
+        {
+          "number": "1",
+          "xy_mm": [
+            19.5,
+            59.08
+          ],
+          "net": "Net-(R10-Pad2)",
+          "drill_mm": 0.8,
+          "size_mm": [
+            2.6,
+            2.6
+          ]
+        },
+        {
+          "number": "2",
+          "xy_mm": [
+            19.5,
+            48.92
+          ],
+          "net": "AGND",
+          "drill_mm": 0.8,
+          "size_mm": [
+            2.6,
+            2.6
+          ]
+        }
+      ]
+    },
+    {
+      "ref": "R12",
+      "value": "1k 1%",
+      "xy_mm": [
+        61.2,
+        14.0
+      ],
+      "side": "F.Cu",
+      "pads": [
+        {
+          "number": "1",
+          "xy_mm": [
+            66.28,
+            14.0
+          ],
+          "net": "V_A",
+          "drill_mm": 0.8,
+          "size_mm": [
+            2.6,
+            2.6
+          ]
+        },
+        {
+          "number": "2",
+          "xy_mm": [
+            56.12,
+            14.0
+          ],
+          "net": "AGND",
+          "drill_mm": 0.8,
+          "size_mm": [
+            2.6,
+            2.6
+          ]
+        }
+      ]
+    },
+    {
+      "ref": "R14",
+      "value": "1.6k 1%",
+      "xy_mm": [
+        76.0,
+        25.65
+      ],
+      "side": "F.Cu",
+      "pads": [
+        {
+          "number": "1",
+          "xy_mm": [
+            76.0,
+            30.73
+          ],
+          "net": "Net-(S2-COM)",
+          "drill_mm": 0.8,
+          "size_mm": [
+            2.6,
+            2.6
+          ]
+        },
+        {
+          "number": "2",
+          "xy_mm": [
+            76.0,
+            20.57
+          ],
+          "net": "Net-(S2-WIDE)",
+          "drill_mm": 0.8,
+          "size_mm": [
+            2.6,
+            2.6
+          ]
+        }
+      ]
+    },
+    {
+      "ref": "R15",
+      "value": "750 1%",
+      "xy_mm": [
+        75.3,
+        13.7
+      ],
+      "side": "F.Cu",
+      "pads": [
+        {
+          "number": "1",
+          "xy_mm": [
+            70.22,
+            13.7
+          ],
+          "net": "V_A",
+          "drill_mm": 0.8,
+          "size_mm": [
+            2.6,
+            2.6
+          ]
+        },
+        {
+          "number": "2",
+          "xy_mm": [
+            80.38,
+            13.7
+          ],
+          "net": "Net-(S2-SENS)",
+          "drill_mm": 0.8,
+          "size_mm": [
+            2.6,
+            2.6
+          ]
+        }
+      ]
+    },
+    {
+      "ref": "R16",
+      "value": "820 1%",
+      "xy_mm": [
+        87.0,
+        28.5
+      ],
+      "side": "F.Cu",
+      "pads": [
+        {
+          "number": "1",
+          "xy_mm": [
+            81.92,
+            28.5
+          ],
+          "net": "Net-(S2-SENS)",
+          "drill_mm": 0.8,
+          "size_mm": [
+            2.6,
+            2.6
+          ]
+        },
+        {
+          "number": "2",
+          "xy_mm": [
+            92.08,
+            28.5
+          ],
+          "net": "AGND",
+          "drill_mm": 0.8,
+          "size_mm": [
+            2.6,
+            2.6
+          ]
+        }
+      ]
+    },
+    {
+      "ref": "R17",
+      "value": "10k 1%",
+      "xy_mm": [
+        25.5,
+        31.0
+      ],
+      "side": "F.Cu",
+      "pads": [
+        {
+          "number": "1",
+          "xy_mm": [
+            25.5,
+            25.92
+          ],
+          "net": "Net-(C9-Pad2)",
+          "drill_mm": 0.8,
+          "size_mm": [
+            2.6,
+            2.6
+          ]
+        },
+        {
+          "number": "2",
+          "xy_mm": [
+            25.5,
+            36.08
+          ],
+          "net": "Net-(S1A-AC)",
+          "drill_mm": 0.8,
+          "size_mm": [
+            2.6,
+            2.6
+          ]
+        }
+      ]
+    },
+    {
+      "ref": "R18",
+      "value": "1k 1%",
+      "xy_mm": [
+        54.0,
+        19.2
+      ],
+      "side": "F.Cu",
+      "pads": [
+        {
+          "number": "1",
+          "xy_mm": [
+            48.92,
+            19.2
+          ],
+          "net": "Net-(R18-Pad1)",
+          "drill_mm": 0.8,
+          "size_mm": [
+            2.6,
+            2.6
+          ]
+        },
+        {
+          "number": "2",
+          "xy_mm": [
+            59.08,
+            19.2
+          ],
+          "net": "Net-(U1A-+)",
+          "drill_mm": 0.8,
+          "size_mm": [
+            2.6,
+            2.6
+          ]
+        }
+      ]
+    },
+    {
+      "ref": "R2",
+      "value": "510k 1%",
+      "xy_mm": [
+        35.0,
+        36.0
+      ],
+      "side": "F.Cu",
+      "pads": [
+        {
+          "number": "1",
+          "xy_mm": [
+            40.08,
+            36.0
+          ],
+          "net": "Net-(R1-Pad2)",
+          "drill_mm": 0.8,
+          "size_mm": [
+            2.6,
+            2.6
+          ]
+        },
+        {
+          "number": "2",
+          "xy_mm": [
+            29.92,
+            36.0
+          ],
+          "net": "Net-(R18-Pad1)",
+          "drill_mm": 0.8,
+          "size_mm": [
+            2.6,
+            2.6
+          ]
+        }
+      ]
+    },
+    {
+      "ref": "R3",
+      "value": "75k 1%",
+      "xy_mm": [
+        37.0,
+        17.5
+      ],
+      "side": "F.Cu",
+      "pads": [
+        {
+          "number": "1",
+          "xy_mm": [
+            37.0,
+            12.42
+          ],
+          "net": "V_A",
+          "drill_mm": 0.8,
+          "size_mm": [
+            2.6,
+            2.6
+          ]
+        },
+        {
+          "number": "2",
+          "xy_mm": [
+            37.0,
+            22.58
+          ],
+          "net": "Net-(R18-Pad1)",
+          "drill_mm": 0.8,
+          "size_mm": [
+            2.6,
+            2.6
+          ]
+        }
+      ]
+    },
+    {
+      "ref": "R4",
+      "value": "82k 1%",
+      "xy_mm": [
+        28.8,
+        49.5
+      ],
+      "side": "F.Cu",
+      "pads": [
+        {
+          "number": "1",
+          "xy_mm": [
+            33.88,
+            49.5
+          ],
+          "net": "Net-(R18-Pad1)",
+          "drill_mm": 0.8,
+          "size_mm": [
+            2.6,
+            2.6
+          ]
+        },
+        {
+          "number": "2",
+          "xy_mm": [
+            23.72,
+            49.5
+          ],
+          "net": "AGND",
+          "drill_mm": 0.8,
+          "size_mm": [
+            2.6,
+            2.6
+          ]
+        }
+      ]
+    },
+    {
+      "ref": "R5",
+      "value": "750 1%",
+      "xy_mm": [
+        49.5,
+        55.6
+      ],
+      "side": "F.Cu",
+      "pads": [
+        {
+          "number": "1",
+          "xy_mm": [
+            49.5,
+            50.52
+          ],
+          "net": "Net-(S2-WIDE)",
+          "drill_mm": 0.8,
+          "size_mm": [
+            2.6,
+            2.6
+          ]
+        },
+        {
+          "number": "2",
+          "xy_mm": [
+            49.5,
+            60.68
+          ],
+          "net": "Net-(C1-Pad1)",
+          "drill_mm": 0.8,
+          "size_mm": [
+            2.6,
+            2.6
+          ]
+        }
+      ]
+    },
+    {
+      "ref": "R6",
+      "value": "750 1%",
+      "xy_mm": [
+        43.5,
+        57.0
+      ],
+      "side": "F.Cu",
+      "pads": [
+        {
+          "number": "1",
+          "xy_mm": [
+            43.5,
+            62.08
+          ],
+          "net": "Net-(C1-Pad1)",
+          "drill_mm": 0.8,
+          "size_mm": [
+            2.6,
+            2.6
+          ]
+        },
+        {
+          "number": "2",
+          "xy_mm": [
+            43.5,
+            51.92
+          ],
+          "net": "Net-(U1B-+)",
+          "drill_mm": 0.8,
+          "size_mm": [
+            2.6,
+            2.6
+          ]
+        }
+      ]
+    },
+    {
+      "ref": "R7",
+      "value": "330 1%",
+      "xy_mm": [
+        62.0,
+        52.0
+      ],
+      "side": "F.Cu",
+      "pads": [
+        {
+          "number": "1",
+          "xy_mm": [
+            56.92,
+            52.0
+          ],
+          "net": "Net-(U1B--)",
+          "drill_mm": 0.8,
+          "size_mm": [
+            2.6,
+            2.6
+          ]
+        },
+        {
+          "number": "2",
+          "xy_mm": [
+            67.08,
+            52.0
+          ],
+          "net": "Net-(C3-Pad1)",
+          "drill_mm": 0.8,
+          "size_mm": [
+            2.6,
+            2.6
+          ]
+        }
+      ]
+    },
+    {
+      "ref": "R8",
+      "value": "330 1%",
+      "xy_mm": [
+        73.5,
+        43.0
+      ],
+      "side": "F.Cu",
+      "pads": [
+        {
+          "number": "1",
+          "xy_mm": [
+            73.5,
+            48.08
+          ],
+          "net": "Net-(C3-Pad1)",
+          "drill_mm": 0.8,
+          "size_mm": [
+            2.6,
+            2.6
+          ]
+        },
+        {
+          "number": "2",
+          "xy_mm": [
+            73.5,
+            37.92
+          ],
+          "net": "Net-(U1C-+)",
+          "drill_mm": 0.8,
+          "size_mm": [
+            2.6,
+            2.6
+          ]
+        }
+      ]
+    },
+    {
+      "ref": "R9",
+      "value": "330 1%",
+      "xy_mm": [
+        89.5,
+        50.0
+      ],
+      "side": "F.Cu",
+      "pads": [
+        {
+          "number": "1",
+          "xy_mm": [
+            89.5,
+            55.08
+          ],
+          "net": "Net-(U1C--)",
+          "drill_mm": 0.8,
+          "size_mm": [
+            2.6,
+            2.6
+          ]
+        },
+        {
+          "number": "2",
+          "xy_mm": [
+            89.5,
+            44.92
+          ],
+          "net": "Net-(C5-Pad1)",
+          "drill_mm": 0.8,
+          "size_mm": [
+            2.6,
+            2.6
+          ]
+        }
+      ]
+    },
+    {
+      "ref": "S1",
+      "value": "DC / AC",
+      "xy_mm": [
+        14.94,
+        24.1
+      ],
+      "side": "F.Cu",
+      "pads": [
+        {
+          "number": "1",
+          "xy_mm": [
+            12.4,
+            19.02
+          ],
+          "net": "Net-(S1A-DC)",
+          "drill_mm": 1.1,
+          "size_mm": [
+            2.8,
+            2.8
+          ]
+        },
+        {
+          "number": "2",
+          "xy_mm": [
+            17.48,
+            24.1
+          ],
+          "net": "Net-(S1A-COM)",
+          "drill_mm": 1.1,
+          "size_mm": [
+            2.8,
+            2.8
+          ]
+        },
+        {
+          "number": "3",
+          "xy_mm": [
+            12.4,
+            29.18
+          ],
+          "net": "Net-(S1A-AC)",
+          "drill_mm": 1.1,
+          "size_mm": [
+            2.8,
+            2.8
+          ]
+        },
+        {
+          "number": "4",
+          "xy_mm": [
+            17.48,
+            19.02
+          ],
+          "net": "Net-(S1A-DC)",
+          "drill_mm": 1.1,
+          "size_mm": [
+            2.8,
+            2.8
+          ]
+        },
+        {
+          "number": "5",
+          "xy_mm": [
+            17.48,
+            29.18
+          ],
+          "net": "Net-(S1A-AC)",
+          "drill_mm": 1.1,
+          "size_mm": [
+            2.8,
+            2.8
+          ]
+        },
+        {
+          "number": "6",
+          "xy_mm": [
+            12.4,
+            24.1
+          ],
+          "net": "unconnected-(S1B-AC-Pad6)",
+          "drill_mm": 1.1,
+          "size_mm": [
+            2.8,
+            2.8
+          ]
+        }
+      ]
+    },
+    {
+      "ref": "S2",
+      "value": "3-pin + shunt",
+      "xy_mm": [
+        85.0,
+        20.0
+      ],
+      "side": "F.Cu",
+      "pads": [
+        {
+          "number": "1",
+          "xy_mm": [
+            82.46,
+            20.0
+          ],
+          "net": "Net-(S2-WIDE)",
+          "drill_mm": 1.0,
+          "size_mm": [
+            1.7,
+            3.0
+          ]
+        },
+        {
+          "number": "2",
+          "xy_mm": [
+            85.0,
+            20.0
+          ],
+          "net": "Net-(S2-COM)",
+          "drill_mm": 1.0,
+          "size_mm": [
+            1.7,
+            3.0
+          ]
+        },
+        {
+          "number": "3",
+          "xy_mm": [
+            87.54,
+            20.0
+          ],
+          "net": "Net-(S2-SENS)",
+          "drill_mm": 1.0,
+          "size_mm": [
+            1.7,
+            3.0
+          ]
+        }
+      ]
+    },
+    {
+      "ref": "U1",
+      "value": "TLV9064QDRQ1",
+      "xy_mm": [
+        58.5,
+        32.0
+      ],
+      "side": "F.Cu",
+      "pads": [
+        {
+          "number": "1",
+          "xy_mm": [
+            50.88,
+            24.38
+          ],
+          "net": "Net-(U1A--)",
+          "drill_mm": 1.0,
+          "size_mm": [
+            2.6,
+            1.7
+          ]
+        },
+        {
+          "number": "2",
+          "xy_mm": [
+            50.88,
+            26.92
+          ],
+          "net": "Net-(U1A--)",
+          "drill_mm": 1.0,
+          "size_mm": [
+            2.6,
+            1.7
+          ]
+        },
+        {
+          "number": "3",
+          "xy_mm": [
+            50.88,
+            29.46
+          ],
+          "net": "Net-(U1A-+)",
+          "drill_mm": 1.0,
+          "size_mm": [
+            2.6,
+            1.7
+          ]
+        },
+        {
+          "number": "4",
+          "xy_mm": [
+            50.88,
+            32.0
+          ],
+          "net": "V_A",
+          "drill_mm": 1.0,
+          "size_mm": [
+            2.6,
+            1.7
+          ]
+        },
+        {
+          "number": "5",
+          "xy_mm": [
+            50.88,
+            34.54
+          ],
+          "net": "Net-(U1B-+)",
+          "drill_mm": 1.0,
+          "size_mm": [
+            2.6,
+            1.7
+          ]
+        },
+        {
+          "number": "6",
+          "xy_mm": [
+            50.88,
+            37.079999
+          ],
+          "net": "Net-(U1B--)",
+          "drill_mm": 1.0,
+          "size_mm": [
+            2.6,
+            1.7
+          ]
+        },
+        {
+          "number": "7",
+          "xy_mm": [
+            50.88,
+            39.62
+          ],
+          "net": "Net-(U1B--)",
+          "drill_mm": 1.0,
+          "size_mm": [
+            2.6,
+            1.7
+          ]
+        },
+        {
+          "number": "8",
+          "xy_mm": [
+            66.12,
+            39.62
+          ],
+          "net": "Net-(U1C--)",
+          "drill_mm": 1.0,
+          "size_mm": [
+            2.6,
+            1.7
+          ]
+        },
+        {
+          "number": "9",
+          "xy_mm": [
+            66.12,
+            37.079999
+          ],
+          "net": "Net-(U1C--)",
+          "drill_mm": 1.0,
+          "size_mm": [
+            2.6,
+            1.7
+          ]
+        },
+        {
+          "number": "10",
+          "xy_mm": [
+            66.12,
+            34.54
+          ],
+          "net": "Net-(U1C-+)",
+          "drill_mm": 1.0,
+          "size_mm": [
+            2.6,
+            1.7
+          ]
+        },
+        {
+          "number": "11",
+          "xy_mm": [
+            66.12,
+            32.0
+          ],
+          "net": "AGND",
+          "drill_mm": 1.0,
+          "size_mm": [
+            2.6,
+            1.7
+          ]
+        },
+        {
+          "number": "12",
+          "xy_mm": [
+            66.12,
+            29.46
+          ],
+          "net": "Net-(U1A--)",
+          "drill_mm": 1.0,
+          "size_mm": [
+            2.6,
+            1.7
+          ]
+        },
+        {
+          "number": "13",
+          "xy_mm": [
+            66.12,
+            26.92
+          ],
+          "net": "Net-(S2-COM)",
+          "drill_mm": 1.0,
+          "size_mm": [
+            2.6,
+            1.7
+          ]
+        },
+        {
+          "number": "14",
+          "xy_mm": [
+            66.12,
+            24.38
+          ],
+          "net": "Net-(S2-WIDE)",
+          "drill_mm": 1.0,
+          "size_mm": [
+            2.6,
+            1.7
+          ]
+        }
+      ]
+    },
+    {
+      "ref": "W1",
+      "value": "Insulated wire",
+      "xy_mm": [
+        69.95,
+        21.0
+      ],
+      "side": "F.Cu",
+      "pads": [
+        {
+          "number": "1",
+          "xy_mm": [
+            49.5,
+            46.799999
+          ],
+          "net": "Net-(S2-WIDE)",
+          "drill_mm": 1.0,
+          "size_mm": [
+            2.6,
+            2.6
+          ]
+        },
+        {
+          "number": "1",
+          "xy_mm": [
+            69.95,
+            21.0
+          ],
+          "net": "Net-(S2-WIDE)",
+          "drill_mm": 1.0,
+          "size_mm": [
+            2.6,
+            2.6
+          ]
+        }
+      ]
+    },
+    {
+      "ref": "W2",
+      "value": "Insulated wire",
+      "xy_mm": [
+        42.75,
+        20.0
+      ],
+      "side": "F.Cu",
+      "pads": [
+        {
+          "number": "1",
+          "xy_mm": [
+            42.75,
+            20.0
+          ],
+          "net": "V_A",
+          "drill_mm": 1.0,
+          "size_mm": [
+            2.6,
+            2.6
+          ]
+        },
+        {
+          "number": "1",
+          "xy_mm": [
+            44.5,
+            32.5
+          ],
+          "net": "V_A",
+          "drill_mm": 1.0,
+          "size_mm": [
+            2.6,
+            2.6
+          ]
+        }
+      ]
+    },
+    {
+      "ref": "W3",
+      "value": "Insulated wire",
+      "xy_mm": [
+        44.0,
+        40.0
+      ],
+      "side": "F.Cu",
+      "pads": [
+        {
+          "number": "1",
+          "xy_mm": [
+            44.0,
+            40.0
+          ],
+          "net": "Net-(U1B-+)",
+          "drill_mm": 1.0,
+          "size_mm": [
+            2.6,
+            2.6
+          ]
+        },
+        {
+          "number": "1",
+          "xy_mm": [
+            45.0,
+            47.5
+          ],
+          "net": "Net-(U1B-+)",
+          "drill_mm": 1.0,
+          "size_mm": [
+            2.6,
+            2.6
+          ]
+        }
+      ]
+    },
+    {
+      "ref": "W4",
+      "value": "Insulated wire",
+      "xy_mm": [
+        57.0,
+        32.5
+      ],
+      "side": "B.Cu",
+      "pads": [
+        {
+          "number": "1",
+          "xy_mm": [
+            57.0,
+            32.5
+          ],
+          "net": "AGND",
+          "drill_mm": 0.0,
+          "size_mm": [
+            3.0,
+            3.0
+          ]
+        },
+        {
+          "number": "1",
+          "xy_mm": [
+            57.0,
+            26.5
+          ],
+          "net": "AGND",
+          "drill_mm": 0.0,
+          "size_mm": [
+            3.0,
+            3.0
+          ]
+        }
+      ]
+    },
+    {
+      "ref": "W5",
+      "value": "Insulated wire",
+      "xy_mm": [
+        27.0,
+        39.5
+      ],
+      "side": "B.Cu",
+      "pads": [
+        {
+          "number": "1",
+          "xy_mm": [
+            33.0,
+            39.5
+          ],
+          "net": "AGND",
+          "drill_mm": 0.0,
+          "size_mm": [
+            3.0,
+            3.0
+          ]
+        },
+        {
+          "number": "1",
+          "xy_mm": [
+            27.0,
+            39.5
+          ],
+          "net": "AGND",
+          "drill_mm": 0.0,
+          "size_mm": [
+            3.0,
+            3.0
+          ]
+        }
+      ]
+    },
+    {
+      "ref": "W6",
+      "value": "Insulated wire",
+      "xy_mm": [
+        33.5,
+        26.0
+      ],
+      "side": "B.Cu",
+      "pads": [
+        {
+          "number": "1",
+          "xy_mm": [
+            39.5,
+            26.0
+          ],
+          "net": "AGND",
+          "drill_mm": 0.0,
+          "size_mm": [
+            3.0,
+            3.0
+          ]
+        },
+        {
+          "number": "1",
+          "xy_mm": [
+            33.5,
+            26.0
+          ],
+          "net": "AGND",
+          "drill_mm": 0.0,
+          "size_mm": [
+            3.0,
+            3.0
+          ]
+        }
+      ]
+    },
+    {
+      "ref": "W7",
+      "value": "Insulated wire",
+      "xy_mm": [
+        41.5,
+        57.5
+      ],
+      "side": "B.Cu",
+      "pads": [
+        {
+          "number": "1",
+          "xy_mm": [
+            41.5,
+            57.5
+          ],
+          "net": "AGND",
+          "drill_mm": 0.0,
+          "size_mm": [
+            3.0,
+            3.0
+          ]
+        },
+        {
+          "number": "1",
+          "xy_mm": [
+            36.0,
+            61.5
+          ],
+          "net": "AGND",
+          "drill_mm": 0.0,
+          "size_mm": [
+            3.0,
+            3.0
+          ]
+        }
+      ]
+    },
+    {
+      "ref": "W8",
+      "value": "Insulated wire",
+      "xy_mm": [
+        61.5,
+        22.0
+      ],
+      "side": "B.Cu",
+      "pads": [
+        {
+          "number": "1",
+          "xy_mm": [
+            61.5,
+            22.0
+          ],
+          "net": "AGND",
+          "drill_mm": 0.0,
+          "size_mm": [
+            3.0,
+            3.0
+          ]
+        },
+        {
+          "number": "1",
+          "xy_mm": [
+            61.5,
+            13.5
+          ],
+          "net": "AGND",
+          "drill_mm": 0.0,
+          "size_mm": [
+            3.0,
+            3.0
+          ]
+        }
+      ]
+    },
+    {
+      "ref": "W9",
+      "value": "Insulated wire",
+      "xy_mm": [
+        23.0,
+        39.5
+      ],
+      "side": "B.Cu",
+      "pads": [
+        {
+          "number": "1",
+          "xy_mm": [
+            29.0,
+            24.0
+          ],
+          "net": "AGND",
+          "drill_mm": 0.0,
+          "size_mm": [
+            3.0,
+            3.0
+          ]
+        },
+        {
+          "number": "1",
+          "xy_mm": [
+            23.0,
+            39.5
+          ],
+          "net": "AGND",
+          "drill_mm": 0.0,
+          "size_mm": [
+            3.0,
+            3.0
+          ]
+        }
+      ]
+    }
+  ],
+  "wires": [
+    {
+      "ref": "W1",
+      "value": "Insulated wire",
+      "xy_mm": [
+        69.95,
+        21.0
+      ],
+      "side": "F.Cu",
+      "pads": [
+        {
+          "number": "1",
+          "xy_mm": [
+            49.5,
+            46.799999
+          ],
+          "net": "Net-(S2-WIDE)",
+          "drill_mm": 1.0,
+          "size_mm": [
+            2.6,
+            2.6
+          ]
+        },
+        {
+          "number": "1",
+          "xy_mm": [
+            69.95,
+            21.0
+          ],
+          "net": "Net-(S2-WIDE)",
+          "drill_mm": 1.0,
+          "size_mm": [
+            2.6,
+            2.6
+          ]
+        }
+      ],
+      "segments_mm": [
+        [
+          [
+            69.95,
+            21.0
+          ],
+          [
+            72.95,
+            21.0
+          ]
+        ],
+        [
+          [
+            69.95,
+            32.5
+          ],
+          [
+            69.95,
+            46.799999
+          ]
+        ],
+        [
+          [
+            69.95,
+            46.799999
+          ],
+          [
+            49.5,
+            46.799999
+          ]
+        ],
+        [
+          [
+            72.95,
+            21.0
+          ],
+          [
+            72.95,
+            29.5
+          ]
+        ],
+        [
+          [
+            72.95,
+            29.5
+          ],
+          [
+            69.95,
+            32.5
+          ]
+        ]
+      ],
+      "course_length_mm": 50.492639687119286,
+      "native_duplicate_pad_jumpers": true
+    },
+    {
+      "ref": "W2",
+      "value": "Insulated wire",
+      "xy_mm": [
+        42.75,
+        20.0
+      ],
+      "side": "F.Cu",
+      "pads": [
+        {
+          "number": "1",
+          "xy_mm": [
+            42.75,
+            20.0
+          ],
+          "net": "V_A",
+          "drill_mm": 1.0,
+          "size_mm": [
+            2.6,
+            2.6
+          ]
+        },
+        {
+          "number": "1",
+          "xy_mm": [
+            44.5,
+            32.5
+          ],
+          "net": "V_A",
+          "drill_mm": 1.0,
+          "size_mm": [
+            2.6,
+            2.6
+          ]
+        }
+      ],
+      "segments_mm": [
+        [
+          [
+            42.75,
+            20.0
+          ],
+          [
+            42.75,
+            30.75
+          ]
+        ],
+        [
+          [
+            42.75,
+            30.75
+          ],
+          [
+            44.5,
+            32.5
+          ]
+        ]
+      ],
+      "course_length_mm": 13.224873734152917,
+      "native_duplicate_pad_jumpers": true
+    },
+    {
+      "ref": "W3",
+      "value": "Insulated wire",
+      "xy_mm": [
+        44.0,
+        40.0
+      ],
+      "side": "F.Cu",
+      "pads": [
+        {
+          "number": "1",
+          "xy_mm": [
+            44.0,
+            40.0
+          ],
+          "net": "Net-(U1B-+)",
+          "drill_mm": 1.0,
+          "size_mm": [
+            2.6,
+            2.6
+          ]
+        },
+        {
+          "number": "1",
+          "xy_mm": [
+            45.0,
+            47.5
+          ],
+          "net": "Net-(U1B-+)",
+          "drill_mm": 1.0,
+          "size_mm": [
+            2.6,
+            2.6
+          ]
+        }
+      ],
+      "segments_mm": [
+        [
+          [
+            44.0,
+            40.0
+          ],
+          [
+            45.0,
+            47.5
+          ]
+        ]
+      ],
+      "course_length_mm": 7.566372975210778,
+      "native_duplicate_pad_jumpers": true
+    },
+    {
+      "ref": "W4",
+      "value": "Insulated wire",
+      "xy_mm": [
+        57.0,
+        32.5
+      ],
+      "side": "B.Cu",
+      "pads": [
+        {
+          "number": "1",
+          "xy_mm": [
+            57.0,
+            32.5
+          ],
+          "net": "AGND",
+          "drill_mm": 0.0,
+          "size_mm": [
+            3.0,
+            3.0
+          ]
+        },
+        {
+          "number": "1",
+          "xy_mm": [
+            57.0,
+            26.5
+          ],
+          "net": "AGND",
+          "drill_mm": 0.0,
+          "size_mm": [
+            3.0,
+            3.0
+          ]
+        }
+      ],
+      "segments_mm": [
+        [
+          [
+            57.0,
+            32.5
+          ],
+          [
+            57.0,
+            26.5
+          ]
+        ]
+      ],
+      "course_length_mm": 6.0,
+      "native_duplicate_pad_jumpers": true
+    },
+    {
+      "ref": "W5",
+      "value": "Insulated wire",
+      "xy_mm": [
+        27.0,
+        39.5
+      ],
+      "side": "B.Cu",
+      "pads": [
+        {
+          "number": "1",
+          "xy_mm": [
+            33.0,
+            39.5
+          ],
+          "net": "AGND",
+          "drill_mm": 0.0,
+          "size_mm": [
+            3.0,
+            3.0
+          ]
+        },
+        {
+          "number": "1",
+          "xy_mm": [
+            27.0,
+            39.5
+          ],
+          "net": "AGND",
+          "drill_mm": 0.0,
+          "size_mm": [
+            3.0,
+            3.0
+          ]
+        }
+      ],
+      "segments_mm": [
+        [
+          [
+            27.0,
+            39.5
+          ],
+          [
+            33.0,
+            39.5
+          ]
+        ]
+      ],
+      "course_length_mm": 6.0,
+      "native_duplicate_pad_jumpers": true
+    },
+    {
+      "ref": "W6",
+      "value": "Insulated wire",
+      "xy_mm": [
+        33.5,
+        26.0
+      ],
+      "side": "B.Cu",
+      "pads": [
+        {
+          "number": "1",
+          "xy_mm": [
+            39.5,
+            26.0
+          ],
+          "net": "AGND",
+          "drill_mm": 0.0,
+          "size_mm": [
+            3.0,
+            3.0
+          ]
+        },
+        {
+          "number": "1",
+          "xy_mm": [
+            33.5,
+            26.0
+          ],
+          "net": "AGND",
+          "drill_mm": 0.0,
+          "size_mm": [
+            3.0,
+            3.0
+          ]
+        }
+      ],
+      "segments_mm": [
+        [
+          [
+            33.5,
+            26.0
+          ],
+          [
+            39.5,
+            26.0
+          ]
+        ]
+      ],
+      "course_length_mm": 6.0,
+      "native_duplicate_pad_jumpers": true
+    },
+    {
+      "ref": "W7",
+      "value": "Insulated wire",
+      "xy_mm": [
+        41.5,
+        57.5
+      ],
+      "side": "B.Cu",
+      "pads": [
+        {
+          "number": "1",
+          "xy_mm": [
+            41.5,
+            57.5
+          ],
+          "net": "AGND",
+          "drill_mm": 0.0,
+          "size_mm": [
+            3.0,
+            3.0
+          ]
+        },
+        {
+          "number": "1",
+          "xy_mm": [
+            36.0,
+            61.5
+          ],
+          "net": "AGND",
+          "drill_mm": 0.0,
+          "size_mm": [
+            3.0,
+            3.0
+          ]
+        }
+      ],
+      "segments_mm": [
+        [
+          [
+            41.5,
+            57.5
+          ],
+          [
+            36.0,
+            61.5
+          ]
+        ]
+      ],
+      "course_length_mm": 6.800735254367722,
+      "native_duplicate_pad_jumpers": true
+    },
+    {
+      "ref": "W8",
+      "value": "Insulated wire",
+      "xy_mm": [
+        61.5,
+        22.0
+      ],
+      "side": "B.Cu",
+      "pads": [
+        {
+          "number": "1",
+          "xy_mm": [
+            61.5,
+            22.0
+          ],
+          "net": "AGND",
+          "drill_mm": 0.0,
+          "size_mm": [
+            3.0,
+            3.0
+          ]
+        },
+        {
+          "number": "1",
+          "xy_mm": [
+            61.5,
+            13.5
+          ],
+          "net": "AGND",
+          "drill_mm": 0.0,
+          "size_mm": [
+            3.0,
+            3.0
+          ]
+        }
+      ],
+      "segments_mm": [
+        [
+          [
+            61.5,
+            22.0
+          ],
+          [
+            61.5,
+            13.5
+          ]
+        ]
+      ],
+      "course_length_mm": 8.5,
+      "native_duplicate_pad_jumpers": true
+    },
+    {
+      "ref": "W9",
+      "value": "Insulated wire",
+      "xy_mm": [
+        23.0,
+        39.5
+      ],
+      "side": "B.Cu",
+      "pads": [
+        {
+          "number": "1",
+          "xy_mm": [
+            29.0,
+            24.0
+          ],
+          "net": "AGND",
+          "drill_mm": 0.0,
+          "size_mm": [
+            3.0,
+            3.0
+          ]
+        },
+        {
+          "number": "1",
+          "xy_mm": [
+            23.0,
+            39.5
+          ],
+          "net": "AGND",
+          "drill_mm": 0.0,
+          "size_mm": [
+            3.0,
+            3.0
+          ]
+        }
+      ],
+      "segments_mm": [
+        [
+          [
+            22.5,
+            29.0
+          ],
+          [
+            28.5,
+            29.0
+          ]
+        ],
+        [
+          [
+            22.5,
+            36.0
+          ],
+          [
+            22.5,
+            29.0
+          ]
+        ],
+        [
+          [
+            23.0,
+            39.5
+          ],
+          [
+            22.5,
+            36.0
+          ]
+        ],
+        [
+          [
+            28.5,
+            29.0
+          ],
+          [
+            29.0,
+            24.0
+          ]
+        ]
+      ],
+      "course_length_mm": 21.560471716493183,
+      "native_duplicate_pad_jumpers": true
+    }
+  ],
+  "scope": "Saved CAD geometry only; real component fit, LUT tolerance and analogue response remain unverified."
+}

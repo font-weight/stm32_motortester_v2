@@ -1,0 +1,49 @@
+{
+  "critic": "/root/unified_critic",
+  "independent_non_author": true,
+  "scope": "V2-17 software/native Windows10/local portable; no physical acceptance",
+  "verdict": "PASS",
+  "score": 9.625,
+  "threshold": 9.5,
+  "scores": {
+    "C1": 9.7,
+    "C2": 9.6,
+    "C3": 9.6,
+    "C4": 9.5,
+    "C5": 9.7
+  },
+  "weights": {
+    "C1": 0.3,
+    "C2": 0.2,
+    "C3": 0.25,
+    "C4": 0.15,
+    "C5": 0.1
+  },
+  "open_P0": 0,
+  "open_P1": 0,
+  "base_sha": "6e364ed4cc6f2859473c565765fcfe54b811d77f",
+  "manifest_sha256": "7ff78649f4201a454d45263f786dba54ee9c49fc6eb2556c31b0a5ac9dd289c3",
+  "report": "docs/reviews/v2-17-unified-review.md",
+  "report_sha256": "f1453477de3a3391cc7684d1f95220847e9b211471d9072f7de78ac4a9fc21fa",
+  "missing_report_links": [],
+  "own_actions": [
+    "read-only code/document review",
+    "native and frozen PNG inspection",
+    "SHA256 audit of 59 manifest files",
+    "SHA256 audit of 449 source files and source.zip",
+    "SHA256 audit of 477 original/relocated/ZIP payload files"
+  ],
+  "author_runtime_evidence": [
+    "11 focused tests PASS3.419s",
+    "native-11 PASS22 checks",
+    "v20w2 relocated frozen PASS22 checks, callback_errors=[], real_serial_open_calls=0",
+    "normal entrypoint PNG"
+  ],
+  "physical_actions": false,
+  "limitations": [
+    "no real COM/SWD or analog measurements",
+    "not physical calibration or protection acceptance",
+    "not all DPI/screen sizes",
+    "historical GUI source retained for old verification tooling"
+  ]
+}

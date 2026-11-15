@@ -1,0 +1,53 @@
+{
+  "task": "HW-PICKUP-GUIDE",
+  "date": "2026-11-06",
+  "critic": "/root/pickup_guide_critic",
+  "independent_non_author": true,
+  "scope": "Illustrated assembly document and nominal standalone low-voltage fixture calculation only",
+  "base_sha": "6e364ed4cc6f2859473c565765fcfe54b811d77f",
+  "manifest": "docs/verification/pickup-guide-20261106/manifest.json",
+  "manifest_sha256": "d6d3d207d8c42941fc5c4f2ffd5ffa94f7055db6cc290c95228e4723852d0c49",
+  "manifest_files_verified": 42,
+  "manifest_mismatches": [],
+  "pdf": "готовые документы/Ёмкостной датчик_сборка_P1.pdf",
+  "pdf_sha256": "3833795ae8c4bfa975cef3d7510a4b0c694106e45b41a12c3201065bcf1b4cd9",
+  "archive_members_byte_verified": 18,
+  "pages_personally_reviewed": [1, 2, 3, 4, 5, 6, 7, 8, 9],
+  "final_changed_pages_rereviewed": [7],
+  "remaining_eight_pngs_identical": true,
+  "independent_fixture_calculation": {
+    "method": "Two-state nodal equations for Ct voltage and output voltage; no author calculation script execution",
+    "peak_s": 0.000002812554847106332,
+    "peak_V": 0.9948581906439973,
+    "after_2ms_V": 0.8917293864522052,
+    "droop_percent": 10.366181347417381
+  },
+  "sources_personally_opened": [
+    "https://www.picoauto.com/accessories/ignition-accessories/secondary-ignition-pickup-capacitive-with-bnc",
+    "https://www.wima.de/en/our-product-range/metallized-capacitors/mkp-2/",
+    "https://www.belden.com/products/cable/coax-triax-cable/50-ohm-coax-cable/8259"
+  ],
+  "findings": [
+    {
+      "id": "PG-01",
+      "priority": "P3",
+      "status": "closed",
+      "description": "Page 7 decay drawing used inconsistent vertical scaling in first candidate",
+      "resolution": "Author changed to exact two-pole response and one vertical scale; critic checked formula, final PNG 7 and hashes"
+    }
+  ],
+  "open_P0_P1": [],
+  "mandatory_evidence_complete": true,
+  "scores": {"C1": 9.8, "C2": 9.8, "C3": 9.8, "C4": 9.6, "C5": 9.6},
+  "weights": {"C1": 0.30, "C2": 0.20, "C3": 0.25, "C4": 0.15, "C5": 0.10},
+  "score": 9.75,
+  "verdict": "PASS",
+  "not_verified": [
+    "Physical assembly and actual components",
+    "Signal response and coupling to real HT lead",
+    "Insulation, input protection, grounding and temperature/mechanical limits",
+    "Ignition or vehicle operation",
+    "Resolution of prior analog PCB review findings"
+  ],
+  "report": "docs/reviews/pickup-guide-review.md"
+}

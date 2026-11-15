@@ -1,0 +1,417 @@
+{
+  "created_at_utc": "2026-11-02T10:39:08.144880+00:00",
+  "board_sha256": "a42d276fa19727af062d79cac4bb9bfd6956781ed5078dbca22f9de8f20a98be",
+  "board_not_modified": true,
+  "output_pdf_sha256": "ac2c9d2dfb29a9bfefdd22a1e54617cef8c9edb30551d02b441438bb2ac4c75f",
+  "output_pdf": "R53_LUT_assembly_fit_1to1.pdf",
+  "pages": 4,
+  "page_mm": [
+    210,
+    297
+  ],
+  "board_mm": [
+    88.0,
+    55.0
+  ],
+  "source_board_bbox_mm": [
+    7.0,
+    10.0,
+    95.0,
+    65.0
+  ],
+  "board_bottom_left_on_page_mm": [
+    61.0,
+    142.5
+  ],
+  "native_scale": 1,
+  "merge_affine_matrices": [
+    [
+      1,
+      0,
+      0,
+      1,
+      153.0708661417323,
+      -7.1070236220472225
+    ],
+    [
+      -1,
+      0,
+      0,
+      1,
+      442.2047244094489,
+      -7.1070236220472225
+    ],
+    [
+      1,
+      0,
+      0,
+      1,
+      153.0708661417323,
+      -7.1070236220472225
+    ],
+    [
+      1,
+      0,
+      0,
+      1,
+      153.0708661417323,
+      -7.1070236220472225
+    ]
+  ],
+  "mirror_pages_only": [
+    2
+  ],
+  "toner_page": 1,
+  "toner_native_layers": "B.Cu",
+  "toner_drill_shape_option": 1,
+  "inspection_native_layers": "B.Cu,B.Fab,B.Silkscreen",
+  "fit_native_drill_shape_option": 0,
+  "fit_holes": "Exact source drill diameter circle and center cross overlay",
+  "ruler_vector_length_points": 283.46456692913387,
+  "ruler_length_mm": 100,
+  "finished_pdf_vector_checks_mm": {
+    "board_width_error": 3.40000383403094e-09,
+    "board_height_error": 1.7999958856762532e-08,
+    "ruler_errors_each_page": [
+      5.972222240302472e-06,
+      5.972222240302472e-06,
+      5.972222240302472e-06,
+      5.972222240302472e-06
+    ]
+  },
+  "note": "PDF coordinate scale and transforms checked; physical printer scale and toner transfer still require user ruler check. Visual review recorded separately.",
+  "holes_by_diameter_mm": {
+    "0.8": 46,
+    "0.9": 8,
+    "1.0": 25,
+    "1.1": 12,
+    "3.2": 2
+  },
+  "wires": [
+    {
+      "ref": "W1",
+      "ends": [
+        [
+          49.5,
+          46.799999
+        ],
+        [
+          69.95,
+          21.0
+        ]
+      ],
+      "bottom": false,
+      "segments": [
+        [
+          [
+            69.95,
+            21.0
+          ],
+          [
+            72.95,
+            21.0
+          ]
+        ],
+        [
+          [
+            69.95,
+            32.5
+          ],
+          [
+            69.95,
+            46.799999
+          ]
+        ],
+        [
+          [
+            69.95,
+            46.799999
+          ],
+          [
+            49.5,
+            46.799999
+          ]
+        ],
+        [
+          [
+            72.95,
+            21.0
+          ],
+          [
+            72.95,
+            29.5
+          ]
+        ],
+        [
+          [
+            72.95,
+            29.5
+          ],
+          [
+            69.95,
+            32.5
+          ]
+        ]
+      ]
+    },
+    {
+      "ref": "W2",
+      "ends": [
+        [
+          42.75,
+          20.0
+        ],
+        [
+          44.5,
+          32.5
+        ]
+      ],
+      "bottom": false,
+      "segments": [
+        [
+          [
+            42.75,
+            20.0
+          ],
+          [
+            42.75,
+            30.75
+          ]
+        ],
+        [
+          [
+            42.75,
+            30.75
+          ],
+          [
+            44.5,
+            32.5
+          ]
+        ]
+      ]
+    },
+    {
+      "ref": "W3",
+      "ends": [
+        [
+          44.0,
+          40.0
+        ],
+        [
+          45.0,
+          47.5
+        ]
+      ],
+      "bottom": false,
+      "segments": [
+        [
+          [
+            44.0,
+            40.0
+          ],
+          [
+            45.0,
+            47.5
+          ]
+        ]
+      ]
+    },
+    {
+      "ref": "W8",
+      "ends": [
+        [
+          61.5,
+          22.0
+        ],
+        [
+          61.5,
+          13.5
+        ]
+      ],
+      "bottom": true,
+      "segments": [
+        [
+          [
+            61.5,
+            22.0
+          ],
+          [
+            61.5,
+            13.5
+          ]
+        ]
+      ]
+    },
+    {
+      "ref": "W9",
+      "ends": [
+        [
+          29.0,
+          24.0
+        ],
+        [
+          23.0,
+          39.5
+        ]
+      ],
+      "bottom": true,
+      "segments": [
+        [
+          [
+            22.5,
+            29.0
+          ],
+          [
+            28.5,
+            29.0
+          ]
+        ],
+        [
+          [
+            22.5,
+            36.0
+          ],
+          [
+            22.5,
+            29.0
+          ]
+        ],
+        [
+          [
+            23.0,
+            39.5
+          ],
+          [
+            22.5,
+            36.0
+          ]
+        ],
+        [
+          [
+            28.5,
+            29.0
+          ],
+          [
+            29.0,
+            24.0
+          ]
+        ]
+      ]
+    },
+    {
+      "ref": "W6",
+      "ends": [
+        [
+          39.5,
+          26.0
+        ],
+        [
+          33.5,
+          26.0
+        ]
+      ],
+      "bottom": true,
+      "segments": [
+        [
+          [
+            33.5,
+            26.0
+          ],
+          [
+            39.5,
+            26.0
+          ]
+        ]
+      ]
+    },
+    {
+      "ref": "W7",
+      "ends": [
+        [
+          41.5,
+          57.5
+        ],
+        [
+          36.0,
+          61.5
+        ]
+      ],
+      "bottom": true,
+      "segments": [
+        [
+          [
+            41.5,
+            57.5
+          ],
+          [
+            36.0,
+            61.5
+          ]
+        ]
+      ]
+    },
+    {
+      "ref": "W5",
+      "ends": [
+        [
+          33.0,
+          39.5
+        ],
+        [
+          27.0,
+          39.5
+        ]
+      ],
+      "bottom": true,
+      "segments": [
+        [
+          [
+            27.0,
+            39.5
+          ],
+          [
+            33.0,
+            39.5
+          ]
+        ]
+      ]
+    },
+    {
+      "ref": "W4",
+      "ends": [
+        [
+          57.0,
+          32.5
+        ],
+        [
+          57.0,
+          26.5
+        ]
+      ],
+      "bottom": true,
+      "segments": [
+        [
+          [
+            57.0,
+            32.5
+          ],
+          [
+            57.0,
+            26.5
+          ]
+        ]
+      ]
+    }
+  ],
+  "mandatory_jumpers": [
+    "W1",
+    "W2",
+    "W3",
+    "W8",
+    "W9",
+    "W6",
+    "W7",
+    "W5",
+    "W4"
+  ]
+}

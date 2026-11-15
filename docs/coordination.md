@@ -1,3 +1,164 @@
+# V2-22: публикация, 15.11.2026
+
+Root: состав публикации, git, .gitignore/.gitattributes, текущая задача,
+пояснение исходных материалов и фактические свидетельства/прогресс.
+unified_input: только README.md и host/README.md. unified_panel: read-only
+аудит состава/локальных данных. unified_critic: независимый отчёт
+v2-22-publication-review.md и critic*.json в verification/publication-20261115.
+Код приложения/прошивка/аппаратная часть в этой итерации не меняются.
+
+# V2-21: области записи, 14.11.2026
+
+Root: интеграция stream_ui/unified_panel/analog_view, synthetic fixtures,
+GUI smoke, launcher/build, канонические документы/evidence. unified_panel:
+только ringdown.py, test_v2_ringdown.py и model-tests.log. unified_input:
+только ringdown_ui.py и docs/ringdown.md. unified_critic: только
+v2-21-ringdown-review.md и critic*.json в verification/ringdown-20261114.
+Критик не автор; областьSCOPE_RU. COM/SWD/CAD/пользовательские данные не меняются.
+
+# V2-20: области записи, 14.11.2026
+
+Root: analog_view, event_frequency_ui, stream_ui/unified_panel, GUI smoke,
+launcher/build и канонические документы. unified_panel: только
+event_frequency.py и test_v2_event_frequency.py. unified_input: только
+docs/event-frequency.md и read-only анализ переходов UI. unified_critic:
+только v2-20-event-frequency-review.md и critic*.json в
+verification/event-frequency-20261114. Критик не автор реализации.
+COM/SWD/CAD/пользовательские данные не затрагиваются.
+
+# V2-19: области записи, 14.11.2026
+
+Root: analog_view.py, measurement_ui.py, общий GUI smoke, launcher/build,
+канонические документы и author evidence. unified_panel: только
+segment_measurements.py и test_v2_segment_measurements.py. unified_input:
+legacy_view.py, test_v2_legacy_measurements.py, docs/segment-measurements.md
+и docs/unified-ui.md. unified_critic: только v2-19-segment-measurements-review.md
+и critic*.json в verification/segment-measurements-20261114. Он не автор.
+COM/SWD/плата/CAD не затрагиваются; границы зафиксированы в SCOPE_RU.
+
+# V2-18: области записи, 14.11.2026
+
+Root: calibration_ui, main/inline integration, учебный источник, GUI smoke,
+сборка, канонические документы и evidence. unified_panel: только новый
+calibration_live.py и test_v2_calibration_live.py. unified_input: только
+calibration_report.py и test_v2_calibration_report.py; sample PDF в
+build/v21-report-dev. unified_critic: только v2-18-calibration-live-review.md
+и critic*.json в verification/calibration-live-20261114. Критик не автор.
+Область — SCOPE_RU; физический COM/SWD/CAD не затрагиваются.
+
+# V2-17: области записи, 13.11.2026
+
+Root: unified_gui/smoke, публичный entrypoint, launcher/сборщик, README и
+канонические документы/evidence. unified_panel: unified_panel.py и его
+целевые тесты. unified_input: inline_input.py, legacy_view.py, их тесты;
+docs/unified-ui.md, calibration-wizard.md, stream-analog-input.md,
+stream-reconnect.md. unified_critic: только docs/reviews/v2-17-unified-review.md
+и critic*.json в docs/verification/unified-ui-20261113. Критик не автор кода.
+Область зафиксирована в SCOPE_RU; COM/SWD/CAD и реальные записи не меняются.
+
+# V2-16: области записи, 13.11.2026
+
+Root: calibration_ui/io/smoke, analog_ui/gui, launcher, сборщик, канонические
+документы и evidence. calibration_model: calibration.py, analog_profile.py,
+test_v2_calibration*.py и model-tests evidence. first_power_guide: инструкция
+MD/PDF, tools/first_power_guide, first-power evidence. calibration_critic:
+только docs/reviews/v2-16-calibration-review.md и critic*.json в
+docs/verification/calibration-20261113; не автор реализации. COM/SWD/CAD
+не затрагиваются. Scope зафиксирован до реализации.
+
+# HW-PICKUP-GUIDE: области записи, 06.11.2026
+
+Root: извлечение pickup-r4-source, tools/pickup_guide, руководство PDF,
+docs/guides/capacitive-pickup-ru.md, канонические разделы и авторские
+свидетельства docs/verification/pickup-guide-20261106. pickup_guide_critic:
+только docs/reviews/pickup-guide-review.md и
+docs/verification/pickup-guide-20261106/critic.json. Не автор инструкции,
+проверяет документацию/расчёт и точный manifest. Физических действий нет.
+
+# DIP-V2-02: области записи, 04.11.2026
+
+Root: глава в готовые документы, build/diploma-chapter2-20261104 кроме
+назначенных папок, канонические документы и author-evidence.
+hardware_read: только build/diploma-chapter2-20261104/hardware-math,
+независимый пересчёт и авторская перерисовка схем; CAD не изменяет.
+host_read: только build/diploma-chapter2-20261104/software-figures,
+иллюстрации по прочитанному коду; приложение/прошивка только чтение.
+chapter1_critic: только docs/reviews/diploma-chapter2-review.md и
+docs/verification/diploma-chapter2/critic*.json; не автор главы или рисунков.
+Приёмка документа/расчёта отделена от других текущих аппаратных задач.
+
+# HW-R53-USER: области записи, 04.11.2026
+
+Root: импорт архива, build/r53-user-review-20261104, отчёты проверок
+docs/verification/r53-user-20261104, канонические документы. Исходные CAD
+и пользовательская разводка только для чтения. r53_erc_critic:
+build/r53-user-review-20261104/critic-analysis.json,
+docs/reviews/r53-user-review-20261104.md и
+docs/verification/r53-user-20261104/critic.json. Не автор реализации.
+
+# HW-R53-ERC: области записи, 03.11.2026
+
+Root: резервные копии и кандидат в build/r53-erc-fix, исправленная схема,
+проверки/утилита и канонические документы. Исходные архивы и пользовательская
+медь сохраняются. r53_erc_critic: независимое read-only сравнение и только
+docs/reviews/r53-erc-fix-review.md, docs/verification/r53-erc-fix/critic.json.
+
+# V2-15: области записи, 02.11.2026
+
+Root: stream_ui/gui, stream_cursors, новый analog_view, ограниченный hook
+gui_stream, native/frozen сценарий, пакет, канонические документы/evidence.
+analog_model: input.py, analog_profile.py, stream_device.py, stream_files.py,
+stream_capture.py и test_v2_analog_profile.py. analog_controls: analog_ui.py,
+stream_search_ui.py и отдельная проверка диалога. analog_critic: только
+docs/reviews/v2-15-analog-review.md и docs/verification/v2-analog/critic.json;
+не автор, без физических действий. CAD/прошивка/исходные материалы сохранены.
+
+# DIP-V2-01c: области записи
+
+## R5.3 compact PCB, 02.11.2026
+
+Root: новый hardware/v2-input/r53-compact-20261102, tools/pcb_r53,
+docs/verification/r53-compact-pcb (кроме critic.json), канонические документы.
+R52_router: только build/analog-r53-compact/router-candidate, компоновка,
+генератор и маршруты кандидата; прежний CAD R5.2 не трогает.
+R52_parts_audit: build/analog-r53-compact/parts-audit, аудит размеров и
+расположения; печатные файлы нового проекта только после передачи root.
+R52_pcb_critic: только docs/reviews/r53-compact-pcb-review.md и
+docs/verification/r53-compact-pcb/critic.json; независимое чтение готового
+результата, не автор размещения. R5.2 сохранён, включая снимок рассмотренного
+комплекта в build/analog-r53-compact/baseline-r52-reviewed.zip.
+
+## R5.2 PCB, 02.11.2026
+
+Root: новая PCB/локальная библиотека/документы и печатные карты, только
+hardware/v2-input/r52-lut-20261102 и build/analog-r52-pcb плюс текущие
+канонические разделы, docs/verification/r52-pcb (кроме critic.json).
+R52_parts_audit: build/analog-r52-pcb/parts-audit.*, export_prints.py,
+hardware/v2-input/r52-lut-20261102/print; read-only исходная схема/BOM/посадки.
+R52_router: router.py, ground_analysis.py, fp-debug и routing-search внутри
+build/analog-r52-pcb, перенос воспроизводимых утилит в tools/pcb_r52;
+не меняет root CAD. R52_pcb_critic:
+только docs/reviews/r52-pcb-review.md и docs/verification/r52-pcb/critic.json,
+независимое чтение готового CAD/свидетельств; не автор разводки. Старые файлы
+R5.1, программа и прошивка не редактируются. Уровень — проект CAD под ЛУТ,
+физическая сборка и аналоговые измерения отсутствуют.
+
+## R5.1, 02.11.2026 — сверка и предложение без реализации
+
+Root: импорт исходного архива, docs/analog-r5-1-profile-proposal.md,
+канонические docs, proposed JSON и manifest/evidence. R51_wire_audit:
+read-only firmware/host формат, без COM/SWD. R51_analog_audit: независимые
+расчёты только build/analog-r5-1-review/audit-agent, без правок исходного архива.
+R51_profile_critic: только docs/reviews/r51-profile-proposal-review.md и
+ docs/verification/r51-profile-proposal/critic.json; независимая оценка
+точного предложения по manifest, без реализации и физических действий.
+
+Root: сокращённая глава в `готовые документы/`, авторские материалы
+`build/diploma-chapter1-short-20261102`, канонические документы и evidence.
+chapter1_critic: только `docs/reviews/diploma-chapter1-short-review.md` и
+`docs/verification/diploma-chapter1/critic-short*.json`. Критик не меняет главу.
+Уровень — документ/вёрстка; аппаратные, прошивочные и GUI-тесты не входят.
+
 # V2-14: области записи
 
 Root: lifecycle GUI/bridge, адресный сценарий, пакет, canonical docs/evidence.

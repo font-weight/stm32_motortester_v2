@@ -13,7 +13,7 @@ import threading
 
 from PySide6 import QtCore
 
-from ..recording import atomic_write
+from ..recording import atomic_write, _object, _invalid_number
 from ..stream_controller import StreamController
 from ..stream_provenance import DeviceStreamContext
 from ..stream_serial import SerialSettings, SerialStreamPeer
@@ -24,6 +24,7 @@ from ..stream_model import LEGACY_IDENTITY_FIELDS
 from ..stream_view import EventConfig
 from ..stream_wire import SUPPORTED_SAMPLE_RATES, supported_caps, supported_mode_caps, mode_revision
 from .input import InputProfile, UNKNOWN_PROFILE, text
+from .analog_profile import AnalogSnapshot, RawFormat
 from .stream_demo import PacedStreamPeer
 from .stream_search import SearchSnapshot, validate_config
 
@@ -138,13 +139,44 @@ class StreamContext:
     ui_profile: str = "oscilloscope"
     input_profile: InputProfile = UNKNOWN_PROFILE
     channel_id: str = "CH1"
+    analog_snapshot: AnalogSnapshot | None = None
 
     def __post_init__(self):
         text(self.channel_name, "Имя канала", 80)
         if self.ui_profile not in ("oscilloscope", "ignition") or self.channel_id != "CH1":
             raise ValueError("Требуется CH1 и поддерживаемый профиль")
-        if type(self.input_profile) is not InputProfile or self.input_profile != UNKNOWN_PROFILE:
-            raise ValueError("Поток сохраняет только неизвестную шкалу напряжения")
+        if type(self.input_profile) is not InputProfile:
+            raise ValueError("Нужен неизменяемый профиль входа")
+        self.input_profile.__post_init__()
+        if self.analog_snapshot is None:
+            if self.input_profile != UNKNOWN_PROFILE:
+                raise ValueError("Расчётная шкала требует снимок аналогового входа")
+        elif type(self.analog_snapshot) is not AnalogSnapshot:
+            raise ValueError("Некорректный снимок аналогового входа")
+        else:
+            self.analog_snapshot.__post_init__()
+            self.analog_snapshot.validate_profile(self.input_profile)
+
+    def validate_identity(self, identity):
+        if self.analog_snapshot is not None:
+            self.analog_snapshot.validate_identity(identity)
+
+
+def context_from_dict(value, *, legacy=False):
+    """Explicit migration; legacy files never inherit a current voltage scale."""
+    expected = set(StreamContext.__dataclass_fields__)
+    if legacy:
+        expected.remove("analog_snapshot")
+    if type(value) is not dict or set(value) != expected:
+        raise ValueError("Некорректные поля контекста потока")
+    result = dict(value)
+    profile = result["input_profile"]
+    if type(profile) is not dict or set(profile) != set(InputProfile.__dataclass_fields__):
+        raise ValueError("Некорректные поля профиля входа")
+    result["input_profile"] = InputProfile(**profile)
+    if not legacy and result["analog_snapshot"] is not None:
+        result["analog_snapshot"] = AnalogSnapshot.from_dict(result["analog_snapshot"])
+    return StreamContext(**result)
 
 
 @dataclass(frozen=True, slots=True)
@@ -214,12 +246,14 @@ def _write_context(path, context, expected_identity, connection=None, event_sear
     binding = _journal_binding(path)
     if expected_identity is None or binding["identity"] != asdict(expected_identity):
         raise ValueError("Файл не принадлежит текущей потоковой попытке")
+    context.__post_init__()
+    context.validate_identity(expected_identity)
     digest, size = _digest(path)
     value = {
-        "format": CONTEXT_FORMAT, "format_version": 3,
+        "format": CONTEXT_FORMAT, "format_version": 5,
         "context": asdict(context), "time_basis": "nominal_unverified",
         "journal_sha256": digest, "journal_bytes": size, "journal": binding,
-        "connection": None,
+        "connection": None, "event_search": None,
     }
     if connection is not None:
         _verify_connection(connection, binding["identity"])
@@ -227,7 +261,7 @@ def _write_context(path, context, expected_identity, connection=None, event_sear
     if event_search is not None:
         event_search.__post_init__()
         validate_config(event_search.config, expected_identity.nominal_fs_hz, expected_identity.retained_bits)
-        value.update(format_version=4, event_search=asdict(event_search))
+        value["event_search"] = asdict(event_search)
     atomic_write(companion_path(path),
                  json.dumps(value, ensure_ascii=False, indent=2, allow_nan=False).encode("utf-8"))
     return str(path)
@@ -265,27 +299,22 @@ def open_verified_context(path):
         return VerifiedStreamContext(StreamContext(), False, None)
     if len(raw) > 16_384:
         raise ValueError("Слишком большой файл контекста потока")
-    value = json.loads(raw)
+    value = json.loads(raw, object_pairs_hook=_object, parse_constant=_invalid_number)
     required = {"format", "format_version", "context", "time_basis",
                 "journal_sha256", "journal_bytes", "journal"}
-    if type(value) is dict and value.get("format_version") in (2, 3, 4):
+    if type(value) is dict and value.get("format_version") in (2, 3, 4, 5):
         required.add("connection")
-    if type(value) is dict and value.get("format_version") == 4:
+    if type(value) is dict and value.get("format_version") in (4, 5):
         required.add("event_search")
     if (type(value) is not dict or set(value) != required
             or value["format"] != CONTEXT_FORMAT or type(value["format_version"]) is not int
-            or value["format_version"] not in (1, 2, 3, 4) or value["time_basis"] != "nominal_unverified"):
+            or value["format_version"] not in (1, 2, 3, 4, 5) or value["time_basis"] != "nominal_unverified"):
         raise ValueError("Неизвестный формат контекста потока")
-    context = value["context"]
-    if type(context) is not dict or set(context) != set(StreamContext.__dataclass_fields__):
-        raise ValueError("Некорректный снимок контекста потока")
-    context = dict(context)
-    context["input_profile"] = InputProfile(**context["input_profile"])
-    context = StreamContext(**context)
+    context = context_from_dict(value["context"], legacy=value["format_version"] < 5)
     connection = None
     if value["format_version"] == 2 and value["connection"] is None:
         raise ValueError("Старый serial companion требует контекст соединения")
-    if value["format_version"] in (2, 3, 4) and value["connection"] is not None:
+    if value["format_version"] in (2, 3, 4, 5) and value["connection"] is not None:
         raw_connection = value["connection"]
         connection_fields = set(StreamConnection.__dataclass_fields__)
         selection_fields = set(SerialStreamSelection.__dataclass_fields__)
@@ -308,10 +337,13 @@ def open_verified_context(path):
             or value["journal"] != _journal_binding(path, legacy=value["format_version"] < 3)):
         raise ValueError("Контекст не соответствует исходному потоковому файлу")
     event_search = None
-    if value["format_version"] == 4:
+    if value["format_version"] == 4 or (value["format_version"] == 5 and value["event_search"] is not None):
         event_search = SearchSnapshot.from_dict(value["event_search"])
         identity = value["journal"]["identity"]
         validate_config(event_search.config, identity["nominal_fs_hz"], identity["retained_bits"])
+    if context.analog_snapshot is not None:
+        from ..stream_model import StreamIdentity
+        context.validate_identity(StreamIdentity(**value["journal"]["identity"]))
     return VerifiedStreamContext(context, True, digest, connection, event_search)
 
 
@@ -388,6 +420,13 @@ class StreamDeviceBridge(QtCore.QObject):
         return self._selection
 
     @property
+    def input_format(self):
+        """Actual accepted CAPS before START, not a requested sampling rate."""
+        if not self.is_device or not self.state.ready or self.connection is None:
+            return None
+        return RawFormat.from_connection(self.connection)
+
+    @property
     def metadata_pending(self):
         return self._metadata_error is not None or (
             self._record_path is not None and not self._metadata_started) or (
@@ -428,6 +467,12 @@ class StreamDeviceBridge(QtCore.QObject):
         previous = self.controller.snapshot()
         if self.is_device and not previous.ready:
             return False
+        self.context.__post_init__()
+        if self.context.analog_snapshot is not None:
+            if self.context.analog_snapshot.raw_format != self.input_format:
+                raise ValueError("Подтвердите аналоговый вход для согласованного режима АЦП")
+            if previous.bridge is not None and previous.bridge.identity is not None:
+                self.context.validate_identity(previous.bridge.identity)
         # Select sample counts only after accepted CAPS, before a new source.
         # Explicit custom sample configurations retain their caller's meaning.
         config = self.search_config or (default_event_config(self.connection.observed_caps[4],
@@ -459,6 +504,24 @@ class StreamDeviceBridge(QtCore.QObject):
         self.search_reset_notice = ""
         return True
 
+    def set_input_profile(self, profile, snapshot=None):
+        """An explicit selection applies to the next START, never to live raw."""
+        status = self.state
+        if (self._closing or self._disconnecting or self.metadata_pending or
+                status.command_pending or status.stop_pending or status.close_requested or
+                not status.can_preview):
+            return False
+        candidate = replace(self.context, input_profile=profile, analog_snapshot=snapshot)
+        if snapshot is not None:
+            if not self.is_device or not status.ready or status.bridge is None:
+                return False
+            if snapshot.raw_format != self.input_format:
+                raise ValueError("Снимок входа не соответствует согласованным возможностям STM32")
+            if status.bridge.identity is not None:
+                candidate.validate_identity(status.bridge.identity)
+        self.context = candidate
+        return True
+
     def connect_source(self, selection=None):
         """Queue selected COM open then HELLO/CAPS, with no START fallback."""
         if (not self.is_device or self._closed or self._closing or self._disconnecting or
@@ -468,6 +531,7 @@ class StreamDeviceBridge(QtCore.QObject):
         previous = self.controller.snapshot()
         if not self.controller.connect():
             return False
+        self.context = replace(self.context, input_profile=UNKNOWN_PROFILE, analog_snapshot=None)
         self.connection = None
         self._last_error = None
         self._connect_pending = True
@@ -507,6 +571,8 @@ class StreamDeviceBridge(QtCore.QObject):
         self.context.__post_init__()
         path = str(path)
         previous = self.controller.snapshot()
+        if self.context.analog_snapshot is not None:
+            self.context.validate_identity(previous.bridge.identity)
         if self.is_device and (previous.phase != "preview" or self.connection is None):
             return False
         if not self.controller.record(path, **({"event_config": self.search_config}

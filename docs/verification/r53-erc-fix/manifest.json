@@ -1,0 +1,120 @@
+{
+  "task": "HW-R53-ERC",
+  "date": "2026-11-03",
+  "scope": "Schematic connection restoration, KiCad ERC and original schematic/PCB pin parity only",
+  "base_git_commit": "6e364ed4cc6f2859473c565765fcfe54b811d77f",
+  "original_schematic_sha256": "cb662bb691797ec496b1d41841219b8afb3a7fd244d4e99cd8a9bb7bae330439",
+  "final_schematic_sha256": "74184e61aec1074d4c9f33b8f32e508d0ccd468fd04ddb4ebbada454ff73bc62",
+  "files": {
+    "docs/coordination.md": {
+      "sha256": "ca85d3624f3483d8862030c28e24c7f54e14c01152b57de9584c701fd5cd7c24",
+      "bytes": 74893
+    },
+    "docs/decisions.md": {
+      "sha256": "f69faf790fe187a318da66052f093ac294c550ac86b9f85b8f6776e4bf1d76ca",
+      "bytes": 92248
+    },
+    "docs/verification/r53-erc-fix/before-erc.json": {
+      "sha256": "a52705555104779ce111a366b6732c708ea1f421013280ea761fbb909d39b238",
+      "bytes": 1047
+    },
+    "docs/verification/r53-erc-fix/desktop-before-erc.json": {
+      "sha256": "21fffc6ee43591f3ec4387ee0b8586accd0196fc934e40465be73b33e9f03a2e",
+      "bytes": 41069
+    },
+    "docs/verification/r53-erc-fix/desktop-before.kicad_sch": {
+      "sha256": "928e05167254a7bf6f53106270207eab937af033f8d540727ccbb945442a6171",
+      "bytes": 137776
+    },
+    "docs/verification/r53-erc-fix/final-erc.json": {
+      "sha256": "59c4907ca423cad0001307dc05b1950b254125679d571cd1d0657e76d89c7136",
+      "bytes": 1047
+    },
+    "docs/verification/r53-erc-fix/final-netlist.xml": {
+      "sha256": "8fbba58ed6b2d7723d7facce555892102b8a5e61265905b4f0bae764f912cfab",
+      "bytes": 42526
+    },
+    "docs/verification/r53-erc-fix/final-parity.json": {
+      "sha256": "a3a64f57c860d7651050ed7b4157614699f793eeaf59d8fce761253abeea5b60",
+      "bytes": 14035
+    },
+    "docs/verification/r53-erc-fix/original-reviewed.kicad_sch": {
+      "sha256": "cb662bb691797ec496b1d41841219b8afb3a7fd244d4e99cd8a9bb7bae330439",
+      "bytes": 80397
+    },
+    "docs/verification/r53-erc-fix/preservation.json": {
+      "sha256": "47271f846959edf0bbbef3ff70b46de15d45f21cbccee9f148d613ff312401df",
+      "bytes": 738
+    },
+    "docs/verification/r53-erc-fix/repair-geometry.json": {
+      "sha256": "596b2c1edf9b4a443ef57ca7d4b5804e4b564e360dcfbcc0f274b179a062b8d6",
+      "bytes": 10843
+    },
+    "docs/verification/r53-erc-fix/user-ERC.rpt": {
+      "sha256": "9053371384c30696ab54afa6fc26a9f8b0fb35424254b410a1b68354b67d6801",
+      "bytes": 5180
+    },
+    "docs/verification/r53-erc-fix/user-saved-before-erc.json": {
+      "sha256": "5b6ba0fe642c854e2f8361e1fd40828e3cacca5a7912394ebf44586311ff40a4",
+      "bytes": 37333
+    },
+    "docs/verification/r53-erc-fix/user-saved-before.kicad_sch": {
+      "sha256": "72ec9de28073b1ef4b4b2e3541b65eca92f0786d4278899859d5f5a192ff4675",
+      "bytes": 137634
+    },
+    "docs/verification/r53-erc-fix/user-saved-ERC.rpt": {
+      "sha256": "5ff7112def50a93f2af35709f9c9bb2b5c42d117b9cbf4eb203840f0e41a0212",
+      "bytes": 4469
+    },
+    "hardware/v2-input/r53-compact-20261102/analog-input-r53.kicad_pcb": {
+      "sha256": "a42d276fa19727af062d79cac4bb9bfd6956781ed5078dbca22f9de8f20a98be",
+      "bytes": 280565
+    },
+    "hardware/v2-input/r53-compact-20261102/analog-input-r53.kicad_pro": {
+      "sha256": "980ae1cf90f7b73dba171468c23819e4b18a244735f0365adb47fc0a48ca25c9",
+      "bytes": 16626
+    },
+    "hardware/v2-input/r53-compact-20261102/analog-input-r53.kicad_sch": {
+      "sha256": "74184e61aec1074d4c9f33b8f32e508d0ccd468fd04ddb4ebbada454ff73bc62",
+      "bytes": 145538
+    },
+    "hardware/v2-input/r53-compact-20261102/AnalogLUTR5.kicad_sym": {
+      "sha256": "c3cd2e5a32648552fc4e9d960e159c5f6265a2479584ce1e561d36b9b4720af8",
+      "bytes": 14008
+    },
+    "hardware/v2-input/r53-compact-20261102/fp-lib-table": {
+      "sha256": "24335140f3460b596a2ec0f60b4fcceefa59ff31ab5b4bed09d0cf8e6cf784ec",
+      "bytes": 135
+    },
+    "hardware/v2-input/r53-compact-20261102/README_RU.md": {
+      "sha256": "8c6bd2c673fe06fc3c7ff037f42b51407abd63899279ea2fdcf52631f1e85ac3",
+      "bytes": 16411
+    },
+    "hardware/v2-input/r53-compact-20261102/sym-lib-table": {
+      "sha256": "e1dd029087c0cf731945ad96d0741549cdb9a79b3eebd471831d87001250e943",
+      "bytes": 162
+    },
+    "requirements.md": {
+      "sha256": "4bee5c7971f3d7ea32352ad85afab73a7523a71021260f8c99db7da3afaa7e37",
+      "bytes": 71003
+    },
+    "task.md": {
+      "sha256": "72a9e5de8fd59c8f16555f3449c47e06d5d202ad40f7ee2552b7c6ff468c36f7",
+      "bytes": 157677
+    },
+    "tools/pcb_r53/check_parity.py": {
+      "sha256": "be96c61f6e907a9f9d916e4a615d49d0a5679684fea6da4304757ce8d831d139",
+      "bytes": 7750
+    },
+    "tools/pcb_r53/repair_schematic_connections.py": {
+      "sha256": "aca719e79627a7508c56d27d1bee4c4cc6f0b9ff33c0dd1772490f8218fae8f5",
+      "bytes": 6084
+    }
+  },
+  "mutable_reports_excluded": [
+    "docs/progress.md",
+    "docs/reviews/r53-erc-fix-review.md",
+    "docs/verification/r53-erc-fix/critic.json"
+  ],
+  "physical_measurements": false
+}

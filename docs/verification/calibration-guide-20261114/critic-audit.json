@@ -1,0 +1,61 @@
+{
+  "schema_version": 1,
+  "date": "2026-11-14",
+  "repository": "font-weight/stm32_motortester_v2",
+  "base_sha": "6e364ed4cc6f2859473c565765fcfe54b811d77f",
+  "critic": "/root/unified_critic",
+  "independent_of_author": true,
+  "scope": "Documentation only: three-page DC WIDE and AC calibration guide for existing V2-17 interface",
+  "verdict": "PASS",
+  "score_unrounded": 9.665,
+  "score_display": 9.67,
+  "criteria": {"C1": 9.8, "C2": 9.7, "C3": 9.6, "C4": 9.5, "C5": 9.6},
+  "weights": {"C1": 0.30, "C2": 0.20, "C3": 0.25, "C4": 0.15, "C5": 0.10},
+  "open_P0": 0,
+  "open_P1": 0,
+  "artifacts": [
+    {"path": "готовые документы/Калибровка CH1_пошаговая инструкция.docx", "sha256": "fa97121c6072ff04795bf1b4947dd2e9d0b61a64785ec13782bc96355862df42", "role": "deliverable"},
+    {"path": "tools/calibration_guide/build_guide.py", "sha256": "135ba1f0196ff65c0f02fde2bf97a14c26442dd3e7a0fdae4f1054d4abcfbd92", "role": "generator"},
+    {"path": "build/calibration-guide-20261114/final-render/page-1.png", "sha256": "9b3e44cf1ad0942c18a42fb568fb5579b29ea82c32b331b943088849ead85b6c", "role": "personally_reviewed_render"},
+    {"path": "build/calibration-guide-20261114/final-render/page-2.png", "sha256": "04d48232191d3dcd12ec49cab38207904d4e76dc7189262b4ee9ca2d77d64a7a", "role": "personally_reviewed_render"},
+    {"path": "build/calibration-guide-20261114/final-render/page-3.png", "sha256": "e7b60a30051e7b4ad5964b9abcaac8e28b6fad1c48cc3078166f42d684aa89b9", "role": "personally_reviewed_render"}
+  ],
+  "read_only_context": [
+    {"path": "docs/calibration-wizard.md", "sha256": "9d98c3b68e3ebf9f8e737a5a0c5f75d999619f9fdf8d18a3faf5871e238fc4a5"},
+    {"path": "host/motortester/v2/calibration_ui.py", "sha256": "41f80bc6f5bc335edcf9b21b7d59795e8e74147b2bdef720d2b08c5399e243f2"},
+    {"path": "host/motortester/v2/calibration.py", "sha256": "547f68da6a935771a769a9320d5a858220d3e048bd6d8948f3267d9d255d9f67"},
+    {"path": "host/motortester/v2/inline_input.py", "sha256": "3c6d2d88da45d34ad0d42d92ca476741e36515a00dcaf3d5bf25186c6bb0a4ff"},
+    {"path": "host/motortester/v2/unified_gui.py", "sha256": "db33bfe55e6baf9e41ccfb582c7d7ea7395233f0604d926c2d4948f750cfa60a"}
+  ],
+  "checks": {
+    "docx_body_read_from_ooxml": true,
+    "current_ui_labels_crosschecked": true,
+    "pages_reviewed_at_original_resolution": [1, 2, 3],
+    "render_page_count": 3,
+    "explicit_page_breaks": 2,
+    "clip_overlap_or_missing_glyphs_observed": false,
+    "sampling_example_seconds": 0.240,
+    "first_power_pdf_exists": true,
+    "ac_amplitude_uncertainty_tolerance_same_convention_explicit": true,
+    "style_paragraph_borders_present": false,
+    "render_rerun_by_critic": false,
+    "application_tests_run": false,
+    "physical_tests_run": false
+  },
+  "author_renderer": {
+    "entry": "render_docx.py",
+    "libreoffice": "C:/Program Files/LibreOffice/program/soffice.exe",
+    "python_and_poppler": "bundled runtime reported by author",
+    "limitation": "native installed LibreOffice used because bundled LibreOffice is absent on Windows; Word was not separately opened"
+  },
+  "resolved_findings": [
+    "AC amplitude, uncertainty and tolerance convention is now explicit",
+    "Default blue title line and blue subtitle removed; table header fill added"
+  ],
+  "limitations": [
+    "Document verification only; no new software or hardware acceptance",
+    "Safe input levels, RM102 accuracy and target tolerance remain unknown pending physical and instrument evidence",
+    "Dense but readable second page; first-power procedure is a separate prerequisite document",
+    "Existing wizard summary contains the older analogue-input dialog name; guide uses the actual current main-window path"
+  ]
+}

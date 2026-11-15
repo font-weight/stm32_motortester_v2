@@ -1,0 +1,147 @@
+{
+  "recommended": {
+    "C10_pF_reported": 96,
+    "C11_pF_reported": 104
+  },
+  "alternative": {
+    "C10_pF_reported": 104,
+    "C11_pF_reported": 96
+  },
+  "basis": "User reports two leaded capacitors 96pF and104pF, probably X7R. Readings treated as model inputs only, not guaranteed effective capacitance.",
+  "decision": "Assign104pF toC11 and96pF toC10. In this model it slightly reduces upper bandwidth, step overshoot and direct fast-edge feedthrough. No added parts.",
+  "remaining_unknowns": [
+    "Measurement accuracy and test conditions",
+    "Exact dielectric and voltage rating",
+    "Lead pitch and body size"
+  ],
+  "ideal_rows": [
+    {
+      "set": "actual_assignment_preferred_C10_96_C11_104",
+      "mode": "DC_WIDE",
+      "C10_pF": 96,
+      "C11_pF": 104,
+      "upper_half_power_Hz": 17771.822180928855,
+      "gain_V_per_V": 0.03698358289734785,
+      "zero_at_3p3_V": 1.6598232004329716,
+      "response_at_10kHz_dB": -0.2152256194986722,
+      "response_at_20kHz_dB": -5.399725761781035,
+      "MNA_algebra_max_abs_error": 3.1225022575401964e-16,
+      "overshoot_pct": 9.955797492134177,
+      "peak_us": 53.050000000000004,
+      "settling_1pct_us_sampled": 94.20000000000002,
+      "step_transfer_MNA_max_error": 5.9383960505938e-15
+    },
+    {
+      "set": "actual_assignment_preferred_C10_96_C11_104",
+      "mode": "AC_WIDE",
+      "C10_pF": 96,
+      "C11_pF": 104,
+      "upper_half_power_Hz": 17771.070385042665,
+      "gain_V_per_V": 0.036637674252353016,
+      "zero_at_3p3_V": 1.7235668789808893,
+      "response_at_10kHz_dB": -0.21547892731558765,
+      "response_at_20kHz_dB": -5.400535174145263,
+      "MNA_algebra_max_abs_error": 5.088627329868673e-16
+    },
+    {
+      "set": "actual_assignment_preferred_C10_96_C11_104",
+      "mode": "AC_SENSITIVE",
+      "C10_pF": 96,
+      "C11_pF": 104,
+      "upper_half_power_Hz": 17769.706649607953,
+      "gain_V_per_V": 0.18628619087334622,
+      "zero_at_3p3_V": 1.7235668789808793,
+      "response_at_10kHz_dB": -0.21586776927977358,
+      "response_at_20kHz_dB": -5.402090316352391,
+      "MNA_algebra_max_abs_error": 2.5133742693021536e-15
+    },
+    {
+      "set": "actual_assignment_alternative_C10_104_C11_96",
+      "mode": "DC_WIDE",
+      "C10_pF": 104,
+      "C11_pF": 96,
+      "upper_half_power_Hz": 17907.388177413384,
+      "gain_V_per_V": 0.03698358289734785,
+      "zero_at_3p3_V": 1.6598232004329716,
+      "response_at_10kHz_dB": -0.1700760427245862,
+      "response_at_20kHz_dB": -5.253182816600526,
+      "MNA_algebra_max_abs_error": 3.608289985824039e-16,
+      "overshoot_pct": 10.225914860055308,
+      "peak_us": 52.650000000000006,
+      "settling_1pct_us_sampled": 93.95,
+      "step_transfer_MNA_max_error": 7.219254696525923e-15
+    },
+    {
+      "set": "actual_assignment_alternative_C10_104_C11_96",
+      "mode": "AC_WIDE",
+      "C10_pF": 104,
+      "C11_pF": 96,
+      "upper_half_power_Hz": 17906.712738148562,
+      "gain_V_per_V": 0.036637674252353016,
+      "zero_at_3p3_V": 1.7235668789808893,
+      "response_at_10kHz_dB": -0.17030001092325234,
+      "response_at_20kHz_dB": -5.253915186903835,
+      "MNA_algebra_max_abs_error": 5.682377955034956e-16
+    },
+    {
+      "set": "actual_assignment_alternative_C10_104_C11_96",
+      "mode": "AC_SENSITIVE",
+      "C10_pF": 104,
+      "C11_pF": 96,
+      "upper_half_power_Hz": 17905.109784610373,
+      "gain_V_per_V": 0.18628619087334622,
+      "zero_at_3p3_V": 1.7235668789808793,
+      "response_at_10kHz_dB": -0.1707563563408412,
+      "response_at_20kHz_dB": -5.255740257789492,
+      "MNA_algebra_max_abs_error": 2.8785957662940595e-15
+    }
+  ],
+  "finite_DC_illustrative_rows": [
+    {
+      "C10_pF": 96.0,
+      "C11_pF": 104.0,
+      "upper_half_power_Hz": 17893.967603139354,
+      "frequency_identity_error": 3.140142484995111e-13,
+      "nodes": {
+        "IN_A": {
+          "min_V_per_unit_step": 0.008794617022646993,
+          "max_V_per_unit_step": 0.03698358289734621,
+          "direct_jump_V_per_unit_step": 0.010003226847476069
+        },
+        "BUF": {
+          "min_V_per_unit_step": 0.000741830586601766,
+          "max_V_per_unit_step": 0.03698321306521549,
+          "direct_jump_V_per_unit_step": 0.01000322684803982
+        },
+        "ADC_NODE": {
+          "min_V_per_unit_step": -3.451541179949613e-08,
+          "max_V_per_unit_step": 0.04074065426561822,
+          "direct_jump_V_per_unit_step": 0.0
+        }
+      }
+    },
+    {
+      "C10_pF": 104.0,
+      "C11_pF": 96.0,
+      "upper_half_power_Hz": 18033.504167187297,
+      "frequency_identity_error": 3.456024518803353e-13,
+      "nodes": {
+        "IN_A": {
+          "min_V_per_unit_step": 0.009389908453778874,
+          "max_V_per_unit_step": 0.036983582897350105,
+          "direct_jump_V_per_unit_step": 0.010812696197992746
+        },
+        "BUF": {
+          "min_V_per_unit_step": 0.0007864011890585942,
+          "max_V_per_unit_step": 0.03698321306521951,
+          "direct_jump_V_per_unit_step": 0.01081269619737959
+        },
+        "ADC_NODE": {
+          "min_V_per_unit_step": -3.7191259481816896e-08,
+          "max_V_per_unit_step": 0.0408482657966809,
+          "direct_jump_V_per_unit_step": 0.0
+        }
+      }
+    }
+  ]
+}

@@ -298,6 +298,7 @@ class MainWindow(DeviceControlsMixin, QtWidgets.QMainWindow):
         file_actions.addWidget(self.quality_label, 1, 0, 1, 3)
         left.addLayout(file_actions)
         sidebar = QtWidgets.QFrame(objectName="panel")
+        self.sidebar = sidebar
         sidebar.setFixedWidth(342)
         side_outer = QtWidgets.QVBoxLayout(sidebar)
         side_outer.setContentsMargins(8, 8, 8, 8)
@@ -446,6 +447,8 @@ class MainWindow(DeviceControlsMixin, QtWidgets.QMainWindow):
         self.gap_button.setToolTip("Явно пропустить синтетические отсчёты для проверки записи и отображения разрывов.")
         self.raw_button = self._button("Сведения о шкале / исходных кодах", self.raw_info)
         self.service_actions = []
+        calibration_action = self.service_menu.addAction("Калибровка входа DC / AC…")
+        calibration_action.triggered.connect(self.open_calibration)
         demo_menu = self.service_menu.addMenu("ДЕМО для проверки")
         for text, kind in (("Синусоида", "sine"), ("Прямоугольный сигнал", "square"),
                            ("Зажигание", "ignition")):
@@ -468,6 +471,10 @@ class MainWindow(DeviceControlsMixin, QtWidgets.QMainWindow):
     def _refresh_service_menu(self):
         for action, control in self.service_actions:
             action.setEnabled(control.isEnabled())
+
+    def open_calibration(self):
+        from .calibration_ui import open_calibration_wizard
+        open_calibration_wizard(self)
 
     def capture_settings(self):
         return CaptureSettings(threshold_v=self.threshold.value,
@@ -835,6 +842,9 @@ class MainWindow(DeviceControlsMixin, QtWidgets.QMainWindow):
         self.yposition.set_value(2048 if raw else 1.65)
 
     def _units_changed(self):
+        if self._stream_page_active:
+            self.stream_dialog.set_voltage_unit(self.units_combo.currentText())
+            return
         if self.display_recording and not self.display_recording.input_profile.configured:
             return
         factor, unit = self.unit_factor, self.units_combo.currentText()
@@ -1155,7 +1165,7 @@ class MainWindow(DeviceControlsMixin, QtWidgets.QMainWindow):
 
     def auto_scale(self):
         if self._stream_page_active:
-            if not self.raw_view.isChecked():
+            if not self.raw_view.isChecked() and not self.stream_dialog.active_input_profile.configured:
                 self.statusBar().showMessage("Включите служебные коды АЦП, чтобы настроить масштаб потока.")
                 return
             _x, y = self.stream_dialog.viewer.curve.getData()
@@ -1167,7 +1177,8 @@ class MainWindow(DeviceControlsMixin, QtWidgets.QMainWindow):
                 self.statusBar().showMessage("Ждём отсчёты для автомасштаба потока.")
                 return
             low, high = min(finite), max(finite)
-            wanted = max(1.0, (high - low) * 1.15 / 8)
+            minimum = (.001 if self.stream_dialog.viewer.voltage_display else 1.0)
+            wanted = max(minimum, (high - low) * 1.15 / 8)
             decade = 10 ** math.floor(math.log10(wanted))
             scale = next(step * decade for step in (1, 2, 5, 10) if step * decade >= wanted)
             self._stream_syncing = True
@@ -1448,6 +1459,34 @@ class MainWindow(DeviceControlsMixin, QtWidgets.QMainWindow):
     def _stream_source_reset(self):
         self._stream_initial_view = True
 
+    def _stream_input_changed(self):
+        if not self._stream_page_active or self.stream_dialog is None:
+            return
+        dlg = self.stream_dialog
+        profile, raw = dlg.active_input_profile, not dlg.viewer.voltage_display
+        factor, unit = (1, 'код') if raw else (self.unit_factor, self.units_combo.currentText())
+        self._stream_syncing = True
+        try:
+            self._axis_kind = 'raw' if raw else 'voltage'
+            self.source_controls_row.show()
+            self.file_source_label.hide()
+            self.units_combo.setEnabled(profile.configured)
+            self.scale_label.setText(dlg.input_note.text())
+            with QtCore.QSignalBlocker(self.raw_view):
+                self.raw_view.setChecked(dlg.raw_view.isChecked())
+            self.yscale.set_bounds(1 if raw else .001, 4096 if raw else 100)
+            self.yposition.set_bounds(0 if raw else -100, 4095 if raw else 100)
+            self.yposition.step = 1 if raw else .1
+            self.yscale.set_display(factor, unit + '/дел')
+            self.yposition.set_display(factor, unit)
+            self.yscale.spin.setDecimals(0 if raw else 1 if unit == 'мВ' else 4)
+            self.yposition.spin.setDecimals(0 if raw else 1 if unit == 'мВ' else 4)
+            lo, hi = dlg.viewer.plot.getViewBox().viewRange()[1]
+            self.yscale.set_value((hi-lo)/8)
+            self.yposition.set_value((hi+lo)/2)
+        finally:
+            self._stream_syncing = False
+
     def _stream_plot_drawn(self):
         if not self._stream_page_active or self.stream_dialog is None:
             return
@@ -1516,14 +1555,16 @@ class MainWindow(DeviceControlsMixin, QtWidgets.QMainWindow):
                 self.yposition.value, self._axis_kind, self.raw_view.isChecked(),
                 self.xposition.high, self.origin_badge.text())
             self._stream_page_active = True
+            self.sidebar.setFixedWidth(370)
             self.device_stream_button.hide()
             self.open_button.hide()
             for tab in self.tabs:
                 tab.hide()
             self._stream_initial_view = True
             self.raw_view.setVisible(True)
-            self.raw_view.setToolTip("В потоке исходные коды показаны без пересчёта в напряжение.")
-            self.source_controls_row.hide()
+            self.raw_view.setToolTip("Служебный просмотр исходных кодов; сохранённая шкала CH1 остаётся неизменной.")
+            self.source_controls_row.show()
+            self.file_source_label.hide()
             self.capture_controls.hide()
             from .stream_search_ui import StreamSearchControls
             self.stream_search_controls = StreamSearchControls(self.stream_dialog)
@@ -1547,8 +1588,13 @@ class MainWindow(DeviceControlsMixin, QtWidgets.QMainWindow):
                 widget.setEnabled(False)
             self.capture_note.setText("Параметры запуска и захвата в потоке не применяются")
             self.origin_badge.setText("ПОТОК · " + ("ДЕМО" if self.stream_dialog.selection is None else "STM32"))
+            self.stream_dialog.set_voltage_unit(self.units_combo.currentText())
+            self._stream_input_changed()
         else:
             self._stream_page_active = False
+            self.sidebar.setFixedWidth(342)
+            self.yscale.spin.setDecimals(4)
+            self.yposition.spin.setDecimals(4)
             self.device_stream_button.show()
             self.open_button.show()
             for tab in self.tabs:
@@ -1639,6 +1685,7 @@ class MainWindow(DeviceControlsMixin, QtWidgets.QMainWindow):
             self.stream_dialog.setSizePolicy(QtWidgets.QSizePolicy.Policy.Expanding,
                                              QtWidgets.QSizePolicy.Policy.Expanding)
             self.stream_dialog.viewer.source_reset.connect(self._stream_source_reset)
+            self.stream_dialog.input_changed.connect(self._stream_input_changed)
             self.stream_dialog.viewer.plot_drawn.connect(self._stream_plot_drawn)
             self.stream_dialog.viewer.view_requested.connect(self._sync_stream_controls)
             self.stream_dialog.viewer.plot.getViewBox().sigRangeChangedManually.connect(
@@ -1710,6 +1757,12 @@ class MainWindow(DeviceControlsMixin, QtWidgets.QMainWindow):
         event.accept()
 
 
+# Keep the former implementation importable for historical tooling. The public
+# entry point now creates one inert workspace, never the old automatic DEMO.
+LegacyMainWindow = MainWindow
+from .unified_gui import MainWindow as UnifiedMainWindow
+
+
 def main(argv=None):
     parser = argparse.ArgumentParser(description="Мотортестер V2 · один CH1, ДЕМО и файлы")
     parser.add_argument("--screenshot", type=Path, help="Сохранить фактическое окно Qt и завершиться")
@@ -1719,10 +1772,9 @@ def main(argv=None):
     app = QtWidgets.QApplication.instance() or QtWidgets.QApplication(sys.argv[:1])
     app.setStyle("Fusion")
     app.setApplicationName("Мотортестер V2")
-    window = MainWindow(settings_path=args.settings)
+    window = UnifiedMainWindow(settings_path=args.settings)
     if args.profile != "oscilloscope":
         window.change_profile(args.profile)
-        window.waveform_combo.setCurrentIndex(2)
     window.show()
     if args.screenshot:
         def capture():
@@ -1730,6 +1782,10 @@ def main(argv=None):
             if not window.grab().save(str(args.screenshot)):
                 app.exit(1)
                 return
-            app.quit()
+            window.close()
         QtCore.QTimer.singleShot(800, capture)
     return app.exec()
+
+
+if __name__ == '__main__':
+    raise SystemExit(main())

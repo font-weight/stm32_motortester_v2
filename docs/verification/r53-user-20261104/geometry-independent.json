@@ -1,0 +1,2607 @@
+{
+  "source_sha256": {
+    "analog-input-r53.kicad_pcb": "73b1efdadeda09ced3e38c074e75e8204914c9fcbf023f96bf9e01aa064fcce9",
+    "analog-input-r53.kicad_prl": "21447284bb8fbfcbe35e380733b048205622398e8b529af423c971d42ce7190f",
+    "analog-input-r53.kicad_pro": "9069ba6f0821f49d06422b99fac299940bf3a4bd74fbd371c97cdc409aa00664",
+    "analog-input-r53.kicad_sch": "344543ffd7bbee30b31c32625e88b2890b3e21d5e24f6f36e4e119c66a486d58",
+    "AnalogLUTR5.kicad_sym": "c3cd2e5a32648552fc4e9d960e159c5f6265a2479584ce1e561d36b9b4720af8",
+    "fp-lib-table": "24335140f3460b596a2ec0f60b4fcceefa59ff31ab5b4bed09d0cf8e6cf784ec",
+    "sym-lib-table": "e1dd029087c0cf731945ad96d0741549cdb9a79b3eebd471831d87001250e943"
+  },
+  "original_component_count": 35,
+  "pcb_footprint_count": 35,
+  "value_diff": [],
+  "pin_net_diff": [],
+  "track_count": 142,
+  "via_count": 5,
+  "track_widths_mm": {
+    "1.5": 107,
+    "3.0": 5,
+    "2.0": 18,
+    "1.0": 6,
+    "2.5": 6
+  },
+  "track_layers": {
+    "B.Cu": 135,
+    "F.Cu": 7
+  },
+  "footprints": [
+    {
+      "ref": "C1",
+      "value": "10n PET 5% 100V",
+      "layer": "F.Cu",
+      "x_mm": 108.0,
+      "y_mm": 65.5,
+      "angle": 90.0,
+      "pads": [
+        {
+          "n": "1",
+          "net": "Net-(C1-Pad1)",
+          "x_mm": 108.0,
+          "y_mm": 67.5,
+          "size": [
+            2.6,
+            2.6
+          ],
+          "drill": [
+            0.9,
+            0.9
+          ]
+        },
+        {
+          "n": "2",
+          "net": "Net-(U1B--)",
+          "x_mm": 108.0,
+          "y_mm": 63.5,
+          "size": [
+            2.6,
+            2.6
+          ],
+          "drill": [
+            0.9,
+            0.9
+          ]
+        }
+      ]
+    },
+    {
+      "ref": "C10",
+      "value": "100p (96p measured)",
+      "layer": "F.Cu",
+      "x_mm": 121.0,
+      "y_mm": 47.0,
+      "angle": 90.0,
+      "pads": [
+        {
+          "n": "1",
+          "net": "Net-(S2-COM)",
+          "x_mm": 121.0,
+          "y_mm": 48.27,
+          "size": [
+            1.7,
+            2.6
+          ],
+          "drill": [
+            0.8,
+            0.8
+          ]
+        },
+        {
+          "n": "2",
+          "net": "Net-(S2-WIDE)",
+          "x_mm": 121.0,
+          "y_mm": 45.73,
+          "size": [
+            1.7,
+            2.6
+          ],
+          "drill": [
+            0.8,
+            0.8
+          ]
+        }
+      ]
+    },
+    {
+      "ref": "C11",
+      "value": "100p (104p measured)",
+      "layer": "F.Cu",
+      "x_mm": 84.5,
+      "y_mm": 37.5,
+      "angle": 180.0,
+      "pads": [
+        {
+          "n": "1",
+          "net": "Net-(U1A-+)",
+          "x_mm": 85.77,
+          "y_mm": 37.5,
+          "size": [
+            1.7,
+            2.6
+          ],
+          "drill": [
+            0.8,
+            0.8
+          ]
+        },
+        {
+          "n": "2",
+          "net": "AGND",
+          "x_mm": 83.23,
+          "y_mm": 37.5,
+          "size": [
+            1.7,
+            2.6
+          ],
+          "drill": [
+            0.8,
+            0.8
+          ]
+        }
+      ]
+    },
+    {
+      "ref": "C2",
+      "value": "10n PET 5% 100V",
+      "layer": "F.Cu",
+      "x_mm": 92.5,
+      "y_mm": 65.5,
+      "angle": -90.0,
+      "pads": [
+        {
+          "n": "1",
+          "net": "Net-(U1B-+)",
+          "x_mm": 92.5,
+          "y_mm": 61.5,
+          "size": [
+            2.6,
+            2.6
+          ],
+          "drill": [
+            0.9,
+            0.9
+          ]
+        },
+        {
+          "n": "2",
+          "net": "AGND",
+          "x_mm": 92.5,
+          "y_mm": 69.5,
+          "size": [
+            2.6,
+            2.6
+          ],
+          "drill": [
+            0.9,
+            0.9
+          ]
+        }
+      ]
+    },
+    {
+      "ref": "C3",
+      "value": "68n film 5%",
+      "layer": "F.Cu",
+      "x_mm": 61.0,
+      "y_mm": 64.75,
+      "angle": 90.0,
+      "pads": [
+        {
+          "n": "1",
+          "net": "Net-(C3-Pad1)",
+          "x_mm": 61.0,
+          "y_mm": 68.0,
+          "size": [
+            2.6,
+            2.6
+          ],
+          "drill": [
+            0.9,
+            0.9
+          ]
+        },
+        {
+          "n": "2",
+          "net": "Net-(U1C--)",
+          "x_mm": 61.0,
+          "y_mm": 61.5,
+          "size": [
+            2.6,
+            2.6
+          ],
+          "drill": [
+            0.9,
+            0.9
+          ]
+        }
+      ]
+    },
+    {
+      "ref": "C4",
+      "value": "10n PET 5% 100V",
+      "layer": "F.Cu",
+      "x_mm": 71.5,
+      "y_mm": 63.5,
+      "angle": -90.0,
+      "pads": [
+        {
+          "n": "1",
+          "net": "Net-(U1C-+)",
+          "x_mm": 71.5,
+          "y_mm": 60.0,
+          "size": [
+            2.6,
+            2.6
+          ],
+          "drill": [
+            0.9,
+            0.9
+          ]
+        },
+        {
+          "n": "2",
+          "net": "AGND",
+          "x_mm": 71.5,
+          "y_mm": 67.0,
+          "size": [
+            2.6,
+            2.6
+          ],
+          "drill": [
+            0.9,
+            0.9
+          ]
+        }
+      ]
+    },
+    {
+      "ref": "C5",
+      "value": "1n C0G 5%",
+      "layer": "B.Cu",
+      "x_mm": 47.0,
+      "y_mm": 71.0,
+      "angle": -90.0,
+      "pads": [
+        {
+          "n": "1",
+          "net": "Net-(C5-Pad1)",
+          "x_mm": 47.0,
+          "y_mm": 70.0,
+          "size": [
+            1.2,
+            1.6
+          ],
+          "drill": [
+            0.0,
+            0.0
+          ]
+        },
+        {
+          "n": "2",
+          "net": "AGND",
+          "x_mm": 47.0,
+          "y_mm": 72.0,
+          "size": [
+            1.2,
+            1.6
+          ],
+          "drill": [
+            0.0,
+            0.0
+          ]
+        }
+      ]
+    },
+    {
+      "ref": "C6",
+      "value": "100n X7R",
+      "layer": "F.Cu",
+      "x_mm": 108.0,
+      "y_mm": 33.0,
+      "angle": 0.0,
+      "pads": [
+        {
+          "n": "1",
+          "net": "V_A",
+          "x_mm": 106.5,
+          "y_mm": 33.0,
+          "size": [
+            1.7,
+            2.6
+          ],
+          "drill": [
+            0.8,
+            0.8
+          ]
+        },
+        {
+          "n": "2",
+          "net": "AGND",
+          "x_mm": 109.5,
+          "y_mm": 33.0,
+          "size": [
+            1.7,
+            2.6
+          ],
+          "drill": [
+            0.8,
+            0.8
+          ]
+        }
+      ]
+    },
+    {
+      "ref": "C7",
+      "value": "1u X7R",
+      "layer": "F.Cu",
+      "x_mm": 121.0,
+      "y_mm": 34.0,
+      "angle": 90.0,
+      "pads": [
+        {
+          "n": "1",
+          "net": "V_A",
+          "x_mm": 121.0,
+          "y_mm": 35.27,
+          "size": [
+            1.7,
+            2.6
+          ],
+          "drill": [
+            0.8,
+            0.8
+          ]
+        },
+        {
+          "n": "2",
+          "net": "AGND",
+          "x_mm": 121.0,
+          "y_mm": 32.73,
+          "size": [
+            1.7,
+            2.6
+          ],
+          "drill": [
+            0.8,
+            0.8
+          ]
+        }
+      ]
+    },
+    {
+      "ref": "C8",
+      "value": "1.8n C0G 5% 50V",
+      "layer": "F.Cu",
+      "x_mm": 115.0,
+      "y_mm": 69.0,
+      "angle": 90.0,
+      "pads": [
+        {
+          "n": "1",
+          "net": "Net-(C1-Pad1)",
+          "x_mm": 115.0,
+          "y_mm": 70.25,
+          "size": [
+            1.7,
+            2.6
+          ],
+          "drill": [
+            0.8,
+            0.8
+          ]
+        },
+        {
+          "n": "2",
+          "net": "Net-(U1B--)",
+          "x_mm": 115.0,
+          "y_mm": 67.75,
+          "size": [
+            1.7,
+            2.6
+          ],
+          "drill": [
+            0.8,
+            0.8
+          ]
+        }
+      ]
+    },
+    {
+      "ref": "C9",
+      "value": "1u MKP 5% 100V",
+      "layer": "F.Cu",
+      "x_mm": 50.0,
+      "y_mm": 35.5,
+      "angle": 0.0,
+      "pads": [
+        {
+          "n": "1",
+          "net": "Net-(S1A-DC)",
+          "x_mm": 45.0,
+          "y_mm": 35.5,
+          "size": [
+            2.6,
+            2.6
+          ],
+          "drill": [
+            0.8,
+            0.8
+          ]
+        },
+        {
+          "n": "2",
+          "net": "Net-(C9-Pad2)",
+          "x_mm": 54.9,
+          "y_mm": 35.5,
+          "size": [
+            2.6,
+            2.6
+          ],
+          "drill": [
+            0.8,
+            0.8
+          ]
+        }
+      ]
+    },
+    {
+      "ref": "J1",
+      "value": "CH1 / BNC",
+      "layer": "F.Cu",
+      "x_mm": 37.5,
+      "y_mm": 35.0,
+      "angle": 180.0,
+      "pads": [
+        {
+          "n": "1",
+          "net": "Net-(S1A-DC)",
+          "x_mm": 40.04,
+          "y_mm": 35.0,
+          "size": [
+            3.0,
+            3.0
+          ],
+          "drill": [
+            1.1,
+            1.1
+          ]
+        },
+        {
+          "n": "2",
+          "net": "AGND",
+          "x_mm": 34.96,
+          "y_mm": 35.0,
+          "size": [
+            3.0,
+            3.0
+          ],
+          "drill": [
+            1.1,
+            1.1
+          ]
+        }
+      ]
+    },
+    {
+      "ref": "J2",
+      "value": "Verified PA0 / ADC1_IN0",
+      "layer": "F.Cu",
+      "x_mm": 36.5,
+      "y_mm": 67.0,
+      "angle": -90.0,
+      "pads": [
+        {
+          "n": "1",
+          "net": "Net-(J2-Pad1)",
+          "x_mm": 36.5,
+          "y_mm": 64.46,
+          "size": [
+            3.0,
+            3.0
+          ],
+          "drill": [
+            1.1,
+            1.1
+          ]
+        },
+        {
+          "n": "2",
+          "net": "AGND",
+          "x_mm": 36.5,
+          "y_mm": 69.54,
+          "size": [
+            3.0,
+            3.0
+          ],
+          "drill": [
+            1.1,
+            1.1
+          ]
+        }
+      ]
+    },
+    {
+      "ref": "J3",
+      "value": "Common VDDA rail",
+      "layer": "F.Cu",
+      "x_mm": 128.5,
+      "y_mm": 36.0,
+      "angle": 90.0,
+      "pads": [
+        {
+          "n": "1",
+          "net": "V_A",
+          "x_mm": 128.5,
+          "y_mm": 38.54,
+          "size": [
+            3.0,
+            3.0
+          ],
+          "drill": [
+            1.1,
+            1.1
+          ]
+        },
+        {
+          "n": "2",
+          "net": "AGND",
+          "x_mm": 128.5,
+          "y_mm": 33.46,
+          "size": [
+            3.0,
+            3.0
+          ],
+          "drill": [
+            1.1,
+            1.1
+          ]
+        }
+      ]
+    },
+    {
+      "ref": "JP1",
+      "value": "ADC link",
+      "layer": "F.Cu",
+      "x_mm": 45.5,
+      "y_mm": 63.5,
+      "angle": 90.0,
+      "pads": [
+        {
+          "n": "1",
+          "net": "Net-(C5-Pad1)",
+          "x_mm": 45.5,
+          "y_mm": 64.77,
+          "size": [
+            1.7,
+            3.0
+          ],
+          "drill": [
+            1.0,
+            1.0
+          ]
+        },
+        {
+          "n": "2",
+          "net": "Net-(J2-Pad1)",
+          "x_mm": 45.5,
+          "y_mm": 62.23,
+          "size": [
+            1.7,
+            3.0
+          ],
+          "drill": [
+            1.0,
+            1.0
+          ]
+        }
+      ]
+    },
+    {
+      "ref": "R1",
+      "value": "510k 1%",
+      "layer": "F.Cu",
+      "x_mm": 65.0,
+      "y_mm": 47.0,
+      "angle": 90.0,
+      "pads": [
+        {
+          "n": "1",
+          "net": "Net-(S1A-COM)",
+          "x_mm": 65.0,
+          "y_mm": 52.08,
+          "size": [
+            2.6,
+            2.6
+          ],
+          "drill": [
+            0.8,
+            0.8
+          ]
+        },
+        {
+          "n": "2",
+          "net": "Net-(R1-Pad2)",
+          "x_mm": 65.0,
+          "y_mm": 41.92,
+          "size": [
+            2.6,
+            2.6
+          ],
+          "drill": [
+            0.8,
+            0.8
+          ]
+        }
+      ]
+    },
+    {
+      "ref": "R10",
+      "value": "10M 1%",
+      "layer": "F.Cu",
+      "x_mm": 40.0,
+      "y_mm": 47.0,
+      "angle": -90.0,
+      "pads": [
+        {
+          "n": "1",
+          "net": "Net-(S1A-DC)",
+          "x_mm": 40.0,
+          "y_mm": 41.92,
+          "size": [
+            2.6,
+            2.6
+          ],
+          "drill": [
+            0.8,
+            0.8
+          ]
+        },
+        {
+          "n": "2",
+          "net": "Net-(R10-Pad2)",
+          "x_mm": 40.0,
+          "y_mm": 52.08,
+          "size": [
+            2.6,
+            2.6
+          ],
+          "drill": [
+            0.8,
+            0.8
+          ]
+        }
+      ]
+    },
+    {
+      "ref": "R11",
+      "value": "4.7M 1%",
+      "layer": "F.Cu",
+      "x_mm": 35.0,
+      "y_mm": 47.0,
+      "angle": 90.0,
+      "pads": [
+        {
+          "n": "1",
+          "net": "Net-(R10-Pad2)",
+          "x_mm": 35.0,
+          "y_mm": 52.08,
+          "size": [
+            2.6,
+            2.6
+          ],
+          "drill": [
+            0.8,
+            0.8
+          ]
+        },
+        {
+          "n": "2",
+          "net": "AGND",
+          "x_mm": 35.0,
+          "y_mm": 41.92,
+          "size": [
+            2.6,
+            2.6
+          ],
+          "drill": [
+            0.8,
+            0.8
+          ]
+        }
+      ]
+    },
+    {
+      "ref": "R12",
+      "value": "1k 1%",
+      "layer": "F.Cu",
+      "x_mm": 94.92,
+      "y_mm": 34.0,
+      "angle": 0.0,
+      "pads": [
+        {
+          "n": "1",
+          "net": "V_A",
+          "x_mm": 89.84,
+          "y_mm": 34.0,
+          "size": [
+            2.6,
+            2.6
+          ],
+          "drill": [
+            0.8,
+            0.8
+          ]
+        },
+        {
+          "n": "2",
+          "net": "AGND",
+          "x_mm": 100.0,
+          "y_mm": 34.0,
+          "size": [
+            2.6,
+            2.6
+          ],
+          "drill": [
+            0.8,
+            0.8
+          ]
+        }
+      ]
+    },
+    {
+      "ref": "R14",
+      "value": "1.6k 1%",
+      "layer": "F.Cu",
+      "x_mm": 115.5,
+      "y_mm": 43.0,
+      "angle": 90.0,
+      "pads": [
+        {
+          "n": "1",
+          "net": "Net-(S2-COM)",
+          "x_mm": 115.5,
+          "y_mm": 48.08,
+          "size": [
+            2.6,
+            2.6
+          ],
+          "drill": [
+            0.8,
+            0.8
+          ]
+        },
+        {
+          "n": "2",
+          "net": "Net-(S2-WIDE)",
+          "x_mm": 115.5,
+          "y_mm": 37.92,
+          "size": [
+            2.6,
+            2.6
+          ],
+          "drill": [
+            0.8,
+            0.8
+          ]
+        }
+      ]
+    },
+    {
+      "ref": "R15",
+      "value": "750 1%",
+      "layer": "F.Cu",
+      "x_mm": 131.5,
+      "y_mm": 64.5,
+      "angle": -90.0,
+      "pads": [
+        {
+          "n": "1",
+          "net": "V_A",
+          "x_mm": 131.5,
+          "y_mm": 59.42,
+          "size": [
+            2.6,
+            2.6
+          ],
+          "drill": [
+            0.8,
+            0.8
+          ]
+        },
+        {
+          "n": "2",
+          "net": "Net-(S2-SENS)",
+          "x_mm": 131.5,
+          "y_mm": 69.58,
+          "size": [
+            2.6,
+            2.6
+          ],
+          "drill": [
+            0.8,
+            0.8
+          ]
+        }
+      ]
+    },
+    {
+      "ref": "R16",
+      "value": "820 1%",
+      "layer": "F.Cu",
+      "x_mm": 126.0,
+      "y_mm": 64.5,
+      "angle": 90.0,
+      "pads": [
+        {
+          "n": "1",
+          "net": "Net-(S2-SENS)",
+          "x_mm": 126.0,
+          "y_mm": 69.58,
+          "size": [
+            2.6,
+            2.6
+          ],
+          "drill": [
+            0.8,
+            0.8
+          ]
+        },
+        {
+          "n": "2",
+          "net": "AGND",
+          "x_mm": 126.0,
+          "y_mm": 59.42,
+          "size": [
+            2.6,
+            2.6
+          ],
+          "drill": [
+            0.8,
+            0.8
+          ]
+        }
+      ]
+    },
+    {
+      "ref": "R17",
+      "value": "10k 1%",
+      "layer": "F.Cu",
+      "x_mm": 47.0,
+      "y_mm": 47.0,
+      "angle": -90.0,
+      "pads": [
+        {
+          "n": "1",
+          "net": "Net-(C9-Pad2)",
+          "x_mm": 47.0,
+          "y_mm": 41.92,
+          "size": [
+            2.6,
+            2.6
+          ],
+          "drill": [
+            0.8,
+            0.8
+          ]
+        },
+        {
+          "n": "2",
+          "net": "Net-(S1A-AC)",
+          "x_mm": 47.0,
+          "y_mm": 52.08,
+          "size": [
+            2.6,
+            2.6
+          ],
+          "drill": [
+            0.8,
+            0.8
+          ]
+        }
+      ]
+    },
+    {
+      "ref": "R18",
+      "value": "1k 1%",
+      "layer": "F.Cu",
+      "x_mm": 87.0,
+      "y_mm": 47.0,
+      "angle": 90.0,
+      "pads": [
+        {
+          "n": "1",
+          "net": "Net-(R18-Pad1)",
+          "x_mm": 87.0,
+          "y_mm": 52.08,
+          "size": [
+            2.6,
+            2.6
+          ],
+          "drill": [
+            0.8,
+            0.8
+          ]
+        },
+        {
+          "n": "2",
+          "net": "Net-(U1A-+)",
+          "x_mm": 87.0,
+          "y_mm": 41.92,
+          "size": [
+            2.6,
+            2.6
+          ],
+          "drill": [
+            0.8,
+            0.8
+          ]
+        }
+      ]
+    },
+    {
+      "ref": "R2",
+      "value": "510k 1%",
+      "layer": "F.Cu",
+      "x_mm": 70.5,
+      "y_mm": 47.0,
+      "angle": -90.0,
+      "pads": [
+        {
+          "n": "1",
+          "net": "Net-(R1-Pad2)",
+          "x_mm": 70.5,
+          "y_mm": 41.92,
+          "size": [
+            2.6,
+            2.6
+          ],
+          "drill": [
+            0.8,
+            0.8
+          ]
+        },
+        {
+          "n": "2",
+          "net": "Net-(R18-Pad1)",
+          "x_mm": 70.5,
+          "y_mm": 52.08,
+          "size": [
+            2.6,
+            2.6
+          ],
+          "drill": [
+            0.8,
+            0.8
+          ]
+        }
+      ]
+    },
+    {
+      "ref": "R3",
+      "value": "75k 1%",
+      "layer": "F.Cu",
+      "x_mm": 76.0,
+      "y_mm": 47.0,
+      "angle": -90.0,
+      "pads": [
+        {
+          "n": "1",
+          "net": "V_A",
+          "x_mm": 76.0,
+          "y_mm": 41.92,
+          "size": [
+            2.6,
+            2.6
+          ],
+          "drill": [
+            0.8,
+            0.8
+          ]
+        },
+        {
+          "n": "2",
+          "net": "Net-(R18-Pad1)",
+          "x_mm": 76.0,
+          "y_mm": 52.08,
+          "size": [
+            2.6,
+            2.6
+          ],
+          "drill": [
+            0.8,
+            0.8
+          ]
+        }
+      ]
+    },
+    {
+      "ref": "R4",
+      "value": "82k 1%",
+      "layer": "F.Cu",
+      "x_mm": 81.5,
+      "y_mm": 47.0,
+      "angle": 90.0,
+      "pads": [
+        {
+          "n": "1",
+          "net": "Net-(R18-Pad1)",
+          "x_mm": 81.5,
+          "y_mm": 52.08,
+          "size": [
+            2.6,
+            2.6
+          ],
+          "drill": [
+            0.8,
+            0.8
+          ]
+        },
+        {
+          "n": "2",
+          "net": "AGND",
+          "x_mm": 81.5,
+          "y_mm": 41.92,
+          "size": [
+            2.6,
+            2.6
+          ],
+          "drill": [
+            0.8,
+            0.8
+          ]
+        }
+      ]
+    },
+    {
+      "ref": "R5",
+      "value": "750 1%",
+      "layer": "F.Cu",
+      "x_mm": 120.0,
+      "y_mm": 64.5,
+      "angle": -90.0,
+      "pads": [
+        {
+          "n": "1",
+          "net": "Net-(S2-WIDE)",
+          "x_mm": 120.0,
+          "y_mm": 59.42,
+          "size": [
+            2.6,
+            2.6
+          ],
+          "drill": [
+            0.8,
+            0.8
+          ]
+        },
+        {
+          "n": "2",
+          "net": "Net-(C1-Pad1)",
+          "x_mm": 120.0,
+          "y_mm": 69.58,
+          "size": [
+            2.6,
+            2.6
+          ],
+          "drill": [
+            0.8,
+            0.8
+          ]
+        }
+      ]
+    },
+    {
+      "ref": "R6",
+      "value": "750 1%",
+      "layer": "F.Cu",
+      "x_mm": 100.0,
+      "y_mm": 64.5,
+      "angle": 90.0,
+      "pads": [
+        {
+          "n": "1",
+          "net": "Net-(C1-Pad1)",
+          "x_mm": 100.0,
+          "y_mm": 69.58,
+          "size": [
+            2.6,
+            2.6
+          ],
+          "drill": [
+            0.8,
+            0.8
+          ]
+        },
+        {
+          "n": "2",
+          "net": "Net-(U1B-+)",
+          "x_mm": 100.0,
+          "y_mm": 59.42,
+          "size": [
+            2.6,
+            2.6
+          ],
+          "drill": [
+            0.8,
+            0.8
+          ]
+        }
+      ]
+    },
+    {
+      "ref": "R7",
+      "value": "330 1%",
+      "layer": "F.Cu",
+      "x_mm": 85.0,
+      "y_mm": 65.0,
+      "angle": -90.0,
+      "pads": [
+        {
+          "n": "1",
+          "net": "Net-(U1B--)",
+          "x_mm": 85.0,
+          "y_mm": 59.92,
+          "size": [
+            2.6,
+            2.6
+          ],
+          "drill": [
+            0.8,
+            0.8
+          ]
+        },
+        {
+          "n": "2",
+          "net": "Net-(C3-Pad1)",
+          "x_mm": 85.0,
+          "y_mm": 70.08,
+          "size": [
+            2.6,
+            2.6
+          ],
+          "drill": [
+            0.8,
+            0.8
+          ]
+        }
+      ]
+    },
+    {
+      "ref": "R8",
+      "value": "330 1%",
+      "layer": "F.Cu",
+      "x_mm": 79.0,
+      "y_mm": 65.0,
+      "angle": 90.0,
+      "pads": [
+        {
+          "n": "1",
+          "net": "Net-(C3-Pad1)",
+          "x_mm": 79.0,
+          "y_mm": 70.08,
+          "size": [
+            2.6,
+            2.6
+          ],
+          "drill": [
+            0.8,
+            0.8
+          ]
+        },
+        {
+          "n": "2",
+          "net": "Net-(U1C-+)",
+          "x_mm": 79.0,
+          "y_mm": 59.92,
+          "size": [
+            2.6,
+            2.6
+          ],
+          "drill": [
+            0.8,
+            0.8
+          ]
+        }
+      ]
+    },
+    {
+      "ref": "R9",
+      "value": "330 1%",
+      "layer": "F.Cu",
+      "x_mm": 52.0,
+      "y_mm": 65.0,
+      "angle": -90.0,
+      "pads": [
+        {
+          "n": "1",
+          "net": "Net-(U1C--)",
+          "x_mm": 52.0,
+          "y_mm": 59.92,
+          "size": [
+            2.6,
+            2.6
+          ],
+          "drill": [
+            0.8,
+            0.8
+          ]
+        },
+        {
+          "n": "2",
+          "net": "Net-(C5-Pad1)",
+          "x_mm": 52.0,
+          "y_mm": 70.08,
+          "size": [
+            2.6,
+            2.6
+          ],
+          "drill": [
+            0.8,
+            0.8
+          ]
+        }
+      ]
+    },
+    {
+      "ref": "S1",
+      "value": "DC / AC",
+      "layer": "F.Cu",
+      "x_mm": 56.0,
+      "y_mm": 48.0,
+      "angle": -90.0,
+      "pads": [
+        {
+          "n": "1",
+          "net": "Net-(S1A-DC)",
+          "x_mm": 58.54,
+          "y_mm": 53.08,
+          "size": [
+            2.8,
+            4.0
+          ],
+          "drill": [
+            1.1,
+            2.8
+          ]
+        },
+        {
+          "n": "2",
+          "net": "Net-(S1A-COM)",
+          "x_mm": 58.54,
+          "y_mm": 48.0,
+          "size": [
+            2.8,
+            4.0
+          ],
+          "drill": [
+            1.1,
+            2.8
+          ]
+        },
+        {
+          "n": "3",
+          "net": "Net-(S1A-AC)",
+          "x_mm": 58.54,
+          "y_mm": 42.92,
+          "size": [
+            2.8,
+            4.0
+          ],
+          "drill": [
+            1.1,
+            2.8
+          ]
+        },
+        {
+          "n": "4",
+          "net": "Net-(S1A-DC)",
+          "x_mm": 53.46,
+          "y_mm": 53.08,
+          "size": [
+            2.8,
+            4.0
+          ],
+          "drill": [
+            1.1,
+            2.8
+          ]
+        },
+        {
+          "n": "5",
+          "net": "Net-(S1A-AC)",
+          "x_mm": 53.46,
+          "y_mm": 48.0,
+          "size": [
+            2.8,
+            4.0
+          ],
+          "drill": [
+            1.1,
+            2.8
+          ]
+        },
+        {
+          "n": "6",
+          "net": "unconnected-(S1B-AC-Pad6)",
+          "x_mm": 53.46,
+          "y_mm": 42.92,
+          "size": [
+            2.8,
+            4.0
+          ],
+          "drill": [
+            1.1,
+            2.8
+          ]
+        }
+      ]
+    },
+    {
+      "ref": "S2",
+      "value": "3-pin + shunt",
+      "layer": "F.Cu",
+      "x_mm": 128.5,
+      "y_mm": 48.54,
+      "angle": -90.0,
+      "pads": [
+        {
+          "n": "1",
+          "net": "Net-(S2-WIDE)",
+          "x_mm": 128.5,
+          "y_mm": 46.0,
+          "size": [
+            1.7,
+            3.0
+          ],
+          "drill": [
+            1.0,
+            1.0
+          ]
+        },
+        {
+          "n": "2",
+          "net": "Net-(S2-COM)",
+          "x_mm": 128.5,
+          "y_mm": 48.54,
+          "size": [
+            1.7,
+            3.0
+          ],
+          "drill": [
+            1.0,
+            1.0
+          ]
+        },
+        {
+          "n": "3",
+          "net": "Net-(S2-SENS)",
+          "x_mm": 128.5,
+          "y_mm": 51.08,
+          "size": [
+            1.7,
+            3.0
+          ],
+          "drill": [
+            1.0,
+            1.0
+          ]
+        }
+      ]
+    },
+    {
+      "ref": "U1",
+      "value": "TLV9064QDRQ1",
+      "layer": "F.Cu",
+      "x_mm": 101.0,
+      "y_mm": 47.0,
+      "angle": 0.0,
+      "pads": [
+        {
+          "n": "1",
+          "net": "Net-(U1A--)",
+          "x_mm": 93.38,
+          "y_mm": 39.38,
+          "size": [
+            2.6,
+            1.7
+          ],
+          "drill": [
+            1.0,
+            1.0
+          ]
+        },
+        {
+          "n": "2",
+          "net": "Net-(U1A--)",
+          "x_mm": 93.38,
+          "y_mm": 41.92,
+          "size": [
+            2.6,
+            1.7
+          ],
+          "drill": [
+            1.0,
+            1.0
+          ]
+        },
+        {
+          "n": "3",
+          "net": "Net-(U1A-+)",
+          "x_mm": 93.38,
+          "y_mm": 44.46,
+          "size": [
+            2.6,
+            1.7
+          ],
+          "drill": [
+            1.0,
+            1.0
+          ]
+        },
+        {
+          "n": "4",
+          "net": "V_A",
+          "x_mm": 93.38,
+          "y_mm": 47.0,
+          "size": [
+            2.6,
+            1.7
+          ],
+          "drill": [
+            1.0,
+            1.0
+          ]
+        },
+        {
+          "n": "5",
+          "net": "Net-(U1B-+)",
+          "x_mm": 93.38,
+          "y_mm": 49.54,
+          "size": [
+            2.6,
+            1.7
+          ],
+          "drill": [
+            1.0,
+            1.0
+          ]
+        },
+        {
+          "n": "6",
+          "net": "Net-(U1B--)",
+          "x_mm": 93.38,
+          "y_mm": 52.079999,
+          "size": [
+            2.6,
+            1.7
+          ],
+          "drill": [
+            1.0,
+            1.0
+          ]
+        },
+        {
+          "n": "7",
+          "net": "Net-(U1B--)",
+          "x_mm": 93.38,
+          "y_mm": 54.62,
+          "size": [
+            2.6,
+            1.7
+          ],
+          "drill": [
+            1.0,
+            1.0
+          ]
+        },
+        {
+          "n": "8",
+          "net": "Net-(U1C--)",
+          "x_mm": 108.62,
+          "y_mm": 54.62,
+          "size": [
+            2.6,
+            1.7
+          ],
+          "drill": [
+            1.0,
+            1.0
+          ]
+        },
+        {
+          "n": "9",
+          "net": "Net-(U1C--)",
+          "x_mm": 108.62,
+          "y_mm": 52.079999,
+          "size": [
+            2.6,
+            1.7
+          ],
+          "drill": [
+            1.0,
+            1.0
+          ]
+        },
+        {
+          "n": "10",
+          "net": "Net-(U1C-+)",
+          "x_mm": 108.62,
+          "y_mm": 49.54,
+          "size": [
+            2.6,
+            1.7
+          ],
+          "drill": [
+            1.0,
+            1.0
+          ]
+        },
+        {
+          "n": "11",
+          "net": "AGND",
+          "x_mm": 108.62,
+          "y_mm": 47.0,
+          "size": [
+            2.6,
+            1.7
+          ],
+          "drill": [
+            1.0,
+            1.0
+          ]
+        },
+        {
+          "n": "12",
+          "net": "Net-(U1A--)",
+          "x_mm": 108.62,
+          "y_mm": 44.46,
+          "size": [
+            2.6,
+            1.7
+          ],
+          "drill": [
+            1.0,
+            1.0
+          ]
+        },
+        {
+          "n": "13",
+          "net": "Net-(S2-COM)",
+          "x_mm": 108.62,
+          "y_mm": 41.92,
+          "size": [
+            2.6,
+            1.7
+          ],
+          "drill": [
+            1.0,
+            1.0
+          ]
+        },
+        {
+          "n": "14",
+          "net": "Net-(S2-WIDE)",
+          "x_mm": 108.62,
+          "y_mm": 39.38,
+          "size": [
+            2.6,
+            1.7
+          ],
+          "drill": [
+            1.0,
+            1.0
+          ]
+        }
+      ]
+    }
+  ],
+  "zones": [
+    {
+      "net": "AGND",
+      "layer": "B.Cu",
+      "clearance_mm": 0.8,
+      "min_thickness_mm": 0.25,
+      "keepout": false
+    },
+    {
+      "net": "",
+      "layer": "B.Cu",
+      "clearance_mm": 0.0,
+      "min_thickness_mm": 0.25,
+      "keepout": true
+    }
+  ],
+  "rules": {
+    "max_error": 0.005,
+    "min_clearance": 0.75,
+    "min_connection": 0.0,
+    "min_copper_edge_clearance": 1.0,
+    "min_groove_width": 0.0,
+    "min_hole_clearance": 0.35,
+    "min_hole_to_hole": 0.25,
+    "min_microvia_diameter": 0.2,
+    "min_microvia_drill": 0.1,
+    "min_resolved_spokes": 2,
+    "min_silk_clearance": 0.0,
+    "min_text_height": 0.8,
+    "min_text_thickness": 0.08,
+    "min_through_hole_diameter": 0.3,
+    "min_track_width": 1.0,
+    "min_via_annular_width": 0.1,
+    "min_via_diameter": 0.5,
+    "solder_mask_to_copper_clearance": 0.0,
+    "use_height_for_length_calcs": true
+  },
+  "drc_exclusions": [],
+  "ignored_severities": {
+    "footprint_filters_mismatch": "ignore",
+    "footprint_type_mismatch": "ignore",
+    "missing_courtyard": "ignore",
+    "track_not_centered_on_via": "ignore",
+    "tuning_profile_track_geometries": "ignore"
+  },
+  "net_settings": {
+    "classes": [
+      {
+        "clearance": 0.75,
+        "diff_pair_gap": 0.8,
+        "diff_pair_via_gap": 0.8,
+        "diff_pair_width": 1.2,
+        "microvia_diameter": 0.3,
+        "microvia_drill": 0.1,
+        "name": "Default",
+        "pcb_color": "rgba(0, 0, 0, 0.000)",
+        "priority": 2147483647,
+        "schematic_color": "rgba(0, 0, 0, 0.000)",
+        "track_width": 1.2,
+        "tuning_profile": "",
+        "via_diameter": 2.4,
+        "via_drill": 1.0
+      },
+      {
+        "clearance": 1.5,
+        "diff_pair_gap": 0.8,
+        "diff_pair_width": 1.2,
+        "microvia_diameter": 0.3,
+        "microvia_drill": 0.1,
+        "name": "LUT",
+        "pcb_color": "rgba(0, 0, 0, 0.000)",
+        "priority": 0,
+        "schematic_color": "rgba(0, 0, 0, 0.000)",
+        "track_width": 3.0,
+        "tuning_profile": "",
+        "via_diameter": 2.0,
+        "via_drill": 1.0
+      }
+    ],
+    "meta": {
+      "version": 5
+    },
+    "net_colors": null,
+    "netclass_assignments": null,
+    "netclass_patterns": []
+  },
+  "front_segments": [
+    {
+      "net": "Net-(U1B--)",
+      "start": [
+        110.06,
+        61.0
+      ],
+      "end": [
+        103.68,
+        54.62
+      ],
+      "length_mm": 9.022682527940347,
+      "width_mm": 1.5
+    },
+    {
+      "net": "Net-(U1B--)",
+      "start": [
+        112.5,
+        61.0
+      ],
+      "end": [
+        110.06,
+        61.0
+      ],
+      "length_mm": 2.44,
+      "width_mm": 1.5
+    },
+    {
+      "net": "Net-(U1B--)",
+      "start": [
+        103.68,
+        54.62
+      ],
+      "end": [
+        93.38,
+        54.62
+      ],
+      "length_mm": 10.3,
+      "width_mm": 1.5
+    },
+    {
+      "net": "V_A",
+      "start": [
+        91.986598,
+        37.0
+      ],
+      "end": [
+        90.0,
+        38.986598
+      ],
+      "length_mm": 2.809473834583266,
+      "width_mm": 1.5
+    },
+    {
+      "net": "V_A",
+      "start": [
+        90.0,
+        38.986598
+      ],
+      "end": [
+        90.0,
+        47.16
+      ],
+      "length_mm": 8.173402,
+      "width_mm": 1.5
+    },
+    {
+      "net": "V_A",
+      "start": [
+        97.0,
+        37.0
+      ],
+      "end": [
+        91.986598,
+        37.0
+      ],
+      "length_mm": 5.013402,
+      "width_mm": 1.5
+    },
+    {
+      "net": "Net-(S2-WIDE)",
+      "start": [
+        112.5,
+        53.5
+      ],
+      "end": [
+        112.5,
+        39.38
+      ],
+      "length_mm": 14.12,
+      "width_mm": 1.5
+    }
+  ],
+  "vias": [
+    {
+      "net": "Net-(U1B--)",
+      "at": [
+        112.5,
+        61.0
+      ],
+      "diameter_mm": 2.4,
+      "drill_mm": 1.0
+    },
+    {
+      "net": "V_A",
+      "at": [
+        90.0,
+        47.16
+      ],
+      "diameter_mm": 2.4,
+      "drill_mm": 1.0
+    },
+    {
+      "net": "V_A",
+      "at": [
+        97.0,
+        37.0
+      ],
+      "diameter_mm": 2.4,
+      "drill_mm": 1.0
+    },
+    {
+      "net": "Net-(S2-WIDE)",
+      "at": [
+        112.5,
+        39.38
+      ],
+      "diameter_mm": 2.4,
+      "drill_mm": 1.0
+    },
+    {
+      "net": "Net-(S2-WIDE)",
+      "at": [
+        112.5,
+        53.5
+      ],
+      "diameter_mm": 2.4,
+      "drill_mm": 1.0
+    }
+  ],
+  "component_layers": {
+    "J2": "F.Cu",
+    "J1": "F.Cu",
+    "U1": "F.Cu",
+    "C6": "F.Cu",
+    "JP1": "F.Cu",
+    "C3": "F.Cu",
+    "R18": "F.Cu",
+    "R17": "F.Cu",
+    "R4": "F.Cu",
+    "R2": "F.Cu",
+    "R9": "F.Cu",
+    "C1": "F.Cu",
+    "R10": "F.Cu",
+    "C10": "F.Cu",
+    "C7": "F.Cu",
+    "S2": "F.Cu",
+    "S1": "F.Cu",
+    "R5": "F.Cu",
+    "R14": "F.Cu",
+    "C9": "F.Cu",
+    "C8": "F.Cu",
+    "J3": "F.Cu",
+    "R15": "F.Cu",
+    "C4": "F.Cu",
+    "R7": "F.Cu",
+    "R8": "F.Cu",
+    "C2": "F.Cu",
+    "R1": "F.Cu",
+    "R6": "F.Cu",
+    "R11": "F.Cu",
+    "R16": "F.Cu",
+    "R3": "F.Cu",
+    "C11": "F.Cu",
+    "R12": "F.Cu",
+    "C5": "B.Cu"
+  },
+  "minimum_pad_distances_mm": {
+    "C6-U1": 6.440403714053957,
+    "S1-U1": 34.8543483657348,
+    "S1-C11": 25.277905372083342,
+    "S1-C2": 34.988255172271735,
+    "S1-R6": 41.9419503599916,
+    "C10-U1": 12.44497087180199,
+    "C11-U1": 7.838781793110457
+  },
+  "supply_decoupling_trace_C6_1_to_U1_4": {
+    "length_mm": 31.27891852170255,
+    "route_mm": [
+      [
+        106.5,
+        33.0
+      ],
+      [
+        106.5,
+        34.0
+      ],
+      [
+        103.5,
+        37.0
+      ],
+      [
+        97.0,
+        37.0
+      ],
+      [
+        91.986598,
+        37.0
+      ],
+      [
+        90.0,
+        38.986598
+      ],
+      [
+        90.0,
+        47.16
+      ],
+      [
+        90.0,
+        47.0
+      ],
+      [
+        93.38,
+        47.0
+      ]
+    ],
+    "method": "Exact track endpoints; vias join both-layer endpoints. No copper-zone shortcut exists on V_A. Read-only centerline geometry, not electrical HF simulation."
+  },
+  "zone_outlines": [
+    {
+      "net_name": null,
+      "keepout": null,
+      "outline": [
+        "polygon",
+        [
+          "pts",
+          [
+            "xy",
+            "138",
+            "80"
+          ],
+          [
+            "xy",
+            "28",
+            "80"
+          ],
+          [
+            "xy",
+            "28",
+            "25"
+          ],
+          [
+            "xy",
+            "138",
+            "25"
+          ]
+        ]
+      ]
+    },
+    {
+      "net_name": null,
+      "keepout": [
+        "keepout",
+        [
+          "tracks",
+          "allowed"
+        ],
+        [
+          "vias",
+          "allowed"
+        ],
+        [
+          "pads",
+          "allowed"
+        ],
+        [
+          "copperpour",
+          "not_allowed"
+        ],
+        [
+          "footprints",
+          "allowed"
+        ]
+      ],
+      "outline": [
+        "polygon",
+        [
+          "pts",
+          [
+            "xy",
+            "105",
+            "46"
+          ],
+          [
+            "xy",
+            "106",
+            "48"
+          ],
+          [
+            "xy",
+            "117",
+            "69"
+          ],
+          [
+            "xy",
+            "104",
+            "68"
+          ],
+          [
+            "xy",
+            "99",
+            "69"
+          ],
+          [
+            "xy",
+            "95",
+            "68"
+          ],
+          [
+            "xy",
+            "72",
+            "62"
+          ],
+          [
+            "xy",
+            "62",
+            "61"
+          ],
+          [
+            "xy",
+            "70",
+            "53"
+          ],
+          [
+            "xy",
+            "87",
+            "51"
+          ],
+          [
+            "xy",
+            "89",
+            "48"
+          ],
+          [
+            "xy",
+            "101",
+            "47"
+          ]
+        ]
+      ]
+    }
+  ],
+  "local_library_pad_differences": [
+    {
+      "ref": "C6",
+      "footprint": "LUT:Radial_P2.54_LUT",
+      "pcb_pads": [
+        {
+          "number": "1",
+          "at": [
+            "at",
+            "-1.5",
+            "0"
+          ],
+          "size": [
+            "size",
+            "1.7",
+            "2.6"
+          ],
+          "drill": [
+            "drill",
+            "0.8"
+          ]
+        },
+        {
+          "number": "2",
+          "at": [
+            "at",
+            "1.5",
+            "0"
+          ],
+          "size": [
+            "size",
+            "1.7",
+            "2.6"
+          ],
+          "drill": [
+            "drill",
+            "0.8"
+          ]
+        }
+      ],
+      "library_pads": [
+        {
+          "number": "1",
+          "at": [
+            "at",
+            "-1.27",
+            "0"
+          ],
+          "size": [
+            "size",
+            "1.7",
+            "2.6"
+          ],
+          "drill": [
+            "drill",
+            "0.8"
+          ]
+        },
+        {
+          "number": "2",
+          "at": [
+            "at",
+            "1.27",
+            "0"
+          ],
+          "size": [
+            "size",
+            "1.7",
+            "2.6"
+          ],
+          "drill": [
+            "drill",
+            "0.8"
+          ]
+        }
+      ]
+    },
+    {
+      "ref": "S1",
+      "footprint": "LUT:DC_AC_Wire_2x3_P5.08_Compact",
+      "pcb_pads": [
+        {
+          "number": "1",
+          "at": [
+            "at",
+            "5.08",
+            "-2.54",
+            "270"
+          ],
+          "size": [
+            "size",
+            "2.8",
+            "4"
+          ],
+          "drill": [
+            "drill",
+            "oval",
+            "1.1",
+            "2.8"
+          ]
+        },
+        {
+          "number": "2",
+          "at": [
+            "at",
+            "0",
+            "-2.54",
+            "270"
+          ],
+          "size": [
+            "size",
+            "2.8",
+            "4"
+          ],
+          "drill": [
+            "drill",
+            "oval",
+            "1.1",
+            "2.8"
+          ]
+        },
+        {
+          "number": "3",
+          "at": [
+            "at",
+            "-5.08",
+            "-2.54",
+            "270"
+          ],
+          "size": [
+            "size",
+            "2.8",
+            "4"
+          ],
+          "drill": [
+            "drill",
+            "oval",
+            "1.1",
+            "2.8"
+          ]
+        },
+        {
+          "number": "4",
+          "at": [
+            "at",
+            "5.08",
+            "2.54",
+            "270"
+          ],
+          "size": [
+            "size",
+            "2.8",
+            "4"
+          ],
+          "drill": [
+            "drill",
+            "oval",
+            "1.1",
+            "2.8"
+          ]
+        },
+        {
+          "number": "5",
+          "at": [
+            "at",
+            "0",
+            "2.54",
+            "270"
+          ],
+          "size": [
+            "size",
+            "2.8",
+            "4"
+          ],
+          "drill": [
+            "drill",
+            "oval",
+            "1.1",
+            "2.8"
+          ]
+        },
+        {
+          "number": "6",
+          "at": [
+            "at",
+            "-5.08",
+            "2.54",
+            "270"
+          ],
+          "size": [
+            "size",
+            "2.8",
+            "4"
+          ],
+          "drill": [
+            "drill",
+            "oval",
+            "1.1",
+            "2.8"
+          ]
+        }
+      ],
+      "library_pads": [
+        {
+          "number": "1",
+          "at": [
+            "at",
+            "5.08",
+            "-2.54"
+          ],
+          "size": [
+            "size",
+            "2.8",
+            "2.8"
+          ],
+          "drill": [
+            "drill",
+            "1.1"
+          ]
+        },
+        {
+          "number": "2",
+          "at": [
+            "at",
+            "0",
+            "2.54"
+          ],
+          "size": [
+            "size",
+            "2.8",
+            "2.8"
+          ],
+          "drill": [
+            "drill",
+            "1.1"
+          ]
+        },
+        {
+          "number": "3",
+          "at": [
+            "at",
+            "-5.08",
+            "-2.54"
+          ],
+          "size": [
+            "size",
+            "2.8",
+            "2.8"
+          ],
+          "drill": [
+            "drill",
+            "1.1"
+          ]
+        },
+        {
+          "number": "4",
+          "at": [
+            "at",
+            "5.08",
+            "2.54"
+          ],
+          "size": [
+            "size",
+            "2.8",
+            "2.8"
+          ],
+          "drill": [
+            "drill",
+            "1.1"
+          ]
+        },
+        {
+          "number": "5",
+          "at": [
+            "at",
+            "-5.08",
+            "2.54"
+          ],
+          "size": [
+            "size",
+            "2.8",
+            "2.8"
+          ],
+          "drill": [
+            "drill",
+            "1.1"
+          ]
+        },
+        {
+          "number": "6",
+          "at": [
+            "at",
+            "0",
+            "-2.54"
+          ],
+          "size": [
+            "size",
+            "2.8",
+            "2.8"
+          ],
+          "drill": [
+            "drill",
+            "1.1"
+          ]
+        }
+      ]
+    },
+    {
+      "ref": "C9",
+      "footprint": "LUT:MKP_P5_7.2x11_LUT",
+      "pcb_pads": [
+        {
+          "number": "1",
+          "at": [
+            "at",
+            "-5",
+            "0"
+          ],
+          "size": [
+            "size",
+            "2.6",
+            "2.6"
+          ],
+          "drill": [
+            "drill",
+            "0.8"
+          ]
+        },
+        {
+          "number": "2",
+          "at": [
+            "at",
+            "4.9",
+            "0"
+          ],
+          "size": [
+            "size",
+            "2.6",
+            "2.6"
+          ],
+          "drill": [
+            "drill",
+            "0.8"
+          ]
+        }
+      ],
+      "library_pads": [
+        {
+          "number": "1",
+          "at": [
+            "at",
+            "-2.5",
+            "0"
+          ],
+          "size": [
+            "size",
+            "2.6",
+            "2.6"
+          ],
+          "drill": [
+            "drill",
+            "0.8"
+          ]
+        },
+        {
+          "number": "2",
+          "at": [
+            "at",
+            "2.5",
+            "0"
+          ],
+          "size": [
+            "size",
+            "2.6",
+            "2.6"
+          ],
+          "drill": [
+            "drill",
+            "0.8"
+          ]
+        }
+      ]
+    },
+    {
+      "ref": "C4",
+      "footprint": "LUT:Film_K73_P4_LUT",
+      "pcb_pads": [
+        {
+          "number": "1",
+          "at": [
+            "at",
+            "-3.5",
+            "0",
+            "270"
+          ],
+          "size": [
+            "size",
+            "2.6",
+            "2.6"
+          ],
+          "drill": [
+            "drill",
+            "0.9"
+          ]
+        },
+        {
+          "number": "2",
+          "at": [
+            "at",
+            "3.5",
+            "0",
+            "270"
+          ],
+          "size": [
+            "size",
+            "2.6",
+            "2.6"
+          ],
+          "drill": [
+            "drill",
+            "0.9"
+          ]
+        }
+      ],
+      "library_pads": [
+        {
+          "number": "1",
+          "at": [
+            "at",
+            "-2",
+            "0"
+          ],
+          "size": [
+            "size",
+            "2.6",
+            "2.6"
+          ],
+          "drill": [
+            "drill",
+            "0.9"
+          ]
+        },
+        {
+          "number": "2",
+          "at": [
+            "at",
+            "2",
+            "0"
+          ],
+          "size": [
+            "size",
+            "2.6",
+            "2.6"
+          ],
+          "drill": [
+            "drill",
+            "0.9"
+          ]
+        }
+      ]
+    },
+    {
+      "ref": "C2",
+      "footprint": "LUT:Film_K73_P4_LUT",
+      "pcb_pads": [
+        {
+          "number": "1",
+          "at": [
+            "at",
+            "-4",
+            "0",
+            "270"
+          ],
+          "size": [
+            "size",
+            "2.6",
+            "2.6"
+          ],
+          "drill": [
+            "drill",
+            "0.9"
+          ]
+        },
+        {
+          "number": "2",
+          "at": [
+            "at",
+            "4",
+            "0",
+            "270"
+          ],
+          "size": [
+            "size",
+            "2.6",
+            "2.6"
+          ],
+          "drill": [
+            "drill",
+            "0.9"
+          ]
+        }
+      ],
+      "library_pads": [
+        {
+          "number": "1",
+          "at": [
+            "at",
+            "-2",
+            "0"
+          ],
+          "size": [
+            "size",
+            "2.6",
+            "2.6"
+          ],
+          "drill": [
+            "drill",
+            "0.9"
+          ]
+        },
+        {
+          "number": "2",
+          "at": [
+            "at",
+            "2",
+            "0"
+          ],
+          "size": [
+            "size",
+            "2.6",
+            "2.6"
+          ],
+          "drill": [
+            "drill",
+            "0.9"
+          ]
+        }
+      ]
+    }
+  ],
+  "board_dimensions_mm_with_outline_stroke": [
+    110.05,
+    55.05
+  ],
+  "board_outline_centerline_mm": [
+    110,
+    55
+  ],
+  "user_confirmation": {
+    "source": "Root message relaying current explicit user answer, 2026-11-04",
+    "front_copper_representation": "F.Cu represents three physical wire jumpers on top; etched copper is only B.Cu.",
+    "limitation": "The five vias are wire insertion holes requiring actual solder connections; they do not imply home-made plated-through holes. The sixth jumper termination is U1.7."
+  },
+  "schematic_independent_comparison": {
+    "source": "docs/verification/r53-user-20261104/netlist.xml",
+    "baseline": "docs/design/analog-r5-1/kicad/analog-input-r5.net.xml",
+    "all_35_component_values_equal": true,
+    "all_87_pin_partitions_equal": true,
+    "wire_count": 137,
+    "junction_count": 32,
+    "all_wire_explicit_width_mm": 0.1524,
+    "native_GUI_persistence": "Not independently rerun in this audit; user reports completing ERC. Current archive passes parent CLI ERC."
+  },
+  "visual_review": {
+    "files": [
+      "docs/verification/r53-user-20261104/overview-native.png",
+      "docs/verification/r53-user-20261104/clearance-map.png"
+    ],
+    "personally_viewed": true,
+    "result": "Top-view overview and A-F clearance annotations match the layout and DRC locations. Front copper is clearly labelled as top jumpers. Map explicitly states it is not an etching template."
+  }
+}

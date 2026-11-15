@@ -11,13 +11,14 @@ from ..recording import atomic_write, _object, _invalid_number
 from ..stream_model import StreamIdentity, StreamBlock, uint
 from ..stream_view import EventConfig, EventEntry, DETECTOR_VERSION
 from .input import InputProfile
-from .stream_device import StreamContext
+from .stream_device import StreamContext, context_from_dict
 from .stream_search import validate_config
 
 MAX_SAMPLES = 65536
 MAX_METADATA = 65536
 HEADER = struct.Struct('<8sII')
-MAGIC = b'MTSHOT1\0'
+LEGACY_MAGIC = b'MTSHOT1\0'
+MAGIC = b'MTSHOT2\0'
 MAX_FILE = HEADER.size + MAX_METADATA + 2 * MAX_SAMPLES + 32
 
 
@@ -45,6 +46,7 @@ class StreamCapture:
             if type(value) is not cls:
                 raise ValueError('Некорректный тип данных захвата')
         self.identity.__post_init__(); self.context.__post_init__(); self.config.__post_init__()
+        self.context.validate_identity(self.identity)
         validate_config(self.config, self.identity.nominal_fs_hz, self.identity.retained_bits)
         for value in (self.config_revision, self.source_revision, self.source_first, self.arm_end_index,
                       self.event.ordinal, self.event.start_index, self.event.end_index,
@@ -201,7 +203,7 @@ def encode_capture(shot):
     shot.__post_init__()
     meta = asdict(shot)
     del meta['raw_u16le']
-    meta.update(format_version=1, time_basis='nominal_unverified',
+    meta.update(format_version=2, time_basis='nominal_unverified',
                 arm_basis='latest_published_receiver_end_on_host')
     data = json.dumps(meta, ensure_ascii=False, sort_keys=True, separators=(',', ':'),
                       allow_nan=False).encode('utf-8')
@@ -222,7 +224,7 @@ def load_capture(path):
     if not HEADER.size + 32 <= len(data) <= MAX_FILE:
         raise ValueError('Некорректный размер файла захвата')
     magic, meta_size, count = HEADER.unpack_from(data)
-    if (magic != MAGIC or not 1 <= meta_size <= MAX_METADATA or not 1 <= count <= MAX_SAMPLES or
+    if (magic not in (MAGIC, LEGACY_MAGIC) or not 1 <= meta_size <= MAX_METADATA or not 1 <= count <= MAX_SAMPLES or
             len(data) != HEADER.size + meta_size + count * 2 + 32):
         raise ValueError('Неизвестный или обрезанный файл захвата')
     if not hmac.compare_digest(hashlib.sha256(data[:-32]).digest(), data[-32:]):
@@ -233,23 +235,18 @@ def load_capture(path):
     if type(meta) is not dict or set(meta) != expected | {'format_version', 'time_basis', 'arm_basis'}:
         raise ValueError('Неизвестные или отсутствующие поля захвата')
     version = meta.pop('format_version')
-    if (type(version) is not int or version != 1 or
+    if (type(version) is not int or (version, magic) not in ((1, LEGACY_MAGIC), (2, MAGIC)) or
             meta.pop('time_basis') != 'nominal_unverified' or
             meta.pop('arm_basis') != 'latest_published_receiver_end_on_host'):
         raise ValueError('Неизвестная версия или временная основа захвата')
-    for name, cls in (('identity', StreamIdentity), ('context', StreamContext),
+    for name, cls in (('identity', StreamIdentity),
                       ('config', EventConfig), ('event', EventEntry)):
         if type(meta[name]) is not dict or set(meta[name]) != {f.name for f in fields(cls)}:
             raise ValueError('Неполные или неизвестные поля: ' + name)
-    profile = meta['context']['input_profile']
-    if type(profile) is not dict or set(profile) != {f.name for f in fields(InputProfile)}:
-        raise ValueError('Некорректные поля профиля входа')
     if type(meta['source_flags']) is not list or type(meta['event']['flags']) is not list:
         raise ValueError('Флаги должны быть массивом')
     meta['identity'] = StreamIdentity(**meta['identity'])
-    context = meta['context']
-    context['input_profile'] = InputProfile(**context['input_profile'])
-    meta['context'] = StreamContext(**context)
+    meta['context'] = context_from_dict(meta['context'], legacy=version == 1)
     meta['config'] = EventConfig(**meta['config'])
     meta['event']['flags'] = tuple(meta['event']['flags'])
     meta['event'] = EventEntry(**meta['event'])

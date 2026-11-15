@@ -1200,7 +1200,7 @@ class StreamViewerPanel(QtWidgets.QWidget):
             x.extend(xs); y.extend(ys)
         self._updating_plot = True
         try:
-            self.curve.setData(x, y, connect="finite", symbol="o" if len(x) == 1 else None,
+            self.curve.setData(x, self._plot_y_values(y), connect="finite", symbol="o" if len(x) == 1 else None,
                                symbolSize=4, symbolBrush="#79dcc8")
             self._display_origin = payload.selection.start
             fs = self._identity[3]
@@ -1213,6 +1213,10 @@ class StreamViewerPanel(QtWidgets.QWidget):
                                 f"покрытие до {payload.covered_until}; {payload.outcome}; Fs ном. {fs} Гц.")
         self._set_status("К хвосту" if self.follow_tail else "Выбранный диапазон удерживается")
         self.plot_drawn.emit()
+
+    def _plot_y_values(self, values):
+        """Presentation hook; raw payloads and event indexing remain unchanged."""
+        return values
 
     def shutdown(self):
         if self._closed:

@@ -1,0 +1,35 @@
+{
+  "date": "2026-11-14",
+  "critic": "/root/unified_critic",
+  "base_sha": "6e364ed4cc6f2859473c565765fcfe54b811d77f",
+  "manifest_path": "build/v24w/dist/MotortesterV2/build-manifest.json",
+  "manifest_sha256": "b123b3358d046e39b6ec88a041f677e043200cb3e8ae24f64a1a07a26fa455db",
+  "source_files_checked": 477,
+  "source_zip_entries": 477,
+  "payload_files_checked": 480,
+  "payload_trees": [
+    "build/v24w/dist/MotortesterV2",
+    "build/v24w/Проверка переноса/MotortesterV2"
+  ],
+  "portable_zip_checked": true,
+  "source_zip_sha256": "f65b95ea64e024534fbfdae7c64edd69039118c771666bfcc66165ef6b9109d8",
+  "portable_zip_sha256": "26d175b7138b66789bd5018cb273ba82b6b1f16fe84a5f91b51c0831032bc70b",
+  "executable_sha256": "a6936f0acd689af4943f3113eee802624160f14bc8bffcc492ba981072dad069",
+  "previous_v23w_executable_sha256": "7ceed41c19a473f1287e0637e29f4e32b1b717782e540cd560fbde325b72db76",
+  "critic_exact_two_tail_witness": {
+    "sample_count": 800,
+    "first_tail": [
+      0,
+      300
+    ],
+    "second_tail": [
+      400,
+      700
+    ],
+    "available": false,
+    "reason": "В области несколько отдельных колебательных откликов. Выберите один вручную.",
+    "passes": true
+  },
+  "failures": [],
+  "all_match": true
+}

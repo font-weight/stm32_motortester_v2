@@ -1,0 +1,223 @@
+{
+  "revision": "PICKUP-FIXTURE-R3",
+  "scope": "Adapted from unchanged P1 fixture_checks.py, commit47c22d67993e6609bbfb1b793b41b441fc4e397c.\nR3 input divider substituted; polynomial algebra rechecked.\nPICKUP-FIXTURE-R3. Low-voltage electronic fixture, not real pickup/HV qualification.\nMeasured generator full step is0 to2 V. Known injection capacitor10nF.\nReports early CH1 peak and voltage2ms after that peak; finite source resistance means\nCH1 is zero at the mathematical initial instant, unlike the idealzero-R charge step.\nScope resistance \u00b11% and extra probe capacitance0..30pF are explicit assumptions,\nnot specifications asserted for an unidentified oscilloscope or probe.\n",
+  "nominal_source_full_step_V": 2,
+  "nominal": {
+    "pickup_alone": {
+      "0ohm": {
+        "peak_V": 0.9950248756218905,
+        "peak_time_us": 0.0,
+        "voltage_2ms_after_peak_V": 0.8918652009532738,
+        "droop2ms_percent": 10.367547304195979,
+        "V_at2ms_after_generator_edge": 0.8918652009532738
+      },
+      "50ohm": {
+        "peak_V": 0.9948581906439974,
+        "peak_time_us": 2.8125548470725388,
+        "voltage_2ms_after_peak_V": 0.8917293864522069,
+        "droop2ms_percent": 10.366181347417214,
+        "V_at2ms_after_generator_edge": 0.8918666509476404
+      },
+      "1000ohm": {
+        "peak_V": 0.9925141636869467,
+        "peak_time_us": 41.2006130588522,
+        "voltage_2ms_after_peak_V": 0.8898858792402826,
+        "droop2ms_percent": 10.340233741896954,
+        "V_at2ms_after_generator_edge": 0.8918940744788055
+      },
+      "1050ohm": {
+        "peak_V": 0.9924027931786071,
+        "peak_time_us": 43.003369206237096,
+        "voltage_2ms_after_peak_V": 0.8897995746718754,
+        "droop2ms_percent": 10.33886837199437,
+        "V_at2ms_after_generator_edge": 0.8918955111715633
+      }
+    },
+    "with_R3": {
+      "0ohm": {
+        "peak_V": 0.9950248756218906,
+        "peak_time_us": 0.0,
+        "voltage_2ms_after_peak_V": 0.8828222955332562,
+        "droop2ms_percent": 11.276359298907757,
+        "V_at2ms_after_generator_edge": 0.8828222955332562
+      },
+      "50ohm": {
+        "peak_V": 0.9948438780250979,
+        "peak_time_us": 2.7899986361510174,
+        "voltage_2ms_after_peak_V": 0.8826767827879902,
+        "droop2ms_percent": 11.274843994594885,
+        "V_at2ms_after_generator_edge": 0.8828239981609708
+      },
+      "1000ohm": {
+        "peak_V": 0.9923055118038273,
+        "peak_time_us": 40.74987893737795,
+        "voltage_2ms_after_peak_V": 0.8807090130320592,
+        "droop2ms_percent": 11.24618350339568,
+        "V_at2ms_after_generator_edge": 0.882856197949905
+      },
+      "1050ohm": {
+        "peak_V": 0.9921850519306049,
+        "peak_time_us": 42.530118993328195,
+        "voltage_2ms_after_peak_V": 0.8806170455612351,
+        "droop2ms_percent": 11.244677205353938,
+        "V_at2ms_after_generator_edge": 0.8828578847730763
+      }
+    }
+  },
+  "corners": {
+    "pickup_alone": {
+      "case_count": 96,
+      "scope": "Endpoint exploration withCtest/Ck/C9\u00b15%, applicableR\u00b11%, modeled100pFcableplus0..30pFprobe, totalRs0/50/1050ohm. Not unknown-instrument tolerance guarantee.",
+      "peak_min_case": {
+        "peak_V": 0.9413885387546063,
+        "peak_time_us": 42.8973875036843,
+        "voltage_2ms_after_peak_V": 0.8432653907672214,
+        "droop2ms_percent": 10.423235884855275,
+        "V_at2ms_after_generator_edge": 0.8452639181321586,
+        "signs": [
+          -1,
+          1,
+          -1,
+          -1,
+          1
+        ],
+        "total_source_R_ohm": 1050,
+        "total_cable_and_probe_C_pF": 130.00000000000003
+      },
+      "peak_max_case": {
+        "peak_V": 1.0447761194029852,
+        "peak_time_us": 0.0,
+        "voltage_2ms_after_peak_V": 0.935423700375892,
+        "droop2ms_percent": 10.466588678307499,
+        "V_at2ms_after_generator_edge": 0.935423700375892,
+        "signs": [
+          1,
+          -1,
+          -1,
+          -1,
+          -1
+        ],
+        "total_source_R_ohm": 0,
+        "total_cable_and_probe_C_pF": 100.0
+      },
+      "droop_min_case": {
+        "peak_V": 0.9912523905199163,
+        "peak_time_us": 45.26168386849938,
+        "voltage_2ms_after_peak_V": 0.8944397554247757,
+        "droop2ms_percent": 9.766698776318904,
+        "V_at2ms_after_generator_edge": 0.89652826997631,
+        "signs": [
+          1,
+          1,
+          1,
+          1,
+          1
+        ],
+        "total_source_R_ohm": 1050,
+        "total_cable_and_probe_C_pF": 130.00000000000003
+      },
+      "droop_max_case": {
+        "peak_V": 0.9947643979057591,
+        "peak_time_us": 0.0,
+        "voltage_2ms_after_peak_V": 0.8855059795074841,
+        "droop2ms_percent": 10.983346270563432,
+        "V_at2ms_after_generator_edge": 0.8855059795074841,
+        "signs": [
+          -1,
+          -1,
+          -1,
+          -1,
+          -1
+        ],
+        "total_source_R_ohm": 0,
+        "total_cable_and_probe_C_pF": 100.0
+      },
+      "peak_time_max_us": 45.26168386849938,
+      "voltage2ms_min_V": 0.8432653907672214,
+      "voltage2ms_max_V": 0.937473842180075
+    },
+    "with_R3": {
+      "case_count": 768,
+      "scope": "Endpoint exploration withCtest/Ck/C9\u00b15%, applicableR\u00b11%, modeled100pFcableplus0..30pFprobe, totalRs0/50/1050ohm. Not unknown-instrument tolerance guarantee.",
+      "peak_min_case": {
+        "peak_V": 0.9411831909384571,
+        "peak_time_us": 42.42497719190549,
+        "voltage_2ms_after_peak_V": 0.8344877723617193,
+        "droop2ms_percent": 11.336307278326064,
+        "V_at2ms_after_generator_edge": 0.8366243912640994,
+        "signs": [
+          -1,
+          1,
+          -1,
+          -1,
+          1,
+          -1,
+          -1,
+          1
+        ],
+        "total_source_R_ohm": 1050,
+        "total_cable_and_probe_C_pF": 130.00000000000003
+      },
+      "peak_max_case": {
+        "peak_V": 1.0447761194029854,
+        "peak_time_us": 0.0,
+        "voltage_2ms_after_peak_V": 0.9280656097419772,
+        "droop2ms_percent": 11.170863067553649,
+        "V_at2ms_after_generator_edge": 0.9280656097419772,
+        "signs": [
+          1,
+          -1,
+          1,
+          1,
+          -1,
+          1,
+          1,
+          -1
+        ],
+        "total_source_R_ohm": 0,
+        "total_cable_and_probe_C_pF": 100.0
+      },
+      "droop_min_case": {
+        "peak_V": 0.9910368569568695,
+        "peak_time_us": 44.76420434551743,
+        "voltage_2ms_after_peak_V": 0.8857384422192144,
+        "droop2ms_percent": 10.625075545725915,
+        "V_at2ms_after_generator_edge": 0.8879725746081009,
+        "signs": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          -1
+        ],
+        "total_source_R_ohm": 1050,
+        "total_cable_and_probe_C_pF": 130.00000000000003
+      },
+      "droop_max_case": {
+        "peak_V": 0.9947643979057592,
+        "peak_time_us": 0.0,
+        "voltage_2ms_after_peak_V": 0.8759621012613974,
+        "droop2ms_percent": 11.942757188985842,
+        "V_at2ms_after_generator_edge": 0.8759621012613974,
+        "signs": [
+          -1,
+          -1,
+          -1,
+          -1,
+          -1,
+          -1,
+          -1,
+          1
+        ],
+        "total_source_R_ohm": 0,
+        "total_cable_and_probe_C_pF": 100.0
+      },
+      "peak_time_max_us": 44.76420434551743,
+      "voltage2ms_min_V": 0.8344877723617193,
+      "voltage2ms_max_V": 0.9280656097419772
+    }
+  }
+}

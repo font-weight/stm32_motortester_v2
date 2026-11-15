@@ -1,0 +1,154 @@
+{
+  "created_at_utc": "2026-11-02T08:58:53.642681+00:00",
+  "board_sha256": "e3b121a95d97afec065cb37b64ef93cc9867b816e47e5f35d207a7d7dfa3b2c2",
+  "board_not_modified": true,
+  "output_pdf_sha256": "2fe1786e184166e978548efa7987acbcda07619385262b9d30397ce55ae04069",
+  "output_pdf": "R52_LUT_assembly_fit_1to1.pdf",
+  "pages": 4,
+  "page_mm": [
+    210,
+    297
+  ],
+  "board_mm": [
+    142,
+    98
+  ],
+  "source_board_bbox_mm": [
+    10.0,
+    10.0,
+    152.0,
+    108.0
+  ],
+  "board_bottom_left_on_page_mm": [
+    34.0,
+    120.0
+  ],
+  "native_scale": 1,
+  "merge_affine_matrices": [
+    [
+      1,
+      0,
+      0,
+      1,
+      68.03149606299213,
+      51.00321259842519
+    ],
+    [
+      -1,
+      0,
+      0,
+      1,
+      527.244094488189,
+      51.00321259842519
+    ],
+    [
+      1,
+      0,
+      0,
+      1,
+      68.03149606299213,
+      51.00321259842519
+    ],
+    [
+      1,
+      0,
+      0,
+      1,
+      68.03149606299213,
+      51.00321259842519
+    ]
+  ],
+  "mirror_pages_only": [
+    2
+  ],
+  "toner_page": 1,
+  "toner_native_layers": "B.Cu",
+  "toner_drill_shape_option": 1,
+  "inspection_native_layers": "B.Cu,B.Fab,B.Silkscreen",
+  "fit_native_drill_shape_option": 0,
+  "fit_holes": "Exact source drill diameter circle and center cross overlay",
+  "ruler_vector_length_points": 283.46456692913387,
+  "ruler_length_mm": 100,
+  "finished_pdf_vector_checks_mm": {
+    "board_width_error": 4.819997911909013e-08,
+    "board_height_error": 1.659999924186195e-07,
+    "ruler_errors_each_page": [
+      5.972222240302472e-06,
+      5.972222240302472e-06,
+      5.972222240302472e-06,
+      5.972222240302472e-06
+    ]
+  },
+  "note": "PDF coordinate scale and transforms checked; physical printer scale and toner transfer still require user ruler check. Visual review recorded separately.",
+  "holes_by_diameter_mm": {
+    "0.8": 46,
+    "0.9": 8,
+    "1.0": 25,
+    "1.1": 12,
+    "3.2": 4
+  },
+  "wires": [
+    {
+      "ref": "W2",
+      "ends": [
+        [
+          78.5,
+          38.0
+        ],
+        [
+          78.5,
+          52.0
+        ]
+      ]
+    },
+    {
+      "ref": "W1",
+      "ends": [
+        [
+          101.0,
+          40.0
+        ],
+        [
+          101.0,
+          72.0
+        ]
+      ]
+    },
+    {
+      "ref": "W3",
+      "ends": [
+        [
+          76.0,
+          58.5
+        ],
+        [
+          76.0,
+          66.0
+        ]
+      ]
+    }
+  ],
+  "mandatory_jumpers": [
+    "W1",
+    "W2"
+  ],
+  "optional_reserve_ground_jumper": "W3 may be omitted; then its two holes need not be drilled. No noise improvement is claimed.",
+  "visual_review": {
+    "reviewer": "r52_parts_audit author visual inspection",
+    "pages_reviewed_after_optional_W3_text_change": [
+      3,
+      4
+    ],
+    "unchanged_pages_reviewed_on_same_board_before_text_change": [
+      1,
+      2
+    ],
+    "result": "W1/W2 mandatory and W3 optional text fits. Page4 says two W3 holes may be omitted, total CAD holes remain95. No clipping or overlaps seen. Native geometry and board hash unchanged. 1:1 vector checks passed; physical printer scale not tested.",
+    "preview_sha256": {
+      "preview-1.png": "217ac3e9076b738445dad3c178a87a5508c61fb30ef42e9d2b1955ebe857bdcc",
+      "preview-2.png": "633b568fb9d3a9c4afbc8b8377b173191af6a9986b38fa62d24048ed0ad0e0a0",
+      "preview-3.png": "8b7e0ddc5715b357862ed6baedf26abcd938eba0f3c688faed53fb71fefea418",
+      "preview-4.png": "43a1dd7df9c5d73d4b1adad163a091ec5bcfd76ef066daa25223f22a3edf9de1"
+    }
+  }
+}

@@ -1,0 +1,89 @@
+{
+  "date": "2026-11-15",
+  "critic": "/root/unified_critic",
+  "independent_of_implementation": true,
+  "base_sha": "6e364ed4cc6f2859473c565765fcfe54b811d77f",
+  "prepared_staged_tree_before_review": "3de9c4f97668dfa625bbe3398dbe60cd7455bff9",
+  "binding_manifest": "docs/verification/publication-20261115/publication-manifest.json",
+  "binding_manifest_sha256": "6ff08672b617997c0311dc91781f79ff24e0350bf301be5ace9f84e4ea05041e",
+  "immutable_changed_files": 413,
+  "verdict": "PASS",
+  "score": 9.62,
+  "weighted_score_exact": "9.620",
+  "scores": {
+    "C1": 9.7,
+    "C2": 9.6,
+    "C3": 9.5,
+    "C4": 9.7,
+    "C5": 9.6
+  },
+  "weights": {
+    "C1": 0.3,
+    "C2": 0.2,
+    "C3": 0.25,
+    "C4": 0.15,
+    "C5": 0.1
+  },
+  "open_P0_P1": 0,
+  "scope": "Prepared V2 source publication snapshot and README; not a completed push or public binary distribution",
+  "push_completed_by_this_review": false,
+  "required_after_push": "Verify remote main/working branch SHA and published README; record published.json. Do not force-push if remote ancestry changes.",
+  "audit_only_append_paths": [
+    "docs/progress.md",
+    "docs/reviews/v2-22-publication-review.md",
+    "docs/verification/publication-20261115/critic*.json",
+    "docs/verification/publication-20261115/published.json",
+    "docs/verification/publication-20261115/publication-manifest.json"
+  ],
+  "personally_checked": [
+    "413 immutable changed Git index hashes, complete manifest coverage and 47 local links",
+    "398 runtime/packaging/test files against v24w: worktree byte-identical, staged and clean checkout only line-ending differences",
+    "Final README commands and labels, actual existing launcher, source-only license boundaries, preservation of history",
+    "Exclusion of new local credentials/editor/private-draft paths, original ZIP member paths, narrow high-specificity secret markers",
+    "Clean-start screenshot and isolated venv version/installed dependency metadata"
+  ],
+  "author_evidence_checked": [
+    "New CPython 3.14.7 x64 venv with six pinned wheels from verified local wheelhouse; pip check PASS",
+    "Ordinary Python entrypoint from separate source tree, isolated settings, exit 0, no data/automatic demo",
+    "V2 remote verification and non-force push dry-run; actual push pending"
+  ],
+  "clarifications": [
+    {
+      "status": "resolved",
+      "topic": "runtime byte counts",
+      "detail": "Index 106 exact/292 newline; extracted archive 305 exact/93 newline; worktree 398 exact. No content changes."
+    },
+    {
+      "status": "resolved",
+      "topic": "retained chapter",
+      "detail": "Old tracked chapter 1 exists in base and origin work branch; excluded are new local personal drafts. History preserved."
+    }
+  ],
+  "limits": [
+    "No repeated GUI functional suite, new firmware, COM, SWD, analog or vehicle tests",
+    "No network dependency redownload; local verified wheelhouse installation only",
+    "No broad legal or exhaustive secret audit; current license scope not expanded",
+    "No claim that public EXE/ZIP distribution requirements are closed"
+  ],
+  "report": "docs/reviews/v2-22-publication-review.md",
+  "report_sha256": "33e7e6fcc95f9249f529bfd192168608ccceedf6c63f41af2dcc2d503958079d",
+  "evidence_sha256": {
+    "docs/verification/publication-20261115/publication-manifest.json": "6ff08672b617997c0311dc91781f79ff24e0350bf301be5ace9f84e4ea05041e",
+    "docs/verification/publication-20261115/SCOPE_RU.md": "17856f274676af13e8626711db8f45e1459f31eba37ad663a875f8727d0155a0",
+    "docs/verification/publication-20261115/author-check.json": "30db114d9be5c665868cddf737018947995c904749d8c627c47a3f7b41ca7df2",
+    "docs/verification/publication-20261115/critic-integrity.json": "c3e7964d5c41ecf4e709d6821f507dbfc8dc7529454598217014b39e8945a6e8",
+    "docs/verification/publication-20261115/clean-start.png": "4e63a3329774023ac35f305476cb18707c30065357693112e137eee9fe96c16e",
+    "docs/reviews/v2-22-publication-review.md": "33e7e6fcc95f9249f529bfd192168608ccceedf6c63f41af2dcc2d503958079d",
+    "README.md": "44cd24673f4ae0b81cdc05c7c0c265db1825f82d050ba3051068baa9c9ad1ee7",
+    "host/README.md": "6419ecc62764067a9429775104f9b71dabd72b055f998ce08d3f83779f0960a6",
+    "docs/design/PUBLICATION_RU.md": "5dbedb7b82aedb62dd46f56df3d9870422f22bd154499a7006719bad47a42a2f",
+    "host/docs/project-license.md": "11c04551da94f60d89cd8e970842a1bcc738c1690acc977086fb4fd7721d9aef",
+    "host/LICENSE": "de079145a48f7ea3519a685bc17ce72ca9a4665a22c4b0c1c35d14591dd12e99",
+    "host/packaging/LICENSE-REVIEW.md": "00ae996bbddd59eb1e2ea3874aaeef33c1c3420a746ca7c6095f6eb0b3b2b757",
+    "host/requirements-gui.txt": "0ccb267d9cadc4c7d69edd6e6e3cfca6058b86a58197478c74d72c50d90e1a34",
+    "host/packaging/v2/requirements-win-x64.lock": "8391f0a5a5886b8c2f291878834af92c43cb613b2136afa72aa4fc3325af5fb3",
+    "run_v2.cmd": "f0aa8e7797aae0257c66ebdb930467b7202c67ca919cb2a30b547024398ca99b",
+    "docs/reviews/v2-21-ringdown-review.md": "bec8039f3d2b9348556728a19268ff2dfd37058715a89f9ce2478e24a6e2292c",
+    "docs/verification/ringdown-20261114/critic-verdict.json": "1a927e190b628ee3cf31b627f0a8d66950308086b0f525e0309f9fd65eb5b8a4"
+  }
+}

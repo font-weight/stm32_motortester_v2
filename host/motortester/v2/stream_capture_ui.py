@@ -44,6 +44,14 @@ class SingleCaptureControls(QtWidgets.QWidget):
     def source_reset(self):
         self.cancel('Ожидание отменено: смена источника')
         self.panel.viewer.trigger_marker.hide()
+        # A saved/opened capture belongs to the previous source. Unsaved raw
+        # remains protected by the existing discard/save flow, never deleted
+        # merely because a viewer reset arrived.
+        if not self.dirty:
+            self.shot = None
+            self.note.setText('Одиночный захват: запустите живой поток и нажмите «Поймать событие».')
+            self.note.setToolTip('')
+            self.update_state(self.panel.bridge.state)
 
     def confirm_discard(self, callback, *, on_cancel=None):
         if not self.dirty:
@@ -137,7 +145,6 @@ class SingleCaptureControls(QtWidgets.QWidget):
 
     def accept(self, shot, *, opened=False):
         self.attempt = None
-        self.shot, self.dirty = shot, not opened
         p, viewer = self.panel, self.panel.viewer
         viewer.set_event_sync(False)
         viewer.inspection_reset.emit()
@@ -151,6 +158,7 @@ class SingleCaptureControls(QtWidgets.QWidget):
             viewer._origin(shot.identity.origin)
         else:
             viewer._held_live = shot
+        self.shot, self.dirty = shot, not opened
         viewer._event = shot.event
         viewer._event_notice = None
         viewer.select_range(shot.first_sample_index, shot.end_sample_index, hold_live=False)
@@ -167,8 +175,10 @@ class SingleCaptureControls(QtWidgets.QWidget):
                   'capture_context_unavailable': 'часть контекста недоступна'}
         flags = ', '.join(labels[f] for f in shot.event.flags if f in labels)
         flags = flags or ('есть отметки качества' if shot.event.flags else 'нет отметок качества')
-        self.note.setText(f'{state} · {shot.end_sample_index - shot.first_sample_index} отсчётов · {flags}'
-                          + (' · файл открыт' if opened else ' · можно сохранить отдельно'))
+        self.note.setToolTip(f'{state} · {flags}' + (' · файл открыт' if opened else ' · можно сохранить отдельно'))
+        self.note.setText(f'{state} · {shot.end_sample_index - shot.first_sample_index} отсчётов'
+                          + (' · есть отметки качества (подробнее при наведении)' if shot.event.flags else '')
+                          + (' · файл открыт' if opened else ''))
         self.update_state(p.bridge.state)
 
     def draw_marker(self):

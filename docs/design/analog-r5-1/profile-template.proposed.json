@@ -1,0 +1,253 @@
+{
+  "schema_version": "analog-profile-proposal/1",
+  "purpose": "design_draft_not_current_app_configuration",
+  "runtime_implemented": false,
+  "active_profile": null,
+  "physical_validation": "not_confirmed",
+  "manufacturing_release": false,
+  "frontend_design_id": "Analog_LUT_R5",
+  "documentation_revision": "R5.1",
+  "schematic_revision": "R5",
+  "hardware_instance_id": null,
+  "opamp_design_mpn": "TLV9064QDRQ1",
+  "opamp_installed_mpn": null,
+  "source_archive": "Analog_LUT_R5_1_2026-10-29_REVIEW.zip",
+  "source_archive_sha256": "ddec83fd287bb4f7cd5341324f07445ec804d8ef839b7e7ce4ea74b4109cf777",
+  "source_files": {
+    "design/BOM_RU.csv": "8bbaedca81c827fb40209b5783fa6167d574f960d68056cfd42617ac99fc544e",
+    "kicad/analog-input-r5.kicad_sch": "81f66ec804cbeb8a30582a7cf9b8cf2be11a87e93079aa12b6b1dfca19be4041",
+    "kicad/analog-input-r5.net.xml": "f2beab79cd6d4179ba69332e5ea1a3b900939f06d90522beaacb3bd2b3f3b0af",
+    "calculations/model_r4.py": "349fbec1351f64c81d6f25fb8a2819e5d768988da3cd59bd20773f0c48984324",
+    "calculations/actual_assignment.json": "26639b674b5142ac5aeb4ecc6366b7cc64de16e0e3fb987a3a7b45888d0f32aa"
+  },
+  "model_assumptions": {
+    "ideal_opamps": true,
+    "c10_reported_F": 9.6e-11,
+    "c11_reported_F": 1.04e-10,
+    "reported_capacitance_accuracy_known": false,
+    "c10_c11_dielectric": "unknown",
+    "sum_agnd_parasitic_assumption_F": 2e-11,
+    "va_and_vref_same_physical_rail_required": true
+  },
+  "allowed_modes": [
+    "DC_WIDE",
+    "AC_WIDE",
+    "AC_SENSITIVE"
+  ],
+  "forbidden_modes": [
+    "DC_SENSITIVE"
+  ],
+  "raw_formats": [
+    {
+      "sample_rates_hz": [
+        50000,
+        100000
+      ],
+      "source_adc_bits": 12,
+      "retained_bits": 12,
+      "wire": "u16le",
+      "canonical_encoding": "u16le",
+      "signed": false,
+      "adc_alignment": "right",
+      "canonical_min": 0,
+      "canonical_max": 4095,
+      "canonical_step": 1,
+      "normalization": "none"
+    },
+    {
+      "sample_rates_hz": [
+        150000
+      ],
+      "required_stream_mode": 5,
+      "source_adc_bits": 12,
+      "retained_bits": 10,
+      "discarded_low_bits": 2,
+      "wire": "uint10_lsb_first_packed",
+      "canonical_encoding": "u16le",
+      "signed": false,
+      "adc_alignment": "right",
+      "canonical_min": 0,
+      "canonical_max": 4092,
+      "canonical_step": 4,
+      "normalization": "(ADC12 >> 2) << 2",
+      "edge_bins_mean": "original_0_to_3_or_4092_to_4095_not_exact_rail_proof"
+    }
+  ],
+  "profiles": [
+    {
+      "profile_id": "analog-lut-r5.1-dc-wide-nominal-v1",
+      "profile_version": 1,
+      "mode_id": "DC_WIDE",
+      "coupling": "DC",
+      "gain_range": "WIDE",
+      "hardware_switches": {
+        "S1": "DC",
+        "S2_shunt": "1-2",
+        "source": "operator",
+        "confirmed_at": null
+      },
+      "state": "nominal",
+      "coefficient_source": "ideal_circuit_calculation",
+      "measurement_point": "CH1_before_input_divider",
+      "ground_reference": "AGND",
+      "dc_component_measured": true,
+      "voltage_semantics": "CH1_with_analog_bandwidth",
+      "nominal": {
+        "vref_v": 3.3,
+        "analog_supply_v": 3.3,
+        "gain_ch1_to_adc": 0.036983582897348,
+        "offset_adc_v": 1.6598232004329785,
+        "a_v_per_canonical_code": 0.02178437023628049,
+        "b_v": -44.88,
+        "voltage_code_convention": "lower_edge_N_times_Vref_div_4096",
+        "upper_3db_hz": 17771.822180928866,
+        "bandwidth_status": "calculated_not_measured",
+        "gain_scope": "DC_low_frequency"
+      },
+      "measured_vref_v": null,
+      "verified_operating_range_v": null,
+      "design_target_peak_range_v": [
+        -20,
+        20
+      ],
+      "design_target_is_connection_permission": false,
+      "calibration": {
+        "state": "not_performed",
+        "method": "dc_two_point",
+        "id": null,
+        "version": null,
+        "date": null,
+        "hardware_instance_id": null,
+        "valid_adc_modes": [],
+        "zero_observation": null,
+        "fit_observations": [],
+        "control_observations": [],
+        "reference_frequency_hz": null,
+        "amplitude_convention": null,
+        "polarity_confirmation": null,
+        "instrument_conditions": null,
+        "acceptance_criterion": null,
+        "validation_passed": false
+      }
+    },
+    {
+      "profile_id": "analog-lut-r5.1-ac-wide-nominal-v1",
+      "profile_version": 1,
+      "mode_id": "AC_WIDE",
+      "coupling": "AC",
+      "gain_range": "WIDE",
+      "hardware_switches": {
+        "S1": "AC",
+        "S2_shunt": "1-2",
+        "source": "operator",
+        "confirmed_at": null
+      },
+      "state": "nominal",
+      "coefficient_source": "ideal_circuit_calculation",
+      "measurement_point": "CH1_before_input_divider",
+      "ground_reference": "AGND",
+      "dc_component_measured": false,
+      "voltage_semantics": "AC_component_after_analog_bandwidth",
+      "nominal": {
+        "vref_v": 3.3,
+        "analog_supply_v": 3.3,
+        "gain_ch1_to_adc": 0.03663767425235315,
+        "offset_adc_v": 1.7235668789808918,
+        "a_v_per_canonical_code": 0.021990043826219514,
+        "b_v": -47.0435668789809,
+        "voltage_code_convention": "lower_edge_N_times_Vref_div_4096",
+        "upper_3db_hz": 17771.070385042643,
+        "bandwidth_status": "calculated_not_measured",
+        "gain_scope": "midband_reference_C9_short_and_LP_low_frequency"
+      },
+      "measured_vref_v": null,
+      "verified_operating_range_v": null,
+      "design_target_peak_range_v": [
+        -5,
+        5
+      ],
+      "design_target_is_connection_permission": false,
+      "calibration": {
+        "state": "not_performed",
+        "method": "ac_amplitude_at_frequency",
+        "id": null,
+        "version": null,
+        "date": null,
+        "hardware_instance_id": null,
+        "valid_adc_modes": [],
+        "zero_observation": null,
+        "fit_observations": [],
+        "control_observations": [],
+        "reference_frequency_hz": null,
+        "amplitude_convention": null,
+        "polarity_confirmation": null,
+        "instrument_conditions": null,
+        "acceptance_criterion": null,
+        "validation_passed": false
+      }
+    },
+    {
+      "profile_id": "analog-lut-r5.1-ac-sensitive-nominal-v1",
+      "profile_version": 1,
+      "mode_id": "AC_SENSITIVE",
+      "coupling": "AC",
+      "gain_range": "SENSITIVE",
+      "hardware_switches": {
+        "S1": "AC",
+        "S2_shunt": "2-3",
+        "source": "operator",
+        "confirmed_at": null
+      },
+      "state": "nominal",
+      "coefficient_source": "ideal_circuit_calculation",
+      "measurement_point": "CH1_before_input_divider",
+      "ground_reference": "AGND",
+      "dc_component_measured": false,
+      "voltage_semantics": "AC_component_after_analog_bandwidth",
+      "nominal": {
+        "vref_v": 3.3,
+        "analog_supply_v": 3.3,
+        "gain_ch1_to_adc": 0.18628619087334683,
+        "offset_adc_v": 1.7235668789808918,
+        "a_v_per_canonical_code": 0.00432487270646786,
+        "b_v": -9.252252520170531,
+        "voltage_code_convention": "lower_edge_N_times_Vref_div_4096",
+        "upper_3db_hz": 17769.706649607913,
+        "bandwidth_status": "calculated_not_measured",
+        "gain_scope": "midband_reference_C9_short_and_LP_low_frequency"
+      },
+      "measured_vref_v": null,
+      "verified_operating_range_v": null,
+      "design_target_peak_range_v": [
+        -2,
+        2
+      ],
+      "design_target_is_connection_permission": false,
+      "calibration": {
+        "state": "not_performed",
+        "method": "ac_amplitude_at_frequency",
+        "id": null,
+        "version": null,
+        "date": null,
+        "hardware_instance_id": null,
+        "valid_adc_modes": [],
+        "zero_observation": null,
+        "fit_observations": [],
+        "control_observations": [],
+        "reference_frequency_hz": null,
+        "amplitude_convention": null,
+        "polarity_confirmation": null,
+        "instrument_conditions": null,
+        "acceptance_criterion": null,
+        "validation_passed": false
+      }
+    }
+  ],
+  "threshold_quantization": {
+    "method": "nearest_attainable_code",
+    "half_tie": "higher_canonical_code",
+    "formula": "q * floor(((U-b)/a)/q + 0.5)",
+    "show_requested_and_accepted_voltage": true,
+    "reject_outside_domain_or_collapsed_hysteresis": true
+  }
+}

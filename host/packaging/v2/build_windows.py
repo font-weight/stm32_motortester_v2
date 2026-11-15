@@ -241,7 +241,7 @@ def main(argv=None):
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--output", type=Path, default=REPOSITORY / "build" / "v2w",
                         help="New short output path (Windows path limits); never removes an existing directory")
-    parser.add_argument("--verification", choices=("full", "profiles", "viewport", "cursors", "main-stream"), default="full",
+    parser.add_argument("--verification", choices=("full", "profiles", "viewport", "cursors", "main-stream", "analog"), default="full",
                         help="Use only the focused changed-flow GUI check when appropriate")
     args = parser.parse_args(argv)
     if (sys.platform != "win32" or platform.machine().upper() not in ("AMD64", "X86_64")
@@ -366,13 +366,15 @@ def main(argv=None):
     frozen_env["PATH"] = str(system_root / "System32")
     gui_exe, inspect_exe = relocated / gui_name, relocated / inspect_name
     exe_hashes = {name: expected_tree[name] for name in (gui_name, inspect_name)}
-    if args.verification in ("viewport", "cursors", "main-stream"):
+    if args.verification in ("viewport", "cursors", "main-stream", "analog"):
         from viewport_package_check import verify_viewport_package
         from cursors_package_check import verify_cursors_package
         from main_stream_package_check import verify_main_stream_package
+        from analog_package_check import verify_analog_package
         verify = {"cursors": verify_cursors_package,
                   "viewport": verify_viewport_package,
-                  "main-stream": verify_main_stream_package}[args.verification]
+                  "main-stream": verify_main_stream_package,
+                  "analog": verify_analog_package}[args.verification]
         return verify(
             output=output, gui_exe=gui_exe, relocated=relocated,
             foreign_cwd=foreign_cwd, frozen_env=frozen_env, run=run,

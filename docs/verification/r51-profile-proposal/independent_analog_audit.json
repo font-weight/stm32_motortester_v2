@@ -1,0 +1,101 @@
+{
+  "scope": "Independent netlist and analytical check only; no physical/capture/manufacture claim",
+  "node_sets_matched": 23,
+  "model_values_match_actual_netlist_nominals": true,
+  "model_baseline_values_are_not_used": true,
+  "resistor_reference_ohm": 391.71974522292993,
+  "sensitive_gain_stage": 5.084552845528456,
+  "parasitic_SUM_AGND_F": 2e-11,
+  "actual_values": {
+    "C10_F": 9.6e-11,
+    "C11_F": 1.04e-10
+  },
+  "modes": {
+    "DC_WIDE": {
+      "gain_CH1_to_ADC": 0.036983582897348,
+      "nominal_offset_at3p3_V": 1.6598232004329785,
+      "upper_cutoff_Hz": 17771.822180928866,
+      "amplitude_at1kHz_rel_passband": 0.9997923834833117,
+      "phase_at1kHz_deg": -9.619445404875437,
+      "ideal_code_step_ADC12_4096_VCH1": 0.02178437023628049
+    },
+    "AC_WIDE": {
+      "gain_CH1_to_ADC": 0.03663767425235315,
+      "nominal_offset_at3p3_V": 1.7235668789808918,
+      "upper_cutoff_Hz": 17771.070385042643,
+      "amplitude_at1kHz_rel_passband": 0.9997918903723557,
+      "phase_at1kHz_deg": -9.611520505006059,
+      "ideal_code_step_ADC12_4096_VCH1": 0.021990043826219514
+    },
+    "AC_SENSITIVE": {
+      "gain_CH1_to_ADC": 0.18628619087334683,
+      "nominal_offset_at3p3_V": 1.7235668789808918,
+      "upper_cutoff_Hz": 17769.706649607913,
+      "amplitude_at1kHz_rel_passband": 0.9997914427733317,
+      "phase_at1kHz_deg": -9.655941195356148,
+      "ideal_code_step_ADC12_4096_VCH1": 0.00432487270646786
+    }
+  },
+  "ac_lowfreq_pole_Hz_ideal_noHF_C": 0.148858132166255,
+  "old_handoff_cutoff_Hz": 17840,
+  "stale_baseline_component_values": {
+    "C1": {
+      "baseline": "10n MKP 5% 50V",
+      "actual": "10n PET 5% 100V"
+    },
+    "C2": {
+      "baseline": "10n MKP 5% 50V",
+      "actual": "10n PET 5% 100V"
+    },
+    "C3": {
+      "baseline": "68n MKP 5% 50V",
+      "actual": "68n film 5%"
+    },
+    "C4": {
+      "baseline": "10n MKP 5% 50V",
+      "actual": "10n PET 5% 100V"
+    },
+    "C8": {
+      "baseline": "1.8n MKP 5% 50V",
+      "actual": "1.8n C0G 5% 50V"
+    },
+    "C10": {
+      "baseline": "100p C0G 5%",
+      "actual": "100p (96p measured)"
+    },
+    "C11": {
+      "baseline": "68p C0G 5% 50V",
+      "actual": "100p (104p measured)"
+    },
+    "R3": {
+      "baseline": "82k 1%",
+      "actual": "75k 1%"
+    },
+    "R4": {
+      "baseline": "91k 1%",
+      "actual": "82k 1%"
+    },
+    "R5": {
+      "baseline": "820 1%",
+      "actual": "750 1%"
+    },
+    "R6": {
+      "baseline": "820 1%",
+      "actual": "750 1%"
+    },
+    "R15": {
+      "baseline": "820 1%",
+      "actual": "750 1%"
+    },
+    "R16": {
+      "baseline": "910 1%",
+      "actual": "820 1%"
+    },
+    "R18": {
+      "baseline": "4.7k 1%",
+      "actual": "1k 1%"
+    }
+  },
+  "schematic_components_match_xml_values": 35,
+  "scipy_attempt": "First arithmetic attempt failed before any calculation: ModuleNotFoundError scipy. Repeated with standard-library bisection only."
+}

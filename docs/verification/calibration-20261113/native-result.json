@@ -1,0 +1,20 @@
+{
+  "status": "PASS",
+  "platform": "Windows-10-10.0.19045-SP0",
+  "qt_platform": "windows",
+  "frozen": false,
+  "executable": "C:\\Users\\Alexandr\\Desktop\\New folder\\универ\\мотортестер 2\\.venv\\Scripts\\python.exe",
+  "origin": "artificial only; device declarations below are serialization fixtures",
+  "physical_measurements": false,
+  "real_serial_open_calls": 0,
+  "checks": [
+    "Main Service menu opens offline wizard without STM32",
+    "DC_WIDE/50000: wizard fit, independent control, raw save/reopen; cannot apply synthetic",
+    "AC_WIDE/100000: wizard fit, independent control, raw save/reopen; cannot apply synthetic",
+    "AC_SENSITIVE/150000: wizard fit, independent control, raw save/reopen; cannot apply synthetic",
+    "Resume draft; unsaved control Cancel retains result",
+    "Synthetic load rejected; declared-device fixture needs exact mode/instance/Fs + switches; editing instance clears calibration",
+    "Importer in-flight change/close blocked; settled confirmation required after result"
+  ],
+  "callback_errors": []
+}

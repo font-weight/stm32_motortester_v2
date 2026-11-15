@@ -1,0 +1,15 @@
+{
+  "scope": "software + Windows package + documentation; no physical measurements",
+  "native_visual_review": "All native and changed frozen result PNGs examined: readable; no clipped controls",
+  "targeted_controls_regression": {
+    "command": "cd host; ../.venv/Scripts/python.exe -m unittest discover -s tests -p test_v2_analog_controls.py -v",
+    "tests": 3,
+    "outcome": "PASS",
+    "seconds": 0.086
+  },
+  "unchanged_source_files_since_package": 439,
+  "first_build_failure": "build/v19w/build.log: external Poppler DLL refused by unchanged spec; build PATH isolated for v19w2",
+  "physical_actions": false,
+  "previous_application_preserved": "build/v18w2",
+  "schematic_pcb_firmware_changed": false
+}

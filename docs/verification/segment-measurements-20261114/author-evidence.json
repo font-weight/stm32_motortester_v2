@@ -1,0 +1,25 @@
+{
+  "date": "2026-11-14",
+  "scope": "V2-19 raw measurements of visible interval; synthetic only",
+  "environment": "Windows 10 build 19045, Qt windows; native .venv and relocated frozen package",
+  "unit_commands": [
+    {"command": "PYTHONPATH=host .venv/Scripts/python.exe -m unittest discover -s host/tests -p test_v2_segment_measurements.py -v", "tests": 5, "result": "OK", "log": "docs/verification/segment-measurements-20261114/model-tests.log"},
+    {"command": "PYTHONPATH=host .venv/Scripts/python.exe -m unittest discover -s host/tests -p test_v2_legacy*.py -v", "tests": 4, "result": "OK", "log": "docs/verification/segment-measurements-20261114/legacy-tests.log"}
+  ],
+  "unit_logs": "actual stdout/stderr redirected through PowerShell Tee-Object; no full legacy suite",
+  "native_final": "build/v22-native-07/result.json",
+  "frozen_final": "build/v22w/frozen-segment-measurements/result.json",
+  "build_report": "build/v22w/build-report.json",
+  "build_command": ".venv/Scripts/python.exe tools/build_calibration_candidate.py --verification segment-measurements --output build/v22w",
+  "manifest": "build/v22w/dist/MotortesterV2/build-manifest.json",
+  "manifest_sha256": "d5b5f3b3fbc5a6d427c5250160a21676998d0da097eb10c0a77191387446c3bb",
+  "source_zip_sha256": "6878bb6d21a01252432333c261cc6e6cd0ef0dda326e40a40124221a636b63ec",
+  "portable_zip_sha256": "b625e2c345772415e721c378010eb25d7f3de25c4aa64b062c94b1046734ec2d",
+  "final_visual_checks": "all five PNG in frozen-segment-measurements viewed; DC/short/AC/gap/live messages readable at1366x768 with no overlap; AC profile settled in frozen03",
+  "retained_intermediate_results": "native01/02 fixture-construction failures; native03/04 numerical PASS but layout rejected; native05 fails overlap guard; native06 layout corrected but previous capture-note found; native07 final logic PASS; native07/03 caught transient right-sidebar load state, final frozen03 is settled",
+  "physical_serial_open_calls": 0,
+  "firmware_changed": false,
+  "physical_measurements": false,
+  "previous_package_preserved": "build/v21w",
+  "independent_review": "docs/reviews/v2-19-segment-measurements-review.md"
+}

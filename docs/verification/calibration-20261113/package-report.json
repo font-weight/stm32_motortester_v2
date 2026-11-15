@@ -1,0 +1,29 @@
+{
+  "status": "PASS",
+  "executable": "C:\\Users\\Alexandr\\Desktop\\New folder\\универ\\мотортестер 2\\build\\v19w2\\dist\\MotortesterV2\\MotortesterV2.exe",
+  "portable_sha256": "ac8dadedc456dfc487995ae9969bde5a010173e80b31b2257efa5aae20fdc3bd",
+  "manifest_sha256": "59e95ab544c38ebc09efcf3d75f61a377811d9f064b43390dc72c00aaf5dff8a",
+  "source_zip_sha256": "333c4225ccb614eeaeeca4ed82980597268e54c4a3329104fa4c9364246f2aa8",
+  "check_result": {
+    "status": "PASS",
+    "platform": "Windows-10-10.0.19045-SP0",
+    "qt_platform": "windows",
+    "frozen": true,
+    "executable": "C:\\Users\\Alexandr\\Desktop\\New folder\\универ\\мотортестер 2\\build\\v19w2\\Проверка переноса\\MotortesterV2\\MotortesterV2.exe",
+    "origin": "artificial only; device declarations below are serialization fixtures",
+    "physical_measurements": false,
+    "real_serial_open_calls": 0,
+    "checks": [
+      "Main Service menu opens offline wizard without STM32",
+      "DC_WIDE/50000: wizard fit, independent control, raw save/reopen; cannot apply synthetic",
+      "AC_WIDE/100000: wizard fit, independent control, raw save/reopen; cannot apply synthetic",
+      "AC_SENSITIVE/150000: wizard fit, independent control, raw save/reopen; cannot apply synthetic",
+      "Resume draft; unsaved control Cancel retains result on replacement and close",
+      "Synthetic load rejected; declared-device fixture needs exact mode/instance/Fs + switches; editing instance clears calibration",
+      "Importer in-flight change/close blocked; settled confirmation required after result"
+    ],
+    "callback_errors": []
+  },
+  "physical_measurement": false,
+  "public_release": false
+}

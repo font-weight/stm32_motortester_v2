@@ -1,0 +1,68 @@
+{
+  "task": "V2-15",
+  "reviewer": "/root/analog_critic",
+  "review_date": "2026-11-02",
+  "independent_non_author": true,
+  "status": "PASS",
+  "score": 9.585,
+  "threshold": 9.5,
+  "base_commit": "6e364ed4cc6f2859473c565765fcfe54b811d77f",
+  "source_commit": "e80cc35332112874522d703ba4b6f0645f448305",
+  "manifest": "docs/verification/v2-analog/manifest.json",
+  "manifest_sha256": "4c4832cdf8f26da442834c96ff4c8301b3c28f6165eb8620fe121c274c42e617",
+  "report": "docs/reviews/v2-15-analog-review.md",
+  "requirements": ["V2-ANALOG01", "V2-ANALOG02", "V2-ANALOG03", "V2-ANALOG04", "V2-ANALOG05", "V2-ANALOG06"],
+  "scope": "Nominal R5 CH1 profiles and unified conversion, immutable file context, Windows 10 native and frozen GUI using injected wire input. No physical measurement or implemented calibration wizard.",
+  "open_p0": 0,
+  "open_p1": 0,
+  "open_findings": [
+    {
+      "priority": "P3",
+      "area": "Older README paragraphs",
+      "paths": ["host/README.md:41", "host/packaging/v2/README_PORTABLE_RU.txt:65"],
+      "description": "Old paragraphs still say thresholds are only ADC codes and describe companion v4 as new. The V2-15 introduction, dedicated guide and current UI correctly explain volts/millivolts and v5.",
+      "followup": "Clarify the older paragraphs in the next documentation update; no current conversion/data defect."
+    }
+  ],
+  "criteria": {
+    "C1": {"weight": 0.30, "score": 9.7, "basis": "Three explicit modes, separate offsets, unified U_CH1, normalized10 step4 and raw provenance satisfy bounded requirements."},
+    "C2": {"weight": 0.20, "score": 9.6, "basis": "FP endpoints/ties and READY format defect corrected; strict snapshots, immutable active context, preserved legacy data."},
+    "C3": {"weight": 0.25, "score": 9.6, "basis": "Targeted logic tests, independent finite-code/legacy/hash checks, inspected Windows native/frozen evidence and screenshots; no separate clean Windows host."},
+    "C4": {"weight": 0.15, "score": 9.3, "basis": "Model/view/context boundaries and compact GUI are clear; old README wording remains mildly ambiguous."},
+    "C5": {"weight": 0.10, "score": 9.6, "basis": "Exact clean source worktree, source/binary hashes, manifest, guide and preserved failed attempts support handoff."}
+  },
+  "personally_verified": {
+    "manifest_file_count": 79,
+    "external_artifact_count": 4,
+    "manifest_mismatches": 0,
+    "immutable_source_copy_count": 52,
+    "source_copy_mismatches": 0,
+    "source_worktree_clean": true,
+    "all_nominal_reachable_codes_q1_q4_roundtrip_and_midpoint_checks": "PASS",
+    "historical_companion_v1_v2_unknown_and_unchanged_raw": "PASS",
+    "final_frozen_screenshots_inspected": ["01-input-dialog.png", "03-live-millivolts.png", "05-reconnect-unknown.png"]
+  },
+  "author_evidence_inspected": {
+    "focused_model_controls": {"status": "PASS", "test_count": 9, "elapsed_s": 0.161},
+    "native6": {"status": "PASS", "elapsed_s": 1.962, "check_count": 15, "qt_platform": "windows"},
+    "final_frozen": {"status": "PASS", "elapsed_s": 2.573, "check_count": 15, "frozen": true, "qt_platform": "windows", "saved_synthetic_samples": 90146, "real_serial_open_calls": 0, "callback_errors": [], "errors": [], "owners_closed": true}
+  },
+  "artifacts": {
+    "portable_zip_sha256": "2771abf86a462385b2f88e30ed1f2b5c953d575560afec44a701dfd24a3b6ad9",
+    "source_zip_sha256": "b1e571c8ad622b7f1ad8bc1de6d9db4bd2023fe13338a1a0833bbeaa503c8bb5",
+    "gui_executable_sha256": "e1d6df98f09a60f31c010e5602004fce3749e88427f7c891967d6219263aa17f"
+  },
+  "physical_analog_verified": false,
+  "physical_sampling_frequency_verified": false,
+  "hardware_safety_verified": false,
+  "calibration_wizards_implemented": false,
+  "separate_clean_windows_verified": false,
+  "real_com_used": false,
+  "limitations": [
+    "Calculated gains/offsets and approximately 17.8 kHz bandwidth are not measurements.",
+    "Actual DC two-point calibration plus independent control and separate AC signal calibration remain a future stage.",
+    "Software selection does not switch or detect S1/S2; direct PA0 remains unknown.",
+    "Threshold search is host processing, not hardware trigger.",
+    "PASS applies only to the named source/manifest/package and software verification level."
+  ]
+}

@@ -1,0 +1,74 @@
+{
+  "date": "2026-11-14",
+  "critic": "/root/unified_critic",
+  "independent_of_implementation": true,
+  "base_sha": "6e364ed4cc6f2859473c565765fcfe54b811d77f",
+  "scope": "V2-19 raw visible interval measurements, native Windows 10 and relocated Windows package; synthetic only",
+  "manifest_path": "build/v22w/dist/MotortesterV2/build-manifest.json",
+  "manifest_sha256": "d5b5f3b3fbc5a6d427c5250160a21676998d0da097eb10c0a77191387446c3bb",
+  "verdict": "PASS",
+  "score": 9.6,
+  "threshold": 9.5,
+  "criteria": {
+    "C1": 9.7,
+    "C2": 9.6,
+    "C3": 9.5,
+    "C4": 9.5,
+    "C5": 9.7
+  },
+  "weights": {
+    "C1": 0.3,
+    "C2": 0.2,
+    "C3": 0.25,
+    "C4": 0.15,
+    "C5": 0.1
+  },
+  "open_p0_p1": [],
+  "closed_findings": [
+    "Measurement label clipping/overlap fixed and visually verified in frozen package",
+    "Previous opened capture label cleared on source reset without discarding dirty raw"
+  ],
+  "evidence_sha256": {
+    "docs/verification/segment-measurements-20261114/SCOPE_RU.md": "ede5309c516f667c9ed948d554500117191c2beeb7ffc9d1045eef123fc218bf",
+    "docs/verification/segment-measurements-20261114/model-tests.log": "a64eb4323348338494b8cad025c14046bd18a7c6a3fb6cac12115cf84ded7d97",
+    "docs/verification/segment-measurements-20261114/legacy-tests.log": "333d48d1838ef380863a11edca687985a7601edc36c306ec4845d8fc7bc010a7",
+    "docs/verification/segment-measurements-20261114/author-evidence.json": "7f92aa35f04eb84b7f054bb3206f1570fe49733a2fa08eca86525af441295c6a",
+    "docs/verification/segment-measurements-20261114/critic-package-integrity.json": "9d4f79ff2a822fc800620794869d0757b6372ee24239e15892d4c099f1df55e6",
+    "build/v22-native-07/result.json": "f0bef73c8bd71ffcfb25d6d75b248f71ba1fb2dbfc75d1322ebf22b85fdf350d",
+    "build/v22w/frozen-segment-measurements/result.json": "05aefd376f389a6ca49872d559fd1c09f90083514a22774b2353a75657d5e202",
+    "build/v22w/build-report.json": "0a906b33b0e71744c7b5f83c66b528335a6774ec3a554bab0b5a19aaab7e4d93",
+    "build/v22w/normal-entry.png": "c39d8c9c74879425ad66328a96bef8a6af3850b3699ab3549a63c3c936ce8839",
+    "build/v22-native-07/01-dc-measurements.png": "58f1b7d47b9ce166870db5b918a4ab09814f445b188b7db4aa2bd237b4c841b4",
+    "build/v22-native-07/02-short-interval.png": "6feb16882857ae8eb67ce233c69ae7d7632056fab1b665954a5c37f44272c98c",
+    "build/v22-native-07/03-ac-10bit.png": "ce2baff922b084b5d56e25aaff9503005e2f5d37505c197db641e3897bb3a4f2",
+    "build/v22-native-07/04-gap-reason.png": "f92faf8e1fe2ee3a0c6ffb2e5b6c8d014a5bab17bafd199edb3aa5d1a5808f95",
+    "build/v22-native-07/05-live-held.png": "6b85e1f95c0bf9dfa6db4e99b82625ddba658dbd3e9603b2b958c76eb6a94456",
+    "build/v22w/frozen-segment-measurements/01-dc-measurements.png": "58f1b7d47b9ce166870db5b918a4ab09814f445b188b7db4aa2bd237b4c841b4",
+    "build/v22w/frozen-segment-measurements/02-short-interval.png": "6feb16882857ae8eb67ce233c69ae7d7632056fab1b665954a5c37f44272c98c",
+    "build/v22w/frozen-segment-measurements/03-ac-10bit.png": "a97b5ef753ea9c82a105fac0b408fba18fde77b04225b242710274b89aad008e",
+    "build/v22w/frozen-segment-measurements/04-gap-reason.png": "f92faf8e1fe2ee3a0c6ffb2e5b6c8d014a5bab17bafd199edb3aa5d1a5808f95",
+    "build/v22w/frozen-segment-measurements/05-live-held.png": "3f59e81db9df57864c942163350c8cc52241b2ee8c9829235231747fe9faf2b0"
+  },
+  "review_path": "docs/reviews/v2-19-segment-measurements-review.md",
+  "review_sha256": "d7d1d119f5ee932ed708a6759d94fe20a47f42f0da32179a37b7aafaf85c31c2",
+  "personally_performed": [
+    "read-only code and documented requirements review",
+    "independent SHA-256 worktree/source ZIP/dist/relocated tree/portable ZIP verification",
+    "native07 five images and final frozen five images plus normal cold entry visual inspection",
+    "review of actual targeted unit stdout and native/frozen result JSON"
+  ],
+  "author_executions_not_repeated": [
+    "five model unit tests",
+    "four legacy unit tests",
+    "native and relocated frozen GUI scenarios with 19 assertions each"
+  ],
+  "not_confirmed": [
+    "physical COM or USB load with new measurements",
+    "firmware changes",
+    "board and sensor response",
+    "physical frequency and voltage accuracy",
+    "ignition or vehicle operation"
+  ],
+  "visual_evidence_exception": "native07/03 AC sidebar is transient; accepted settled AC visual evidence is final frozen03",
+  "extra_tests_run_by_critic": 0
+}

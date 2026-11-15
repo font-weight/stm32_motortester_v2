@@ -1,0 +1,37 @@
+V2-21 ringdown model — 2026-11-14
+Scope: synthetic/raw-model checks only; no COM, firmware, analog bandwidth or coil diagnosis.
+Working directory: host
+Command: ../.venv/Scripts/python.exe -m unittest discover -s tests -p test_v2_ringdown.py -v
+
+Final targeted run after ambiguity, automatic clipping and bounded-work fixes:
+test_damped_frequency_tau_full_cycle_ratio_rates_and_quantization ... ok
+test_no_decay_noise_clipping_gap_short_and_mixed_frequencies_refuse ... ok
+test_offset_inversion_and_moderate_noise_keep_same_decay ... ok
+test_reader_preserves_exact_indices_format_and_rejects_missing_data ... ok
+test_suggests_synthetic_plateau_to_ringdown_for_user_confirmation ... ok
+Ran 5 tests in 0.102s
+OK
+
+The last test includes: exact proposal re-read, clipped primary impulse refusal
+for automatic proposal, manual clean-tail allowance, duplicate spark refusal,
+and the critic's two separated smoothly excited tails witness:
+response + 100 quiet samples + response + 100 quiet samples.
+
+Bounded-work check (one run, same environment, not a throughput guarantee):
+32768 samples; synthetic Fs=100000, f=2500 Hz, tau=0.04 s, baseline=2000,
+amplitude=800; suggest_ringdown: 0.309 s, available=True, cycle_count=433.
+Nested suffixes of an already fully qualified response are not fitted again.
+
+Earlier development findings, retained as history rather than final results:
+- Initial auto-proposal test failed because overlapping suffixes of the same
+  tail were incorrectly treated as different candidates. Overlap/f/tau grouping
+  fixed that failure; the intermediate 5-test run passed in 0.128 s.
+- An oversized test-reader block was correctly refused by StreamBlock; the
+  fixture now obeys the reader's 8192-sample chunk contract.
+- Before nested-suffix elimination, the 32768-sample proposal took 2.126 s.
+- Independent review found that a failed whole suffix could conceal an earlier
+  valid response. All-region activity separation now rejects the supplied
+  two-tail witness rather than automatically choosing the later response.
+
+These tests verify calculations and conservative refusals on artificial raw
+data, not physical instrument accuracy, noise level, recovery or protection.

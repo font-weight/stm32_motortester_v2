@@ -1,0 +1,1163 @@
+{
+  "source": "hardware\\v2-input\\r53-compact-20261102\\analog-input-r53.kicad_sch",
+  "sha256": "74184e61aec1074d4c9f33b8f32e508d0ccd468fd04ddb4ebbada454ff73bc62",
+  "root_counts": {
+    "version": 1,
+    "generator": 1,
+    "generator_version": 1,
+    "uuid": 1,
+    "paper": 1,
+    "title_block": 1,
+    "lib_symbols": 1,
+    "text": 36,
+    "no_connect": 1,
+    "wire": 137,
+    "symbol": 55,
+    "sheet_instances": 1,
+    "embedded_fonts": 1,
+    "junction": 32
+  },
+  "uuid_total": 426,
+  "uuid_distinct": 426,
+  "uuid_collisions": {},
+  "zero_length_wire_ids": [],
+  "duplicate_geometry_wires": {},
+  "wire_overlaps": [],
+  "junctions": [
+    {
+      "uuid": "9cd6c16c-5b61-4631-846e-5ddc6fc06b43",
+      "at_mm": [
+        45.72,
+        101.6
+      ],
+      "wire_arms": 3,
+      "wire_angles": [
+        0.0,
+        90.0,
+        180.0
+      ],
+      "pins": [],
+      "distinct_connections": 3,
+      "wires": [
+        "4d181d1a-330e-5f80-962a-6d8b64a5afff",
+        "86e84ce5-e559-55f7-b083-97ae43025e91",
+        "daa779a5-6b0b-4c0c-8b85-369fa1d84afc"
+      ]
+    },
+    {
+      "uuid": "5f068550-dfbc-4562-a1d3-b6c63aa3b124",
+      "at_mm": [
+        63.5,
+        101.6
+      ],
+      "wire_arms": 4,
+      "wire_angles": [
+        -90.0,
+        0.0,
+        90.0,
+        180.0
+      ],
+      "pins": [],
+      "distinct_connections": 4,
+      "wires": [
+        "daa779a5-6b0b-4c0c-8b85-369fa1d84afc",
+        "9fd25ae3-fa87-55d9-a100-f5bb9800ae74",
+        "d7b1232e-8c9d-5115-99fb-b9dc53377304",
+        "a465059b-fee9-44c9-8ec5-69add9a9c352"
+      ]
+    },
+    {
+      "uuid": "91d4b80c-a90b-4c6d-baad-90e5b58ce11e",
+      "at_mm": [
+        96.52,
+        292.1
+      ],
+      "wire_arms": 3,
+      "wire_angles": [
+        -90.0,
+        0.0,
+        90.0
+      ],
+      "pins": [],
+      "distinct_connections": 3,
+      "wires": [
+        "6466a98f-39a1-55bd-9241-c19ea70bcaa8",
+        "68b65090-3fda-4eb6-be9d-10449915bf71",
+        "7a632f5c-f494-5060-91dd-15eeff32aed3"
+      ]
+    },
+    {
+      "uuid": "5b0b14e1-3cbe-4d3a-84ea-be140fe3e109",
+      "at_mm": [
+        96.52,
+        325.12
+      ],
+      "wire_arms": 3,
+      "wire_angles": [
+        -90.0,
+        0.0,
+        180.0
+      ],
+      "pins": [],
+      "distinct_connections": 3,
+      "wires": [
+        "68b65090-3fda-4eb6-be9d-10449915bf71",
+        "65c88b2a-a120-5cb5-b6bc-726bd6293c50",
+        "88b15ffa-972f-4f38-a45a-e5080308231f"
+      ]
+    },
+    {
+      "uuid": "44956108-1988-49c7-b687-335e7d62eeda",
+      "at_mm": [
+        134.62,
+        106.68
+      ],
+      "wire_arms": 3,
+      "wire_angles": [
+        -90.0,
+        0.0,
+        90.0
+      ],
+      "pins": [],
+      "distinct_connections": 3,
+      "wires": [
+        "c24abd51-13fa-563c-8363-21ab1f835bf0",
+        "e9f22e64-66ec-5f5a-840e-522c5b36aae3",
+        "1e10a03a-3501-4d3e-a04b-edee4ff03640"
+      ]
+    },
+    {
+      "uuid": "730cfab4-0133-4fab-bfe7-41cea6056f84",
+      "at_mm": [
+        162.56,
+        325.12
+      ],
+      "wire_arms": 3,
+      "wire_angles": [
+        0.0,
+        90.0,
+        180.0
+      ],
+      "pins": [],
+      "distinct_connections": 3,
+      "wires": [
+        "5e2e07d8-f4d9-52cd-880f-52371e221cb6",
+        "44fbaf1f-8e34-4dbf-8128-03f6aa58e68f",
+        "62d1e425-30be-5499-8641-2720b833b1db"
+      ]
+    },
+    {
+      "uuid": "765719f3-cbff-4aad-878d-70c514547a07",
+      "at_mm": [
+        223.52,
+        195.58
+      ],
+      "wire_arms": 2,
+      "wire_angles": [
+        0.0,
+        90.0
+      ],
+      "pins": [
+        [
+          "#PWR08",
+          "1"
+        ]
+      ],
+      "distinct_connections": 3,
+      "wires": [
+        "bb358702-5b0b-5b58-ad45-023008195cd8",
+        "c55a3df8-6e0a-5263-85c8-539c68fbb97b"
+      ]
+    },
+    {
+      "uuid": "3ebaf06f-467c-4945-a894-916a69e9dc68",
+      "at_mm": [
+        226.06,
+        292.1
+      ],
+      "wire_arms": 3,
+      "wire_angles": [
+        -90.0,
+        90.0,
+        180.0
+      ],
+      "pins": [],
+      "distinct_connections": 3,
+      "wires": [
+        "daa94cb6-06fc-5254-9439-bab901647105",
+        "fa061442-f276-561c-8a28-6cea582eb83e",
+        "982faf3d-42dd-40d1-8d6e-da1827a724d5"
+      ]
+    },
+    {
+      "uuid": "69ac179a-ae7a-4897-84bd-57ddeb503d76",
+      "at_mm": [
+        226.06,
+        327.66
+      ],
+      "wire_arms": 4,
+      "wire_angles": [
+        -90.0,
+        0.0,
+        90.0,
+        180.0
+      ],
+      "pins": [],
+      "distinct_connections": 4,
+      "wires": [
+        "8f122853-1001-57c0-9ad8-4790bdfa6915",
+        "93058ef0-f651-50d6-bab3-97a21b6bcd0a",
+        "0a56773a-40ad-4d7a-a8e0-98173dfa10a4",
+        "982faf3d-42dd-40d1-8d6e-da1827a724d5"
+      ]
+    },
+    {
+      "uuid": "fc4e6874-213a-42cb-acb7-4c9f5b48b2e3",
+      "at_mm": [
+        228.6,
+        233.68
+      ],
+      "wire_arms": 2,
+      "wire_angles": [
+        -90.0,
+        0.0
+      ],
+      "pins": [
+        [
+          "#PWR09",
+          "1"
+        ]
+      ],
+      "distinct_connections": 3,
+      "wires": [
+        "30d68fbc-f7e9-52d5-8e3c-5f26503e3ee4",
+        "3ab92f5c-4e11-5b34-9f3e-228d52163ea2"
+      ]
+    },
+    {
+      "uuid": "70630899-4ad5-418b-84fe-508301db7b94",
+      "at_mm": [
+        241.3,
+        195.58
+      ],
+      "wire_arms": 2,
+      "wire_angles": [
+        0.0,
+        180.0
+      ],
+      "pins": [
+        [
+          "#FLG01",
+          "1"
+        ]
+      ],
+      "distinct_connections": 3,
+      "wires": [
+        "c55a3df8-6e0a-5263-85c8-539c68fbb97b",
+        "a6dd1bd2-ebb8-4938-ae6a-34775f61e450"
+      ]
+    },
+    {
+      "uuid": "c9a3ba79-29e3-4f0b-9102-72198b2f3ee2",
+      "at_mm": [
+        254.0,
+        195.58
+      ],
+      "wire_arms": 3,
+      "wire_angles": [
+        0.0,
+        90.0,
+        180.0
+      ],
+      "pins": [],
+      "distinct_connections": 3,
+      "wires": [
+        "184d0729-7a32-5057-8916-59075133cb2f",
+        "a6dd1bd2-ebb8-4938-ae6a-34775f61e450",
+        "fdac09b6-8e47-4903-bc30-5076ab633a0e"
+      ]
+    },
+    {
+      "uuid": "a9970de6-fc05-49fb-a912-f282694677a2",
+      "at_mm": [
+        254.0,
+        233.68
+      ],
+      "wire_arms": 3,
+      "wire_angles": [
+        -90.0,
+        0.0,
+        180.0
+      ],
+      "pins": [],
+      "distinct_connections": 3,
+      "wires": [
+        "3ab92f5c-4e11-5b34-9f3e-228d52163ea2",
+        "5c267fae-829b-4a4f-92ca-383a612bcf6b",
+        "af76e2d7-8611-5455-b2d0-43997fbe380f"
+      ]
+    },
+    {
+      "uuid": "4ed8c3e2-4a1d-4c75-af05-bdd5c539b282",
+      "at_mm": [
+        279.4,
+        101.6
+      ],
+      "wire_arms": 4,
+      "wire_angles": [
+        -90.0,
+        0.0,
+        90.0,
+        180.0
+      ],
+      "pins": [],
+      "distinct_connections": 4,
+      "wires": [
+        "8ced586d-d0ce-5f80-b064-3262f7a99186",
+        "baa64a92-ab20-5716-8f1f-cb38c9f43f97",
+        "0895b8f0-eb59-4c14-984d-7cd179a59564",
+        "f3b9f79b-bcdd-5b0e-b1ab-0ef0189a66f0"
+      ]
+    },
+    {
+      "uuid": "15481b52-a387-45b6-b119-fb6d4f04557d",
+      "at_mm": [
+        297.18,
+        195.58
+      ],
+      "wire_arms": 3,
+      "wire_angles": [
+        0.0,
+        90.0,
+        180.0
+      ],
+      "pins": [],
+      "distinct_connections": 3,
+      "wires": [
+        "99c9d3a3-7602-5033-a6ea-884f82692a0f",
+        "fdac09b6-8e47-4903-bc30-5076ab633a0e",
+        "86ed6c6f-cc8a-4d9f-8853-9292e065c7f1"
+      ]
+    },
+    {
+      "uuid": "fc53a81e-389e-4602-ba7c-d22eae776d58",
+      "at_mm": [
+        297.18,
+        233.68
+      ],
+      "wire_arms": 3,
+      "wire_angles": [
+        -90.0,
+        0.0,
+        180.0
+      ],
+      "pins": [],
+      "distinct_connections": 3,
+      "wires": [
+        "2eac421c-53f8-5551-a375-67b2e3b5e317",
+        "5c267fae-829b-4a4f-92ca-383a612bcf6b",
+        "a1467faf-1a98-4e76-959e-45e7ab3c71b6"
+      ]
+    },
+    {
+      "uuid": "ea7bec1f-55ca-441e-b77c-748a635cd96c",
+      "at_mm": [
+        314.96,
+        325.12
+      ],
+      "wire_arms": 3,
+      "wire_angles": [
+        -90.0,
+        0.0,
+        180.0
+      ],
+      "pins": [],
+      "distinct_connections": 3,
+      "wires": [
+        "68feafd7-4f96-5d99-b6d4-424f6261e0ad",
+        "75ebaa62-0939-5a77-b46a-6fb255777ae4",
+        "d3045ec5-a711-460c-9945-087098d054dd"
+      ]
+    },
+    {
+      "uuid": "27dab4fc-0907-48bc-834f-a392cf76047e",
+      "at_mm": [
+        335.28,
+        195.58
+      ],
+      "wire_arms": 3,
+      "wire_angles": [
+        0.0,
+        90.0,
+        180.0
+      ],
+      "pins": [],
+      "distinct_connections": 3,
+      "wires": [
+        "8b27a709-d0d5-5a7f-a9dd-975bb6a6c49e",
+        "86ed6c6f-cc8a-4d9f-8853-9292e065c7f1",
+        "01ec9d18-91a4-494a-80fe-8414e1b098cd"
+      ]
+    },
+    {
+      "uuid": "66de630e-39dc-404c-9ceb-836bb76bdf9a",
+      "at_mm": [
+        335.28,
+        233.68
+      ],
+      "wire_arms": 3,
+      "wire_angles": [
+        -90.0,
+        0.0,
+        180.0
+      ],
+      "pins": [],
+      "distinct_connections": 3,
+      "wires": [
+        "a1467faf-1a98-4e76-959e-45e7ab3c71b6",
+        "858814bb-5044-4dbd-9a09-d3de4ea61036",
+        "a7d19421-3ce5-5892-9b92-2e0b5e1d8709"
+      ]
+    },
+    {
+      "uuid": "ba3629eb-d792-4eec-830a-b34a4535220f",
+      "at_mm": [
+        342.9,
+        101.6
+      ],
+      "wire_arms": 3,
+      "wire_angles": [
+        0.0,
+        90.0,
+        180.0
+      ],
+      "pins": [],
+      "distinct_connections": 3,
+      "wires": [
+        "5e4de2ce-3f54-533d-8684-985a5e05963e",
+        "83bd7207-771c-485a-9ba3-f50072dd9460",
+        "bd7a425d-3d65-5abb-a254-e971df7e126a"
+      ]
+    },
+    {
+      "uuid": "7b8ddf7f-34c5-4ca9-b2e1-89eb6c9ff7ff",
+      "at_mm": [
+        363.22,
+        233.68
+      ],
+      "wire_arms": 2,
+      "wire_angles": [
+        0.0,
+        180.0
+      ],
+      "pins": [
+        [
+          "#FLG02",
+          "1"
+        ]
+      ],
+      "distinct_connections": 3,
+      "wires": [
+        "858814bb-5044-4dbd-9a09-d3de4ea61036",
+        "6a298553-eea3-4d49-b0ce-f3f11953423e"
+      ]
+    },
+    {
+      "uuid": "cde93709-59aa-42ad-bf43-d63f16d3fc00",
+      "at_mm": [
+        383.54,
+        325.12
+      ],
+      "wire_arms": 3,
+      "wire_angles": [
+        0.0,
+        90.0,
+        180.0
+      ],
+      "pins": [],
+      "distinct_connections": 3,
+      "wires": [
+        "8005aa19-dede-5251-b8f9-3a1a014c3812",
+        "0d437699-7235-475b-9809-2f9fb6355ce0",
+        "bc1a07fb-b5f6-5d77-b6ec-cb91960b6e3d"
+      ]
+    },
+    {
+      "uuid": "6b638382-4f80-428d-95d3-692d2dfcfe4b",
+      "at_mm": [
+        391.16,
+        104.14
+      ],
+      "wire_arms": 3,
+      "wire_angles": [
+        0.0,
+        90.0,
+        180.0
+      ],
+      "pins": [],
+      "distinct_connections": 3,
+      "wires": [
+        "6cc8eb99-d836-5bab-8502-f7de01d656ba",
+        "948974a2-1a43-4b93-b32f-7399632e4890",
+        "74b0473f-bb1a-5c3c-81be-0541bf1dad59"
+      ]
+    },
+    {
+      "uuid": "68e890d1-4f6d-4273-aef6-a05fd98fd98c",
+      "at_mm": [
+        424.18,
+        134.62
+      ],
+      "wire_arms": 3,
+      "wire_angles": [
+        -90.0,
+        0.0,
+        90.0
+      ],
+      "pins": [],
+      "distinct_connections": 3,
+      "wires": [
+        "341d5037-5789-59ff-8e97-2cb30d454c07",
+        "24175385-c803-4fc1-8a2b-c6d08c599896",
+        "504a0b8a-df18-5a16-bad2-27f93ab0a784"
+      ]
+    },
+    {
+      "uuid": "c2d495f9-761e-46f3-aca6-159b3b6b12c4",
+      "at_mm": [
+        424.18,
+        165.1
+      ],
+      "wire_arms": 3,
+      "wire_angles": [
+        -90.0,
+        0.0,
+        90.0
+      ],
+      "pins": [],
+      "distinct_connections": 3,
+      "wires": [
+        "24175385-c803-4fc1-8a2b-c6d08c599896",
+        "4481d8a8-1d8e-4d13-9693-d5dd0b78d09a",
+        "7a184974-67ff-59e5-b592-97a52841132f"
+      ]
+    },
+    {
+      "uuid": "bede2790-fded-4c7c-8b9f-b45462a73afc",
+      "at_mm": [
+        441.96,
+        327.66
+      ],
+      "wire_arms": 3,
+      "wire_angles": [
+        0.0,
+        90.0,
+        180.0
+      ],
+      "pins": [],
+      "distinct_connections": 3,
+      "wires": [
+        "6db02211-0bb7-5a82-beab-5bbcefb5b75d",
+        "df851998-6767-4aa4-9246-ed2ea9244367",
+        "969b3906-d56c-5ee8-8892-db41192ed0e5"
+      ]
+    },
+    {
+      "uuid": "f4410116-7b99-4e8d-911a-eb5a503b4260",
+      "at_mm": [
+        447.04,
+        327.66
+      ],
+      "wire_arms": 3,
+      "wire_angles": [
+        -90.0,
+        0.0,
+        180.0
+      ],
+      "pins": [],
+      "distinct_connections": 3,
+      "wires": [
+        "df851998-6767-4aa4-9246-ed2ea9244367",
+        "5701aa8e-a78a-4961-912d-e2eb7f222da3",
+        "7f477e2a-5a48-528f-a18f-ca8d0f4a9dbf"
+      ]
+    },
+    {
+      "uuid": "f744aacb-f6bf-4e08-8e4f-4e11afb0492b",
+      "at_mm": [
+        500.38,
+        104.14
+      ],
+      "wire_arms": 3,
+      "wire_angles": [
+        0.0,
+        90.0,
+        180.0
+      ],
+      "pins": [],
+      "distinct_connections": 3,
+      "wires": [
+        "c02197cb-4ea8-57eb-8ad9-04ae46bec6fb",
+        "e950eb1c-6220-425e-99cc-3634e75c587b",
+        "eb49e2c9-5527-5bee-8f73-c351d1f1bfea"
+      ]
+    },
+    {
+      "uuid": "02de400d-d585-4cc2-b5fa-f6c4418bb5d8",
+      "at_mm": [
+        500.38,
+        134.62
+      ],
+      "wire_arms": 3,
+      "wire_angles": [
+        -90.0,
+        90.0,
+        180.0
+      ],
+      "pins": [],
+      "distinct_connections": 3,
+      "wires": [
+        "2bd74d0c-9237-5f5f-a3d2-5606eba2f145",
+        "eb49e2c9-5527-5bee-8f73-c351d1f1bfea",
+        "8f086dce-759c-408f-9226-c0d6a408ebbb"
+      ]
+    },
+    {
+      "uuid": "451237bf-8937-4316-978c-8b8312c42db2",
+      "at_mm": [
+        502.92,
+        327.66
+      ],
+      "wire_arms": 3,
+      "wire_angles": [
+        0.0,
+        90.0,
+        180.0
+      ],
+      "pins": [],
+      "distinct_connections": 3,
+      "wires": [
+        "a7e83094-de5c-5422-87fd-2c2b9baf55dc",
+        "cfb24d8a-0629-4d22-b99b-80f479913f3e",
+        "ab753f5a-1b2c-59bc-a9e4-c47e2e1dd91a"
+      ]
+    },
+    {
+      "uuid": "49dee235-5bb1-45d8-9ac0-079927739800",
+      "at_mm": [
+        513.08,
+        104.14
+      ],
+      "wire_arms": 3,
+      "wire_angles": [
+        0.0,
+        90.0,
+        180.0
+      ],
+      "pins": [],
+      "distinct_connections": 3,
+      "wires": [
+        "3aa6a649-2bbf-51eb-a2b6-6c969fa11a93",
+        "e950eb1c-6220-425e-99cc-3634e75c587b",
+        "78a9867c-06da-4ad3-a346-8af6570e6eb1"
+      ]
+    },
+    {
+      "uuid": "33bff175-e540-46a2-9dd6-7be8f3a57be6",
+      "at_mm": [
+        543.56,
+        205.74
+      ],
+      "wire_arms": 3,
+      "wire_angles": [
+        -90.0,
+        90.0,
+        180.0
+      ],
+      "pins": [],
+      "distinct_connections": 3,
+      "wires": [
+        "23d7f20e-5429-5450-92d3-10dcf49a8695",
+        "7c2a013f-b61f-44d5-aec4-f5ab7206dac1",
+        "d16707a3-40b9-539b-83ed-c2cfa48091bf"
+      ]
+    }
+  ],
+  "libraries": [
+    {
+      "name": "AnalogLUTR5:AGND",
+      "bodies": [
+        {
+          "name": "AGND_1_1",
+          "pins": [
+            [
+              "1",
+              [
+                "0",
+                "0",
+                "270"
+              ]
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "name": "AnalogLUTR5:C_H",
+      "bodies": [
+        {
+          "name": "C_H_1_1",
+          "pins": [
+            [
+              "1",
+              [
+                "-5.08",
+                "0",
+                "0"
+              ]
+            ],
+            [
+              "2",
+              [
+                "5.08",
+                "0",
+                "180"
+              ]
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "name": "AnalogLUTR5:C_V",
+      "bodies": [
+        {
+          "name": "C_V_1_1",
+          "pins": [
+            [
+              "1",
+              [
+                "0",
+                "5.08",
+                "270"
+              ]
+            ],
+            [
+              "2",
+              [
+                "0",
+                "-5.08",
+                "90"
+              ]
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "name": "AnalogLUTR5:Conn2L",
+      "bodies": [
+        {
+          "name": "Conn2L_1_1",
+          "pins": [
+            [
+              "1",
+              [
+                "-7.62",
+                "1.27",
+                "0"
+              ]
+            ],
+            [
+              "2",
+              [
+                "-7.62",
+                "-1.27",
+                "0"
+              ]
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "name": "AnalogLUTR5:Conn2R",
+      "bodies": [
+        {
+          "name": "Conn2R_1_1",
+          "pins": [
+            [
+              "1",
+              [
+                "7.62",
+                "1.27",
+                "180"
+              ]
+            ],
+            [
+              "2",
+              [
+                "7.62",
+                "-1.27",
+                "180"
+              ]
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "name": "AnalogLUTR5:Jumper",
+      "bodies": [
+        {
+          "name": "Jumper_1_1",
+          "pins": [
+            [
+              "1",
+              [
+                "-5.08",
+                "0",
+                "0"
+              ]
+            ],
+            [
+              "2",
+              [
+                "5.08",
+                "0",
+                "180"
+              ]
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "name": "AnalogLUTR5:PWR_FLAG",
+      "bodies": [
+        {
+          "name": "PWR_FLAG_1_1",
+          "pins": [
+            [
+              "1",
+              [
+                "0",
+                "0",
+                "90"
+              ]
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "name": "AnalogLUTR5:R_H",
+      "bodies": [
+        {
+          "name": "R_H_1_1",
+          "pins": [
+            [
+              "1",
+              [
+                "-5.08",
+                "0",
+                "0"
+              ]
+            ],
+            [
+              "2",
+              [
+                "5.08",
+                "0",
+                "180"
+              ]
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "name": "AnalogLUTR5:R_V",
+      "bodies": [
+        {
+          "name": "R_V_1_1",
+          "pins": [
+            [
+              "1",
+              [
+                "0",
+                "5.08",
+                "270"
+              ]
+            ],
+            [
+              "2",
+              [
+                "0",
+                "-5.08",
+                "90"
+              ]
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "name": "AnalogLUTR5:S2_Shunt",
+      "bodies": [
+        {
+          "name": "S2_Shunt_1_1",
+          "pins": [
+            [
+              "1",
+              [
+                "7.62",
+                "5.08",
+                "180"
+              ]
+            ],
+            [
+              "2",
+              [
+                "-7.62",
+                "0",
+                "0"
+              ]
+            ],
+            [
+              "3",
+              [
+                "7.62",
+                "-5.08",
+                "180"
+              ]
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "name": "AnalogLUTR5:SW_DPDT",
+      "bodies": [
+        {
+          "name": "SW_DPDT_1_1",
+          "pins": [
+            [
+              "1",
+              [
+                "-7.62",
+                "5.08",
+                "0"
+              ]
+            ],
+            [
+              "2",
+              [
+                "7.62",
+                "0",
+                "180"
+              ]
+            ],
+            [
+              "3",
+              [
+                "-7.62",
+                "-5.08",
+                "0"
+              ]
+            ]
+          ]
+        },
+        {
+          "name": "SW_DPDT_2_1",
+          "pins": [
+            [
+              "4",
+              [
+                "7.62",
+                "5.08",
+                "180"
+              ]
+            ],
+            [
+              "5",
+              [
+                "-7.62",
+                "0",
+                "0"
+              ]
+            ],
+            [
+              "6",
+              [
+                "7.62",
+                "-5.08",
+                "180"
+              ]
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "name": "AnalogLUTR5:TLV9064QDRQ1_D",
+      "bodies": [
+        {
+          "name": "TLV9064QDRQ1_D_1_1",
+          "pins": [
+            [
+              "1",
+              [
+                "10.16",
+                "0",
+                "180"
+              ]
+            ],
+            [
+              "2",
+              [
+                "-10.16",
+                "-2.54",
+                "0"
+              ]
+            ],
+            [
+              "3",
+              [
+                "-10.16",
+                "2.54",
+                "0"
+              ]
+            ]
+          ]
+        },
+        {
+          "name": "TLV9064QDRQ1_D_2_1",
+          "pins": [
+            [
+              "5",
+              [
+                "-10.16",
+                "2.54",
+                "0"
+              ]
+            ],
+            [
+              "6",
+              [
+                "-10.16",
+                "-2.54",
+                "0"
+              ]
+            ],
+            [
+              "7",
+              [
+                "10.16",
+                "0",
+                "180"
+              ]
+            ]
+          ]
+        },
+        {
+          "name": "TLV9064QDRQ1_D_3_1",
+          "pins": [
+            [
+              "8",
+              [
+                "10.16",
+                "0",
+                "180"
+              ]
+            ],
+            [
+              "9",
+              [
+                "-10.16",
+                "-2.54",
+                "0"
+              ]
+            ],
+            [
+              "10",
+              [
+                "-10.16",
+                "2.54",
+                "0"
+              ]
+            ]
+          ]
+        },
+        {
+          "name": "TLV9064QDRQ1_D_4_1",
+          "pins": [
+            [
+              "12",
+              [
+                "-10.16",
+                "2.54",
+                "0"
+              ]
+            ],
+            [
+              "13",
+              [
+                "-10.16",
+                "-2.54",
+                "0"
+              ]
+            ],
+            [
+              "14",
+              [
+                "10.16",
+                "0",
+                "180"
+              ]
+            ]
+          ]
+        },
+        {
+          "name": "TLV9064QDRQ1_D_5_1",
+          "pins": [
+            [
+              "4",
+              [
+                "0",
+                "10.16",
+                "270"
+              ]
+            ],
+            [
+              "11",
+              [
+                "0",
+                "-10.16",
+                "90"
+              ]
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "name": "AnalogLUTR5:V_A",
+      "bodies": [
+        {
+          "name": "V_A_1_1",
+          "pins": [
+            [
+              "1",
+              [
+                "0",
+                "0",
+                "90"
+              ]
+            ]
+          ]
+        }
+      ]
+    }
+  ]
+}

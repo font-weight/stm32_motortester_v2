@@ -1,0 +1,19 @@
+Initial integration run: 2026-11-13
+Command: PYTHONPATH=host;host/tests .venv/Scripts/python.exe -m unittest test_v2_calibration_io -v
+3 tests run in 0.327s: 2 PASS, 1 ERROR
+FAILED test_completed_prefix_unknown_generated_tail_imports_and_copies_keep_identity
+ValueError at calibration_io.py:26 clean_stop_reported gate rejected a stopped recording whose generated tail is unknown.
+Reported to root; gate corrected to check received prefix and acknowledged requested stop without claiming generated tail completeness.
+This preserves the failed run; no physical board involved.
+
+After importer correction and prepared_at_utc schema clarification:
+test_completed_prefix_unknown_generated_tail_imports_and_copies_keep_identity (test_v2_calibration_io.CalibrationIOTests.test_completed_prefix_unknown_generated_tail_imports_and_copies_keep_identity) ... ok
+test_import_rejects_wrong_provenance_binding_mode_rate_instance_and_incomplete (test_v2_calibration_io.CalibrationIOTests.test_import_rejects_wrong_provenance_binding_mode_rate_instance_and_incomplete) ... ok
+test_measured_context_stream_shot_csv_preserve_raw_at_each_rate (test_v2_calibration_io.CalibrationIOTests.test_measured_context_stream_shot_csv_preserve_raw_at_each_rate) ... ok
+test_device_declared_fixture_roundtrips_snapshot_and_rejects_cross_mode (test_v2_calibration.CalibrationTests.test_device_declared_fixture_roundtrips_snapshot_and_rejects_cross_mode) ... ok
+test_raw_file_preserves_draft_and_control_and_detects_tampering (test_v2_calibration.CalibrationTests.test_raw_file_preserves_draft_and_control_and_detects_tampering) ... ok
+
+----------------------------------------------------------------------
+Ran 5 tests in 0.289s
+
+OK

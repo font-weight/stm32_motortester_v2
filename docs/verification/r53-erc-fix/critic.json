@@ -1,0 +1,58 @@
+{
+  "task": "HW-R53-ERC",
+  "date": "2026-11-03",
+  "reviewer": "r53_erc_critic",
+  "independent_non_author": true,
+  "base_git_commit": "6e364ed4cc6f2859473c565765fcfe54b811d77f",
+  "manifest": "docs/verification/r53-erc-fix/manifest.json",
+  "manifest_sha256": "b0f2bd8e00eab20703358bcb36fb82ce3a7e40b2189da6b02559d0f5fe98b342",
+  "manifest_files_checked": 26,
+  "manifest_mismatches": [],
+  "scope": "Restoration of root R5.3 schematic connections, full ERC and original schematic/PCB logical parity; no physical validation",
+  "schematic_sha256": "74184e61aec1074d4c9f33b8f32e508d0ccd468fd04ddb4ebbada454ff73bc62",
+  "pcb_sha256": "a42d276fa19727af062d79cac4bb9bfd6956781ed5078dbca22f9de8f20a98be",
+  "personally_checked": {
+    "non_wire_junction_s_expression_tree_identical": true,
+    "nominal_reference_values_equal": 35,
+    "pin_net_names_and_full_partitions_equal": 87,
+    "initial_embedded_local_symbols_equal": 13,
+    "initial_clean_copy_kicad_force_resave_erc_violations": 0,
+    "final_erc_report_read_and_bound_to_manifest": true,
+    "final_parity_report_read_and_bound_to_manifest": true,
+    "final_erc_rerun_by_critic": false,
+    "final_pcb_parity_rerun_by_critic": false
+  },
+  "final_erc": {
+    "errors": 0,
+    "warnings": 0,
+    "exclusions": 0,
+    "kicad_version": "10.0.6",
+    "included_severities": ["error", "warning", "exclusion"],
+    "unchanged_ignored_checks": ["single_global_label", "four_way_junction", "simulation_model_issue", "footprint_filter"]
+  },
+  "final_schematic_geometry": {
+    "wires_before": 107,
+    "wires_after": 137,
+    "junctions_before": 0,
+    "junctions_after": 32
+  },
+  "ratings": {
+    "C1": {"score": 9.8, "weight": 0.30},
+    "C2": {"score": 9.7, "weight": 0.20},
+    "C3": {"score": 9.8, "weight": 0.25},
+    "C4": {"score": 9.6, "weight": 0.15},
+    "C5": {"score": 9.7, "weight": 0.10}
+  },
+  "score": 9.740,
+  "verdict": "PASS",
+  "open_p0_p1": [],
+  "closed_findings": ["ERC-01", "ERC-02", "ERC-03"],
+  "limitations": [
+    "User reports with 39 and 33 errors represent different saved/unsaved states; original snapshots are preserved and not conflated.",
+    "Cause of removed junctions is not established.",
+    "Separate Desktop copy is outside this acceptance and was externally edited during work.",
+    "User must reopen the corrected root schematic without overwriting it from a stale editor window; manual GUI ERC has not yet been observed.",
+    "No physical assembly, calibration, protection, bandwidth, vehicle, firmware or application validation was performed."
+  ],
+  "report": "docs/reviews/r53-erc-fix-review.md"
+}

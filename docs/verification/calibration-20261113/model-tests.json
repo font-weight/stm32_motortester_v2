@@ -1,0 +1,57 @@
+{
+  "scope": "Software/artificial data only; declared-device fixture metadata is fabricated, not hardware evidence",
+  "utc": "2026-11-13T15:30:53.905521+00:00",
+  "python": "3.14.7 (tags/v3.14.7:823f032, Aug  5 2026, 10:51:32) [MSC v.1944 64 bit (AMD64)]",
+  "platform": "Windows-10-10.0.19045-SP0",
+  "earlier_runs": [
+    {
+      "command": "PYTHONPATH=host .venv/Scripts/python.exe -m unittest discover -s host/tests -p test_v2_calibration.py -v",
+      "tests": 6,
+      "outcome": "PASS",
+      "seconds": 0.169
+    },
+    {
+      "command": "PYTHONPATH=host .venv/Scripts/python.exe -m unittest discover -s host/tests -p test_v2_analog_profile.py -v",
+      "tests": 6,
+      "outcome": "PASS",
+      "seconds": 0.232
+    },
+    {
+      "command": "PYTHONPATH=host;host/tests .venv/Scripts/python.exe -m unittest test_v2_calibration.CalibrationTests.test_ac_separate_zero_amplitude_definitions_sign_and_control -v",
+      "tests": 1,
+      "outcome": "PASS",
+      "seconds": 0.033,
+      "reason": "AC amplitude quantization bound changed to full canonical code step"
+    },
+    {
+      "command": "PYTHONPATH=host;host/tests .venv/Scripts/python.exe -m unittest test_v2_calibration_io -v",
+      "tests": 3,
+      "outcome": "FAIL",
+      "errors": 1,
+      "seconds": 0.327,
+      "reason": "unknown produced tail rejected by importer, corrected by root"
+    }
+  ],
+  "final_recheck": {
+    "equivalent_command": "PYTHONPATH=host;host/tests .venv/Scripts/python.exe -m unittest test_v2_calibration_io test_v2_calibration.CalibrationTests.test_device_declared_fixture_roundtrips_snapshot_and_rejects_cross_mode test_v2_calibration.CalibrationTests.test_raw_file_preserves_draft_and_control_and_detects_tampering -v",
+    "tests": 5,
+    "failures": 0,
+    "errors": 0,
+    "outcome": "PASS",
+    "reason": "Corrected import stop gate and clarified preparation timestamp field; only affected tests repeated"
+  },
+  "sha256": {
+    "host/motortester/v2/calibration.py": "547f68da6a935771a769a9320d5a858220d3e048bd6d8948f3267d9d255d9f67",
+    "host/motortester/v2/calibration_io.py": "fd15d6ea09c501354d2859fc39d614b0bd12d70945bbfb8bebf6375c880de796",
+    "host/motortester/v2/analog_profile.py": "eedb1a2a56d056412ccdee3e7ac9b591b47393680dd969926f026c2352038edc",
+    "host/tests/test_v2_calibration.py": "a3f103174fdaa931db3aeba20e7a874d5247bb64a3e38ec2ebb3a21900e043c6",
+    "host/tests/test_v2_calibration_io.py": "fe6b8c08b13bb96d96efbebd99c0a8f3d4cecc324e6247d09cd63196786fe4ec"
+  },
+  "no_actions": [
+    "COM",
+    "SWD",
+    "firmware",
+    "physical sensor",
+    "analog measurement"
+  ]
+}

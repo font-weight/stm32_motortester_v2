@@ -1,0 +1,475 @@
+{
+  "title": "Первое включение: расчётные ориентиры, не критерии PASS",
+  "provenance": {
+    "model": "model_r4.py, unchanged R4 equations; only data path changed",
+    "model_sha256": "349fbec1351f64c81d6f25fb8a2819e5d768988da3cd59bd20773f0c48984324",
+    "baseline_netlist_sha256": "dec501233ff7d6212347ca02d8387b2ad581f67297846cbcfd27c478764f61c9",
+    "checked_real_schematic_netlist": "../kicad/analog-input-r5.net.xml",
+    "checked_real_schematic_netlist_sha256": "f2beab79cd6d4179ba69332e5ea1a3b900939f06d90522beaacb3bd2b3f3b0af",
+    "R4_reference": "calculations/results.json, resistor_1pct_corners_at_3p3",
+    "R4_results_sha256": "73cfa72cec7b683cead96ff3aeb24e6147bf71503ba3b07138048e6a9d72d85f",
+    "R4_comparison_max_abs_error": 1.1102230246251565e-15
+  },
+  "assumptions": {
+    "varied_resistors": [
+      "R1",
+      "R2",
+      "R3",
+      "R4",
+      "R14",
+      "R15",
+      "R16",
+      "R17"
+    ],
+    "independent_resistor_tolerance_fraction": 0.01,
+    "corners_per_mode": 256,
+    "C10_C11_F": [
+      9.6e-11,
+      1.04e-10
+    ],
+    "other_parts": "Nominal values; ideal opamps; zero input current, offset voltage and capacitor leakage",
+    "VA_V_for_tables": [
+      3.3,
+      [
+        3.2,
+        3.4
+      ]
+    ],
+    "important": "3.2..3.4V is the R4 calculation interval, not a new acceptance or safety specification. The actual part tolerances are unconfirmed. These ranges do not include unknown Vos, leakage, measurement uncertainty, wiring, startup or ADC loading."
+  },
+  "measurement_points": {
+    "AGND": {
+      "red_probe": "J3.2",
+      "black_probe": "J3.2",
+      "actual_net_name": "AGND",
+      "checked_pins": [
+        "J1.2",
+        "J2.2",
+        "J3.2",
+        "U1.11"
+      ],
+      "same_net_verified": true
+    },
+    "V_A": {
+      "red_probe": "J3.1",
+      "black_probe": "J3.2",
+      "actual_net_name": "V_A",
+      "checked_pins": [
+        "J3.1",
+        "U1.4"
+      ],
+      "same_net_verified": true
+    },
+    "BUF": {
+      "red_probe": "U1.1",
+      "black_probe": "J3.2",
+      "actual_net_name": "Net-(U1A--)",
+      "checked_pins": [
+        "U1.1",
+        "U1.12",
+        "U1.2"
+      ],
+      "same_net_verified": true
+    },
+    "DRIVE": {
+      "red_probe": "U1.14",
+      "black_probe": "J3.2",
+      "actual_net_name": "Net-(S2-WIDE)",
+      "checked_pins": [
+        "R5.1",
+        "S2.1",
+        "U1.14"
+      ],
+      "same_net_verified": true
+    },
+    "LP1": {
+      "red_probe": "U1.7",
+      "black_probe": "J3.2",
+      "actual_net_name": "Net-(U1B--)",
+      "checked_pins": [
+        "R7.1",
+        "U1.6",
+        "U1.7"
+      ],
+      "same_net_verified": true
+    },
+    "LP2": {
+      "red_probe": "U1.8",
+      "black_probe": "J3.2",
+      "actual_net_name": "Net-(U1C--)",
+      "checked_pins": [
+        "R9.1",
+        "U1.8",
+        "U1.9"
+      ],
+      "same_net_verified": true
+    },
+    "ADC_NODE": {
+      "red_probe": "JP1.1",
+      "black_probe": "J3.2",
+      "actual_net_name": "Net-(C5-Pad1)",
+      "checked_pins": [
+        "C5.1",
+        "JP1.1",
+        "R9.2"
+      ],
+      "same_net_verified": true
+    }
+  },
+  "modes": {
+    "DC_WIDE": {
+      "corner_count": 256,
+      "zero_condition": "CH1 shorted to AGND after removing the external signal source; settled DC state; S1/S2 changed only with power off",
+      "nodes": {
+        "BUF": {
+          "nominal_zero_at3p3_V": 1.6598232004329718,
+          "zero_over_VA": [
+            0.4979766069421439,
+            0.5079762525413433
+          ],
+          "zero_at_VA3p3_V": [
+            1.6433228029090747,
+            1.6763216333864326
+          ],
+          "zero_at_VA3p2_to3p4_V": [
+            1.5935251422148606,
+            1.727119258640567
+          ]
+        },
+        "DRIVE": {
+          "nominal_zero_at3p3_V": 1.6598232004329718,
+          "zero_over_VA": [
+            0.4979766069421439,
+            0.5079762525413433
+          ],
+          "zero_at_VA3p3_V": [
+            1.6433228029090747,
+            1.6763216333864326
+          ],
+          "zero_at_VA3p2_to3p4_V": [
+            1.5935251422148606,
+            1.727119258640567
+          ]
+        },
+        "LP1": {
+          "nominal_zero_at3p3_V": 1.6598232004329716,
+          "zero_over_VA": [
+            0.49797660694214385,
+            0.5079762525413433
+          ],
+          "zero_at_VA3p3_V": [
+            1.6433228029090747,
+            1.6763216333864326
+          ],
+          "zero_at_VA3p2_to3p4_V": [
+            1.5935251422148604,
+            1.727119258640567
+          ]
+        },
+        "LP2": {
+          "nominal_zero_at3p3_V": 1.6598232004329716,
+          "zero_over_VA": [
+            0.4979766069421438,
+            0.5079762525413433
+          ],
+          "zero_at_VA3p3_V": [
+            1.6433228029090745,
+            1.6763216333864326
+          ],
+          "zero_at_VA3p2_to3p4_V": [
+            1.5935251422148602,
+            1.727119258640567
+          ]
+        },
+        "ADC_NODE": {
+          "nominal_zero_at3p3_V": 1.6598232004329716,
+          "zero_over_VA": [
+            0.4979766069421438,
+            0.5079762525413433
+          ],
+          "zero_at_VA3p3_V": [
+            1.6433228029090745,
+            1.6763216333864326
+          ],
+          "zero_at_VA3p2_to3p4_V": [
+            1.5935251422148602,
+            1.727119258640567
+          ]
+        }
+      },
+      "middle_band_gain_V_per_V": [
+        0.03627780270380917,
+        0.037702556781452616
+      ],
+      "plus_minus1V_DC": {
+        "BUF": {
+          "change_for_plus1_V": [
+            0.03627780270380917,
+            0.037702556781452616
+          ],
+          "change_for_minus1_V": [
+            -0.037702556781452616,
+            -0.03627780270380917
+          ],
+          "absolute_plus1_at3p3_V": [
+            1.6806784455867014,
+            1.7129332008016867
+          ],
+          "absolute_minus1_at3p3_V": [
+            1.605967160231448,
+            1.639710065971179
+          ],
+          "nominal_change_for_plus1_V": 0.03698358289734785
+        },
+        "DRIVE": {
+          "change_for_plus1_V": [
+            0.03627780270380917,
+            0.037702556781452616
+          ],
+          "change_for_minus1_V": [
+            -0.037702556781452616,
+            -0.03627780270380917
+          ],
+          "absolute_plus1_at3p3_V": [
+            1.6806784455867014,
+            1.7129332008016867
+          ],
+          "absolute_minus1_at3p3_V": [
+            1.605967160231448,
+            1.639710065971179
+          ],
+          "nominal_change_for_plus1_V": 0.03698358289734785
+        },
+        "LP1": {
+          "change_for_plus1_V": [
+            0.03627780270380917,
+            0.037702556781452616
+          ],
+          "change_for_minus1_V": [
+            -0.037702556781452616,
+            -0.03627780270380917
+          ],
+          "absolute_plus1_at3p3_V": [
+            1.6806784455867012,
+            1.7129332008016867
+          ],
+          "absolute_minus1_at3p3_V": [
+            1.605967160231448,
+            1.639710065971179
+          ],
+          "nominal_change_for_plus1_V": 0.03698358289734785
+        },
+        "LP2": {
+          "change_for_plus1_V": [
+            0.03627780270380917,
+            0.037702556781452616
+          ],
+          "change_for_minus1_V": [
+            -0.037702556781452616,
+            -0.03627780270380917
+          ],
+          "absolute_plus1_at3p3_V": [
+            1.680678445586701,
+            1.7129332008016867
+          ],
+          "absolute_minus1_at3p3_V": [
+            1.605967160231448,
+            1.6397100659711787
+          ],
+          "nominal_change_for_plus1_V": 0.03698358289734785
+        },
+        "ADC_NODE": {
+          "change_for_plus1_V": [
+            0.03627780270380917,
+            0.037702556781452616
+          ],
+          "change_for_minus1_V": [
+            -0.037702556781452616,
+            -0.03627780270380917
+          ],
+          "absolute_plus1_at3p3_V": [
+            1.680678445586701,
+            1.7129332008016867
+          ],
+          "absolute_minus1_at3p3_V": [
+            1.605967160231448,
+            1.6397100659711787
+          ],
+          "nominal_change_for_plus1_V": 0.03698358289734785
+        }
+      }
+    },
+    "AC_WIDE": {
+      "corner_count": 256,
+      "zero_condition": "CH1 shorted to AGND after removing the external signal source; settled DC state; S1/S2 changed only with power off",
+      "nodes": {
+        "BUF": {
+          "nominal_zero_at3p3_V": 1.7235668789808896,
+          "zero_over_VA": [
+            0.517300707321737,
+            0.5272808302030965
+          ],
+          "zero_at_VA3p3_V": [
+            1.7070923341617321,
+            1.7400267396702183
+          ],
+          "zero_at_VA3p2_to3p4_V": [
+            1.6553622634295586,
+            1.7927548226905279
+          ]
+        },
+        "DRIVE": {
+          "nominal_zero_at3p3_V": 1.7235668789808896,
+          "zero_over_VA": [
+            0.517300707321737,
+            0.5272808302030965
+          ],
+          "zero_at_VA3p3_V": [
+            1.7070923341617321,
+            1.7400267396702183
+          ],
+          "zero_at_VA3p2_to3p4_V": [
+            1.6553622634295586,
+            1.7927548226905279
+          ]
+        },
+        "LP1": {
+          "nominal_zero_at3p3_V": 1.7235668789808893,
+          "zero_over_VA": [
+            0.517300707321737,
+            0.5272808302030964
+          ],
+          "zero_at_VA3p3_V": [
+            1.7070923341617321,
+            1.7400267396702178
+          ],
+          "zero_at_VA3p2_to3p4_V": [
+            1.6553622634295586,
+            1.7927548226905274
+          ]
+        },
+        "LP2": {
+          "nominal_zero_at3p3_V": 1.7235668789808893,
+          "zero_over_VA": [
+            0.517300707321737,
+            0.5272808302030964
+          ],
+          "zero_at_VA3p3_V": [
+            1.7070923341617321,
+            1.7400267396702178
+          ],
+          "zero_at_VA3p2_to3p4_V": [
+            1.6553622634295586,
+            1.7927548226905274
+          ]
+        },
+        "ADC_NODE": {
+          "nominal_zero_at3p3_V": 1.7235668789808893,
+          "zero_over_VA": [
+            0.517300707321737,
+            0.5272808302030964
+          ],
+          "zero_at_VA3p3_V": [
+            1.7070923341617321,
+            1.7400267396702178
+          ],
+          "zero_at_VA3p2_to3p4_V": [
+            1.6553622634295586,
+            1.7927548226905274
+          ]
+        }
+      },
+      "middle_band_gain_V_per_V": [
+        0.03593824889797643,
+        0.03735018436072639
+      ]
+    },
+    "AC_SENSITIVE": {
+      "corner_count": 256,
+      "zero_condition": "CH1 shorted to AGND after removing the external signal source; settled DC state; S1/S2 changed only with power off",
+      "nodes": {
+        "BUF": {
+          "nominal_zero_at3p3_V": 1.7235668789808896,
+          "zero_over_VA": [
+            0.517300707321737,
+            0.5272808302030965
+          ],
+          "zero_at_VA3p3_V": [
+            1.7070923341617321,
+            1.7400267396702183
+          ],
+          "zero_at_VA3p2_to3p4_V": [
+            1.6553622634295586,
+            1.7927548226905279
+          ]
+        },
+        "DRIVE": {
+          "nominal_zero_at3p3_V": 1.7235668789808798,
+          "zero_over_VA": [
+            0.47610624823395525,
+            0.5684385717492089
+          ],
+          "zero_at_VA3p3_V": [
+            1.5711506191720523,
+            1.8758472867723892
+          ],
+          "zero_at_VA3p2_to3p4_V": [
+            1.523539994348657,
+            1.93269114394731
+          ]
+        },
+        "LP1": {
+          "nominal_zero_at3p3_V": 1.7235668789808793,
+          "zero_over_VA": [
+            0.4761062482339554,
+            0.568438571749209
+          ],
+          "zero_at_VA3p3_V": [
+            1.5711506191720528,
+            1.8758472867723894
+          ],
+          "zero_at_VA3p2_to3p4_V": [
+            1.5235399943486574,
+            1.9326911439473105
+          ]
+        },
+        "LP2": {
+          "nominal_zero_at3p3_V": 1.7235668789808793,
+          "zero_over_VA": [
+            0.47610624823395536,
+            0.568438571749209
+          ],
+          "zero_at_VA3p3_V": [
+            1.5711506191720526,
+            1.8758472867723894
+          ],
+          "zero_at_VA3p2_to3p4_V": [
+            1.5235399943486572,
+            1.9326911439473105
+          ]
+        },
+        "ADC_NODE": {
+          "nominal_zero_at3p3_V": 1.7235668789808793,
+          "zero_over_VA": [
+            0.47610624823395536,
+            0.568438571749209
+          ],
+          "zero_at_VA3p3_V": [
+            1.5711506191720526,
+            1.8758472867723894
+          ],
+          "zero_at_VA3p2_to3p4_V": [
+            1.5235399943486572,
+            1.9326911439473105
+          ]
+        }
+      },
+      "middle_band_gain_V_per_V": [
+        0.1798231598202973,
+        0.1929909821685381
+      ]
+    }
+  },
+  "use": "Find obvious assembly or mode errors; a value inside a range is NOT PASS and outside is not automatically a faulty board. Stop and investigate unexplained deviations before connecting ADC or increasing a test signal.",
+  "physical_testing": "NOT_PERFORMED"
+}

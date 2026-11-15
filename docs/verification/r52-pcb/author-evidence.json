@@ -1,0 +1,70 @@
+{
+  "base_commit": "6e364ed4cc6f2859473c565765fcfe54b811d77f",
+  "date": "2026-11-02",
+  "scope": "Fresh R5.2 single-copper LUT CAD and 1:1 print set; no physical assembly/measurement",
+  "pcb_sha256": "e3b121a95d97afec065cb37b64ef93cc9867b816e47e5f35d207a7d7dfa3b2c2",
+  "pdf_sha256": "2fe1786e184166e978548efa7987acbcda07619385262b9d30397ce55ae04069",
+  "original_archive_sha256": "ddec83fd287bb4f7cd5341324f07445ec804d8ef839b7e7ce4ea74b4109cf777",
+  "drc": {
+    "violations": 0,
+    "unconnected": 0,
+    "schematic_parity_issues": 0,
+    "ignored_checks": [
+      {
+        "description": "Footprint has no courtyard defined",
+        "key": "missing_courtyard"
+      },
+      {
+        "description": "Track endpoint not centered on via",
+        "key": "track_not_centered_on_via"
+      },
+      {
+        "description": "Tuning profile track geometries",
+        "key": "tuning_profile_track_geometries"
+      },
+      {
+        "description": "Footprint doesn't match symbol's footprint filters",
+        "key": "footprint_filters_mismatch"
+      },
+      {
+        "description": "Footprint component type doesn't match footprint pads",
+        "key": "footprint_type_mismatch"
+      }
+    ]
+  },
+  "electrical_parity": {
+    "components": 35,
+    "pins": 87,
+    "pass": true
+  },
+  "ground_evidence": "final-ground-graph.json",
+  "print_visual_review": {
+    "all_pages": [
+      1,
+      2,
+      3,
+      4
+    ],
+    "reviewers": [
+      "r52_parts_audit",
+      "root"
+    ],
+    "changed_w3_text_pages_rechecked": [
+      3,
+      4
+    ],
+    "clipping_or_collisions_observed": false
+  },
+  "tools_static_parse_pass": true,
+  "tools_not_regenerated_cad_after_relocation": true,
+  "required_jumper_count": 2,
+  "optional_jumper": "W3",
+  "known_limits": [
+    "U1 row spacing 15.24mm is user confirmed; body and actual capacitor footprints need paper fit.",
+    "Fine pitch U1 narrow annulus .35mm and C5 0805 require careful LUT/drilling.",
+    "Ground erosion does not model drill annuli, etch tolerances or high-frequency current.",
+    "No fabricated/assembled hardware, electrical response, calibration, protection or vehicle approval.",
+    "C10/C11 nominal 100pF in new instructions; original 96/104pF source records preserved.",
+    "No firmware/UI changes or COM/SWD access in this iteration."
+  ]
+}
