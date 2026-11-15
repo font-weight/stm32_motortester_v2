@@ -1,0 +1,23 @@
+{
+  "scope": "one cold start of unchanged runtime after local cleanup",
+  "platform": "Windows-10-10.0.19045-SP0",
+  "python": "3.14.7",
+  "command": "$env:PYTHONPATH=\"host\"; $env:PYTHONDONTWRITEBYTECODE=\"1\"; $env:QT_QPA_PLATFORM=\"windows\"; .venv/Scripts/python.exe -B -m motortester.v2 --settings build/cleanup-20261115/startup/settings.ini --screenshot docs/verification/cleanup-20261115/cold-start.png",
+  "exit_code": 0,
+  "screenshot_sha256": "6a30e8ff6117ba08f529017e2cd03999a118fa9f5f12b8461ec01bc56bee171a",
+  "visual_inspection": "Main window visible; device disconnected; no samples and no automatic demo; ringdown collapsed. Isolated settings; user settings unchanged.",
+  "hardware_or_full_suite_tested": false,
+  "logical_deleted_file_bytes": 26473516941,
+  "disk_before": {
+    "utc": "2026-11-15T09:32:43.5494459Z",
+    "used_bytes": 295307440128,
+    "free_bytes": 216679710720
+  },
+  "disk_after": {
+    "utc": "2026-11-15T09:38:38.9834308Z",
+    "used_bytes": 268185833472,
+    "free_bytes": 243801317376
+  },
+  "observed_free_space_increase_bytes": 27121606656,
+  "space_note": "Observed drive-wide change, includes allocation overhead and unrelated OS activity; logical deleted bytes are counted separately."
+}

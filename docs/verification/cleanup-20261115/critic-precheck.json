@@ -1,0 +1,40 @@
+{
+  "date": "2026-11-15",
+  "critic": "/root/unified_critic",
+  "independent_of_cleanup_implementation": true,
+  "status": "PLAN_ACCEPTED_CONDITIONAL_PREFLIGHT",
+  "final_score": null,
+  "final_verdict_pending": "Actual cleanup receipt, preserved-file comparison and one cold start",
+  "base_sha": "a3ba456f226934a84033963ac5a1b4913b7bbf3d",
+  "plan_sha256": "4442e10f671315547d7a62c613fc3a7fa9315f19c5d37b9b4d1a56df1adbd138",
+  "targets": 190,
+  "files": 346579,
+  "logical_file_bytes": 26473516941,
+  "no_deletions_by_critic": true,
+  "personally_checked": [
+    "Exact allowlist paths resolve inside named workspace, no protected/tracked/worktree intersection, no duplicate target roots",
+    "Read-only verifier and native PowerShell LiteralPath deletion script, plan hash binding, reparse checks before deletion, process guard, count/size checks and FAILED_PARTIAL receipt",
+    "80 retained warn/xref copies: original and retained size/SHA256 identical, 12410303 bytes total",
+    "Plan totals and read-only build audit SHA match"
+  ],
+  "author_inventory_evidence": [
+    "73 unpacked package trees exactly match preserved ZIP inventories and SHA256; 35 wheelhouse trees match retained wheels",
+    "34 venv contain only expected environment paths and RECORD-listed site-packages, no raw/capture/patch artifacts",
+    "40 PyInstaller trees contain generated artifacts plus 80 diagnostic files copied outside deletion targets"
+  ],
+  "conditions": [
+    "Execute only this plan via reviewed native PowerShell script with successful immediate preflight",
+    "Preserve all copied diagnostics and protected sources/venvs/builds/worktree/backups; no broader deletion",
+    "Stop on preflight or deletion error; distinguish logical file size from measured disk free-space change",
+    "Final assessment waits for actual removal and preservation/startup evidence"
+  ],
+  "evidence_sha256": {
+    "docs/verification/cleanup-20261115/SCOPE_RU.md": "f4873622925c90529b93568907a2bad458275b5c23251fcd08fbb65ba1161216",
+    "docs/verification/cleanup-20261115/plan.json": "4442e10f671315547d7a62c613fc3a7fa9315f19c5d37b9b4d1a56df1adbd138",
+    "docs/verification/cleanup-20261115/verify_plan.py": "d15310f6c1534b5e704f570ff9441427a451ebe0e8a51637881dee25f504f80e",
+    "docs/verification/cleanup-20261115/remove-approved.ps1": "f341e386011d62ea8f4f58e29157ced7561c89ca8f148016dbdd94b7ac53b9a3",
+    "docs/verification/cleanup-20261115/retained-diagnostics.json": "eeeed855df141090e97425f0f9bdb744ff6d95af3a90db5d010f4f45ac0fa2df",
+    "build/cleanup-20261115/audit-build.json": "07c43690ad2ccc910744c5fbf25fe349947f25724b45111c31144be18213b17b",
+    "build/cleanup-20261115/preservation-before.json": "b6c6d0ba59dae89e961c8e90ecd6d7f643fab614919e1c379f2e08225532d007"
+  }
+}

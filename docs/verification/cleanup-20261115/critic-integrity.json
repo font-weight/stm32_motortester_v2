@@ -1,0 +1,151 @@
+{
+  "date": "2026-11-15",
+  "critic": "/root/unified_critic",
+  "status": "PASS",
+  "plan_sha256": "4442e10f671315547d7a62c613fc3a7fa9315f19c5d37b9b4d1a56df1adbd138",
+  "preservation_snapshot_sha256": "b6c6d0ba59dae89e961c8e90ecd6d7f643fab614919e1c379f2e08225532d007",
+  "receipt_copies_match_local_originals": true,
+  "removed_paths_match_plan": true,
+  "still_present_targets": [],
+  "key_preserved_files_checked": {
+    ".venv/Scripts/python.exe": {
+      "sha256": "9b7bffc26240463c965a2a2a5fada1d8e741c21c25cd2e977728c339b82d9977",
+      "size_bytes": 255200,
+      "match": true
+    },
+    "build/v18w2/venv/Scripts/python.exe": {
+      "sha256": "9b7bffc26240463c965a2a2a5fada1d8e741c21c25cd2e977728c339b82d9977",
+      "size_bytes": 255200,
+      "match": true
+    },
+    "build/v23w/dist/MotortesterV2/MotortesterV2.exe": {
+      "sha256": "7ceed41c19a473f1287e0637e29f4e32b1b717782e540cd560fbde325b72db76",
+      "size_bytes": 7520530,
+      "match": true
+    },
+    "build/v24w/dist/MotortesterV2/MotortesterV2.exe": {
+      "sha256": "a6936f0acd689af4943f3113eee802624160f14bc8bffcc492ba981072dad069",
+      "size_bytes": 7566943,
+      "match": true
+    },
+    "host/motortester/v2/unified_gui.py": {
+      "sha256": "ec25e81826d29038657829448491c99d6514477cab3dfc6b227650622d4eb4f1",
+      "size_bytes": 25098,
+      "match": true
+    },
+    "host/motortester/v2/ringdown.py": {
+      "sha256": "79b3c6e3d762662aa843d60551cd0ac4303b97bec05c5d19795e746baa3cfa4d",
+      "size_bytes": 19966,
+      "match": true
+    },
+    "host/motortester/v2/stream_device.py": {
+      "sha256": "cecbfdac511561311e34e992fee15e4447b7aff5be14bf5da653af3c601e7c41",
+      "size_bytes": 35704,
+      "match": true
+    },
+    "host/packaging/v2/requirements-win-x64.lock": {
+      "sha256": "8391f0a5a5886b8c2f291878834af92c43cb613b2136afa72aa4fc3325af5fb3",
+      "size_bytes": 2290,
+      "match": true
+    },
+    "build/v5-board-backup-20261020/clock-after-reset.txt": {
+      "sha256": "87bf9b670828bdd1d120045fae8f1356e99a42bc262aae0b289b48fd2b74cd33",
+      "size_bytes": 433,
+      "match": true
+    },
+    "build/v5-board-backup-20261020/clock-status.txt": {
+      "sha256": "57cb7d8288cdfcc1730c29c8051851498d9835259632372404df687451afafc4",
+      "size_bytes": 405,
+      "match": true
+    },
+    "build/v5-board-backup-20261020/full-read1.txt": {
+      "sha256": "4f74f276500e3ff97aa52a247eeb6fa12d5a82674add12e742b1bbb2e7fdbfc8",
+      "size_bytes": 1120,
+      "match": true
+    },
+    "build/v5-board-backup-20261020/full-read2.txt": {
+      "sha256": "05eb11d5ed4e9c0ba541f7da7de5ce2a37c31893e39f843b45bbdc08d0b00dfe",
+      "size_bytes": 1064,
+      "match": true
+    },
+    "build/v5-board-backup-20261020/handshake-after-replug.json": {
+      "sha256": "3de5566370ab5b6f30d282ad2f881505987e5c0173713f3f04f93dbcc07b0727",
+      "size_bytes": 1819,
+      "match": true
+    },
+    "build/v5-board-backup-20261020/handshake-after-reset.json": {
+      "sha256": "804486f75386ea7ddaa24019609aba4975a3a1cc7c0ce7edba1acdd2f5ba6f22",
+      "size_bytes": 199,
+      "match": true
+    },
+    "build/v5-board-backup-20261020/handshake-before.json": {
+      "sha256": "cf8b4b90bc23296d81f6d758e091327bf1710b961e4104e8b9f6cddedebbb217",
+      "size_bytes": 258,
+      "match": true
+    },
+    "build/v5-board-backup-20261020/port-open-diagnostic.json": {
+      "sha256": "b8b6ce2701b08eb5655aee04bbeeb57483bdb35aa0e4b7fb4639b2fd95157d91",
+      "size_bytes": 230,
+      "match": true
+    },
+    "build/v5-board-backup-20261020/probe-list.txt": {
+      "sha256": "b58c8ddae6534dd35b9a1498631f1ee20ba54017c8f3ccfa2b156244c92e72a3",
+      "size_bytes": 239,
+      "match": true
+    },
+    "build/v5-board-backup-20261020/ram-before-reset.bin": {
+      "sha256": "eeb739dd17ae11c1b16332f621ddf4817dd151c140e5046e12cb30694242f483",
+      "size_bytes": 20480,
+      "match": true
+    },
+    "build/v5-board-backup-20261020/ram-before-reset.txt": {
+      "sha256": "c96e94775ca1bce8e4ecd3ff22fc71576d9d07124df358414e5322bcd87121f3",
+      "size_bytes": 896,
+      "match": true
+    },
+    "build/v5-board-backup-20261020/read1.txt": {
+      "sha256": "2e5902a2e79ea938d0ea2bb318bc9117fa8539c071dbb796c6de05fe4ee1a803",
+      "size_bytes": 1292,
+      "match": true
+    },
+    "build/v5-board-backup-20261020/reset-run.txt": {
+      "sha256": "f8596a56771eed9f6bf4ebfd453433d8b7e7796ae747d34ca0eea8f480d620c9",
+      "size_bytes": 420,
+      "match": true
+    },
+    "build/v5-board-backup-20261020/window-working-full-read1.bin": {
+      "sha256": "de8bb5f4c8b67c5d31fe74755733f3c852e3945237e3e49a74ebdaaa577a97d5",
+      "size_bytes": 131072,
+      "match": true
+    },
+    "build/v5-board-backup-20261020/window-working-full-read2.bin": {
+      "sha256": "de8bb5f4c8b67c5d31fe74755733f3c852e3945237e3e49a74ebdaaa577a97d5",
+      "size_bytes": 131072,
+      "match": true
+    },
+    "build/v5-board-backup-20261020/window-working-read1.bin": {
+      "sha256": "72520303cd27bac89b9cd11d93ef751f0ec30617c1a90dc0427c7ba6a7665d39",
+      "size_bytes": 65536,
+      "match": true
+    },
+    "build/v18w2/dist/MotortesterV2/licenses/dependency-6.12.0/notices/65d86b8ec6b1cd8b8f6e64fd8710274ba00d6a3c520e00dfdcd1c3d2071f3305": {
+      "sha256": "65d86b8ec6b1cd8b8f6e64fd8710274ba00d6a3c520e00dfdcd1c3d2071f3305",
+      "size_bytes": 144,
+      "match": true
+    },
+    "build/v18w2/wheelhouse/altgraph-0.17.5-py2.py3-none-any.whl": {
+      "sha256": "f3a22400bce1b0c701683820ac4f3b159cd301acab067c51c653e06961600597",
+      "size_bytes": 21228,
+      "match": true
+    }
+  },
+  "retained_diagnostics_checked": 80,
+  "retained_diagnostic_bytes": 12410303,
+  "full_preservation_sha_check_run_by": "author via reviewed verify_after.py, not redundantly repeated by critic",
+  "author_preserved_files": 27765,
+  "author_preserved_bytes": 1626000735,
+  "cold_start_image_personally_viewed": true,
+  "logical_removed_bytes": 26473516941,
+  "observed_drive_free_space_delta": 27121606656,
+  "failures": []
+}

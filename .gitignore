@@ -1,7 +1,11 @@
 .venv/
 __pycache__/
 *.pyc
+*.pyo
 .pytest_cache/
+.DS_Store
+Thumbs.db
+Desktop.ini
 output/
 /build/
 *.mtv2
@@ -22,3 +26,6 @@ output/
 /docs/verification/diploma-chapter1/critic-short-audit.json
 /docs/verification/diploma-chapter1/critic-short-precheck.json
 /docs/verification/diploma-chapter2/
+
+# Regenerable compiler cache inside an older verification workspace.
+/docs/verification/v2-serializer-local/production-01/build/v6m-native-01/zig-global/

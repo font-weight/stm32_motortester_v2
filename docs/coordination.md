@@ -1,3 +1,12 @@
+# V2-23: очистка, 15.11.2026
+
+Root: окончательный allowlist, безопасное удаление PowerShell, ignore-правила,
+текущая задача, evidence/прогресс/публикация. unified_panel: read-only аудит
+build и запись только build/cleanup-20261115/audit-build.json. unified_input:
+read-only аудит кешей вне build. unified_critic: проверка allowlist до удаления,
+после — v2-23-cleanup-review.md и critic*.json в verification/cleanup-20261115.
+Приложение/прошивка/пользовательские источники не меняются.
+
 # V2-22: публикация, 15.11.2026
 
 Root: состав публикации, git, .gitignore/.gitattributes, текущая задача,

@@ -1,0 +1,87 @@
+{
+  "date": "2026-11-15",
+  "critic": "/root/unified_critic",
+  "independent_of_implementation_and_deletion": true,
+  "base_sha": "a3ba456f226934a84033963ac5a1b4913b7bbf3d",
+  "scope": "One-time cleanup of explicit local generated paths and verified duplicate packages; preservation and one cold start, no new application or hardware acceptance",
+  "verdict": "PASS",
+  "score": 9.61,
+  "weighted_score_exact": "9.610",
+  "scores": {
+    "C1": 9.7,
+    "C2": 9.7,
+    "C3": 9.5,
+    "C4": 9.5,
+    "C5": 9.6
+  },
+  "weights": {
+    "C1": 0.3,
+    "C2": 0.2,
+    "C3": 0.25,
+    "C4": 0.15,
+    "C5": 0.1
+  },
+  "open_P0_P1": 0,
+  "binding_plan": "docs/verification/cleanup-20261115/plan.json",
+  "plan_sha256": "4442e10f671315547d7a62c613fc3a7fa9315f19c5d37b9b4d1a56df1adbd138",
+  "report": "docs/reviews/v2-23-cleanup-review.md",
+  "report_sha256": "67063b4373f5655fc986f9367e84a65c286236c254c712cb8a58bb04dd8c996a",
+  "results": {
+    "removed_directories": 190,
+    "removed_files": 346579,
+    "logical_removed_bytes": 26473516941,
+    "observed_drive_free_space_increase_bytes": 27121606656,
+    "observed_delta_is_not_attributable_only_to_this_cleanup": true,
+    "author_preserved_files_sha_checked": 27765,
+    "author_preserved_bytes_sha_checked": 1626000735,
+    "critic_key_preserved_files_sha_checked": 26,
+    "critic_retained_diagnostic_files_sha_checked": 80,
+    "source_cold_start_exit_code": 0
+  },
+  "personally_checked": [
+    "Plan paths and protections before deletion, exact scripts, all 80 diagnostic source/copy SHA matches before deletion",
+    "Final ordered removal receipt and its byte-identical repository copies; all 190 target paths absent",
+    "26 protected key files including all 16 named board-backup files match before snapshot; all 80 retained diagnostics still match",
+    "One cold-start PNG manually viewed; environment disconnected and no samples/demo; COM5 listing does not imply connection",
+    "No tracked deletions, unchanged worktree list, limited ignore changes and restoration instructions"
+  ],
+  "author_evidence_checked": [
+    "Read-only archive/wheel exact inventory and SHA audit; venv/PyInstaller inventory clarification",
+    "Immediate preflight and native PowerShell removal PASS",
+    "Reviewed verify_after.py checked 27765 preserved files before final decisions/progress updates",
+    "One unchanged source cold start in root .venv using -B and isolated settings, native Windows Qt, exit 0"
+  ],
+  "closed_finding": "Initial generated-folder classification required deeper inventory. Eighty warn/xref diagnostic files were copied, hashed, added to final plan protection, and checked before/after deletion. No broader deletion accepted.",
+  "preservation_timing": "Full after-check preceded intentional final additions to docs/decisions.md and docs/progress.md. Metadata edits are not misrepresented as matching the earlier snapshot.",
+  "audit_append_policy": "Only later progress/receipt notes and Git publication metadata may be appended without changing this exact cleanup plan, scripts, payload or implementation. This manifest does not hash itself or mutable progress.",
+  "limits": [
+    "No repeated full runtime suite, hardware/COM capture, SWD or flashing",
+    "Full ZIP hashes checked before removal; after-check additionally confirms presence/sizes, not a repeated full ZIP hash pass",
+    "Application cold start is not proof of physical measurements or all live runtime paths",
+    "Future normal Python starts may regenerate bytecode caches",
+    "Old unpacked copies may be reconstructed from retained ZIPs; old venv must be recreated when needed"
+  ],
+  "evidence_sha256": {
+    "docs/verification/cleanup-20261115/SCOPE_RU.md": "f4873622925c90529b93568907a2bad458275b5c23251fcd08fbb65ba1161216",
+    "docs/verification/cleanup-20261115/plan.json": "4442e10f671315547d7a62c613fc3a7fa9315f19c5d37b9b4d1a56df1adbd138",
+    "docs/verification/cleanup-20261115/verify_plan.py": "d15310f6c1534b5e704f570ff9441427a451ebe0e8a51637881dee25f504f80e",
+    "docs/verification/cleanup-20261115/remove-approved.ps1": "f341e386011d62ea8f4f58e29157ced7561c89ca8f148016dbdd94b7ac53b9a3",
+    "docs/verification/cleanup-20261115/verify_after.py": "3b2a424d345902e09da1ddb7fec7085fb54ee2c6152dcd83e5571c04353012f9",
+    "docs/verification/cleanup-20261115/retained-diagnostics.json": "eeeed855df141090e97425f0f9bdb744ff6d95af3a90db5d010f4f45ac0fa2df",
+    "docs/verification/cleanup-20261115/preflight.json": "cce0a919778d3ef38765ca08f1351ab805e086b14c91e8ab9f5e661d6dee74fc",
+    "docs/verification/cleanup-20261115/removed.json": "10fe08c0cd49ea2f836c08eafad78e0599c9b8bf2ca1ed93116ee767367d3d34",
+    "docs/verification/cleanup-20261115/integrity-result.json": "03a893c0fad4d2610949ca2406a12e86b42d653e6d54ff98f191346a69c4cf70",
+    "docs/verification/cleanup-20261115/startup-and-space.json": "d4f2fca527bd958e0a9f06b69e56a35f546b83cdf6141d306156c6e611605d8c",
+    "docs/verification/cleanup-20261115/cold-start.png": "6a30e8ff6117ba08f529017e2cd03999a118fa9f5f12b8461ec01bc56bee171a",
+    "docs/verification/cleanup-20261115/README.md": "647378539f2d5d9d8fb4f4f2cd566809a3bc66fe355f131e6e82bd57beef6693",
+    "docs/verification/cleanup-20261115/critic-precheck.json": "cc8d8da6634ef28c182e8d3e21f475fa3592cc470f1d5de2dbb7cda4d2794f81",
+    "docs/verification/cleanup-20261115/critic-integrity.json": "87e0ea0c71291c161a871e917c59e1dace44da7c9ba7e0dd9220896060b373a5",
+    "build/cleanup-20261115/audit-build.json": "07c43690ad2ccc910744c5fbf25fe349947f25724b45111c31144be18213b17b",
+    "build/cleanup-20261115/preservation-before.json": "b6c6d0ba59dae89e961c8e90ecd6d7f643fab614919e1c379f2e08225532d007",
+    ".gitignore": "105e9f9ce6f8cf65a5e3fd8ba6b9d6a9a809e8ed1b9dc2be91c2ca798a333cac",
+    "task.md": "bbc5b9b3ef2f18c5001169f5d3f0c097199011c1626c60243f8a69a70c86cf0e",
+    "docs/coordination.md": "63eeb23545d8e1ffcb6e5abff843d57928d8257a21dc3b3b1b03d77a5002f71c",
+    "docs/decisions.md": "f9acd7f7aa9a5082853ef7621dc0a38a2c27a1bf3a92a3a3453d4bfe8c1b4f0a",
+    "docs/reviews/v2-23-cleanup-review.md": "67063b4373f5655fc986f9367e84a65c286236c254c712cb8a58bb04dd8c996a"
+  }
+}
